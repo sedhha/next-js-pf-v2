@@ -4,8 +4,13 @@
   font-family: $railway-font;
   font-style: normal;
   font-weight: 700;
-  font-size: 3.5rem; //TODO: Responsive Size
-  line-height: 4rem; //TODO: Responsive Size
+  @include respond(tablet) {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+  font-size: 3.5rem;
+  line-height: 4rem;
+
   letter-spacing: 0.05em;
   color: $light-blue;
 }

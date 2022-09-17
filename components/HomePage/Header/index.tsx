@@ -5,7 +5,7 @@ import HeaderList from './HeaderList';
 import NameTag from './nameTag';
 
 export default function Header() {
-  const [lightMode, setLightMode] = React.useState(false);
+  const [lightMode, setLightMode] = React.useState(true);
   return (
     <div className={classes.Header}>
       <NameTag />

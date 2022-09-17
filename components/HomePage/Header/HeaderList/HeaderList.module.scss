@@ -6,12 +6,24 @@
   justify-content: space-between;
   align-items: center;
   gap: 4rem;
+
+  @include respond(tablet) {
+    gap: 2rem;
+  }
+  @include respond(mobile) {
+    display: none;
+  }
 }
 
 .HeaderListElement {
   font-family: $railway-font;
   font-style: normal;
   font-weight: 600;
+
+  @include respond(tablet) {
+    font-size: 1.5rem;
+    line-height: 3rem;
+  }
   font-size: 2rem;
   line-height: 4rem;
   letter-spacing: 0.05em;
@@ -23,5 +35,20 @@
   }
   &Active {
     color: $toggle-switch-color-dark;
+  }
+}
+
+.ViewList {
+  flex: auto;
+  color: red;
+  background-color: blue;
+  text-align: end;
+  display: flex;
+  justify-content: flex-end;
+  @include respond(mobile) {
+    display: visible;
+  }
+  &Icon {
+    font-size: 4rem;
   }
 }

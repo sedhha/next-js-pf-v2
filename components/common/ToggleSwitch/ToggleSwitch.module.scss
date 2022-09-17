@@ -1,8 +1,8 @@
 @import '../../../styles/utils/_imports.scss';
 
 .ToggleSwitchBox {
-  width: 10.5rem;
-  height: 5rem;
+  width: 8.5rem;
+  height: 4rem;
   box-shadow: -2px 4px 12px -7px #000000;
   border-radius: 5.3rem;
   display: flex;
@@ -12,6 +12,10 @@
 }
 
 $background-animation-duration: 0.3s;
+$toggle-button-size: 2.5rem;
+
+$left-translation: -5%;
+$right-translation: 170%;
 
 @keyframes animateFadeEffectLight {
   0% {
@@ -33,19 +37,19 @@ $background-animation-duration: 0.3s;
 
 @keyframes animateSwitchEffectLeft {
   0% {
-    transform: translateX(120%);
+    transform: translateX($right-translation);
   }
   100% {
-    transform: translateX(-5%);
+    transform: translateX($left-translation);
   }
 }
 
 @keyframes animateSwitchEffectRight {
   0% {
-    transform: translateX(-5%);
+    transform: translateX($left-translation);
   }
   100% {
-    transform: translateX(120%);
+    transform: translateX($right-translation);
   }
 }
 
@@ -63,16 +67,20 @@ $background-animation-duration: 0.3s;
 }
 
 .ToggleSwitchCircle {
-  width: 4rem;
-  height: 4rem;
+  width: $toggle-button-size;
+  height: $toggle-button-size;
   border-radius: 50%;
   box-shadow: 0px 3px 8px -2px #000000;
   position: absolute;
+  cursor: pointer;
+  &:hover {
+    scale: 0.95;
+  }
 }
 
 .ToggleSwitchLight {
   background: $toggle-switch-color-light;
-  transform: translateX(-5%);
+  transform: translateX($left-translation);
   animation-duration: $background-animation-duration;
   animation-name: animateSwitchEffectLeft;
   animation-timing-function: ease-in;
@@ -80,7 +88,7 @@ $background-animation-duration: 0.3s;
 
 .ToggleSwitchDark {
   background: $toggle-switch-color-dark;
-  transform: translateX(120%);
+  transform: translateX($right-translation);
   animation-duration: $background-animation-duration;
   animation-name: animateSwitchEffectRight;
   animation-timing-function: ease-in;
