@@ -1,5 +1,17 @@
 @import '../../../../styles/utils/_imports.scss';
 
+$flyIn-animation-duration: 0.3s;
+@keyframes flyInEffect {
+  0% {
+    scale: 0;
+    transform: translateY(-10rem);
+  }
+  100% {
+    scale: 1;
+    transform: translateY(5.2rem);
+  }
+}
+
 .HeaderList {
   padding: 0 5rem;
   display: flex;
@@ -21,11 +33,19 @@
   font-family: $railway-font;
   font-style: normal;
   font-weight: 600;
-
+  @include respond(small-laptop) {
+    font-size: 2.5rem;
+    line-height: 4rem;
+  }
   @include respond(tablet) {
+    font-size: 2rem;
+    line-height: 4rem;
+  }
+  @include respond(mobile) {
     font-size: 1.5rem;
     line-height: 3rem;
   }
+
   font-size: 2rem;
   line-height: 4rem;
   letter-spacing: 0.05em;
@@ -69,6 +89,9 @@
 
 .RouterListDropDown {
   position: absolute;
+  animation-duration: $flyIn-animation-duration;
+  animation-name: flyInEffect;
+  animation-timing-function: ease-in;
 
   padding: 0.5rem 3.5rem;
   box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
