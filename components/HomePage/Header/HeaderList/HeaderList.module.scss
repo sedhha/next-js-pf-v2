@@ -1,0 +1,27 @@
+@import '../../../../styles/utils/_imports.scss';
+
+.HeaderList {
+  padding: 0 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+}
+
+.HeaderListElement {
+  font-family: $railway-font;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 4rem;
+  letter-spacing: 0.05em;
+  color: $dark-gray-font;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+  &:hover {
+    transform: scale(1.05);
+  }
+  &Active {
+    color: $toggle-switch-color-dark;
+  }
+}
