@@ -9,8 +9,8 @@ export default function Header() {
   return (
     <div className={classes.Header}>
       <NameTag />
-      <HeaderList />
       <ToggleSwitch lightMode={lightMode} setLightMode={setLightMode} />
+      <HeaderList />
     </div>
   );
 }

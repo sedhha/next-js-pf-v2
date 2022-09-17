@@ -6,9 +6,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 4rem;
-
+  order: 1;
   @include respond(tablet) {
     gap: 2rem;
+    flex: none;
+    order: 1;
   }
   @include respond(mobile) {
     display: none;
@@ -39,16 +41,59 @@
 }
 
 .ViewList {
-  flex: auto;
-  color: red;
-  background-color: blue;
+  order: 1;
+  @include respond(medium-laptop) {
+    display: none;
+  }
+  @include respond(small-laptop) {
+    display: none;
+  }
+  @include respond(tablet) {
+    display: none;
+  }
+  @include respond(mobile) {
+    flex: none;
+    order: 2;
+    display: flex;
+  }
   text-align: end;
   display: flex;
   justify-content: flex-end;
-  @include respond(mobile) {
-    display: visible;
-  }
+  padding: 0 1rem;
   &Icon {
     font-size: 4rem;
+    color: $dark-gray-font;
+    cursor: pointer;
+  }
+}
+
+.RouterListDropDown {
+  position: absolute;
+
+  padding: 0.5rem 3.5rem;
+  box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 0px 6px 6px;
+  right: 0;
+  transform: translateY(5.2rem);
+  background: $light-bg;
+  display: flex;
+  flex-direction: column;
+  &_Dark {
+    background: $faded-dark-bg;
+  }
+  &_Elements {
+    font-family: $railway-font;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.4rem;
+    line-height: 6rem;
+    letter-spacing: 0.05em;
+    color: $dark-gray-font;
+    &_Active {
+      color: $toggle-switch-color-dark;
+    }
+    &_ActiveDark {
+      color: $light-blue;
+    }
   }
 }

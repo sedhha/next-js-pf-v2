@@ -20,7 +20,9 @@
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
       "@/redux/*": ["redux/tools/*"],
-      "@/redux-slices/*": ["redux/slices/*"]
+      "@/redux-slices/*": ["redux/slices/*"],
+      "@/constants/*": ["constants/*"],
+      "@/interfaces/*": ["interfaces/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],

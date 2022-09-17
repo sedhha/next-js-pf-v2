@@ -1,15 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '@/redux/store';
+import { IRoutes } from '@/interfaces/ui';
+import { AvailableRoutes, routeKeys, routers } from '@/constants/routes';
 
 // Define a type for the slice state
+
 interface UIState {
   darkMode: boolean;
+  routes: IRoutes;
+  activeRoute: AvailableRoutes;
 }
 
 // Define the initial state using that type
 const initialState: UIState = {
   darkMode: false,
+  routes: routers,
+  activeRoute: routeKeys.ABOUT_ROUTE,
 };
 
 export const uiState = createSlice({
@@ -20,10 +26,16 @@ export const uiState = createSlice({
     updateMode: (state: UIState, action: PayloadAction<boolean>) => {
       state.darkMode = action.payload;
     },
+    updateActiveRoute: (
+      state: UIState,
+      action: PayloadAction<AvailableRoutes>
+    ) => {
+      state.activeRoute = action.payload;
+    },
   },
 });
 
-export const { updateMode } = uiState.actions;
+export const { updateMode, updateActiveRoute } = uiState.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 
