@@ -9,6 +9,7 @@ interface UIState {
   darkMode: boolean;
   routes: IRoutes;
   activeRoute: AvailableRoutes;
+  showNavBar: boolean;
 }
 
 // Define the initial state using that type
@@ -16,6 +17,7 @@ const initialState: UIState = {
   darkMode: false,
   routes: routers,
   activeRoute: routeKeys.ABOUT_ROUTE,
+  showNavBar: false,
 };
 
 export const uiState = createSlice({
@@ -32,10 +34,13 @@ export const uiState = createSlice({
     ) => {
       state.activeRoute = action.payload;
     },
+    toggleNavBar: (state: UIState) => {
+      state.showNavBar = !state.showNavBar;
+    },
   },
 });
 
-export const { updateMode, updateActiveRoute } = uiState.actions;
+export const { updateMode, updateActiveRoute, toggleNavBar } = uiState.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 

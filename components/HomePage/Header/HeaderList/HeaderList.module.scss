@@ -112,6 +112,12 @@ $flyIn-animation-duration: 0.3s;
     line-height: 6rem;
     letter-spacing: 0.05em;
     color: $dark-gray-font;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    &:hover {
+      transform: scale(0.92);
+      color: $light-blue;
+    }
     &_Active {
       color: $toggle-switch-color-dark;
     }
