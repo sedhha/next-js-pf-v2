@@ -11,6 +11,9 @@
   @include respond-max(small-tablet) {
     height: 89vh;
   }
+  @include respond-max(mobile) {
+    height: 95.5vh;
+  }
   background: inherit;
   margin: 0;
   max-width: 100%;
@@ -27,19 +30,17 @@
   padding: 0 1rem;
   grid-template-rows: repeat(8, 1fr);
   grid-template-columns: repeat(6, 1fr);
-  grid-template-areas:
-    'Header Header Header Header Header Header'
-    'Title Title Title Title Image Image'
-    'Description Description Description Description Image Image'
-    'Description Description Description Description Image Image'
-    'Description Description Description Description Image Image'
-    'Description Description Description Description Image Image'
-    'Description Description Description Description Image Image'
-    'LearnMore LearnMore LearnMore LearnMore LearnMore LearnMore';
+  grid-row-gap: 1rem;
+
+  @include respond-max(mobile) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    border: 2px solid purple;
+  }
 }
 
 .Header {
-  grid-area: Header;
+  grid-area: 1 / 1 / 2 / 7;
   font-family: $railway-font;
   font-style: italic;
   font-weight: 500;
@@ -49,32 +50,50 @@
     font-size: 5.4rem * 0.8;
     line-height: 5rem * 0.8;
   }
+  @include respond-max(mobile) {
+    grid-area: 5 / 1 / 6 / 2;
+    line-height: 5.5rem;
+    font-size: 4rem;
+  }
   letter-spacing: 0.05em;
   color: $light-blue;
   width: 100%;
   text-align: center;
+  &_Down {
+    visibility: none;
+  }
 }
 
 .PublicImageContainer {
-  grid-area: Image;
+  grid-area: 2 / 5 / 8 / 7;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  @include respond-max(mobile) {
+    grid-area: 1 / 1 / 5 / 2;
+  }
 }
 .PublicImage {
   width: 100%;
+  height: auto;
+  @include respond-max(mobile) {
+    width: auto;
+    height: 100%;
+  }
 }
 
 .Description {
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  grid-area: Description;
+  grid-area: 3 / 1 / 8 / 5;
+  gap: 0.5rem;
+  @include respond-max(mobile) {
+    grid-area: 7 / 1 / 10 / 2;
+  }
   &_Para {
     font-family: $railway-font;
     font-style: normal;
@@ -94,16 +113,21 @@
 }
 
 .Title {
-  grid-area: Title;
+  grid-area: 2 / 1 / 3 / 5;
   height: 100%;
   font-family: $railway-font;
   font-style: normal;
   font-weight: 500;
   font-size: 5.4rem;
-  line-height: 5rem;
+  line-height: 5.5rem;
+  text-align: center;
   @include respond-max(mini-tablet) {
     font-size: 5.4rem * 0.8;
     line-height: 5rem * 0.8;
+  }
+  @include respond-max(mobile) {
+    grid-area: 6 / 1 / 7 / 2;
+    font-size: 3rem;
   }
   color: $dark;
   &_Highlight {
@@ -113,13 +137,20 @@
   &_Dark {
     color: $light-bg;
   }
+  &_Down {
+    display: none;
+  }
 }
 
 .LearnMore {
   width: 100%;
   height: 100%;
   text-align: center;
-  grid-area: LearnMore;
+  grid-area: 8 / 1 / 9 / 7;
+  @include respond-max(mobile) {
+    grid-area: 10 / 1 / 11 / 2;
+    margin-top: 2rem;
+  }
 }
 .ResponsiveButton {
   outline: none;
@@ -132,6 +163,30 @@
   font-weight: 600;
   font-size: 3rem;
   line-height: 3.5rem;
+  @include respond-max(mobile) {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+  }
   letter-spacing: 0.05em;
   color: $light-bg;
+}
+
+.GoDownContainer {
+  @include respond-min(mini-tablet) {
+    display: none;
+  }
+  @include respond-max(mobile) {
+    grid-area: 10 / 1 / 11 / 2;
+    display: none;
+  }
+}
+
+.GoUpContainer {
+  @include respond-min(mini-tablet) {
+    display: none;
+  }
+}
+
+.Hide {
+  display: none;
 }

@@ -11,6 +11,7 @@ interface UIState {
   activeRoute: AvailableRoutes;
   showNavBar: boolean;
   firstRender: boolean;
+  downView: boolean;
 }
 
 // Define the initial state using that type
@@ -20,6 +21,7 @@ const initialState: UIState = {
   activeRoute: routeKeys.ABOUT_ROUTE,
   showNavBar: false,
   firstRender: true,
+  downView: false,
 };
 
 export const uiState = createSlice({

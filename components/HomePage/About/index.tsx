@@ -1,13 +1,17 @@
 import { useAppSelector } from '@/redux/hooks';
 import React from 'react';
 import classes from './About.module.scss';
+import { AiFillDownCircle, AiFillUpCircle } from 'react-icons/ai';
 
 export default function AboutSection() {
-  const { darkMode } = useAppSelector((state) => state.ui);
+  const { darkMode, downView } = useAppSelector((state) => state.ui);
   return (
     <div className={classes.AboutWrapper}>
       <div className={classes.About}>
-        <h1 className={classes.Header}>Artist By Birth, Engineer By Choice</h1>
+        <h1 className={classes.Header}>
+          Artist By Birth <br />
+          Engineer By Choice
+        </h1>
         <div className={classes.PublicImageContainer}>
           <img
             className={classes.PublicImage}
@@ -49,7 +53,7 @@ export default function AboutSection() {
             mathematician and programmer of all time!
           </p>
         </div>
-        <div className={classes.LearnMore}>
+        <div className={[classes.LearnMore].join(' ')}>
           <button className={classes.ResponsiveButton}>Learn More</button>
         </div>
       </div>
