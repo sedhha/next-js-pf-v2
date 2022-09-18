@@ -10,6 +10,7 @@ $right-translation: 120%;
 .ToggleSwitchBox {
   width: 8.5rem;
   height: 3.6rem;
+  cursor: pointer;
   @include respond-max(mini-tablet) {
     width: 6.5rem;
     height: 3rem;

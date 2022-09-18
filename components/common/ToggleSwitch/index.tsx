@@ -25,9 +25,10 @@ export default function ToggleSwitch(props: Props) {
     : classes.ToggleSwitchBoxDark_inToggle;
 
   return (
-    <div className={[classes.ToggleSwitchBox, selectionBGClass].join(' ')}>
+    <div
+      className={[classes.ToggleSwitchBox, selectionBGClass].join(' ')}
+      onClick={setLightMode}>
       <div
-        onClick={setLightMode}
         className={[classes.ToggleSwitchCircle, selectionClass].join(
           ' '
         )}></div>
