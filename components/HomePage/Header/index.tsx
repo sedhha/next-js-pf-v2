@@ -8,19 +8,23 @@ import NameTag from './nameTag';
 import NavBar from './NavBar';
 
 export default function Header() {
-  const { showNavBar, routes, darkMode, activeRoute } = useAppSelector(
-    (state) => state.ui
-  );
+  const { showNavBar, routes, darkMode, activeRoute, firstRender } =
+    useAppSelector((state) => state.ui);
   const dispatch = useAppDispatch();
   const setLightMode = () => dispatch(toggleMode());
+  const classElements = [
+    !firstRender ? classes.Header_inToggle : classes.Header,
+    darkMode ? classes.Header_dark : null,
+  ].join(' ');
   return (
-    <div
-      className={[classes.Header, darkMode ? classes.Header_dark : null].join(
-        ' '
-      )}>
+    <div className={classElements}>
       <NameTag darkMode={darkMode} />
       <HeaderList darkMode={darkMode} />
-      <ToggleSwitch lightMode={!darkMode} setLightMode={setLightMode} />
+      <ToggleSwitch
+        firstRender={firstRender}
+        lightMode={!darkMode}
+        setLightMode={setLightMode}
+      />
       <NavBar />
     </div>
   );

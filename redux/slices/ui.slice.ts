@@ -10,6 +10,7 @@ interface UIState {
   routes: IRoutes;
   activeRoute: AvailableRoutes;
   showNavBar: boolean;
+  firstRender: boolean;
 }
 
 // Define the initial state using that type
@@ -18,6 +19,7 @@ const initialState: UIState = {
   routes: routers,
   activeRoute: routeKeys.ABOUT_ROUTE,
   showNavBar: false,
+  firstRender: true,
 };
 
 export const uiState = createSlice({
@@ -27,6 +29,7 @@ export const uiState = createSlice({
   reducers: {
     toggleMode: (state: UIState) => {
       state.darkMode = !state.darkMode;
+      state.firstRender = false;
     },
     updateActiveRoute: (
       state: UIState,

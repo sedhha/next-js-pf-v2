@@ -20,7 +20,7 @@ $background-animation-duration: 0.3s;
   }
 }
 .Header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -30,9 +30,23 @@ $background-animation-duration: 0.3s;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation-duration: $background-animation-duration;
-  animation-name: animateFadeEffectLight;
-  animation-timing-function: ease-in;
+
+  &_inToggle {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $light-bg;
+    box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation-duration: $background-animation-duration;
+    animation-name: animateFadeEffectLight;
+    animation-timing-function: ease-in;
+  }
+
   &_dark {
     background: $toggle-switch-color-dark;
     animation-duration: $background-animation-duration;

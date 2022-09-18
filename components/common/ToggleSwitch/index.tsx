@@ -4,16 +4,25 @@ import classes from './ToggleSwitch.module.scss';
 type Props = {
   lightMode: boolean;
   setLightMode: () => void;
+  firstRender: boolean;
 };
 
 export default function ToggleSwitch(props: Props) {
-  const { lightMode, setLightMode } = props;
+  const { lightMode, setLightMode, firstRender } = props;
   const selectionClass = lightMode
-    ? classes.ToggleSwitchLight
-    : classes.ToggleSwitchDark;
+    ? firstRender
+      ? classes.ToggleSwitchLight
+      : classes.ToggleSwitchLight_inToggle
+    : firstRender
+    ? classes.ToggleSwitchDark
+    : classes.ToggleSwitchDark_inToggle;
   const selectionBGClass = lightMode
-    ? classes.ToggleSwitchBoxLight
-    : classes.ToggleSwitchBoxDark;
+    ? firstRender
+      ? classes.ToggleSwitchBoxLight
+      : classes.ToggleSwitchBoxLight_inToggle
+    : firstRender
+    ? classes.ToggleSwitchBoxDark
+    : classes.ToggleSwitchBoxDark_inToggle;
 
   return (
     <div className={[classes.ToggleSwitchBox, selectionBGClass].join(' ')}>

@@ -60,15 +60,24 @@ $right-translation: 120%;
 
 .ToggleSwitchBoxLight {
   background: $light-yellow-bg;
-  animation-duration: $background-animation-duration;
-  animation-name: animateFadeEffectLight;
-  animation-timing-function: ease-in;
+  &_inToggle {
+    background: $light-yellow-bg;
+    animation-duration: $background-animation-duration;
+    animation-name: animateFadeEffectLight;
+    animation-timing-function: ease-in;
+  }
 }
 .ToggleSwitchBoxDark {
   background: $dark-blue-bg;
   animation-duration: $background-animation-duration;
   animation-name: animateFadeEffectDark;
   animation-timing-function: ease-in;
+  &_inToggle {
+    background: $dark-blue-bg;
+    animation-duration: $background-animation-duration;
+    animation-name: animateFadeEffectDark;
+    animation-timing-function: ease-in;
+  }
 }
 
 .ToggleSwitchCircle {
@@ -90,9 +99,13 @@ $right-translation: 120%;
 .ToggleSwitchLight {
   background: $toggle-switch-color-light;
   transform: translateX($left-translation);
-  animation-duration: $background-animation-duration;
-  animation-name: animateSwitchEffectLeft;
-  animation-timing-function: ease-in;
+  &_inToggle {
+    background: $toggle-switch-color-light;
+    transform: translateX($left-translation);
+    animation-duration: $background-animation-duration;
+    animation-name: animateSwitchEffectLeft;
+    animation-timing-function: ease-in;
+  }
 }
 
 .ToggleSwitchDark {
@@ -105,7 +118,18 @@ $right-translation: 120%;
   @include respond-max(mobile) {
     transform: translateX($right-translation * 1.3);
   }
-  animation-duration: $background-animation-duration;
-  animation-name: animateSwitchEffectRight;
-  animation-timing-function: ease-in;
+  &_inToggle {
+    background: $toggle-switch-color-dark;
+    transform: translateX($right-translation * 1.4);
+
+    @include respond-max(mini-tablet) {
+      transform: translateX($right-translation * 1.3);
+    }
+    @include respond-max(mobile) {
+      transform: translateX($right-translation * 1.3);
+    }
+    animation-duration: $background-animation-duration;
+    animation-name: animateSwitchEffectRight;
+    animation-timing-function: ease-in;
+  }
 }
