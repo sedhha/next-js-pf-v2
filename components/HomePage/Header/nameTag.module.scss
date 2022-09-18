@@ -16,6 +16,9 @@
 
   letter-spacing: 0.05em;
   color: $light-blue;
+  &_dark {
+    color: $light-bg;
+  }
 }
 .LightTag {
   font-weight: 400;

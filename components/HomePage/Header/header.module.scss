@@ -1,5 +1,24 @@
 @import '../../../styles/utils/_imports.scss';
 
+$background-animation-duration: 0.3s;
+
+@keyframes animateFadeEffectLight {
+  0% {
+    background: $toggle-switch-color-dark;
+  }
+  100% {
+    background: $light-bg;
+  }
+}
+
+@keyframes animateFadeEffectDark {
+  0% {
+    background: $light-bg;
+  }
+  100% {
+    background: $toggle-switch-color-dark;
+  }
+}
 .Header {
   position: fixed;
   top: 0;
@@ -11,4 +30,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation-duration: $background-animation-duration;
+  animation-name: animateFadeEffectLight;
+  animation-timing-function: ease-in;
+  &_dark {
+    background: $toggle-switch-color-dark;
+    animation-duration: $background-animation-duration;
+    animation-name: animateFadeEffectDark;
+    animation-timing-function: ease-in;
+  }
 }

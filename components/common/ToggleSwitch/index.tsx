@@ -3,7 +3,7 @@ import classes from './ToggleSwitch.module.scss';
 
 type Props = {
   lightMode: boolean;
-  setLightMode: (lightMode: boolean) => void;
+  setLightMode: () => void;
 };
 
 export default function ToggleSwitch(props: Props) {
@@ -18,7 +18,7 @@ export default function ToggleSwitch(props: Props) {
   return (
     <div className={[classes.ToggleSwitchBox, selectionBGClass].join(' ')}>
       <div
-        onClick={() => setLightMode(!lightMode)}
+        onClick={setLightMode}
         className={[classes.ToggleSwitchCircle, selectionClass].join(
           ' '
         )}></div>

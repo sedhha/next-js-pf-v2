@@ -25,8 +25,8 @@ export const uiState = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    updateMode: (state: UIState, action: PayloadAction<boolean>) => {
-      state.darkMode = action.payload;
+    toggleMode: (state: UIState) => {
+      state.darkMode = !state.darkMode;
     },
     updateActiveRoute: (
       state: UIState,
@@ -40,7 +40,7 @@ export const uiState = createSlice({
   },
 });
 
-export const { updateMode, updateActiveRoute, toggleNavBar } = uiState.actions;
+export const { toggleMode, updateActiveRoute, toggleNavBar } = uiState.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 
