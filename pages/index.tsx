@@ -3,6 +3,11 @@ import Head from 'next/head';
 import React from 'react';
 // localhost:3000/
 export default function Home() {
+  React.useEffect(() => {
+    if (window) {
+      alert(window.innerWidth);
+    }
+  }, []);
   return (
     <React.Fragment>
       <Head>

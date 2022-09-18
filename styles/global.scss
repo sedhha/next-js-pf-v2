@@ -2,19 +2,31 @@
 
 html,
 body {
-  @include respond(medium-laptop) {
-    font-size: 62.5%;
-  }
-  @include respond(small-laptop) {
-    font-size: 50%;
-  }
-  @include respond(tablet) {
-    font-size: 40%;
-  }
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  @include respond-max(desktop-monitor) {
+    font-size: 80%;
+  }
+  @include respond-max(large-laptop) {
+    font-size: 75%;
+  }
+  @include respond-max(medium-laptop) {
+    font-size: 70%;
+  }
+  @include respond-max(small-laptop) {
+    font-size: 62.5%;
+  }
+  @include respond-max(tablet) {
+    font-size: 50%;
+  }
+  @include respond-max(small-tablet) {
+    font-size: 45%;
+  }
+  @include respond-max(mini-tablet) {
+    font-size: 42%;
+  }
 }
 
 * {

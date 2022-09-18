@@ -4,22 +4,15 @@
   font-family: $railway-font;
   font-style: normal;
   font-weight: 700;
-  @include respond(small-laptop) {
-    font-size: 3rem;
-    line-height: 6rem;
-  }
-  @include respond(tablet) {
-    font-size: 2.5rem;
-    line-height: 4rem;
-  }
-  order: 0;
-  @include respond(mobile) {
-    font-size: 2rem;
-    line-height: 3rem;
-    flex: auto;
-  }
   font-size: 3.5rem;
   line-height: 4rem;
+  @include respond-max(mini-tablet) {
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
+  @include respond-max(mobile) {
+    flex: auto;
+  }
 
   letter-spacing: 0.05em;
   color: $light-blue;

@@ -1,0 +1,65 @@
+@import '../../../../styles/utils/_imports.scss';
+$flyIn-animation-duration: 0.3s;
+@keyframes flyInEffect {
+  0% {
+    scale: 0;
+    transform: translateY(-10rem);
+  }
+  100% {
+    scale: 1;
+    transform: translateY(5.2rem);
+  }
+}
+.ViewList {
+  text-align: end;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1rem;
+  &Icon {
+    font-size: 4rem;
+    color: $dark-gray-font;
+    cursor: pointer;
+  }
+  @include respond-min(mini-tablet) {
+    display: none;
+  }
+}
+.RouterListDropDown {
+  position: absolute;
+  animation-duration: $flyIn-animation-duration;
+  animation-name: flyInEffect;
+  animation-timing-function: ease-in;
+
+  padding: 0.5rem 3.5rem;
+  box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 0px 6px 6px;
+  right: 0;
+  transform: translateY(5.2rem);
+  background: $light-bg;
+  display: flex;
+  flex-direction: column;
+  &_Dark {
+    background: $faded-dark-bg;
+  }
+  &_Elements {
+    font-family: $railway-font;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.4rem;
+    line-height: 6rem;
+    letter-spacing: 0.05em;
+    color: $dark-gray-font;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    &:hover {
+      transform: scale(0.92);
+      color: $light-blue;
+    }
+    &_Active {
+      color: $toggle-switch-color-dark;
+    }
+    &_ActiveDark {
+      color: $light-blue;
+    }
+  }
+}

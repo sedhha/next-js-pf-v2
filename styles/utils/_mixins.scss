@@ -1,18 +1,46 @@
-@mixin respond($screenType) {
-  @if $screenType == mobile {
-    @media screen and (max-width: 480px) {
+@mixin respond-max($screenType) {
+  @if $screenType == desktop-monitor {
+    @media screen and (min-width: 1792px) and (max-width: 2200px) {
       @content;
     }
-  } @else if $screenType == tablet {
-    @media screen and (max-width: 780px) {
-      @content;
-    }
-  } @else if $screenType == small-laptop {
-    @media screen and (max-width: 955px) {
+  } @else if $screenType == large-laptop {
+    @media screen and (max-width: 1792px) {
       @content;
     }
   } @else if $screenType == medium-laptop {
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1642px) {
+      @content;
+    }
+  } @else if $screenType == small-laptop {
+    @media screen and (max-width: 1232px) {
+      @content;
+    }
+  } @else if $screenType == big-tablet {
+    @media screen and (max-width: 1020px) {
+      @content;
+    }
+  } @else if $screenType == tablet {
+    @media screen and (max-width: 980px) {
+      @content;
+    }
+  } @else if $screenType == small-tablet {
+    @media screen and (max-width: 850px) {
+      @content;
+    }
+  } @else if $screenType == mini-tablet {
+    @media screen and (max-width: 760px) {
+      @content;
+    }
+  } @else if $screenType == mobile {
+    @media screen and (max-width: 500px) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-min($screenType) {
+  @if $screenType == mini-tablet {
+    @media screen and (min-width: 500px) {
       @content;
     }
   }

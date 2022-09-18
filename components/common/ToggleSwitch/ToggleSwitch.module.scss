@@ -1,28 +1,26 @@
 @import '../../../styles/utils/_imports.scss';
 
+$background-animation-duration: 0.3s;
+$toggle-button-size: 2.5rem;
+$toggle-button-size-small: 1.8rem;
+
+$left-translation: -5%;
+$right-translation: 120%;
+
 .ToggleSwitchBox {
   width: 8.5rem;
-  height: 4rem;
+  height: 3.6rem;
+  @include respond-max(mini-tablet) {
+    width: 6.5rem;
+    height: 3rem;
+  }
   box-shadow: -2px 4px 12px -7px #000000;
   border-radius: 5.3rem;
   display: flex;
   padding: 1rem;
   align-items: center;
   position: relative;
-  order: 2;
-  @include respond(tablet) {
-    order: 2;
-  }
-  @include respond(mobile) {
-    order: 1;
-  }
 }
-
-$background-animation-duration: 0.3s;
-$toggle-button-size: 2.5rem;
-
-$left-translation: -5%;
-$right-translation: 170%;
 
 @keyframes animateFadeEffectLight {
   0% {
@@ -76,6 +74,10 @@ $right-translation: 170%;
 .ToggleSwitchCircle {
   width: $toggle-button-size;
   height: $toggle-button-size;
+  @include respond-max(mini-tablet) {
+    width: $toggle-button-size-small;
+    height: $toggle-button-size-small;
+  }
   border-radius: 50%;
   box-shadow: 0px 3px 8px -2px #000000;
   position: absolute;
@@ -95,7 +97,14 @@ $right-translation: 170%;
 
 .ToggleSwitchDark {
   background: $toggle-switch-color-dark;
-  transform: translateX($right-translation);
+  transform: translateX($right-translation * 1.4);
+
+  @include respond-max(mini-tablet) {
+    transform: translateX($right-translation * 1.3);
+  }
+  @include respond-max(mobile) {
+    transform: translateX($right-translation * 1.3);
+  }
   animation-duration: $background-animation-duration;
   animation-name: animateSwitchEffectRight;
   animation-timing-function: ease-in;
