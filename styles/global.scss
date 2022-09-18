@@ -27,6 +27,7 @@ body {
   @include respond-max(mini-tablet) {
     font-size: 42%;
   }
+  overflow-x: hidden;
 }
 
 * {

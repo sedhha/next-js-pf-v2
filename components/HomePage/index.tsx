@@ -1,5 +1,6 @@
 import { useAppSelector } from '@/redux/hooks';
 import React from 'react';
+import AboutSection from './About';
 import Header from './Header';
 import classes from './HomePage.module.scss';
 
@@ -13,6 +14,7 @@ export default function HomePage() {
   return (
     <div className={classElements}>
       <Header />
+      <AboutSection />
     </div>
   );
 }
