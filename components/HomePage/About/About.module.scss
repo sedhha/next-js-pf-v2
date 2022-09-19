@@ -9,20 +9,31 @@
 }
 
 .About {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(8, 1fr);
+
+  @include respond-max(mobile) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(12, 1fr);
+  }
 }
 
 .Header {
   grid-area: 1 / 1 / 2 / 11;
+
   font-family: $railway-font;
   font-style: italic;
   font-weight: 500;
   font-size: 5.4rem;
   line-height: 5.5rem;
+  @include respond-max(mobile) {
+    grid-area: 5 / 1 / 6 / 2;
+    font-size: 4rem;
+    line-height: 4.5rem;
+  }
   letter-spacing: 0.05em;
   color: $light-blue;
   width: 100%;
@@ -32,6 +43,9 @@
 
 .PublicImageContainer {
   grid-area: 3 / 7 / 8 / 11;
+  @include respond-max(mobile) {
+    grid-area: 1 / 1 / 5 / 2;
+  }
   width: 100%;
   height: 100%;
   display: flex;
@@ -45,6 +59,7 @@
 }
 .Title {
   grid-area: 2 / 1 / 3 / 11;
+
   padding: 1rem;
   height: 100%;
   font-family: $railway-font;
@@ -52,6 +67,11 @@
   font-weight: 500;
   font-size: 5.4rem;
   line-height: 5.5rem;
+  @include respond-max(mobile) {
+    grid-area: 6 / 1 / 7 / 2;
+    font-size: 4rem;
+    line-height: 4.5rem;
+  }
   text-align: center;
   color: $dark;
   &_Highlight {
@@ -73,13 +93,36 @@
   flex-direction: column;
   justify-content: space-around;
   grid-area: 3 / 1 / 8 / 7;
+  @include respond-max(mobile) {
+    grid-area: 7 / 1 / 12 / 2;
+    justify-content: space-around;
+  }
   gap: 1.5rem;
   &_Para {
     font-family: $railway-font;
     font-style: normal;
     font-weight: 400;
-    font-size: 2rem;
-    line-height: 3.2rem;
+    font-size: 2.2rem;
+    line-height: 3rem;
+    @include respond-max(mobile) {
+      font-size: 2.2rem;
+      line-height: 2.5rem;
+    }
+    @include respond-min(large-laptop) {
+      font-size: 3rem;
+      line-height: 3.8rem;
+    }
+
+    @include respond-min(desktop-monitor) {
+      font-size: 2.6rem;
+      line-height: 3.5rem;
+    }
+
+    @include respond-min(large-monitor) {
+      font-size: 2.8rem;
+      line-height: 3.8rem;
+    }
+
     letter-spacing: 0.05em;
     color: $dark;
     &_Highlight {
@@ -97,6 +140,9 @@
   height: 100%;
   text-align: center;
   grid-area: 8 / 1 / 9 / 11;
+  @include respond-max(mobile) {
+    grid-area: 12 / 1 / 13 / 2;
+  }
 }
 .ResponsiveButton {
   outline: none;
@@ -131,4 +177,11 @@
 
 .Hide {
   display: none;
+}
+
+.BreakOnMobile {
+  display: none;
+  @include respond-max(mobile) {
+    display: block;
+  }
 }
