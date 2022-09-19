@@ -7,7 +7,10 @@ export default function AboutSection() {
   return (
     <div className={classes.AboutWrapper}>
       <div className={classes.About}>
-        <h1 className={classes.Header}>Artist By Birth Engineer By Choice</h1>
+        <h1 className={classes.Header}>
+          Artist By Birth <br />
+          Engineer By Choice
+        </h1>
         <div className={classes.PublicImageContainer}>
           <img
             className={classes.PublicImage}

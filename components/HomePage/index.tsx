@@ -7,6 +7,10 @@ import classes from './HomePage.module.scss';
 export default function HomePage() {
   const { darkMode, firstRender } = useAppSelector((state) => state.ui);
 
+  React.useEffect(() => {
+    alert(window.innerWidth);
+  }, []);
+
   const classElements = [
     !firstRender ? classes.Body_inToggle : classes.Body,
     darkMode ? classes.Body_dark : null,

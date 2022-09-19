@@ -30,8 +30,11 @@ $background-animation-duration: 0.3s;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem;
+  height: 8rem;
 
   &_inToggle {
+    padding: 2rem;
     position: sticky;
     top: 0;
     left: 0;
@@ -45,6 +48,7 @@ $background-animation-duration: 0.3s;
     animation-duration: $background-animation-duration;
     animation-name: animateFadeEffectLight;
     animation-timing-function: ease-in;
+    height: 8rem;
   }
 
   &_dark {
