@@ -1,0 +1,16 @@
+.LazyPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.LargeAreaContent {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.ImageClass {
+  margin: 0 auto;
+  border: 2px solid red;
+}
