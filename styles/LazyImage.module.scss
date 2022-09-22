@@ -1,0 +1,20 @@
+.WholePage {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+}
+
+.ImageContainer {
+  height: 300px;
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.Image {
+  width: 300px;
+  height: 100%;
+}
