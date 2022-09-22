@@ -1,14 +1,12 @@
 import React from 'react';
-import styles from './LazyImageLoader.module.scss';
+interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
-type Props = {
-  src: string;
-};
-
-export default function LazyImageLoader({ src }: Props) {
-  const ref = React.useRef<HTMLDivElement>(null);
+export default function LazyImageLoader({ src, ...props }: ImageProps) {
+  const ref = React.useRef<HTMLImageElement>(null);
   const [visible, setVisible] = React.useState(false);
-  const [classList, setClassList] = React.useState(styles.lazyLoader);
+  const [imageSrc, setImageSrc] = React.useState<string | undefined>(
+    '/loading.gif'
+  );
   React.useEffect(() => {
     const options = {
       rootMargin: '0px',
@@ -27,13 +25,11 @@ export default function LazyImageLoader({ src }: Props) {
       if (ref.current) observer.unobserve(ref.current);
     };
   }, [ref]);
-
   React.useEffect(() => {
     if (visible) {
-      console.log('Visible');
-      setClassList(styles.activeLoader);
-    }
+      setImageSrc(src);
+    } else console.log('Hidden');
   }, [visible]);
 
-  return <div ref={ref} className={classList} data-src={src}></div>;
+  return <img {...props} src={imageSrc} ref={ref}></img>;
 }
