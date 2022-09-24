@@ -1,35 +1,39 @@
 import React from 'react';
 
-interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  rootMargin?: string;
+interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   threshold?: number;
+  rootMargin?: string;
 }
 
-const LOADING_URI = '/loading.gif';
 export default function LazyImageLoader({
   src,
-  rootMargin,
   threshold,
+  rootMargin,
   ...props
-}: LazyImageProps) {
-  const [visible, setVisible] = React.useState(false);
+}: ImageProps) {
   const ref = React.useRef(null);
+  const [visibility, setVisibility] = React.useState(false);
+  const [imageSrc, setImageSrc] = React.useState('/loading.gif');
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
+    const imageObserver = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        console.log(entry);
+        if (entry.isIntersecting) setVisibility(true);
       },
       {
         rootMargin: rootMargin ?? '0px',
-        threshold: threshold ?? 0,
+        threshold: threshold ?? 0.4,
       }
     );
     const currentRef = ref.current;
-    if (currentRef) observer.observe(currentRef);
+    if (currentRef) imageObserver.observe(currentRef);
     return () => {
-      if (currentRef) observer.unobserve(currentRef);
+      if (currentRef) imageObserver.unobserve(currentRef);
     };
   }, []);
-  return <img ref={ref} {...props} />;
+
+  React.useEffect(() => {
+    if (visibility) setImageSrc(src ?? '/not-found.webp');
+  }, [visibility]);
+  return <img {...props} ref={ref} src={imageSrc} />;
 }
