@@ -7,7 +7,7 @@ export default function Header({}: Props) {
 	return (
 		<div className={classes.Header}>
 			<h1 className={classes.Logo}>
-				Shivam <span className={classes.FocusWord}>Sahil</span>
+				Display <span className={classes.FocusWord}>Name</span>
 			</h1>
 			<NavItems />
 		</div>

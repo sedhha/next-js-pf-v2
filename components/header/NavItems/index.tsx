@@ -50,7 +50,12 @@ export default function NavItems() {
 						}}
 					>
 						{item.label}
-						{isLastItem && <BiChevronDown className={classes.ShowMoreIcon} />}
+						{isLastItem && (
+							<React.Fragment>
+								<BiChevronDown className={classes.ShowMoreIcon} />
+								<div className={classes.Expander}>Expander</div>
+							</React.Fragment>
+						)}
 					</h4>
 				);
 			})}
