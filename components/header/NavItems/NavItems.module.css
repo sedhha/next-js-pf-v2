@@ -1,0 +1,15 @@
+.NavItemContainer {
+	display: flex;
+	align-items: center;
+	color: var(--inactive-silver);
+	gap: 2rem;
+}
+
+.NavItem {
+	letter-spacing: 0.05em;
+	font-family: var(--raleway);
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1.2rem;
+	line-height: var(--lineheight);
+}

@@ -1,0 +1,22 @@
+.Header {
+	background: var(--light-background-color);
+	box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+	display: flex;
+	position: sticky;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 0.75rem;
+}
+
+.Logo {
+	font-family: var(--railway);
+	font-style: normal;
+	font-weight: 700;
+	font-size: 2rem;
+	line-height: var(--lineheight);
+	color: var(--light-blue);
+}
+
+.FocusWord {
+	font-weight: 400;
+}
