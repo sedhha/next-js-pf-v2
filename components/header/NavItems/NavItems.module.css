@@ -12,4 +12,24 @@
 	font-weight: 600;
 	font-size: 1.2rem;
 	line-height: var(--lineheight);
+	cursor: pointer;
+	transition: all 0.1s ease-in;
+}
+
+.NavItem:hover {
+	scale: 0.96;
+}
+
+.LastItem {
+	display: flex;
+	align-items: center;
+}
+
+.ActiveItem {
+	color: var(--active-blue);
+}
+
+.ShowMoreIcon {
+	font-size: 2rem;
+	color: var(--inactive-silver);
 }
