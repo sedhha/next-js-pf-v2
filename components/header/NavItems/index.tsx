@@ -47,13 +47,11 @@ export default function NavItems() {
 							isLastItem ? classes.LastItem : null,
 							isActive ? classes.ActiveItem : null
 						].join(' ')}
-						onClick={() => {
-							if (item.value !== 'more') dispatch(updateActiveSlice(item.value));
-						}}
+						onClick={() => !isLastItem && dispatch(updateActiveSlice(item.value))}
 						onMouseEnter={() => isLastItem && showMoreDetails(true)}
 					>
 						{item.label}
-						{isLastItem && (
+						{isLastItem && navItems.length > 5 && (
 							<React.Fragment>
 								<BiChevronDown className={classes.ShowMoreIcon} />
 								{showMore && (
@@ -63,10 +61,25 @@ export default function NavItems() {
 										className={classes.Expander}
 										onMouseLeave={() => showMoreDetails(false)}
 									>
-										<h4 className={classes.NavItem}>Rest</h4>
-										<h4 className={classes.NavItem}>Next Next Next</h4>
-										<h4 className={classes.NavItem}>Trust</h4>
-										<h4 className={classes.NavItem}>Rust</h4>
+										{navItems.slice(5, navItems.length - 1).map((item) => {
+											const isActive =
+												(activeItem ? activeItem.value : activeSection) === item.value;
+											return (
+												<h4
+													key={item.value}
+													className={[
+														classes.NavItem,
+														isActive ? classes.ActiveItem : classes.PassiveItem
+													].join(' ')}
+													onClick={() => {
+														dispatch(updateActiveSlice(item.value));
+														showMoreDetails(false);
+													}}
+												>
+													{item.label}
+												</h4>
+											);
+										})}
 									</motion.div>
 								)}
 							</React.Fragment>

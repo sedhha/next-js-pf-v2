@@ -53,3 +53,12 @@
 .Hide {
 	display: none;
 }
+.PassiveItem {
+	color: var(--inactive-silver);
+}
+
+@media only screen and (max-width: 620px) {
+	.NavItemContainer {
+		display: none;
+	}
+}
