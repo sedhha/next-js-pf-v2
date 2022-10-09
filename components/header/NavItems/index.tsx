@@ -3,6 +3,8 @@ import classes from './NavItems.module.css';
 import navItems from '@/constants/navItems.json';
 import { BiChevronDown } from 'react-icons/bi';
 import { useRouter } from 'next/router';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { updateActiveSlice } from '@/slices/navigation.slice';
 
 const getActiveItem = (activeItem: string) => {
 	const result = navItems.find((element) => element.value === activeItem);
@@ -24,15 +26,16 @@ const getItems = (activeItem: string) => {
 };
 
 export default function NavItems() {
-	const router = useRouter();
-	const query = router.query;
-	const items = getItems('about');
-	const activeItem = getActiveItem('about');
+	const { activeSection } = useAppSelector((state) => state.navigation);
+	const dispatch = useAppDispatch();
+	const items = getItems(activeSection);
+	const activeItem = getActiveItem(activeSection);
 	return (
 		<div className={classes.NavItemContainer}>
 			{items.map((item, index) => {
 				const isLastItem = index === items.length - 1;
-				const isActive = (activeItem ? activeItem.value : 'about') === item.value;
+				const isActive =
+					(activeItem ? activeItem.value : activeSection) === item.value;
 				return (
 					<h4
 						key={item.value}
@@ -41,6 +44,10 @@ export default function NavItems() {
 							isLastItem ? classes.LastItem : null,
 							isActive ? classes.ActiveItem : null
 						].join(' ')}
+						onClick={() => {
+							// TODO: verify more click
+							dispatch(updateActiveSlice(item.value));
+						}}
 					>
 						{item.label}
 						{isLastItem && <BiChevronDown className={classes.ShowMoreIcon} />}
