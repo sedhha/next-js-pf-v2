@@ -5,12 +5,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 export interface INavigationSlice {
 	activeSection: string;
 	revisitor: number;
+	showMore: boolean;
 }
 
 // Define the initial state using that type
 const initialState: INavigationSlice = {
 	activeSection: 'about',
-	revisitor: 0
+	revisitor: 0,
+	showMore: false
 };
 
 export const navSlice = createSlice({
@@ -25,11 +27,15 @@ export const navSlice = createSlice({
 		},
 		updateRevisitor: (state: INavigationSlice, action: PayloadAction<number>) => {
 			state.revisitor = action.payload;
+		},
+		updateShowMore: (state: INavigationSlice, action: PayloadAction<boolean>) => {
+			state.showMore = action.payload;
 		}
 	}
 });
 
-export const { updateActiveSlice, updateRevisitor } = navSlice.actions;
+export const { updateActiveSlice, updateRevisitor, updateShowMore } =
+	navSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 

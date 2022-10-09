@@ -2,9 +2,9 @@ import React from 'react';
 import classes from './NavItems.module.css';
 import navItems from '@/constants/navItems.json';
 import { BiChevronDown } from 'react-icons/bi';
-import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { updateActiveSlice } from '@/slices/navigation.slice';
+import { updateActiveSlice, updateShowMore } from '@/slices/navigation.slice';
+import { motion } from 'framer-motion';
 
 const getActiveItem = (activeItem: string) => {
 	const result = navItems.find((element) => element.value === activeItem);
@@ -26,10 +26,13 @@ const getItems = (activeItem: string) => {
 };
 
 export default function NavItems() {
-	const { activeSection } = useAppSelector((state) => state.navigation);
+	const { activeSection, showMore } = useAppSelector(
+		(state) => state.navigation
+	);
 	const dispatch = useAppDispatch();
 	const items = getItems(activeSection);
 	const activeItem = getActiveItem(activeSection);
+	const showMoreDetails = (show: boolean) => dispatch(updateShowMore(show));
 	return (
 		<div className={classes.NavItemContainer}>
 			{items.map((item, index) => {
@@ -45,15 +48,27 @@ export default function NavItems() {
 							isActive ? classes.ActiveItem : null
 						].join(' ')}
 						onClick={() => {
-							// TODO: verify more click
-							dispatch(updateActiveSlice(item.value));
+							if (item.value !== 'more') dispatch(updateActiveSlice(item.value));
 						}}
+						onMouseEnter={() => isLastItem && showMoreDetails(true)}
 					>
 						{item.label}
 						{isLastItem && (
 							<React.Fragment>
 								<BiChevronDown className={classes.ShowMoreIcon} />
-								<div className={classes.Expander}>Expander</div>
+								{showMore && (
+									<motion.div
+										initial={{ y: 20 }}
+										animate={{ y: [-20, 5, 0] }}
+										className={classes.Expander}
+										onMouseLeave={() => showMoreDetails(false)}
+									>
+										<h4 className={classes.NavItem}>Rest</h4>
+										<h4 className={classes.NavItem}>Next Next Next</h4>
+										<h4 className={classes.NavItem}>Trust</h4>
+										<h4 className={classes.NavItem}>Rust</h4>
+									</motion.div>
+								)}
 							</React.Fragment>
 						)}
 					</h4>

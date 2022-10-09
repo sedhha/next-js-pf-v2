@@ -11,6 +11,9 @@
 
 	/* Heights */
 	--lineheight: 2rem;
+
+	/* Shadows */
+	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
 }
 html,
 body {
