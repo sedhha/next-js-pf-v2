@@ -1,0 +1,11 @@
+.ShowMore {
+	font-size: 2rem;
+	color: var(--inactive-silver);
+	font-weight: 700;
+}
+
+@media only screen and (min-width: 620px) {
+	.ShowMore {
+		display: none;
+	}
+}

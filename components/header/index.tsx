@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './header.module.css';
 import NavItems from '@/components/header/NavItems';
+import ViewIcon from './ViewIcon';
 type Props = {};
 
 export default function Header({}: Props) {
@@ -10,6 +11,7 @@ export default function Header({}: Props) {
 				Display <span className={classes.FocusWord}>Name</span>
 			</h1>
 			<NavItems />
+			<ViewIcon />
 		</div>
 	);
 }

@@ -23,7 +23,6 @@
 .LastItem {
 	display: flex;
 	align-items: center;
-	position: relative;
 }
 
 .ActiveItem {
@@ -36,14 +35,15 @@
 }
 .Expander {
 	position: absolute;
-	top: 130%;
-	right: 5%;
+	top: 100%;
+	right: 0;
 	width: max-content;
 	padding: 0 1rem;
 	background-color: var(--light-background-color);
 	box-shadow: var(--box-shadow-thick);
 	text-align: end;
 	border-radius: 0.4rem;
+	animation: fly-in 0.3s linear;
 }
 
 .Expander:hover {
@@ -61,4 +61,34 @@
 	.NavItemContainer {
 		display: none;
 	}
+}
+
+@keyframes fly-in {
+	0% {
+		translate: 0 -20%;
+		scale: 0;
+		opacity: 0;
+	}
+	100% {
+		translate: 0 0;
+		scale: 1;
+		opacity: 1;
+	}
+}
+
+.HideWithAnimation {
+	position: absolute;
+	top: 100%;
+	right: -5%;
+	width: max-content;
+	padding: 0 1rem;
+	background-color: var(--light-background-color);
+	box-shadow: var(--box-shadow-thick);
+	text-align: end;
+	border-radius: 0.4rem;
+	visibility: hidden;
+	translate: 0 -20%;
+	scale: 0;
+	opacity: 0;
+	transition: all 0.3s linear;
 }
