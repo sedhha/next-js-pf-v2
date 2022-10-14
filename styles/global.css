@@ -9,6 +9,7 @@
 	--switch-background-color-off: #cfcfcf;
 	--switch-button-color-on: #faff00;
 	--switch-button-color-off: #001d6e;
+	--normal-text-color: #000;
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
@@ -28,7 +29,26 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	padding: 0;
+	margin: 0;
+}
 
 * {
 	box-sizing: border-box;
+}
+
+.header {
+	height: 10vh;
+}
+.body {
+	height: 90vh;
+	overflow-x: hidden;
+	overflow-y: auto;
 }

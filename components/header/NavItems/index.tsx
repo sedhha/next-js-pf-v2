@@ -4,7 +4,6 @@ import navItems from '@/constants/navItems.json';
 import { BiChevronDown } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { updateActiveSlice, updateShowMore } from '@/slices/navigation.slice';
-import { motion } from 'framer-motion';
 
 const getActiveItem = (activeItem: string) => {
 	const result = navItems.find((element) => element.value === activeItem);
