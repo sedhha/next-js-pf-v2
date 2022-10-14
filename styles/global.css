@@ -5,12 +5,18 @@
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
 	--active-blue: #001d6e;
+	--switch-background-color-on: rgba(255, 249, 117, 0.4);
+	--switch-background-color-off: #cfcfcf;
+	--switch-button-color-on: #faff00;
+	--switch-button-color-off: #001d6e;
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
 
 	/* Heights */
 	--lineheight: 2rem;
+	--toggle-switch-board-height: 2rem;
+	--toggle-switch-button-height: 1.5rem;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);

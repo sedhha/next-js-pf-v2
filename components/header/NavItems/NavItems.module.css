@@ -1,3 +1,7 @@
+.NavItemBlock {
+	display: flex;
+	order: 1;
+}
 .NavItemContainer {
 	display: flex;
 	align-items: center;
@@ -60,6 +64,9 @@
 @media only screen and (max-width: 620px) {
 	.NavItemContainer {
 		display: none;
+	}
+	.NavItemBlock {
+		order: 2;
 	}
 }
 
