@@ -17,13 +17,14 @@
 	font-size: 2rem;
 	line-height: var(--lineheight);
 	color: var(--light-blue);
+	width: 100%;
 }
 
 .FocusWord {
 	font-weight: 400;
 }
 
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 750px) {
 	.Logo {
 		flex: auto;
 	}

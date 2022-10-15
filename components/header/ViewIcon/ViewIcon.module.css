@@ -5,7 +5,7 @@
 	order: 1;
 }
 
-@media only screen and (min-width: 620px) {
+@media only screen and (min-width: 750px) {
 	.ShowMore {
 		display: none;
 		order: 2;

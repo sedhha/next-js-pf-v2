@@ -21,6 +21,9 @@
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+
+	/* Breakpoints */
+	--mobile-bp: 620px;
 }
 html,
 body {

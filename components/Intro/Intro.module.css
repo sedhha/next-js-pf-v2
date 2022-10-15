@@ -103,3 +103,38 @@
 .Button:hover {
 	scale: 0.96;
 }
+
+@media only screen and (max-width: 750px) {
+	.IntroGrid {
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: repeat(11, 1fr);
+	}
+	.ImageContainer {
+		grid-area: 1 / 1 / 5 / 7;
+	}
+	.IntroHeader {
+		grid-area: 5 / 1 / 6 / 7;
+	}
+	.IntroHeaderContent {
+		font-size: 3vw;
+		font-size: clamp(1.5rem, 6.8vw, 2.5rem);
+	}
+	.IntroTaglineWrapper {
+		grid-area: 6 / 1 / 7 / 7;
+	}
+	.IntroTagline {
+		font-size: 2rem;
+		font-size: clamp(1.2rem, 6.5vw, 2.2rem);
+	}
+	.IntroPara {
+		grid-area: 7 / 1 / 11 / 7;
+	}
+	.IntroPara h4 {
+		font-size: 1.1rem;
+		letter-spacing: 0.02em;
+		font-size: clamp(0.75rem, 4vw, 1.1rem);
+	}
+	.ActionArea {
+		grid-area: 11 / 1 / 12 / 7;
+	}
+}
