@@ -13,7 +13,7 @@
 	align-items: center;
 }
 .IntroHeaderContent {
-	font-family: var(--railway);
+	font-family: var(--raleway);
 	font-style: italic;
 	font-weight: 500;
 	font-size: 4vw;
@@ -32,7 +32,7 @@
 }
 
 .IntroTagline {
-	font-family: var(--railway);
+	font-family: var(--raleway);
 	font-style: normal;
 	font-weight: 400;
 	font-size: 2rem;
@@ -56,7 +56,7 @@
 }
 
 .IntroPara h4 {
-	font-family: var(--railway);
+	font-family: var(--raleway);
 	font-style: normal;
 	font-weight: 400;
 	font-size: 1.2rem;

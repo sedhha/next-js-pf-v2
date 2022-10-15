@@ -12,7 +12,7 @@
 	--normal-text-color: #000;
 
 	/* Railway Font */
-	--railway: 'Raleway', sans-serif;
+	--raleway: 'Raleway', sans-serif;
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -21,9 +21,16 @@
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+	--hover-swap-effect: rgba(0, 0, 0, 0.1);
 
 	/* Breakpoints */
 	--mobile-bp: 620px;
+
+	/* Card Styles */
+	--card-dark-bg: #001d6e;
+	--card-light-bg: #ffffff;
+	--card-heading: #0aa1dd;
+	--card-light-para: #000;
 }
 html,
 body {
@@ -54,4 +61,12 @@ p {
 	height: 90vh;
 	overflow-x: hidden;
 	overflow-y: auto;
+}
+
+.body::-webkit-scrollbar {
+	width: 0.6em;
+}
+
+.body::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
 }
