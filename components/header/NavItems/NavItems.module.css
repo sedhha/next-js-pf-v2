@@ -1,12 +1,15 @@
 .NavItemBlock {
 	display: flex;
 	order: 1;
+	flex: auto;
 }
 .NavItemContainer {
 	display: flex;
 	align-items: center;
 	color: var(--inactive-silver);
 	gap: 2rem;
+	width: 100%;
+	justify-content: flex-end;
 }
 
 .NavItem {
