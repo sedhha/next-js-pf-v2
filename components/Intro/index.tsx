@@ -16,7 +16,11 @@ export default function Introduction() {
 					alt={'Shivam -Sahil: Developer'}
 				/>
 			</div>
-			<h2 className={classes.IntroTagline}>I am a JavaScript Developer</h2>
+			<div className={classes.IntroTaglineWrapper}>
+				<h2 className={classes.IntroTagline}>
+					I am a <span>JavaScript Developer</span>
+				</h2>
+			</div>
 			<div className={classes.IntroPara}>
 				<h4>
 					Working as a full time software engineer, I specialize in FERN Stack. I am
@@ -32,7 +36,7 @@ export default function Introduction() {
 				</h4>
 			</div>
 			<div className={classes.ActionArea}>
-				<button>Learn More</button>
+				<button className={classes.Button}>Learn More</button>
 			</div>
 		</div>
 	);
