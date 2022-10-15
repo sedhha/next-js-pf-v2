@@ -1,0 +1,18 @@
+.WorkSection {
+	height: 90vh;
+	width: 100%;
+}
+
+.WorkExperienceHeaderContainer {
+	margin-top: 1rem;
+	padding: 1rem;
+}
+.WorkExperienceHeader {
+	font-family: var(--railway);
+	font-style: normal;
+	font-weight: 500;
+	font-size: 4vw;
+	line-height: var(--line-height);
+	letter-spacing: 0.05em;
+	color: var(--active-blue);
+}

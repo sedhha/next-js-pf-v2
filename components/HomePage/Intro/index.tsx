@@ -1,8 +1,9 @@
 import React from 'react';
 import classes from './Intro.module.css';
+import SectionIds from '@/constants/sections.json';
 export default function Introduction() {
 	return (
-		<div className={classes.IntroGrid}>
+		<section className={classes.IntroGrid} id={SectionIds.introSection}>
 			<div className={classes.IntroHeader}>
 				<h1 className={classes.IntroHeaderContent}>
 					Artist By Birth, Engineer by Choice
@@ -38,6 +39,6 @@ export default function Introduction() {
 			<div className={classes.ActionArea}>
 				<button className={classes.Button}>Learn More</button>
 			</div>
-		</div>
+		</section>
 	);
 }

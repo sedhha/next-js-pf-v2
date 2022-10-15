@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/header';
-import Intro from '../Intro';
+import Intro from './Intro';
+import WorkSection from './WorkSection';
 
 export default function HomePage() {
 	return (
@@ -10,6 +11,7 @@ export default function HomePage() {
 			</div>
 			<div className="body">
 				<Intro />
+				<WorkSection />
 			</div>
 		</React.Fragment>
 	);
