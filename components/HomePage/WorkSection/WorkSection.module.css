@@ -1,0 +1,46 @@
+.WorkSection {
+	height: 90vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.WorkExperienceHeaderContainer {
+	padding: 1rem;
+}
+.WorkExperienceHeader {
+	font-family: var(--raleway);
+	font-style: normal;
+	font-weight: 500;
+	font-size: 3vw;
+	line-height: var(--line-height);
+	letter-spacing: 0.05em;
+	color: var(--active-blue);
+}
+
+.ExperienceContainer {
+	display: flex;
+	width: 100%;
+	flex: auto;
+	justify-content: space-between;
+}
+
+.NavigationButtonBox {
+	height: 100%;
+	vertical-align: middle;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 0.5rem;
+	transition: 0.3s ease;
+	cursor: pointer;
+}
+
+.NavigationButtonBox:hover {
+	background-color: var(--hover-swap-effect);
+}
+
+.RightArrow {
+	rotate: 180deg;
+}

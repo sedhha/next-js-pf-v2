@@ -1,0 +1,104 @@
+.NavItemBlock {
+	display: flex;
+	order: 1;
+	flex: auto;
+}
+.NavItemContainer {
+	display: flex;
+	align-items: center;
+	color: var(--inactive-silver);
+	gap: 2rem;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+.NavItem {
+	letter-spacing: 0.05em;
+	font-family: var(--raleway);
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1.2rem;
+	line-height: var(--lineheight);
+	cursor: pointer;
+	transition: all 0.1s ease-in;
+}
+
+.NavItem:hover {
+	scale: 0.96;
+}
+
+.LastItem {
+	display: flex;
+	align-items: center;
+}
+
+.ActiveItem {
+	color: var(--active-blue);
+}
+
+.ShowMoreIcon {
+	font-size: 2rem;
+	color: var(--inactive-silver);
+}
+.Expander {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: max-content;
+	padding: 0 1rem;
+	background-color: var(--light-background-color);
+	box-shadow: var(--box-shadow-thick);
+	text-align: end;
+	border-radius: 0.4rem;
+	animation: fly-in 0.3s linear;
+}
+
+.Expander:hover {
+	scale: 1;
+}
+
+.Hide {
+	display: none;
+}
+.PassiveItem {
+	color: var(--inactive-silver);
+}
+
+@media only screen and (max-width: 750px) {
+	.NavItemContainer {
+		display: none;
+	}
+	.NavItemBlock {
+		order: 2;
+	}
+}
+
+@keyframes fly-in {
+	0% {
+		translate: 0 -20%;
+		scale: 0;
+		opacity: 0;
+	}
+	100% {
+		translate: 0 0;
+		scale: 1;
+		opacity: 1;
+	}
+}
+
+.HideWithAnimation {
+	position: absolute;
+	top: 100%;
+	right: -5%;
+	width: max-content;
+	padding: 0 1rem;
+	background-color: var(--light-background-color);
+	box-shadow: var(--box-shadow-thick);
+	text-align: end;
+	border-radius: 0.4rem;
+	visibility: hidden;
+	translate: 0 -20%;
+	scale: 0;
+	opacity: 0;
+	transition: all 0.3s linear;
+}
