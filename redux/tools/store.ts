@@ -1,11 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import ui from '@/redux-slices/ui.slice';
-const rootReducer = combineReducers({
-  ui,
+import { configureStore } from '@reduxjs/toolkit';
+import navigation from '@/slices/navigation.slice';
+
+export const store = configureStore({
+	reducer: {
+		navigation
+	}
 });
-const store = configureStore({
-  reducer: rootReducer,
-});
-export type RootState = ReturnType<typeof rootReducer>;
+
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export default store;
