@@ -11,7 +11,7 @@ export default function Introduction() {
 			<div className={classes.ImageContainer}>
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img
-					src={'/intro-image.png'}
+					src={'/intro-image.jpeg'}
 					className={classes.Image}
 					alt={'Shivam -Sahil: Developer'}
 				/>

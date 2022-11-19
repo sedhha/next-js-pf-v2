@@ -47,31 +47,41 @@
 }
 
 .IntroTagline_special {
-	color: var(--intro-tag-line-special);
+	background: var(--intro-tag-line-special-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-tag-line-special-g1) 0%,
+		var(--intro-tag-line-special-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	margin-top: 1rem;
 	transition: var(--fade-transition);
 }
 
 .IntroPara {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-between;
 	grid-area: 3 / 1 / 6 / 8;
-	border: 2px solid red;
+	padding: 2rem;
 }
 
 .IntroPara h4 {
 	font-family: var(--railway);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 1.2rem;
+	font-size: var(--p-text);
 	line-height: var(--line-height) * 0.8;
 	letter-spacing: 0.05em;
-	color: var(--normal-text-color);
+	color: var(--intro-para-color);
 }
 
 .ImageContainer {
 	grid-area: 2 / 8 / 6 / 12;
-	border: 2px solid red;
 	max-height: 100%;
 }
 .Image {
@@ -80,6 +90,38 @@
 	max-height: 100%;
 }
 .ActionArea {
-	border: 2px solid black;
 	grid-area: 6 / 1 / 7 / 12;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ActionArea button {
+	background-image: linear-gradient(
+		to right,
+		var(--button-g2) 0%,
+		var(--button-g1) 51%,
+		var(--button-g2) 100%
+	);
+	margin: 10px;
+	padding: 15px 45px;
+	text-align: center;
+	font-size: var(--big-button-text);
+	text-transform: uppercase;
+	transition: 0.5s all ease-in, 0.3s scale ease-in;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: var(--button-box-shadow);
+	border-radius: 10px;
+	display: block;
+	border: none;
+	outline: none;
+	cursor: pointer;
+
+}
+.ActionArea button:hover {
+	background-position: right center; /* change the direction of the change here */
+	color: #fff;
+	text-decoration: none;
+	scale: 0.96;
 }

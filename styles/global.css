@@ -18,6 +18,8 @@
 	--railway: 'Raleway', sans-serif;
 	--h1-text: 5rem;
 	--h2-text: 4.5rem;
+	--p-text: 2rem;
+	--big-button-text: 1.5rem;
 
 
 	/* Heights */
@@ -79,6 +81,12 @@ p {
 	--intro-header-content-g2: var(--active-blue);
 	--intro-tag-line: var(--normal-text-color);
 	--intro-tag-line-special: var(--light-blue);
+	--intro-tag-line-special-g1: var(--light-blue);
+	--intro-tag-line-special-g2: var(--active-blue);
+	--button-g1: var(--light-blue);
+	--button-g2: var(--active-blue);
+	--button-box-shadow: 0 0 20px #eee;
+	--intro-para-color: var(--normal-text-color);
 	transition: var(--fade-transition);
 }
 
@@ -94,7 +102,12 @@ p {
 	--intro-header-content-g2: var(--subtle-dark-green);
 	--intro-tag-line: var(--light-background-color);
 	--intro-tag-line-special: var(--light-blue);
-
+	--intro-tag-line-special-g1: var(--light-green);
+	--intro-tag-line-special-g2: var(--subtle-dark-green);
+	--button-g1: var(--light-green);
+	--button-g2: var(--subtle-dark-green);
+	--button-box-shadow: 0 0 12px #eee;
+	--intro-para-color: var(--light-background-color);
 	transition: var(--fade-transition);
 
 }
