@@ -2,7 +2,6 @@
 	width: 100%;
 	height: 90vh;
 	display: block;
-	max-height: 90vh;
 	overflow: hidden;
 }
 
@@ -28,10 +27,20 @@
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	text-align: center;
-	margin-top: 1rem;
 	transition: var(--fade-transition);
 }
 
 .WorkExperienceCardsContainer {
 	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	padding: 1rem 0.3rem;
+}
+
+.NavigationButton {
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+}
+.NavigationButton:hover {
+	scale: 0.9
 }

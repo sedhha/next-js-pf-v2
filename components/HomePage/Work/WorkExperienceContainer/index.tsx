@@ -2,12 +2,23 @@ import React from 'react';
 import Card from './WorkExperienceCard';
 import classes from './WorkExperienceContainer.module.css';
 
-export default function WorkExperienceContainer() {
+type Props = {
+	cards: {
+		key: string;
+		image: string;
+		employerTitle: string;
+		paras: string;
+		date: string;
+	}[];
+	curr: number;
+};
+
+export default function WorkExperienceContainer({ cards, curr }: Props) {
 	return (
 		<div className={classes.WorkExperienceContainer}>
-			<Card />
-			<Card />
-			<Card />
+			{cards.slice(curr, curr + 3).map((card) => (
+				<Card {...card} key={card.key} />
+			))}
 		</div>
 	);
 }

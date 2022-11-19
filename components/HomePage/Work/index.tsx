@@ -3,10 +3,28 @@ import classes from './Work.module.css';
 import { pageSections } from '../../../constants/index';
 import SvgRight from '@/components/common/SvgRight';
 import SvgLeft from '@/components/common/SvgLeft';
-import SvgContainer from './SvgContainer/index';
 import WorkExperienceContainer from './WorkExperienceContainer';
 
 export default function WorkExperience() {
+	const [skip, setStart] = React.useState(0);
+	const [limit, setEnd] = React.useState(10);
+	const [curr, setCurr] = React.useState(0);
+	const [cards, setCards] = React.useState<
+		{
+			key: string;
+			image: string;
+			employerTitle: string;
+			paras: string;
+			date: string;
+		}[]
+	>([]);
+	console.log(cards.slice(curr, curr + 3));
+
+	React.useEffect(() => {
+		fetch('/constants/work-experience.json').then((res) =>
+			res.json().then((data) => setCards(data))
+		);
+	}, []);
 	return (
 		<section id={pageSections.WORK} className={classes.WorkSection}>
 			<div className={classes.IntroHeader}>
@@ -15,9 +33,9 @@ export default function WorkExperience() {
 				</h1>
 			</div>
 			<div className={classes.WorkExperienceCardsContainer}>
-				<SvgContainer SvgComponent={<SvgLeft height={80} />} />
-				<WorkExperienceContainer />
-				<SvgContainer SvgComponent={<SvgRight height={80} />} />
+				<SvgLeft className={classes.NavigationButton} height={140} />
+				<WorkExperienceContainer cards={cards} curr={curr} />
+				<SvgRight className={classes.NavigationButton} height={140} />
 			</div>
 		</section>
 	);

@@ -6,7 +6,7 @@ interface Props extends SVGProps<SVGSVGElement> {
 const SvgLeft = ({ fillColor, ...props }: Props) => (
 	<svg
 		width={80}
-		height={128}
+		height={140}
 		viewBox="0 0 80 128"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,6 @@
 .WorkExperienceContainer {
-    border: 2px solid black;
-    flex: auto;
     height: 100%;
     display: flex;
     justify-content: space-between;
+    gap: 2rem;
 }
