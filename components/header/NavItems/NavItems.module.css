@@ -1,27 +1,36 @@
 .NavItemBlock {
 	display: flex;
 	order: 1;
+	height: 100%;
 }
 .NavItemContainer {
 	display: flex;
 	align-items: center;
-	color: var(--inactive-silver);
 	gap: 2rem;
 }
 
+.NavItemContainer_on {
+	color: var(--inactive-silver-dark);
+}
+.NavItemContainer_off {
+	color: var(--light-background-color);
+}
+
 .NavItem {
-	letter-spacing: 0.05em;
+	letter-spacing: 0.08em;
 	font-family: var(--raleway);
 	font-style: normal;
-	font-weight: 600;
-	font-size: 1.2rem;
+	font-weight: 400;
+	font-size: 1.5rem;
 	line-height: var(--lineheight);
 	cursor: pointer;
-	transition: all 0.1s ease-in;
+	transition: all 0.3s ease-in;
 }
 
 .NavItem:hover {
 	scale: 0.96;
+	text-decoration: underline;
+	text-underline-offset: 0.5rem;	
 }
 
 .LastItem {
@@ -31,23 +40,28 @@
 
 .ActiveItem {
 	color: var(--active-blue);
+	text-decoration: underline;
+	text-underline-offset: 0.8rem;
 }
 
 .ShowMoreIcon {
 	font-size: 2rem;
-	color: var(--inactive-silver);
+	color: var(--inactive-silver-dark);
 }
 .Expander {
 	position: absolute;
-	top: 100%;
+	top: 150%;
 	right: 0;
 	width: max-content;
-	padding: 0 1rem;
+	padding: 1rem;
 	background-color: var(--light-background-color);
-	box-shadow: var(--box-shadow-thick);
+	box-shadow: var(--box-shadow-thin);
 	text-align: end;
 	border-radius: 0.4rem;
 	animation: fly-in 0.3s linear;
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
 }
 
 .Expander:hover {
@@ -97,5 +111,6 @@
 	translate: 0 -20%;
 	scale: 0;
 	opacity: 0;
-	transition: all 0.3s linear;
+	transition: var(--transition-animation);
+
 }

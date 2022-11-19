@@ -4,11 +4,10 @@
 	--light-background-color: #ffffff;
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
+	--inactive-silver-dark: #555460;
 	--active-blue: #001d6e;
-	--switch-background-color-on: rgba(255, 249, 117, 0.4);
-	--switch-background-color-off: #cfcfcf;
-	--switch-button-color-on: #faff00;
-	--switch-button-color-off: #001d6e;
+	--dark-yellow: rgba(255, 249, 117, 0.4);
+	--light-yellow: rgba(237, 226, 32, 0.961);
 	--normal-text-color: #000;
 
 	/* Railway Font */
@@ -21,6 +20,8 @@
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+	--transition-animation: all 0.3s linear;
 }
 html,
 body {
@@ -51,4 +52,21 @@ p {
 	height: 90vh;
 	overflow-x: hidden;
 	overflow-y: auto;
+}
+
+/* Dark Mode Details */
+
+.lightMode {
+	--switch-board-background-color: var(--dark-yellow);
+	--switch-button-color: var(--light-yellow);
+	--header-background-color: var(--light-background-color);
+	transition: var(--transition-animation);
+}
+
+.darkMode {
+	--switch-board-background-color: var(--inactive-silver);
+	--switch-button-color: var(--inactive-silver-dark);
+	--header-background-color: var(--active-blue);
+	transition: var(--transition-animation);
+
 }
