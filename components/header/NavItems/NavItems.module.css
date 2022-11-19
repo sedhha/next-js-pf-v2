@@ -111,6 +111,5 @@
 	translate: 0 -20%;
 	scale: 0;
 	opacity: 0;
-	transition: var(--transition-animation);
-
+	transition: all 0.3s linear;
 }
