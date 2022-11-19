@@ -39,14 +39,25 @@
 }
 
 .ActiveItem {
-	color: var(--active-blue);
-	text-decoration: underline;
-	text-underline-offset: 0.8rem;
+	font-weight: 600;
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
+	
 }
 
 .ShowMoreIcon {
 	font-size: 2rem;
-	color: var(--inactive-silver-dark);
+	color: var(--passive-nav-item-color);
+	transition: var(--fade-transition);
 }
 .Expander {
 	position: absolute;
@@ -54,7 +65,7 @@
 	right: 0;
 	width: max-content;
 	padding: 1rem;
-	background-color: var(--light-background-color);
+	background-color: var(--header-background-color);
 	box-shadow: var(--box-shadow-thin);
 	text-align: end;
 	border-radius: 0.4rem;
@@ -72,7 +83,8 @@
 	display: none;
 }
 .PassiveItem {
-	color: var(--inactive-silver);
+	color: var(--passive-nav-item-color);
+	transition: var(--fade-transition);
 }
 
 @media only screen and (max-width: 620px) {

@@ -8,7 +8,7 @@
 	gap: 0.5rem;
 	height: 100%;
 	background: var(--header-background-color);
-	transition: var(--transition-animation);
+	transition: var(--fade-transition);
 
 }
 
@@ -23,7 +23,19 @@
 	font-weight: 700;
 	font-size: 2rem;
 	line-height: var(--lineheight);
-	color: var(--light-blue);
+
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
+
 }
 
 
@@ -35,7 +47,7 @@
 }
 
 .LogoImage:hover {
-	animation: tickle 0.5s linear infinite;
+	animation: tickle 1s linear infinite;
 }
 
 .FocusWord {
@@ -51,47 +63,36 @@
 @keyframes tickle {
 	0% {
 		rotate: 0;
-		translateX: 0;
 	}
 	10% {
-		rotate: 10deg;
-		translateX: 2%;
+		rotate: 36deg;
 	}
 	20% {
-		rotate: 20deg;
-		translateX: 4%;
+		rotate: 72deg;
 
 	}
 	30% {
-		rotate: 30deg;
-		translateX: 6%;
+		rotate: 72deg;
 	}
 	40% {
-		rotate: 40deg;
-		translateX: 8%;
+		rotate: 36deg;
 	}
 	50% {
-		rotate: 50deg;
-		translateX: 10%;
+		rotate: 0deg;
 	}
 	60% {
-		rotate: 60deg;
-		translateX: 8%;
+		rotate: -36deg;
 	}
 	70% {
-		rotate: 50deg;
-		translateX: 6%;
+		rotate: -72deg;
 	}
 	80% {
-		rotate: 40deg;
-		translateX: 4%;
+		rotate: -72deg;
 	}
 	90% {
-		rotate: 30deg;
-		translateX: 2%;
+		rotate: -36deg;
 	}
 	100% {
 		rotate: 0;
-		translateX: 0;
 	}
 }

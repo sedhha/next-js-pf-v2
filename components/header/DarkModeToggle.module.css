@@ -7,7 +7,7 @@
 	position: relative;
 	cursor: pointer;
 	background-color: var(--switch-board-background-color);
-	transition: var(--transition-animation);
+	transition: var(--fade-transition);
 	
 }
 
@@ -18,7 +18,7 @@
 	border-radius: 50%;
 	box-shadow: -2px 4px 12px -7px #000000;
 	background-color: var(--switch-button-color);
-	transition: var(--transition-animation);
+	transition: var(--fade-transition);
 	
 }
 
@@ -28,7 +28,7 @@
 			(var(--toggle-switch-board-height) / 2) -
 				(var(--toggle-switch-button-height) / 2)
 		);
-	transition: var(--transition-animation);
+	transition: var(--fade-transition);
 }
 
 .ToggleSwitch_off {
@@ -37,7 +37,7 @@
 			(var(--toggle-switch-board-height) / 2) -
 				(var(--toggle-switch-button-height) / 2)
 		);
-	transition: var(--transition-animation);
+	transition: var(--fade-transition);
 }
 
 @media only screen and (max-width: 620px) {

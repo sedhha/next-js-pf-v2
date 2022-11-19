@@ -48,7 +48,7 @@ export default function NavItems() {
 							className={[
 								classes.NavItem,
 								isLastItem ? classes.LastItem : null,
-								isActive ? classes.ActiveItem : null
+								isActive ? classes.ActiveItem : classes.PassiveItem
 							].join(' ')}
 							onClick={() => !isLastItem && dispatch(updateActiveSlice(item.value))}
 							onMouseEnter={() => {
@@ -69,6 +69,7 @@ export default function NavItems() {
 										{navItems.slice(5, navItems.length - 1).map((item) => {
 											const isActive =
 												(activeItem ? activeItem.value : activeSection) === item.value;
+
 											return (
 												<h4
 													key={item.value}

@@ -14,26 +14,41 @@
 }
 .IntroHeaderContent {
 	font-family: var(--railway);
-	font-style: italic;
 	font-weight: 500;
-	font-size: 3.2rem;
+	font-size: var(--h1-text);
 	line-height: var(--line-height);
 	letter-spacing: 0.05em;
-	color: var(--light-blue);
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 	text-align: center;
 	margin-top: 1rem;
+	transition: var(--fade-transition);
 }
 
 .IntroTagline {
 	font-family: var(--railway);
-	border: 2px solid black;
 	font-style: normal;
 	font-weight: 500;
-	font-size: 2rem;
+	font-size: var(--h2-text);
 	line-height: var(--line-height);
-	letter-spacing: 0.05em;
-	color: var(--normal-text-color);
+	letter-spacing: 0.02em;
+	color: var(--intro-tag-line);
 	grid-area: 2 / 1 / 3 / 8;
+	transition: var(--fade-transition);
+	margin: auto;
+}
+
+.IntroTagline_special {
+	color: var(--intro-tag-line-special);
+	transition: var(--fade-transition);
 }
 
 .IntroPara {
@@ -41,6 +56,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 	grid-area: 3 / 1 / 6 / 8;
+	border: 2px solid red;
 }
 
 .IntroPara h4 {

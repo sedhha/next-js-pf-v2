@@ -2,16 +2,23 @@
 :root {
 	/* Colors */
 	--light-background-color: #ffffff;
+	--faded-blue: #7DFFFB;
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
 	--inactive-silver-dark: #555460;
 	--active-blue: #001d6e;
+	--faded-blue: #19254C;
 	--dark-yellow: rgba(255, 249, 117, 0.4);
 	--light-yellow: rgba(237, 226, 32, 0.961);
 	--normal-text-color: #000;
+	--light-green: #72FF14;
+	--subtle-dark-green: #478C42;
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
+	--h1-text: 5rem;
+	--h2-text: 4.5rem;
+
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -21,7 +28,9 @@
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
 	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
-	--transition-animation: all 0.3s linear;
+	--fade-transition: all 0.3s linear;
+
+
 }
 html,
 body {
@@ -46,12 +55,14 @@ p {
 }
 
 .header {
-	height: 10vh;
+	height: 8vh;
 }
 .body {
-	height: 90vh;
+	height: 92vh;
 	overflow-x: hidden;
 	overflow-y: auto;
+	transition: var(--fade-transition);
+	background-color: var(--body-bg);
 }
 
 /* Dark Mode Details */
@@ -60,13 +71,40 @@ p {
 	--switch-board-background-color: var(--dark-yellow);
 	--switch-button-color: var(--light-yellow);
 	--header-background-color: var(--light-background-color);
-	transition: var(--transition-animation);
+	--active-nav-item-color: var(--active-blue);
+	--passive-nav-item-color: var(--inactive-silver);
+	--body-bg: var(--light-background-color);
+	--intro-header-content: var(--normal-text-color);
+	--intro-header-content-g1: var(--light-blue);
+	--intro-header-content-g2: var(--active-blue);
+	--intro-tag-line: var(--normal-text-color);
+	--intro-tag-line-special: var(--light-blue);
+	transition: var(--fade-transition);
 }
 
 .darkMode {
 	--switch-board-background-color: var(--inactive-silver);
 	--switch-button-color: var(--inactive-silver-dark);
 	--header-background-color: var(--active-blue);
-	transition: var(--transition-animation);
+	--active-nav-item-color: var(--light-blue);
+	--passive-nav-item-color: var(--light-background-color);
+	--body-bg: var(--faded-blue);
+	--intro-header-content: var(--light-blue);
+	--intro-header-content-g1: var(--light-green);
+	--intro-header-content-g2: var(--subtle-dark-green);
+	--intro-tag-line: var(--light-background-color);
+	--intro-tag-line-special: var(--light-blue);
 
+	transition: var(--fade-transition);
+
+}
+
+
+
+/* Utility */
+.ctr {
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
 }

@@ -16,7 +16,10 @@ export default function Introduction() {
 					alt={'Shivam -Sahil: Developer'}
 				/>
 			</div>
-			<h2 className={classes.IntroTagline}>I am a JavaScript Developer</h2>
+			<h2 className={classes.IntroTagline}>
+				I am a <span className={classes.IntroTagline_special}>JavaScript</span>{' '}
+				Developer
+			</h2>
 			<div className={classes.IntroPara}>
 				<h4>
 					Working as a full time software engineer, I specialize in FERN Stack. I am

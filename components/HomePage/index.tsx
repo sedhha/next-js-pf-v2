@@ -6,13 +6,13 @@ import { useAppSelector } from '../../redux/tools/hooks';
 export default function HomePage() {
 	const { darkMode } = useAppSelector((state) => state.navigation);
 	return (
-		<React.Fragment>
-			<div className={`headers ${darkMode ? 'darkMode' : 'lightMode'}`}>
+		<div className={darkMode ? 'darkMode' : 'lightMode'}>
+			<div className="header">
 				<Header />
 			</div>
 			<div className="body">
 				<Intro />
 			</div>
-		</React.Fragment>
+		</div>
 	);
 }
