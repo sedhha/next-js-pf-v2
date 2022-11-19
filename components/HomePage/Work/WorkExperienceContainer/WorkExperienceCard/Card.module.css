@@ -1,0 +1,73 @@
+.Card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.Card:nth-child(even) {
+    background-color: var(--active-blue);
+}
+.Card:nth-child(odd) {
+    background-color: var(--light-background-color);
+    box-shadow: var(--box-shadow-thin);
+}
+
+.CardImage {
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    max-height: 50%;
+}
+
+.EmployerTitle {
+	font-family: var(--railway);
+	font-weight: 500;
+	font-size: 1.5rem;
+	letter-spacing: 0.02em;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+
+.Card:nth-child(odd) .EmployerTitle {
+    background: var(--light-blue);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--light-blue) 0%,
+		var(--active-blue) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
+}
+
+.Card:nth-child(even) .EmployerTitle {
+    background: var(--light-green);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--light-green) 0%,
+		var(--subtle-dark-green) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
+}
+
+.Dates {
+    font-weight: 500;
+    font-size: 1.2rem;
+    width: 100%;
+
+
+}
+
+.Card:nth-child(even) .Dates {
+    color: var(--light-background-color);
+}
+.Card:nth-child(odd) .Dates {
+    color: var(--light-blue);
+}

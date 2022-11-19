@@ -1,0 +1,37 @@
+.WorkSection {
+	width: 100%;
+	height: 90vh;
+	display: block;
+	max-height: 90vh;
+	overflow: hidden;
+}
+
+.IntroHeader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.IntroHeaderContent {
+	font-family: var(--railway);
+	font-weight: 500;
+	font-size: var(--h1-text);
+	line-height: var(--line-height);
+	letter-spacing: 0.05em;
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	margin-top: 1rem;
+	transition: var(--fade-transition);
+}
+
+.WorkExperienceCardsContainer {
+	display: flex;
+}
