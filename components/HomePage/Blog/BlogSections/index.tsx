@@ -49,9 +49,8 @@ export default function BlogSections() {
 				const isActive = section.value === activeBlogCategory;
 				const isLastItem = displaySections.length === index + 1;
 				return isLastItem ? (
-					<div className={classes.ShowMoreContainer}>
+					<div className={classes.ShowMoreContainer} key={section.value}>
 						<h3
-							key={section.value}
 							onClick={() =>
 								!isActive && dispatch(updateActiveBlogCategory(section.value))
 							}

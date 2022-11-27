@@ -13,6 +13,7 @@ export interface INavigationSlice {
 	darkMode: boolean;
 	activeBlogCategory: string;
 	mostPopularSelectedBlogId: string;
+	inChatMode: boolean;
 }
 
 // Define the initial state using that type
@@ -25,6 +26,7 @@ const initialState: INavigationSlice = {
 	darkMode: false,
 	activeBlogCategory: 'web-development',
 	mostPopularSelectedBlogId: 'get-started-with-next-js',
+	inChatMode: false
 };
 
 export const navSlice = createSlice({
@@ -51,6 +53,9 @@ export const navSlice = createSlice({
 		},
 		updateMostPopularSelected: (state: INavigationSlice, action: PayloadAction<string>) => {
 			state.mostPopularSelectedBlogId = action.payload;
+		},
+		updateInChatMode: (state: INavigationSlice, action: PayloadAction<boolean>) => {
+			state.inChatMode = action.payload;
 		}
 	}
 	
@@ -62,7 +67,8 @@ export const {
 	updateShowMore,
 	updateDarkMode,
 	updateActiveBlogCategory,
-	updateMostPopularSelected
+	updateMostPopularSelected,
+	updateInChatMode
 	} = navSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

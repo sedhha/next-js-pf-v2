@@ -17,6 +17,7 @@
 	--light-green: #72ff14;
 	--subtle-dark-green: #478c42;
 	--primary-orange: #f27304;
+	--faded-purple: rgba(74, 69, 214, 0.74);
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
@@ -35,6 +36,9 @@
 	--get-in-touch-heading: 4rem;
 	--get-in-touch-button-font-size: 2rem;
 	--chat-status-icon-size: 1rem;
+	--chat-avatar-size: 3rem;
+	--send-button-size: 2.5rem;
+	--message-input-size: 1.5rem;
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -43,10 +47,13 @@
 	--radius: 0.5rem;
 	--min-blog-number-width: 10rem;
 	--sample-blog-line-height: 1.5rem;
+	--max-chat-window-height: 69vh;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
 	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+	--box-shadow-mod: 0px 0px 12px 4px rgba(0, 0, 0, 0.44);
+	--box-shadow-mid: 4px 4px 11px #000000;
 	--fade-transition: all 0.3s linear;
 
 	/* Hover States */
@@ -120,6 +127,14 @@ p {
 	--special-icon-color: var(--normal-text-color);
 	--get-in-touch-color: var(--primary-orange);
 	--get-in-touch-placeholder-color: var(--inactive-silver-semi-dark);
+	--chat-box-shadow: var(--faded-purple);
+	--message-container-from-color: var(--primary-orange);
+	--message-container-to-color: var(--light-blue);
+	--message-container-text-color: var(--light-background-color);
+	--anonymous-chat-header-color: var(--light-background-color);
+	--anonymous-chat-header-bg: var(--light-blue);
+	--send-button-color: var(--normal-text-color);
+	--input-field-text-placeholder-color: var(--normal-text-color);
 	transition: var(--fade-transition);
 }
 
@@ -156,6 +171,14 @@ p {
 	--special-icon-color: var(--light-background-color);
 	--get-in-touch-color: var(--primary-orange);
 	--get-in-touch-placeholder-color: var(--inactive-silver-semi-dark);
+	--chat-box-shadow: var(--faded-purple);
+	--message-container-from-color: var(--primary-orange);
+	--message-container-to-color: var(--light-blue);
+	--message-container-text-color: var(--light-background-color);
+	--anonymous-chat-header-color: var(--light-background-color);
+	--anonymous-chat-header-bg: var(--light-blue);
+	--send-button-color: var(--light-background-color);
+	--input-field-text-placeholder-color: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 

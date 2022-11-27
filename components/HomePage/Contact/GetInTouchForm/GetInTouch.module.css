@@ -1,7 +1,6 @@
 .GetInTouchArea {
 	height: 100%;
 	width: 100%;
-	border: 2px solid red;
 	padding: 3rem;
 	display: flex;
 	flex-direction: column;
@@ -23,6 +22,8 @@
 	outline: none;
 	width: 100%;
 	font-size: 2.5rem;
+	background-color: var(--body-bg);
+	color: var(--input-field-text-placeholder-color);
 }
 
 .InputContainer input::placeholder,
