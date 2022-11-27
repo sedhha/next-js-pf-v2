@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classes from './Work.module.css';
-import { pageSections } from '../../../constants/index';
+import { pageSections } from '@/constants/index';
 import SvgRight from '@/components/common/SvgRight';
 import SvgLeft from '@/components/common/SvgLeft';
 import WorkExperienceContainer from './WorkExperienceContainer';
@@ -21,7 +21,7 @@ export default function WorkExperience() {
 	console.log(cards.slice(curr, curr + 3));
 
 	React.useEffect(() => {
-		fetch('/constants/work-experience.json').then((res) =>
+		fetch('../../../constants/work-experience.json').then((res) =>
 			res.json().then((data) => setCards(data))
 		);
 	}, []);

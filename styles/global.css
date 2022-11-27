@@ -29,7 +29,8 @@
 	--blog-number-heading-inactive: 4.125rem;
 	--blog-highlighted-date: 2.5rem;
 	--featured-blog-heading: 4rem;
-	--featured-blog-image-size: 25rem;
+	--featured-blog-image-size: 28rem;
+	--icon-size: 3rem;
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -37,6 +38,7 @@
 	--toggle-switch-button-height: 1.5rem;
 	--radius: 0.5rem;
 	--min-blog-number-width: 10rem;
+	--sample-blog-line-height: 1.5rem;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -107,6 +109,10 @@ p {
 	--primary-category-circle: var(--primary-orange);
 	--category-font: var(--light-blue);
 	--featured-blog-heading-color: var(--light-blue);
+	--suggested-blog-category-h2: var(--normal-text-color);
+	--suggested-blog-category-h3: var(--light-blue);
+	--suggested-blog-category-h4: var(--active-blue);
+	--sample-blog-paragraph-color: var(--normal-text-color);
 	transition: var(--fade-transition);
 }
 
@@ -129,13 +135,17 @@ p {
 	--button-box-shadow: 0 0 12px #eee;
 	--intro-para-color: var(--light-background-color);
 	--blog-section-element-color: var(--inactive-silver);
-	--blog-section-active-color-g1: var(--faded-blue-2);
-	--blog-section-active-color-g2: var(--dark-blue);
+	--blog-section-active-color-g1: var(--light-green);
+	--blog-section-active-color-g2: var(--subtle-dark-green);
 	--passive-cursor-color: var(--light-blue);
-	--blog-highlighted-date-color: var(--normal-text-color);
+	--blog-highlighted-date-color: var(--light-background-color);
 	--primary-category-circle: var(--primary-orange);
-	--category-font: var(--light-blue);
+	--category-font: var(--light-background-color);
 	--featured-blog-heading-color: var(--light-blue);
+	--suggested-blog-category-h2: var(--light-background-color);
+	--suggested-blog-category-h3: var(--light-blue);
+	--suggested-blog-category-h4: var(--light-background-color);
+	--sample-blog-paragraph-color: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 

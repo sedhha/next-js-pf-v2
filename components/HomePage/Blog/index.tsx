@@ -6,6 +6,8 @@ import mostPopularBlogs from '@/constants/most-popular-blogs.json';
 import { useAppSelector, useAppDispatch } from '../../../redux/tools/hooks';
 import { updateMostPopularSelected } from '@/slices/navigation.slice';
 import LazyImage from '@/components/common/ImageUtility';
+import SocialIcons from '@/components/HomePage/Blog/SocialIcons';
+import RelatedBlogCard from '@/components/HomePage/Blog/RelatedBlogCard';
 
 export default function BlogPage() {
 	const { mostPopularSelectedBlogId } = useAppSelector(
@@ -58,12 +60,47 @@ export default function BlogPage() {
 						<div className={classes.BlogDetails}>
 							<div className={classes.ImageContainer}>
 								<LazyImage src={'/sample.png'} className={classes.Image} />
+								<SocialIcons />
+							</div>
+							<div className={classes.ParaGraphContainer}>
+								<p>
+									Working as a Software Engineer, I have majorly been involved in making
+									end to end applications using React and Scala as a backend service.
+									Working as a Software Engineer, I have majorly been involved in making
+									end to end applications. Working as a Software Engineer, I have majorly
+									been involved in making end to end applications using React and Scala
+									as a backend service.
+								</p>
+								<p>
+									Working as a Software Engineer, I have majorly been involved in making
+									end to end applications using React and Scala as a backend service.
+									Working as a Software Engineer, I have majorly been involved in making
+									end to end applications. Working as a Software Engineer, I have majorly
+									been involved in making end to end applications using React and Scala
+									as a backend service.
+								</p>
+								<p>
+									Working as a Software Engineer, I have majorly been involved in making
+									end to end applications using React and Scala as a backend service.
+									Working as a Software Engineer, I have majorly been involved in making
+									end to end applications. Working as a Software Engineer, I have majorly
+									been involved in making end to end applications using React and Scala
+									as a backend service.
+								</p>
+								<div className={classes.ButtonGroup}>
+									<button className={`button ${classes.ButtonG}`}>
+										Read Complete Blog
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className={classes.RelatedBlogs}></div>
+			<div className={classes.RelatedBlogs}>
+				<RelatedBlogCard />
+				<RelatedBlogCard />
+			</div>
 		</section>
 	);
 }

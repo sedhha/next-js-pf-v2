@@ -1,22 +1,22 @@
 [
 	{
 		"id": "facebook",
-		"url": "http://www.facebook.com",
+		"url": "/social-icons/facebook.png",
 		"icon-class": "fa-facebook"
 	},
 	{
 		"id": "twitter",
-		"url": "http://www.facebook.com",
+		"url": "/social-icons/twitter.png",
 		"icon-class": "fa-facebook"
 	},
 	{
 		"id": "whatsapp",
-		"url": "http://www.facebook.com",
+		"url": "/social-icons/whatsapp.png",
 		"icon-class": "fa-facebook"
 	},
 	{
 		"id": "copy-url",
-		"url": "http://www.facebook.com",
+		"url": "/social-icons/copy.png",
 		"icon-class": "fa-facebook"
 	}
 ]
