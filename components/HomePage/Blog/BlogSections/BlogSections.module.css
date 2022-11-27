@@ -1,0 +1,51 @@
+.BlogSections {
+	height: 100%;
+	display: flex;
+	flex: auto;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.SectionElement {
+	font-family: var(--railway);
+	font-style: normal;
+	font-weight: 600;
+	font-size: var(--blog-element-font-size);
+	letter-spacing: 0.05em;
+	position: relative;
+}
+
+.SectionElement_passive {
+	color: var(--blog-section-element-color);
+	transition: var(--fade-transition);
+	cursor: pointer;
+}
+
+.SectionElement_passive:hover {
+	scale: 0.96;
+	color: var(--passive-cursor-color);
+}
+.SectionElement_active {
+	background: var(--blog-section-active-color-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--blog-section-active-color-g1) 0%,
+		var(--blog-section-active-color-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
+}
+
+.SectionElement:last-child::after {
+	content: '⌄';
+	font-size: calc(var(--blog-element-font-size) * 1.454545);
+	position: absolute;
+	top: -55%;
+}
+
+.SectionElement:last-child:hover {
+	--hover-blog-sections-active: visible;
+}

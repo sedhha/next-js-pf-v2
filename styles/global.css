@@ -8,6 +8,8 @@
 	--inactive-silver-dark: #555460;
 	--active-blue: #001d6e;
 	--faded-blue: #19254C;
+	--faded-blue-2: #4FA7FF;
+	--dark-blue: #171DCF;
 	--dark-yellow: rgba(255, 249, 117, 0.4);
 	--light-yellow: rgba(237, 226, 32, 0.961);
 	--normal-text-color: #000;
@@ -16,10 +18,12 @@
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
-	--h1-text: 5rem;
+	--h1-text-main: 5rem;
+	--h1-text: 4rem;
 	--h2-text: 4.5rem;
 	--p-text: 2rem;
 	--big-button-text: 1.5rem;
+	--blog-element-font-size: 1.375rem;
 
 
 	/* Heights */
@@ -31,6 +35,9 @@
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
 	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 	--fade-transition: all 0.3s linear;
+
+	/* Hover States */
+	--hover-blog-sections-active: none;
 
 
 }
@@ -87,6 +94,10 @@ p {
 	--button-g2: var(--active-blue);
 	--button-box-shadow: 0 0 20px #eee;
 	--intro-para-color: var(--normal-text-color);
+	--blog-section-element-color: var(--inactive-silver);
+	--blog-section-active-color-g1: var(--faded-blue-2);
+	--blog-section-active-color-g2: var(--dark-blue);
+	--passive-cursor-color: var(--light-blue);
 	transition: var(--fade-transition);
 }
 
@@ -108,6 +119,10 @@ p {
 	--button-g2: var(--subtle-dark-green);
 	--button-box-shadow: 0 0 12px #eee;
 	--intro-para-color: var(--light-background-color);
+	--blog-section-element-color: var(--inactive-silver);
+	--blog-section-active-color-g1: var(--faded-blue-2);
+	--blog-section-active-color-g2: var(--dark-blue);
+	--passive-cursor-color: var(--light-blue);
 	transition: var(--fade-transition);
 
 }

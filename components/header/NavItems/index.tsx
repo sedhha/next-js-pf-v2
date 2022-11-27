@@ -25,7 +25,7 @@ const getItems = (activeItem: string) => {
 };
 
 export default function NavItems() {
-	const { activeSection, showMore, darkMode } = useAppSelector(
+	const { activeSection, showMore } = useAppSelector(
 		(state) => state.navigation
 	);
 	const dispatch = useAppDispatch();

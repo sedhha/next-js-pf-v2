@@ -15,7 +15,7 @@
 .IntroHeaderContent {
 	font-family: var(--railway);
 	font-weight: 500;
-	font-size: var(--h1-text);
+	font-size: var(--h1-text-main);
 	line-height: var(--line-height);
 	letter-spacing: 0.05em;
 	background: var(--intro-header-content-g1);

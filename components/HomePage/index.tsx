@@ -3,6 +3,7 @@ import Header from '@/components/header';
 import Intro from './Intro';
 import Work from './Work';
 import { useAppSelector } from '../../redux/tools/hooks';
+import Blog from './Blog';
 
 export default function HomePage() {
 	const { darkMode } = useAppSelector((state) => state.navigation);
@@ -14,6 +15,7 @@ export default function HomePage() {
 			<main className="body">
 				<Intro />
 				<Work />
+				<Blog />
 			</main>
 		</div>
 	);

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+
+
 // Define a type for the slice state
 export interface INavigationSlice {
 	activeSection: string;
@@ -9,6 +11,7 @@ export interface INavigationSlice {
 	onMoreElement: boolean;
 	onMoreItemsElement: boolean;
 	darkMode: boolean;
+	activeBlogCategory: string;
 }
 
 // Define the initial state using that type
@@ -19,6 +22,7 @@ const initialState: INavigationSlice = {
 	onMoreElement: false,
 	onMoreItemsElement: false,
 	darkMode: false,
+	activeBlogCategory: 'web-development'
 };
 
 export const navSlice = createSlice({
@@ -39,15 +43,20 @@ export const navSlice = createSlice({
 		},
 		updateDarkMode: (state: INavigationSlice, action: PayloadAction<boolean>) => {
 			state.darkMode = action.payload;
+		},
+		updateActiveBlogCategory: (state: INavigationSlice, action: PayloadAction<string>) => {
+			state.activeBlogCategory = action.payload;
 		}
 	}
+	
 });
 
 export const { 
 	updateActiveSlice, 
 	updateRevisitor, 
 	updateShowMore,
-	updateDarkMode
+	updateDarkMode,
+	updateActiveBlogCategory
 	} = navSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
