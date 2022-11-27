@@ -15,6 +15,9 @@
 	position: relative;
 	transition: var(--fade-transition);
 }
+.ShowMoreContainer {
+	position: relative;
+}
 
 .SectionElement_passive {
 	color: var(--blog-section-element-color);
@@ -41,13 +44,23 @@
 	transition: var(--fade-transition);
 }
 
-.SectionElement:last-child::after {
+.ShowMoreContainer > h3::after {
 	content: '⌄';
 	font-size: calc(var(--blog-element-font-size) * 1.454545);
 	position: absolute;
 	top: -55%;
 }
 
-.SectionElement:last-child:hover {
-	--hover-blog-sections-active: visible;
+.ShowMoreContainer > h3:hover {
+	--hover-blog-sections-active: none;
+	color: red;
+}
+
+.ShowMoreMenu {
+	position: absolute;
+	padding: 0.5rem;
+	display: var(--hover-blog-sections-active);
+	background: #fff;
+	z-index: 1;
+
 }

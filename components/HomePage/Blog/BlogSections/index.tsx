@@ -45,9 +45,34 @@ export default function BlogSections() {
 	);
 	return (
 		<div className={classes.BlogSections}>
-			{displaySections.map((section) => {
+			{displaySections.map((section, index) => {
 				const isActive = section.value === activeBlogCategory;
-				return (
+				const isLastItem = displaySections.length === index + 1;
+				return isLastItem ? (
+					<div className={classes.ShowMoreContainer}>
+						<h3
+							key={section.value}
+							onClick={() =>
+								!isActive && dispatch(updateActiveBlogCategory(section.value))
+							}
+							className={`${classes.SectionElement} ${
+								isActive
+									? classes.SectionElement_active
+									: classes.SectionElement_passive
+							}`}
+						>
+							{section.label}
+						</h3>
+						<div className={classes.ShowMoreMenu}>
+							<h3>Gaming</h3>
+							<h3>Fun</h3>
+							<h3>Fun</h3>
+							<h3>Fun</h3>
+							<h3>Fun</h3>
+							<h3>Fun</h3>
+						</div>
+					</div>
+				) : (
 					<h3
 						key={section.value}
 						onClick={() =>

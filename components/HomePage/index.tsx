@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/header';
 import Intro from './Intro';
 import Work from './Work';
+import Contact from './Contact';
 import { useAppSelector } from '../../redux/tools/hooks';
 import Blog from './Blog';
 
@@ -16,6 +17,7 @@ export default function HomePage() {
 				<Intro />
 				<Work />
 				<Blog />
+				<Contact />
 			</main>
 		</div>
 	);

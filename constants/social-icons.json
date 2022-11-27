@@ -1,22 +1,22 @@
 [
 	{
 		"id": "facebook",
-		"url": "/social-icons/facebook.png",
-		"icon-class": "fa-facebook"
+		"url": "FaFacebookF",
+		"is-Svg": true
 	},
 	{
 		"id": "twitter",
-		"url": "/social-icons/twitter.png",
-		"icon-class": "fa-facebook"
+		"url": "AiOutlineTwitter",
+		"is-Svg": true
 	},
 	{
 		"id": "whatsapp",
-		"url": "/social-icons/whatsapp.png",
-		"icon-class": "fa-facebook"
+		"url": "AiOutlineWhatsApp",
+		"is-Svg": true
 	},
 	{
 		"id": "copy-url",
-		"url": "/social-icons/copy.png",
-		"icon-class": "fa-facebook"
+		"url": "AiOutlineCopy",
+		"is-Svg": true
 	}
 ]

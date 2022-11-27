@@ -1,0 +1,49 @@
+.Contact {
+	width: 100%;
+	max-height: 90vh;
+}
+
+.IntroHeaderContent {
+	font-family: var(--railway);
+	font-weight: 500;
+	font-size: calc(var(--h1-text) * 0.8);
+	line-height: var(--line-height);
+	letter-spacing: 0.05em;
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	transition: var(--fade-transition);
+	padding: 0;
+	margin: 0;
+}
+
+.ContactHeading {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	padding: 1rem 3rem;
+}
+
+.FormSection {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: 1fr;
+}
+
+.FormFillArea {
+	grid-area: 1 / 1 / 2 / 7;
+}
+
+.FormChatArea {
+	grid-area: 1 / 7 / 2 / 9;
+}

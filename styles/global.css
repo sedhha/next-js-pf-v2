@@ -6,6 +6,7 @@
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
 	--inactive-silver-dark: #555460;
+	--inactive-silver-semi-dark: #6C6767;
 	--active-blue: #001d6e;
 	--faded-blue: #19254c;
 	--faded-blue-2: #4fa7ff;
@@ -31,6 +32,9 @@
 	--featured-blog-heading: 4rem;
 	--featured-blog-image-size: 28rem;
 	--icon-size: 3rem;
+	--get-in-touch-heading: 4rem;
+	--get-in-touch-button-font-size: 2rem;
+	--chat-status-icon-size: 1rem;
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -113,6 +117,9 @@ p {
 	--suggested-blog-category-h3: var(--light-blue);
 	--suggested-blog-category-h4: var(--active-blue);
 	--sample-blog-paragraph-color: var(--normal-text-color);
+	--special-icon-color: var(--normal-text-color);
+	--get-in-touch-color: var(--primary-orange);
+	--get-in-touch-placeholder-color: var(--inactive-silver-semi-dark);
 	transition: var(--fade-transition);
 }
 
@@ -146,6 +153,9 @@ p {
 	--suggested-blog-category-h3: var(--light-blue);
 	--suggested-blog-category-h4: var(--light-background-color);
 	--sample-blog-paragraph-color: var(--light-background-color);
+	--special-icon-color: var(--light-background-color);
+	--get-in-touch-color: var(--primary-orange);
+	--get-in-touch-placeholder-color: var(--inactive-silver-semi-dark);
 	transition: var(--fade-transition);
 }
 
