@@ -1,0 +1,22 @@
+[
+	{
+		"id": "facebook",
+		"url": "http://www.facebook.com",
+		"icon-class": "fa-facebook"
+	},
+	{
+		"id": "twitter",
+		"url": "http://www.facebook.com",
+		"icon-class": "fa-facebook"
+	},
+	{
+		"id": "whatsapp",
+		"url": "http://www.facebook.com",
+		"icon-class": "fa-facebook"
+	},
+	{
+		"id": "copy-url",
+		"url": "http://www.facebook.com",
+		"icon-class": "fa-facebook"
+	}
+]

@@ -2,19 +2,20 @@
 :root {
 	/* Colors */
 	--light-background-color: #ffffff;
-	--faded-blue: #7DFFFB;
+	--faded-blue: #7dfffb;
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
 	--inactive-silver-dark: #555460;
 	--active-blue: #001d6e;
-	--faded-blue: #19254C;
-	--faded-blue-2: #4FA7FF;
-	--dark-blue: #171DCF;
+	--faded-blue: #19254c;
+	--faded-blue-2: #4fa7ff;
+	--dark-blue: #171dcf;
 	--dark-yellow: rgba(255, 249, 117, 0.4);
 	--light-yellow: rgba(237, 226, 32, 0.961);
 	--normal-text-color: #000;
-	--light-green: #72FF14;
-	--subtle-dark-green: #478C42;
+	--light-green: #72ff14;
+	--subtle-dark-green: #478c42;
+	--primary-orange: #f27304;
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
@@ -24,12 +25,18 @@
 	--p-text: 2rem;
 	--big-button-text: 1.5rem;
 	--blog-element-font-size: 1.375rem;
-
+	--blog-number-heading: 6.875rem;
+	--blog-number-heading-inactive: 4.125rem;
+	--blog-highlighted-date: 2.5rem;
+	--featured-blog-heading: 4rem;
+	--featured-blog-image-size: 25rem;
 
 	/* Heights */
 	--lineheight: 2rem;
 	--toggle-switch-board-height: 2rem;
 	--toggle-switch-button-height: 1.5rem;
+	--radius: 0.5rem;
+	--min-blog-number-width: 10rem;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -38,8 +45,6 @@
 
 	/* Hover States */
 	--hover-blog-sections-active: none;
-
-
 }
 html,
 body {
@@ -98,6 +103,10 @@ p {
 	--blog-section-active-color-g1: var(--faded-blue-2);
 	--blog-section-active-color-g2: var(--dark-blue);
 	--passive-cursor-color: var(--light-blue);
+	--blog-highlighted-date-color: var(--normal-text-color);
+	--primary-category-circle: var(--primary-orange);
+	--category-font: var(--light-blue);
+	--featured-blog-heading-color: var(--light-blue);
 	transition: var(--fade-transition);
 }
 
@@ -123,11 +132,12 @@ p {
 	--blog-section-active-color-g1: var(--faded-blue-2);
 	--blog-section-active-color-g2: var(--dark-blue);
 	--passive-cursor-color: var(--light-blue);
+	--blog-highlighted-date-color: var(--normal-text-color);
+	--primary-category-circle: var(--primary-orange);
+	--category-font: var(--light-blue);
+	--featured-blog-heading-color: var(--light-blue);
 	transition: var(--fade-transition);
-
 }
-
-
 
 /* Utility */
 .ctr {
@@ -135,4 +145,28 @@ p {
 	width: 100%;
 	justify-content: center;
 	align-items: center;
+}
+.button {
+	background-image: linear-gradient(
+		to right,
+		var(--button-g2) 0%,
+		var(--button-g1) 51%,
+		var(--button-g2) 100%
+	);
+	text-align: center;
+	transition: 0.5s all ease-in, 0.3s scale ease-in;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: var(--button-box-shadow);
+	border-radius: 10px;
+	display: block;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.button:hover {
+	background-position: right center; /* change the direction of the change here */
+	color: #fff;
+	text-decoration: none;
+	scale: 0.96;
 }
