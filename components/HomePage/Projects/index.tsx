@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './Work.module.css';
+import classes from './Projects.module.css';
 import { pageSections } from '@/constants/index';
 import SvgRight from '@/components/common/SvgRight';
 import SvgLeft from '@/components/common/SvgLeft';
@@ -26,11 +26,9 @@ export default function WorkExperience() {
 		);
 	}, []);
 	return (
-		<section id={pageSections.WORK} className={classes.WorkSection}>
+		<section id={pageSections.PROJECTS} className={classes.WorkSection}>
 			<div className={classes.IntroHeader}>
-				<h1 className={classes.IntroHeaderContent}>
-					Professional Career and Work Experience
-				</h1>
+				<h1 className={classes.IntroHeaderContent}>Cool things I did</h1>
 			</div>
 			<div className={classes.WorkExperienceCardsContainer}>
 				<SvgLeft className={classes.NavigationButton} height={140} />

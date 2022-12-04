@@ -1,14 +1,19 @@
-.Contact {
+.WorkSection {
 	width: 100%;
 	max-height: 90vh;
-	border: 2px solid red;
-	overflow-y: hidden;
+	display: block;
+	overflow: hidden;
 }
 
+.IntroHeader {
+	display: flex;
+	align-items: center;
+	padding: 0 3rem;
+}
 .IntroHeaderContent {
 	font-family: var(--railway);
 	font-weight: 500;
-	font-size: calc(var(--h1-text) * 0.8);
+	font-size: var(--h1-text);
 	line-height: var(--line-height);
 	letter-spacing: 0.05em;
 	background: var(--intro-header-content-g1);
@@ -23,34 +28,19 @@
 	-webkit-text-fill-color: transparent;
 	text-align: center;
 	transition: var(--fade-transition);
-	padding: 0;
-	margin: 0;
 }
 
-.ContactHeading {
-	width: 100%;
+.WorkExperienceCardsContainer {
 	display: flex;
-	justify-content: flex-start;
-	padding: 1rem;
-	max-height: 10vh;
+	gap: 0.5rem;
+	align-items: center;
+	padding: 1rem 0.3rem;
 }
 
-.FormSection {
-	height: 100%;
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-template-rows: 1fr;
-	max-height: 80vh;
-
+.NavigationButton {
+	cursor: pointer;
+	transition: all 0.3s ease-in;
 }
-
-.FormFillArea {
-	grid-area: 1 / 1 / 2 / 7;
-	max-height: 80vh;
-}
-
-.FormChatArea {
-	grid-area: 1 / 7 / 2 / 9;
-	max-height: 80vh;
+.NavigationButton:hover {
+	scale: 0.9;
 }

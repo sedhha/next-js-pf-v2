@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './WorkExperienceCard';
+import Card from '@/components/common/CardContainer/CardWithDescription';
 import classes from './WorkExperienceContainer.module.css';
 
 type Props = {

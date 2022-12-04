@@ -2,5 +2,6 @@ export const pageSections = {
     ABOUT: 'about',
     WORK: 'work-experience',
     BLOG: 'blogs',
-    CONTACT: 'contact'
+    CONTACT: 'contact',
+    PROJECTS: 'projects',
 }
