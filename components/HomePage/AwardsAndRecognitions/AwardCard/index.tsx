@@ -14,7 +14,11 @@ export default function AwardCard({ alter }: Props) {
 					alter === -1 ? classes.oddBG : classes.evenBG
 				}`}
 			>
-				<button className={`${classes.AchievementButton} button`}>
+				<button
+					className={`${classes.AchievementButton} ${
+						alter === -1 ? 'button-alter' : 'button'
+					}`}
+				>
 					View Achievement
 				</button>
 				<div className={classes.TitleAndDescription}>

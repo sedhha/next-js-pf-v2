@@ -114,6 +114,8 @@ p {
 	--intro-tag-line-special-g2: var(--active-blue);
 	--button-g1: var(--light-blue);
 	--button-g2: var(--active-blue);
+	--button-g3: var(--light-green);
+	--button-g4: var(--subtle-dark-green);
 	--button-box-shadow: 0 0 20px #eee;
 	--intro-para-color: var(--normal-text-color);
 	--blog-section-element-color: var(--inactive-silver);
@@ -161,6 +163,8 @@ p {
 	--intro-tag-line-special-g2: var(--subtle-dark-green);
 	--button-g1: var(--light-green);
 	--button-g2: var(--subtle-dark-green);
+	--button-g3: var(--light-blue);
+	--button-g4: var(--active-blue);
 	--button-box-shadow: 0 0 12px #eee;
 	--intro-para-color: var(--light-background-color);
 	--blog-section-element-color: var(--inactive-silver);
@@ -186,8 +190,8 @@ p {
 	--anonymous-chat-header-bg: var(--light-blue);
 	--send-button-color: var(--light-background-color);
 	--input-field-text-placeholder-color: var(--light-background-color);
-	--awards-card-background-b1: var(--light-blue);
-	--awards-card-background-b2: var(--primary-orange);
+	--awards-card-background-b1: var(--primary-orange);
+	--awards-card-background-b2: var(--light-blue);
 	--awards-title-color: var(--light-background-color);
 	transition: var(--fade-transition);
 }
@@ -217,7 +221,27 @@ p {
 	outline: none;
 	cursor: pointer;
 }
-.button:hover {
+
+.button-alter {
+	background-image: linear-gradient(
+		to right,
+		var(--button-g4) 0%,
+		var(--button-g3) 51%,
+		var(--button-g4) 100%
+	);
+	text-align: center;
+	transition: 0.5s all ease-in, 0.3s scale ease-in;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: var(--button-box-shadow);
+	border-radius: 10px;
+	display: block;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.button:hover,
+.button-alter:hover {
 	background-position: right center; /* change the direction of the change here */
 	color: #fff;
 	text-decoration: none;
