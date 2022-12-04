@@ -9,7 +9,6 @@
 	display: flex;
 	align-items: center;
 	padding: 0 3rem;
-	margin-bottom: 3rem;
 }
 .IntroHeaderContent {
 	font-family: var(--railway);
@@ -31,16 +30,29 @@
 	transition: var(--fade-transition);
 }
 
-.WorkExperienceCardsContainer {
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
-	padding: 1rem 0.3rem;
+.AwardsSection {
+	display: grid;
+	height: 100%;
+	width: 100%;
+	grid-template-columns: 1fr 28fr 1fr;
+}
+
+.Awards {
+	display: grid;
+    height: 100%;
+	width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1rem;
+    padding: 1rem;
+
 }
 
 .NavigationButton {
 	cursor: pointer;
 	transition: all 0.3s ease-in;
+    align-self: center;
 }
 .NavigationButton:hover {
 	scale: 0.9;

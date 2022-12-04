@@ -6,7 +6,7 @@
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
 	--inactive-silver-dark: #555460;
-	--inactive-silver-semi-dark: #6C6767;
+	--inactive-silver-semi-dark: #6c6767;
 	--active-blue: #001d6e;
 	--faded-blue: #19254c;
 	--faded-blue-2: #4fa7ff;
@@ -39,6 +39,9 @@
 	--chat-avatar-size: 3rem;
 	--send-button-size: 2.5rem;
 	--message-input-size: 1.5rem;
+	--awards-title: 1.5rem;
+	--awards-details: 1.25rem;
+	--award-details-p: 1rem;
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -48,6 +51,7 @@
 	--min-blog-number-width: 10rem;
 	--sample-blog-line-height: 1.5rem;
 	--max-chat-window-height: 69vh;
+	--side-image-size: 15rem;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -135,6 +139,9 @@ p {
 	--anonymous-chat-header-bg: var(--light-blue);
 	--send-button-color: var(--normal-text-color);
 	--input-field-text-placeholder-color: var(--normal-text-color);
+	--awards-card-background-b1: var(--dark-blue);
+	--awards-card-background-b2: var(--primary-orange);
+	--awards-title-color: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 
@@ -179,6 +186,9 @@ p {
 	--anonymous-chat-header-bg: var(--light-blue);
 	--send-button-color: var(--light-background-color);
 	--input-field-text-placeholder-color: var(--light-background-color);
+	--awards-card-background-b1: var(--light-blue);
+	--awards-card-background-b2: var(--primary-orange);
+	--awards-title-color: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 
