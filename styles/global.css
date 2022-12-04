@@ -144,6 +144,8 @@ p {
 	--awards-card-background-b1: var(--dark-blue);
 	--awards-card-background-b2: var(--primary-orange);
 	--awards-title-color: var(--light-background-color);
+	--video-content-main-h1-color: var(--light-blue);
+	--video-content-main-content: var(--inactive-silver-semi-dark);
 	transition: var(--fade-transition);
 }
 
@@ -193,6 +195,8 @@ p {
 	--awards-card-background-b1: var(--primary-orange);
 	--awards-card-background-b2: var(--light-blue);
 	--awards-title-color: var(--light-background-color);
+	--video-content-main-h1-color: var(--light-blue);
+	--video-content-main-content: var(--inactive-silver-semi-dark);
 	transition: var(--fade-transition);
 }
 

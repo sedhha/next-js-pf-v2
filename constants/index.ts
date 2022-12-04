@@ -4,5 +4,6 @@ export const pageSections = {
     BLOG: 'blogs',
     CONTACT: 'contact',
     PROJECTS: 'projects',
-    AWARDS: 'awards'
+    AWARDS: 'awards',
+    VIDEOS: 'videos'
 }

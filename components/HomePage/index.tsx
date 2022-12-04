@@ -4,9 +4,10 @@ import Intro from './Intro';
 import Work from './Work';
 import Contact from './Contact';
 import Projects from './Projects';
-import { useAppSelector } from '../../redux/tools/hooks';
+import { useAppSelector } from '@/redux/hooks';
 import Blog from './Blog';
 import Awards from './AwardsAndRecognitions';
+import Videos from './Videos';
 
 export default function HomePage() {
 	const { darkMode } = useAppSelector((state) => state.navigation);
@@ -22,6 +23,7 @@ export default function HomePage() {
 				<Contact />
 				<Projects />
 				<Awards />
+				<Videos />
 			</main>
 		</div>
 	);
