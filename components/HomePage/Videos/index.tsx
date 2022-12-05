@@ -28,11 +28,14 @@ export default function Awards({}: Props) {
 						</h4>
 					</div>
 				</div>
-				<div className={classes.MinimizedWindow}>
-					<VideoCard />
-					<VideoCard />
-					<VideoCard />
-					<VideoCard />
+				<div className={classes.SecondContainer}>
+					<div className={classes.MinimizedWindow}>
+						<VideoCard />
+						<VideoCard />
+						<VideoCard />
+						<VideoCard />
+					</div>
+					<button className={`${classes.Button} button`}>View All</button>
 				</div>
 			</div>
 		</section>

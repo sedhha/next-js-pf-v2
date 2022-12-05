@@ -16,7 +16,7 @@ export default function YTContainer({
 	containerClass
 }: Props) {
 	return (
-		<div className={containerClass ?? classes.VideoContainer}>
+		<div className={`${containerClass} ${classes.VideoContainer}`}>
 			<iframe
 				width="560"
 				height="315"
