@@ -26,7 +26,7 @@ export default function WorkExperience() {
 		);
 	}, []);
 	return (
-		<section id={pageSections.PROJECTS} className={classes.WorkSection}>
+		<section id={pageSections.PROJECTS} className="secition">
 			<div className={classes.IntroHeader}>
 				<h1 className={classes.IntroHeaderContent}>Cool things I did</h1>
 			</div>

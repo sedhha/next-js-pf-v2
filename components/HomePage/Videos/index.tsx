@@ -8,7 +8,7 @@ type Props = {};
 
 export default function Awards({}: Props) {
 	return (
-		<section id={pageSections.VIDEOS} className={classes.WorkSection}>
+		<section id={pageSections.VIDEOS} className="section">
 			<div className={classes.IntroHeader}>
 				<h1 className={classes.IntroHeaderContent}>Video Content</h1>
 			</div>

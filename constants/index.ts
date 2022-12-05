@@ -6,5 +6,6 @@ export const pageSections = {
     PROJECTS: 'projects',
     AWARDS: 'awards',
     VIDEOS: 'videos',
-    TESTIMONIALS: 'testimonials'
+    TESTIMONIALS: 'testimonials',
+    TECHSTACK: 'tech-stack'
 }
