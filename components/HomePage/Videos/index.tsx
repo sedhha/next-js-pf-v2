@@ -35,7 +35,7 @@ export default function Awards({}: Props) {
 						<VideoCard />
 						<VideoCard />
 					</div>
-					<button className={`${classes.Button} button`}>View All</button>
+					<button className={`${classes.Button} button`}>View All Videos</button>
 				</div>
 			</div>
 		</section>

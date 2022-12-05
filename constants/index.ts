@@ -5,5 +5,6 @@ export const pageSections = {
     CONTACT: 'contact',
     PROJECTS: 'projects',
     AWARDS: 'awards',
-    VIDEOS: 'videos'
+    VIDEOS: 'videos',
+    TESTIMONIALS: 'testimonials'
 }

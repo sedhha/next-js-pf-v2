@@ -6,7 +6,7 @@ import mostPopularBlogs from '@/constants/most-popular-blogs.json';
 import { useAppSelector, useAppDispatch } from '../../../redux/tools/hooks';
 import { updateMostPopularSelected } from '@/slices/navigation.slice';
 import LazyImage from '@/components/common/ImageUtility';
-import SocialIcons from '@/components/HomePage/Blog/SocialIcons';
+import SocialIcons from '@/components/common/SocialIcons';
 import RelatedBlogCard from '@/components/HomePage/Blog/RelatedBlogCard';
 
 export default function BlogPage() {

@@ -38,11 +38,3 @@
 	align-items: center;
 	padding: 1rem 0.3rem;
 }
-
-.NavigationButton {
-	cursor: pointer;
-	transition: all 0.3s ease-in;
-}
-.NavigationButton:hover {
-	scale: 0.9
-}

@@ -33,9 +33,9 @@ export default function WorkExperience() {
 				</h1>
 			</div>
 			<div className={classes.WorkExperienceCardsContainer}>
-				<SvgLeft className={classes.NavigationButton} height={140} />
+				<SvgLeft className={'NavigationButton'} height={140} />
 				<WorkExperienceContainer cards={cards} curr={curr} />
-				<SvgRight className={classes.NavigationButton} height={140} />
+				<SvgRight className={'NavigationButton'} height={140} />
 			</div>
 		</section>
 	);

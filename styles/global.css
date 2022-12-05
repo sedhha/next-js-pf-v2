@@ -53,6 +53,7 @@
 	--max-chat-window-height: 69vh;
 	--side-image-size: 15rem;
 	--yt-video-aspect-ratio: 1.7777777778;
+	--testimonial-icon: 14rem;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -60,6 +61,8 @@
 	--box-shadow-mod: 0px 0px 12px 4px rgba(0, 0, 0, 0.44);
 	--box-shadow-mid: 4px 4px 11px #000000;
 	--fade-transition: all 0.3s linear;
+	--testimonial-box-shadow-effect: 0px 4px 9px 19px rgba(192, 243, 247, 0.33);
+
 
 	/* Hover States */
 	--hover-blog-sections-active: none;
@@ -147,6 +150,9 @@ p {
 	--awards-title-color: var(--light-background-color);
 	--video-content-main-h1-color: var(--light-blue);
 	--video-content-main-content: var(--inactive-silver-semi-dark);
+	--testimonial-container: var(--light-background-color);
+	--testimonial-entity-h1: var(--normal-text-color);
+	--testimonial-entity-h2: var(--inactive-silver-semi-dark);
 	transition: var(--fade-transition);
 }
 
@@ -197,7 +203,10 @@ p {
 	--awards-card-background-b2: var(--light-blue);
 	--awards-title-color: var(--light-background-color);
 	--video-content-main-h1-color: var(--light-blue);
-	--video-content-main-content: var(--inactive-silver-semi-dark);
+	--video-content-main-content: var(--light-background-color);
+	--testimonial-container: var(--active-blue);
+	--testimonial-entity-h1: var(--light-background-color);
+	--testimonial-entity-h2: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 
@@ -251,4 +260,13 @@ p {
 	color: #fff;
 	text-decoration: none;
 	scale: 0.96;
+}
+
+.NavigationButton {
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+    align-self: center;
+}
+.NavigationButton:hover {
+	scale: 0.9;
 }
