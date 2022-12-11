@@ -1,0 +1,22 @@
+[
+	{
+		"id": "facebook",
+		"url": "FaFacebookF",
+		"is-Svg": true
+	},
+	{
+		"id": "twitter",
+		"url": "AiOutlineTwitter",
+		"is-Svg": true
+	},
+	{
+		"id": "whatsapp",
+		"url": "AiOutlineWhatsApp",
+		"is-Svg": true
+	},
+	{
+		"id": "copy-url",
+		"url": "AiOutlineCopy",
+		"is-Svg": true
+	}
+]

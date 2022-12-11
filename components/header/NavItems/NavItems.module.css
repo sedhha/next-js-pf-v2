@@ -1,30 +1,38 @@
 .NavItemBlock {
 	display: flex;
 	order: 1;
-	flex: auto;
+	height: 100%;
 }
 .NavItemContainer {
 	display: flex;
 	align-items: center;
-	color: var(--inactive-silver);
 	gap: 2rem;
 	width: 100%;
 	justify-content: flex-end;
 }
 
+.NavItemContainer_on {
+	color: var(--inactive-silver-dark);
+}
+.NavItemContainer_off {
+	color: var(--light-background-color);
+}
+
 .NavItem {
-	letter-spacing: 0.05em;
+	letter-spacing: 0.08em;
 	font-family: var(--raleway);
 	font-style: normal;
-	font-weight: 600;
-	font-size: 1.2rem;
+	font-weight: 400;
+	font-size: 1.5rem;
 	line-height: var(--lineheight);
 	cursor: pointer;
-	transition: all 0.1s ease-in;
+	transition: all 0.3s ease-in;
 }
 
 .NavItem:hover {
 	scale: 0.96;
+	text-decoration: underline;
+	text-underline-offset: 0.5rem;
 }
 
 .LastItem {
@@ -33,24 +41,39 @@
 }
 
 .ActiveItem {
-	color: var(--active-blue);
+	font-weight: 600;
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
 }
 
 .ShowMoreIcon {
 	font-size: 2rem;
-	color: var(--inactive-silver);
+	color: var(--passive-nav-item-color);
+	transition: var(--fade-transition);
 }
 .Expander {
 	position: absolute;
-	top: 100%;
+	top: 150%;
 	right: 0;
 	width: max-content;
-	padding: 0 1rem;
-	background-color: var(--light-background-color);
-	box-shadow: var(--box-shadow-thick);
+	padding: 1rem;
+	background-color: var(--header-background-color);
+	box-shadow: var(--box-shadow-thin);
 	text-align: end;
 	border-radius: 0.4rem;
 	animation: fly-in 0.3s linear;
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
 }
 
 .Expander:hover {
@@ -61,7 +84,8 @@
 	display: none;
 }
 .PassiveItem {
-	color: var(--inactive-silver);
+	color: var(--passive-nav-item-color);
+	transition: var(--fade-transition);
 }
 
 @media only screen and (max-width: 750px) {

@@ -2,35 +2,72 @@
 :root {
 	/* Colors */
 	--light-background-color: #ffffff;
+	--semi-gray-white: #e5e5e5;
+	--faded-blue: #7dfffb;
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
+	--inactive-silver-dark: #555460;
+	--inactive-silver-semi-dark: #6c6767;
 	--active-blue: #001d6e;
-	--switch-background-color-on: rgba(255, 249, 117, 0.4);
-	--switch-background-color-off: #cfcfcf;
-	--switch-button-color-on: #faff00;
-	--switch-button-color-off: #001d6e;
+	--faded-blue: #19254c;
+	--faded-blue-2: #4fa7ff;
+	--dark-blue: #171dcf;
+	--dark-yellow: rgba(255, 249, 117, 0.4);
+	--light-yellow: rgba(237, 226, 32, 0.961);
 	--normal-text-color: #000;
+	--light-green: #72ff14;
+	--subtle-dark-green: #478c42;
+	--primary-orange: #f27304;
+	--faded-purple: rgba(74, 69, 214, 0.74);
 
 	/* Railway Font */
-	--raleway: 'Raleway', sans-serif;
+	--railway: 'Raleway', sans-serif;
+	--h1-text-main: 5rem;
+	--h1-text: 4rem;
+	--h2-text: 4.5rem;
+	--p-text: 2rem;
+	--big-button-text: 1.5rem;
+	--blog-element-font-size: 1.375rem;
+	--blog-number-heading: 6.875rem;
+	--blog-number-heading-inactive: 4.125rem;
+	--blog-highlighted-date: 2.5rem;
+	--featured-blog-heading: 4rem;
+	--featured-blog-image-size: 28rem;
+	--icon-size: 3rem;
+	--get-in-touch-heading: 4rem;
+	--get-in-touch-button-font-size: 2rem;
+	--chat-status-icon-size: 1rem;
+	--chat-avatar-size: 3rem;
+	--send-button-size: 2.5rem;
+	--message-input-size: 1.5rem;
+	--awards-title: 1.5rem;
+	--awards-details: 1.25rem;
+	--award-details-p: 1rem;
 
 	/* Heights */
 	--lineheight: 2rem;
 	--toggle-switch-board-height: 2rem;
 	--toggle-switch-button-height: 1.5rem;
+	--radius: 0.5rem;
+	--min-blog-number-width: 10rem;
+	--sample-blog-line-height: 1.5rem;
+	--max-chat-window-height: 69vh;
+	--side-image-size: 15rem;
+	--yt-video-aspect-ratio: 1.7777777778;
+	--testimonial-icon: 14rem;
+	--tech-stack-img-size: 9.375rem;
+	--tech-stack-star-size: 1.563rem;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
-	--hover-swap-effect: rgba(0, 0, 0, 0.1);
+	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+	--box-shadow-mod: 0px 0px 12px 4px rgba(0, 0, 0, 0.44);
+	--box-shadow-mid: 4px 4px 11px #000000;
+	--fade-transition: all 0.3s linear;
+	--testimonial-box-shadow-effect: 0px 4px 9px 19px rgba(192, 243, 247, 0.33);
 
-	/* Breakpoints */
-	--mobile-bp: 620px;
-
-	/* Card Styles */
-	--card-dark-bg: #001d6e;
-	--card-light-bg: #ffffff;
-	--card-heading: #0aa1dd;
-	--card-light-para: #000;
+	/* Hover States */
+	--hover-blog-sections-active: none;
 }
 html,
 body {
@@ -55,12 +92,232 @@ p {
 }
 
 .header {
-	height: 10vh;
+	height: 8vh;
 }
 .body {
-	height: 90vh;
+	height: 92vh;
 	overflow-x: hidden;
 	overflow-y: auto;
+	transition: var(--fade-transition);
+	background-color: var(--body-bg);
+}
+
+/* Dark Mode Details */
+
+.lightMode {
+	--switch-board-background-color: var(--dark-yellow);
+	--switch-button-color: var(--light-yellow);
+	--header-background-color: var(--light-background-color);
+	--active-nav-item-color: var(--active-blue);
+	--passive-nav-item-color: var(--inactive-silver);
+	--body-bg: var(--light-background-color);
+	--intro-header-content: var(--normal-text-color);
+	--intro-header-content-g1: var(--light-blue);
+	--intro-header-content-g2: var(--active-blue);
+	--intro-tag-line: var(--normal-text-color);
+	--intro-tag-line-special: var(--light-blue);
+	--intro-tag-line-special-g1: var(--light-blue);
+	--intro-tag-line-special-g2: var(--active-blue);
+	--button-g1: var(--light-blue);
+	--button-g2: var(--active-blue);
+	--button-g3: var(--light-green);
+	--button-g4: var(--subtle-dark-green);
+	--button-box-shadow: 0 0 20px #eee;
+	--intro-para-color: var(--normal-text-color);
+	--blog-section-element-color: var(--inactive-silver);
+	--blog-section-active-color-g1: var(--faded-blue-2);
+	--blog-section-active-color-g2: var(--dark-blue);
+	--passive-cursor-color: var(--light-blue);
+	--blog-highlighted-date-color: var(--normal-text-color);
+	--primary-category-circle: var(--primary-orange);
+	--category-font: var(--light-blue);
+	--featured-blog-heading-color: var(--light-blue);
+	--suggested-blog-category-h2: var(--normal-text-color);
+	--suggested-blog-category-h3: var(--light-blue);
+	--suggested-blog-category-h4: var(--active-blue);
+	--sample-blog-paragraph-color: var(--normal-text-color);
+	--special-icon-color: var(--normal-text-color);
+	--get-in-touch-color: var(--primary-orange);
+	--get-in-touch-placeholder-color: var(--inactive-silver-semi-dark);
+	--chat-box-shadow: var(--faded-purple);
+	--message-container-from-color: var(--primary-orange);
+	--message-container-to-color: var(--light-blue);
+	--message-container-text-color: var(--light-background-color);
+	--anonymous-chat-header-color: var(--light-background-color);
+	--anonymous-chat-header-bg: var(--light-blue);
+	--send-button-color: var(--normal-text-color);
+	--input-field-text-placeholder-color: var(--normal-text-color);
+	--awards-card-background-b1: var(--dark-blue);
+	--awards-card-background-b2: var(--primary-orange);
+	--awards-title-color: var(--light-background-color);
+	--video-content-main-h1-color: var(--light-blue);
+	--video-content-main-content: var(--inactive-silver-semi-dark);
+	--testimonial-container: var(--light-background-color);
+	--testimonial-entity-h1: var(--normal-text-color);
+	--testimonial-entity-h2: var(--inactive-silver-semi-dark);
+	--tech-stack-input-box: var(--light-background-color);
+	--tech-stack-title-color: var(--normal-text-color);
+	--tech-stack-active-star-color: var(--light-yellow);
+	--tech-stack-inactive-star-color: var(--semi-gray-white);
+	--footer-bg: var(--faded-blue);
+	--footer-text-color: var(--light-background-color);
+	--footer-input-text-color: var(--normal-text-color);
+	transition: var(--fade-transition);
+}
+
+.darkMode {
+	--switch-board-background-color: var(--inactive-silver);
+	--switch-button-color: var(--inactive-silver-dark);
+	--header-background-color: var(--active-blue);
+	--active-nav-item-color: var(--light-blue);
+	--passive-nav-item-color: var(--light-background-color);
+	--body-bg: var(--faded-blue);
+	--intro-header-content: var(--light-blue);
+	--intro-header-content-g1: var(--light-green);
+	--intro-header-content-g2: var(--subtle-dark-green);
+	--intro-tag-line: var(--light-background-color);
+	--intro-tag-line-special: var(--light-blue);
+	--intro-tag-line-special-g1: var(--light-green);
+	--intro-tag-line-special-g2: var(--subtle-dark-green);
+	--button-g1: var(--light-green);
+	--button-g2: var(--subtle-dark-green);
+	--button-g3: var(--light-blue);
+	--button-g4: var(--active-blue);
+	--button-box-shadow: 0 0 12px #eee;
+	--intro-para-color: var(--light-background-color);
+	--blog-section-element-color: var(--inactive-silver);
+	--blog-section-active-color-g1: var(--light-green);
+	--blog-section-active-color-g2: var(--subtle-dark-green);
+	--passive-cursor-color: var(--light-blue);
+	--blog-highlighted-date-color: var(--light-background-color);
+	--primary-category-circle: var(--primary-orange);
+	--category-font: var(--light-background-color);
+	--featured-blog-heading-color: var(--light-blue);
+	--suggested-blog-category-h2: var(--light-background-color);
+	--suggested-blog-category-h3: var(--light-blue);
+	--suggested-blog-category-h4: var(--light-background-color);
+	--sample-blog-paragraph-color: var(--light-background-color);
+	--special-icon-color: var(--light-background-color);
+	--get-in-touch-color: var(--primary-orange);
+	--get-in-touch-placeholder-color: var(--inactive-silver-semi-dark);
+	--chat-box-shadow: var(--faded-purple);
+	--message-container-from-color: var(--primary-orange);
+	--message-container-to-color: var(--light-blue);
+	--message-container-text-color: var(--light-background-color);
+	--anonymous-chat-header-color: var(--light-background-color);
+	--anonymous-chat-header-bg: var(--light-blue);
+	--send-button-color: var(--light-background-color);
+	--input-field-text-placeholder-color: var(--light-background-color);
+	--awards-card-background-b1: var(--primary-orange);
+	--awards-card-background-b2: var(--light-blue);
+	--awards-title-color: var(--light-background-color);
+	--video-content-main-h1-color: var(--light-blue);
+	--video-content-main-content: var(--light-background-color);
+	--testimonial-container: var(--active-blue);
+	--testimonial-entity-h1: var(--light-background-color);
+	--testimonial-entity-h2: var(--light-background-color);
+	--tech-stack-input-box: var(--light-background-color);
+	--tech-stack-title-color: var(--light-background-color);
+	--tech-stack-active-star-color: var(--light-yellow);
+	--tech-stack-inactive-star-color: var(--semi-gray-white);
+	--footer-bg: var(--active-blue);
+	--footer-text-color: var(--light-background-color);
+	--footer-input-text-color: var(--normal-text-color);
+	transition: var(--fade-transition);
+}
+
+/* Utility */
+.ctr {
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+.button {
+	background-image: linear-gradient(
+		to right,
+		var(--button-g2) 0%,
+		var(--button-g1) 51%,
+		var(--button-g2) 100%
+	);
+	text-align: center;
+	transition: 0.5s all ease-in, 0.3s scale ease-in;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: var(--button-box-shadow);
+	border-radius: 10px;
+	display: block;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.button-alter {
+	background-image: linear-gradient(
+		to right,
+		var(--button-g4) 0%,
+		var(--button-g3) 51%,
+		var(--button-g4) 100%
+	);
+	text-align: center;
+	transition: 0.5s all ease-in, 0.3s scale ease-in;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: var(--button-box-shadow);
+	border-radius: 10px;
+	display: block;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.button:hover,
+.button-alter:hover {
+	background-position: right center; /* change the direction of the change here */
+	color: #fff;
+	text-decoration: none;
+	scale: 0.96;
+}
+
+.NavigationButton {
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+	align-self: center;
+}
+.NavigationButton:hover {
+	scale: 0.9;
+}
+
+.section {
+	width: 100%;
+	max-height: 90vh;
+	display: block;
+	overflow: hidden;
+}
+
+.section > div.IntroHeader {
+	display: flex;
+	align-items: center;
+	padding: 0 3rem;
+	margin-bottom: 3rem;
+}
+.section > div > h1.IntroHeaderContent {
+	font-family: var(--railway);
+	font-weight: 500;
+	font-size: var(--h1-text);
+	line-height: var(--line-height);
+	letter-spacing: 0.05em;
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	transition: var(--fade-transition);
 }
 
 .body::-webkit-scrollbar {

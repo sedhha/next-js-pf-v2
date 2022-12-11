@@ -13,66 +13,76 @@
 	align-items: center;
 }
 .IntroHeaderContent {
-	font-family: var(--raleway);
-	font-style: italic;
+	font-family: var(--railway);
 	font-weight: 500;
-	font-size: 4vw;
-	font-size: clamp(2rem, 5vw, 6rem);
+	font-size: var(--h1-text-main);
 	line-height: var(--line-height);
 	letter-spacing: 0.05em;
-	color: var(--light-blue);
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 	text-align: center;
 	margin-top: 1rem;
-}
-.IntroTaglineWrapper {
-	grid-area: 2 / 1 / 3 / 8;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	transition: var(--fade-transition);
 }
 
 .IntroTagline {
-	font-family: var(--raleway);
+	font-family: var(--railway);
 	font-style: normal;
-	font-weight: 400;
-	font-size: 2rem;
-	font-size: clamp(1.5rem, 4vw, 4rem);
+	font-weight: 500;
+	font-size: var(--h2-text);
 	line-height: var(--line-height);
-	letter-spacing: 0.05em;
-	color: var(--normal-text-color);
+	letter-spacing: 0.02em;
+	color: var(--intro-tag-line);
+	grid-area: 2 / 1 / 3 / 8;
+	transition: var(--fade-transition);
+	margin: auto;
 }
 
-.IntroTagline span {
-	font-weight: 500;
-	color: var(--light-blue);
+.IntroTagline_special {
+	background: var(--intro-tag-line-special-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-tag-line-special-g1) 0%,
+		var(--intro-tag-line-special-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	margin-top: 1rem;
+	transition: var(--fade-transition);
 }
 
 .IntroPara {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-between;
 	grid-area: 3 / 1 / 6 / 8;
-	padding: 0.5rem;
+	padding: 2rem;
 }
 
 .IntroPara h4 {
-	font-family: var(--raleway);
+	font-family: var(--railway);
 	font-style: normal;
-	font-weight: 400;
-	font-size: 1.2rem;
-	font-size: clamp(1rem, 2.5vw, 1.5rem);
-
+	font-weight: 300;
+	font-size: var(--p-text);
 	line-height: var(--line-height) * 0.8;
 	letter-spacing: 0.05em;
-	color: var(--normal-text-color);
+	color: var(--intro-para-color);
 }
 
 .ImageContainer {
 	grid-area: 2 / 8 / 6 / 12;
 	max-height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 .Image {
 	object-fit: contain;
@@ -86,55 +96,31 @@
 	align-items: center;
 }
 
-.Button {
-	background-color: var(--light-blue);
-	padding: 0.75rem 1.5rem;
-	font-size: 2vw;
-	font-size: clamp(1.2rem, 1.8vw, 3.5rem);
-	letter-spacing: 0.08em;
+.ActionArea button {
+	background-image: linear-gradient(
+		to right,
+		var(--button-g2) 0%,
+		var(--button-g1) 51%,
+		var(--button-g2) 100%
+	);
+	margin: 10px;
+	padding: 15px 45px;
+	text-align: center;
+	font-size: var(--big-button-text);
+	text-transform: uppercase;
+	transition: 0.5s all ease-in, 0.3s scale ease-in;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: var(--button-box-shadow);
+	border-radius: 10px;
+	display: block;
 	border: none;
 	outline: none;
-	border-radius: 1rem;
-	color: var(--light-background-color);
 	cursor: pointer;
-	transition: all 0.3s ease;
 }
-
-.Button:hover {
+.ActionArea button:hover {
+	background-position: right center; /* change the direction of the change here */
+	color: #fff;
+	text-decoration: none;
 	scale: 0.96;
-}
-
-@media only screen and (max-width: 750px) {
-	.IntroGrid {
-		grid-template-columns: repeat(6, 1fr);
-		grid-template-rows: repeat(11, 1fr);
-	}
-	.ImageContainer {
-		grid-area: 1 / 1 / 5 / 7;
-	}
-	.IntroHeader {
-		grid-area: 5 / 1 / 6 / 7;
-	}
-	.IntroHeaderContent {
-		font-size: 3vw;
-		font-size: clamp(1.5rem, 6.8vw, 2.5rem);
-	}
-	.IntroTaglineWrapper {
-		grid-area: 6 / 1 / 7 / 7;
-	}
-	.IntroTagline {
-		font-size: 2rem;
-		font-size: clamp(1.2rem, 6.5vw, 2.2rem);
-	}
-	.IntroPara {
-		grid-area: 7 / 1 / 11 / 7;
-	}
-	.IntroPara h4 {
-		font-size: 1.1rem;
-		letter-spacing: 0.02em;
-		font-size: clamp(0.75rem, 4vw, 1.1rem);
-	}
-	.ActionArea {
-		grid-area: 11 / 1 / 12 / 7;
-	}
 }

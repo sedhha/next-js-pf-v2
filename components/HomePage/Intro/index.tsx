@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from './Intro.module.css';
-import SectionIds from '@/constants/sections.json';
+import { pageSections } from '@/constants/index';
 export default function Introduction() {
 	return (
-		<section className={classes.IntroGrid} id={SectionIds.introSection}>
+		<section className={classes.IntroGrid} id={pageSections.ABOUT}>
 			<div className={classes.IntroHeader}>
 				<h1 className={classes.IntroHeaderContent}>
 					Artist By Birth, Engineer by Choice
@@ -12,16 +12,15 @@ export default function Introduction() {
 			<div className={classes.ImageContainer}>
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img
-					src={'/intro-image.png'}
+					src={'/intro-image.jpeg'}
 					className={classes.Image}
 					alt={'Shivam -Sahil: Developer'}
 				/>
 			</div>
-			<div className={classes.IntroTaglineWrapper}>
-				<h2 className={classes.IntroTagline}>
-					I am a <span>JavaScript Developer</span>
-				</h2>
-			</div>
+			<h2 className={classes.IntroTagline}>
+				I am a <span className={classes.IntroTagline_special}>JavaScript</span>{' '}
+				Developer
+			</h2>
 			<div className={classes.IntroPara}>
 				<h4>
 					Working as a full time software engineer, I specialize in FERN Stack. I am

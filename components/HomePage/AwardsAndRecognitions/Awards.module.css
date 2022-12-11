@@ -1,0 +1,44 @@
+
+.IntroHeader {
+	display: flex;
+	align-items: center;
+	padding: 0 3rem;
+}
+.IntroHeaderContent {
+	font-family: var(--railway);
+	font-weight: 500;
+	font-size: var(--h1-text);
+	line-height: var(--line-height);
+	letter-spacing: 0.05em;
+	background: var(--intro-header-content-g1);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--intro-header-content-g1) 0%,
+		var(--intro-header-content-g2) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	transition: var(--fade-transition);
+}
+
+.AwardsSection {
+	display: grid;
+	height: 100%;
+	width: 100%;
+	grid-template-columns: 1fr 28fr 1fr;
+}
+
+.Awards {
+	display: grid;
+    height: 100%;
+	width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1rem;
+    padding: 1rem;
+
+}

@@ -1,0 +1,27 @@
+.VideoCard {
+	display: flex;
+	flex-direction: column;
+	max-height: 100%;
+	max-width: 100%;
+	justify-content: center;
+	align-items: center;
+	row-gap: 1rem;
+}
+
+
+
+.VideoCard h1 {
+	flex: 1;
+	font-family: var(--railway);
+	font-style: normal;
+	font-weight: 700;
+	font-size: 1.2rem;
+	text-align: center;
+	letter-spacing: 0.05em;
+	color: var(--video-content-main-h1-color);
+}
+
+.VideoEntity {
+	min-height: 15rem;
+	aspect-ratio: var(--yt-video-aspect-ratio);
+}

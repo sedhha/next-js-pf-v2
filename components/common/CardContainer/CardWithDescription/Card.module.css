@@ -1,0 +1,112 @@
+.Card {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 0.5rem;
+    box-shadow: var(--box-shadow-thin);
+    border-radius: 1rem;
+    animation: slide-from-left 5s ease-in;
+}
+
+.Card:nth-child(even) {
+    background-color: var(--active-blue);
+}
+.Card:nth-child(odd) {
+    background-color: var(--light-background-color);
+}
+
+.CardImage {
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    max-height: 28rem;
+}
+
+.EmployerTitle {
+	font-family: var(--railway);
+	font-weight: 500;
+	font-size: 1.5rem;
+	letter-spacing: 0.02em;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+
+.Card:nth-child(odd) .EmployerTitle {
+    background: var(--light-blue);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--light-blue) 0%,
+		var(--active-blue) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
+}
+
+.Card:nth-child(even) .EmployerTitle {
+    background: var(--light-green);
+	background: radial-gradient(
+		circle farthest-corner at center center,
+		var(--light-green) 0%,
+		var(--subtle-dark-green) 100%
+	);
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: var(--fade-transition);
+}
+
+.Dates {
+    font-weight: 500;
+    font-size: 1.2rem;
+    width: 100%;
+
+
+}
+
+.Card:nth-child(even) .Dates {
+    color: var(--light-background-color);
+}
+.Card:nth-child(odd) .Dates {
+    color: var(--light-blue);
+}
+
+.Card h3 {
+    font-weight: 400;
+}
+.Card:nth-child(odd) h3 {
+    color: var(--normal-text-color);
+}
+.Card:nth-child(even) h3 {
+    color: var(--light-background-color);
+}
+
+@keyframes slide-from-left {
+    0% {
+        translateX: -100%;
+        opacity: 0;
+    }
+    20% {
+        translateX: -80%;
+        opacity: 0.2;
+    }
+    40% {
+        translateX: -60%;
+        opacity: 0.4;
+    }
+    60% {
+        translateX: -40%;
+        opacity: 0.6;
+    }
+    80% {
+        translateX: -20%;
+        opacity: 0.8;
+    }
+    100% {
+        translateX: 0;
+        opacity: 1;
+    }
+}
