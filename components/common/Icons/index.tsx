@@ -1,13 +1,14 @@
 import React from 'react';
-import { IconBaseProps } from 'react-icons';
 import {
+	AiFillStar,
 	AiOutlineCopy,
-	AiOutlineTwitter,
+	AiOutlineSearch,
 	AiOutlineSend,
-	AiOutlineWhatsApp,
-	AiOutlineSearch
+	AiOutlineTwitter,
+	AiOutlineWhatsApp
 } from 'react-icons/ai';
 import { FaFacebookF } from 'react-icons/fa';
+import { IconBaseProps } from 'react-icons';
 
 interface IconProps extends IconBaseProps {
 	iconKey: string;
@@ -19,7 +20,8 @@ export const icons = {
 	AiOutlineTwitter: 'AiOutlineTwitter',
 	AiOutlineWhatsApp: 'AiOutlineWhatsApp',
 	AiOutlineSend: 'AiOutlineSend',
-	AiOutlineSearch: 'AiOutlineSearch'
+	AiOutlineSearch: 'AiOutlineSearch',
+	AiFillStar: 'AiFillStar'
 };
 
 export default function Icon({ iconKey, ...rest }: IconProps) {
@@ -36,6 +38,8 @@ export default function Icon({ iconKey, ...rest }: IconProps) {
 			return <AiOutlineSend {...rest} />;
 		case 'AiOutlineSearch':
 			return <AiOutlineSearch {...rest} />;
+		case 'AiFillStar':
+			return <AiFillStar {...rest} />;
 		default:
 			return <div>Component Not Found</div>;
 	}

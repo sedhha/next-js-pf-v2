@@ -2,6 +2,7 @@
 :root {
 	/* Colors */
 	--light-background-color: #ffffff;
+	--semi-gray-white: #E5E5E5;
 	--faded-blue: #7dfffb;
 	--light-blue: #0aa1dd;
 	--inactive-silver: #cfcfcf;
@@ -54,6 +55,9 @@
 	--side-image-size: 15rem;
 	--yt-video-aspect-ratio: 1.7777777778;
 	--testimonial-icon: 14rem;
+	--tech-stack-img-size: 9.375rem;
+	--tech-stack-star-size: 1.563rem;
+
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -154,6 +158,9 @@ p {
 	--testimonial-entity-h1: var(--normal-text-color);
 	--testimonial-entity-h2: var(--inactive-silver-semi-dark);
 	--tech-stack-input-box: var(--light-background-color);
+	--tech-stack-title-color: var(--normal-text-color);
+	--tech-stack-active-star-color: var(--light-yellow);
+	--tech-stack-inactive-star-color: var(--semi-gray-white);
 	transition: var(--fade-transition);
 }
 
@@ -209,6 +216,9 @@ p {
 	--testimonial-entity-h1: var(--light-background-color);
 	--testimonial-entity-h2: var(--light-background-color);
 	--tech-stack-input-box: var(--light-background-color);
+	--tech-stack-title-color: var(--light-background-color);
+	--tech-stack-active-star-color: var(--light-yellow);
+	--tech-stack-inactive-star-color: var(--semi-gray-white);
 	transition: var(--fade-transition);
 }
 

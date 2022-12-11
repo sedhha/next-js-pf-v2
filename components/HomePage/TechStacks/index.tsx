@@ -2,6 +2,7 @@ import React from 'react';
 import { pageSections } from '@/constants/index';
 import classes from './TechStack.module.css';
 import Icon, { icons } from '@/components/common/Icons/index';
+import StackCard from './StackCard';
 type Props = {};
 
 export default function Testimonials({}: Props) {
@@ -13,6 +14,34 @@ export default function Testimonials({}: Props) {
 					<input className={classes.SearchInput} />
 					<Icon iconKey={icons.AiOutlineSearch} className={classes.Icon} />
 				</div>
+			</div>
+			<div className={classes.StackCards}>
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
+				<StackCard rating={4} title={'Next JS'} />
 			</div>
 		</section>
 	);
