@@ -1,10 +1,10 @@
 .GetInTouchArea {
 	height: 100%;
 	width: 100%;
-	padding: 3rem;
+	padding: 1rem;
 	display: flex;
 	flex-direction: column;
-	row-gap: 2rem;
+	row-gap: 1rem;
 }
 
 .GetInTouchArea h1 {
@@ -21,7 +21,7 @@
 	border: none;
 	outline: none;
 	width: 100%;
-	font-size: 2.5rem;
+	font-size: var(--get-in-touch-input-font-size);
 	background-color: var(--body-bg);
 	color: var(--input-field-text-placeholder-color);
 }
@@ -31,7 +31,7 @@
 	font-family: var(--railway);
 	font-style: normal;
 	font-weight: 500;
-	font-size: 2.5rem;
+	font-size: var(--get-in-touch-input-font-size);
 	color: var(--get-in-touch-placeholder-color);
 }
 .InputContainer {
@@ -47,7 +47,7 @@
 }
 
 .ButtonStyle {
-    padding: 0.5rem 2.5rem;
-    border-radius: 0.2rem;
-    font-size: var(--get-in-touch-button-font-size);
+	padding: calc(0.25rem * var(--size-factor)) calc(1.25rem * var(--size-factor));
+	border-radius: 0.2rem;
+	font-size: var(--get-in-touch-button-font-size);
 }

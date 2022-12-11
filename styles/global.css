@@ -29,12 +29,8 @@
 	--p-text: clamp(1rem, 1.8vw, 2rem);
 	--big-button-text: 1.5rem;
 	--icon-size: calc(1.5rem * var(--size-factor));
-	--get-in-touch-heading: 4rem;
-	--get-in-touch-button-font-size: 2rem;
 	--chat-status-icon-size: 1rem;
 	--chat-avatar-size: 3rem;
-	--send-button-size: 2.5rem;
-	--message-input-size: 1.5rem;
 	--awards-title: 1.5rem;
 	--awards-details: 1.25rem;
 	--award-details-p: 1rem;
@@ -67,6 +63,15 @@
 	--blog-card-h3-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
 	--blog-card-h4-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
 
+	/* Contact Variables */
+	--get-in-touch-heading: clamp(3.2rem, 4.2vw, 4rem);
+	--get-in-touch-input-font-size: clamp(1.5rem, 2.2vw, 2.5rem);
+	--get-in-touch-button-font-size: clamp(1rem, 2vw, 2rem);
+	--max-chat-window-height: 69vh;
+	--message-input-size: clamp(0.9rem, 1.2vw, 1.5rem);
+	--send-button-size: clamp(1.5rem, 2.5vw, 2.5rem);
+	--chat-message-font-size: clamp(0.5rem, 1vw, 1rem);
+
 	/* Heights */
 	--lineheight: 2rem;
 	--toggle-switch-board-height: 2rem;
@@ -74,7 +79,6 @@
 	--radius: 0.5rem;
 	--min-blog-number-width: 10rem;
 	--sample-blog-line-height: 1.5rem;
-	--max-chat-window-height: 69vh;
 	--side-image-size: 15rem;
 	--yt-video-aspect-ratio: 1.7777777778;
 	--testimonial-icon: 14rem;
@@ -96,12 +100,14 @@
 @media screen and (max-width: 1280px) {
 	:root {
 		--size-factor: 1;
+		--max-chat-window-height: 59vh;
 	}
 }
 
 @media screen and (min-width: 1281px) and (max-width: 1540px) {
 	:root {
 		--size-factor: 1.2;
+		--max-chat-window-height: 62vh;
 	}
 }
 
