@@ -31,9 +31,6 @@
 	--icon-size: calc(1.5rem * var(--size-factor));
 	--chat-status-icon-size: 1rem;
 	--chat-avatar-size: 3rem;
-	--awards-title: 1.5rem;
-	--awards-details: 1.25rem;
-	--award-details-p: 1rem;
 
 	/* Work Variables */
 	--max-work-image-height: 100%;
@@ -72,6 +69,13 @@
 	--send-button-size: clamp(1.5rem, 2.5vw, 2.5rem);
 	--chat-message-font-size: clamp(0.5rem, 1vw, 1rem);
 
+	/* Awards and Recognitions */
+	--side-image-size: clamp(10rem, calc(21vh * var(--size-factor)), 15rem);
+	--awards-title: clamp(0.8rem, 1.4vw, 1.5rem);
+	--awards-details: clamp(0.8rem, 1.2vw, 1.25rem);
+	--award-details-p: clamp(0.5rem, 1vw, 1rem);
+	--view-achievement-button-font-size: clamp(0.5rem, 1vw, 1.2rem);
+
 	/* Heights */
 	--lineheight: 2rem;
 	--toggle-switch-board-height: 2rem;
@@ -79,7 +83,6 @@
 	--radius: 0.5rem;
 	--min-blog-number-width: 10rem;
 	--sample-blog-line-height: 1.5rem;
-	--side-image-size: 15rem;
 	--yt-video-aspect-ratio: 1.7777777778;
 	--testimonial-icon: 14rem;
 	--tech-stack-img-size: 9.375rem;

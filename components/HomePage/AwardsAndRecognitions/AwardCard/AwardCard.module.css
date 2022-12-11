@@ -5,8 +5,8 @@
 }
 
 .SideImage {
-	height: var(--side-image-size);
 	width: var(--side-image-size);
+	height: var(--side-image-size);
 }
 
 .Details {
@@ -15,8 +15,9 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	max-height: var(--side-image-size);
+	overflow: hidden;
 }
-
 
 .TitleAndDescription {
 	width: 100%;
@@ -63,18 +64,19 @@
 
 .evenBG {
 	background-color: var(--awards-card-background-b2);
-    transition: var(--fade-transition);
+	transition: var(--fade-transition);
 }
 
 .oddBG {
 	background-color: var(--awards-card-background-b1);
-    transition: var(--fade-transition);
+	transition: var(--fade-transition);
 }
 
 .AchievementButton {
-    padding: 1rem 1.5rem;
-    position: absolute;
-    top: 0;
-    right: 0;
-    translate: -1rem 1rem;
+	padding: 0.85vw 1vw;
+	font-size: var(--view-achievement-button-font-size);
+	position: absolute;
+	top: 0;
+	right: 0;
+	translate: -1vw 0.85vw;
 }
