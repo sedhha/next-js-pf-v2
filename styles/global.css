@@ -22,10 +22,10 @@
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
-	--h1-text-main: 5rem;
+	--h1-text-main: clamp(3rem, 4.5vw, 5rem);
 	--h1-text: 4rem;
-	--h2-text: 4.5rem;
-	--p-text: 2rem;
+	--h2-text: clamp(2.5rem, 4.4vw, 4.5rem);
+	--p-text: clamp(1rem, 1.8vw, 2rem);
 	--big-button-text: 1.5rem;
 	--blog-element-font-size: 1.375rem;
 	--blog-number-heading: 6.875rem;

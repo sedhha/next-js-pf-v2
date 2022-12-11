@@ -67,7 +67,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	grid-area: 3 / 1 / 6 / 8;
-	padding: 2rem;
+	padding: 0.5rem 2rem;
 }
 
 .IntroPara h4 {
@@ -75,7 +75,6 @@
 	font-style: normal;
 	font-weight: 300;
 	font-size: var(--p-text);
-	line-height: var(--line-height) * 0.8;
 	letter-spacing: 0.05em;
 	color: var(--intro-para-color);
 }
