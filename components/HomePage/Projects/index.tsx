@@ -18,7 +18,6 @@ export default function WorkExperience() {
 			date: string;
 		}[]
 	>([]);
-	console.log(cards.slice(curr, curr + 3));
 
 	React.useEffect(() => {
 		fetch('../../../constants/work-experience.json').then((res) =>

@@ -9,6 +9,7 @@ import Blog from './Blog';
 import Awards from './AwardsAndRecognitions';
 import Videos from './Videos';
 import Testimonials from './Testimonials';
+import TechStack from './TechStacks';
 
 export default function HomePage() {
 	const { darkMode } = useAppSelector((state) => state.navigation);
@@ -26,6 +27,7 @@ export default function HomePage() {
 				<Awards />
 				<Videos />
 				<Testimonials />
+				<TechStack />
 			</main>
 		</div>
 	);

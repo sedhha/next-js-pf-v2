@@ -11,7 +11,7 @@ export default function Testimonials({}: Props) {
 	return (
 		<section id={pageSections.TESTIMONIALS} className="section">
 			<div className="IntroHeader">
-				<h1 className="IntroHeaderContent">Hearing from others</h1>
+				<h1 className="IntroHeaderContent">A word about me!</h1>
 			</div>
 			<div className={classes.TestimonialSection}>
 				<SvgLeft className={'NavigationButton'} height={140} />

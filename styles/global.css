@@ -153,6 +153,7 @@ p {
 	--testimonial-container: var(--light-background-color);
 	--testimonial-entity-h1: var(--normal-text-color);
 	--testimonial-entity-h2: var(--inactive-silver-semi-dark);
+	--tech-stack-input-box: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 
@@ -207,6 +208,7 @@ p {
 	--testimonial-container: var(--active-blue);
 	--testimonial-entity-h1: var(--light-background-color);
 	--testimonial-entity-h2: var(--light-background-color);
+	--tech-stack-input-box: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 
