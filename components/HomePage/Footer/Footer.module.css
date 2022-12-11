@@ -1,6 +1,6 @@
 .Footer {
 	background-color: var(--footer-bg);
-	padding: 5rem 3rem;
+	padding: 2rem 3rem;
 	display: grid;
 	grid-template-columns: 2fr 2fr 3fr;
 	grid-template-rows: 1fr;
@@ -51,7 +51,7 @@
 	font-family: var(--railway);
 	font-style: normal;
 	font-weight: 500;
-	font-size: 2.25rem;
+	font-size: 2rem;
 	letter-spacing: 0.02em;
 	color: var(--footer-text-color);
     cursor: pointer;
