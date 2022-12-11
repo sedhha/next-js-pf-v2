@@ -79,14 +79,6 @@ export default function BlogPage() {
 									been involved in making end to end applications using React and Scala
 									as a backend service.
 								</p>
-								<p>
-									Working as a Software Engineer, I have majorly been involved in making
-									end to end applications using React and Scala as a backend service.
-									Working as a Software Engineer, I have majorly been involved in making
-									end to end applications. Working as a Software Engineer, I have majorly
-									been involved in making end to end applications using React and Scala
-									as a backend service.
-								</p>
 								<div className={classes.ButtonGroup}>
 									<button className={`button ${classes.ButtonG}`}>
 										Read Complete Blog

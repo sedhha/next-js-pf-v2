@@ -22,18 +22,13 @@
 
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
+	--size-factor: 2;
 	--h1-text-main: clamp(3rem, 4.5vw, 5rem);
 	--h1-text: clamp(3rem, 4vw, 4rem);
 	--h2-text: clamp(2.5rem, 4.4vw, 4.5rem);
 	--p-text: clamp(1rem, 1.8vw, 2rem);
 	--big-button-text: 1.5rem;
-	--blog-element-font-size: 1.375rem;
-	--blog-number-heading: 6.875rem;
-	--blog-number-heading-inactive: 4.125rem;
-	--blog-highlighted-date: 2.5rem;
-	--featured-blog-heading: 4rem;
-	--featured-blog-image-size: 28rem;
-	--icon-size: 3rem;
+	--icon-size: calc(1.5rem * var(--size-factor));
 	--get-in-touch-heading: 4rem;
 	--get-in-touch-button-font-size: 2rem;
 	--chat-status-icon-size: 1rem;
@@ -43,6 +38,34 @@
 	--awards-title: 1.5rem;
 	--awards-details: 1.25rem;
 	--award-details-p: 1rem;
+
+	/* Work Variables */
+	--max-work-image-height: 100%;
+	--max-work-card-container-height: 39vw;
+	--work-title-font-size: clamp(1rem, 1.4vw, 1.5rem);
+	--work-date-font-size: clamp(1rem, 1.2vw, 1.2rem);
+	--work-para-font-size: clamp(0.8rem, 1.1vw, 1.2rem);
+
+	/* Blog Variables */
+	--blog-element-font-size: clamp(0.8rem, 1.3vw, 1.375rem);
+	--blog-number-heading: clamp(5rem, 6vw, 6.875rem);
+	--blog-number-heading-inactive: clamp(3.2rem, 4vw, 4.125rem);
+	--blog-highlighted-date: clamp(1.5rem, 2vw, 2.5rem);
+	--featured-blog-heading: clamp(2.5rem, 3.5vw, 4rem);
+	--featured-blog-image-size: clamp(12rem, 20vw, 28rem);
+	--featured-blog-p-font-size: clamp(
+		0.4rem,
+		calc(0.9vw * var(--size-factor)),
+		1.125rem
+	);
+	--blog-button-font-size: clamp(1rem, 1vw, 2rem);
+	--relatable-blog-image-height: clamp(
+		10rem,
+		calc(15vw * var(--size-factor)),
+		20rem
+	);
+	--blog-card-h3-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
+	--blog-card-h4-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -57,12 +80,6 @@
 	--testimonial-icon: 14rem;
 	--tech-stack-img-size: 9.375rem;
 	--tech-stack-star-size: 1.563rem;
-	/* Work Variables */
-	--max-work-image-height: 100%;
-	--max-work-card-container-height: 39vw;
-	--work-title-font-size: clamp(1rem, 1.4vw, 1.5rem);
-	--work-date-font-size: clamp(1rem, 1.2vw, 1.2rem);
-	--work-para-font-size: clamp(0.8rem, 1.1vw, 1.2rem);
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -76,11 +93,17 @@
 	--hover-blog-sections-active: none;
 }
 
-/* @media screen and (max-width: 1280px) {
+@media screen and (max-width: 1280px) {
 	:root {
-		--max-work-card-container-height: 40vw;
+		--size-factor: 1;
 	}
-} */
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1540px) {
+	:root {
+		--size-factor: 1.2;
+	}
+}
 
 html,
 body {
