@@ -151,6 +151,7 @@
 
 		/* Awards */
 		--awards-row-gap: 2.2rem;
+	--side-image-size: clamp(10rem, calc(13.5vh * var(--size-factor)), 18rem);
 
 		/* Videos */
 		--video-container-height: clamp(12rem, 22vw, 30rem);

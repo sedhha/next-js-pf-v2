@@ -26,6 +26,7 @@ export default function WorkExperience() {
 	}, []);
 	return (
 		<section id={pageSections.WORK} className="section">
+			<br />
 			<div className={classes.IntroHeader}>
 				<h1 className={classes.IntroHeaderContent}>
 					Professional Career and Work Experience
