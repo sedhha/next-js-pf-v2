@@ -104,6 +104,7 @@ p {
 	background-color: var(--body-bg);
 }
 
+
 /* Dark Mode Details */
 
 .lightMode {
@@ -161,6 +162,9 @@ p {
 	--tech-stack-title-color: var(--normal-text-color);
 	--tech-stack-active-star-color: var(--light-yellow);
 	--tech-stack-inactive-star-color: var(--semi-gray-white);
+	--footer-bg: var(--faded-blue);
+	--footer-text-color: var(--light-background-color);
+	--footer-input-text-color: var(--normal-text-color);
 	transition: var(--fade-transition);
 }
 
@@ -219,6 +223,9 @@ p {
 	--tech-stack-title-color: var(--light-background-color);
 	--tech-stack-active-star-color: var(--light-yellow);
 	--tech-stack-inactive-star-color: var(--semi-gray-white);
+	--footer-bg: var(--active-blue);
+	--footer-text-color: var(--light-background-color);
+	--footer-input-text-color: var(--normal-text-color);
 	transition: var(--fade-transition);
 }
 

@@ -1,23 +1,24 @@
-import React from 'react';
+import Awards from './AwardsAndRecognitions';
+import Blog from './Blog';
+import Contact from './Contact';
+import Footer from './Footer';
 import Header from '@/components/header';
 import Intro from './Intro';
-import Work from './Work';
-import Contact from './Contact';
 import Projects from './Projects';
-import { useAppSelector } from '@/redux/hooks';
-import Blog from './Blog';
-import Awards from './AwardsAndRecognitions';
-import Videos from './Videos';
-import Testimonials from './Testimonials';
+import React from 'react';
 import TechStack from './TechStacks';
+import Testimonials from './Testimonials';
+import Videos from './Videos';
+import Work from './Work';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function HomePage() {
 	const { darkMode } = useAppSelector((state) => state.navigation);
 	return (
 		<div className={darkMode ? 'darkMode' : 'lightMode'}>
-			<div className="header">
+			<header className="header">
 				<Header />
-			</div>
+			</header>
 			<main className="body">
 				<Intro />
 				<Work />
@@ -28,6 +29,7 @@ export default function HomePage() {
 				<Videos />
 				<Testimonials />
 				<TechStack />
+				<Footer />
 			</main>
 		</div>
 	);

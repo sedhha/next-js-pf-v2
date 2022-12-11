@@ -2,6 +2,7 @@ import React from 'react';
 import {
 	AiFillStar,
 	AiOutlineCopy,
+	AiOutlineMail,
 	AiOutlineSearch,
 	AiOutlineSend,
 	AiOutlineTwitter,
@@ -21,7 +22,8 @@ export const icons = {
 	AiOutlineWhatsApp: 'AiOutlineWhatsApp',
 	AiOutlineSend: 'AiOutlineSend',
 	AiOutlineSearch: 'AiOutlineSearch',
-	AiFillStar: 'AiFillStar'
+	AiFillStar: 'AiFillStar',
+	AiOutlineMail: 'AiOutlineMail'
 };
 
 export default function Icon({ iconKey, ...rest }: IconProps) {
@@ -40,6 +42,8 @@ export default function Icon({ iconKey, ...rest }: IconProps) {
 			return <AiOutlineSearch {...rest} />;
 		case 'AiFillStar':
 			return <AiFillStar {...rest} />;
+		case 'AiOutlineMail':
+			return <AiOutlineMail {...rest} />;
 		default:
 			return <div>Component Not Found</div>;
 	}
