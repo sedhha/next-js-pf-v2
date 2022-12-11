@@ -68,6 +68,7 @@
 	--message-input-size: clamp(0.9rem, 1.2vw, 1.5rem);
 	--send-button-size: clamp(1.5rem, 2.5vw, 2.5rem);
 	--chat-message-font-size: clamp(0.5rem, 1vw, 1rem);
+	--row-gap-get-in-touch: 1rem;
 
 	/* Awards and Recognitions */
 	--side-image-size: clamp(10rem, calc(21vh * var(--size-factor)), 15rem);
@@ -75,6 +76,7 @@
 	--awards-details: clamp(0.8rem, 1.2vw, 1.25rem);
 	--award-details-p: clamp(0.5rem, 1vw, 1rem);
 	--view-achievement-button-font-size: clamp(0.5rem, 1vw, 1.2rem);
+	--awards-row-gap: 1rem;
 
 	/* Videos */
 	--video-container-height: clamp(12rem, 20vw, 30rem);
@@ -86,6 +88,10 @@
 	/* Testimonials */
 	--testimonial-icon: clamp(8rem, 14vw, 14rem);
 	--testimonial-entity-text: clamp(1rem, 1.6vw, 2rem);
+
+	/* Tech Stack */
+	--stack-card-max-height: 75vh;
+	--stack-card-padding: 1rem;
 
 	/* Heights */
 	--lineheight: 2rem;
@@ -121,6 +127,44 @@
 	:root {
 		--size-factor: 1.2;
 		--max-chat-window-height: 62vh;
+	}
+}
+
+@media screen and (min-width: 1540px) and (max-width: 1792px) {
+	:root {
+		--size-factor: 1.8;
+		--max-chat-window-height: 65vh;
+		--max-work-card-container-height: 45vw;
+
+		/* Work Variables */
+		--work-title-font-size: clamp(1rem, 1.6vw, 2.5rem);
+		--work-date-font-size: clamp(1rem, 1.6vw, 2.5rem);
+		--work-para-font-size: clamp(0.8rem, 1.3vw, 2rem);
+
+		/* Blog Variables */
+		--featured-blog-image-size: clamp(12rem, 24vw, 28rem);
+		--featured-blog-p-font-size: clamp(0.4rem, 1.4vw, 3rem);
+		--sample-blog-line-height: 2rem;
+
+		/* Contact Variables */
+		--row-gap-get-in-touch: 2.5rem;
+
+		/* Awards */
+		--awards-row-gap: 2.2rem;
+
+		/* Videos */
+		--video-container-height: clamp(12rem, 22vw, 30rem);
+		--video-entity-min-height: clamp(10rem, 20vw, 15rem);
+		--featured-video-heading: clamp(1rem, 2.2vw, 3rem);
+		--featured-video-excerpt: clamp(1rem, 1.5vw, 2.5rem);
+		--other-video-font: clamp(1rem, 1.5vw, 3.2rem);
+
+		/* Testimonials */
+		--testimonial-icon: clamp(8rem, 15vw, 18rem);
+		--testimonial-entity-text: clamp(1rem, 2vw, 3rem);
+
+		/* Tech Stack */
+		--stack-card-max-height: 80vh;
 	}
 }
 
@@ -381,3 +425,8 @@ p {
 .body::-webkit-scrollbar-thumb {
 	background-color: darkgrey;
 }
+
+/*
+	TODO Fixes :
+	Add some extra margin for bigger screen sizes in first Section: @media screen and (min-width: 1540px) and (max-width: 1792px)
+*/

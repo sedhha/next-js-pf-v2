@@ -6,7 +6,7 @@
 	box-shadow: var(--box-shadow-thin);
 	border-radius: 1rem;
 	animation: slide-from-left 5s ease-in;
-	max-height: var(--max-work-card-container-height);
+	height: var(--max-work-card-container-height);
 	overflow: hidden;
 }
 
