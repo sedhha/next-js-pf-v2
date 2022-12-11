@@ -79,6 +79,7 @@ export default function BlogPage() {
 									been involved in making end to end applications using React and Scala
 									as a backend service.
 								</p>
+
 								<div className={classes.ButtonGroup}>
 									<button className={`button ${classes.ButtonG}`}>
 										Read Complete Blog

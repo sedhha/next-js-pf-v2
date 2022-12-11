@@ -61,7 +61,7 @@
 	--blog-button-font-size: clamp(1rem, 1vw, 2rem);
 	--relatable-blog-image-height: clamp(
 		10rem,
-		calc(15vw * var(--size-factor)),
+		calc(14vw * var(--size-factor)),
 		20rem
 	);
 	--blog-card-h3-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
