@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageComponent from '@/components/Utility/ImageUtility';
 import classes from './Card.module.css';
+import LazyImage from '@/components/common/ImageUtility';
 
 type Props = {
 	src?: string;
@@ -29,7 +29,7 @@ export default function CardComponent({
 	}`;
 	return (
 		<div className={wrapperClass}>
-			<ImageComponent
+			<LazyImage
 				src={src ?? '/work-image.png'}
 				alt={alt ?? 'Card-Component'}
 				className={classes.CardImage}

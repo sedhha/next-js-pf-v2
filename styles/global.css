@@ -23,7 +23,7 @@
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
 	--h1-text-main: clamp(3rem, 4.5vw, 5rem);
-	--h1-text: 4rem;
+	--h1-text: clamp(3rem, 4vw, 4rem);
 	--h2-text: clamp(2.5rem, 4.4vw, 4.5rem);
 	--p-text: clamp(1rem, 1.8vw, 2rem);
 	--big-button-text: 1.5rem;
@@ -57,6 +57,12 @@
 	--testimonial-icon: 14rem;
 	--tech-stack-img-size: 9.375rem;
 	--tech-stack-star-size: 1.563rem;
+	/* Work Variables */
+	--max-work-image-height: 100%;
+	--max-work-card-container-height: 39vw;
+	--work-title-font-size: clamp(1rem, 1.4vw, 1.5rem);
+	--work-date-font-size: clamp(1rem, 1.2vw, 1.2rem);
+	--work-para-font-size: clamp(0.8rem, 1.1vw, 1.2rem);
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -69,6 +75,13 @@
 	/* Hover States */
 	--hover-blog-sections-active: none;
 }
+
+/* @media screen and (max-width: 1280px) {
+	:root {
+		--max-work-card-container-height: 40vw;
+	}
+} */
+
 html,
 body {
 	padding: 0;
