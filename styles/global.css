@@ -83,6 +83,10 @@
 	--featured-video-excerpt: clamp(1rem, 1.2vw, 1.5rem);
 	--other-video-font: clamp(1rem, 1.2vw, 1.2rem);
 
+	/* Testimonials */
+	--testimonial-icon: clamp(8rem, 14vw, 14rem);
+	--testimonial-entity-text: clamp(1rem, 1.6vw, 2rem);
+
 	/* Heights */
 	--lineheight: 2rem;
 	--toggle-switch-board-height: 2rem;
@@ -91,7 +95,6 @@
 	--min-blog-number-width: 10rem;
 	--sample-blog-line-height: 1.5rem;
 	--yt-video-aspect-ratio: 1.7777777778;
-	--testimonial-icon: 14rem;
 	--tech-stack-img-size: 9.375rem;
 	--tech-stack-star-size: 1.563rem;
 
