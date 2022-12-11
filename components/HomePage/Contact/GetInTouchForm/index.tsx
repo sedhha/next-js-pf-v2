@@ -17,7 +17,7 @@ export default function GetInTouch() {
 				<div />
 			</div>
 			<div className={classes.InputContainer}>
-				<textarea placeholder="Message" rows={5} />
+				<textarea placeholder="Message" rows={4} />
 				<div />
 			</div>
 			<div>

@@ -7,6 +7,7 @@ import ChatDirectly from './ChatDirectly/index';
 export default function Contact() {
 	return (
 		<section className={classes.Contact} id={pageSections.CONTACT}>
+			<br />
 			<div className={classes.ContactHeading}>
 				<h1 className={classes.IntroHeaderContent}>
 					Wave a hello or want me to build something cool for you?

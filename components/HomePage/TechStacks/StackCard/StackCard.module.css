@@ -10,10 +10,10 @@
 	font-family: var(--railway);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 2rem;
+	font-size: 2vw;
 	letter-spacing: 0.05em;
 	color: var(--tech-stack-title-color);
-    transition: var(--fade-transition);
+	transition: var(--fade-transition);
 }
 
 .Image {

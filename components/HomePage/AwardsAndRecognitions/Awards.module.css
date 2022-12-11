@@ -38,7 +38,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 1.5rem;
-    grid-row-gap: 1rem;
+    grid-row-gap: var(--awards-row-gap);
     padding: 1rem;
 
 }

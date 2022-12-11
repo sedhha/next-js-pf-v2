@@ -9,7 +9,6 @@
 	height: 100%;
 	background: var(--header-background-color);
 	transition: var(--fade-transition);
-
 }
 
 .LogoBox {
@@ -18,7 +17,7 @@
 }
 
 .Logo {
-	font-family: var(--railway);
+	font-family: var(--raleway);
 	font-style: normal;
 	font-weight: 700;
 	font-size: 2rem;
@@ -35,9 +34,7 @@
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	transition: var(--fade-transition);
-
 }
-
 
 .LogoImage {
 	height: 4vw;
@@ -54,7 +51,7 @@
 	font-weight: 400;
 }
 
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 750px) {
 	.Logo {
 		flex: auto;
 	}
@@ -69,7 +66,6 @@
 	}
 	20% {
 		rotate: 72deg;
-
 	}
 	30% {
 		rotate: 72deg;

@@ -36,7 +36,7 @@ export default function Introduction() {
 				</h4>
 			</div>
 			<div className={classes.ActionArea}>
-				<button>Learn More</button>
+				<button className={classes.Button}>Learn More</button>
 			</div>
 		</section>
 	);

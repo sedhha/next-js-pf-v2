@@ -40,7 +40,7 @@
 	transition: var(--fade-transition);
 }
 
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 750px) {
 	.SwitchBoard {
 		order: 1;
 	}

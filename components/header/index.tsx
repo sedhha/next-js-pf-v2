@@ -4,7 +4,6 @@ import NavItems from '@/components/header/NavItems';
 import ViewIcon from './ViewIcon';
 import DarkModeToggle from './DarkModeToggle';
 import LazyImage from '@/components/common/ImageUtility';
-import { useAppSelector } from '../../redux/tools/hooks';
 
 export default function Header() {
 	return (

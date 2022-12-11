@@ -10,6 +10,7 @@ type Props = {};
 export default function Testimonials({}: Props) {
 	return (
 		<section id={pageSections.TESTIMONIALS} className="section">
+			<br />
 			<div className="IntroHeader">
 				<h1 className="IntroHeaderContent">A word about me!</h1>
 			</div>
