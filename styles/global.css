@@ -76,6 +76,13 @@
 	--award-details-p: clamp(0.5rem, 1vw, 1rem);
 	--view-achievement-button-font-size: clamp(0.5rem, 1vw, 1.2rem);
 
+	/* Videos */
+	--video-container-height: clamp(12rem, 20vw, 30rem);
+	--video-entity-min-height: clamp(10rem, 12vw, 15rem);
+	--featured-video-heading: clamp(1rem, 1.5vw, 1.5rem);
+	--featured-video-excerpt: clamp(1rem, 1.2vw, 1.5rem);
+	--other-video-font: clamp(1rem, 1.2vw, 1.2rem);
+
 	/* Heights */
 	--lineheight: 2rem;
 	--toggle-switch-board-height: 2rem;
@@ -334,7 +341,6 @@ p {
 
 .section {
 	width: 100%;
-	max-height: 90vh;
 	display: block;
 	overflow: hidden;
 }

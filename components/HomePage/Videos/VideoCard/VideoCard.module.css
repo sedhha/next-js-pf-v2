@@ -8,20 +8,18 @@
 	row-gap: 1rem;
 }
 
-
-
 .VideoCard h1 {
 	flex: 1;
 	font-family: var(--railway);
 	font-style: normal;
 	font-weight: 700;
-	font-size: 1.2rem;
+	font-size: var(--other-video-font);
 	text-align: center;
 	letter-spacing: 0.05em;
 	color: var(--video-content-main-h1-color);
 }
 
 .VideoEntity {
-	min-height: 15rem;
+	min-height: var(--video-entity-min-height);
 	aspect-ratio: var(--yt-video-aspect-ratio);
 }
