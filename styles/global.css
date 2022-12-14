@@ -23,9 +23,9 @@
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
 	--size-factor: 2;
-	--h1-text-main: clamp(3rem, 4.5vw, 5rem);
+	--h1-text-main: clamp(2rem, 4.5vw, 5rem);
 	--h1-text: clamp(3rem, 4vw, 4rem);
-	--h2-text: clamp(2.5rem, 4.4vw, 4.5rem);
+	--h2-text: clamp(1.5rem, 4.5vw, 4.5rem);
 	--p-text: clamp(1rem, 1.8vw, 2rem);
 	--big-button-text: 1.5rem;
 	--icon-size: calc(1.5rem * var(--size-factor));
@@ -167,6 +167,10 @@
 		/* Tech Stack */
 		--stack-card-max-height: 80vh;
 	}
+}
+
+@media screen and (min-width: 240px) and (max-width: 780px) {
+
 }
 
 html,
