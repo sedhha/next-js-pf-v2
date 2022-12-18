@@ -455,6 +455,8 @@ p {
 	}
 }
 
+
+
 @media screen and (min-width: 1540px) and (max-width: 1792px) {
 	:root {
 		--size-factor: 1.8;
@@ -492,5 +494,11 @@ p {
 
 		/* Tech Stack */
 		--stack-card-max-height: 80vh;
+	}
+}
+
+@media screen and (min-width: 1792px) and (max-width: 5000px) {
+	:root {
+		--max-chat-window-height: 60vh;
 	}
 }
