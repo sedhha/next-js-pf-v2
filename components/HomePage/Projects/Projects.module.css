@@ -30,3 +30,12 @@
 	align-items: center;
 	padding: 1rem 0.3rem;
 }
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.IntroHeader {
+		margin-top: 0;
+	}
+	.ProjectsContainer {
+		margin-bottom: 3rem;
+	}
+}

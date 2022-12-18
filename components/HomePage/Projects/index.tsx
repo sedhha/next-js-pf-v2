@@ -25,7 +25,10 @@ export default function WorkExperience() {
 		);
 	}, []);
 	return (
-		<section id={pageSections.PROJECTS} className="secition">
+		<section
+			id={pageSections.PROJECTS}
+			className={`section ${classes.ProjectsContainer}`}
+		>
 			<div className={classes.IntroHeader}>
 				<h1 className={classes.IntroHeaderContent}>Cool things I did</h1>
 			</div>
