@@ -161,6 +161,12 @@
 	.body::-webkit-scrollbar {
 		display: none;
 	}
+
+	/* Videos */
+	:root {
+		--video-entity-min-height: clamp(10rem, 74vw, 12.5rem);
+		--other-video-font: clamp(1rem, 5.2vw, 5.2rem);
+	}
 }
 
 @media screen and (min-width: 1540px) and (max-width: 1792px) {
