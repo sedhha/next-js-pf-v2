@@ -114,3 +114,62 @@
 	justify-content: space-around;
 	align-items: flex-end;
 }
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.Footer {
+		margin-top: 1rem;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		transition: var(--fade-transition);
+	}
+	.FirstSection {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+	.SecondSection {
+		display: none;
+	}
+	.ThirdSection {
+		margin-top: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		gap: 1rem;
+	}
+	.MessageWithIcon p {
+		font-size: 4vw;
+		color: var(--footer-text-color);
+		transition: var(--fade-transition);
+		margin: 0;
+		padding: 0;
+	}
+	.MessageWithIcon {
+		order: 2;
+	}
+	.EmailInputField {
+		width: 100%;
+		font-size: 4vw;
+		letter-spacing: 0.02em;
+		color: var(--footer-input-text-color);
+		transition: var(--fade-transition);
+		text-decoration: underline;
+		text-underline-offset: 0.5rem;
+		padding: 2vw 3vw;
+		border: none;
+		outline: none;
+		text-align: start;
+		order: 1;
+	}
+
+	.Button {
+		padding: 2vw 4vw;
+		font-size: 5vw;
+		order: 3;
+	}
+}
