@@ -53,7 +53,7 @@
 	);
 	--blog-button-font-size: clamp(1rem, 1vw, 2rem);
 	--relatable-blog-image-height: clamp(
-		10rem,
+		16rem,
 		calc(14vw * var(--size-factor)),
 		20rem
 	);
@@ -143,32 +143,34 @@
 		--max-work-card-container-height: 45vw;
 
 		/* Work Variables */
-		--work-title-font-size: clamp(1rem, 1.6vw, 2.5rem);
-		--work-date-font-size: clamp(1rem, 1.6vw, 2.5rem);
-		--work-para-font-size: clamp(2rem, 1.3vw, 2rem);
+		--work-title-font-size: clamp(1rem, 1.4vw, 2.5rem);
+		--work-date-font-size: clamp(1rem, 1.2vw, 2.5rem);
+		--work-para-font-size: clamp(0.8rem, 1.1vw, 2rem);
 
 		/* Blog Variables */
-		--featured-blog-image-size: clamp(12rem, 24vw, 28rem);
-		--featured-blog-p-font-size: clamp(0.4rem, 1.4vw, 3rem);
+		--featured-blog-image-size: clamp(8rem, 20vw, 28rem);
+		--featured-blog-p-font-size: clamp(0.4rem, 1vw, 3rem);
 		--sample-blog-line-height: 2rem;
+		--relatable-blog-image-height: calc(9vw * var(--size-factor));
 
 		/* Contact Variables */
-		--row-gap-get-in-touch: 2.5rem;
+		--row-gap-get-in-touch: 1.3rem;
+		--max-chat-window-height: 62vh;
 
 		/* Awards */
-		--awards-row-gap: 2.2rem;
+		--awards-row-gap: 2rem;
 		--side-image-size: clamp(10rem, calc(13.5vh * var(--size-factor)), 18rem);
 
 		/* Videos */
-		--video-container-height: clamp(12rem, 22vw, 30rem);
-		--video-entity-min-height: clamp(10rem, 20vw, 15rem);
-		--featured-video-heading: clamp(1rem, 2.2vw, 3rem);
-		--featured-video-excerpt: clamp(1rem, 1.5vw, 2.5rem);
-		--other-video-font: clamp(1rem, 1.5vw, 3.2rem);
+		--video-container-height: clamp(12rem, 20vw, 30rem);
+		--video-entity-min-height: clamp(10rem, 13vw, 15rem);
+		--featured-video-heading: clamp(1rem, 2vw, 3rem);
+		--featured-video-excerpt: clamp(1rem, 1.2vw, 2.5rem);
+		--other-video-font: clamp(1rem, 1.2vw, 3.2rem);
 
 		/* Testimonials */
-		--testimonial-icon: clamp(8rem, 15vw, 18rem);
-		--testimonial-entity-text: clamp(1rem, 2vw, 3rem);
+		--testimonial-icon: clamp(8rem, 10vw, 18rem);
+		--testimonial-entity-text: clamp(1rem, 1.8vw, 3rem);
 
 		/* Tech Stack */
 		--stack-card-max-height: 80vh;
