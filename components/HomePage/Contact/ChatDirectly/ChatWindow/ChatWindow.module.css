@@ -63,12 +63,12 @@
 	transition: var(--fade-transition);
 	padding: 0.5rem;
 	flex: auto;
-    background-color: var(--body-bg);
-    color: var(--input-field-text-placeholder-color);
+	background-color: var(--body-bg);
+	color: var(--input-field-text-placeholder-color);
 }
 
 .MessageSendContainer input::placeholder {
-    color: var(--input-field-text-placeholder-color);
+	color: var(--input-field-text-placeholder-color);
 }
 
 .MessageSendContainer_button {

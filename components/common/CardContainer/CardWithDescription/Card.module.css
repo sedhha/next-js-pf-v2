@@ -35,8 +35,7 @@
 
 .CardImage {
 	border-radius: 1rem;
-	max-height: var(--max-work-image-height);
-	aspect-ratio: 1;
+	max-width: var(--max-work-image-height);
 }
 
 .EmployerTitle {

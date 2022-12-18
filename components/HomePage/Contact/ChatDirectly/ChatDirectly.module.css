@@ -1,35 +1,43 @@
 .ChatDirectly {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 4rem;
 }
 
 .ImageContainer {
-    position: relative;
-    text-align: center;
+	position: relative;
+	text-align: center;
 }
 .Image {
-    width: var(--chat-image-height);
-    height: var(--chat-image-height);
+	width: var(--chat-image-height);
+	height: var(--chat-image-height);
 }
 
 .Button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.2rem;
-    font-size: calc(var(--get-in-touch-button-font-size) * 0.5);
-    margin: 0 auto;
+	padding: 0.5rem 1rem;
+	border-radius: 0.2rem;
+	font-size: calc(var(--get-in-touch-button-font-size) * 0.5);
+	margin: 0 auto;
 }
 
 .onlineIcon {
-    height: var(--chat-status-icon-size);
-    width: var(--chat-status-icon-size);
-    border-radius: 50%;
-    background-color: green;
-    position: absolute;
-    top: 80%;
-    left: 80%;
+	height: var(--chat-status-icon-size);
+	width: var(--chat-status-icon-size);
+	border-radius: 50%;
+	background-color: green;
+	position: absolute;
+	top: 80%;
+	left: 80%;
 }
 
+.ChatDirectlyAlter {
+	font-size: 4rem;
+	margin-top: -4rem;
+	font-weight: 400;
+	color: var(--chat-directly-alter-font-color);
+	transition: var(--fade-transition);
+}

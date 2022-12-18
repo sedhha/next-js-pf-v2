@@ -145,6 +145,10 @@
 		--blog-number-heading-inactive: 10vw;
 		--blog-number-heading: 12vw;
 		--blog-highlighted-date: clamp(0.5rem, 2.5vw, 2.5rem);
+
+		/* Contact Variables */
+		--get-in-touch-button-font-size: clamp(1rem, 8vw, 3rem);
+		--max-chat-window-height: 0vh;
 	}
 	.body::-webkit-scrollbar {
 		display: none;
@@ -154,12 +158,12 @@
 @media screen and (min-width: 1540px) and (max-width: 1792px) {
 	:root {
 		--size-factor: 1.8;
-		--max-work-card-container-height: 45vw;
 
 		/* Work Variables */
 		--work-title-font-size: clamp(1rem, 1.4vw, 2.5rem);
 		--work-date-font-size: clamp(1rem, 1.2vw, 2.5rem);
 		--work-para-font-size: clamp(0.8rem, 1.1vw, 2rem);
+		--max-work-card-container-height: 15vw;
 
 		/* Blog Variables */
 		--featured-blog-image-size: clamp(8rem, 20vw, 28rem);
@@ -285,6 +289,7 @@ p {
 	--footer-text-color: var(--light-background-color);
 	--footer-input-text-color: var(--normal-text-color);
 	--blog-mobile-category-font-color: var(--normal-text-color);
+	--chat-directly-alter-font-color: var(--inactive-silver-semi-dark);
 	transition: var(--fade-transition);
 }
 
@@ -347,6 +352,7 @@ p {
 	--footer-text-color: var(--light-background-color);
 	--footer-input-text-color: var(--normal-text-color);
 	--blog-mobile-category-font-color: var(--light-background-color);
+	--chat-directly-alter-font-color: var(--semi-gray-white);
 	transition: var(--fade-transition);
 }
 
