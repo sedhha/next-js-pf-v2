@@ -24,10 +24,10 @@
 	--railway: 'Raleway', sans-serif;
 	--size-factor: 2;
 	--h1-text-main: clamp(2rem, 4.5vw, 5rem);
-	--h1-text: clamp(3rem, 4vw, 4rem);
+	--h1-text: clamp(0.5rem, 4vw, 4rem);
 	--h2-text: clamp(1.5rem, 4.5vw, 4.5rem);
 	--p-text: clamp(1rem, 1.8vw, 2rem);
-	--big-button-text: 1.5rem;
+	--big-button-text: clamp(0.9rem, 1.5vw, 1.5rem);
 	--icon-size: calc(1.5rem * var(--size-factor));
 	--chat-status-icon-size: 1rem;
 	--chat-avatar-size: 3rem;
@@ -35,9 +35,9 @@
 	/* Work Variables */
 	--max-work-image-height: 100%;
 	--max-work-card-container-height: 39vw;
-	--work-title-font-size: clamp(1rem, 1.4vw, 1.5rem);
-	--work-date-font-size: clamp(1rem, 1.2vw, 1.2rem);
-	--work-para-font-size: clamp(0.8rem, 1.1vw, 1.2rem);
+	--work-title-font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+	--work-date-font-size: clamp(1.1rem, 1.2vw, 1.2rem);
+	--work-para-font-size: clamp(0.9rem, 1.1vw, 1.2rem);
 
 	/* Blog Variables */
 	--blog-element-font-size: clamp(0.8rem, 1.3vw, 1.375rem);
@@ -130,6 +130,12 @@
 	}
 }
 
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	:root {
+		--max-work-image-height: 80vw;
+	}
+}
+
 @media screen and (min-width: 1540px) and (max-width: 1792px) {
 	:root {
 		--size-factor: 1.8;
@@ -139,7 +145,7 @@
 		/* Work Variables */
 		--work-title-font-size: clamp(1rem, 1.6vw, 2.5rem);
 		--work-date-font-size: clamp(1rem, 1.6vw, 2.5rem);
-		--work-para-font-size: clamp(0.8rem, 1.3vw, 2rem);
+		--work-para-font-size: clamp(2rem, 1.3vw, 2rem);
 
 		/* Blog Variables */
 		--featured-blog-image-size: clamp(12rem, 24vw, 28rem);
@@ -151,7 +157,7 @@
 
 		/* Awards */
 		--awards-row-gap: 2.2rem;
-	--side-image-size: clamp(10rem, calc(13.5vh * var(--size-factor)), 18rem);
+		--side-image-size: clamp(10rem, calc(13.5vh * var(--size-factor)), 18rem);
 
 		/* Videos */
 		--video-container-height: clamp(12rem, 22vw, 30rem);
@@ -167,10 +173,6 @@
 		/* Tech Stack */
 		--stack-card-max-height: 80vh;
 	}
-}
-
-@media screen and (min-width: 240px) and (max-width: 780px) {
-
 }
 
 html,
