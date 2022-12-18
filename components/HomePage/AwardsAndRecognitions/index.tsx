@@ -15,7 +15,7 @@ export default function Awards({}: Props) {
 			</div>
 
 			<div className={classes.AwardsSection}>
-				<SvgLeft className={'NavigationButton'} height={140} />
+				<SvgLeft className={classes.NavigationButton} height={140} />
 				<div className={classes.Awards}>
 					<AwardCard alter={1} />
 					<AwardCard alter={-1} />
@@ -24,7 +24,7 @@ export default function Awards({}: Props) {
 					<AwardCard alter={1} />
 					<AwardCard alter={-1} />
 				</div>
-				<SvgRight className={'NavigationButton'} height={140} />
+				<SvgRight className={classes.NavigationButton} height={140} />
 			</div>
 		</section>
 	);

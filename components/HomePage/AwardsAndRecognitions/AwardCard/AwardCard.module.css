@@ -17,6 +17,7 @@
 	justify-content: space-around;
 	max-height: var(--side-image-size);
 	overflow: hidden;
+	row-gap: 0.5rem;
 }
 
 .TitleAndDescription {
@@ -79,4 +80,20 @@
 	top: 0;
 	right: 0;
 	translate: -1vw 0.85vw;
+}
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.AwardCard {
+		display: flex;
+		flex-direction: column;
+	}
+	.AchievementButton {
+		padding: 1rem;
+		font-size: var(--view-achievement-button-font-size);
+		position: unset;
+		top: unset;
+		right: unset;
+		translate: 0 0;
+		order: 1;
+	}
 }

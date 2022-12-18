@@ -149,6 +149,14 @@
 		/* Contact Variables */
 		--get-in-touch-button-font-size: clamp(1rem, 8vw, 3rem);
 		--max-chat-window-height: 0vh;
+
+		/* Awards and Recognitions */
+		--side-image-size: 75vw;
+		--awards-title: clamp(0.8rem, 5vw, 3.5rem);
+		--awards-details: clamp(0.8rem, 3.5vw, 3rem);
+		--award-details-p: clamp(0.5rem, 3vw, 2rem);
+		--view-achievement-button-font-size: clamp(0.5rem, 4vw, 1.2rem);
+		--awards-row-gap: 1rem;
 	}
 	.body::-webkit-scrollbar {
 		display: none;

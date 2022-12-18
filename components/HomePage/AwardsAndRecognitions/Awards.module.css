@@ -1,4 +1,3 @@
-
 .IntroHeader {
 	display: flex;
 	align-items: center;
@@ -33,12 +32,48 @@
 
 .Awards {
 	display: grid;
-    height: 100%;
+	height: 100%;
 	width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 1.5rem;
-    grid-row-gap: var(--awards-row-gap);
-    padding: 1rem;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 1.5rem;
+	grid-row-gap: var(--awards-row-gap);
+	padding: 1rem;
+}
 
+.NavigationButton {
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+	align-self: center;
+}
+.NavigationButton:hover {
+	scale: 0.9;
+}
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.AwardsSection {
+		display: flex;
+		height: 100%;
+		width: 100%;
+	}
+	.Awards {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		flex-direction: row;
+		padding: 1rem;
+		overflow-x: auto;
+	}
+	.Awards::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge add Firefox */
+	.Awards {
+		-ms-overflow-style: none;
+		scrollbar-width: none; /* Firefox */
+	}
+	.NavigationButton {
+		max-width: 8vw;
+	}
 }
