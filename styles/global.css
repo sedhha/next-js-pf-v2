@@ -417,7 +417,8 @@ p {
 
 		/* Contact Variables */
 		--get-in-touch-button-font-size: clamp(1rem, 8vw, 3rem);
-		--max-chat-window-height: 70vh;
+		--max-chat-window-height: 130vw;
+		--chat-message-font-size: clamp(0.5rem, 4vw, 3rem);
 
 		/* Awards and Recognitions */
 		--side-image-size: 75vw;

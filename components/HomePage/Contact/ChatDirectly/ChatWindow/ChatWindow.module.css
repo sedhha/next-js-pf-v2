@@ -77,3 +77,9 @@
 	color: var(--send-button-color);
 	transition: var(--fade-transition);
 }
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.ChatContainer {
+		padding: 0 0.5rem;
+	}
+}

@@ -20,7 +20,7 @@
 	font-family: var(--raleway);
 	font-style: normal;
 	font-weight: 700;
-	font-size: 2rem;
+	font-size: 6vw;
 	line-height: var(--lineheight);
 
 	background: var(--intro-header-content-g1);
@@ -90,5 +90,11 @@
 	}
 	100% {
 		rotate: 0;
+	}
+}
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.LogoImage {
+		height: 10vw;
 	}
 }
