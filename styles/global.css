@@ -23,11 +23,11 @@
 	/* Railway Font */
 	--railway: 'Raleway', sans-serif;
 	--size-factor: 2;
-	--h1-text-main: clamp(3rem, 4.5vw, 5rem);
-	--h1-text: clamp(3rem, 4vw, 4rem);
-	--h2-text: clamp(2.5rem, 4.4vw, 4.5rem);
+	--h1-text-main: clamp(2rem, 4.5vw, 5rem);
+	--h1-text: clamp(1.5rem, 4vw, 4rem);
+	--h2-text: clamp(1.5rem, 4.5vw, 4.5rem);
 	--p-text: clamp(1rem, 1.8vw, 2rem);
-	--big-button-text: 1.5rem;
+	--big-button-text: clamp(0.9rem, 1.5vw, 1.5rem);
 	--icon-size: calc(1.5rem * var(--size-factor));
 	--chat-status-icon-size: 1rem;
 	--chat-avatar-size: 3rem;
@@ -35,9 +35,9 @@
 	/* Work Variables */
 	--max-work-image-height: 100%;
 	--max-work-card-container-height: 39vw;
-	--work-title-font-size: clamp(1rem, 1.4vw, 1.5rem);
-	--work-date-font-size: clamp(1rem, 1.2vw, 1.2rem);
-	--work-para-font-size: clamp(0.8rem, 1.1vw, 1.2rem);
+	--work-title-font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+	--work-date-font-size: clamp(1.1rem, 1.2vw, 1.2rem);
+	--work-para-font-size: clamp(0.9rem, 1.1vw, 1.2rem);
 
 	/* Blog Variables */
 	--blog-element-font-size: clamp(0.8rem, 1.3vw, 1.375rem);
@@ -53,12 +53,13 @@
 	);
 	--blog-button-font-size: clamp(1rem, 1vw, 2rem);
 	--relatable-blog-image-height: clamp(
-		10rem,
+		16rem,
 		calc(14vw * var(--size-factor)),
 		20rem
 	);
 	--blog-card-h3-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
 	--blog-card-h4-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
+	--mobile-blog-font-size: clamp(0.5rem, 4vw, 1.5rem);
 
 	/* Contact Variables */
 	--get-in-touch-heading: clamp(3.2rem, 4.2vw, 4rem);
@@ -103,6 +104,7 @@
 	--yt-video-aspect-ratio: 1.7777777778;
 	--tech-stack-img-size: 9.375rem;
 	--tech-stack-star-size: 1.563rem;
+	--nav-button-max-width: unset;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -114,59 +116,6 @@
 
 	/* Hover States */
 	--hover-blog-sections-active: none;
-}
-
-@media screen and (max-width: 1280px) {
-	:root {
-		--size-factor: 1;
-		--max-chat-window-height: 59vh;
-	}
-}
-
-@media screen and (min-width: 1281px) and (max-width: 1540px) {
-	:root {
-		--size-factor: 1.2;
-		--max-chat-window-height: 62vh;
-	}
-}
-
-@media screen and (min-width: 1540px) and (max-width: 1792px) {
-	:root {
-		--size-factor: 1.8;
-		--max-chat-window-height: 65vh;
-		--max-work-card-container-height: 45vw;
-
-		/* Work Variables */
-		--work-title-font-size: clamp(1rem, 1.6vw, 2.5rem);
-		--work-date-font-size: clamp(1rem, 1.6vw, 2.5rem);
-		--work-para-font-size: clamp(0.8rem, 1.3vw, 2rem);
-
-		/* Blog Variables */
-		--featured-blog-image-size: clamp(12rem, 24vw, 28rem);
-		--featured-blog-p-font-size: clamp(0.4rem, 1.4vw, 3rem);
-		--sample-blog-line-height: 2rem;
-
-		/* Contact Variables */
-		--row-gap-get-in-touch: 2.5rem;
-
-		/* Awards */
-		--awards-row-gap: 2.2rem;
-	--side-image-size: clamp(10rem, calc(13.5vh * var(--size-factor)), 18rem);
-
-		/* Videos */
-		--video-container-height: clamp(12rem, 22vw, 30rem);
-		--video-entity-min-height: clamp(10rem, 20vw, 15rem);
-		--featured-video-heading: clamp(1rem, 2.2vw, 3rem);
-		--featured-video-excerpt: clamp(1rem, 1.5vw, 2.5rem);
-		--other-video-font: clamp(1rem, 1.5vw, 3.2rem);
-
-		/* Testimonials */
-		--testimonial-icon: clamp(8rem, 15vw, 18rem);
-		--testimonial-entity-text: clamp(1rem, 2vw, 3rem);
-
-		/* Tech Stack */
-		--stack-card-max-height: 80vh;
-	}
 }
 
 html,
@@ -262,6 +211,8 @@ p {
 	--footer-bg: var(--faded-blue);
 	--footer-text-color: var(--light-background-color);
 	--footer-input-text-color: var(--normal-text-color);
+	--blog-mobile-category-font-color: var(--normal-text-color);
+	--chat-directly-alter-font-color: var(--inactive-silver-semi-dark);
 	transition: var(--fade-transition);
 }
 
@@ -323,6 +274,8 @@ p {
 	--footer-bg: var(--active-blue);
 	--footer-text-color: var(--light-background-color);
 	--footer-input-text-color: var(--normal-text-color);
+	--blog-mobile-category-font-color: var(--light-background-color);
+	--chat-directly-alter-font-color: var(--semi-gray-white);
 	transition: var(--fade-transition);
 }
 
@@ -382,6 +335,7 @@ p {
 	cursor: pointer;
 	transition: all 0.3s ease-in;
 	align-self: center;
+	max-width: var(--nav-button-max-width);
 }
 .NavigationButton:hover {
 	scale: 0.9;
@@ -431,3 +385,120 @@ p {
 	TODO Fixes :
 	Add some extra margin for bigger screen sizes in first Section: @media screen and (min-width: 1540px) and (max-width: 1792px)
 */
+
+@media screen and (max-width: 1280px) {
+	:root {
+		--size-factor: 1;
+		--max-chat-window-height: 59vh;
+	}
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1540px) {
+	:root {
+		--size-factor: 1.2;
+		--max-chat-window-height: 62vh;
+	}
+}
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	:root {
+		/* Work Variables */
+		--work-title-font-size: clamp(1rem, 4.5vw, 4rem);
+		--work-date-font-size: clamp(1rem, 4.2vw, 4rem);
+		--work-para-font-size: clamp(0.8rem, 4vw, 2rem);
+		--max-work-image-height: 75vw;
+
+		/* Blog Sections */
+		--h1-text: clamp(1.5rem, 7vw, 4rem);
+		--min-blog-number-width: 1rem;
+		--blog-number-heading-inactive: 10vw;
+		--blog-number-heading: 12vw;
+		--blog-highlighted-date: clamp(0.5rem, 2.5vw, 2.5rem);
+
+		/* Contact Variables */
+		--get-in-touch-button-font-size: clamp(1rem, 8vw, 3rem);
+		--max-chat-window-height: 130vw;
+		--chat-message-font-size: clamp(0.5rem, 4vw, 3rem);
+
+		/* Awards and Recognitions */
+		--side-image-size: 75vw;
+		--awards-title: clamp(0.8rem, 5vw, 3.5rem);
+		--awards-details: clamp(0.8rem, 3.5vw, 3rem);
+		--award-details-p: clamp(0.5rem, 3vw, 2rem);
+		--view-achievement-button-font-size: clamp(0.5rem, 4vw, 1.2rem);
+		--awards-row-gap: 1rem;
+	}
+	.body::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Videos */
+	:root {
+		--video-entity-min-height: clamp(10rem, 74vw, 12.5rem);
+		--other-video-font: clamp(1rem, 5.2vw, 5.2rem);
+		--nav-button-max-width: 8vw;
+	}
+
+	/* Testimonials */
+
+	.section > div.IntroHeader {
+		display: flex;
+		align-items: center;
+		padding: 0 2rem;
+		margin-bottom: 3rem;
+		justify-content: flex-start;
+	}
+
+	/* Tech Stack */
+	:root {
+		--tech-stack-img-size: 45vw;
+	}
+}
+
+
+
+@media screen and (min-width: 1540px) and (max-width: 1792px) {
+	:root {
+		--size-factor: 1.8;
+
+		/* Work Variables */
+		--work-title-font-size: clamp(1rem, 1.4vw, 2.5rem);
+		--work-date-font-size: clamp(1rem, 1.2vw, 2.5rem);
+		--work-para-font-size: clamp(0.8rem, 1.1vw, 2rem);
+		--max-work-card-container-height: 15vw;
+
+		/* Blog Variables */
+		--featured-blog-image-size: clamp(8rem, 20vw, 28rem);
+		--featured-blog-p-font-size: clamp(0.4rem, 1vw, 3rem);
+		--sample-blog-line-height: 2rem;
+		--relatable-blog-image-height: calc(9vw * var(--size-factor));
+
+		/* Contact Variables */
+		--row-gap-get-in-touch: 1.3rem;
+		--max-chat-window-height: 62vh;
+
+		/* Awards */
+		--awards-row-gap: 2rem;
+		--side-image-size: clamp(10rem, calc(13.5vh * var(--size-factor)), 18rem);
+
+		/* Videos */
+		--video-container-height: clamp(12rem, 20vw, 30rem);
+		--video-entity-min-height: clamp(10rem, 13vw, 15rem);
+		--featured-video-heading: clamp(1rem, 2vw, 3rem);
+		--featured-video-excerpt: clamp(1rem, 1.2vw, 2.5rem);
+		--other-video-font: clamp(1rem, 1.2vw, 3.2rem);
+
+		/* Testimonials */
+		--testimonial-icon: clamp(8rem, 10vw, 18rem);
+		--testimonial-entity-text: clamp(1rem, 1.8vw, 3rem);
+
+		/* Tech Stack */
+		--stack-card-max-height: 80vh;
+	}
+}
+
+@media screen and (min-width: 1792px) and (max-width: 5000px) {
+	:root {
+		--max-chat-window-height: 60vh;
+	}
+}

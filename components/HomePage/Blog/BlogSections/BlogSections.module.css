@@ -62,5 +62,31 @@
 	display: var(--hover-blog-sections-active);
 	background: #fff;
 	z-index: 1;
+}
 
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.SectionElement,
+	.ShowMoreContainer {
+		display: none;
+	}
+	.BlogSections {
+		width: 100%;
+		justify-content: flex-end;
+	}
+}
+
+.BlogCategoryDropDown {
+	padding: 0.5rem;
+	outline: none;
+	border: none;
+	background-color: transparent;
+	border-bottom: 2px solid #ccc;
+	font-size: 1.2rem;
+	color: var(--blog-mobile-category-font-color);
+}
+
+@media screen and (min-width: 540px) and (max-width: 10000px) {
+	.BlogCategoryDropDown {
+		display: none;
+	}
 }

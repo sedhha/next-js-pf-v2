@@ -20,7 +20,7 @@ export default function GetInTouch() {
 				<textarea placeholder="Message" rows={4} />
 				<div />
 			</div>
-			<div>
+			<div className={classes.ButtonContainer}>
 				<button className={`button ${classes.ButtonStyle}`}>Send</button>
 			</div>
 		</div>

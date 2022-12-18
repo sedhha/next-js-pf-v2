@@ -35,9 +35,6 @@ export default function Introduction() {
 					and programmer of all time!
 				</h4>
 			</div>
-			<div className={classes.ActionArea}>
-				<button className={classes.Button}>Learn More</button>
-			</div>
 		</section>
 	);
 }

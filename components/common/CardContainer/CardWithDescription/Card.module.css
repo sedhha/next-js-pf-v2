@@ -6,8 +6,24 @@
 	box-shadow: var(--box-shadow-thin);
 	border-radius: 1rem;
 	animation: slide-from-left 5s ease-in;
-	height: var(--max-work-card-container-height);
 	overflow: hidden;
+}
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.Card {
+		height: auto;
+		display: none;
+		padding: 1rem;
+	}
+	.Card h3:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+	.Card:first-child {
+		display: flex;
+	}
+	.CardImage {
+		border-radius: 0.5rem;
+	}
 }
 
 .Card:nth-child(even) {
@@ -19,7 +35,6 @@
 
 .CardImage {
 	border-radius: 1rem;
-	max-height: var(--max-work-image-height);
 	max-width: var(--max-work-image-height);
 }
 

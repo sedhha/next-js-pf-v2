@@ -51,3 +51,17 @@
 	border-radius: 0.2rem;
 	font-size: var(--get-in-touch-button-font-size);
 }
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.ButtonStyle {
+		text-align: center;
+		align-self: center;
+	}
+	.ButtonContainer {
+		justify-content: center;
+	}
+}
+
+.ButtonContainer {
+	display: flex;
+}

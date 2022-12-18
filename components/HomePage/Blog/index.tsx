@@ -26,19 +26,31 @@ export default function BlogPage() {
 						{mostPopularBlogs.map((blog, index) => {
 							const isActive = mostPopularSelectedBlogId === blog.id;
 							return (
-								<h2
-									key={blog.id}
-									onClick={() =>
-										!isActive && dispatch(updateMostPopularSelected(blog.id))
-									}
-									className={`${classes.Top5BlogNumber} ${
-										isActive
-											? classes.Top5BlogNumber_active
-											: classes.Top5BlogNumber_passive
-									}`}
-								>
-									{`${index + 1}`.padStart(2, '0')}
-								</h2>
+								<div key={blog.id} className={classes.MobileDisplay}>
+									<LazyImage src={blog.image} className={classes.MobileDisplayImage} />
+									<div className={classes.MobileDisplayContent}>
+										<h2
+											onClick={() =>
+												!isActive && dispatch(updateMostPopularSelected(blog.id))
+											}
+											className={`${classes.Top5BlogNumber} ${
+												isActive
+													? classes.Top5BlogNumber_active
+													: classes.Top5BlogNumber_passive
+											}`}
+										>
+											{`${index + 1}`.padStart(2, '0')}
+										</h2>
+										<h3 className={classes.MobileBlogTitle}>{blog.title}</h3>
+										<div className={classes.MobileBlogMetaDetails}>
+											<div className={classes.CategoryRow}>
+												<div className={classes.Circle}></div>
+												<h4 className={classes.PrimaryCategoryTag}>Web Development</h4>
+											</div>
+											<h3 className={classes.DateSection}>29 June 2022</h3>
+										</div>
+									</div>
+								</div>
 							);
 						})}
 					</div>
