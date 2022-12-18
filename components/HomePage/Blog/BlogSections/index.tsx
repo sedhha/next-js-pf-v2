@@ -45,6 +45,11 @@ export default function BlogSections() {
 	);
 	return (
 		<div className={classes.BlogSections}>
+			<select className={classes.BlogCategoryDropDown}>
+				{displaySections.map((section) => (
+					<option key={section.value}>{section.label}</option>
+				))}
+			</select>
 			{displaySections.map((section, index) => {
 				const isActive = section.value === activeBlogCategory;
 				const isLastItem = displaySections.length === index + 1;

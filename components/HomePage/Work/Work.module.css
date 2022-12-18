@@ -32,10 +32,10 @@
 
 @media screen and (min-width: 240px) and (max-width: 540px) {
 	.IntroHeaderContent {
-		text-align: justify;
+		text-align: start;
 	}
 	.IntroHeader {
 		align-items: flex-start;
-		padding: 0 1rem;
+		padding: 0 1.5rem;
 	}
 }

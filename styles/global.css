@@ -24,7 +24,7 @@
 	--railway: 'Raleway', sans-serif;
 	--size-factor: 2;
 	--h1-text-main: clamp(2rem, 4.5vw, 5rem);
-	--h1-text: clamp(0.5rem, 4vw, 4rem);
+	--h1-text: clamp(1.5rem, 4vw, 4rem);
 	--h2-text: clamp(1.5rem, 4.5vw, 4.5rem);
 	--p-text: clamp(1rem, 1.8vw, 2rem);
 	--big-button-text: clamp(0.9rem, 1.5vw, 1.5rem);
@@ -59,6 +59,7 @@
 	);
 	--blog-card-h3-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
 	--blog-card-h4-font-size: clamp(0.6rem, 1.4vw, 1.5rem);
+	--mobile-blog-font-size: clamp(0.5rem, 4vw, 1.5rem);
 
 	/* Contact Variables */
 	--get-in-touch-heading: clamp(3.2rem, 4.2vw, 4rem);
@@ -132,14 +133,27 @@
 
 @media screen and (min-width: 240px) and (max-width: 540px) {
 	:root {
-		--max-work-image-height: 80vw;
+		/* Work Variables */
+		--work-title-font-size: clamp(1rem, 4.5vw, 4rem);
+		--work-date-font-size: clamp(1rem, 4.2vw, 4rem);
+		--work-para-font-size: clamp(0.8rem, 4vw, 2rem);
+		--max-work-image-height: 75vw;
+
+		/* Blog Sections */
+		--h1-text: clamp(1.5rem, 7vw, 4rem);
+		--min-blog-number-width: 1rem;
+		--blog-number-heading-inactive: 10vw;
+		--blog-number-heading: 12vw;
+		--blog-highlighted-date: clamp(0.5rem, 2.5vw, 2.5rem);
+	}
+	.body::-webkit-scrollbar {
+		display: none;
 	}
 }
 
 @media screen and (min-width: 1540px) and (max-width: 1792px) {
 	:root {
 		--size-factor: 1.8;
-		--max-chat-window-height: 65vh;
 		--max-work-card-container-height: 45vw;
 
 		/* Work Variables */
@@ -270,6 +284,7 @@ p {
 	--footer-bg: var(--faded-blue);
 	--footer-text-color: var(--light-background-color);
 	--footer-input-text-color: var(--normal-text-color);
+	--blog-mobile-category-font-color: var(--normal-text-color);
 	transition: var(--fade-transition);
 }
 
@@ -331,6 +346,7 @@ p {
 	--footer-bg: var(--active-blue);
 	--footer-text-color: var(--light-background-color);
 	--footer-input-text-color: var(--normal-text-color);
+	--blog-mobile-category-font-color: var(--light-background-color);
 	transition: var(--fade-transition);
 }
 

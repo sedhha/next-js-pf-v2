@@ -193,3 +193,76 @@
 .Button {
 	font-size: var(--blog-button-font-size);
 }
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.IntroHeader {
+		width: 100%;
+		justify-content: space-between;
+	}
+	.BlogModule {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+	.HighlightedBlogs {
+		padding: 0 0.5rem;
+	}
+	.HighlightedBlogContent {
+		display: none;
+	}
+	.Top5Blogs {
+		width: 100%;
+		gap: 1rem;
+		padding: 0.5rem;
+	}
+	.BlogModule {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		margin-top: 1rem;
+		padding: 1rem 0;
+	}
+	.HighlightedBlog {
+		padding: 0;
+		margin: 0;
+	}
+	.MobileDisplayImage {
+		height: 30vw;
+		aspect-ratio: 1;
+		border-radius: 1rem;
+	}
+	.MobileDisplay {
+		width: 100%;
+		display: flex;
+		align-items: center;
+	}
+	.MobileDisplayContent {
+		height: 100%;
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		padding: 0 0.4rem;
+	}
+	.MobileBlogTitle {
+		display: block;
+		font-size: var(--mobile-blog-font-size);
+		color: var(--category-font);
+	}
+	.MobileBlogMetaDetails {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.RelatedBlogs {
+		display: none;
+	}
+}
+@media screen and (min-width: 540px) and (max-width: 10000px) {
+	.MobileDisplayImage,
+	.MobileBlogTitle,
+	.MobileBlogMetaDetails {
+		display: none;
+	}
+}
