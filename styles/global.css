@@ -447,6 +447,11 @@ p {
 		margin-bottom: 3rem;
 		justify-content: flex-start;
 	}
+
+	/* Tech Stack */
+	:root {
+		--tech-stack-img-size: 45vw;
+	}
 }
 
 @media screen and (min-width: 1540px) and (max-width: 1792px) {

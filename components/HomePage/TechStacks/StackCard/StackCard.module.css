@@ -20,3 +20,12 @@
 	height: var(--tech-stack-img-size);
 	aspect-ratio: 1;
 }
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.StackCard h5 {
+		font-size: 8vw;
+		letter-spacing: 0.05em;
+		color: var(--tech-stack-title-color);
+		transition: var(--fade-transition);
+	}
+}
