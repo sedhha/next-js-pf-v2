@@ -96,7 +96,7 @@
 	}
 	.IntroHeader {
 		order: 2;
-		margin-bottom: 1rem;
+		margin: 0 1rem 1rem;
 	}
 	.IntroTagline {
 		order: 3;
