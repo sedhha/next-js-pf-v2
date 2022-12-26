@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Intro.module.css';
 import { pageSections } from '@/constants/index';
+import MultiImageWrapper from '@/components/common/MultiImageWrapper';
 export default function Introduction() {
 	return (
 		<section className={classes.IntroGrid} id={pageSections.ABOUT}>
@@ -10,9 +11,8 @@ export default function Introduction() {
 				</h1>
 			</div>
 			<div className={classes.ImageContainer}>
-				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img
-					src={'/intro-image.jpeg'}
+				<MultiImageWrapper
+					images={['/intro-image.jpeg', '/chat-icon.png']}
 					className={classes.Image}
 					alt={'Shivam -Sahil: Developer'}
 				/>
