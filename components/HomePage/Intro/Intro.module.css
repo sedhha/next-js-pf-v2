@@ -88,6 +88,8 @@
 	max-height: 100%;
 }
 
+
+
 @media screen and (min-width: 240px) and (max-width: 540px) {
 	.IntroGrid {
 		display: flex;
