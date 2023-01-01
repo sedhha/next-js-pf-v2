@@ -1,13 +1,13 @@
 .Header {
 	width: 100%;
 	max-width: 100vw;
-	border: 2px solid red;
 	padding: 1rem;
 	display: flex;
 	align-items: center;
     overflow: hidden;
     top: 0;
-    position: fixed;
+    position: sticky;
+	box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
 }
 
 .LogoSection {
@@ -37,8 +37,6 @@
 .HeaderElement {
 	font-size: clamp(0.4rem, var(--standard-headings-small), 2rem);
 }
-
-.HideElement {}
 
 @media (max-aspect-ratio: 550 / 897) {
 	.HeaderElements {

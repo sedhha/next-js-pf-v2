@@ -5,6 +5,9 @@
 
 	/* Font Sizes */
 	--standard-headings: 3vmax;
+	--h1-text: 3.5vmax;
+	--h2-text: 3vmax;
+	--p-text: 1.5vmax;
 	--standard-headings-small: 1.5vmax;
 
 }
