@@ -7,6 +7,7 @@
 	/* Font Sizes */
 	--standard-headings: 3vmax;
 	--h1-text: 3.5vmax;
+	--h1-card-text: 1.5vw;
 	--h2-text: 3vmax;
 	--p-text: 2vmax;
 	--standard-headings-small: 1.5vmax;
@@ -29,4 +30,15 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+}
+
+/* Common Utilities */
+.NavigationButton {
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+	align-self: center;
+	max-width: var(--nav-button-max-width);
+}
+.NavigationButton:hover {
+	scale: 0.9;
 }
