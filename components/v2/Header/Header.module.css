@@ -16,13 +16,13 @@
 }
 
 .LogoSection h1 {
-	font-size: clamp(0.5rem, var(--standard-headings), 4rem);
+	font-size: clamp(0.5rem, var(--standard-headings), 8rem);
 	font-weight: bold;
 	color: var(--light-blue);
 }
 
 .LogoImage {
-	width: clamp(3rem, 2.5vmax, 3.5rem);
+	width: clamp(3rem, 2.5vmax, 6rem);
 	aspect-ratio: 1;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .HeaderElement {
-	font-size: clamp(0.4rem, var(--standard-headings-small), 2rem);
+	font-size: clamp(0.4rem, var(--standard-headings-small), 6rem);
 }
 
 @media (max-aspect-ratio: 550 / 897) {

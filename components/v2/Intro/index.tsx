@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './Intro.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 
-const introPara = ``;
 
 const Intro = () => {
 	return (

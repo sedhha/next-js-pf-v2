@@ -4,15 +4,13 @@
 	display: grid;
 	grid-template-columns: repeat(11, 1fr);
 	grid-template-rows: repeat(5, 1fr);
-    row-gap: 1.2rem;
-    border:2px solid red;
 }
 
 .H1Main {
 	grid-area: 1 / 1 / 2 / 12;
 	justify-self: center;
 	padding: 2rem;
-	font-size: clamp(0.5rem, var(--h1-text), 4rem);
+	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
 }
@@ -20,7 +18,7 @@
 .Intro {
 	font-style: normal;
 	font-weight: 500;
-	font-size: clamp(0.5rem, var(--h2-text), 3rem);
+	font-size: clamp(0.5rem, var(--h2-text), 12rem);
 	letter-spacing: 0.02em;
 	grid-area: 2 / 1 / 3 / 8;
 	justify-self: center;
@@ -39,7 +37,7 @@
 .Image {
 	object-fit: contain;
 	width: 100%;
-    max-height: 100%;
+	max-height: 100%;
 }
 
 .IntroPara {
@@ -53,7 +51,13 @@
 .IntroPara h4 {
 	font-style: normal;
 	font-weight: 300;
-	font-size: clamp(0.5rem, var(--p-text), 2rem);
+	font-size: clamp(0.5rem, var(--p-text), 8rem);
 	letter-spacing: 0.05em;
 	color: var(--intro-para-color);
+}
+
+@media screen and (min-height: 980px) {
+	.BodyModule {
+		row-gap: 5.4vh;
+	}
 }

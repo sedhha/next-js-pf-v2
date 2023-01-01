@@ -1,5 +1,5 @@
 .SwitchBoard {
-	width: clamp(5rem, 6vmax, 8rem);
+	width: clamp(5rem, 6vmax, 16rem);
 	border-radius: 1.5vmax;
 	aspect-ratio: 2.5;
 	background-color: var(--toggle-switch-bg);
@@ -10,7 +10,7 @@
 
 .SwitchBoard section {
 	border-radius: 50%;
-	width: clamp(0.5rem, 1.8vmax, 1.5rem);
+	width: clamp(0.5rem, 1.8vmax, 3rem);
 	aspect-ratio: 1;
 	background-color: var(--toggle-switch);
 	top:50%;
@@ -26,6 +26,6 @@
 }
 
 .on {
-	translate: calc(clamp(5rem, 6vmax, 8rem) - 150%) -54%;
+	translate: calc(clamp(5rem, 6vmax, 16rem) - 150%) -54%;
 	transition: 0.3s all ease-in;
 }
