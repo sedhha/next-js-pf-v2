@@ -7,35 +7,20 @@
 	border-radius: 1rem;
 	animation: slide-from-left 5s ease-in;
 	overflow: hidden;
-}
-
-@media screen and (min-width: 240px) and (max-width: 540px) {
-	.Card {
-		height: auto;
-		display: none;
-		padding: 1rem;
-	}
-	.Card h3:not(:last-child) {
-		margin-bottom: 1rem;
-	}
-	.Card:first-child {
-		display: flex;
-	}
-	.CardImage {
-		border-radius: 0.5rem;
-	}
+	justify-content: space-between;
 }
 
 .Card:nth-child(even) {
 	background-color: var(--active-blue);
 }
+
 .Card:nth-child(odd) {
 	background-color: var(--light-background-color);
 }
 
 .CardImage {
 	border-radius: 1rem;
-	max-width: var(--max-work-image-height);
+	max-height: 100%;
 }
 
 .EmployerTitle {
@@ -84,6 +69,7 @@
 .Card:nth-child(even) .Dates {
 	color: var(--light-background-color);
 }
+
 .Card:nth-child(odd) .Dates {
 	color: var(--light-blue);
 }
@@ -92,9 +78,11 @@
 	font-weight: 400;
 	font-size: var(--work-para-font-size);
 }
+
 .Card:nth-child(odd) h3 {
 	color: var(--normal-text-color);
 }
+
 .Card:nth-child(even) h3 {
 	color: var(--light-background-color);
 }
@@ -104,24 +92,49 @@
 		translatex: -100%;
 		opacity: 0;
 	}
+
 	20% {
 		translatex: -80%;
 		opacity: 0.2;
 	}
+
 	40% {
 		translatex: -60%;
 		opacity: 0.4;
 	}
+
 	60% {
 		translatex: -40%;
 		opacity: 0.6;
 	}
+
 	80% {
 		translatex: -20%;
 		opacity: 0.8;
 	}
+
 	100% {
 		translatex: 0;
 		opacity: 1;
+	}
+}
+
+@media screen and (min-width: 240px) and (max-width: 540px) {
+	.Card {
+		height: auto;
+		display: none;
+		padding: 1rem;
+	}
+
+	.Card h3:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	.Card:first-child {
+		display: flex;
+	}
+
+	.CardImage {
+		border-radius: 0.5rem;
 	}
 }

@@ -33,7 +33,6 @@
 	--chat-avatar-size: 3rem;
 
 	/* Work Variables */
-	--max-work-image-height: 100%;
 	--max-work-card-container-height: 39vw;
 	--work-title-font-size: clamp(1.2rem, 1.4vw, 1.5rem);
 	--work-date-font-size: clamp(1.1rem, 1.2vw, 1.2rem);
@@ -500,5 +499,8 @@ p {
 	:root {
 		--max-chat-window-height: 60vh;
 		--margin-bottom-heading: 4vw;
+		--work-title-font-size: clamp(1rem, 2vw, 1.8rem);
+		--work-date-font-size: clamp(1.1rem, 1.5vw, 2rem);
+		--work-para-font-size: clamp(0.9rem, 1.2vw, 2rem);
 	}
 }
