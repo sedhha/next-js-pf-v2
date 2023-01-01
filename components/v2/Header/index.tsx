@@ -39,9 +39,6 @@ const Header = () => {
 			</div>
 			<div className={classes.HeaderElements}>
 				{headerElements.map((element, index) => {
-					console.log(
-						[classes.HeaderElement, index > 3 ? classes.HideElement : null].join(' ')
-					);
 					return (
 						<h2
 							key={element.value}

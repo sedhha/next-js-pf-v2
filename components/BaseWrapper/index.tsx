@@ -20,7 +20,11 @@ export default function BaseComponent({ Component }: Props) {
 	}, [dispatch]);
 	React.useEffect(() => {
 		if (window?.innerWidth)
-			alert(`${window.innerWidth} & ${window.innerWidth / window.innerHeight}`);
+			alert(
+				`Width:${window.innerWidth} & Height: ${window.innerHeight} & ${
+					window.innerWidth / window.innerHeight
+				}`
+			);
 	}, []);
 	return (
 		<React.Fragment>
