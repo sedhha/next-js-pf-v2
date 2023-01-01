@@ -1,6 +1,6 @@
 .SwitchBoard {
 	width: clamp(5rem, 6vmax, 16rem);
-	border-radius: 1.5vmax;
+	border-radius: 3vw;
 	aspect-ratio: 2.5;
 	background-color: var(--toggle-switch-bg);
 	box-shadow: -2px 4px 12px -7px #000000;
@@ -10,7 +10,7 @@
 
 .SwitchBoard section {
 	border-radius: 50%;
-	width: clamp(0.5rem, 1.8vmax, 3rem);
+	width: clamp(0.5rem, 5.5vw, 1.5rem);
 	aspect-ratio: 1;
 	background-color: var(--toggle-switch);
 	top:50%;

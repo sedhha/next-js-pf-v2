@@ -11,9 +11,9 @@ const Work = () => {
 			<div className={classes.WorkExperienceCard}>
 				<SvgLeft className={'NavigationButton'} height={140} />
 				<div className={classes.ExperienceCardContainer}>
-					<Card />
-					<Card />
-					<Card />
+					<Card className={classes.Card} />
+					<Card className={classes.Card} />
+					<Card className={classes.Card} />
 				</div>
 				<SvgRight className={'NavigationButton'} height={140} />
 			</div>
