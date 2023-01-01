@@ -3,7 +3,7 @@ import { updateRevisitor } from '@/slices/navigation.slice';
 import { print } from '@/utils/dev-utils';
 import React from 'react';
 import { useAppSelector } from '../../redux/tools/hooks';
-
+import Head from 'next/head';
 type Props = {
 	Component: JSX.Element;
 };
@@ -19,7 +19,15 @@ export default function BaseComponent({ Component }: Props) {
 		dispatch(updateRevisitor(revisitor + 1));
 	}, [dispatch]);
 	React.useEffect(() => {
-		if (window?.innerWidth) alert(window.innerWidth);
+		if (window?.innerWidth)
+			alert(`${window.innerWidth} & ${window.innerWidth / window.innerHeight}`);
 	}, []);
-	return <Component.type {...Component.props} />;
+	return (
+		<React.Fragment>
+			<Head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			</Head>
+			<Component.type {...Component.props} />
+		</React.Fragment>
+	);
 }
