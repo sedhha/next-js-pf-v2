@@ -12,7 +12,7 @@ export default function Introduction() {
 			</div>
 			<div className={classes.ImageContainer}>
 				<MultiImageWrapper
-					images={['/intro-image.jpeg', '/chat-icon.png']}
+					images={['/intro-image.jpeg']}
 					className={classes.Image}
 					alt={'Shivam -Sahil: Developer'}
 				/>

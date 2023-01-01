@@ -105,6 +105,7 @@
 	--tech-stack-img-size: 9.375rem;
 	--tech-stack-star-size: 1.563rem;
 	--nav-button-max-width: unset;
+	--margin-bottom-heading: 0;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -455,8 +456,6 @@ p {
 	}
 }
 
-
-
 @media screen and (min-width: 1540px) and (max-width: 1792px) {
 	:root {
 		--size-factor: 1.8;
@@ -500,5 +499,6 @@ p {
 @media screen and (min-width: 1792px) and (max-width: 5000px) {
 	:root {
 		--max-chat-window-height: 60vh;
+		--margin-bottom-heading: 4vw;
 	}
 }
