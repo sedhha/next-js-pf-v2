@@ -4,6 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	row-gap: 2vh;
+	overflow-x: hidden;
 }
 
 .H1Main {
@@ -12,7 +13,6 @@
 	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
-	margin-bottom: 2vh;
 }
 
 .WorkExperienceContainer {
@@ -39,7 +39,7 @@
 }
 
 .Image img {
-	height: 25vw;
+	max-width: 80%;
 	aspect-ratio: 1;
 	object-fit: cover;
 	object-position: center;
@@ -53,6 +53,7 @@
 	/* background-color: var(--dark-blue); */
 	border-radius: 1vw;
 	row-gap: 0.5rem;
+	max-width: 50vw;
 }
 .Card h1 {
 	font-size: clamp(0.5rem, var(--h1-card-text), 16rem);
@@ -108,5 +109,14 @@
 
 	.Image img {
 		height: 40vh;
+	}
+}
+
+@media (min-height: 850px) {
+	.BodyModule {
+		row-gap: 2vh;
+	}
+	.H1Main {
+		margin-bottom: 2vh;
 	}
 }
