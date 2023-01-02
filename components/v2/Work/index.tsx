@@ -6,17 +6,16 @@ import Card from '@/v2/common/Card';
 
 const Work = () => {
 	return (
-		<div className={classes.WorkModule}>
+		<div className={classes.BodyModule}>
 			<h1 className={classes.H1Main}>Work Experience</h1>
-			<div className={classes.WorkExperienceCard}>
-				<SvgLeft className={'NavigationButton'} height={140} />
-				<div className={classes.ExperienceCardContainer}>
-					<Card className={classes.Card} />
-					<Card className={classes.Card} />
-					<Card className={classes.Card} />
-					<Card className={classes.Card} />
+			<div className={classes.WorkExperienceContainer}>
+				<SvgLeft height={140} />
+				<div className={classes.WorkCardContainer}>
+					<Card className={classes.Card} imgClassName={classes.Image} />
+					<Card className={classes.Card} imgClassName={classes.Image} />
+					<Card className={classes.Card} imgClassName={classes.Image} />
 				</div>
-				<SvgRight className={'NavigationButton'} height={140} />
+				<SvgRight height={140} />
 			</div>
 		</div>
 	);

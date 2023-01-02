@@ -3,6 +3,7 @@
 	max-width: 100vw;
 	display: flex;
 	flex-direction: column;
+	row-gap: 2vh;
 }
 
 .H1Main {
@@ -11,23 +12,38 @@
 	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
+	margin-bottom: 2vh;
 }
 
-.WorkExperienceCard {
-	display: grid;
-	max-width: 100vw;
-	grid-template-columns: 1fr 22fr 1fr;
-	column-gap: 0.5rem;
-}
-
-.ExperienceCardContainer {
+.WorkExperienceContainer {
+	width: 100vw;
 	display: flex;
-	padding: 1rem;
-	max-width: 100%;
 	justify-content: space-between;
-	column-gap: 1vw;
-	overflow-x: auto;
-	scroll-behavior: smooth;
+	align-items: center;
+}
+
+.WorkCardContainer {
+	max-width: 100%;
+	display: flex;
+	flex-shrink: 1;
+}
+
+/* ---- Card ---- */
+
+.Image {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Image img {
+	height: 25vw;
+	aspect-ratio: 1;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 2rem;
 }
 
 .Card {
@@ -75,18 +91,22 @@
 	color: var(--white-card-date-text-color);
 }
 
-.Card:nth-child(n+4) {
+.Card:nth-child(n + 4) {
 	display: none;
 }
 
 @media (max-aspect-ratio: 550 / 897) {
-    .Card:nth-child(n+2) {
+	.Card:nth-child(n + 2) {
 		display: none;
 	}
 	.WorkExperienceCard {
-		display: grid;
+		display: flex;
+		align-items: center;
 		max-width: 100vw;
-		grid-template-columns: 1fr 30fr 1fr;
-		border: 2px solid red;
+		overflow-x: hidden;
+	}
+
+	.Image img {
+		height: 40vh;
 	}
 }

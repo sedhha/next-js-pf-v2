@@ -4,12 +4,15 @@ import LazyImage from '@/v2/common/LazyImage';
 
 type Props = {
 	className: string;
+	imgClassName: string;
 };
 
-const Work = ({ className }: Props) => {
+const Work = ({ className, imgClassName }: Props) => {
 	return (
 		<div className={className}>
-			<LazyImage src={'/sample.png'} className={classes.Image} />
+			<div className={imgClassName}>
+				<LazyImage src={'/sample.png'} />
+			</div>
 			<h1>Optum Inc, UnitedHealth Group</h1>
 			<h2>Nov 2021 - Present</h2>
 			<div className={classes.Description}>
