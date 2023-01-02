@@ -44,6 +44,8 @@
 
 .BlogMain {
 	flex: auto;
+	max-height: 100%;
+	max-width: 75vw;
 }
 
 .BlogHead {
@@ -92,9 +94,7 @@
 
 .FeaturedBlogBody {
 	display: flex;
-	align-items: center;
-	max-width: 100%;
-    flex: auto;
+	height: 90%;
 }
 
 .Number {
@@ -103,6 +103,7 @@
 	width: fit-content;
 	height: 100%;
 	justify-content: space-between;
+	padding: 0 2vw;
 }
 
 .Number h4 {
@@ -125,6 +126,9 @@
 	display: flex;
 	flex-direction: column;
 	flex: auto;
+	padding: 0 2vw;
+	justify-content: space-evenly;
+
 }
 
 .FeaturedBlogTitleSection {
@@ -162,8 +166,8 @@
 
 .FeaturedBlogElements > h1 {
 	font-style: normal;
-	font-weight: 500;
-	font-size: 3.5vw;
+	font-weight: 700;
+	font-size: 3vw;
 	letter-spacing: 0.05em;
 	color: var(--featured-blog-heading);
 }
@@ -173,13 +177,11 @@
 	width: 100%;
 	align-items: center;
 	padding: 0.5rem;
-    height: 100%;
 }
 
 .ContentSection > div:nth-child(1) {
 	display: flex;
 	flex-direction: column;
-    row-gap: 2vh;
 }
 
 .ContentSection > div:nth-child(2) {
@@ -203,13 +205,6 @@
 	display: flex;
 	justify-content: center;
 	padding: 0.25rem;
-	container-type: inline-size;
-}
-
-@container (max-width: 100px) {
-	.ContentSection > div:nth-child(1) > div {
-        background-color: red;
-    }
 }
 
 .ContentSection > div:nth-child(2) > div {
@@ -220,7 +215,7 @@
     justify-content: space-around;
     align-items: flex-end;
     height: 100%;
-    row-gap: 5vh;
+	row-gap: 2vh;
 }
 
 .ContentSection > div:nth-child(2) > div > button {
@@ -236,10 +231,7 @@
 }
 
 .ContentSection > div:nth-child(2) > div > p {
-	font-size: clamp(0.5rem, 2.5vh, 16rem);
+	font-size: clamp(0.5rem, 2vh, 16rem);
     text-align: justify;
 }
 
-.ContentSection > div:nth-child(2) > div > p:nth-child(1) {
-    margin-top: 3rem;
-}
