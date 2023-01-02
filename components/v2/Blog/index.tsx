@@ -78,6 +78,41 @@ const Blog = () => {
 					<h5>22nd August 2022</h5>
 				</div>
 			</div>
+			<div className={classes.MobileView}>
+				<div className={classes.MobileBlogContainer}>
+					<LazyImage src={'/sample.png'} />
+					<div className={classes.MobileMetaData}>
+						<h4 is-active="true">01</h4>
+						<h1>Getting Started With NEXT JS</h1>
+						<div className={classes.MetaDataElements}>
+							<h3>Web Development</h3>
+							<h4>29 July 2022</h4>
+						</div>
+					</div>
+				</div>
+				<div className={classes.MobileBlogContainer}>
+					<LazyImage src={'/sample.png'} />
+					<div className={classes.MobileMetaData}>
+						<h4 is-active="true">01</h4>
+						<h1>Getting Started With NEXT JS</h1>
+						<div className={classes.MetaDataElements}>
+							<h3>Web Development</h3>
+							<h4>29 July 2022</h4>
+						</div>
+					</div>
+				</div>
+				<div className={classes.MobileBlogContainer}>
+					<LazyImage src={'/sample.png'} />
+					<div className={classes.MobileMetaData}>
+						<h4 is-active="true">01</h4>
+						<h1>Getting Started With NEXT JS</h1>
+						<div className={classes.MetaDataElements}>
+							<h3>Web Development</h3>
+							<h4>29 July 2022</h4>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
