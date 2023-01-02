@@ -128,7 +128,6 @@
 	flex: auto;
 	padding: 0 2vw;
 	justify-content: space-evenly;
-
 }
 
 .FeaturedBlogTitleSection {
@@ -189,7 +188,7 @@
 }
 
 .Img {
-	max-height: 50vh;
+	height: 50vh;
 	object-fit: cover;
 	object-position: center;
 	aspect-ratio: 1;
@@ -211,10 +210,10 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	padding: 0.5rem  2rem;
-    justify-content: space-around;
-    align-items: flex-end;
-    height: 100%;
+	padding: 0.5rem 2rem;
+	justify-content: space-around;
+	align-items: flex-end;
+	height: 100%;
 	row-gap: 2vh;
 }
 
@@ -232,6 +231,11 @@
 
 .ContentSection > div:nth-child(2) > div > p {
 	font-size: clamp(0.5rem, 2vh, 16rem);
-    text-align: justify;
+	text-align: justify;
 }
 
+@media screen and (min-height: 1900px) {
+	.Img {
+		min-height: 50vh;
+	}
+}
