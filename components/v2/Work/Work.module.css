@@ -107,7 +107,7 @@
 		grid-template-columns: repeat(3, 1fr);
 		grid-auto-flow: column;
 		overflow-x: auto;
-		border: 2px solid red;
+		scroll-behavior: smooth;
 	}
 	.Card {
 		min-width: 100vw;
