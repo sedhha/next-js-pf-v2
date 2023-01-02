@@ -1,7 +1,7 @@
 :root {
 	/* Constant Colors */
-	--light-blue: #0AA1DD;
-	--dark-blue: #001D6E;
+	--light-blue: #0aa1dd;
+	--dark-blue: #001d6e;
 	--blue-card-date-text-color: white;
 	--blue-card-description-text-color: white;
 	--white-card-date-text-color: var(--dark-blue);
@@ -16,23 +16,21 @@
 	--h2-text: 3vmax;
 	--p-text: 2vmax;
 	--standard-headings-small: 1.5vmax;
-
+	--nav-button-max-width: 5vw;
 }
 .lightMode {
-	font-family:'Courier New', Courier, monospace;
+	font-family: 'Courier New', Courier, monospace;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
-	--toggle-switch: #FAFF00;
+	--toggle-switch: #faff00;
 	--background-color: white;
-	
 }
 .darkMode {
-	font-family:'Courier New', Courier, monospace;
+	font-family: 'Courier New', Courier, monospace;
 
-	--light-blue: #0AA1DD;
+	--light-blue: #0aa1dd;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
-	--toggle-switch: #FAFF00;
+	--toggle-switch: #faff00;
 	--background-color: white;
-
 }
 
 * {
@@ -55,7 +53,7 @@
 /* Media Queries */
 
 @media (max-aspect-ratio: 550 / 897) {
-	.NavigationButton {
-		display: none;
+	:root {
+		--nav-button-max-width: 4vw;
 	}
 }

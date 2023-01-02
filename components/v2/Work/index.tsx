@@ -14,6 +14,7 @@ const Work = () => {
 					<Card className={classes.Card} />
 					<Card className={classes.Card} />
 					<Card className={classes.Card} />
+					<Card className={classes.Card} />
 				</div>
 				<SvgRight className={'NavigationButton'} height={140} />
 			</div>
