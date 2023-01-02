@@ -1,0 +1,18 @@
+.SocialIcon {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.Icon {
+    height: var(--icon-size);
+    width: var(--icon-size);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--fade-transition);
+    color: var(--special-icon-color);
+}
+
+.Icon:hover {
+    scale: 0.9;
+}

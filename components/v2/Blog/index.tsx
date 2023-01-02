@@ -1,60 +1,85 @@
 import React from 'react';
-import classes from './Header.module.css';
+import classes from './Blog.module.css';
 import LazyImage from '@/v2/common/LazyImage';
-import Toggle from '@/v2/common/RadioToggle';
+import SocialIcons from '@/v2/common/SocialIcons';
 
-const headerElements = [
-	{
-		label: 'About',
-		value: 'about'
-	},
-	{
-		label: 'Experience',
-		value: 'experience'
-	},
-	{
-		label: 'Contact',
-		value: 'contact'
-	},
-	{
-		label: 'Blog',
-		value: 'blog'
-	},
-	{
-		label: 'Videos',
-		value: 'videos'
-	},
-	{
-		label: 'Testimonials',
-		value: 'testimonials'
-	}
-];
-
-const Header = () => {
+const Blog = () => {
 	return (
-		<header className={classes.Header}>
-			<div className={classes.LogoSection}>
-				<h1>Shivam Sahil</h1>
-				<LazyImage className={classes.LogoImage} src={'/morpankh.svg'} />
+		<div className={classes.BlogBody}>
+			<div className={classes.BlogMain}>
+				<div className={classes.BlogHead}>
+					<h1>Blog</h1>
+					<section className={classes.BlogCategories}>
+						<h3 is-active="true">Web Development</h3>
+						<h3>Mern Stack</h3>
+						<h3>IoT Programming</h3>
+						<h3>Life</h3>
+						<select>
+							<option>More</option>
+							<option>Gaming</option>
+							<option>APIs</option>
+							<option>Docker</option>
+						</select>
+					</section>
+				</div>
+				<div className={classes.FeaturedBlogBody}>
+					<div className={classes.Number}>
+						<h4 is-active="true">01</h4>
+						<h4>02</h4>
+						<h4>03</h4>
+						<h4>04</h4>
+						<h4>05</h4>
+					</div>
+					<div className={classes.FeaturedBlogElements}>
+						<div className={classes.FeaturedBlogTitleSection}>
+							<h2>29 June 2022</h2>
+							<h3>Web Development</h3>
+							<h4>View All</h4>
+						</div>
+						<h1>Getting Started With NEXT JS</h1>
+						<div className={classes.ContentSection}>
+							<div>
+								<LazyImage src={'/sample.png'} className={classes.Img} />
+								<div>
+									<SocialIcons iconColorClass={classes.Icon} />
+								</div>
+							</div>
+							<div>
+								<div>
+									<p>
+										Working as a Software Engineer, I have majorly been involved in making
+										end to end applications using React and Scala as a backend service. I
+										have been also focussing on building microservices ...
+									</p>
+									<p>
+										Working as a Software Engineer, I have majorly been involved in making
+										end to end applications using React and Scala as a backend service. I
+										have been also focussing on building microservices ...
+									</p>
+									<p>I have been also focussing on building microservices ...</p>
+									<button>Read Complete Blog</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div className={classes.HeaderElements}>
-				{headerElements.map((element, index) => {
-					return (
-						<h2
-							key={element.value}
-							className={`${classes.HeaderElement}${
-								index > 3 ? ' ' + classes.HideElement : ''
-							}`}
-						>
-							{element.label}
-						</h2>
-					);
-				})}
+			<div className={classes.SideBar}>
+				<div className={classes.RelatedBlogCard}>
+					<LazyImage src={'/sample.png'} />
+					<h3>Web Development</h3>
+					<h4>Getting Started With NEXT JS</h4>
+					<h5>22nd August 2022</h5>
+				</div>
+				<div className={classes.RelatedBlogCard}>
+					<LazyImage src={'/sample.png'} />
+					<h3>Web Development</h3>
+					<h4>Getting Started With NEXT JS</h4>
+					<h5>22nd August 2022</h5>
+				</div>
 			</div>
-			<Toggle />
-		</header>
+		</div>
 	);
 };
 
-export default Header;
-``;
+export default Blog;

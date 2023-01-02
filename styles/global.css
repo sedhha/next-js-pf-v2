@@ -6,7 +6,8 @@
 	--blue-card-description-text-color: white;
 	--white-card-date-text-color: var(--dark-blue);
 	--white-card-description-text-color: black;
-
+	--dark-gray: #6c6767;
+	--orange: #F27304;
 	/* Font Sizes */
 	--standard-headings: 3vmax;
 	--h1-text: 3.5vmax;
@@ -23,14 +24,32 @@
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
+	--related-blog-title: var(--light-blue);
+	--related-blog-category: var(--light-blue);
+	--related-blog-date: var(--dark-blue);
+	--inactive-blog-category-text: var(--dark-gray);
+	--active-blog-category-text: var(--light-blue);
+	--featured-blog-date-text: black;
+	--featured-blog-view-all-button-text: var(--light-blue);
+	--featured-blog-heading: var(--light-blue);
+	--orange-button-color: var(--orange);
+	--orange-button-color-text: white;
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
-
-	--light-blue: #0aa1dd;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
+	--related-blog-title: var(--light-blue);
+	--related-blog-category: var(--light-blue);
+	--related-blog-date: var(--dark-blue);
+	--inactive-blog-category-text: var(--dark-gray);
+	--active-blog-category-text: var(--light-blue);
+	--featured-blog-date-text: black;
+	--featured-blog-view-all-button-text: var(--light-blue);
+	--featured-blog-heading: var(--light-blue);
+	--orange-button-color: var(--orange);
+	--orange-button-color-text: white;
 }
 
 * {
