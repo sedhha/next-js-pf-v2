@@ -66,6 +66,7 @@
 	--awards-card-background-b1: var(--orange);
 	--awards-card-background-b2: var(--dark-blue);
 	--achievement-button-color: white;
+	--achievement-button-font-color: white;
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -94,6 +95,7 @@
 	--awards-card-background-b1: var(--dark-blue);
 	--awards-card-background-b2: var(--orange);
 	--achievement-button-color: white;
+	--achievement-button-font-color: white;
 }
 
 * {
@@ -123,6 +125,7 @@
 		--get-in-touch-header-text: 3.2vh;
 		--chat-directly-font-size: 3vh;
 		--send-button-size: 4vh;
+		--h1-text: 3.2vh;
 	}
 }
 

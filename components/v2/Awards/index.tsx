@@ -9,7 +9,7 @@ const Awards = () => {
 		<section className={classes.BodyModule}>
 			<h1 className={classes.H1Main}>Awards and Recognitions</h1>
 			<div className={classes.WorkExperienceContainer}>
-				<SvgLeft height={50} />
+				<SvgLeft height={50} className={classes.NoMobile} />
 				<div className={classes.AwardContainer}>
 					<AwardCard alter={-1} />
 					<AwardCard alter={-1} />
@@ -18,7 +18,7 @@ const Awards = () => {
 					<AwardCard alter={-1} />
 					<AwardCard alter={-1} />
 				</div>
-				<SvgRight height={50} />
+				<SvgRight height={50} className={classes.NoMobile} />
 			</div>
 		</section>
 	);

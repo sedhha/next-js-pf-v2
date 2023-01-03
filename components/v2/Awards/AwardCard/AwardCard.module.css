@@ -34,6 +34,7 @@
 	font-size: var(--view-achievement-button-font-size);
 	outline: none;
 	border: none;
+	color: var(--achievement-button-font-color);
 }
 .AlterButton {
 	background-color: var(--light-blue);
@@ -54,8 +55,27 @@
 }
 
 .RowElements {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.AwardCard {
+		flex-direction: column;
+		min-width: 100vw;
+		scroll-behavior: smooth;
+		padding: 1vh 1vw;
+		
+	}
+	.SideImage {
+		max-height: 50vh;
+	}
+	.Details {
+		padding: 2vh 2vw;
+		overflow: hidden;
+		row-gap: 1vh;
+		max-height: 50vh;
+	}
 }

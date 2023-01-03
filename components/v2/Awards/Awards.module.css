@@ -13,7 +13,7 @@
 }
 
 .H1Main {
-	padding: 2rem;
+	padding: 2vh 2vw;
 	padding-bottom: 0;
 	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
@@ -29,4 +29,24 @@
 	grid-row-gap: 1vh;
 	grid-column-gap: 1vw;
 	overflow-x: hidden;
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.AwardContainer {
+		max-height: 100%;
+		display: flex;
+		overflow-x: auto;
+	}
+	.AwardContainer::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge add Firefox */
+	.AwardContainer {
+		-ms-overflow-style: none;
+		scrollbar-width: none; /* Firefox */
+	}
+	.NoMobile {
+		display: none;
+	}
 }
