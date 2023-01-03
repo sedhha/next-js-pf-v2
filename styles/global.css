@@ -1,15 +1,15 @@
 :root {
 	/* Constant Colors */
 	--light-blue: #0aa1dd;
-	--dark-blue: #001d6e; 
+	--dark-blue: #001d6e;
 	--faded-dark-blue: #172752;
 	--blue-card-date-text-color: white;
 	--blue-card-description-text-color: white;
 	--white-card-date-text-color: var(--dark-blue);
 	--white-card-description-text-color: black;
 	--dark-gray: #6c6767;
-	--orange: #F27304;
-	--green: #05FF00;
+	--orange: #f27304;
+	--green: #05ff00;
 	--faded-purple: rgba(74, 69, 214, 0.74);
 
 	/* Shadows */
@@ -36,7 +36,8 @@
 	--fade-transition: 0.3s ease-in all;
 	--send-buttoon-size: clamp(1.5rem, 2.5vw, 5rem);
 	--chat-avatar-size: 5vh;
-	--chat-directly-font-size: 4vw;
+	--chat-directly-font-size: 2vw;
+	--send-button-size: 2vw;
 }
 .lightMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -115,5 +116,12 @@
 		--contact-header-text: 2.8vh;
 		--get-in-touch-header-text: 3.2vh;
 		--chat-directly-font-size: 3vh;
+		--send-button-size: 4vh;
+	}
+}
+
+@media screen and (max-height: 700px) {
+	:root {
+		--get-in-touch-input-font-size: 2vw;
 	}
 }
