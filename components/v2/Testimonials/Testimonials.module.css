@@ -1,0 +1,64 @@
+.BodyModule {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.BodyModule > h1 {
+	font-size: clamp(0.5rem, var(--h1-text), 16rem);
+	font-weight: bold;
+	color: var(--light-blue);
+}
+
+.TestimonialSection {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 30fr 1fr;
+}
+
+.TestimonialEntity {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	box-shadow: var(--testimonial-box-shadow-effect);
+	padding: 2vh 5vw 10vh;
+	align-items: center;
+    row-gap: 2vh;
+}
+
+.TestimonialEntity > h1 {
+	font-size: clamp(0.5rem, var(--testimonial-entity-text), 16rem);
+	font-weight: 500;
+    color: var(--testimonial-content-title);
+}
+.TestimonialEntity > h2 {
+	font-size: clamp(0.5rem, calc(0.8 * var(--testimonial-entity-text)), 16rem);
+	font-weight: 400;
+	color: var(--testimonial-content-name);
+}
+
+.TestimonialEntity > p {
+	font-size: clamp(0.5rem, calc(0.6 * var(--testimonial-entity-text)), 16rem);
+	font-weight: 300;
+	color: var(--testimonial-content-p-color);
+}
+
+
+.ChatIcon {
+	border-radius: 50%;
+	aspect-ratio: 1;
+	max-height: 20vh;
+	object-fit: contain;
+	object-position: center;
+}
+
+.Testimonial {
+	height: 100%;
+	width: 100%;
+	padding: 5vh 5vw;
+}
+
+.SocialIcon {
+    font-size: 4vh;
+}

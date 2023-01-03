@@ -41,6 +41,7 @@
 	--video-container-height: 45vh;
 	--yt-video-aspect-ratio: 1.7777777778;
 	--video-content-text: 2.4vh;
+	--testimonial-entity-text: 3.5vh;
 }
 .lightMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -71,6 +72,9 @@
 	--achievement-button-color: white;
 	--achievement-button-font-color: white;
 	--video-content-p-font-color: var(--dark-gray);
+	--testimonial-content-title: black;
+	--testimonial-content-name: var(--dark-gray);
+	--testimonial-content-p-color: var(--dark-gray);
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -101,6 +105,9 @@
 	--achievement-button-color: white;
 	--achievement-button-font-color: white;
 	--video-content-p-font-color: var(--dark-gray);
+	--testimonial-content-title: black;
+	--testimonial-content-name: var(--dark-gray);
+	--testimonial-content-p-color: var(--dark-gray);
 }
 
 * {
