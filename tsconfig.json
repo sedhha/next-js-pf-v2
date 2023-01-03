@@ -24,6 +24,7 @@
 			"@/redux/*": ["redux/tools/*"],
 			"@/utils/*": ["utils/*"],
 			"@/v2/*": ["components/v2/*"],
+			"@/interfaces/*": ["interfaces/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],
