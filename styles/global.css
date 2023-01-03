@@ -63,6 +63,9 @@
 	--message-container-from-color: var(--orange);
 	--message-container-text-color: white;
 	--message-container-to-color: var(--light-blue);
+	--awards-card-background-b1: var(--orange);
+	--awards-card-background-b2: var(--dark-blue);
+	--achievement-button-color: white;
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -88,6 +91,9 @@
 	--message-container-from-color: var(--orange);
 	--message-container-text-color: white;
 	--message-container-to-color: var(--light-blue);
+	--awards-card-background-b1: var(--dark-blue);
+	--awards-card-background-b2: var(--orange);
+	--achievement-button-color: white;
 }
 
 * {
