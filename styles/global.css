@@ -10,6 +10,16 @@
 	--dark-gray: #6c6767;
 	--orange: #F27304;
 	--green: #05FF00;
+	--faded-purple: rgba(74, 69, 214, 0.74);
+
+	/* Shadows */
+	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+	--box-shadow-mod: 0px 0px 12px 4px rgba(0, 0, 0, 0.44);
+	--box-shadow-mid: 4px 4px 11px #000000;
+	--fade-transition: all 0.3s linear;
+	--testimonial-box-shadow-effect: 0px 4px 9px 19px rgba(192, 243, 247, 0.33);
+
 	/* Font Sizes */
 	--standard-headings: 3vmax;
 	--h1-text: 3.5vmax;
@@ -24,6 +34,9 @@
 	--nav-button-max-width: 5vw;
 	--get-in-touch-input-font-size: 3vw;
 	--fade-transition: 0.3s ease-in all;
+	--send-buttoon-size: clamp(1.5rem, 2.5vw, 5rem);
+	--chat-avatar-size: 5vh;
+	--chat-directly-font-size: 4vw;
 }
 .lightMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -44,6 +57,11 @@
 	--get-in-touch-color: var(--orange);
 	--anonymous-chat-header-bg: var(--faded-dark-blue);
 	--anonymous-chat-header-color: white;
+	--input-field-text-placeholder-color: black;
+	--send-button-color: black;
+	--message-container-from-color: var(--orange);
+	--message-container-text-color: white;
+	--message-container-to-color: var(--light-blue);
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -64,6 +82,11 @@
 	--get-in-touch-color: var(--orange);
 	--anonymous-chat-header-bg: var(--faded-dark-blue);
 	--anonymous-chat-header-color: white;
+	--input-field-text-placeholder-color: black;
+	--send-button-color: black;
+	--message-container-from-color: var(--orange);
+	--message-container-text-color: white;
+	--message-container-to-color: var(--light-blue);
 }
 
 * {
@@ -89,5 +112,8 @@
 @media (max-aspect-ratio: 550 / 897) {
 	:root {
 		--nav-button-max-width: 4vw;
+		--contact-header-text: 2.8vh;
+		--get-in-touch-header-text: 3.2vh;
+		--chat-directly-font-size: 3vh;
 	}
 }

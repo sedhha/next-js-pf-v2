@@ -260,7 +260,6 @@
 	}
 	.BlogBody {
 		padding: 1rem 0.5rem;
-		border: 2px solid red;
 		flex-direction: column;
 	}
 	.BlogMain {
