@@ -11,7 +11,7 @@ export default function Testimonials({}: Props) {
 		<section className={classes.BodyModule}>
 			<h1>A word about me!</h1>
 			<div className={classes.TestimonialSection}>
-				<SvgLeft className={'NavigationButton'} height={140} />
+				<SvgLeft className={classes.NavigationButton} height={140} />
 				<div className={classes.Testimonial}>
 					<div className={classes.TestimonialEntity}>
 						<LazyImage src={'/chat-icon.png'} className={classes.ChatIcon} />
@@ -30,7 +30,7 @@ export default function Testimonials({}: Props) {
 						<SocialIcons iconColorClass={classes.SocialIcon} />
 					</div>
 				</div>
-				<SvgRight className={'NavigationButton'} height={140} />
+				<SvgRight className={classes.NavigationButton} height={140} />
 			</div>
 		</section>
 	);

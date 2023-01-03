@@ -7,6 +7,7 @@ import Projects from '@/v2/Projects';
 import Awards from '@/v2/Awards';
 import Videos from '@/v2/Videos';
 import Testimonials from '@/v2/Testimonials';
+import TechStack from '@/v2/TechStack';
 
 export default function Index() {
 	return (
@@ -20,6 +21,7 @@ export default function Index() {
 			<Awards />
 			<Videos />
 			<Testimonials />
+			<TechStack />
 		</>
 	);
 }

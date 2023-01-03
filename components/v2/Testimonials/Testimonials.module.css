@@ -13,8 +13,8 @@
 
 .TestimonialSection {
 	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 30fr 1fr;
+	display: flex;
+    align-items: center;
 }
 
 .TestimonialEntity {
@@ -61,4 +61,13 @@
 
 .SocialIcon {
     font-size: 4vh;
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.NavigationButton {
+        display: none;
+    }
+    .TestimonialSection {
+        display: block;
+    }
 }
