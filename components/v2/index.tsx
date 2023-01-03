@@ -5,6 +5,7 @@ import Blog from '@/v2/Blog';
 import Contact from '@/v2/Contact';
 import Projects from '@/v2/Projects';
 import Awards from '@/v2/Awards';
+import Videos from '@/v2/Videos';
 
 export default function Index() {
 	return (
@@ -16,6 +17,7 @@ export default function Index() {
 			<Contact />
 			<Projects />
 			<Awards />
+			<Videos />
 		</>
 	);
 }

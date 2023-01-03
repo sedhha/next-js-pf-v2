@@ -1,0 +1,120 @@
+.BodyModule {
+	display: flex;
+	max-width: 100vw;
+	padding: 2vh 0;
+	align-items: center;
+}
+
+.FeaturedVideoSection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 0 2vw;
+	row-gap: 2vh;
+}
+
+.FeaturedVideoSection h1 {
+	font-size: clamp(0.5rem, var(--h1-text), 16rem);
+	font-weight: bold;
+	color: var(--light-blue);
+}
+.FeaturedVideoSection h2 {
+	font-size: clamp(0.5rem, var(--video-content-text), 16rem);
+	font-weight: bold;
+	color: var(--light-blue);
+}
+.FeaturedVideoSection p {
+	font-size: clamp(0.5rem, calc(var(--video-content-text) * 0.85), 16rem);
+	font-weight: bold;
+	color: var(--video-content-p-font-color);
+}
+
+.VideoContainer {
+	height: clamp(
+		var(--video-container-height),
+		var(--video-container-height),
+		var(--video-container-height)
+	);
+	aspect-ratio: var(--yt-video-aspect-ratio);
+}
+.VideoContainer iframe,
+.VideoContainerSmall iframe {
+	width: 100%;
+	height: 100%;
+}
+
+.VideoGrid {
+	max-width: 50vw;
+	width: 100%;
+	display: grid;
+	grid-column: 2;
+	grid-template-columns: repeat(auto-fit, minmax(18vw, 1fr));
+	grid-row-gap: 4vh;
+	grid-column-gap: 1vw;
+	padding: 1vh 1vw;
+}
+
+.VideoCard {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.VideoCard h1 {
+	font-style: normal;
+	font-weight: 700;
+	font-size: calc(var(--video-content-text) * 0.8);
+	letter-spacing: 0.05em;
+	color: var(--light-blue);
+}
+
+.VideoContainerSmall {
+	height: clamp(
+		calc(0.55 * var(--video-container-height)),
+		calc(0.55 * var(--video-container-height)),
+		calc(0.55 * var(--video-container-height))
+	);
+	aspect-ratio: var(--yt-video-aspect-ratio);
+}
+
+.SecondPart {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	align-items: center;
+	flex-direction: column;
+	padding: 2vh 0;
+}
+
+.BlueButton {
+	padding: 0.85vh 1vw;
+	font-size: var(--view-achievement-button-font-size);
+	outline: none;
+	border: none;
+	color: var(--achievement-button-font-color);
+	background-color: var(--light-blue);
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.BodyModule {
+		padding: 0;
+		flex-direction: column;
+	}
+	.VideoContainer,
+	.FeaturedVideoSection h2,
+	.FeaturedVideoSection p {
+		display: none;
+	}
+    .VideoGrid {
+        max-width: 100vw;
+        width: 100%;
+        display: grid;
+        grid-row: 1;
+        grid-template-columns: repeat(auto-fit, minmax(100vw, 1fr));
+        grid-row-gap: 2vh;
+        grid-column-gap: 0;
+        padding: 1vh 1vw;
+    }
+}

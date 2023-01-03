@@ -38,6 +38,9 @@
 	--chat-avatar-size: 5vh;
 	--chat-directly-font-size: 2vw;
 	--send-button-size: 2vw;
+	--video-container-height: 45vh;
+	--yt-video-aspect-ratio: 1.7777777778;
+	--video-content-text: 2.4vh;
 }
 .lightMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -67,6 +70,7 @@
 	--awards-card-background-b2: var(--dark-blue);
 	--achievement-button-color: white;
 	--achievement-button-font-color: white;
+	--video-content-p-font-color: var(--dark-gray);
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -96,6 +100,7 @@
 	--awards-card-background-b2: var(--orange);
 	--achievement-button-color: white;
 	--achievement-button-font-color: white;
+	--video-content-p-font-color: var(--dark-gray);
 }
 
 * {
