@@ -5,7 +5,7 @@ import LazyImage from '@/v2/common/LazyImage';
 
 const Intro = () => {
 	return (
-		<div className={classes.BodyModule}>
+		<section className={classes.BodyModule}>
 			<h1 className={classes.H1Main}>Artist By Birth, Engineer by Choice</h1>
 			<h2 className={classes.Intro}>
 				I am a <span>Full Stack Developer</span>
@@ -31,7 +31,7 @@ const Intro = () => {
 					and programmer of all time!
 				</h4>
 			</div>
-		</div>
+		</section>
 	);
 };
 

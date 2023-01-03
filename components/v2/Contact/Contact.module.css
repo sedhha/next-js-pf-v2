@@ -1,0 +1,147 @@
+.ContactForm {
+	max-width: 100vw;
+	display: flex;
+	flex-direction: column;
+	padding: 2rem;
+	overflow-x: hidden;
+}
+
+.ContactForm > h1 {
+	font-size: clamp(0.5rem, var(--contact-header-text), 16rem);
+	font-weight: bold;
+	color: var(--light-blue);
+}
+
+.Form {
+	display: flex;
+	max-width: 100%;
+	height: 100%;
+}
+
+.FormSection {
+	display: flex;
+	flex-direction: column;
+	width: clamp(60vw, auto, 70vw);
+	row-gap: 2vh;
+	padding: 2vh 2vw;
+	flex: auto;
+}
+
+.FormSection > h1 {
+	font-size: clamp(0.5rem, var(--get-in-touch-header-text), 16rem);
+	color: var(--get-in-touch-color);
+}
+
+.InputContainer input,
+.InputContainer textarea {
+	border: none;
+	outline: none;
+	width: 100%;
+	font-size: var(--get-in-touch-input-font-size);
+	background-color: var(--background-color);
+	color: var(--input-field-text-placeholder-color);
+	border-bottom: 0.4vh solid var(--get-in-touch-color);
+	padding: 1vh 0.5vw;
+}
+
+.InputContainer input::placeholder,
+.InputContainer textarea::placeholder {
+	font-style: normal;
+	font-weight: 300;
+	font-size: var(--get-in-touch-input-font-size);
+	color: var(--input-field-text-placeholder-color);
+}
+
+.ButtonContainer {
+	width: 100%;
+	text-align: start;
+}
+
+.ButtonContainer > button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: var(--orange-button-color);
+	color: var(--orange-button-color-text);
+	padding: 1vh 2vw;
+	font-size: clamp(0.5rem, 2vh, 16rem);
+	width: fit-content;
+}
+
+.ChatDirectlyForm {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	max-height: 100%;
+	padding: 0 1.5vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.AvatarWithImage {
+	position: relative;
+}
+
+.AvatarWithImage img {
+    height: 20vh;
+	object-fit:contain;
+	object-position: center;
+	border-radius: 50%;
+}
+.Circle {
+    position: absolute;
+    left: 70%;
+    top: 85%;
+    height: 2.5vh;
+}
+
+.ChatDirectlyForm > h2 {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 2vw;
+	color: var(--get-in-touch-color);
+}
+
+.ChatDirectlyForm > h2 {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 1.8vw;
+}
+
+.ChatDirectlyForm > button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: var(--light-blue);
+	color: var(--orange-button-color-text);
+	padding: 1vh 1vw;
+	font-size: clamp(0.5rem, 2vh, 16rem);
+	width: fit-content;
+}
+
+.ChatWindow {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	max-height: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+}
+
+.TopNavigation h2 {
+	font-size: 2vh;
+	color: var(--anonymous-chat-header-color);
+	transition: var(--fade-transition);
+}
+
+.TopNavigation {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	width: 100%;
+	background-color: var(--anonymous-chat-header-bg);
+	transition: var(--fade-transition);
+	justify-content: space-between;
+    width: 100%;
+}

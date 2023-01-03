@@ -4,6 +4,7 @@ import Header from '@/v2/Header';
 import Intro from '@/v2/Intro';
 import Work from '@/v2/Work';
 import Blog from '@/v2/Blog';
+import Contact from '@/v2/Contact';
 
 export default function HomePage() {
 	const { darkMode } = useAppSelector((state) => state.navigation);
@@ -13,6 +14,7 @@ export default function HomePage() {
 			<Intro />
 			<Work />
 			<Blog />
+			<Contact />
 		</div>
 	);
 }

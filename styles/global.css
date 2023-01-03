@@ -1,13 +1,15 @@
 :root {
 	/* Constant Colors */
 	--light-blue: #0aa1dd;
-	--dark-blue: #001d6e;
+	--dark-blue: #001d6e; 
+	--faded-dark-blue: #172752;
 	--blue-card-date-text-color: white;
 	--blue-card-description-text-color: white;
 	--white-card-date-text-color: var(--dark-blue);
 	--white-card-description-text-color: black;
 	--dark-gray: #6c6767;
 	--orange: #F27304;
+	--green: #05FF00;
 	/* Font Sizes */
 	--standard-headings: 3vmax;
 	--h1-text: 3.5vmax;
@@ -17,7 +19,11 @@
 	--h2-text: 3vmax;
 	--p-text: 2vmax;
 	--standard-headings-small: 1.5vmax;
+	--contact-header-text: 2.8vw;
+	--get-in-touch-header-text: 3.2vw;
 	--nav-button-max-width: 5vw;
+	--get-in-touch-input-font-size: 3vw;
+	--fade-transition: 0.3s ease-in all;
 }
 .lightMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -34,6 +40,10 @@
 	--featured-blog-heading: var(--light-blue);
 	--orange-button-color: var(--orange);
 	--orange-button-color-text: white;
+	--input-field-text-placeholder-color: var(--dark-gray);
+	--get-in-touch-color: var(--orange);
+	--anonymous-chat-header-bg: var(--faded-dark-blue);
+	--anonymous-chat-header-color: white;
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -50,6 +60,10 @@
 	--featured-blog-heading: var(--light-blue);
 	--orange-button-color: var(--orange);
 	--orange-button-color-text: white;
+	--input-field-text-placeholder-color: var(--dark-gray);
+	--get-in-touch-color: var(--orange);
+	--anonymous-chat-header-bg: var(--faded-dark-blue);
+	--anonymous-chat-header-color: white;
 }
 
 * {

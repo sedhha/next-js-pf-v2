@@ -6,7 +6,7 @@ import Card from '@/v2/common/Card';
 
 const Work = () => {
 	return (
-		<div className={classes.BodyModule}>
+		<section className={classes.BodyModule}>
 			<h1 className={classes.H1Main}>Work Experience</h1>
 			<div className={classes.WorkExperienceContainer}>
 				<SvgLeft height={50} />
@@ -17,7 +17,7 @@ const Work = () => {
 				</div>
 				<SvgRight height={50} />
 			</div>
-		</div>
+		</section>
 	);
 };
 
