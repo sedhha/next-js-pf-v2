@@ -42,7 +42,7 @@
 
 .Image img {
 	min-width: 80%;
-	width: clamp(80%,85%,90%);
+	width: clamp(80%, 85%, 90%);
 	aspect-ratio: 1;
 	object-fit: cover;
 	object-position: center;
@@ -131,5 +131,11 @@
 	}
 	.H1Main {
 		margin-bottom: 2vh;
+	}
+}
+
+@media (max-height: 650px) {
+	.Image img {
+		max-width: 60%;
 	}
 }
