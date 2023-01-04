@@ -1,0 +1,75 @@
+.FooterModule {
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+    background-color: var(--footer-bg);
+    padding: 4vh 4vw;
+    margin-top: 2vh; 
+}
+
+.MyDetails {
+	display: flex;
+	flex-direction: column;
+    row-gap: 1.5vh;
+}
+
+.MyDetails > h1,.MyDetails > h2,.Icons,.TextWithSymbol > h1,.MailIcon {
+	font-style: normal;
+	font-weight: 500;
+	color: var(--footer-heading-color);
+}
+
+.MyDetails > h1 {
+    font-size: 2vw;
+	letter-spacing: 0.05em;
+}
+.MyDetails > h2 {
+    font-size: 1vw;
+}
+
+.Icons {
+    font-size: 4vw;
+}
+
+.MailIcon {
+    font-size: 2vw;
+}
+
+.Subscribe {
+	display: flex;
+	flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    row-gap: 1.5vh;
+}
+.TextWithSymbol {
+    display: flex;
+    align-items: center;
+}
+
+.EmailInputField {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 2vh;
+	letter-spacing: 0.02em;
+	color: var(--footer-heading-color);
+	transition: var(--fade-transition);
+	text-decoration: underline;
+	text-underline-offset: 0.5vh;
+	padding: 1vh 1vw;
+	border: none;
+	outline: none;
+	text-align: end;
+    width: 100%;
+}
+
+.Subscribe > button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: var(--orange-button-color);
+	color: var(--orange-button-color-text);
+	padding: 1vh 2vw;
+	font-size: clamp(0.5rem, 1.5vh, 16rem);
+	width: fit-content;
+}

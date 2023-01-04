@@ -82,6 +82,8 @@
 	--tech-stack-title-color: black;
 	--tech-stack-input-box: white;
 	--special-icon-color: black;
+	--footer-heading-color: white;
+	--footer-bg: var(--faded-dark-blue);
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -118,6 +120,8 @@
 	--tech-stack-title-color: black;
 	--tech-stack-input-box: white;
 	--special-icon-color: white;
+	--footer-heading-color: white;
+	--footer-bg: var(--faded-dark-blue);
 }
 
 * {
