@@ -13,7 +13,6 @@
 	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
-
 }
 
 .Intro {
@@ -24,7 +23,7 @@
 	grid-area: 2 / 1 / 3 / 8;
 	justify-self: center;
 	align-self: center;
-    text-align: center;
+	text-align: center;
 }
 
 .Intro span {
@@ -35,8 +34,8 @@
 .ImageContainer {
 	grid-area: 2 / 8 / 6 / 12;
 	max-height: 100%;
-    justify-self: center;
-    align-self: center;
+	justify-self: center;
+	align-self: center;
 }
 .Image {
 	object-fit: contain;
@@ -52,7 +51,7 @@
 	padding: 0.5rem 2rem;
 }
 
-.IntroPara h4 {
+.IntroPara > h4 {
 	font-style: normal;
 	font-weight: 300;
 	font-size: clamp(0.5rem, var(--p-text), 8rem);
@@ -77,10 +76,10 @@
 	}
 	.H1Main {
 		text-align: center;
-        padding:1rem 0;
+		padding: 1rem 0;
 	}
 	.IntroPara {
 		padding: 0.5rem 1rem;
-        row-gap: 1rem;
+		row-gap: 1rem;
 	}
 }
