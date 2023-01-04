@@ -19,12 +19,12 @@ export default function BaseComponent({ Component }: Props) {
 		dispatch(updateRevisitor(revisitor + 1));
 	}, [dispatch]);
 	React.useEffect(() => {
-		if (window?.innerWidth)
-			alert(
-				`Width:${window.innerWidth} & Height: ${window.innerHeight} & ${
-					window.innerWidth / window.innerHeight
-				}`
-			);
+		// if (window?.innerWidth)
+		// 	alert(
+		// 		`Width:${window.innerWidth} & Height: ${window.innerHeight} & ${
+		// 			window.innerWidth / window.innerHeight
+		// 		}`
+		// 	);
 	}, []);
 	return (
 		<React.Fragment>
