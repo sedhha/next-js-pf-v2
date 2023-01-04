@@ -1,0 +1,267 @@
+.ContactForm {
+	max-width: 100vw;
+	display: flex;
+	flex-direction: column;
+	padding: 2rem;
+	overflow-x: hidden;
+}
+
+.ContactForm > h1 {
+	font-size: clamp(0.5rem, var(--contact-header-text), 16rem);
+	font-weight: bold;
+	color: var(--light-blue);
+}
+
+.Form {
+	display: flex;
+	max-width: 100%;
+	height: 100%;
+}
+
+.FormSection {
+	display: flex;
+	flex-direction: column;
+	width: clamp(60vw, auto, 70vw);
+	row-gap: 2vh;
+	padding: 2vh 2vw;
+	flex: auto;
+}
+
+.FormSection > h1 {
+	font-size: clamp(0.5rem, var(--get-in-touch-header-text), 16rem);
+	color: var(--get-in-touch-color);
+}
+
+.InputContainer input,
+.InputContainer textarea {
+	border: none;
+	outline: none;
+	width: 100%;
+	font-size: var(--get-in-touch-input-font-size);
+	background-color: var(--background-color);
+	color: var(--input-field-text-placeholder-color);
+	border-bottom: 0.4vh solid var(--get-in-touch-color);
+	padding: 1vh 0.5vw;
+}
+
+.InputContainer input::placeholder,
+.InputContainer textarea::placeholder {
+	font-style: normal;
+	font-weight: 300;
+	font-size: var(--get-in-touch-input-font-size);
+	color: var(--input-field-text-placeholder-color);
+}
+
+.ButtonContainer {
+	width: 100%;
+	text-align: start;
+}
+
+.ButtonContainer > button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: var(--orange-button-color);
+	color: var(--orange-button-color-text);
+	padding: 1vh 2vw;
+	font-size: clamp(0.5rem, 2vh, 16rem);
+	width: fit-content;
+}
+
+.ChatDirectlyForm {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	max-height: 100%;
+	padding: 0 1.5vw;
+	justify-content: center;
+	align-items: center;
+}
+
+.AvatarWithImage {
+	position: relative;
+}
+
+.AvatarWithImage img {
+	height: 20vh;
+	object-fit: contain;
+	object-position: center;
+	border-radius: 50%;
+}
+.Circle {
+	position: absolute;
+	left: 70%;
+	top: 85%;
+	height: 2.5vh;
+}
+
+.ChatDirectlyForm > h2 {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 4vh;
+}
+
+.ChatDirectlyForm > h2 {
+	font-style: normal;
+	font-weight: 500;
+	font-size: var(--chat-directly-font-size);
+	color: var(--get-in-touch-color);
+}
+
+.ChatDirectlyForm > button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: var(--light-blue);
+	color: var(--orange-button-color-text);
+	padding: 1vh 1vw;
+	font-size: clamp(0.5rem, 2vh, 16rem);
+	width: fit-content;
+}
+
+/* Chat Window */
+
+.ChatWindow {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: var(--box-shadow-mid);
+	width: clamp(25vw, 100%, 25vw);
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: var(--background-color);
+}
+
+.TopNavigation h2 {
+	font-size: 2vh;
+	color: var(--anonymous-chat-header-color);
+	transition: var(--fade-transition);
+}
+
+.TopNavigation {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	width: 100%;
+	background-color: var(--anonymous-chat-header-bg);
+	transition: var(--fade-transition);
+	justify-content: space-between;
+	width: 100%;
+}
+
+.MessageSendContainer {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	padding: 1vh 0.25vw;
+	column-gap: 1vw;
+	/* border: 2px solid blue; */
+}
+
+.MessageSendContainer input {
+	border: none;
+	outline: none;
+	box-shadow: var(--box-shadow-mid);
+	transition: var(--fade-transition);
+	padding: 0.5rem;
+	flex: auto;
+	background-color: var(--background-color);
+	color: var(--input-field-text-placeholder-color);
+}
+
+.MessageSendContainer input::placeholder {
+	color: var(--input-field-text-placeholder-color);
+}
+
+.MessageSendContainer_button {
+	font-size: var(--send-button-size);
+	color: var(--send-button-color);
+	transition: var(--fade-transition);
+}
+
+.MessageSendContainer_button {
+	cursor: pointer;
+}
+.MessageSendContainer_button:hover {
+	transform: scale(0.98);
+}
+
+/* Chat Element */
+
+.ChatElement {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.ChatImage {
+	max-height: var(--chat-avatar-size);
+	max-width: var(--chat-avatar-size);
+	-webkit-box-shadow: 0px 0px 30px 0px var(--faded-purple);
+	-moz-box-shadow: 0px 0px 30px 0px var(--faded-purple);
+	box-shadow: 0px 0px 30px 0px var(--faded-purple);
+	border-radius: 50%;
+}
+
+.ElementMessageContainer {
+	padding: 1vh 1vw;
+	font-style: normal;
+	font-weight: 500;
+	font-size: clamp(0.5rem, 1vw, 16rem);
+	letter-spacing: 0.05em;
+	border-radius: 0.813vw;
+}
+
+.MessageContainer_from {
+	background-color: var(--message-container-from-color);
+	color: var(--message-container-text-color);
+}
+
+.MessageContainer_to {
+	background-color: var(--message-container-to-color);
+	color: var(--message-container-text-color);
+}
+
+.ChatElements {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-height: 70vh;
+	overflow-x: auto;
+	row-gap: 1vh;
+	padding: 1vh 1vw;
+}
+
+.ChatElements::-webkit-scrollbar {
+	width: 0.3em;
+}
+
+.ChatElements::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+}
+
+.CloseButton {
+	cursor: pointer;
+	transition: var(--fade-transition);
+	font-family: Arial, Helvetica, sans-serif;
+}
+.CloseButton:hover {
+	transform: scale(0.98);
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.Form {
+		flex-direction: column;
+	}
+	.ChatWindow {
+		width: clamp(100vw, 100%, 100vw);
+	}
+	.ChatElements {
+		max-height: 75vh;
+	}
+	.ElementMessageContainer {
+		font-size: clamp(0.5rem, 2vh, 16rem);
+	}
+}

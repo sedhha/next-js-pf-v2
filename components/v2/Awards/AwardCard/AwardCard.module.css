@@ -1,0 +1,89 @@
+.AwardCard {
+	display: flex;
+	width: 100%;
+}
+
+.SideImage {
+	aspect-ratio: 1;
+	object-fit: cover;
+	object-position: center;
+	max-height: 25vh;
+}
+.evenBG {
+	background-color: var(--awards-card-background-b2);
+	transition: var(--fade-transition);
+}
+
+.oddBG {
+	background-color: var(--awards-card-background-b1);
+	transition: var(--fade-transition);
+}
+
+.Details {
+	padding: 1vh 1vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	overflow: hidden;
+	row-gap: 0.5rem;
+	max-height: 25vh;
+}
+
+.AchievementButton {
+	padding: 0.85vh 1vw;
+	font-size: 2vh;
+	outline: none;
+	border: none;
+	color: var(--achievement-button-font-color);
+}
+.AlterButton {
+	background-color: var(--light-blue);
+}
+.NormalButton {
+	background-color: var(--orange);
+}
+.TitleAndDescription {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	column-gap: 0.5vw;
+	color: var(--achievement-button-color);
+}
+.Details > h3,
+.Details > p {
+	color: var(--achievement-button-color);
+}
+
+.RowElements {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.RowElements > h1,
+.TitleAndDescription > h2 {
+	font-size: clamp(0.5rem, 2.5vh, 16rem);
+}
+.Details > h3,
+.Details > p {
+	font-size: clamp(0.5rem, 2.1vh, 16rem);
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.AwardCard {
+		flex-direction: column;
+		min-width: 100vw;
+		scroll-behavior: smooth;
+		padding: 1vh 1vw;
+	}
+	.SideImage {
+		max-height: 50vh;
+	}
+	.Details {
+		padding: 2vh 2vw;
+		overflow: hidden;
+		row-gap: 1vh;
+		max-height: 50vh;
+	}
+}

@@ -1,0 +1,52 @@
+.BodyModule {
+	width: 100%;
+	max-width: 100vw;
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+}
+
+.WorkExperienceContainer {
+	max-width: 100vw;
+	display: flex;
+	align-items: center;
+}
+
+.H1Main {
+	padding: 2vh 2vw;
+	padding-bottom: 0;
+	font-size: clamp(0.5rem, var(--h1-text), 16rem);
+	font-weight: bold;
+	color: var(--light-blue);
+}
+
+.AwardContainer {
+	max-height: 100%;
+	grid-column: 2;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+	grid-template-rows: 1fr;
+	grid-row-gap: 1vh;
+	grid-column-gap: 1vw;
+	overflow-x: hidden;
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.AwardContainer {
+		max-height: 100%;
+		display: flex;
+		overflow-x: auto;
+	}
+	.AwardContainer::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge add Firefox */
+	.AwardContainer {
+		-ms-overflow-style: none;
+		scrollbar-width: none; /* Firefox */
+	}
+	.NoMobile {
+		display: none;
+	}
+}
