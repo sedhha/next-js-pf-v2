@@ -1,4 +1,4 @@
-import LazyImage from '@/components/common/ImageUtility';
+import LazyImage from '@/v2/common/LazyImage';
 import React from 'react';
 import classes from './Contact.module.css';
 type Props = {

@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './SocialIcons.module.css';
 import socialIcons from '@/constants/social-icons.json';
-import LazyImage from '@/components/common/ImageUtility';
-import Icon from '@/components/common/Icons';
+import LazyImage from '@/v2/common/LazyImage';
+import Icon from '@/v2/common/Icons';
 interface IProps {
 	iconColorClass?: string;
 }

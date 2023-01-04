@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from './Testimonials.module.css';
-import SvgRight from '@/components/common/SvgRight';
-import SvgLeft from '@/components/common/SvgLeft';
+import SvgRight from '@/v2/common/SvgRight';
+import SvgLeft from '@/v2/common/SvgLeft';
 import SocialIcons from '@/v2/common/SocialIcons';
-import LazyImage from '@/components/common/ImageUtility';
+import LazyImage from '@/v2/common/LazyImage';
 type Props = {};
 
 export default function Testimonials({}: Props) {
