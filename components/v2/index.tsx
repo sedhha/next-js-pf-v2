@@ -9,11 +9,13 @@ import Videos from '@/v2/Videos';
 import Testimonials from '@/v2/Testimonials';
 import TechStack from '@/v2/TechStack';
 import Footer from '@/v2/Footer';
+import MobileNavigator from '@/v2/MobileNavigator';
 
 export default function Index() {
 	return (
 		<>
 			<Header />
+			<MobileNavigator />
 			<Intro />
 			<Work />
 			<Blog />

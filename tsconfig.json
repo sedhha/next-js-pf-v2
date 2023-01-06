@@ -5,6 +5,7 @@
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
+		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,
@@ -24,7 +25,8 @@
 			"@/redux/*": ["redux/tools/*"],
 			"@/utils/*": ["utils/*"],
 			"@/v2/*": ["components/v2/*"],
-			"@/interfaces/*": ["interfaces/*"]
+			"@/interfaces/*": ["interfaces/*"],
+			"@/hooks/*": ["hooks/*"],
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],

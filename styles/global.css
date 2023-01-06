@@ -49,6 +49,7 @@
 }
 .lightMode {
 	font-family: 'Courier New', Courier, monospace;
+	scroll-behavior: smooth;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
@@ -84,9 +85,11 @@
 	--special-icon-color: black;
 	--footer-heading-color: white;
 	--footer-bg: var(--faded-dark-blue);
+	--hover-more-text-color: white;
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
+	scroll-behavior: smooth;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
@@ -122,6 +125,7 @@
 	--special-icon-color: white;
 	--footer-heading-color: white;
 	--footer-bg: var(--faded-dark-blue);
+	--hover-more-text-color: white;
 }
 
 * {

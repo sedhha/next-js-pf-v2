@@ -1,0 +1,38 @@
+[
+	{
+		"label": "About",
+		"value": "about"
+	},
+	{
+		"label": "Work Experience",
+		"value": "work-experience"
+	},
+	{
+		"label": "Projects",
+		"value": "projects"
+	},
+	{
+		"label": "Contact",
+		"value": "contact"
+	},
+	{
+		"label": "Awards",
+		"value": "awards"
+	},
+	{
+		"label": "Blog",
+		"value": "blog"
+	},
+	{
+		"label": "Videos",
+		"value": "videos"
+	},
+	{
+		"label": "Testimonials",
+		"value": "testimonials"
+	},
+	{
+		"label": "Tech Stack",
+		"value": "tech-stack"
+	}
+]

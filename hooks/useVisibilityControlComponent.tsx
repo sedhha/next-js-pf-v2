@@ -6,11 +6,16 @@ interface IVisibility {
 	onVisibleCallback?: (entry: IntersectionObserverEntry) => void;
 }
 
-const VisibilityHandler = ({
+interface IVisibilityReturnProps {
+	scrollToComponent: () => void;
+	Component: JSX.Element;
+}
+
+const useVisibilityControlComponent = ({
 	Component,
 	visibilityThreshold,
 	onVisibleCallback
-}: IVisibility): JSX.Element => {
+}: IVisibility): IVisibilityReturnProps => {
 	const ref = React.useRef(null);
 	React.useEffect(() => {
 		const componentObserver = new IntersectionObserver(
@@ -21,8 +26,8 @@ const VisibilityHandler = ({
 				}
 			},
 			{
-				rootMargin: '0px',
-				threshold: visibilityThreshold ?? 0.7
+				rootMargin: '0',
+				threshold: visibilityThreshold ?? 0.95
 			}
 		);
 		const current = ref.current;
@@ -34,7 +39,20 @@ const VisibilityHandler = ({
 		};
 	}, [visibilityThreshold, onVisibleCallback]);
 
-	return <Component.type {...Component.props} ref={ref} />;
+	const scrollToComponent = React.useCallback(() => {
+		const current = ref.current;
+		if (current) {
+			//@ts-ignore
+			current.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+		}
+	}, []);
+	return {
+		scrollToComponent,
+		Component: <Component.type {...Component.props} ref={ref} />
+	};
 };
 
-export default VisibilityHandler;
+export default useVisibilityControlComponent;

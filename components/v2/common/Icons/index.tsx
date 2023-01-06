@@ -8,8 +8,10 @@ import {
 	AiOutlineTwitter,
 	AiOutlineWhatsApp
 } from 'react-icons/ai';
+import { HiViewList } from 'react-icons/hi';
 import { FaFacebookF } from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
+import { ImCross } from 'react-icons/im';
 
 interface IconProps extends IconBaseProps {
 	iconKey: string;
@@ -23,27 +25,33 @@ export const icons = {
 	AiOutlineSend: 'AiOutlineSend',
 	AiOutlineSearch: 'AiOutlineSearch',
 	AiFillStar: 'AiFillStar',
-	AiOutlineMail: 'AiOutlineMail'
+	AiOutlineMail: 'AiOutlineMail',
+	HiViewList: 'HiViewList',
+	ImCross: 'ImCross'
 };
 
 export default function Icon({ iconKey, ...rest }: IconProps) {
 	switch (iconKey) {
-		case 'AiOutlineCopy':
+		case icons.AiOutlineCopy:
 			return <AiOutlineCopy {...rest} />;
-		case 'FaFacebookF':
+		case icons.FaFacebookF:
 			return <FaFacebookF {...rest} />;
-		case 'AiOutlineTwitter':
+		case icons.AiOutlineTwitter:
 			return <AiOutlineTwitter {...rest} />;
-		case 'AiOutlineWhatsApp':
+		case icons.AiOutlineWhatsApp:
 			return <AiOutlineWhatsApp {...rest} />;
-		case 'AiOutlineSend':
+		case icons.AiOutlineSend:
 			return <AiOutlineSend {...rest} />;
-		case 'AiOutlineSearch':
+		case icons.AiOutlineSearch:
 			return <AiOutlineSearch {...rest} />;
-		case 'AiFillStar':
+		case icons.AiFillStar:
 			return <AiFillStar {...rest} />;
-		case 'AiOutlineMail':
+		case icons.AiOutlineMail:
 			return <AiOutlineMail {...rest} />;
+		case icons.HiViewList:
+			return <HiViewList {...rest} />;
+		case icons.ImCross:
+			return <ImCross {...rest} />;
 		default:
 			return <div>Component Not Found</div>;
 	}

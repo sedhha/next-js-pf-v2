@@ -2,12 +2,15 @@ import React from 'react';
 import classes from './Intro.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import VisibilityHandler from '@/v2/common/VisibilityController';
+import attributes from '@/constants/header-attr.json';
+import { println } from '@/utils/dev-utils';
 
 const Intro = () => {
 	return (
 		<VisibilityHandler
+			onVisibleCallback={() => println('Its Visible')}
 			Component={
-				<section className={classes.BodyModule}>
+				<section className={classes.BodyModule} id={attributes.About}>
 					<h1 className={classes.H1Main}>Artist By Birth, Engineer by Choice</h1>
 					<h2 className={classes.Intro}>
 						I am a <span>Full Stack Developer</span>
@@ -35,7 +38,6 @@ const Intro = () => {
 					</div>
 				</section>
 			}
-			onVisibleCallback={() => console.log('Its Visible')}
 		/>
 	);
 };
