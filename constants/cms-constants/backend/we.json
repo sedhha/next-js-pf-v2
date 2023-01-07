@@ -12,7 +12,7 @@
 		"designation": "Software Engineer",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-yoptima.png?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -20,7 +20,7 @@
 		"designation": "Programming Mentor",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-eckovation.png?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -28,7 +28,7 @@
 		"designation": "Programming Instructor",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-almabetter.png?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -36,7 +36,7 @@
 		"designation": "Freelancing Tutor",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-transtutors.jpeg?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -44,23 +44,7 @@
 		"designation": "SME - Mechanical Engineering",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
-		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
-	},
-	{
-		"org": "Achiwer",
-		"designation": "C++ Programming Mentor",
-		"startDate": 1578853800000,
-		"endDate": 1635618600000,
-		"img": "/sample.png",
-		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
-	},
-	{
-		"org": "CrunchyTricks",
-		"designation": "Digital Marketing Intern",
-		"startDate": 1578853800000,
-		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-chegg.jpeg?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -68,7 +52,7 @@
 		"designation": "Research and Development Intern",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-drdo.jpeg?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -76,7 +60,7 @@
 		"designation": "IoT Developer",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-teamroverx.jpeg?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -84,7 +68,7 @@
 		"designation": "Technical Team Member",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-creation-labs.png?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -92,7 +76,7 @@
 		"designation": "Content Writer",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-wrytin.png?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -100,7 +84,7 @@
 		"designation": "Aircraft Maintenance Trainee",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "/sample.png",
+		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-airindia.jpg?raw=true",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	}
 ]
