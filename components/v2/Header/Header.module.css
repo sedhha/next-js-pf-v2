@@ -89,7 +89,8 @@
 }
 
 .HeaderElement:nth-child(n + 4),
-.SelectDropDown > h1:not(:nth-child(n + 4)) {
+.SelectDropDown > h1:not(:nth-child(n + 4)),
+.MobileOnly {
 	display: none;
 }
 
@@ -100,5 +101,12 @@
 	.Header {
 		justify-content: space-between;
 		padding: 0.3rem;
+	}
+	.MobileOnly {
+		display: flex;
+		flex: auto;
+		justify-content: flex-end;
+		column-gap: 1.5vw;
+		align-items: center;
 	}
 }

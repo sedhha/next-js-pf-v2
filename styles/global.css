@@ -13,6 +13,8 @@
 	--faded-purple: rgba(74, 69, 214, 0.74);
 	--light-yellow: rgba(237, 226, 32, 0.961);
 	--light-gray: #e5e5e5;
+	--blue-card-designation-text-color: var(--orange);
+
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -26,7 +28,8 @@
 	--standard-headings: 3vmax;
 	--h1-text: 3.5vmax;
 	--h1-card-text: 2.6vh;
-	--h1-date-text: 2.5vh;
+	--h1-date-text: 2vh;
+	--h1-designation-text: 2.5vh;
 	--h1-para-text: 2.2vh;
 	--h2-text: 2.8vmax;
 	--p-text: 2vmax;

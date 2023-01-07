@@ -64,10 +64,11 @@
 }
 
 @media (max-aspect-ratio: 550 / 897) {
-	.NavigationButton {
+	/* .NavigationButton {
 		display: none;
-	}
-	.TestimonialSection {
-		display: block;
-	}
+	} */
+	.NavigationButton {
+        max-width: 4vw;
+    }
+	
 }

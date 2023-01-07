@@ -37,18 +37,20 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
-			{showMore ? (
-				<Icon
-					iconKey={icons.ImCross}
-					onClick={() => dispatch(updateShowMore(false))}
-				/>
-			) : (
-				<Icon
-					iconKey={icons.HiViewList}
-					onClick={() => dispatch(updateShowMore(true))}
-				/>
-			)}
-			<Toggle />
+			<div className={classes.MobileOnly}>
+				{showMore ? (
+					<Icon
+						iconKey={icons.ImCross}
+						onClick={() => dispatch(updateShowMore(false))}
+					/>
+				) : (
+					<Icon
+						iconKey={icons.HiViewList}
+						onClick={() => dispatch(updateShowMore(true))}
+					/>
+				)}
+				<Toggle />
+			</div>
 		</header>
 	);
 };

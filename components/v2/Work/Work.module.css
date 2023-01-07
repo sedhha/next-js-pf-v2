@@ -42,7 +42,7 @@
 
 .Image img {
 	min-width: 80%;
-	width: clamp(80%, 85%, 90%);
+	width: clamp(70%, 75%, 80%);
 	aspect-ratio: 1;
 	object-fit: cover;
 	object-position: center;
@@ -63,10 +63,15 @@
 	color: var(--light-blue);
 }
 
-.Card h2 {
+.Card h3 {
 	font-size: clamp(0.5rem, var(--h1-date-text), 16rem);
 	font-weight: bold;
 	color: var(--blue-card-date-text-color);
+}
+.Card h2 {
+	font-size: clamp(0.5rem, var(--h1-designation-text), 16rem);
+	font-weight: bold;
+	color: var(--blue-card-designation-text-color);
 }
 
 .Card > div {
@@ -90,7 +95,7 @@
 	color: var(--white-card-description-text-color);
 }
 
-.Card:nth-child(even) h2 {
+.Card:nth-child(even) h3 {
 	color: var(--white-card-date-text-color);
 }
 

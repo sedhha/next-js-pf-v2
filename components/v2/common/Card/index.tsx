@@ -1,30 +1,37 @@
 import React from 'react';
-import classes from './Card.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 
 type Props = {
 	className: string;
 	imgClassName: string;
+	imgSrc: string;
+	h1Text: string;
+	h2Text: string;
+	h3Text: string;
+	pText: string;
 };
 
-const Work = ({ className, imgClassName }: Props) => {
+const Work = ({
+	className,
+	imgClassName,
+	imgSrc,
+	h1Text,
+	h2Text,
+	h3Text,
+	pText
+}: Props) => {
 	return (
 		<div className={className}>
 			<div className={imgClassName}>
-				<LazyImage src={'/sample.png'} />
+				<LazyImage src={imgSrc} />
 			</div>
-			<h1>Optum Inc, UnitedHealth Group</h1>
-			<h2>Nov 2021 - Present</h2>
-			<div className={classes.Description}>
-				<p>
-					Working as a Software Engineer, I have majorly been involved in making end
-					to end applications using React and Scala as a backend service.
-				</p>
-				<p>
-					I have been also focussing on building microservices and creating CI/CD
-					workflow pipeline to optimize and facilitate automated testing and
-					deployment of apps.
-				</p>
+			<h1>{h1Text}</h1>
+			<h2>{h2Text}</h2>
+			<h3>{h3Text}</h3>
+			<div>
+				{(pText ?? '').split('\n').map((item, id) => (
+					<p key={id}>{item}</p>
+				))}
 			</div>
 		</div>
 	);
