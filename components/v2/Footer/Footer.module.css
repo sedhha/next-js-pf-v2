@@ -25,24 +25,24 @@
 }
 
 .MyDetails > h1 {
-	font-size: 2vw;
+	font-size: large;
 	letter-spacing: 0.05em;
 }
 .TextWithSymbol > h1 {
-	font-size: 1.8vw;
+	font-size: small;
 	letter-spacing: 0;
 	font-weight: 600;
 }
 .MyDetails > h2 {
-	font-size: 1vw;
+	font-size: small;
 }
 
 .Icons {
-	font-size: 4vw;
+	font-size: xx-small;
 }
 
 .MailIcon {
-	font-size: 2vw;
+	font-size: small;
 }
 
 .Subscribe {
@@ -61,7 +61,7 @@
 	font-style: 'Courier New', Courier, monospace;
 	font-style: normal;
 	font-weight: 400;
-	font-size: 2vh;
+	font-size: small;
 	letter-spacing: 0.02em;
 	color: var(--footer-heading-color);
 	transition: var(--fade-transition);

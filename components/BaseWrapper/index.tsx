@@ -1,8 +1,6 @@
 import { useAppDispatch } from '@/redux/hooks';
 import { updateRevisitor } from '@/slices/navigation.slice';
-import { print } from '@/utils/dev-utils';
 import React from 'react';
-import { useAppSelector } from '../../redux/tools/hooks';
 import Head from 'next/head';
 type Props = {
 	Component: JSX.Element;

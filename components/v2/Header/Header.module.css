@@ -4,7 +4,6 @@
 	padding: 1rem;
 	display: flex;
 	align-items: center;
-	overflow: hidden;
 	top: 0;
 	position: sticky;
 	box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -19,7 +18,6 @@
 
 .LogoSection h1 {
 	font-size: clamp(0.5rem, var(--standard-headings), 8rem);
-	font-weight: bold;
 	color: var(--light-blue);
 }
 
@@ -36,8 +34,64 @@
 	justify-content: space-evenly;
 }
 
-.HeaderElement {
+.HeaderElement,
+.Select {
 	font-size: clamp(0.4rem, var(--standard-headings-small), 6rem);
+	font-weight: bold;
+	font-family: 'Courier New', Courier, monospace;
+	cursor: pointer;
+}
+
+.Select {
+	display: flex;
+	align-items: center;
+	column-gap: 0.25vw;
+	position: relative;
+}
+.Select::after {
+	content: '⌄';
+	margin-top: -12.5%;
+}
+
+.Select:hover > .SelectDropDown {
+	display: flex;
+	flex-direction: column;
+	transition: 0.3s all ease-in;
+	align-items: flex-end;
+}
+
+.SelectDropDown {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	translate: 0 3vh;
+	background-color: var(--background-color);
+	border-radius: 0.25rem;
+	padding: 0.5vh 0.5vw;
+	box-shadow: var(--box-shadow-mid);
+}
+
+.SelectDropDown > h1 {
+	width: 100%;
+	padding: 1.5vh 0.5vw;
+	font-size: large;
+	min-width: max-content;
+	border-bottom: 1.5px solid var(--light-gray);
+	text-align: end;
+	transition: var(--fade-transition);
+}
+.SelectDropDown > h1:hover {
+	transition: var(--fade-transition);
+	scale: 1.08;
+	background-color: var(--light-blue);
+	color: var(--hover-more-text-color);
+}
+
+.HeaderElement:nth-child(n + 4),
+.SelectDropDown > h1:not(:nth-child(n + 4)),
+.MobileOnly {
+	display: none;
 }
 
 @media (max-aspect-ratio: 550 / 897) {
@@ -48,10 +102,11 @@
 		justify-content: space-between;
 		padding: 0.3rem;
 	}
-}
-
-@media (max-aspect-ratio: 808/897) {
-	.HideElement {
-		display: none;
+	.MobileOnly {
+		display: flex;
+		flex: auto;
+		justify-content: flex-end;
+		column-gap: 1.5vw;
+		align-items: center;
 	}
 }

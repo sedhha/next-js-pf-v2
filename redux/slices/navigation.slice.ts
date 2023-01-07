@@ -33,7 +33,7 @@ export const navSlice = createSlice({
 	name: 'navigation',
 	initialState,
 	reducers: {
-		updateActiveSlice: (
+		updateActiveSection: (
 			state: INavigationSlice,
 			action: PayloadAction<string>
 		) => {
@@ -62,7 +62,7 @@ export const navSlice = createSlice({
 });
 
 export const { 
-	updateActiveSlice, 
+	updateActiveSection, 
 	updateRevisitor, 
 	updateShowMore,
 	updateDarkMode,

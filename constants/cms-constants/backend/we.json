@@ -1,0 +1,106 @@
+[
+	{
+		"org": "Optum Inc, UnitedHealth Group",
+		"designation": "Software Engineer",
+		"startDate": 1637433000000,
+		"current": true,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Yoptima Media Pvt. Ltd",
+		"designation": "Software Engineer",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Eckovation",
+		"designation": "Programming Mentor",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Alma Better",
+		"designation": "Programming Instructor",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Transtutors",
+		"designation": "Freelancing Tutor",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Chegg Inc.",
+		"designation": "SME - Mechanical Engineering",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Achiwer",
+		"designation": "C++ Programming Mentor",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "CrunchyTricks",
+		"designation": "Digital Marketing Intern",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "DRDO",
+		"designation": "Research and Development Intern",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Team RoverX",
+		"designation": "IoT Developer",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Creation Labs",
+		"designation": "Technical Team Member",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "Wrytin",
+		"designation": "Content Writer",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	},
+	{
+		"org": "AirIndia Inc",
+		"designation": "Aircraft Maintenance Trainee",
+		"startDate": 1578853800000,
+		"endDate": 1635618600000,
+		"img": "/sample.png",
+		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
+	}
+]

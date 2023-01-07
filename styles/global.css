@@ -13,20 +13,22 @@
 	--faded-purple: rgba(74, 69, 214, 0.74);
 	--light-yellow: rgba(237, 226, 32, 0.961);
 	--light-gray: #e5e5e5;
+	--blue-card-designation-text-color: var(--orange);
+
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
 	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 	--box-shadow-mod: 0px 0px 12px 4px rgba(0, 0, 0, 0.44);
 	--box-shadow-mid: 4px 4px 11px #000000;
-	--fade-transition: all 0.3s linear;
 	--testimonial-box-shadow-effect: 0px 4px 9px 19px rgba(192, 243, 247, 0.33);
 
 	/* Font Sizes */
 	--standard-headings: 3vmax;
 	--h1-text: 3.5vmax;
 	--h1-card-text: 2.6vh;
-	--h1-date-text: 2.5vh;
+	--h1-date-text: 2vh;
+	--h1-designation-text: 2.5vh;
 	--h1-para-text: 2.2vh;
 	--h2-text: 2.8vmax;
 	--p-text: 2vmax;
@@ -49,6 +51,7 @@
 }
 .lightMode {
 	font-family: 'Courier New', Courier, monospace;
+	scroll-behavior: smooth;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
@@ -84,9 +87,11 @@
 	--special-icon-color: black;
 	--footer-heading-color: white;
 	--footer-bg: var(--faded-dark-blue);
+	--hover-more-text-color: white;
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
+	scroll-behavior: smooth;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
@@ -122,12 +127,17 @@
 	--special-icon-color: white;
 	--footer-heading-color: white;
 	--footer-bg: var(--faded-dark-blue);
+	--hover-more-text-color: white;
 }
 
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+}
+
+a {
+	text-decoration: none;
 }
 
 /* Common Utilities */
