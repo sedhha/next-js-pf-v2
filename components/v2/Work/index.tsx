@@ -8,8 +8,11 @@ import VisibilityHandler from '@/v2/common/VisibilityController';
 import { println, throwAndLogError } from '@/utils/dev-utils';
 import workExperience from '@/constants/cms-constants/work-experience.json';
 import dynamic from 'next/dynamic';
+import { feFetch } from '@/utils/fe/fetch-utils';
+import { IWork } from '@/interfaces/work';
 
 const limit = 3;
+const total = 11;
 const initialItems = workExperience.slice(0, limit);
 
 const Spinner = dynamic(() => import('@/v2/common/Spinner'));
@@ -58,18 +61,39 @@ const dateFormatter = ({
 
 const Work = () => {
 	const [skip, setSkip] = React.useState(0);
-	const [cardItems, setCardItems] = React.useState(initialItems);
+	const [cardItems, setCardItems] = React.useState<IWork[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
+
+	const onPaginate = (next: boolean) => {
+		console.log(skip, limit, total);
+		if (loading) return;
+		if (next && skip > total) return;
+		else if (!next && skip - limit < 0) return;
+		setLoading(true);
+		const current = next ? skip + limit : skip - limit;
+		setSkip(current);
+		feFetch<IWork[]>({
+			url: `/api/experience?limit=${limit}&skip=${current}`
+		})
+			.then((res) => {
+				if (!res.error && res.json) setCardItems(res.json);
+			})
+			.finally(() => setLoading(false));
+	};
 
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => println('Visible Work Experience')}
 			Component={
 				<section className={classes.BodyModule} id={attributes.WorkExperience}>
+					{loading && <Spinner />}
 					<h1 className={classes.H1Main}>Work Experience</h1>
 					<div className={classes.WorkExperienceContainer}>
-						{!loading && <Spinner />}
-						<SvgLeft height={50} className={classes.NavButton} />
+						<SvgLeft
+							height={50}
+							className={classes.NavButton}
+							onClick={() => onPaginate(false)}
+						/>
 						<div className={classes.WorkCardContainer}>
 							{cardItems.map((item, index) => (
 								<Card
@@ -88,7 +112,11 @@ const Work = () => {
 								/>
 							))}
 						</div>
-						<SvgRight height={50} className={classes.NavButton} />
+						<SvgRight
+							height={50}
+							className={classes.NavButton}
+							onClick={() => onPaginate(true)}
+						/>
 					</div>
 				</section>
 			}
