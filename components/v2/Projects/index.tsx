@@ -16,11 +16,7 @@ const Projects = () => {
 					<h1 className={classes.H1Main}>Cool things I did!</h1>
 					<div className={classes.WorkExperienceContainer}>
 						<SvgLeft height={50} />
-						<div className={classes.WorkCardContainer}>
-							<Card className={classes.Card} imgClassName={classes.Image} />
-							<Card className={classes.Card} imgClassName={classes.Image} />
-							<Card className={classes.Card} imgClassName={classes.Image} />
-						</div>
+						<div className={classes.WorkCardContainer}></div>
 						<SvgRight height={50} />
 					</div>
 				</section>
