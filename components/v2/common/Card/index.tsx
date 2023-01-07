@@ -25,7 +25,9 @@ const Work = ({
 			<div className={imgClassName}>
 				<LazyImage src={imgSrc} />
 			</div>
-			<h1>{h1Text}</h1>
+			<a href="https://www.google.com" target="_blank" rel="noreferrer">
+				<h1>{h1Text}</h1>
+			</a>
 			<h2>{h2Text}</h2>
 			<h3>{h3Text}</h3>
 			<div>

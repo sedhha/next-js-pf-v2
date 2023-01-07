@@ -19,6 +19,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
 }
 
 .WorkCardContainer {
@@ -101,6 +102,14 @@
 
 .Card:nth-child(n + 4) {
 	display: none;
+}
+
+.NavButton {
+	cursor: pointer;
+	transition: var(--fade-transition);
+}
+.NavButton:hover {
+	scale: 0.9;
 }
 
 @media (max-aspect-ratio: 550 / 897) {

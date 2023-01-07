@@ -7,9 +7,12 @@ import attributes from '@/constants/header-attr.json';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import { println, throwAndLogError } from '@/utils/dev-utils';
 import workExperience from '@/constants/cms-constants/work-experience.json';
+import dynamic from 'next/dynamic';
 
 const limit = 3;
 const initialItems = workExperience.slice(0, limit);
+
+const Spinner = dynamic(() => import('@/v2/common/Spinner'));
 
 interface IDateFormatProps {
 	startDate: number;
@@ -56,6 +59,7 @@ const dateFormatter = ({
 const Work = () => {
 	const [skip, setSkip] = React.useState(0);
 	const [cardItems, setCardItems] = React.useState(initialItems);
+	const [loading, setLoading] = React.useState(false);
 
 	return (
 		<VisibilityHandler
@@ -64,7 +68,8 @@ const Work = () => {
 				<section className={classes.BodyModule} id={attributes.WorkExperience}>
 					<h1 className={classes.H1Main}>Work Experience</h1>
 					<div className={classes.WorkExperienceContainer}>
-						<SvgLeft height={50} />
+						{!loading && <Spinner />}
+						<SvgLeft height={50} className={classes.NavButton} />
 						<div className={classes.WorkCardContainer}>
 							{cardItems.map((item, index) => (
 								<Card
@@ -83,7 +88,7 @@ const Work = () => {
 								/>
 							))}
 						</div>
-						<SvgRight height={50} />
+						<SvgRight height={50} className={classes.NavButton} />
 					</div>
 				</section>
 			}
