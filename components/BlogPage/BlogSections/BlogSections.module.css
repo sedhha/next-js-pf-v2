@@ -1,0 +1,71 @@
+.BlogSection {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1vh 2vw;
+    row-gap: 2vh;
+}
+
+.Category {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+}
+
+.CategoryTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.CategoryTitle > button {
+	padding: 0.85vh 1vw;
+	font-size: 2vh;
+	outline: none;
+	border: none;
+	color: var(--achievement-button-font-color);
+}
+
+.MetaDataContent > h2{
+    font-size: 1.2vw;
+}
+.MetaDataContent > h3, .MetaDataContent > h4 {
+    font-size: 0.8vw;
+    color: var(--dark-gray);
+}
+.BlogGrid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(5, minmax(4vw, 20vw));
+    column-gap: 1.5vw;
+    row-gap: 1.5vh;
+}
+
+.BlogImage {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.MetaDataContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.BlogCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.CategoryTitle > button {
+    background: transparent;
+    color: var(--orange);
+    cursor: pointer;
+    border: 1px solid var(--orange);
+    border-radius: 0.5vw;
+    outline: none;
+}
+
+.CategoryTitle > h2 {
+    color: var(--light-blue);
+}
