@@ -2,6 +2,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { updateRevisitor } from '@/slices/navigation.slice';
 import React from 'react';
 import Head from 'next/head';
+import Popup from '@/v2/common/Popup';
 type Props = {
 	Component: JSX.Element;
 };
@@ -30,6 +31,7 @@ export default function BaseComponent({ Component }: Props) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			</Head>
 			<Component.type {...Component.props} />
+			<Popup />
 		</React.Fragment>
 	);
 }
