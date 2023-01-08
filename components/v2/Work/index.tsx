@@ -10,6 +10,8 @@ import workExperience from '@/constants/cms-constants/work-experience.json';
 import dynamic from 'next/dynamic';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { IWork } from '@/interfaces/work';
+import { useAppDispatch } from '../../../redux/tools/hooks';
+import { updatePopup } from '@/slices/navigation.slice';
 
 const limit = 3;
 const total = 11;
@@ -63,12 +65,41 @@ const Work = () => {
 	const [skip, setSkip] = React.useState(0);
 	const [cardItems, setCardItems] = React.useState<IWork[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
+	const dispatch = useAppDispatch();
 
 	const onPaginate = (next: boolean) => {
-		console.log(skip, limit, total);
-		if (loading) return;
-		if (next && skip > total) return;
-		else if (!next && skip - limit < 0) return;
+		if (loading) {
+			dispatch(
+				updatePopup({
+					type: 'error',
+					title: 'Loading results',
+					description: 'Please wait while we load the results!',
+					timeout: 3000
+				})
+			);
+			return;
+		}
+		if (next && skip > total) {
+			dispatch(
+				updatePopup({
+					type: 'error',
+					title: 'Reached End!',
+					description: "That's all the work experience I have for now!",
+					timeout: 3000
+				})
+			);
+			return;
+		} else if (!next && skip - limit < 0) {
+			dispatch(
+				updatePopup({
+					type: 'error',
+					title: 'Reached Start!',
+					description: "You're already at the most recent part of my work journey!",
+					timeout: 3000
+				})
+			);
+			return;
+		}
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);

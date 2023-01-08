@@ -1,7 +1,6 @@
+import { IPopup } from '@/interfaces/popup';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-
 
 // Define a type for the slice state
 export interface INavigationSlice {
@@ -14,6 +13,8 @@ export interface INavigationSlice {
 	activeBlogCategory: string;
 	mostPopularSelectedBlogId: string;
 	inChatMode: boolean;
+	popup: IPopup;
+	showPopup: boolean;
 }
 
 // Define the initial state using that type
@@ -26,7 +27,14 @@ const initialState: INavigationSlice = {
 	darkMode: false,
 	activeBlogCategory: 'web-development',
 	mostPopularSelectedBlogId: 'get-started-with-next-js',
-	inChatMode: false
+	inChatMode: false,
+	popup: {
+		type: 'error',
+		title: 'Oops, something went wrong',
+		description: 'There was a problem with your submission. Please try again.',
+		timeout: 3000
+	},
+	showPopup: false
 };
 
 export const navSlice = createSlice({
@@ -48,28 +56,45 @@ export const navSlice = createSlice({
 		updateDarkMode: (state: INavigationSlice, action: PayloadAction<boolean>) => {
 			state.darkMode = action.payload;
 		},
-		updateActiveBlogCategory: (state: INavigationSlice, action: PayloadAction<string>) => {
+		updateActiveBlogCategory: (
+			state: INavigationSlice,
+			action: PayloadAction<string>
+		) => {
 			state.activeBlogCategory = action.payload;
 		},
-		updateMostPopularSelected: (state: INavigationSlice, action: PayloadAction<string>) => {
+		updateMostPopularSelected: (
+			state: INavigationSlice,
+			action: PayloadAction<string>
+		) => {
 			state.mostPopularSelectedBlogId = action.payload;
 		},
-		updateInChatMode: (state: INavigationSlice, action: PayloadAction<boolean>) => {
+		updateInChatMode: (
+			state: INavigationSlice,
+			action: PayloadAction<boolean>
+		) => {
 			state.inChatMode = action.payload;
+		},
+		hidePopup: (state: INavigationSlice) => {
+			state.showPopup = false;
+		},
+		updatePopup: (state: INavigationSlice, action: PayloadAction<IPopup>) => {
+			state.showPopup = true;
+			state.popup = action.payload;
 		}
 	}
-	
 });
 
-export const { 
-	updateActiveSection, 
-	updateRevisitor, 
+export const {
+	hidePopup,
+	updatePopup,
+	updateActiveSection,
+	updateRevisitor,
 	updateShowMore,
 	updateDarkMode,
 	updateActiveBlogCategory,
 	updateMostPopularSelected,
 	updateInChatMode
-	} = navSlice.actions;
+} = navSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 
