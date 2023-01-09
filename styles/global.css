@@ -89,6 +89,7 @@
 	--footer-heading-color: white;
 	--footer-bg: var(--faded-dark-blue);
 	--hover-more-text-color: white;
+	--blog-excerpt-color: var(--dark-gray);
 }
 .darkMode {
 	font-family: 'Courier New', Courier, monospace;
@@ -129,6 +130,7 @@
 	--footer-heading-color: white;
 	--footer-bg: var(--faded-dark-blue);
 	--hover-more-text-color: white;
+	--blog-excerpt-color: var(--dark-gray);
 }
 
 * {

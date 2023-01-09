@@ -1,0 +1,68 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 1vw;
+}
+
+.Heading {
+	font-size: clamp(0.5rem, 2vmax, 16rem);
+	font-weight: bold;
+	color: var(--light-blue);
+    padding: 0 1vw;
+}
+
+.WholeBody {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.Heading > strong {
+    text-transform: capitalize;
+}
+
+.Card {
+    width: 100%;
+    box-shadow: var(--box-shadow-mid);
+    display: flex;
+    align-items: center;
+    column-gap: 1.5vw;
+    padding: 2vh 1vw;
+}
+
+.CardImage {
+    aspect-ratio: 1;
+    max-height: 15vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.BlogMetaData {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25vh;
+}
+
+.AuthorWithAvatar {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5vmax;
+}
+
+.AvatarImage {
+    height: 3vh;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+.AuthorWithAvatar > h1 {
+    font-size: 1vmax;
+}
+.BlogMetaData > h2 {
+    font-size: clamp(1rem,1.5vmax,16rem);
+}
+
+.BlogMetaData > h3, .BlogMetaData > h4 {
+    font-size: clamp(1rem,0.8vmax,16rem);
+    font-weight: 500;
+    color: var(--blog-excerpt-color);
+}

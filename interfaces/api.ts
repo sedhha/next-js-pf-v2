@@ -11,3 +11,8 @@ export interface IResponse<T> {
 	json?: T;
 	text?: string;
 }
+
+export interface ITotal<T> {
+	items: T[];
+	total: number;
+}

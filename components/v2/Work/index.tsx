@@ -5,61 +5,22 @@ import SvgRight from '@/v2/common/SvgRight';
 import Card from '@/v2/common/Card';
 import attributes from '@/constants/header-attr.json';
 import VisibilityHandler from '@/v2/common/VisibilityController';
-import { println, throwAndLogError } from '@/utils/dev-utils';
+import { println } from '@/utils/dev-utils';
 import workExperience from '@/constants/cms-constants/work-experience.json';
 import dynamic from 'next/dynamic';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { IWork } from '@/interfaces/work';
 import { useAppDispatch } from '../../../redux/tools/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
+import { workDateFormatter } from '@/utils/date-utils';
+import { PUBLIC_APIS } from '@/utils/fe/apis';
+import { ITotal } from '../../../interfaces/api';
 
 const limit = 3;
 const total = 11;
 const initialItems = workExperience.slice(0, limit);
 
 const Spinner = dynamic(() => import('@/v2/common/Spinner'));
-
-interface IDateFormatProps {
-	startDate: number;
-	endDate?: number;
-	current?: boolean;
-}
-
-const monthFunction = [
-	'Jan',
-	'Feb',
-	'Mar',
-	'Apr',
-	'May',
-	'Jun',
-	'Jul',
-	'Aug',
-	'Sep',
-	'Oct',
-	'Nov',
-	'Dec'
-];
-const dateFormatter = ({
-	startDate,
-	endDate,
-	current
-}: IDateFormatProps): string => {
-	const getMonthAndYearString = (timeStamp: number) => {
-		const month = new Date(timeStamp).getMonth();
-		const year = new Date(timeStamp).getFullYear();
-		return `${monthFunction[month]}, ${year}`;
-	};
-	const startMonth = getMonthAndYearString(startDate);
-	if (!current) {
-		if (endDate) {
-			const endMonth = getMonthAndYearString(endDate);
-			return `${startMonth} - ${endMonth}`;
-		} else {
-			throwAndLogError('Neither endDate nor current value provided');
-			return '';
-		}
-	} else return `${startMonth} - Present`;
-};
 
 const Work = () => {
 	const [skip, setSkip] = React.useState(0);
@@ -103,11 +64,11 @@ const Work = () => {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
-		feFetch<IWork[]>({
-			url: `/api/experience?limit=${limit}&skip=${current}`
+		feFetch<ITotal<IWork>>({
+			url: `${PUBLIC_APIS.WORK_EXPERIENCE}?limit=${limit}&skip=${current}`
 		})
 			.then((res) => {
-				if (!res.error && res.json) setCardItems(res.json);
+				if (!res.error && res.json) setCardItems(res.json.items);
 			})
 			.finally(() => setLoading(false));
 	};
@@ -133,7 +94,7 @@ const Work = () => {
 									key={index}
 									h1Text={item.org}
 									h2Text={item.designation}
-									h3Text={dateFormatter({
+									h3Text={workDateFormatter({
 										startDate: item.startDate,
 										endDate: item.endDate,
 										current: item.current
