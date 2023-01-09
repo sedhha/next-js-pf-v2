@@ -26,16 +26,17 @@
 }
 
 .MetaDataContent > h2{
-    font-size: 1.2vw;
+    font-size: clamp(1rem, 2.2vw, 16rem);
 }
 .MetaDataContent > h3, .MetaDataContent > h4 {
-    font-size: 0.8vw;
+    font-size: clamp(1rem, 1.2vw, 16rem);
     color: var(--dark-gray);
 }
 .BlogGrid {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(5, minmax(4vw, 20vw));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 16vw));
+    justify-content: space-around;
     column-gap: 1.5vw;
     row-gap: 1.5vh;
 }
@@ -68,4 +69,14 @@
 
 .CategoryTitle > h2 {
     color: var(--light-blue);
+}
+
+@media (orientation: landscape) {
+    .MetaDataContent > h2{
+        font-size: clamp(1rem, 2.2vh, 16rem);
+    }
+    .MetaDataContent > h3, .MetaDataContent > h4 {
+        font-size: clamp(1rem, 1.2vh, 16rem);
+        color: var(--dark-gray);
+    }
 }
