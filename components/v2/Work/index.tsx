@@ -40,7 +40,7 @@ const Work = () => {
 			);
 			return;
 		}
-		if (next && skip > total) {
+		if (next && (skip >= total || skip + limit >= total)) {
 			dispatch(
 				updatePopup({
 					type: 'error',

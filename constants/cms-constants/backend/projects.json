@@ -1,0 +1,173 @@
+[
+	{
+		"name": "Funfuse",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			},
+			{
+				"label": "Open App",
+				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
+				"identifier": "vercel-funfuse-app"
+			}
+		]
+	},
+	{
+		"name": "IntelliPick",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			},
+			{
+				"label": "Open App",
+				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
+				"identifier": "vercel-funfuse-app"
+			}
+		]
+	},
+	{
+		"name": "My Water Chain",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			},
+			{
+				"label": "Open App",
+				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
+				"identifier": "vercel-funfuse-app"
+			}
+		]
+	},
+	{
+		"name": "CoviFitness",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			},
+			{
+				"label": "Open App",
+				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
+				"identifier": "vercel-funfuse-app"
+			}
+		]
+	},
+	{
+		"name": "G-Corn",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			},
+			{
+				"label": "Open App",
+				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
+				"identifier": "vercel-funfuse-app"
+			}
+		]
+	},
+	{
+		"name": "The Third Eye",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			}
+		]
+	},
+	{
+		"name": "AgroBuddy",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			},
+			{
+				"label": "Open App",
+				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
+				"identifier": "vercel-funfuse-app"
+			}
+		]
+	},
+	{
+		"name": "Kratos",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
+		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
+				"identifier": "github-funfuse-source-code"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
+				"identifier": "yt-funfuse-video"
+			},
+			{
+				"label": "Open App",
+				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
+				"identifier": "vercel-funfuse-app"
+			}
+		]
+	}
+]

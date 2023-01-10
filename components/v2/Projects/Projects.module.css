@@ -43,10 +43,9 @@
 .Image img {
 	min-width: 80%;
 	width: clamp(80%, 85%, 90%);
-	aspect-ratio: 1;
-	object-fit: cover;
+	object-fit: contain;
 	object-position: center;
-	border-radius: 2rem;
+	padding: 1vh 0 4vh;
 }
 
 .Card {
@@ -54,8 +53,9 @@
 	flex-direction: column;
 	padding: 3vh 2vh;
 	border-radius: 1vw;
-	row-gap: 0.5rem;
+	row-gap: 2vh;
 	width: 100%;
+
 }
 .Card h1 {
 	font-size: clamp(0.5rem, var(--h1-card-text), 16rem);
@@ -74,7 +74,8 @@
 	flex-direction: column;
 	flex: auto;
 	justify-content: space-evenly;
-	row-gap: 1vh;
+	row-gap: 2vh;
+
 }
 
 .Card > div > p {
@@ -96,6 +97,47 @@
 
 .Card:nth-child(n + 4) {
 	display: none;
+}
+
+.Card > section {
+	display: flex;
+	justify-content: space-evenly;
+}
+.Card:nth-child(even) > section > a {
+	all: unset;
+	border: 1px solid var(--white-card-action-button-text-color);
+	color: var(--white-card-action-button-text-color);
+	padding: 1vh 1vw;
+	border-radius: 0.5rem;
+	transition: var(--fade-transition);
+	cursor: pointer;
+}
+.Card:nth-child(odd) > section > a {
+	all: unset;
+	color: var(--blue-card-description-text-color);
+	padding: 1vh 1vw;
+	border-radius: 0.5rem;
+	border: 1px solid var(--blue-card-description-text-color);
+	transition: var(--fade-transition);
+	cursor: pointer;
+}
+.Card:nth-child(odd) > section > a:hover {
+	scale: 0.96;
+	background-color: var(--blue-card-description-text-color);
+	color: var(--dark-blue);
+}
+.Card:nth-child(even) > section > a:hover {
+	scale: 0.96;
+	background-color: var(--white-card-action-button-text-color);
+	color: white;
+}
+
+.NavButton {
+	cursor: pointer;
+	transition: var(--fade-transition);
+}
+.NavButton:hover {
+	scale: 0.9;
 }
 
 @media (max-aspect-ratio: 550 / 897) {
