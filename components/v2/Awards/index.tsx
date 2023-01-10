@@ -15,12 +15,12 @@ import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 
 const limit = 6;
-const total = 18;
 const initialItems = events.slice(0, limit);
 let reciprocator = -1;
 
 const Awards = () => {
 	const [skip, setSkip] = React.useState(0);
+	const [total, setTotal] = React.useState(18);
 	const [cardItems, setCardItems] =
 		React.useState<IEventAndParticipations[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
@@ -67,7 +67,10 @@ const Awards = () => {
 			url: `${PUBLIC_APIS.EVENTS}?limit=${limit}&skip=${current}`
 		})
 			.then((res) => {
-				if (!res.error && res.json) setCardItems(res.json.items);
+				if (!res.error && res.json) {
+					setCardItems(res.json.items);
+					setTotal(res.json.total);
+				}
 			})
 			.finally(() => setLoading(false));
 	};

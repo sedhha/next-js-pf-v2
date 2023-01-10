@@ -17,13 +17,13 @@ import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
 
 const limit = 3;
-const total = 11;
 const initialItems = workExperience.slice(0, limit);
 
 const Spinner = dynamic(() => import('@/v2/common/Spinner'));
 
 const Work = () => {
 	const [skip, setSkip] = React.useState(0);
+	const [total, setTotal] = React.useState(11);
 	const [cardItems, setCardItems] = React.useState<IWork[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
@@ -68,7 +68,10 @@ const Work = () => {
 			url: `${PUBLIC_APIS.WORK_EXPERIENCE}?limit=${limit}&skip=${current}`
 		})
 			.then((res) => {
-				if (!res.error && res.json) setCardItems(res.json.items);
+				if (!res.error && res.json) {
+					setCardItems(res.json.items);
+					setTotal(res.json.total);
+				}
 			})
 			.finally(() => setLoading(false));
 	};

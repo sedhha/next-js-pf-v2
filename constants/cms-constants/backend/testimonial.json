@@ -1,0 +1,38 @@
+[
+	{
+		"name": "Ankur",
+		"designation": "Senior Decision Scientist, Yoptima Media Pvt Ltd",
+		"content": "Shivam is an inquisitive and passionate developer who was an integral part of the product development team and kind of a backbone for adopting newer technologies in a short period.\nDuring his tenure, he worked on several groundbreaking technologies that eased the day to day activities and has laid solid foundations for Software Development lifecycle and Workflow Automation.",
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/referrals/ankur.jpg?raw=true",
+		"contact": [
+			{
+				"identifier": "LinkedIn",
+				"url": "http://www.linkedin.com/in/shivam-sahil"
+			}
+		]
+	},
+	{
+		"name": "Bhushan",
+		"designation": "Senior Decision Scientist, Yoptima Media Pvt Ltd",
+		"content": "Shivam is an inquisitive and passionate developer who was an integral part of the product development team and kind of a backbone for adopting newer technologies in a short period.\nDuring his tenure, he worked on several groundbreaking technologies that eased the day to day activities and has laid solid foundations for Software Development lifecycle and Workflow Automation.",
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/referrals/ankur.jpg?raw=true",
+		"contact": [
+			{
+				"identifier": "LinkedIn",
+				"url": "http://www.linkedin.com/in/shivam-sahil"
+			}
+		]
+	},
+	{
+		"name": "Amit",
+		"designation": "Senior Decision Scientist, Yoptima Media Pvt Ltd",
+		"content": "Shivam is an inquisitive and passionate developer who was an integral part of the product development team and kind of a backbone for adopting newer technologies in a short period.\nDuring his tenure, he worked on several groundbreaking technologies that eased the day to day activities and has laid solid foundations for Software Development lifecycle and Workflow Automation.",
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/referrals/ankur.jpg?raw=true",
+		"contact": [
+			{
+				"identifier": "LinkedIn",
+				"url": "http://www.linkedin.com/in/shivam-sahil"
+			}
+		]
+	}
+]
