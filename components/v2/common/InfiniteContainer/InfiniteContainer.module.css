@@ -61,6 +61,12 @@
     object-position: center;
 }
 
+.YTVideo {
+    max-height: 20vh;
+    aspect-ratio:  var(--yt-video-aspect-ratio);
+    object-fit: cover;
+}
+
 .BlogMetaData {
     flex: auto;
     display: flex;

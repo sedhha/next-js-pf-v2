@@ -1,37 +1,44 @@
 .header {
-    padding-bottom: 4vh;
-    border-bottom: 8px solid var(--light-gray);
-    margin: 2vh 0;
     display: flex;
-    flex-direction: column-reverse;
     justify-content: space-between;
     align-items: center;
-    row-gap: 1vh;
     column-gap: 1vw;
   }
   
-  .header h1 {
-    font-size: 4vh;
+  .headerDetails > h1 {
+    font-size: 8vh;
     color: var(--light-blue);
-    line-height: 8vh;
-    text-align: center;
+  }
+  .headerDetails {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      row-gap: 3vh;
+  }
+  .AvatarBox {
+      display: flex;
+      align-items: center;
+      column-gap: 0.5vw;
+  }
+  .AvatarImage {
+      max-height: 4vh;
+      border-radius: 50%;
+      aspect-ratio: 1;
+  }
+  .AvatarBox > h2 {
+      font-size: 1.5vmax;
+      font-weight: 400;
   }
   
   .header img {
     object-fit: cover;
-    width: 200px;
-    height: 120px;
+    object-position: center;
+    height: 100%;
   }
-  
-  @media (min-width: 768px) {
-    .header {
-      margin: 4vh 0;
-      flex-direction: row;
-      align-items: flex-end;
-    }
-  
-    .header h1 {
-      font-size: 8vh;
-      text-align: left;
-    }
+  .Excerpt {
+      font-size: 1.2vmax;
+      line-height: 1.5vmax;
+      letter-spacing: 0.01em;
+      font-style: italic;
+
   }

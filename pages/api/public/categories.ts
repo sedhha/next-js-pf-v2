@@ -11,7 +11,7 @@ const handler: NextApiHandler = (
 ) => {
     const { limit, skip, category } = req.query;
     console.info(
-        `[GET]: [Category Articles] - Limit:${limit} | Skip:${skip} | ${req.url}`
+        `[${req.method}]: [Category Articles] - Limit:${limit?.toString().padStart(2, '0')} | Skip:${skip?.toString().padStart(2, '0')} | ${req.url}`
     );
     const result = (categoryArticles[
         (category ?? '') as string as keyof typeof categoryArticles

@@ -12,8 +12,6 @@ export default function BlogPost() {
 		<div className={darkMode ? 'darkMode' : 'lightMode'}>
 			<Header />
 			<BlogContent />
-			<div>Blog ID: {blogID}</div>
-
 			<Footer />
 		</div>
 	);

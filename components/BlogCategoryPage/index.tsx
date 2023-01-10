@@ -6,7 +6,6 @@ import { feFetch } from '@/utils/fe/fetch-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis/public';
 import { ITotal } from '@/interfaces/api';
 import { stdDateFormatter } from '@/utils/date-utils';
-import Spinner from '@/v2/common/Spinner';
 // const categoryBlogCards = [
 // 	{
 // 		img: '/sample.png',

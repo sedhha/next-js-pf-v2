@@ -15,4 +15,7 @@ export interface InfiniteCardProps {
     title: string;
     excerpt: string;
     date: string;
+    yt?: boolean;
+    allowFullScreen?: boolean;
+    overwriteImageClass?: string;
 }
