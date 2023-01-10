@@ -1,6 +1,5 @@
 import PostHeader from './header';
 import classes from './BlogContent.module.css';
-import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 
 const mdText = `An h1 header
