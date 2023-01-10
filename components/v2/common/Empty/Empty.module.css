@@ -1,0 +1,21 @@
+.NotFoundContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Img {
+    max-height: 65vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.NotFoundContainer > p {
+    font-size: clamp(0.5rem, 2vmax, 16rem);
+	font-weight: 500;
+	color: var(--light-blue);
+    text-align: center;
+}

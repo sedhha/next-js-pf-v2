@@ -1,0 +1,25 @@
+.content {
+    margin: 2vh 2vw;
+    font-size: 1.5vmax;
+    line-height: 4vh;
+    background-color: var(--light-gray);
+    border-radius: 6px;
+    padding: 2vh 2vw;
+    flex: auto;
+  }
+  
+  .content p {
+    color: var(--dark-gray);
+  }
+  
+  .content .image {
+    margin: 2vh auto;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  @media (min-width: 768px) {
+    .content {
+      padding: 4vh 4vw;
+    }
+  }

@@ -6,7 +6,7 @@ interface InfiniteCardProps {
 	onReachedBottomCallback?: () => void;
 }
 
-const clearancePixel = 0;
+const clearancePixel = 0.5;
 const inRange = (value: number, min: number, max: number): boolean =>
 	value >= min && value <= max;
 
@@ -20,8 +20,11 @@ const InfiniteCardComponent = ({
 		const { current } = ref;
 		if (current) {
 			const { scrollTop, clientHeight, scrollHeight } = current;
-			const reachedBottom =
-				Math.round(scrollTop + clientHeight) >= scrollHeight + clearancePixel;
+			const reachedBottom = inRange(
+				scrollTop + clientHeight,
+				scrollHeight,
+				scrollHeight + clearancePixel
+			);
 
 			if (scrollTop === 0) onReachedTopCallback?.();
 			else if (reachedBottom) onReachedBottomCallback?.();

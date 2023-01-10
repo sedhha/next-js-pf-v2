@@ -6,6 +6,7 @@ import classes from './InfiniteContainer.module.css';
 import Card from './Card';
 import { InfiniteCardProps } from '@/interfaces/categories';
 import Spinner from '@/v2/common/Spinner';
+import Empty from '@/v2/common/Empty';
 
 interface IContainerProps {
 	mainHeading: string;
@@ -40,22 +41,26 @@ export default function InfiniteContainer({
 		setLoading(true);
 		fetchDataCallback(skip)
 			.then((result) => {
-				if (result) setCards([...result]);
+				if (result) {
+					setCards([...result]);
+				}
 			})
 			.finally(() => setLoading(false));
 	}, [fetchDataCallback, skip]);
 	return (
-		<InfiniteCardComponent
-			Component={
-				<div
-					className={`${classes.WholeBody} ${darkMode ? 'darkMode' : 'lightMode'}`}
-				>
-					{includeHeader && <Header />}
-					<br />
-					<h1 className={classes.Heading}>
-						{mainHeadingIdentifier}: <strong>{mainHeading}</strong>
-					</h1>
-					{
+		<div
+			className={`${classes.WholeBody} ${darkMode ? 'darkMode' : 'lightMode'}`}
+		>
+			{!includeHeader && <Header />}
+			<br />
+			<h1 className={classes.Heading}>
+				{mainHeadingIdentifier}: <strong>{mainHeading}</strong>
+			</h1>
+			{!cards.length ? (
+				<Empty />
+			) : (
+				<InfiniteCardComponent
+					Component={
 						<div className={classes.Container}>
 							{loading && <Spinner />}
 							{cards.map((item, index) => (
@@ -63,10 +68,10 @@ export default function InfiniteContainer({
 							))}
 						</div>
 					}
-				</div>
-			}
-			onReachedTopCallback={updateSkip}
-			onReachedBottomCallback={() => updateSkip(false)}
-		/>
+					onReachedTopCallback={updateSkip}
+					onReachedBottomCallback={() => updateSkip(false)}
+				/>
+			)}
+		</div>
 	);
 }

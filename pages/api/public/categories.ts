@@ -15,7 +15,7 @@ const handler: NextApiHandler = (
     );
     const result = (categoryArticles[
         (category ?? '') as string as keyof typeof categoryArticles
-    ] ?? []).slice(+(skip ?? 0), +(skip ?? 0) + +(limit ?? 3)).map(item => ({ ...item, title: item.title + '-' + skip + '-' + limit }));
+    ] ?? []).slice(+(skip ?? 0), +(skip ?? 0) + +(limit ?? 3)).map(item => ({ ...item, title: item.title + '-' + skip + '-' + (+(skip ?? 0) + +(limit ?? 0)) }));
     const noData = result.length === 0;
     return res.status(noData ? 204 : 200).json({
         items: result as ICategoryArticles[],

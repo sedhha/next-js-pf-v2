@@ -1,0 +1,37 @@
+.header {
+    padding-bottom: 4vh;
+    border-bottom: 8px solid var(--light-gray);
+    margin: 2vh 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 1vh;
+    column-gap: 1vw;
+  }
+  
+  .header h1 {
+    font-size: 4vh;
+    color: var(--light-blue);
+    line-height: 8vh;
+    text-align: center;
+  }
+  
+  .header img {
+    object-fit: cover;
+    width: 200px;
+    height: 120px;
+  }
+  
+  @media (min-width: 768px) {
+    .header {
+      margin: 4vh 0;
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  
+    .header h1 {
+      font-size: 8vh;
+      text-align: left;
+    }
+  }
