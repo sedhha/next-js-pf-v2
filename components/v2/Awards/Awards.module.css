@@ -31,6 +31,14 @@
 	overflow-x: hidden;
 }
 
+.NavButton {
+	cursor: pointer;
+	transition: var(--fade-transition);
+}
+.NavButton:hover {
+	scale: 0.9;
+}
+
 @media (max-aspect-ratio: 550 / 897) {
 	.AwardContainer {
 		max-height: 100%;

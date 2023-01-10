@@ -49,8 +49,8 @@
 	column-gap: 0.5vw;
 	color: var(--achievement-button-color);
 }
-.Details > h3,
-.Details > p {
+
+.Details > p,.rest {
 	color: var(--achievement-button-color);
 }
 
@@ -68,6 +68,24 @@
 .Details > h3,
 .Details > p {
 	font-size: clamp(0.5rem, 2.1vh, 16rem);
+}
+
+.gold,
+.silver,
+.bronze {
+	padding: 1vh 1vw;
+}
+.gold {
+	color: var(--golden-achievement-text-color);
+	background-color: var(--golden-achievement-bg-color);
+}
+.silver {
+	color: var(--silver-achievement-text-color);
+	background-color: var(--silver-achievement-bg-color);
+}
+.bronze {
+	color: var(--bronze-achievement-text-color);
+	background-color: var(--bronze-achievement-bg-color);
 }
 
 @media (max-aspect-ratio: 550 / 897) {

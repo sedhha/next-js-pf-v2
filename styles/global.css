@@ -16,6 +16,12 @@
 	--light-gray: #e5e5e5;
 	--blue-card-designation-text-color: var(--orange);
 	--error-red: #f44336;
+	--golden-achievement-text-color: #A6843F;
+	--golden-achievement-bg-color: #F6C35F;
+	--silver-achievement-text-color: #777777;
+	--silver-achievement-bg-color: #E5E7E6;
+	--bronze-achievement-text-color: #B64433;
+	--bronze-achievement-bg-color: #E2D0AA;
 
 
 	/* Shadows */

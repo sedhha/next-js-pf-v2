@@ -14,16 +14,17 @@ const monthFunction = [
     'Nov',
     'Dec'
 ];
+export const getMonthAndYearString = (timeStamp: number) => {
+    const month = new Date(timeStamp).getMonth();
+    const year = new Date(timeStamp).getFullYear();
+    return `${monthFunction[month]}, ${year}`;
+};
 export const workDateFormatter = ({
     startDate,
     endDate,
     current
 }: IDateFormatProps): string => {
-    const getMonthAndYearString = (timeStamp: number) => {
-        const month = new Date(timeStamp).getMonth();
-        const year = new Date(timeStamp).getFullYear();
-        return `${monthFunction[month]}, ${year}`;
-    };
+
     const startMonth = getMonthAndYearString(startDate);
     if (!current) {
         if (endDate) {

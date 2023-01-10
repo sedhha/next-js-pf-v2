@@ -10,11 +10,11 @@ import workExperience from '@/constants/cms-constants/work-experience.json';
 import dynamic from 'next/dynamic';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { IWork } from '@/interfaces/work';
-import { useAppDispatch } from '../../../redux/tools/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
 import { workDateFormatter } from '@/utils/date-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
-import { ITotal } from '../../../interfaces/api';
+import { ITotal } from '@/interfaces/api';
 
 const limit = 3;
 const total = 11;
