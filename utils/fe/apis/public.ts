@@ -4,5 +4,6 @@ export const PUBLIC_APIS = {
 	VIDEOS: '/api/public/videos',
 	PROJECTS: '/api/public/projects',
 	EVENTS: '/api/public/events',
-	TESTIMONIALS: '/api/public/testimonials'
+	TESTIMONIALS: '/api/public/testimonials',
+	TECH_STACK: '/api/public/tech-stack',
 };

@@ -54,6 +54,14 @@
 	grid-auto-flow: column;
 	grid-auto-columns: minmax(20vh, 1fr);
 	overflow-x: auto;
+	position: relative;
+}
+
+.Img {
+    max-height: 65vh;
+    object-fit: cover;
+    object-position: center;
+
 }
 
 .Card {
