@@ -1,6 +1,6 @@
-import { InputHTMLAttributes } from 'react';
+import { TextareaHTMLAttributes } from 'react';
 import classes from './Input.module.css';
-interface InputProps extends InputHTMLAttributes<HTMLTextAreaElement> {
+interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 	errorMessage?: string;
 }
 const TextArea = ({ errorMessage, ...rest }: InputProps) => (
