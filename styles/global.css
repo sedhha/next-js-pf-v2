@@ -9,6 +9,7 @@
 	--white-card-description-text-color: black;
 	--white-card-action-button-text-color: var(--dark-blue);
 	--dark-gray: #6c6767;
+	--faded-gray: rgba(255, 255, 255, 0.4);
 	--orange: #f27304;
 	--green: #05ff00;
 	--faded-purple: rgba(74, 69, 214, 0.74);
@@ -58,8 +59,9 @@
 	--tech-stack-title: 2vh;
 }
 .lightMode {
-	font-family: 'Courier New', Courier, monospace;
-	scroll-behavior: smooth;
+	--logo-heading-color: var(--light-blue);
+	--header-element-color: black;
+	--header-bg-color: white;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
@@ -97,13 +99,19 @@
 	--footer-bg: var(--faded-dark-blue);
 	--hover-more-text-color: white;
 	--blog-excerpt-color: var(--dark-gray);
-}
-.darkMode {
+
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;
-	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
-	--toggle-switch: #faff00;
-	--background-color: white;
+	background-color: var(--background-color);
+	transition: var(--fade-transition);
+}
+.darkMode {
+	--logo-heading-color: white;
+	--header-element-color: white;
+	--header-bg-color: var(--dark-blue);
+	--toggle-switch-bg: var(--faded-gray);
+	--toggle-switch: var(--dark-blue);
+	--background-color: var(--faded-dark-blue);
 	--related-blog-title: var(--light-blue);
 	--related-blog-category: var(--light-blue);
 	--related-blog-date: var(--dark-blue);
@@ -138,6 +146,11 @@
 	--footer-bg: var(--faded-dark-blue);
 	--hover-more-text-color: white;
 	--blog-excerpt-color: var(--dark-gray);
+
+	font-family: 'Courier New', Courier, monospace;
+	scroll-behavior: smooth;
+	background-color: var(--background-color);
+	transition: var(--fade-transition);
 }
 
 * {

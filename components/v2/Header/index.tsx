@@ -49,8 +49,8 @@ const Header = () => {
 						onClick={() => dispatch(updateShowMore(true))}
 					/>
 				)}
-				<Toggle />
 			</div>
+			<Toggle />
 		</header>
 	);
 };

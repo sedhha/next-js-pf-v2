@@ -7,8 +7,9 @@
 	top: 0;
 	position: sticky;
 	box-shadow: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
-	background-color: var(--background-color);
+	background-color: var(--header-bg-color);
 	z-index: 1;
+	transition: var(--fade-transition);
 }
 
 .LogoSection {
@@ -16,9 +17,10 @@
 	align-items: center;
 }
 
-.LogoSection h1 {
+.LogoSection > h1 {
 	font-size: clamp(0.5rem, var(--standard-headings), 8rem);
-	color: var(--light-blue);
+	color: var(--logo-heading-color);
+	transition: var(--fade-transition);
 }
 
 .LogoImage {
@@ -40,6 +42,8 @@
 	font-weight: bold;
 	font-family: 'Courier New', Courier, monospace;
 	cursor: pointer;
+	color: var(--header-element-color);
+	transition: var(--fade-transition);
 }
 
 .Select {
@@ -65,11 +69,12 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	translate: 0 3vh;
+	translate: 0 2vh;
 	background-color: var(--background-color);
 	border-radius: 0.25rem;
 	padding: 0.5vh 0.5vw;
 	box-shadow: var(--box-shadow-mid);
+	transition: var(--fade-transition);
 }
 
 .SelectDropDown > h1 {
