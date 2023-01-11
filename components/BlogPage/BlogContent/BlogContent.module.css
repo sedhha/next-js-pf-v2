@@ -2,14 +2,19 @@
     margin: 2vh 2vw;
     font-size: 1.5vmax;
     line-height: 4vh;
-    background-color: var(--light-gray);
+    background-color: var(--blog-content-color);
     border-radius: 6px;
     padding: 2vh 2vw;
     flex: auto;
+    transition: var(--fade-transition);
   }
   
   .content p {
-    color: var(--dark-gray);
+    color: var(--post-excerpt-color);
+  }
+
+  .Markdown > p,.Markdown > h1,.Markdown,.Markdown > blockquote > p,.Markdown > ol > li > p,.Markdown > p > a {
+    color: var(--markdown-generic-text-color);
   }
   
   .content .image {

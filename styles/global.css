@@ -54,6 +54,7 @@
 	--testimonial-entity-text: 3.5vh;
 	--icon-size: 3vh;
 	--tech-stack-title: 2vh;
+	--blog-content-color: var(--light-gray);
 }
 .lightMode {
 	--logo-heading-color: var(--light-blue);
@@ -101,6 +102,12 @@
 	--hover-more-text-color: white;
 	--blog-excerpt-color: var(--dark-gray);
 	--featured-video-text-color: var(--light-blue);
+	--blog-author-avatar-color: black;
+	--blog-header-color: var(--light-blue);
+	--card-bg-color: white;
+	--blog-content-color: var(--light-gray);
+	--post-excerpt-color: var(--dark-gray);
+	--markdown-generic-text-color: black;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;
@@ -151,8 +158,14 @@
 	--footer-heading-color: white;
 	--footer-bg: var(--dark-blue);
 	--hover-more-text-color: white;
-	--blog-excerpt-color: var(--dark-gray);
+	--blog-excerpt-color: var(--light-gray);
 	--featured-video-text-color: white;
+	--blog-author-avatar-color: white;
+	--blog-header-color: var(--light-blue);
+	--card-bg-color: var(--dark-blue);
+	--blog-content-color: #313746;
+	--post-excerpt-color: var(--light-gray);
+	--markdown-generic-text-color: white;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;

@@ -52,6 +52,8 @@
     align-items: center;
     column-gap: 1.5vw;
     padding: 2vh 1vw;
+    background-color: var(--card-bg-color);
+    transition: var(--fade-transition);
 }
 
 .CardImage {
@@ -87,15 +89,20 @@
 }
 .AuthorWithAvatar > h1 {
     font-size: 1vmax;
+    color: var(--blog-author-avatar-color);
+    transition: var(--fade-transition);
 }
 .BlogMetaData > h2 {
     font-size: clamp(1rem,1.5vmax,16rem);
+    color: var(--blog-header-color);
+    transition: var(--fade-transition);
 }
 
 .BlogMetaData > h3, .BlogMetaData > h4 {
     font-size: clamp(1rem,0.8vmax,16rem);
     font-weight: 500;
     color: var(--blog-excerpt-color);
+    transition: var(--fade-transition);
 }
 
 @media (max-width: 1200px) {

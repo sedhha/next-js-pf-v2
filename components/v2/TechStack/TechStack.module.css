@@ -74,6 +74,7 @@
 	font-size: clamp(0.5rem, var(--tech-stack-title), 16rem);
 	font-weight: 400;
 	color: var(--tech-stack-title-color);
+	transition: var(--fade-transition);
 }
 
 .Rating {
@@ -83,10 +84,12 @@
 
 .Rating svg {
 	color: var(--light-gray);
+	transition: var(--fade-transition);
 }
 
 .Rating svg[is-active='true'] {
 	color: var(--light-yellow);
+	transition: var(--fade-transition);
 }
 
 @media (max-aspect-ratio: 550 / 897) {
