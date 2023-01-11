@@ -19,6 +19,7 @@
 	display: flex;
 	flex-direction: column;
 	height: fit-content;
+	row-gap: 0.5vh;
 }
 
 .RelatedBlogCard img {
@@ -28,20 +29,23 @@
 	object-position: center;
 }
 
-.RelatedBlogCard h3 {
+.RelatedBlogCard > h3 {
 	color: var(--related-blog-category);
+	transition: var(--fade-transition);
 	font-size: 2vh;
 }
 
 .RelatedBlogCard h4 {
 	color: var(--related-blog-title);
+	transition: var(--fade-transition);
 	font-size: 2.5vh;
 }
 
-.RelatedBlogCard h5 {
+.RelatedBlogCard > h5 {
 	font-weight: 900;
 	font-size: 1.8vh;
 	color: var(--related-blog-date);
+	transition: var(--fade-transition);
 }
 
 .BlogMain {
@@ -61,6 +65,7 @@
 	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
+	transition: var(--fade-transition);
 }
 
 .BlogCategories {
@@ -71,7 +76,7 @@
 	padding: 0 1rem;
 }
 
-.BlogCategories h3 {
+.BlogCategories > h3 {
 	font-style: normal;
 	font-weight: 600;
 	font-size: clamp(0.5rem, 2vh, 16rem);
@@ -81,9 +86,10 @@
 
 .BlogCategories h3[is-active='true'] {
 	color: var(--active-blog-category-text);
+	transition: var(--fade-transition);
 }
 
-.BlogCategories select {
+.BlogCategories > select {
 	border: none;
 	outline: none;
 	font-style: normal;
@@ -91,6 +97,8 @@
 	font-size: clamp(0.5rem, 2vh, 16rem);
 	letter-spacing: 0.05em;
 	color: var(--inactive-blog-category-text);
+	background-color: var(--background-color);
+	transition: var(--fade-transition);
 	font-family: 'Courier New', Courier, monospace;
 }
 
@@ -112,12 +120,14 @@
 	font-size: clamp(0.5rem, 6vh, 36rem);
 	letter-spacing: 0.05em;
 	color: var(--inactive-blog-category-text);
+	transition: var(--fade-transition);
 	font-family: 'Courier New', Courier, monospace;
 	transition: 1.5s all ease-in;
 }
 
 .Number h4[is-active='true'] {
 	color: var(--active-blog-category-text);
+	transition: var(--fade-transition);
 	transition: 1.5s all ease-in;
 	font-size: clamp(0.5rem, 8vh, 36rem);
 }
@@ -143,6 +153,7 @@
 	font-size: 4vh;
 	letter-spacing: 0.05em;
 	color: var(--featured-blog-date-text);
+	transition: var(--fade-transition);
 }
 
 .FeaturedBlogTitleSection > h3 {
@@ -151,6 +162,7 @@
 	font-size: 2vh;
 	letter-spacing: 0.05em;
 	color: var(--featured-blog-date-text);
+	transition: var(--fade-transition);
 	flex: auto;
 }
 
@@ -160,6 +172,7 @@
 	font-size: 2.5vh;
 	letter-spacing: 0.05em;
 	color: var(--featured-blog-view-all-button-text);
+	transition: var(--fade-transition);
 	cursor: pointer;
 }
 
@@ -169,6 +182,7 @@
 	font-size: 3vw;
 	letter-spacing: 0.05em;
 	color: var(--featured-blog-heading);
+	transition: var(--fade-transition);
 }
 
 .ContentSection {
@@ -223,6 +237,7 @@
 	cursor: pointer;
 	background-color: var(--orange-button-color);
 	color: var(--orange-button-color-text);
+	transition: var(--fade-transition);
 	padding: 1rem;
 	font-size: clamp(0.5rem, 2vh, 16rem);
 	border-radius: 0.8rem;
@@ -232,6 +247,8 @@
 .ContentSection > div:nth-child(2) > div > p {
 	font-size: clamp(0.5rem, 2vh, 16rem);
 	text-align: justify;
+	color: var(--featured-blog-date-text);
+
 }
 .MobileView {
 	display: none;
@@ -292,7 +309,7 @@
 	}
 	.MobileMetaData > h4[is-active='true'] {
 		color: var(--active-blog-category-text);
-		transition: 1.5s all ease-in;
+		transition: var(--fade-transition);
 		font-size: clamp(0.5rem, 10vw, 36rem);
 	}
 	.MobileMetaData > h1 {

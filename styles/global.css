@@ -67,7 +67,7 @@
 	--white-card-description-text-color: black;
 	--white-card-action-button-text-color: var(--dark-blue);
 	--related-blog-title: var(--light-blue);
-	--related-blog-category: var(--light-blue);
+	--related-blog-category: black;
 	--related-blog-date: var(--dark-blue);
 	--inactive-blog-category-text: var(--dark-gray);
 	--active-blog-category-text: var(--light-blue);
@@ -118,11 +118,11 @@
 	--white-card-description-text-color: white;
 	--white-card-action-button-text-color: var(--dark-blue);
 	--related-blog-title: var(--light-blue);
-	--related-blog-category: var(--light-blue);
-	--related-blog-date: var(--dark-blue);
-	--inactive-blog-category-text: var(--dark-gray);
+	--related-blog-category: white;
+	--related-blog-date: white;
+	--inactive-blog-category-text: white;
 	--active-blog-category-text: var(--light-blue);
-	--featured-blog-date-text: black;
+	--featured-blog-date-text: white;
 	--featured-blog-view-all-button-text: var(--light-blue);
 	--featured-blog-heading: var(--light-blue);
 	--orange-button-color: var(--orange);
