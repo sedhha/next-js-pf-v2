@@ -8,12 +8,19 @@ import { updateInChatMode } from '@/slices/navigation.slice';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
+import Input from '@/v2/common/Input';
+import TextArea from '@/v2/common/Input/textarea';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 
 const Contact = () => {
 	const { inChatMode } = useAppSelector((state) => state.navigation);
 	const dispatch = useAppDispatch();
+	const [name, setName] = React.useState('');
+	const [email, setEmail] = React.useState('');
+	const [subject, setSubject] = React.useState('');
+	const [message, setMessage] = React.useState('');
+
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => println('contacts visible')}
@@ -24,19 +31,42 @@ const Contact = () => {
 						<section className={classes.FormSection}>
 							<h1>Get In Touch</h1>
 							<div className={classes.InputContainer}>
-								<input placeholder="Name" />
+								<Input
+									placeholder="Name"
+									value={name}
+									onChange={(e) => setName(e.target.value)}
+									pattern="[a-zA-Z]{2,}"
+									errorMessage="Name must contain atleast 2 characters!"
+								/>
 								<div />
 							</div>
 							<div className={classes.InputContainer}>
-								<input placeholder="Email" type="email" />
+								<Input
+									placeholder="Email"
+									type="email"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									errorMessage="Invalid Email Address"
+								/>
 								<div />
 							</div>
 							<div className={classes.InputContainer}>
-								<input placeholder="Subject" />
+								<Input
+									placeholder="Subject"
+									value={subject}
+									onChange={(e) => setSubject(e.target.value)}
+									pattern="[a-zA-Z0-9 ]{10,}"
+									errorMessage="Subject must be atleast 10 characters long"
+								/>
 								<div />
 							</div>
 							<div className={classes.InputContainer}>
-								<textarea placeholder="Message" rows={4} />
+								<TextArea
+									placeholder="Message"
+									rows={4}
+									value={message}
+									onChange={(e) => setMessage(e.target.value)}
+								/>
 								<div />
 							</div>
 							<div className={classes.ButtonContainer}>
