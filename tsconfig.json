@@ -27,6 +27,8 @@
 			"@/v2/*": ["components/v2/*"],
 			"@/interfaces/*": ["interfaces/*"],
 			"@/hooks/*": ["hooks/*"],
+			"@/firebase/*": ["backend/firebase/*"],
+			"@/appscript/*": ["backend/appscript/*"],
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],
