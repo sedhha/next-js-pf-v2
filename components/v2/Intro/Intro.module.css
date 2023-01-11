@@ -13,6 +13,7 @@
 	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
+	transition: var(--fade-transition);
 }
 
 .Intro {
@@ -24,11 +25,14 @@
 	justify-self: center;
 	align-self: center;
 	text-align: center;
+	color: var(--intro-header-text-color);
+	transition: var(--fade-transition);
 }
 
-.Intro span {
+.Intro > span {
 	color: var(--light-blue);
 	font-weight: 600;
+	transition: var(--fade-transition);
 }
 
 .ImageContainer {
@@ -56,7 +60,8 @@
 	font-weight: 300;
 	font-size: clamp(0.5rem, var(--p-text), 8rem);
 	letter-spacing: 0.05em;
-	color: var(--intro-para-color);
+	color: var(--intro-header-text-color);
+	transition: var(--fade-transition);
 }
 
 @media screen and (min-height: 980px) {

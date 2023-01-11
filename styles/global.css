@@ -5,9 +5,6 @@
 	--faded-dark-blue: #172752;
 	--blue-card-date-text-color: white;
 	--blue-card-description-text-color: white;
-	--white-card-date-text-color: var(--dark-blue);
-	--white-card-description-text-color: black;
-	--white-card-action-button-text-color: var(--dark-blue);
 	--dark-gray: #6c6767;
 	--faded-gray: rgba(255, 255, 255, 0.4);
 	--orange: #f27304;
@@ -61,10 +58,14 @@
 .lightMode {
 	--logo-heading-color: var(--light-blue);
 	--header-element-color: black;
+	--intro-header-text-color: black;
 	--header-bg-color: white;
 	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
 	--toggle-switch: #faff00;
 	--background-color: white;
+	--white-card-date-text-color: var(--dark-blue);
+	--white-card-description-text-color: black;
+	--white-card-action-button-text-color: var(--dark-blue);
 	--related-blog-title: var(--light-blue);
 	--related-blog-category: var(--light-blue);
 	--related-blog-date: var(--dark-blue);
@@ -108,10 +109,14 @@
 .darkMode {
 	--logo-heading-color: white;
 	--header-element-color: white;
+	--intro-header-text-color: white;
 	--header-bg-color: var(--dark-blue);
 	--toggle-switch-bg: var(--faded-gray);
 	--toggle-switch: var(--dark-blue);
 	--background-color: var(--faded-dark-blue);
+	--white-card-date-text-color: white;
+	--white-card-description-text-color: white;
+	--white-card-action-button-text-color: var(--dark-blue);
 	--related-blog-title: var(--light-blue);
 	--related-blog-category: var(--light-blue);
 	--related-blog-date: var(--dark-blue);
