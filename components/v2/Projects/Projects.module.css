@@ -129,7 +129,7 @@
 .Card:nth-child(even) > section > a:hover {
 	scale: 0.96;
 	background-color: var(--white-card-action-button-text-color);
-	color: white;
+	color: var(--white-card-hover-text-color);
 }
 
 .NavButton {

@@ -10,6 +10,7 @@
 	font-size: clamp(0.5rem, var(--contact-header-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
+	transition: var(--fade-transition);
 }
 
 .Form {
@@ -30,10 +31,10 @@
 .FormSection > h1 {
 	font-size: clamp(0.5rem, var(--get-in-touch-header-text), 16rem);
 	color: var(--get-in-touch-color);
+	transition: var(--fade-transition);
 }
 
-.InputContainer input,
-.InputContainer textarea {
+.InputContainer input, .InputContainer textarea {
 	border: none;
 	outline: none;
 	width: 100%;
@@ -42,6 +43,7 @@
 	color: var(--input-field-text-placeholder-color);
 	border-bottom: 0.4vh solid var(--get-in-touch-color);
 	padding: 1vh 0.5vw;
+	transition: var(--fade-transition);
 }
 
 .InputContainer input::placeholder,
@@ -50,6 +52,7 @@
 	font-weight: 300;
 	font-size: var(--get-in-touch-input-font-size);
 	color: var(--input-field-text-placeholder-color);
+	transition: var(--fade-transition);
 }
 
 .ButtonContainer {
@@ -63,6 +66,7 @@
 	cursor: pointer;
 	background-color: var(--orange-button-color);
 	color: var(--orange-button-color-text);
+	transition: var(--fade-transition);
 	padding: 1vh 2vw;
 	font-size: clamp(0.5rem, 2vh, 16rem);
 	width: fit-content;
@@ -101,11 +105,16 @@
 	font-size: 4vh;
 }
 
+.ChatDirectlyForm > h3 {
+	color: var(--input-field-text-placeholder-color);
+}
+
 .ChatDirectlyForm > h2 {
 	font-style: normal;
 	font-weight: 500;
 	font-size: var(--chat-directly-font-size);
 	color: var(--get-in-touch-color);
+	transition: var(--fade-transition);
 }
 
 .ChatDirectlyForm > button {
@@ -114,6 +123,7 @@
 	cursor: pointer;
 	background-color: var(--light-blue);
 	color: var(--orange-button-color-text);
+	transition: var(--fade-transition);
 	padding: 1vh 1vw;
 	font-size: clamp(0.5rem, 2vh, 16rem);
 	width: fit-content;
@@ -132,6 +142,7 @@
 	bottom: 0;
 	right: 0;
 	background-color: var(--background-color);
+	transition: var(--fade-transition);
 }
 
 .TopNavigation h2 {
@@ -173,6 +184,7 @@
 
 .MessageSendContainer input::placeholder {
 	color: var(--input-field-text-placeholder-color);
+	transition: var(--fade-transition);
 }
 
 .MessageSendContainer_button {
@@ -217,11 +229,13 @@
 .MessageContainer_from {
 	background-color: var(--message-container-from-color);
 	color: var(--message-container-text-color);
+	transition: var(--fade-transition);
 }
 
 .MessageContainer_to {
 	background-color: var(--message-container-to-color);
 	color: var(--message-container-text-color);
+	transition: var(--fade-transition);
 }
 
 .ChatElements {

@@ -66,6 +66,7 @@
 	--white-card-date-text-color: var(--dark-blue);
 	--white-card-description-text-color: black;
 	--white-card-action-button-text-color: var(--dark-blue);
+	--white-card-hover-text-color: white;
 	--related-blog-title: var(--light-blue);
 	--related-blog-category: black;
 	--related-blog-date: var(--dark-blue);
@@ -76,7 +77,6 @@
 	--featured-blog-heading: var(--light-blue);
 	--orange-button-color: var(--orange);
 	--orange-button-color-text: white;
-	--input-field-text-placeholder-color: var(--dark-gray);
 	--get-in-touch-color: var(--orange);
 	--anonymous-chat-header-bg: var(--faded-dark-blue);
 	--anonymous-chat-header-color: white;
@@ -100,6 +100,7 @@
 	--footer-bg: var(--faded-dark-blue);
 	--hover-more-text-color: white;
 	--blog-excerpt-color: var(--dark-gray);
+	--featured-video-text-color: var(--light-blue);
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;
@@ -116,7 +117,8 @@
 	--background-color: var(--faded-dark-blue);
 	--white-card-date-text-color: white;
 	--white-card-description-text-color: white;
-	--white-card-action-button-text-color: var(--dark-blue);
+	--white-card-action-button-text-color: white;
+	--white-card-hover-text-color: var(--dark-blue);
 	--related-blog-title: var(--light-blue);
 	--related-blog-category: white;
 	--related-blog-date: white;
@@ -127,12 +129,11 @@
 	--featured-blog-heading: var(--light-blue);
 	--orange-button-color: var(--orange);
 	--orange-button-color-text: white;
-	--input-field-text-placeholder-color: var(--dark-gray);
 	--get-in-touch-color: var(--orange);
 	--anonymous-chat-header-bg: var(--faded-dark-blue);
 	--anonymous-chat-header-color: white;
-	--input-field-text-placeholder-color: black;
-	--send-button-color: black;
+	--input-field-text-placeholder-color: white;
+	--send-button-color: white;
 	--message-container-from-color: var(--orange);
 	--message-container-text-color: white;
 	--message-container-to-color: var(--light-blue);
@@ -140,17 +141,18 @@
 	--awards-card-background-b2: var(--orange);
 	--achievement-button-color: white;
 	--achievement-button-font-color: white;
-	--video-content-p-font-color: var(--dark-gray);
-	--testimonial-content-title: black;
-	--testimonial-content-name: var(--dark-gray);
-	--testimonial-content-p-color: var(--dark-gray);
-	--tech-stack-title-color: black;
+	--video-content-p-font-color: white;
+	--testimonial-content-title: white;
+	--testimonial-content-name: white;
+	--testimonial-content-p-color: white;
+	--tech-stack-title-color: white;
 	--tech-stack-input-box: white;
 	--special-icon-color: white;
 	--footer-heading-color: white;
-	--footer-bg: var(--faded-dark-blue);
+	--footer-bg: var(--dark-blue);
 	--hover-more-text-color: white;
 	--blog-excerpt-color: var(--dark-gray);
+	--featured-video-text-color: white;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;

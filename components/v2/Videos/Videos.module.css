@@ -14,12 +14,12 @@
 	row-gap: 2vh;
 }
 
-.FeaturedVideoSection h1 {
+.FeaturedVideoSection > h1 {
 	font-size: clamp(0.5rem, var(--h1-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
 }
-.FeaturedVideoSection h2 {
+.FeaturedVideoSection > h2 {
 	font-size: clamp(0.5rem, var(--video-content-text), 16rem);
 	font-weight: bold;
 	color: var(--light-blue);
@@ -62,12 +62,12 @@
 	flex-direction: column;
 	align-items: center;
 }
-.VideoCard h1 {
+.VideoCard > h1 {
 	font-style: normal;
 	font-weight: 700;
 	font-size: calc(var(--video-content-text) * 0.8);
 	letter-spacing: 0.05em;
-	color: var(--light-blue);
+	color: var(--featured-video-text-color);
 }
 
 .VideoContainerSmall {

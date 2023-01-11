@@ -74,6 +74,7 @@ const Awards = () => {
 			})
 			.finally(() => setLoading(false));
 	};
+	console.log('Re-render');
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => println('Visible Awards')}
