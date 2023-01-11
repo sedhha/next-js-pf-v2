@@ -14,13 +14,13 @@ export default function SocialIcons({ iconColorClass }: IProps) {
 					<Icon
 						iconKey={icon.url}
 						key={icon.id}
-						className={`${classes.Icon} ${iconColorClass ?? ''}`}
+						className={`${iconColorClass ?? classes.Icon}`}
 					/>
 				) : (
 					<LazyImage
 						src={icon.url}
 						key={icon.id}
-						className={`${classes.Icon} ${iconColorClass ?? ''}`}
+						className={`${iconColorClass ?? classes.Icon}`}
 					/>
 				)
 			)}
