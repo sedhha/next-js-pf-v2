@@ -3,9 +3,15 @@ import { IFetchFEParams, IResponse } from "@/interfaces/api";
 export const feFetch = async <T>({
     url,
     method,
-    getText
+    getText,
+    headers,
+    body
 }: IFetchFEParams): Promise<IResponse<T>> => {
-    const res = await fetch(url, { method: method ?? 'GET' });
+    const res = await fetch(url, {
+        method: method ?? 'GET',
+        headers,
+        body
+    });
 
     if (!getText) {
         try {

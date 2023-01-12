@@ -2,6 +2,8 @@ export interface IFetchFEParams {
 	url: string;
 	method?: string;
 	getText?: boolean;
+	headers?: Record<string, string>;
+	body?: BodyInit | null;
 }
 
 export interface IResponse<T> {

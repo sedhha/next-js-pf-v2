@@ -10,6 +10,11 @@ import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
 import Input from '@/v2/common/Input';
 import TextArea from '@/v2/common/Input/textarea';
+import { IContactForm } from '@/interfaces/firebase/contact-form';
+import { feFetch } from '@/utils/fe/fetch-utils';
+import { IResponse } from '@/interfaces/api';
+import { DB_APIS } from '@/utils/fe/apis/public';
+import { regexExpressions } from '@/utils/regex-validators';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 
@@ -20,6 +25,16 @@ const Contact = () => {
 	const [email, setEmail] = React.useState('');
 	const [subject, setSubject] = React.useState('');
 	const [message, setMessage] = React.useState('');
+
+	const onSubmitContactForm = () => {
+		const payload: IContactForm = { name, email, subject, message };
+		feFetch<IResponse<null>>({
+			url: `${DB_APIS.CONTACT}`,
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(payload)
+		}).then((res) => console.log(res));
+	};
 
 	return (
 		<VisibilityHandler
@@ -35,8 +50,8 @@ const Contact = () => {
 									placeholder="Name"
 									value={name}
 									onChange={(e) => setName(e.target.value)}
-									pattern="[a-zA-Z]{2,}"
-									errorMessage="Name must contain atleast 2 characters!"
+									pattern={regexExpressions.name}
+									errorMessage="Name must only contain 2 or more alphabetic characters"
 								/>
 								<div />
 							</div>
@@ -46,6 +61,7 @@ const Contact = () => {
 									type="email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
+									pattern={regexExpressions.email}
 									errorMessage="Invalid Email Address"
 								/>
 								<div />
@@ -55,7 +71,7 @@ const Contact = () => {
 									placeholder="Subject"
 									value={subject}
 									onChange={(e) => setSubject(e.target.value)}
-									pattern="[a-zA-Z0-9 ]{10,}"
+									pattern={regexExpressions.subject}
 									errorMessage="Subject must be atleast 10 characters long"
 								/>
 								<div />
@@ -70,7 +86,7 @@ const Contact = () => {
 								<div />
 							</div>
 							<div className={classes.ButtonContainer}>
-								<button>Send</button>
+								<button onClick={onSubmitContactForm}>Send</button>
 							</div>
 						</section>
 						{inChatMode ? (

@@ -7,3 +7,7 @@ export const PUBLIC_APIS = {
 	TESTIMONIALS: '/api/public/testimonials',
 	TECH_STACK: '/api/public/tech-stack',
 };
+
+export const DB_APIS = {
+	CONTACT: '/api/db/contact'
+};

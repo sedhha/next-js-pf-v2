@@ -1,0 +1,1 @@
+export type { IContactForm } from "./contact-form";
