@@ -12,6 +12,7 @@ import { HiViewList } from 'react-icons/hi';
 import { FaFacebookF } from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
 import { ImCross } from 'react-icons/im';
+import { GoSignOut } from 'react-icons/go';
 
 interface IconProps extends IconBaseProps {
 	iconKey: string;
@@ -27,7 +28,8 @@ export const icons = {
 	AiFillStar: 'AiFillStar',
 	AiOutlineMail: 'AiOutlineMail',
 	HiViewList: 'HiViewList',
-	ImCross: 'ImCross'
+	ImCross: 'ImCross',
+	GoSignOut: 'GoSignOut'
 };
 
 export default function Icon({ iconKey, ...rest }: IconProps) {
@@ -52,6 +54,8 @@ export default function Icon({ iconKey, ...rest }: IconProps) {
 			return <HiViewList {...rest} />;
 		case icons.ImCross:
 			return <ImCross {...rest} />;
+		case icons.GoSignOut:
+			return <GoSignOut {...rest} />;
 		default:
 			return <div>Component Not Found</div>;
 	}

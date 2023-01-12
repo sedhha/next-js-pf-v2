@@ -4,7 +4,13 @@ import LazyImage from '@/v2/common/LazyImage';
 import Circle from '@/v2/common/Circle';
 import dynamic from 'next/dynamic';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { updateInChatMode, updatePopup } from '@/slices/navigation.slice';
+import {
+	updateInChatMode,
+	updatePopup,
+	updateUserEmail,
+	updateUserSignIn,
+	updateUserUid
+} from '@/slices/navigation.slice';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
@@ -16,8 +22,50 @@ import { IResponse } from '@/interfaces/api';
 import { DB_APIS } from '@/utils/fe/apis/public';
 import { regexExpressions } from '@/utils/regex-validators';
 import Spinner from '@/v2/common/Spinner';
+import app from '@/fe-client/firebase';
+import {
+	getAuth,
+	sendSignInLinkToEmail,
+	isSignInWithEmailLink
+} from 'firebase/auth';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
+const auth = getAuth(app);
+const emailStorageKey = 'emailForSignIn';
+
+const loadAuth = () => {
+	const actionCodeSettings = {
+		url: window.location.origin,
+		handleCodeInApp: true
+	};
+	const email = getEmail(null);
+	if (!email) {
+		return;
+	}
+	sendSignInLinkToEmail(auth, email, actionCodeSettings)
+		.then(() => {
+			window.localStorage.setItem(emailStorageKey, email);
+			alert(
+				'In order to begin live chat, please use passwordless sign-in link sent to your email address.'
+			);
+		})
+		.catch((error) => {
+			console.error({
+				errorCode: error.code,
+				errorMessage: error.message,
+				h: 'EE'
+			});
+			alert('The email address you provided was not valid. Please try again!');
+		});
+};
+
+const getEmail = (email: string | null, maxRepetation = 3): string | null => {
+	if (email || maxRepetation <= 0) return email;
+	const inputEmail = window.prompt(
+		`Please provide your email address. (${maxRepetation} times remanining)`
+	);
+	return getEmail(inputEmail, maxRepetation - 1);
+};
 
 const Contact = () => {
 	const { inChatMode } = useAppSelector((state) => state.navigation);
@@ -27,6 +75,21 @@ const Contact = () => {
 	const [subject, setSubject] = React.useState('');
 	const [message, setMessage] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
+
+	const onCheckUserStatus = () => {
+		const signedIn = isSignInWithEmailLink(auth, window.location.href);
+		if (signedIn) {
+			if (!auth.currentUser) {
+				loadAuth();
+				return;
+			}
+			const email = auth.currentUser.email;
+			const uid = auth.currentUser.uid;
+			dispatch(updateUserEmail(email ?? 'unknown-email'));
+			dispatch(updateUserUid(uid));
+			dispatch(updateUserSignIn(true));
+		} else loadAuth();
+	};
 
 	const onSubmitContactForm = () => {
 		if (loading) {
@@ -57,7 +120,6 @@ const Contact = () => {
 			body: JSON.stringify(payload)
 		})
 			.then((res) => {
-				console.log(res);
 				if (res.error) {
 					dispatch(
 						updatePopup({
@@ -148,9 +210,7 @@ const Contact = () => {
 									</div>
 									<h3>Or</h3>
 									<h2>Chat with me directly</h2>
-									<button onClick={() => dispatch(updateInChatMode(true))}>
-										Authenticate and Chat
-									</button>
+									<button onClick={onCheckUserStatus}>Authenticate and Chat</button>
 								</React.Fragment>
 							</section>
 						)}

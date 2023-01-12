@@ -15,6 +15,9 @@ export interface INavigationSlice {
 	inChatMode: boolean;
 	popup: IPopup;
 	showPopup: boolean;
+	isUserSignedIn: boolean;
+	userEmail?: string;
+	userUid?: string;
 }
 
 // Define the initial state using that type
@@ -34,7 +37,8 @@ const initialState: INavigationSlice = {
 		description: 'There was a problem with your submission. Please try again.',
 		timeout: 3000
 	},
-	showPopup: false
+	showPopup: false,
+	isUserSignedIn: false
 };
 
 export const navSlice = createSlice({
@@ -80,6 +84,25 @@ export const navSlice = createSlice({
 		updatePopup: (state: INavigationSlice, action: PayloadAction<IPopup>) => {
 			state.showPopup = true;
 			state.popup = action.payload;
+		},
+		updateUserSignIn: (
+			state: INavigationSlice,
+			action: PayloadAction<boolean>
+		) => {
+			state.isUserSignedIn = action.payload;
+			state.inChatMode = action.payload;
+		},
+		updateUserEmail: (
+			state: INavigationSlice,
+			action: PayloadAction<string | undefined>
+		) => {
+			state.userEmail = action.payload;
+		},
+		updateUserUid: (
+			state: INavigationSlice,
+			action: PayloadAction<string | undefined>
+		) => {
+			state.userUid = action.payload;
 		}
 	}
 });
@@ -87,6 +110,9 @@ export const navSlice = createSlice({
 export const {
 	hidePopup,
 	updatePopup,
+	updateUserSignIn,
+	updateUserEmail,
+	updateUserUid,
 	updateActiveSection,
 	updateRevisitor,
 	updateShowMore,
