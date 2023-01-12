@@ -13,7 +13,11 @@ const Popup = () => {
 	}, [popup, dispatch]);
 
 	return showPopup ? (
-		<div className={classes.alert}>
+		<div
+			className={`${type === 'success' ? classes.success : classes.alert} ${
+				classes.popup
+			}`}
+		>
 			<h2 className={classes.Icon} onClick={() => dispatch(hidePopup())}>
 				X
 			</h2>

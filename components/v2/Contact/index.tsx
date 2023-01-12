@@ -4,7 +4,7 @@ import LazyImage from '@/v2/common/LazyImage';
 import Circle from '@/v2/common/Circle';
 import dynamic from 'next/dynamic';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { updateInChatMode } from '@/slices/navigation.slice';
+import { updateInChatMode, updatePopup } from '@/slices/navigation.slice';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
@@ -15,6 +15,7 @@ import { feFetch } from '@/utils/fe/fetch-utils';
 import { IResponse } from '@/interfaces/api';
 import { DB_APIS } from '@/utils/fe/apis/public';
 import { regexExpressions } from '@/utils/regex-validators';
+import Spinner from '@/v2/common/Spinner';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 
@@ -25,15 +26,53 @@ const Contact = () => {
 	const [email, setEmail] = React.useState('');
 	const [subject, setSubject] = React.useState('');
 	const [message, setMessage] = React.useState('');
+	const [loading, setLoading] = React.useState(false);
 
 	const onSubmitContactForm = () => {
+		if (loading) {
+			dispatch(
+				updatePopup({
+					type: 'error',
+					title: 'Processing, please wait',
+					description: 'Form Submission already in progress',
+					timeout: 3000
+				})
+			);
+			return;
+		}
+		setLoading(true);
 		const payload: IContactForm = { name, email, subject, message };
 		feFetch<IResponse<null>>({
 			url: `${DB_APIS.CONTACT}`,
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(payload)
-		}).then((res) => console.log(res));
+		})
+			.then((res) => {
+				console.log(res);
+				if (res.error) {
+					dispatch(
+						updatePopup({
+							type: 'error',
+							title: 'Unable to complete Submission',
+							description:
+								res.json?.message ??
+								'Unexpected error occured while submitting the details. Please try again',
+							timeout: 3000
+						})
+					);
+					return;
+				}
+				dispatch(
+					updatePopup({
+						type: 'success',
+						title: 'Contact Form Added Successfully',
+						description: 'Thank you for your message. Will try to get back shortly.',
+						timeout: 3000
+					})
+				);
+			})
+			.finally(() => setLoading(false));
 	};
 
 	return (
@@ -44,6 +83,7 @@ const Contact = () => {
 					<h1>Wave a hello or want me to build something cool for you ?</h1>
 					<div className={classes.Form}>
 						<section className={classes.FormSection}>
+							{loading && <Spinner />}
 							<h1>Get In Touch</h1>
 							<div className={classes.InputContainer}>
 								<Input

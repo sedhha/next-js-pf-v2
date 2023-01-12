@@ -1,6 +1,5 @@
-.alert {
+.popup {
 	padding: 2vh 1vw;
-	background-color: var(--error-red);
 	color: white;
 	width: 100%;
     display: flex;
@@ -8,7 +7,7 @@
     position: fixed;
     bottom: 0;
 }
-.alert > h2 {
+.popup > h2 {
     position: absolute;
     top: 0;
     right: 0;
@@ -19,12 +18,19 @@
     cursor: pointer;
     transition: var(--fade-transition);
 }
-.alert > h2:hover {
+.popup > h2:hover {
     transform: scale(1.1);
 }
 
-.alert > h1 {
+.popup > h1 {
     color: white;
+}
+
+.alert {
+	background-color: var(--error-red);
+}
+.success {
+    background-color: var(--success-green);
 }
 
 .ErrorMessage {
