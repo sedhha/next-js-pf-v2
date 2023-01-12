@@ -32,6 +32,9 @@
 .success {
     background-color: var(--success-green);
 }
+.pending {
+    background-color: var(--golden-achievement-text-color);
+}
 
 .ErrorMessage {
 	display: flex;

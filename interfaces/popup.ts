@@ -1,6 +1,6 @@
 export interface IPopup {
-    type: 'error' | 'success';
-    title: string;
-    description: string;
-    timeout: number;
+	type: 'error' | 'success' | 'pending';
+	title: string;
+	description: string;
+	timeout: number;
 }

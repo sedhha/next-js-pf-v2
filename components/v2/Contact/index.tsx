@@ -41,6 +41,14 @@ const Contact = () => {
 			return;
 		}
 		setLoading(true);
+		dispatch(
+			updatePopup({
+				type: 'pending',
+				title: 'Processing, please wait',
+				description: 'Form Submission in progress',
+				timeout: 5000
+			})
+		);
 		const payload: IContactForm = { name, email, subject, message };
 		feFetch<IResponse<null>>({
 			url: `${DB_APIS.CONTACT}`,

@@ -37,16 +37,18 @@ export const uploadToStore = async (
 ): Promise<IResponse<null>> => {
 	const regexData = transformToRegexFormat(formData);
 	const validData = regexValidator(regexData);
-	if (validData.isValid)
+	if (validData.isValid) {
+		const feedbackPath = getCollectionPath(storeCollectionPaths.feedback);
+		await store.collection(feedbackPath).add(formData);
 		return {
 			error: false,
 			statusCode: 201,
 			message: 'Successfully Added Entry'
 		};
+	}
 	return {
 		error: true,
 		statusCode: 422,
 		message: validData.invalidMessage
 	};
-	// const feedbackPath = getCollectionPath(storeCollectionPaths.feedback);
 };

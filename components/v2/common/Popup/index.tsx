@@ -14,9 +14,13 @@ const Popup = () => {
 
 	return showPopup ? (
 		<div
-			className={`${type === 'success' ? classes.success : classes.alert} ${
-				classes.popup
-			}`}
+			className={`${
+				type === 'success'
+					? classes.success
+					: type === 'pending'
+					? classes.pending
+					: classes.alert
+			} ${classes.popup}`}
 		>
 			<h2 className={classes.Icon} onClick={() => dispatch(hidePopup())}>
 				X

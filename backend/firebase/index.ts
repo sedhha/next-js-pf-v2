@@ -5,9 +5,8 @@ const keyString = process.env.FB_ADMIN_PRIVATE_KEY ?? '{"privateKey": ""}';
 const { privateKey } = JSON.parse(keyString);
 
 if (privateKey === '') {
-    console.info('FIREBASE_PRIVATE_KEY is not set');
+	console.info('FIREBASE_PRIVATE_KEY is not set');
 }
-console.log("Private Key = ", privateKey);
 
 if (admin.apps.length === 0)
     admin.initializeApp({
