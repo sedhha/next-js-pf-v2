@@ -21,6 +21,14 @@ export default function TechStack() {
 	const dispatch = useAppDispatch();
 	const [loading, setLoading] = React.useState(false);
 	const [cards, setCards] = React.useState(techStacks);
+	const [triggered, setTriggered] = React.useState(false);
+
+	const onReset = () => {
+		setCards([...techStacks]);
+		setTriggered(false);
+		setSearch('');
+	};
+
 	const onSearch = () => {
 		if (loading) {
 			dispatch(
@@ -46,6 +54,7 @@ export default function TechStack() {
 		}
 
 		setLoading(true);
+		setTriggered(true);
 		feFetch<ITotal<ITechStack>>({
 			url: `${PUBLIC_APIS.TECH_STACK}?search=${search}`
 		})
@@ -74,6 +83,13 @@ export default function TechStack() {
 								className={classes.Icon}
 								onClick={onSearch}
 							/>
+							{triggered && (
+								<Icon
+									iconKey={icons.AiOutlineReload}
+									className={classes.Icon}
+									onClick={onReset}
+								/>
+							)}
 						</div>
 					</div>
 					<div className={classes.StackCards}>

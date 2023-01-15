@@ -6,6 +6,7 @@ import {
 	AiOutlineSearch,
 	AiOutlineSend,
 	AiOutlineTwitter,
+	AiOutlineReload,
 	AiOutlineWhatsApp
 } from 'react-icons/ai';
 import { HiViewList } from 'react-icons/hi';
@@ -29,7 +30,8 @@ export const icons = {
 	AiOutlineMail: 'AiOutlineMail',
 	HiViewList: 'HiViewList',
 	ImCross: 'ImCross',
-	GoSignOut: 'GoSignOut'
+	GoSignOut: 'GoSignOut',
+	AiOutlineReload: 'AiOutlineReload'
 };
 
 export default function Icon({ iconKey, ...rest }: IconProps) {
@@ -56,6 +58,8 @@ export default function Icon({ iconKey, ...rest }: IconProps) {
 			return <ImCross {...rest} />;
 		case icons.GoSignOut:
 			return <GoSignOut {...rest} />;
+		case icons.AiOutlineReload:
+			return <AiOutlineReload {...rest} />;
 		default:
 			return <div>Component Not Found</div>;
 	}
