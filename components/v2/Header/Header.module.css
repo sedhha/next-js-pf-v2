@@ -109,9 +109,8 @@
 	}
 	.MobileOnly {
 		display: flex;
-		flex: auto;
 		justify-content: flex-end;
-		column-gap: 1.5vw;
 		align-items: center;
+		margin-right: 1vw;
 	}
 }

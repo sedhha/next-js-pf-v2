@@ -37,6 +37,8 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
+
+			<Toggle />
 			<div className={classes.MobileOnly}>
 				{showMore ? (
 					<Icon
@@ -50,7 +52,6 @@ const Header = () => {
 					/>
 				)}
 			</div>
-			<Toggle />
 		</header>
 	);
 };
