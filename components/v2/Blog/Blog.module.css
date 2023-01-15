@@ -84,6 +84,10 @@
 	color: var(--inactive-blog-category-text);
 }
 
+.BlogCategories > h3:nth-child(n+4) {
+	display: none;
+}
+
 .BlogCategories h3[is-active='true'] {
 	color: var(--active-blog-category-text);
 	transition: var(--fade-transition);
@@ -269,6 +273,9 @@
 	}
 	.BlogCategories {
 		flex: none;
+	}
+	.BlogCategories > select > option:first-child  {
+		color: red;
 	}
 	.BlogHead {
 		justify-content: space-between;

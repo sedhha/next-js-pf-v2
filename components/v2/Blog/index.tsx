@@ -5,6 +5,15 @@ import SocialIcons from '@/v2/common/SocialIcons';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
+const blogCategories = [
+	'Web Development',
+	'Mern Stack',
+	'IoT Programming',
+	'Life',
+	'Gaming',
+	'APIs',
+	'Docker'
+];
 const Blog = () => {
 	return (
 		<VisibilityHandler
@@ -15,15 +24,16 @@ const Blog = () => {
 						<div className={classes.BlogHead}>
 							<h1>Blog</h1>
 							<section className={classes.BlogCategories}>
-								<h3 is-active="true">Web Development</h3>
-								<h3>Mern Stack</h3>
-								<h3>IoT Programming</h3>
-								<h3>Life</h3>
+								{blogCategories.map((item, index) => (
+									<h3 key={index} is-active={`${index === 0}`}>
+										{item}
+									</h3>
+								))}
 								<select>
-									<option>More</option>
-									<option>Gaming</option>
-									<option>APIs</option>
-									<option>Docker</option>
+									<option>All Categories</option>
+									{blogCategories.map((item, index) => (
+										<option key={index}>{item}</option>
+									))}
 								</select>
 							</section>
 						</div>
