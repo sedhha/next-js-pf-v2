@@ -13,6 +13,7 @@ import { IEventAndParticipations } from '@/interfaces/events-and-participations'
 import { useAppDispatch } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
+import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
 
 const limit = 6;
 const initialItems = events.slice(0, limit);
@@ -87,12 +88,18 @@ const Awards = () => {
 							className={[classes.NoMobile, classes.NavButton].join(' ')}
 							onClick={() => onPaginate(false)}
 						/>
-						<div className={classes.AwardContainer}>
-							{cardItems.map((item, index) => {
-								if (index % 2 === 1) reciprocator *= -1;
-								return <AwardCard {...item} alter={reciprocator} key={index} />;
-							})}
-						</div>
+						<InfiniteCardComponent
+							Component={
+								<div className={classes.AwardContainer}>
+									{cardItems.map((item, index) => {
+										if (index % 2 === 1) reciprocator *= -1;
+										return <AwardCard {...item} alter={reciprocator} key={index} />;
+									})}
+								</div>
+							}
+							onReachedLeftCallback={() => onPaginate(false)}
+							onReachedRightCallback={() => onPaginate(true)}
+						/>
 						<SvgRight
 							height={50}
 							className={[classes.NoMobile, classes.NavButton].join(' ')}

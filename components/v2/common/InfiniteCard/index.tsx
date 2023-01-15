@@ -1,9 +1,12 @@
 import React, { WheelEventHandler } from 'react';
+import { println } from '../../../../utils/dev-utils';
 
 interface InfiniteCardProps {
 	Component: JSX.Element;
 	onReachedTopCallback?: () => void;
 	onReachedBottomCallback?: () => void;
+	onReachedLeftCallback?: () => void;
+	onReachedRightCallback?: () => void;
 }
 
 const clearancePixel = 0.5;
@@ -14,29 +17,57 @@ interface IWheel {
 	nativeEvent: {
 		wheelDelta: number;
 	};
+	deltaX: number;
+	deltaY: number;
 }
 
 const InfiniteCardComponent = ({
 	Component,
 	onReachedTopCallback,
-	onReachedBottomCallback
+	onReachedBottomCallback,
+	onReachedLeftCallback,
+	onReachedRightCallback
 }: InfiniteCardProps) => {
 	const ref = React.useRef(null);
 	const [isScrollingUp, setScrollingUp] = React.useState(true);
-	const onWheelEvent = (event: IWheel) =>
-		setScrollingUp(event.nativeEvent.wheelDelta > 0);
+	const [isScrollingLeft, setScrollingLeft] = React.useState(true);
+	const onWheelEvent = (event: IWheel) => {
+		const { deltaX, deltaY } = event;
+		if (deltaY) setScrollingUp(event.nativeEvent.wheelDelta > 0);
+		if (deltaX) setScrollingLeft(event.nativeEvent.wheelDelta > 0);
+	};
 	const onScroll = () => {
 		const { current } = ref;
 		if (current) {
-			const { scrollTop, clientHeight, scrollHeight } = current;
+			const {
+				scrollTop,
+				clientHeight,
+				scrollHeight,
+				scrollLeft,
+				scrollWidth,
+				clientWidth
+			} = current;
 			const reachedBottom = inRange(
 				scrollTop + clientHeight,
 				scrollHeight - clearancePixel,
 				scrollHeight + clearancePixel
 			);
+			const reachedRight = inRange(
+				scrollLeft + clientWidth,
+				scrollWidth - clearancePixel,
+				scrollWidth + clearancePixel
+			);
 
 			if (scrollTop === 0) onReachedTopCallback?.();
 			else if (reachedBottom && !isScrollingUp) onReachedBottomCallback?.();
+
+			if (scrollLeft === 0) {
+				if (onReachedLeftCallback) onReachedLeftCallback?.();
+				else println('Reached left');
+			} else if (reachedRight && !isScrollingLeft) {
+				if (onReachedRightCallback) onReachedRightCallback?.();
+				else println('Reached right');
+			}
 		}
 	};
 	return (

@@ -15,6 +15,7 @@ import { updatePopup } from '@/slices/navigation.slice';
 import { workDateFormatter } from '@/utils/date-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
+import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
 
 const limit = 3;
 const initialItems = workExperience.slice(0, limit);
@@ -89,24 +90,31 @@ const Work = () => {
 							className={classes.NavButton}
 							onClick={() => onPaginate(false)}
 						/>
-						<div className={classes.WorkCardContainer}>
-							{cardItems.map((item, index) => (
-								<Card
-									className={classes.Card}
-									imgClassName={classes.Image}
-									key={index}
-									h1Text={item.org}
-									h2Text={item.designation}
-									h3Text={workDateFormatter({
-										startDate: item.startDate,
-										endDate: item.endDate,
-										current: item.current
-									})}
-									pText={item.description}
-									imgSrc={item.img}
-								/>
-							))}
-						</div>
+						<InfiniteCardComponent
+							Component={
+								<div className={classes.WorkCardContainer}>
+									{cardItems.map((item, index) => (
+										<Card
+											className={classes.Card}
+											imgClassName={classes.Image}
+											key={index}
+											h1Text={item.org}
+											h2Text={item.designation}
+											h3Text={workDateFormatter({
+												startDate: item.startDate,
+												endDate: item.endDate,
+												current: item.current
+											})}
+											pText={item.description}
+											imgSrc={item.img}
+										/>
+									))}
+								</div>
+							}
+							onReachedLeftCallback={() => onPaginate(false)}
+							onReachedRightCallback={() => onPaginate(true)}
+						/>
+
 						<SvgRight
 							height={50}
 							className={classes.NavButton}
