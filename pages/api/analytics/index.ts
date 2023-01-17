@@ -1,4 +1,4 @@
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { IApiHandler } from '@/interfaces/api';
 

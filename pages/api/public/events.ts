@@ -3,7 +3,7 @@ import events from '@/constants/cms-constants/backend/events-participations.json
 import { ITotal } from '@/interfaces/api';
 import { IEventAndParticipations } from '@/interfaces/events-and-participations';
 import { IApiHandler } from '@/interfaces/api';
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 
 const handler: IApiHandler<ITotal<IEventAndParticipations>> = (
 	req: NextApiRequest

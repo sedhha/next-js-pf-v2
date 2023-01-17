@@ -30,9 +30,10 @@
 			"@/firebase/*": ["backend/firebase/*"],
 			"@/appscript/*": ["backend/appscript/*"],
 			"@/fe-client/*": ["utils/fe/apis/services/*"],
-			"@/middleware/*": ["middleware/*"]
+			"@/middleware/*": ["middleware/*"],
+			"@/backend/*": ["backend/*"],
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "backend/security/index.js"],
 	"exclude": ["node_modules"]
 }

@@ -11,3 +11,7 @@ export const PUBLIC_APIS = {
 export const DB_APIS = {
 	CONTACT: '/api/db/contact'
 };
+
+export const AUTH_APIS = {
+	CSRF: '/api'
+};

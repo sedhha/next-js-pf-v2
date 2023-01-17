@@ -18,6 +18,7 @@ export interface INavigationSlice {
 	isUserSignedIn: boolean;
 	userEmail?: string;
 	userUid?: string;
+	csrfToken?: string;
 }
 
 // Define the initial state using that type
@@ -103,6 +104,12 @@ export const navSlice = createSlice({
 			action: PayloadAction<string | undefined>
 		) => {
 			state.userUid = action.payload;
+		},
+		updateCsrfToken: (
+			state: INavigationSlice,
+			action: PayloadAction<string | undefined>
+		) => {
+			state.csrfToken = action.payload;
 		}
 	}
 });
@@ -110,6 +117,7 @@ export const navSlice = createSlice({
 export const {
 	hidePopup,
 	updatePopup,
+	updateCsrfToken,
 	updateUserSignIn,
 	updateUserEmail,
 	updateUserUid,

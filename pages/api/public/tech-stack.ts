@@ -3,7 +3,7 @@ import techStack from '@/constants/cms-constants/backend/tech-stacks.json';
 import { ITotal } from '@/interfaces/api';
 import { ITechStack } from '@/interfaces/tech-stack';
 import { IApiHandler } from '@/interfaces/api';
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 
 const handler: IApiHandler<ITotal<ITechStack>> = (req: NextApiRequest) => {
 	const { search } = req.query;

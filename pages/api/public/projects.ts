@@ -3,7 +3,7 @@ import projects from '@/constants/cms-constants/backend/projects.json';
 import { ITotal } from '@/interfaces/api';
 import { IProject } from '@/interfaces/projects';
 import { IApiHandler } from '@/interfaces/api';
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 
 const handler: IApiHandler<ITotal<IProject>> = (req: NextApiRequest) => {
 	const { limit, skip } = req.query;

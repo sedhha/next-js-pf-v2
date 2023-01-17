@@ -3,7 +3,7 @@ import workExperience from '@/constants/cms-constants/backend/we.json';
 import { IWork } from '@/interfaces/work';
 import { ITotal } from '@/interfaces/api';
 import { IApiHandler } from '@/interfaces/api';
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 
 const handler: IApiHandler<ITotal<IWork>> = (req: NextApiRequest) => {
 	const { limit, skip } = req.query;

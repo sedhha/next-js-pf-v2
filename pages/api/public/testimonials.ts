@@ -3,7 +3,7 @@ import testimonials from '@/constants/cms-constants/backend/testimonial.json';
 import { ITotal } from '@/interfaces/api';
 import { ITestimonials } from '@/interfaces/testimonials';
 import { IApiHandler } from '@/interfaces/api';
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 
 const handler: IApiHandler<ITotal<ITestimonials>> = (req: NextApiRequest) => {
 	const { limit, skip } = req.query;

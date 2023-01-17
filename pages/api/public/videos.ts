@@ -3,7 +3,7 @@ import videos from '@/constants/cms-constants/backend/videos.json';
 import { ITotal } from '@/interfaces/api';
 import { IVideoContent } from '@/interfaces/videos';
 import { IApiHandler } from '@/interfaces/api';
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 
 const handler: IApiHandler<ITotal<IVideoContent>> = (req: NextApiRequest) => {
 	const { limit, skip } = req.query;

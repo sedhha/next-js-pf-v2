@@ -14,6 +14,6 @@ const handler: NextApiHandler = async (
         `[${req.method}]: [Contact Form] - Email: ${payload.email} | ${req.url}`
     );
     const response = await uploadToStore(payload);
-    return res.status(response.statusCode).json(response);
+    return res.status(response.status).json(response);
 };
 export default handler;

@@ -1,8 +1,10 @@
 import { useAppDispatch } from '@/redux/hooks';
-import { updateRevisitor } from '@/slices/navigation.slice';
+import { updateCsrfToken, updateRevisitor } from '@/slices/navigation.slice';
 import React from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
+import { feFetch } from '../../utils/fe/fetch-utils';
+import { AUTH_APIS } from '@/utils/fe/apis/public';
 type Props = {
 	Component: JSX.Element;
 };
@@ -16,15 +18,14 @@ export default function BaseComponent({ Component }: Props) {
 		if (revisitor === 0) localStorage.setItem('revisitor', '1');
 		else localStorage.setItem('revisitor', `${revisitor + 1}`);
 		dispatch(updateRevisitor(revisitor + 1));
+		feFetch<{ result: string }>({
+			url: AUTH_APIS.CSRF
+		}).then((res) => {
+			if (!res.error) {
+				dispatch(updateCsrfToken(res.json?.result));
+			}
+		});
 	}, [dispatch]);
-	React.useEffect(() => {
-		// if (window?.innerWidth)
-		// 	alert(
-		// 		`Width:${window.innerWidth} & Height: ${window.innerHeight} & ${
-		// 			window.innerWidth / window.innerHeight
-		// 		}`
-		// 	);
-	}, []);
 	return (
 		<React.Fragment>
 			<Head>

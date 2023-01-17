@@ -3,7 +3,7 @@ import categoryArticles from '@/constants/cms-constants/backend/category-article
 import { ICategoryArticles } from '@/interfaces/index';
 import { ITotal } from '@/interfaces/api';
 import { IApiHandler } from '@/interfaces/api';
-import { withApiHandler } from '@/middleware/index';
+import { withApiHandler } from '@/middleware/withApiHandler';
 
 const handler: IApiHandler<ITotal<ICategoryArticles>> = (
 	req: NextApiRequest
