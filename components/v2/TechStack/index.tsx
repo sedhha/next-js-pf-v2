@@ -61,7 +61,7 @@ export default function TechStack() {
 			.then((res) => {
 				setLastActiveSearch(search);
 				if (!res.error && res.json) setCards(res.json.items);
-				if (res.statusCode === 204) setCards([]);
+				if (res.status === 204) setCards([]);
 			})
 			.finally(() => setLoading(false));
 	};
@@ -77,6 +77,9 @@ export default function TechStack() {
 								className={classes.SearchInput}
 								onChange={(e) => setSearch(e.target.value)}
 								value={search}
+								onKeyUp={(e) => {
+									if (e.key === 'Enter') onSearch();
+								}}
 							/>
 							<Icon
 								iconKey={icons.AiOutlineSearch}

@@ -29,7 +29,8 @@
 			"@/hooks/*": ["hooks/*"],
 			"@/firebase/*": ["backend/firebase/*"],
 			"@/appscript/*": ["backend/appscript/*"],
-			"@/fe-client/*": ["utils/fe/apis/services/*"]
+			"@/fe-client/*": ["utils/fe/apis/services/*"],
+			"@/middleware/*": ["middleware/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts"],

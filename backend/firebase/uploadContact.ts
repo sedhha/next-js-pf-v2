@@ -42,13 +42,13 @@ export const uploadToStore = async (
 		await store.collection(feedbackPath).add(formData);
 		return {
 			error: false,
-			statusCode: 201,
+			status: 201,
 			message: 'Successfully Added Entry'
 		};
 	}
 	return {
 		error: true,
-		statusCode: 422,
+		status: 422,
 		message: validData.invalidMessage
 	};
 };
