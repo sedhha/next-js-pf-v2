@@ -1,15 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { IResponse } from '@/interfaces/index';
 import { IApiHandler } from '@/interfaces/api';
-import security from '@/backend/security';
+import security from '@/firebase/generateTokens';
 
 export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
 			const csrf = req.headers['x-csrf-token'] as string;
 			const ua = `${req.headers['user-agent']}::${req.headers['sec-ch-ua-platform']}`;
-			console.log(security.activeSessions);
-			if (!csrf || !security.getSession(csrf, ua)) {
+			const session = await security.getSession(csrf, ua);
+			if (!csrf || !session) {
 				return res.status(404).end();
 			}
 			const result = await handler(req);

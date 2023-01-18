@@ -1,16 +1,17 @@
 import { withApiHandler } from '@/middleware/withApiHandler';
 import { NextApiRequest } from 'next';
 import { IApiHandler } from '@/interfaces/api';
-import security from '@/backend/security/index.js';
+import security from '@/firebase/generateTokens';
 
-const handler: IApiHandler<Record<string, string>> = (req: NextApiRequest) => {
+const handler: IApiHandler<Record<string, string>> = async (
+	req: NextApiRequest
+) => {
 	if (req.method !== 'GET' || !req.headers['sec-ch-ua-platform'])
 		return {
 			statusCode: 404
 		};
 	const ua = `${req.headers['user-agent']}::${req.headers['sec-ch-ua-platform']}`;
-	const sessionKey = security.addSession(ua);
-	console.log(security.activeSessions);
+	const sessionKey = await security.addSession(ua);
 	return {
 		statusCode: 200,
 		json: { result: sessionKey }

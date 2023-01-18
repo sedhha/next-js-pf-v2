@@ -25,6 +25,7 @@ import {
 	limitToLast,
 	query
 } from 'firebase/database';
+import { dbPaths } from '@/firebase/constants';
 
 const db = getDatabase(app);
 const auth = getAuth(app);
@@ -37,7 +38,7 @@ interface IChat {
 }
 
 const formMessagesPath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-user-messages/${uid}/messages`;
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/messages`;
 
 const Contact = () => {
 	const [userChat, setUserChat] = React.useState<IChat[]>([]);

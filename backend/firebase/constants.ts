@@ -26,7 +26,8 @@ export const getCollectionPath = (path: string): string => {
 };
 
 export const dbPaths = {
-	userMessages: 'user-messages'
+	userMessages: 'user-messages',
+	csrfTokens: 'csrf-token'
 };
 
 export const getDBPath = (path: string): string => {

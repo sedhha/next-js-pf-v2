@@ -8,8 +8,7 @@ const firebaseConfig = {
 	messagingSenderId: '587027151737',
 	appId: '1:587027151737:web:166bb9902b7295fbe14da8',
 	measurementId: 'G-LLWD0VQTJ2',
-	databaseURL:
-		'https://shivam-sahil-default-rtdb.asia-southeast1.firebasedatabase.app'
+	databaseURL: process.env.NEXT_PUBLIC_FB_DATABASE_URL
 };
 
 // Initialize Firebase
