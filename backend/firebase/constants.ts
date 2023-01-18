@@ -1,4 +1,4 @@
-import { throwAndLogError } from '../../utils/dev-utils';
+import { throwAndLogError } from '@/utils/dev-utils';
 const getEnvPrefix = () => {
 	switch (process.env.NODE_ENV) {
 		case 'production':
@@ -9,7 +9,9 @@ const getEnvPrefix = () => {
 	}
 };
 export const storeCollectionPaths = {
-	feedback: 'feedback'
+	feedback: 'feedback',
+	sessions: 'sessions',
+	events: 'events'
 };
 
 export const getCollectionPath = (path: string): string => {
@@ -41,3 +43,6 @@ export const getDBPath = (path: string): string => {
 	}
 	return `${prefix}-${storagePath}`;
 };
+
+export const formCSRFPath = (isProd: boolean) =>
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.csrfTokens}`;

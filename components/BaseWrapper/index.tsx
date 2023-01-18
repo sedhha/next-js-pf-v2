@@ -1,10 +1,16 @@
 import { useAppDispatch } from '@/redux/hooks';
-import { updateCsrfToken, updateRevisitor } from '@/slices/navigation.slice';
+import {
+	sendAnalytics,
+	updateCsrfToken,
+	updateGeoData,
+	updateRevisitor
+} from '@/slices/navigation.slice';
 import React from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
-import { feFetch } from '../../utils/fe/fetch-utils';
+import { feFetch } from '@/utils/fe/fetch-utils';
 import { AUTH_APIS } from '@/utils/fe/apis/public';
+import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 type Props = {
 	Component: JSX.Element;
 };
@@ -18,12 +24,16 @@ export default function BaseComponent({ Component }: Props) {
 		if (revisitor === 0) localStorage.setItem('revisitor', '1');
 		else localStorage.setItem('revisitor', `${revisitor + 1}`);
 		dispatch(updateRevisitor(revisitor + 1));
-		feFetch<{ result: string }>({
+		feFetch<{ json: { result: string } }>({
 			url: AUTH_APIS.CSRF
 		}).then((res) => {
 			if (!res.error) {
-				dispatch(updateCsrfToken(res.json?.result));
+				dispatch(updateCsrfToken(res.json?.json.result));
 			}
+		});
+		getGeoData().then((res) => {
+			dispatch(updateGeoData(res));
+			dispatch(sendAnalytics());
 		});
 	}, [dispatch]);
 	return (

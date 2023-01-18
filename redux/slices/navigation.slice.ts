@@ -1,6 +1,15 @@
+import {
+	IAnalyticsData,
+	IEventData,
+	IFEData,
+	IGeoAPI
+} from '@/interfaces/analytics';
 import { IPopup } from '@/interfaces/popup';
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../tools/store';
+import { feFetch } from '../../utils/fe/fetch-utils';
+import { ANALYTICS_APIS } from '../../utils/fe/apis/public';
 
 // Define a type for the slice state
 export interface INavigationSlice {
@@ -19,7 +28,35 @@ export interface INavigationSlice {
 	userEmail?: string;
 	userUid?: string;
 	csrfToken?: string;
+	geoData?: IGeoAPI;
+	eventData?: IEventData[];
 }
+
+// Async Thunk to Post Events Data
+
+export const sendAnalytics = createAsyncThunk(
+	'sendAnalytics',
+	async (_, { getState }) => {
+		const { geoData, eventData, csrfToken } = (getState() as RootState)
+			.navigation;
+		console.log(geoData);
+		if (!csrfToken || !geoData) return;
+		return feFetch({
+			url: ANALYTICS_APIS.RECORD,
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-csrf-token': csrfToken
+			},
+			body: JSON.stringify({
+				...geoData,
+				events: eventData ?? []
+			} as IFEData)
+		}).then((res) => {
+			console.log('Response = ', res);
+		});
+	}
+);
 
 // Define the initial state using that type
 const initialState: INavigationSlice = {
@@ -110,6 +147,12 @@ export const navSlice = createSlice({
 			action: PayloadAction<string | undefined>
 		) => {
 			state.csrfToken = action.payload;
+		},
+		updateGeoData: (
+			state: INavigationSlice,
+			action: PayloadAction<IGeoAPI | undefined>
+		) => {
+			state.geoData = action.payload;
 		}
 	}
 });
@@ -117,6 +160,7 @@ export const navSlice = createSlice({
 export const {
 	hidePopup,
 	updatePopup,
+	updateGeoData,
 	updateCsrfToken,
 	updateUserSignIn,
 	updateUserEmail,

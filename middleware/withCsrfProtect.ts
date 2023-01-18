@@ -13,6 +13,13 @@ export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 				return res.status(404).end();
 			}
 			const result = await handler(req);
+			console.info(
+				`[${req.method}]: [Protected CSRF API] - ${
+					req.url
+				} | Response: statusCode: ${result.statusCode} | message: ${
+					result.message ?? 'Success'
+				}`
+			);
 			return res.status(result.statusCode ?? 200).json({
 				error: result.error,
 				message: result.message,

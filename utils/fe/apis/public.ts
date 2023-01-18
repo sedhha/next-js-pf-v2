@@ -15,3 +15,11 @@ export const DB_APIS = {
 export const AUTH_APIS = {
 	CSRF: '/api'
 };
+
+export const ANALYTICS_APIS = {
+	RECORD: '/api/analytics/record'
+};
+
+export const HELPER_APIS = {
+	GEO: 'https://ipapi.co/json/'
+};

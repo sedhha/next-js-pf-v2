@@ -63,13 +63,13 @@ const Projects = () => {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
-		feFetch<ITotal<IProject>>({
+		feFetch<{ json: ITotal<IProject> }>({
 			url: `${PUBLIC_APIS.PROJECTS}?limit=${limit}&skip=${current}`
 		})
 			.then((res) => {
-				if (!res.error && res.json) {
-					setCardItems(res.json.items);
-					setTotal(res.json.total);
+				if (!res.error && res.json?.json) {
+					setCardItems(res.json.json.items);
+					setTotal(res.json.json.total);
 				}
 			})
 			.finally(() => setLoading(false));

@@ -1,20 +1,28 @@
 import { db } from '.';
-import { dbPaths } from './constants';
+import {
+	closeSessionAbruptly,
+	getDocIdForSession,
+	initiateSessionInDB
+} from '@/firebase/analytics';
+import { formCSRFPath } from '@/firebase/constants';
 
 const ttl = 3600 * 1000;
-
-const formCSRFPath = (isProd: boolean) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.csrfTokens}`;
 
 const ref = db.ref(formCSRFPath(process.env.NODE_ENV === 'production'));
 
 const addSession = async (ua: string): Promise<string> => {
-	const snapshot = await ref.push({ ua });
-	console.log('Snapshot Created = ', snapshot.key);
-	setTimeout(() => {
-		if (snapshot.key) ref.child(snapshot.key).remove();
-	}, ttl);
+	const docID = getDocIdForSession();
+	const snapshot = await ref.push({ ua, docID });
 	if (!snapshot.key) return addSession(ua);
+	const session = await initiateSessionInDB(snapshot.key, ua, docID);
+	setTimeout(() => {
+		if (session.payload?.id)
+			closeSessionAbruptly(session.payload?.id, ua).then(() => {
+				if (snapshot.key) {
+					ref.child(snapshot.key).remove();
+				}
+			});
+	}, ttl);
 	return snapshot.key;
 };
 
@@ -24,8 +32,9 @@ const getSession = async (
 ): Promise<{ ua: string } | undefined> => {
 	const snapshot = await ref.child(session).get();
 	if (snapshot.exists()) {
-		const { ua } = snapshot.val();
-		if (agent === ua) return snapshot.val();
+		const results = snapshot.val();
+		const { ua } = results;
+		if (agent === ua) return results;
 	}
 };
 

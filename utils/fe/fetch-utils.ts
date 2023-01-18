@@ -7,16 +7,29 @@ export const feFetch = async <T>({
 	headers,
 	body
 }: IFetchFEParams): Promise<IResponse<T>> => {
-	const res = await fetch(url, {
-		method: method ?? 'GET',
-		headers,
-		body
-	});
+	try {
+		const res = await fetch(url, {
+			method: method ?? 'GET',
+			headers,
+			body
+		});
 
-	if (!getText) {
+		if (!getText) {
+			try {
+				const json = (await res.json()) as T;
+				return { error: res.status > 399, json, status: res.status };
+			} catch (error) {
+				return {
+					error: true,
+					message: (error as { message: string }).message,
+					status: res.status
+				};
+			}
+		}
+
 		try {
-			const { json } = (await res.json()) as { json: T };
-			return { error: res.status > 399, json, status: res.status };
+			const text = await res.text();
+			return { error: res.status > 399, text, status: res.status };
 		} catch (error) {
 			return {
 				error: true,
@@ -24,16 +37,17 @@ export const feFetch = async <T>({
 				status: res.status
 			};
 		}
-	}
-
-	try {
-		const text = await res.text();
-		return { error: res.status > 399, text, status: res.status };
 	} catch (error) {
+		console.error(
+			`Error Occured while sending request: ${
+				(error as { message: string }).message
+			}`
+		);
 		return {
 			error: true,
 			message: (error as { message: string }).message,
-			status: res.status
+			status: 500
 		};
 	}
+	
 };

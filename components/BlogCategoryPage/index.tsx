@@ -73,13 +73,13 @@ const CategoryFunction = () => {
 
 	const fetchArticles = React.useCallback(
 		(skip: number) =>
-			feFetch<ITotal<ICategoryArticles>>({
+			feFetch<{ json: ITotal<ICategoryArticles> }>({
 				url: `${PUBLIC_APIS.CATEGORIES}?limit=${limit}&skip=${skip}&category=${category}`
 			}).then((res) => {
 				if (!res.error && res.json) {
-					setTotal(res.json.total);
+					setTotal(res.json.json.total);
 
-					return [...transformerFunction(res.json.items)];
+					return [...transformerFunction(res.json.json.items)];
 				}
 			}),
 		// eslint-disable-next-line react-hooks/exhaustive-deps

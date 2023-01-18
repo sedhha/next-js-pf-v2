@@ -65,13 +65,13 @@ const Work = () => {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
-		feFetch<ITotal<IWork>>({
+		feFetch<{ json: ITotal<IWork> }>({
 			url: `${PUBLIC_APIS.WORK_EXPERIENCE}?limit=${limit}&skip=${current}`
 		})
 			.then((res) => {
-				if (!res.error && res.json) {
-					setCardItems(res.json.items);
-					setTotal(res.json.total);
+				if (!res.error && res.json?.json) {
+					setCardItems(res.json.json.items);
+					setTotal(res.json.json.total);
 				}
 			})
 			.finally(() => setLoading(false));
