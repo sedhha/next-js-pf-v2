@@ -51,7 +51,7 @@ const initSession = (
 	connectedAt: new Date().getTime(),
 	disconnectedAt: new Date().getTime(),
 	duration: 0,
-	disconnectedForcefully: true
+	disconnectedForcefully: false
 });
 
 // Create a session Record in the BE -> Existing API when creating CSRF Token

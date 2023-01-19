@@ -12,6 +12,7 @@ import { feFetch } from '@/utils/fe/fetch-utils';
 import { AUTH_APIS } from '@/utils/fe/apis/public';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { closeAnalytics } from '@/slices/navigation.slice';
+import { useAppSelector } from '../../redux/tools/hooks';
 type Props = {
 	Component: JSX.Element;
 };
@@ -20,9 +21,9 @@ type Props = {
 
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
+	const { geoData } = useAppSelector((state) => state.navigation);
 	const onVisibilityChange = React.useCallback(() => {
 		const isVisible = document.visibilityState === 'visible';
-		console.log(isVisible);
 		if (isVisible) {
 			feFetch<{ json: { result: string } }>({
 				url: AUTH_APIS.CSRF
@@ -31,11 +32,14 @@ export default function BaseComponent({ Component }: Props) {
 					dispatch(updateCsrfToken(res.json?.json.result));
 				}
 			});
-			getGeoData().then((res) => {
-				dispatch(updateGeoData(res));
-				dispatch(sendAnalytics());
-			});
+			if (!geoData?.ip) {
+				getGeoData().then((res) => {
+					dispatch(updateGeoData(res));
+					dispatch(sendAnalytics());
+				});
+			}
 		} else dispatch(closeAnalytics());
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 	React.useEffect(() => {
 		const revisitor = +(localStorage.getItem('revisitor') ?? 0);
@@ -44,6 +48,7 @@ export default function BaseComponent({ Component }: Props) {
 		dispatch(updateRevisitor(revisitor + 1));
 	}, [dispatch]);
 	React.useEffect(() => {
+		onVisibilityChange();
 		document.addEventListener('visibilitychange', onVisibilityChange);
 		return () =>
 			document.removeEventListener('visibilitychange', onVisibilityChange);
