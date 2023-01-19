@@ -9,7 +9,14 @@ export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 			const csrf = req.headers['x-csrf-token'] as string;
 			const ua = `${req.headers['user-agent']}::${req.headers['sec-ch-ua-platform']}`;
 			const session = await security.getSession(csrf, ua);
-			if (!csrf || !session) {
+			
+			if (
+				(!csrf || !session) &&
+				JSON.parse(process.env.CSRF_DISABLED ?? 'false')
+			) {
+				console.info(
+					`[${req.method}]: [Protected CSRF API] - ${req.url} | Response: statusCode: 404 | message: Failed to retrieve CSRF token`
+				);
 				return res.status(404).end();
 			}
 			const result = await handler(req);

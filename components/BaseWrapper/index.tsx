@@ -24,21 +24,27 @@ export default function BaseComponent({ Component }: Props) {
 	const { geoData } = useAppSelector((state) => state.navigation);
 	const onVisibilityChange = React.useCallback(() => {
 		const isVisible = document.visibilityState === 'visible';
-		if (isVisible) {
-			feFetch<{ json: { result: string } }>({
-				url: AUTH_APIS.CSRF
-			}).then((res) => {
-				if (!res.error) {
-					dispatch(updateCsrfToken(res.json?.json.result));
-				}
-			});
-			if (!geoData?.ip) {
-				getGeoData().then((res) => {
-					dispatch(updateGeoData(res));
-					dispatch(sendAnalytics());
+		const analyticsEnabled = JSON.parse(
+			process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
+		);
+		if (analyticsEnabled) {
+			if (isVisible) {
+				feFetch<{ json: { result: string } }>({
+					url: AUTH_APIS.CSRF
+				}).then((res) => {
+					if (!res.error) {
+						dispatch(updateCsrfToken(res.json?.json.result));
+					}
 				});
-			}
-		} else dispatch(closeAnalytics());
+				if (!geoData?.ip) {
+					getGeoData().then((res) => {
+						dispatch(updateGeoData(res));
+						dispatch(sendAnalytics());
+					});
+				}
+			} else dispatch(closeAnalytics());
+		}
+		
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 	React.useEffect(() => {
