@@ -17,7 +17,8 @@ export const AUTH_APIS = {
 };
 
 export const ANALYTICS_APIS = {
-	RECORD: '/api/analytics/record'
+	RECORD: '/api/analytics/record',
+	CLOSE: '/api/analytics/close'
 };
 
 export const HELPER_APIS = {

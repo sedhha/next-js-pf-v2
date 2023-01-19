@@ -5,10 +5,12 @@ export const feFetch = async <T>({
 	method,
 	getText,
 	headers,
-	body
+	body,
+	keepAlive
 }: IFetchFEParams): Promise<IResponse<T>> => {
 	try {
 		const res = await fetch(url, {
+			keepalive: keepAlive,
 			method: method ?? 'GET',
 			headers,
 			body
@@ -49,5 +51,4 @@ export const feFetch = async <T>({
 			status: 500
 		};
 	}
-	
 };

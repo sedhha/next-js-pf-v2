@@ -1,10 +1,11 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest } from 'next';
 export interface IFetchFEParams {
 	url: string;
 	method?: string;
 	getText?: boolean;
 	headers?: Record<string, string>;
 	body?: BodyInit | null;
+	keepAlive?: boolean;
 }
 
 export interface IResponse<T> {

@@ -39,7 +39,6 @@ export const sendAnalytics = createAsyncThunk(
 	async (_, { getState }) => {
 		const { geoData, eventData, csrfToken } = (getState() as RootState)
 			.navigation;
-		console.log(geoData);
 		if (!csrfToken || !geoData) return;
 		return feFetch({
 			url: ANALYTICS_APIS.RECORD,
@@ -51,9 +50,37 @@ export const sendAnalytics = createAsyncThunk(
 			body: JSON.stringify({
 				...geoData,
 				events: eventData ?? []
-			} as IFEData)
+			} as IFEData),
+			keepAlive: true
 		}).then((res) => {
 			console.log('Response = ', res);
+		});
+	}
+);
+
+// Async Thunk to Post Events Data
+
+export const closeAnalytics = createAsyncThunk(
+	'closeAnalytics',
+	async (_, { getState }) => {
+		console.log('Closing analytics');
+		const { geoData, eventData, csrfToken } = (getState() as RootState)
+			.navigation;
+		if (!csrfToken || !geoData) return;
+		return feFetch({
+			url: ANALYTICS_APIS.CLOSE,
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-csrf-token': csrfToken
+			},
+			body: JSON.stringify({
+				...geoData,
+				events: eventData ?? []
+			} as IFEData),
+			keepAlive: true
+		}).then((res) => {
+			console.log('Closing Response = ', res);
 		});
 	}
 );
