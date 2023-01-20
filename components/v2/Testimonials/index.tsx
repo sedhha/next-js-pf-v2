@@ -4,7 +4,7 @@ import SvgRight from '@/v2/common/SvgRight';
 import SvgLeft from '@/v2/common/SvgLeft';
 import SocialIcons from '@/v2/common/SocialIcons';
 import LazyImage from '@/v2/common/LazyImage';
-import VisibilityHandler from '../common/VisibilityController/index';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import { println } from '@/utils/dev-utils';
 import attributes from '@/constants/header-attr.json';
 import { ITestimonials } from '@/interfaces/testimonials';

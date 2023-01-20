@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Blog.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import SocialIcons from '@/v2/common/SocialIcons';
-import VisibilityHandler from '@/v2/common/VisibilityController';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
 const blogCategories = [

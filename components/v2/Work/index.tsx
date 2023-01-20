@@ -4,7 +4,7 @@ import SvgLeft from '@/v2/common/SvgLeft';
 import SvgRight from '@/v2/common/SvgRight';
 import Card from '@/v2/common/Card';
 import attributes from '@/constants/header-attr.json';
-import VisibilityHandler from '@/v2/common/VisibilityController';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import { println } from '@/utils/dev-utils';
 import workExperience from '@/constants/cms-constants/work-experience.json';
 import dynamic from 'next/dynamic';

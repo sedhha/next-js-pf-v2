@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './TechStack.module.css';
 import Icon, { icons } from '@/v2/common/Icons';
 import LazyImage from '@/v2/common/LazyImage';
-import VisibilityHandler from '@/v2/common/VisibilityController';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
 import techStacks from '@/constants/cms-constants/tech-stacks.json';

@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Projects.module.css';
 import SvgLeft from '@/v2/common/SvgLeft';
 import SvgRight from '@/v2/common/SvgRight';
-import VisibilityHandler from '@/v2/common/VisibilityController';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
 import { IProject } from '@/interfaces/projects';

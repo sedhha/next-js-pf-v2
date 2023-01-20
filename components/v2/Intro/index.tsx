@@ -1,14 +1,14 @@
 import React from 'react';
 import classes from './Intro.module.css';
 import LazyImage from '@/v2/common/LazyImage';
-import VisibilityHandler from '@/v2/common/VisibilityController';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
 
 const Intro = () => {
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('Its Visible')}
+			onVisibleCallback={() => println('Top Section Visible')}
 			Component={
 				<section className={classes.BodyModule} id={attributes.About}>
 					<h1 className={classes.H1Main}>Artist By Birth, Engineer by Choice</h1>

@@ -11,7 +11,7 @@ import {
 	updateUserSignIn,
 	updateUserUid
 } from '@/slices/navigation.slice';
-import VisibilityHandler from '@/v2/common/VisibilityController';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
 import Input from '@/v2/common/Input';

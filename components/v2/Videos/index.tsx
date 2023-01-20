@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Videos.module.css';
 import VideoContainer from '@/v2/common/YTPlayer';
 import VideoCard from './VideoCard';
-import VisibilityHandler from '../common/VisibilityController';
+import VisibilityHandler from '../common/VisibilityController/lite';
 import { println } from '@/utils/dev-utils';
 import attributes from '@/constants/header-attr.json';
 
