@@ -55,7 +55,9 @@ export const sendAnalytics = createAsyncThunk(
 			contactViewed,
 			projectsViewed,
 			awardsViewed,
-			videosViewed
+			videosViewed,
+			userEmail,
+			userUid
 		} = (getState() as RootState).navigation;
 		if (!csrfToken || !geoData) return;
 		feFetch({
@@ -73,7 +75,9 @@ export const sendAnalytics = createAsyncThunk(
 				contactViewed,
 				projectsViewed,
 				awardsViewed,
-				videosViewed
+				videosViewed,
+				uid: userUid,
+				email: userEmail
 			} as IFEData),
 			keepAlive: true
 		});

@@ -41,6 +41,11 @@ interface IEventData {
 	eventTriggeredTimes: number[];
 }
 
+interface IUserData {
+	uid?: string;
+	email?: string;
+}
+
 type IAnalyticsData = {
 	docPath: string;
 	sessionID: string;
@@ -57,7 +62,8 @@ type IAnalyticsData = {
 	testimonialsViewed: boolean;
 	techStackViewed: boolean;
 } & IGeoAPI &
-	ISessionData;
+	ISessionData &
+	IUserData;
 
 type IFEData = { events: IEventData[] } & IGeoAPI;
 
