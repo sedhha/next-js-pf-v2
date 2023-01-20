@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Blog.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import SocialIcons from '@/v2/common/SocialIcons';
-import VisibilityHandler from '@/v2/common/VisibilityController/lite';
+import VisibilityHandler from '@/v2/common/VisibilityController/io-lite';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
 import { useDispatch } from 'react-redux';
@@ -20,7 +20,10 @@ const Blog = () => {
 	const dispatch = useDispatch();
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateViewed('blogViewed'))}
+			onVisibleCallback={() => {
+				dispatch(updateViewed('blogViewed'));
+				console.log('Example trigger');
+			}}
 			Component={
 				<section className={classes.BlogBody} id={attributes.Blog}>
 					<div className={classes.BlogMain}>
