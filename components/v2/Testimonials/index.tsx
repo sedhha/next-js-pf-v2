@@ -8,8 +8,12 @@ import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { ITestimonials } from '@/interfaces/testimonials';
 import testimonials from '@/constants/cms-constants/testimonial.json';
-import { useAppDispatch } from '@/redux/hooks';
-import { updatePopup, updateViewed } from '@/slices/navigation.slice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import {
+	sendAnalytics,
+	updatePopup,
+	updateViewed
+} from '@/slices/navigation.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -23,6 +27,11 @@ export default function Testimonials({}: Props) {
 	const [cardItem, setCardItem] = React.useState<ITestimonials>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
+	const { testimonialsViewed } = useAppSelector((state) => state.navigation);
+
+	React.useEffect(() => {
+		if (testimonialsViewed) dispatch(sendAnalytics());
+	}, [testimonialsViewed, dispatch]);
 
 	const onPaginate = (next: boolean) => {
 		if (loading) {

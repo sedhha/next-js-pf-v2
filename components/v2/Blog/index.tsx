@@ -4,9 +4,9 @@ import LazyImage from '@/v2/common/LazyImage';
 import SocialIcons from '@/v2/common/SocialIcons';
 import VisibilityHandler from '@/v2/common/VisibilityController/io-lite';
 import attributes from '@/constants/header-attr.json';
-import { println } from '@/utils/dev-utils';
 import { useDispatch } from 'react-redux';
-import { updateViewed } from '@/slices/navigation.slice';
+import { sendAnalytics, updateViewed } from '@/slices/navigation.slice';
+import { useAppSelector } from '@/redux/hooks';
 const blogCategories = [
 	'Web Development',
 	'Mern Stack',
@@ -18,6 +18,15 @@ const blogCategories = [
 ];
 const Blog = () => {
 	const dispatch = useDispatch();
+	const { blogViewed } = useAppSelector((state) => state.navigation);
+
+	React.useEffect(() => {
+		if (blogViewed) {
+			//@ts-ignore
+			dispatch(sendAnalytics());
+		}
+	}, [dispatch, blogViewed]);
+
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => {

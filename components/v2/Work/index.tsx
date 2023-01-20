@@ -9,8 +9,12 @@ import workExperience from '@/constants/cms-constants/work-experience.json';
 import dynamic from 'next/dynamic';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { IWork } from '@/interfaces/work';
-import { useAppDispatch } from '@/redux/hooks';
-import { updatePopup, updateViewed } from '@/slices/navigation.slice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import {
+	sendAnalytics,
+	updatePopup,
+	updateViewed
+} from '@/slices/navigation.slice';
 import { workDateFormatter } from '@/utils/date-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
@@ -27,6 +31,7 @@ const Work = () => {
 	const [cardItems, setCardItems] = React.useState<IWork[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
+	const { workViewed } = useAppSelector((state) => state.navigation);
 
 	const onPaginate = (next: boolean) => {
 		if (loading) {
@@ -75,6 +80,10 @@ const Work = () => {
 			})
 			.finally(() => setLoading(false));
 	};
+
+	React.useEffect(() => {
+		if (workViewed) dispatch(sendAnalytics());
+	}, [workViewed, dispatch]);
 
 	return (
 		<VisibilityHandler

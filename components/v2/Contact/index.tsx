@@ -5,6 +5,7 @@ import Circle from '@/v2/common/Circle';
 import dynamic from 'next/dynamic';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {
+	sendAnalytics,
 	updateInChatMode,
 	updatePopup,
 	updateUserEmail,
@@ -76,6 +77,11 @@ const Contact = () => {
 	const [subject, setSubject] = React.useState('');
 	const [message, setMessage] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
+	const { contactViewed } = useAppSelector((state) => state.navigation);
+
+	React.useEffect(() => {
+		if (contactViewed) dispatch(sendAnalytics());
+	}, [contactViewed, dispatch]);
 
 	const onCheckUserStatus = () => {
 		const signedIn = isSignInWithEmailLink(auth, window.location.href);

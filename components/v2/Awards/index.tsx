@@ -10,8 +10,12 @@ import events from '@/constants/cms-constants/events-participations.json';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
 import { IEventAndParticipations } from '@/interfaces/events-and-participations';
-import { useAppDispatch } from '@/redux/hooks';
-import { updatePopup, updateViewed } from '@/slices/navigation.slice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import {
+	sendAnalytics,
+	updatePopup,
+	updateViewed
+} from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
 
@@ -26,6 +30,11 @@ const Awards = () => {
 		React.useState<IEventAndParticipations[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
+	const { awardsViewed } = useAppSelector((state) => state.navigation);
+
+	React.useEffect(() => {
+		if (awardsViewed) dispatch(sendAnalytics());
+	}, [awardsViewed, dispatch]);
 
 	const onPaginate = (next: boolean) => {
 		if (loading) {
@@ -75,7 +84,6 @@ const Awards = () => {
 			})
 			.finally(() => setLoading(false));
 	};
-	console.log('Re-render');
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => dispatch(updateViewed('awardsViewed'))}

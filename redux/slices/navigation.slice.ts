@@ -42,6 +42,10 @@ export interface INavigationSlice {
 export const sendAnalytics = createAsyncThunk(
 	'sendAnalytics',
 	async (_, { getState }) => {
+		const analyticsEnabled = JSON.parse(
+			process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
+		);
+		if (!analyticsEnabled) return;
 		const {
 			geoData,
 			eventData,

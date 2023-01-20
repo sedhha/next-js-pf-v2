@@ -4,11 +4,16 @@ import VideoContainer from '@/v2/common/YTPlayer';
 import VideoCard from './VideoCard';
 import VisibilityHandler from '../common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
-import { useAppDispatch } from '@/redux/hooks';
-import { updateViewed } from '@/slices/navigation.slice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { sendAnalytics, updateViewed } from '@/slices/navigation.slice';
 
 const Awards = () => {
 	const dispatch = useAppDispatch();
+	const { videosViewed } = useAppSelector((state) => state.navigation);
+
+	React.useEffect(() => {
+		if (videosViewed) dispatch(sendAnalytics());
+	}, [videosViewed, dispatch]);
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => dispatch(updateViewed('videosViewed'))}

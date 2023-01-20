@@ -5,8 +5,12 @@ import LazyImage from '@/v2/common/LazyImage';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import techStacks from '@/constants/cms-constants/tech-stacks.json';
-import { useAppDispatch } from '@/redux/hooks';
-import { updatePopup, updateViewed } from '@/slices/navigation.slice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import {
+	sendAnalytics,
+	updatePopup,
+	updateViewed
+} from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { ITotal } from '@/interfaces/api';
 import { ITechStack } from '@/interfaces/tech-stack';
@@ -21,6 +25,12 @@ export default function TechStack() {
 	const [loading, setLoading] = React.useState(false);
 	const [cards, setCards] = React.useState(techStacks);
 	const [triggered, setTriggered] = React.useState(false);
+
+	const { techStackViewed } = useAppSelector((state) => state.navigation);
+
+	React.useEffect(() => {
+		if (techStackViewed) dispatch(sendAnalytics());
+	}, [techStackViewed, dispatch]);
 
 	const onReset = () => {
 		setCards([...techStacks]);

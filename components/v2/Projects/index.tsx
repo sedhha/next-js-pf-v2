@@ -6,10 +6,14 @@ import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { IProject } from '@/interfaces/projects';
 import projects from '@/constants/cms-constants/projects.json';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import dynamic from 'next/dynamic';
 import Card from '@/v2/common/Card';
-import { updatePopup, updateViewed } from '@/slices/navigation.slice';
+import {
+	sendAnalytics,
+	updatePopup,
+	updateViewed
+} from '@/slices/navigation.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -25,6 +29,11 @@ const Projects = () => {
 	const [cardItems, setCardItems] = React.useState<IProject[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
+	const { projectsViewed } = useAppSelector((state) => state.navigation);
+
+	React.useEffect(() => {
+		if (projectsViewed) dispatch(sendAnalytics());
+	}, [dispatch, projectsViewed]);
 
 	const onPaginate = (next: boolean) => {
 		if (loading) {
