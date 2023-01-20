@@ -66,7 +66,6 @@ const Contact = () => {
 				}
 			});
 			return () => {
-				console.log('Removing child');
 				off(chatRef);
 			};
 		}

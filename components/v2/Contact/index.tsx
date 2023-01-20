@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {
 	sendAnalytics,
-	updateInChatMode,
 	updatePopup,
 	updateUserEmail,
 	updateUserSignIn,
@@ -15,7 +14,6 @@ import {
 } from '@/slices/navigation.slice';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
-import { println } from '@/utils/dev-utils';
 import Input from '@/v2/common/Input';
 import TextArea from '@/v2/common/Input/textarea';
 import { IContactForm } from '@/interfaces/firebase/contact-form';
@@ -28,7 +26,8 @@ import app from '@/fe-client/firebase';
 import {
 	getAuth,
 	sendSignInLinkToEmail,
-	isSignInWithEmailLink
+	isSignInWithEmailLink,
+	User
 } from 'firebase/auth';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
@@ -83,18 +82,21 @@ const Contact = () => {
 		if (contactViewed) dispatch(sendAnalytics());
 	}, [contactViewed, dispatch]);
 
-	const onCheckUserStatus = () => {
-		const signedIn = isSignInWithEmailLink(auth, window.location.href);
-		if (signedIn) {
-			if (!auth.currentUser) {
-				loadAuth();
-				return;
-			}
-			const email = auth.currentUser.email;
-			const uid = auth.currentUser.uid;
-			dispatch(updateUserEmail(email ?? 'unknown-email'));
-			dispatch(updateUserUid(uid));
+	const updateStoreIfSignedIn = React.useCallback(
+		(user: User) => {
+			const { email, uid } = user;
 			dispatch(updateUserSignIn(true));
+			if (email) dispatch(updateUserEmail(email));
+			dispatch(updateUserUid(uid));
+		},
+		[dispatch]
+	);
+
+	const onCheckUserStatus = () => {
+		const { currentUser } = auth;
+		if (currentUser) {
+			updateStoreIfSignedIn(currentUser);
+			return;
 		} else loadAuth();
 	};
 
