@@ -30,7 +30,7 @@ const Awards = () => {
 		React.useState<IEventAndParticipations[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
-	const { awardsViewed } = useAppSelector((state) => state.navigation);
+	const awardsViewed = useAppSelector((state) => state.navigation.awardsViewed);
 
 	React.useEffect(() => {
 		if (awardsViewed) dispatch(sendAnalytics());
