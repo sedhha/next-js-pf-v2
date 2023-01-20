@@ -26,6 +26,7 @@ const VisibilityHandler = ({
 					right <= window.innerWidth
 				) {
 					visibleCallBack();
+					window.removeEventListener('scroll', checkVisibility);
 				}
 			}
 		};
