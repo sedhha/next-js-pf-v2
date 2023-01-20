@@ -23,7 +23,8 @@ import {
 	onValue,
 	off,
 	limitToLast,
-	query
+	query,
+	set
 } from 'firebase/database';
 import { dbPaths } from '@/firebase/constants';
 
@@ -40,10 +41,16 @@ interface IChat {
 const formMessagesPath = (isProd: boolean, uid: string) =>
 	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/messages`;
 
+const typingUserPath = (isProd: boolean, uid: string, isVisitor: boolean) =>
+	isVisitor
+		? `${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/visitorTyping`
+		: `${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/meTyping`;
+
 const Contact = () => {
 	const [userChat, setUserChat] = React.useState<IChat[]>([]);
 	const [msg, setMsg] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
+	const [typing, setTyping] = React.useState(false);
 	React.useEffect(() => {
 		if (auth.currentUser) {
 			const chatRef = ref(
@@ -53,20 +60,23 @@ const Contact = () => {
 					auth.currentUser.uid
 				)
 			);
-			onValue(query(chatRef, limitToLast(100)), async (snapshot) => {
+			const typingRef = ref(
+				db,
+				typingUserPath(
+					process.env.NODE_ENV === 'production',
+					auth.currentUser.uid,
+					false
+				)
+			);
+			onValue(typingRef, async (snapshot) => {
 				if (snapshot.exists()) {
-					const results = snapshot.val();
-					const keys = Object.keys(results);
-					setUserChat(
-						keys.map((item) => {
-							const { uri, isFrom, message } = results[item];
-							return { uri, isFrom, message, id: item };
-						})
-					);
+					const isTyping = snapshot.val();
+					setTyping(isTyping);
 				}
 			});
 			return () => {
 				off(chatRef);
+				off(typingRef);
 			};
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -150,6 +160,29 @@ const Contact = () => {
 				});
 		} else setLoading(false);
 	};
+	const setUserTyping = (typing: boolean) => {
+		if (loading) return;
+		setLoading(true);
+		if (auth.currentUser) {
+			const typingRef = ref(
+				db,
+				typingUserPath(
+					process.env.NODE_ENV === 'production',
+					auth.currentUser.uid,
+					true
+				)
+			);
+			set(typingRef, typing)
+				.then(() => {
+					setLoading(false);
+					setMsg('');
+				})
+				.catch(() => {
+					setLoading(false);
+					setMsg('Failed to send message');
+				});
+		} else setLoading(false);
+	};
 
 	return (
 		<section className={classes.ChatWindow}>
@@ -182,6 +215,13 @@ const Contact = () => {
 					</div>
 				)}
 			</div>
+			{typing && (
+				<div className={classes.Typing}>
+					<section />
+					<section />
+					<section />
+				</div>
+			)}
 			<div className={classes.MessageSendContainer}>
 				<input
 					placeholder="Start typing a message..."
@@ -190,6 +230,8 @@ const Contact = () => {
 					onKeyUp={(e) => {
 						if (e.key === 'Enter') onSendMessage();
 					}}
+					onFocus={() => setUserTyping(true)}
+					onBlur={() => setUserTyping(false)}
 				/>
 				<Icon
 					iconKey={icons.AiOutlineSend}
