@@ -5,12 +5,11 @@ import SvgLeft from '@/v2/common/SvgLeft';
 import SocialIcons from '@/v2/common/SocialIcons';
 import LazyImage from '@/v2/common/LazyImage';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
-import { println } from '@/utils/dev-utils';
 import attributes from '@/constants/header-attr.json';
 import { ITestimonials } from '@/interfaces/testimonials';
 import testimonials from '@/constants/cms-constants/testimonial.json';
 import { useAppDispatch } from '@/redux/hooks';
-import { updatePopup } from '@/slices/navigation.slice';
+import { updatePopup, updateViewed } from '@/slices/navigation.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -75,7 +74,7 @@ export default function Testimonials({}: Props) {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('Testimonials Visible')}
+			onVisibleCallback={() => dispatch(updateViewed('testimonialsViewed'))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Testimonials}>
 					<h1>A word about me!</h1>

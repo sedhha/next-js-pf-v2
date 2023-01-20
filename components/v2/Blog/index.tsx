@@ -5,6 +5,8 @@ import SocialIcons from '@/v2/common/SocialIcons';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { println } from '@/utils/dev-utils';
+import { useDispatch } from 'react-redux';
+import { updateViewed } from '@/slices/navigation.slice';
 const blogCategories = [
 	'Web Development',
 	'Mern Stack',
@@ -15,9 +17,10 @@ const blogCategories = [
 	'Docker'
 ];
 const Blog = () => {
+	const dispatch = useDispatch();
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('Blogs Visibility')}
+			onVisibleCallback={() => dispatch(updateViewed('blogViewed'))}
 			Component={
 				<section className={classes.BlogBody} id={attributes.Blog}>
 					<div className={classes.BlogMain}>

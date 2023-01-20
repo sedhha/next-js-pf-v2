@@ -3,13 +3,15 @@ import classes from './Videos.module.css';
 import VideoContainer from '@/v2/common/YTPlayer';
 import VideoCard from './VideoCard';
 import VisibilityHandler from '../common/VisibilityController/lite';
-import { println } from '@/utils/dev-utils';
 import attributes from '@/constants/header-attr.json';
+import { useAppDispatch } from '@/redux/hooks';
+import { updateViewed } from '@/slices/navigation.slice';
 
 const Awards = () => {
+	const dispatch = useAppDispatch();
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('Video Visible')}
+			onVisibleCallback={() => dispatch(updateViewed('videosViewed'))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Videos}>
 					<section className={classes.FeaturedVideoSection}>

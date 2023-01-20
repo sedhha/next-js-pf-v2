@@ -4,13 +4,12 @@ import SvgLeft from '@/v2/common/SvgLeft';
 import SvgRight from '@/v2/common/SvgRight';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
-import { println } from '@/utils/dev-utils';
 import { IProject } from '@/interfaces/projects';
 import projects from '@/constants/cms-constants/projects.json';
 import { useAppDispatch } from '@/redux/hooks';
 import dynamic from 'next/dynamic';
 import Card from '@/v2/common/Card';
-import { updatePopup } from '@/slices/navigation.slice';
+import { updatePopup, updateViewed } from '@/slices/navigation.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -76,7 +75,7 @@ const Projects = () => {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('Projects visible')}
+			onVisibleCallback={() => dispatch(updateViewed('projectsViewed'))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Projects}>
 					{loading && <Spinner />}

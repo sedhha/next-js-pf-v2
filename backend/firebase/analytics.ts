@@ -51,7 +51,17 @@ const initSession = (
 	connectedAt: new Date().getTime(),
 	disconnectedAt: new Date().getTime(),
 	duration: 0,
-	disconnectedForcefully: false
+	disconnectedForcefully: false,
+
+	// viewed Sections
+	workViewed: false,
+	blogViewed: false,
+	contactViewed: false,
+	projectsViewed: false,
+	awardsViewed: false,
+	videosViewed: false,
+	testimonialsViewed: false,
+	techStackViewed: false
 });
 
 // Create a session Record in the BE -> Existing API when creating CSRF Token

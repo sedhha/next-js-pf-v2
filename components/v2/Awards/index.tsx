@@ -11,7 +11,7 @@ import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
 import { IEventAndParticipations } from '@/interfaces/events-and-participations';
 import { useAppDispatch } from '@/redux/hooks';
-import { updatePopup } from '@/slices/navigation.slice';
+import { updatePopup, updateViewed } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
 
@@ -78,7 +78,7 @@ const Awards = () => {
 	console.log('Re-render');
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('Visible Awards')}
+			onVisibleCallback={() => dispatch(updateViewed('awardsViewed'))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Awards}>
 					<h1 className={classes.H1Main}>Events and Participations</h1>

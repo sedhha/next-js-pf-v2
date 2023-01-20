@@ -1,15 +1,10 @@
-import {
-	IAnalyticsData,
-	IEventData,
-	IFEData,
-	IGeoAPI
-} from '@/interfaces/analytics';
+import { IEventData, IFEData, IGeoAPI } from '@/interfaces/analytics';
 import { IPopup } from '@/interfaces/popup';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../tools/store';
-import { feFetch } from '../../utils/fe/fetch-utils';
-import { ANALYTICS_APIS } from '../../utils/fe/apis/public';
+import { RootState } from '@/redux/store';
+import { feFetch } from '@/utils/fe/fetch-utils';
+import { ANALYTICS_APIS } from '@/utils/fe/apis/public';
 
 // Define a type for the slice state
 export interface INavigationSlice {
@@ -30,6 +25,16 @@ export interface INavigationSlice {
 	csrfToken?: string;
 	geoData?: IGeoAPI;
 	eventData?: IEventData[];
+
+	// Viewed Sections
+	workViewed: boolean;
+	blogViewed: boolean;
+	contactViewed: boolean;
+	projectsViewed: boolean;
+	awardsViewed: boolean;
+	videosViewed: boolean;
+	testimonialsViewed: boolean;
+	techStackViewed: boolean;
 }
 
 // Async Thunk to Post Events Data
@@ -37,8 +42,17 @@ export interface INavigationSlice {
 export const sendAnalytics = createAsyncThunk(
 	'sendAnalytics',
 	async (_, { getState }) => {
-		const { geoData, eventData, csrfToken } = (getState() as RootState)
-			.navigation;
+		const {
+			geoData,
+			eventData,
+			csrfToken,
+			workViewed,
+			blogViewed,
+			contactViewed,
+			projectsViewed,
+			awardsViewed,
+			videosViewed
+		} = (getState() as RootState).navigation;
 		if (!csrfToken || !geoData) return;
 		feFetch({
 			url: ANALYTICS_APIS.RECORD,
@@ -49,7 +63,13 @@ export const sendAnalytics = createAsyncThunk(
 			},
 			body: JSON.stringify({
 				...geoData,
-				events: eventData ?? []
+				events: eventData ?? [],
+				workViewed,
+				blogViewed,
+				contactViewed,
+				projectsViewed,
+				awardsViewed,
+				videosViewed
 			} as IFEData),
 			keepAlive: true
 		});
@@ -98,8 +118,27 @@ const initialState: INavigationSlice = {
 		timeout: 3000
 	},
 	showPopup: false,
-	isUserSignedIn: false
+	isUserSignedIn: false,
+	// viewed Sections
+	workViewed: false,
+	blogViewed: false,
+	contactViewed: false,
+	projectsViewed: false,
+	awardsViewed: false,
+	videosViewed: false,
+	testimonialsViewed: false,
+	techStackViewed: false
 };
+
+type ViewedKeys =
+	| 'workViewed'
+	| 'blogViewed'
+	| 'contactViewed'
+	| 'projectsViewed'
+	| 'awardsViewed'
+	| 'videosViewed'
+	| 'testimonialsViewed'
+	| 'techStackViewed';
 
 export const navSlice = createSlice({
 	name: 'navigation',
@@ -175,6 +214,12 @@ export const navSlice = createSlice({
 			action: PayloadAction<IGeoAPI | undefined>
 		) => {
 			state.geoData = action.payload;
+		},
+		updateViewed: (
+			state: INavigationSlice,
+			action: PayloadAction<ViewedKeys>
+		) => {
+			state[action.payload] = true;
 		}
 	}
 });
@@ -182,6 +227,7 @@ export const navSlice = createSlice({
 export const {
 	hidePopup,
 	updatePopup,
+	updateViewed,
 	updateGeoData,
 	updateCsrfToken,
 	updateUserSignIn,

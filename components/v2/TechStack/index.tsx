@@ -4,10 +4,9 @@ import Icon, { icons } from '@/v2/common/Icons';
 import LazyImage from '@/v2/common/LazyImage';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
-import { println } from '@/utils/dev-utils';
 import techStacks from '@/constants/cms-constants/tech-stacks.json';
 import { useAppDispatch } from '@/redux/hooks';
-import { updatePopup } from '@/slices/navigation.slice';
+import { updatePopup, updateViewed } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { ITotal } from '@/interfaces/api';
 import { ITechStack } from '@/interfaces/tech-stack';
@@ -67,7 +66,7 @@ export default function TechStack() {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('TechStack Visibility')}
+			onVisibleCallback={() => dispatch(updateViewed('techStackViewed'))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.TechStack}>
 					<div className={classes.IntroHeader}>

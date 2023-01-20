@@ -9,7 +9,8 @@ import {
 	updatePopup,
 	updateUserEmail,
 	updateUserSignIn,
-	updateUserUid
+	updateUserUid,
+	updateViewed
 } from '@/slices/navigation.slice';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
@@ -147,7 +148,7 @@ const Contact = () => {
 
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => println('contacts visible')}
+			onVisibleCallback={() => dispatch(updateViewed('contactViewed'))}
 			Component={
 				<section className={classes.ContactForm} id={attributes.Contact}>
 					<h1>Wave a hello or want me to build something cool for you ?</h1>

@@ -46,6 +46,16 @@ type IAnalyticsData = {
 	sessionID: string;
 	ua: string;
 	events: IEventData[]; // To be stored in a seperate collection
+
+	// Viewed Sections
+	workViewed: boolean;
+	blogViewed: boolean;
+	contactViewed: boolean;
+	projectsViewed: boolean;
+	awardsViewed: boolean;
+	videosViewed: boolean;
+	testimonialsViewed: boolean;
+	techStackViewed: boolean;
 } & IGeoAPI &
 	ISessionData;
 
