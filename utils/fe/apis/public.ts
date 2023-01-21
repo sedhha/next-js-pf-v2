@@ -24,3 +24,7 @@ export const ANALYTICS_APIS = {
 export const HELPER_APIS = {
 	GEO: 'https://ipapi.co/json/'
 };
+
+export const ADMIN_APIS = {
+	ADMIN: '/api/admin'
+};

@@ -3,22 +3,36 @@ import {
 	sendAnalytics,
 	updateCsrfToken,
 	updateGeoData,
-	updateRevisitor
+	updateIDToken,
+	updateIsAdmin,
+	updatePopup,
+	updateRevisitor,
+	updateUserEmail,
+	updateUserSignIn,
+	updateUserUid
 } from '@/slices/navigation.slice';
 import React from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
 import { feFetch } from '@/utils/fe/fetch-utils';
-import { AUTH_APIS } from '@/utils/fe/apis/public';
+import { ADMIN_APIS, AUTH_APIS } from '@/utils/fe/apis/public';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { closeAnalytics } from '@/slices/navigation.slice';
 import { useAppSelector } from '../../redux/tools/hooks';
+import {
+	User,
+	isSignInWithEmailLink,
+	onAuthStateChanged,
+	getAuth,
+	signInWithEmailLink
+} from 'firebase/auth';
+import app from '@/utils/fe/apis/services/firebase';
 type Props = {
 	Component: JSX.Element;
 };
 
 // Higher order initiator component
-
+const auth = getAuth(app);
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
 	const { geoData } = useAppSelector((state) => state.navigation);
@@ -44,7 +58,7 @@ export default function BaseComponent({ Component }: Props) {
 				}
 			} else dispatch(closeAnalytics());
 		}
-		
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 	React.useEffect(() => {
@@ -59,6 +73,67 @@ export default function BaseComponent({ Component }: Props) {
 		return () =>
 			document.removeEventListener('visibilitychange', onVisibilityChange);
 	}, [onVisibilityChange]);
+	const { idToken } = useAppSelector((state) => state.navigation);
+	const updateStoreIfSignedIn = React.useCallback(
+		(user: User) => {
+			const { email, uid } = user;
+			dispatch(updateUserSignIn(true));
+			if (email) dispatch(updateUserEmail(email));
+			dispatch(updateUserUid(uid));
+			user
+				.getIdToken()
+				.then((token) => dispatch(updateIDToken(token)))
+				.catch();
+		},
+		[dispatch]
+	);
+	React.useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				updateStoreIfSignedIn(user);
+				return;
+			} else {
+				const isLoggedIn = isSignInWithEmailLink(auth, window.location.href);
+				if (!isLoggedIn) return;
+				let email = window.localStorage.getItem('emailForSignIn');
+				if (!email) {
+					email = window.prompt('Please provide your email for confirmation');
+				}
+				if (!email) return;
+				signInWithEmailLink(auth, email, window.location.href)
+					.then((user) => {
+						if (user) {
+							updateStoreIfSignedIn(user.user);
+							return;
+						}
+					})
+					.catch((error) => {
+						console.error(error.message);
+						dispatch(
+							updatePopup({
+								type: 'error',
+								title: 'Login Failed',
+								description:
+									'User not logged in. Sign In Link may have expired. Kindly generate a new URL and try again!',
+								timeout: 3000
+							})
+						);
+					});
+			}
+		});
+	}, [updateStoreIfSignedIn, dispatch]);
+	React.useEffect(() => {
+		if (idToken)
+			feFetch<{ json: boolean }>({
+				url: `${ADMIN_APIS.ADMIN}`,
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + idToken
+				}
+			}).then((res) => {
+				if (res.json) dispatch(updateIsAdmin(res.json.json));
+			});
+	}, [idToken, dispatch]);
 	return (
 		<React.Fragment>
 			<Head>

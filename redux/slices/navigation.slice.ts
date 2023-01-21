@@ -22,7 +22,9 @@ export interface INavigationSlice {
 	isUserSignedIn: boolean;
 	userEmail?: string;
 	userUid?: string;
+	idToken?: string;
 	csrfToken?: string;
+	isAdmin: boolean;
 	geoData?: IGeoAPI;
 	eventData?: IEventData[];
 
@@ -127,6 +129,7 @@ const initialState: INavigationSlice = {
 	},
 	showPopup: false,
 	isUserSignedIn: false,
+	isAdmin: false,
 	// viewed Sections
 	workViewed: false,
 	blogViewed: false,
@@ -228,6 +231,15 @@ export const navSlice = createSlice({
 			action: PayloadAction<ViewedKeys>
 		) => {
 			state[action.payload] = true;
+		},
+		updateIsAdmin: (state: INavigationSlice, action: PayloadAction<boolean>) => {
+			state.isAdmin = action.payload;
+		},
+		updateIDToken: (
+			state: INavigationSlice,
+			action: PayloadAction<string | undefined>
+		) => {
+			state.idToken = action.payload;
 		}
 	}
 });
@@ -236,8 +248,10 @@ export const {
 	hidePopup,
 	updatePopup,
 	updateViewed,
+	updateIsAdmin,
 	updateGeoData,
 	updateCsrfToken,
+	updateIDToken,
 	updateUserSignIn,
 	updateUserEmail,
 	updateUserUid,
