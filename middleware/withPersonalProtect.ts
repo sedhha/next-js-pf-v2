@@ -8,6 +8,7 @@ const personalUid = 'dTYacphBekfOxAOcGYiGWHSYTCF2';
 export const withPersonalProtect = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
+            console.info(`[${req.method}]: [Protected CSRF API] - ${req.url}`);
 			const { authorization } = req.headers;
 			if (!authorization) return res.status(401).end();
 			const [tokenType, tokenValue] = authorization.split(' ');

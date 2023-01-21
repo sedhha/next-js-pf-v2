@@ -41,6 +41,9 @@ interface IChat {
 const formMessagesPath = (isProd: boolean, uid: string) =>
 	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/messages`;
 
+	const lastModifiedPath = (isProd: boolean, uid: string) =>
+		`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/lastModified`;
+
 const typingUserPath = (isProd: boolean, uid: string, isVisitor: boolean) =>
 	isVisitor
 		? `${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/visitorTyping`
@@ -72,6 +75,18 @@ const Contact = () => {
 				if (snapshot.exists()) {
 					const isTyping = snapshot.val();
 					setTyping(isTyping);
+				}
+			});
+			onValue(query(chatRef, limitToLast(100)), async (snapshot) => {
+				if (snapshot.exists()) {
+					const results = snapshot.val();
+					const keys = Object.keys(results);
+					setUserChat(
+						keys.map((item) => {
+							const { uri, isFrom, message } = results[item];
+							return { uri, isFrom, message, id: item };
+						})
+					);
 				}
 			});
 			return () => {
@@ -145,12 +160,20 @@ const Contact = () => {
 					auth.currentUser.uid
 				)
 			);
+			const lastModified = ref(
+				db,
+				lastModifiedPath(
+					process.env.NODE_ENV === 'production',
+					auth.currentUser.uid
+				)
+			);
 			push(chatRef, {
 				uri: '/chat-icon.png',
 				isFrom: false,
 				message: msg
 			})
 				.then(() => {
+					set(lastModified, new Date().getTime());
 					setLoading(false);
 					setMsg('');
 				})
