@@ -192,14 +192,12 @@ const Contact = () => {
 
 	return (
 		<section className={classes.ChatWindow}>
-			<div className={classes.TopNavigation}>
+			<div
+				className={classes.TopNavigation}
+				onClick={() => dispatch(updateInChatMode(false))}
+			>
 				<h2>Chat Anonymously</h2>
-				<h2
-					onClick={() => dispatch(updateInChatMode(false))}
-					className={classes.CloseButton}
-				>
-					X
-				</h2>
+				<h2 className={classes.CloseButton}>X</h2>
 			</div>
 			<div className={classes.ChatElements}>
 				{userChat.length > 0 ? (

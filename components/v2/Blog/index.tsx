@@ -31,7 +31,6 @@ const Blog = () => {
 		<VisibilityHandler
 			onVisibleCallback={() => {
 				dispatch(updateViewed('blogViewed'));
-				console.log('Example trigger');
 			}}
 			Component={
 				<section className={classes.BlogBody} id={attributes.Blog}>
