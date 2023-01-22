@@ -1,0 +1,16 @@
+.Items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 1.5vh;
+    padding: 1vh 1vw;
+}
+
+.Items > div {
+    box-shadow: var(--box-shadow-thin);
+    padding: 1vh 1vw;
+}
+
+.Feedback {
+    padding: 1vh 1vw;
+}

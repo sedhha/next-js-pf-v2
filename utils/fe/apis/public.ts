@@ -26,5 +26,6 @@ export const HELPER_APIS = {
 };
 
 export const ADMIN_APIS = {
-	ADMIN: '/api/admin'
+	ADMIN: '/api/admin',
+	CONTACT_FORMS: '/api/admin/forms'
 };

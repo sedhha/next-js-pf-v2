@@ -23,12 +23,7 @@ import { DB_APIS } from '@/utils/fe/apis/public';
 import { regexExpressions } from '@/utils/regex-validators';
 import Spinner from '@/v2/common/Spinner';
 import app from '@/fe-client/firebase';
-import {
-	getAuth,
-	sendSignInLinkToEmail,
-	isSignInWithEmailLink,
-	User
-} from 'firebase/auth';
+import { getAuth, sendSignInLinkToEmail, User } from 'firebase/auth';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 const auth = getAuth(app);

@@ -9,7 +9,7 @@ const Popup = () => {
 	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
-		setTimeout(() => dispatch(hidePopup()), popup.timeout);
+		setTimeout(() => dispatch(hidePopup()), popup.timeout ?? 3000);
 	}, [popup, dispatch]);
 
 	return showPopup ? (
