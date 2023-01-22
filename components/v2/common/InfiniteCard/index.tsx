@@ -63,10 +63,8 @@ const InfiniteCardComponent = ({
 
 			if (scrollLeft === 0) {
 				if (onReachedLeftCallback) onReachedLeftCallback?.();
-				else println('Reached left');
 			} else if (reachedRight && !isScrollingLeft) {
 				if (onReachedRightCallback) onReachedRightCallback?.();
-				else println('Reached right');
 			}
 		}
 	};

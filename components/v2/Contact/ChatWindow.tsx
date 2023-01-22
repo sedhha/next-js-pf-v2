@@ -26,7 +26,15 @@ import {
 	query,
 	set
 } from 'firebase/database';
-import { dbPaths } from '@/firebase/constants';
+import {
+	emailRefPath,
+	formMessagesPath,
+	lastModifiedPath,
+	latestMessagePath,
+	readRecipientPath,
+	typingUserPath
+} from '@/firebase/constants';
+import Typing from '@/v2/common/Typing';
 
 const db = getDatabase(app);
 const auth = getAuth(app);
@@ -37,18 +45,7 @@ interface IChat {
 	isFrom: boolean;
 	message: string;
 }
-
-const formMessagesPath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/messages`;
-
-	const lastModifiedPath = (isProd: boolean, uid: string) =>
-		`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/lastModified`;
-
-const typingUserPath = (isProd: boolean, uid: string, isVisitor: boolean) =>
-	isVisitor
-		? `${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/visitorTyping`
-		: `${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/meTyping`;
-
+const isProd = process.env.NODE_ENV === 'production';
 const Contact = () => {
 	const [userChat, setUserChat] = React.useState<IChat[]>([]);
 	const [msg, setMsg] = React.useState('');
@@ -56,20 +53,10 @@ const Contact = () => {
 	const [typing, setTyping] = React.useState(false);
 	React.useEffect(() => {
 		if (auth.currentUser) {
-			const chatRef = ref(
-				db,
-				formMessagesPath(
-					process.env.NODE_ENV === 'production',
-					auth.currentUser.uid
-				)
-			);
+			const chatRef = ref(db, formMessagesPath(isProd, auth.currentUser.uid));
 			const typingRef = ref(
 				db,
-				typingUserPath(
-					process.env.NODE_ENV === 'production',
-					auth.currentUser.uid,
-					false
-				)
+				typingUserPath(isProd, auth.currentUser.uid, false)
 			);
 			onValue(typingRef, async (snapshot) => {
 				if (snapshot.exists()) {
@@ -87,7 +74,7 @@ const Contact = () => {
 							return { uri, isFrom, message, id: item };
 						})
 					);
-				}
+				} else setUserChat([]);
 			});
 			return () => {
 				off(chatRef);
@@ -153,19 +140,16 @@ const Contact = () => {
 		if (loading) return;
 		setLoading(true);
 		if (auth.currentUser) {
-			const chatRef = ref(
+			const chatRef = ref(db, formMessagesPath(isProd, auth.currentUser.uid));
+			const lastModified = ref(db, lastModifiedPath(isProd, auth.currentUser.uid));
+			const emailRef = ref(db, emailRefPath(isProd, auth.currentUser.uid));
+			const readRecipientRef = ref(
 				db,
-				formMessagesPath(
-					process.env.NODE_ENV === 'production',
-					auth.currentUser.uid
-				)
+				readRecipientPath(isProd, auth.currentUser.uid)
 			);
-			const lastModified = ref(
+			const latestMessageRef = ref(
 				db,
-				lastModifiedPath(
-					process.env.NODE_ENV === 'production',
-					auth.currentUser.uid
-				)
+				latestMessagePath(isProd, auth.currentUser.uid)
 			);
 			push(chatRef, {
 				uri: '/chat-icon.png',
@@ -174,6 +158,9 @@ const Contact = () => {
 			})
 				.then(() => {
 					set(lastModified, new Date().getTime());
+					set(emailRef, auth.currentUser?.email ?? auth.currentUser?.uid);
+					set(readRecipientRef, false);
+					set(latestMessageRef, msg);
 					setLoading(false);
 					setMsg('');
 				})
@@ -189,11 +176,7 @@ const Contact = () => {
 		if (auth.currentUser) {
 			const typingRef = ref(
 				db,
-				typingUserPath(
-					process.env.NODE_ENV === 'production',
-					auth.currentUser.uid,
-					true
-				)
+				typingUserPath(isProd, auth.currentUser.uid, true)
 			);
 			set(typingRef, typing)
 				.then(() => {
@@ -238,13 +221,7 @@ const Contact = () => {
 					</div>
 				)}
 			</div>
-			{typing && (
-				<div className={classes.Typing}>
-					<section />
-					<section />
-					<section />
-				</div>
-			)}
+			{typing && <Typing />}
 			<div className={classes.MessageSendContainer}>
 				<input
 					placeholder="Start typing a message..."

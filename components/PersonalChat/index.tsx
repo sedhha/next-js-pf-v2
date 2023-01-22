@@ -5,222 +5,135 @@ import InfiniteCardComponent from '@/v2/common/InfiniteCard';
 import {
 	getDatabase,
 	ref,
-	get,
+	onValue,
 	query,
-	startAt,
-	endAt,
-	endBefore,
 	limitToLast,
-	limitToFirst,
-	orderByChild
+	orderByChild,
+	off
 } from 'firebase/database';
-import { dbPaths } from '@/firebase/constants';
+import { formRootMessagesPath } from '@/firebase/constants';
 import app from '@/utils/fe/apis/services/firebase';
+import { IAdminRootMessage } from '@/interfaces/firebase/messages';
+import Typing from '@/v2/common/Typing';
 
 const db = getDatabase(app);
-const formMessagesPath = (isProd: boolean) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}`;
 
 const ChatWindow = () => {
 	const { isAdmin } = useAppSelector((state) => state.navigation);
 	const [limit, setLimit] = React.useState(100);
+	const [messages, setMessages] = React.useState<IAdminRootMessage[]>([]);
 
 	React.useEffect(() => {
-		const path = formMessagesPath(process.env.NODE_ENV === 'production');
-		console.log(path);
-		get(query(ref(db, path), orderByChild('lastModified'))).then((snapshot) => {
-			if (snapshot.exists()) {
-				const res = snapshot.val();
-				console.log(res);
+		if (limit > messages.length && messages.length !== 0) return;
+		const path = formRootMessagesPath(process.env.NODE_ENV === 'production');
+		const messagesRef = ref(db, path);
+		onValue(
+			query(messagesRef, orderByChild('lastModified'), limitToLast(limit)),
+			async (snapshot) => {
+				if (snapshot.exists()) {
+					const messages = snapshot.val() as { [key: string]: IAdminRootMessage };
+					const values = Object.keys(messages)
+						.reduce((acc, curr) => {
+							const value = messages[curr] as IAdminRootMessage;
+							acc.push({ ...value, key: curr });
+							return acc;
+						}, [] as IAdminRootMessage[])
+						.sort((a, b) => b.lastModified - a.lastModified);
+					setMessages([...values]);
+				}
 			}
-		});
-	}, []);
+		);
+
+		return () => {
+			off(messagesRef);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [limit]);
 	return isAdmin ? (
 		<InfiniteCardComponent
-			onReachedBottomCallback={() => alert('On Bottom')}
-			onReachedTopCallback={() => alert('On Top')}
+			onReachedBottomCallback={() => setLimit((limit) => limit + 100)}
 			Component={
 				<div className={classes.ChatWindow}>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
-					<div className={classes.MessageSection}>
-						<h1>Email: activity.schoolsh2@gmail.com</h1>
-						<h2>
-							Latest Message: Hey there, Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Necessitatibus veniam officia tenetur adipisci minima
-							molestiae possimus temporibus alias totam voluptas quasi consequuntur ad
-							nobis sint quaerat, consectetur at. Nihil, ad!
-						</h2>
-					</div>
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
+					{messages.map((message) => (
+						<div key={message.key} className={classes.MessageSection}>
+							<h1>Email: {message.emailOfSender}</h1>
+							<h2>Latest Message: {message.latestMessage}</h2>
+							{!message.read && <h3>Unread</h3>}
+							{message.visitorTyping && <Typing />}
+						</div>
+					))}
 				</div>
 			}
 		/>

@@ -29,9 +29,43 @@ export const getCollectionPath = (path: string): string => {
 
 export const dbPaths = {
 	userMessages: 'user-messages',
+	userMessageMetadata: 'user-message-metadata',
 	csrfTokens: 'csrf-token'
 };
 
+const formRootMessagesPath = (isProd: boolean) =>
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}`;
+
+const formMessagesPath = (isProd: boolean, uid: string) =>
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/messages`;
+
+const lastModifiedPath = (isProd: boolean, uid: string) =>
+	`${isProd ? 'prod' : 'dev'}-${
+		dbPaths.userMessageMetadata
+	}/${uid}/lastModified`;
+
+const emailRefPath = (isProd: boolean, uid: string) =>
+	`${isProd ? 'prod' : 'dev'}-${
+		dbPaths.userMessageMetadata
+	}/${uid}/emailOfSender`;
+
+const readRecipientPath = (isProd: boolean, uid: string) =>
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/read`;
+
+const latestMessagePath = (isProd: boolean, uid: string) =>
+	`${isProd ? 'prod' : 'dev'}-${
+		dbPaths.userMessageMetadata
+	}/${uid}/latestMessage`;
+
+const typingUserPath = (isProd: boolean, uid: string, isVisitor: boolean) =>
+	isVisitor
+		? `${isProd ? 'prod' : 'dev'}-${
+				dbPaths.userMessageMetadata
+		  }/${uid}/visitorTyping`
+		: `${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/meTyping`;
+
+const formCSRFPath = (isProd: boolean) =>
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.csrfTokens}`;
 export const getDBPath = (path: string): string => {
 	const prefix = getEnvPrefix();
 	const storagePath = dbPaths[path as keyof typeof dbPaths];
@@ -44,5 +78,13 @@ export const getDBPath = (path: string): string => {
 	return `${prefix}-${storagePath}`;
 };
 
-export const formCSRFPath = (isProd: boolean) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.csrfTokens}`;
+export {
+	formRootMessagesPath,
+	formMessagesPath,
+	lastModifiedPath,
+	emailRefPath,
+	readRecipientPath,
+	latestMessagePath,
+	typingUserPath,
+	formCSRFPath
+};

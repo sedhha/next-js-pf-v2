@@ -1,11 +1,11 @@
 .ChatWindow {
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     row-gap: 1vh;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .MessageSection {
@@ -19,4 +19,8 @@
 
 .MessageSection:hover {
     scale: 0.98;
+}
+
+.MessageSection > h3 {
+    color: var(--orange);
 }
