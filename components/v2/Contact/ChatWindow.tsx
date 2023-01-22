@@ -137,7 +137,7 @@ const Contact = () => {
 		}
 	};
 	const onSendMessage = () => {
-		if (loading) return;
+		if (loading || msg === '') return;
 		setLoading(true);
 		if (auth.currentUser) {
 			const chatRef = ref(db, formMessagesPath(isProd, auth.currentUser.uid));

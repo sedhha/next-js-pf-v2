@@ -15,13 +15,25 @@ import { formRootMessagesPath } from '@/firebase/constants';
 import app from '@/utils/fe/apis/services/firebase';
 import { IAdminRootMessage } from '@/interfaces/firebase/messages';
 import Typing from '@/v2/common/Typing';
+import ChatWindow from './ChatWindow';
 
 const db = getDatabase(app);
 
-const ChatWindow = () => {
+const PersonalChat = () => {
 	const { isAdmin } = useAppSelector((state) => state.navigation);
 	const [limit, setLimit] = React.useState(100);
 	const [messages, setMessages] = React.useState<IAdminRootMessage[]>([]);
+	const [inChat, setInChat] = React.useState(false);
+	const [chatUID, setChatUID] = React.useState('');
+	const [email, setChatEmail] = React.useState('');
+
+	const handleOnClick = (email: string, uid: string) => {
+		setChatUID(uid);
+		setChatEmail(email);
+		setInChat(true);
+	};
+
+	const onExitChat = () => setInChat(false);
 
 	React.useEffect(() => {
 		if (limit > messages.length && messages.length !== 0) return;
@@ -54,86 +66,24 @@ const ChatWindow = () => {
 			onReachedBottomCallback={() => setLimit((limit) => limit + 100)}
 			Component={
 				<div className={classes.ChatWindow}>
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
-					{messages.map((message) => (
-						<div key={message.key} className={classes.MessageSection}>
-							<h1>Email: {message.emailOfSender}</h1>
-							<h2>Latest Message: {message.latestMessage}</h2>
-							{!message.read && <h3>Unread</h3>}
-							{message.visitorTyping && <Typing />}
-						</div>
-					))}
+					{inChat ? (
+						<ChatWindow uid={chatUID} email={email} onExitChat={onExitChat} />
+					) : (
+						messages.map((message) => (
+							<div
+								key={message.key}
+								className={classes.MessageSection}
+								onClick={() =>
+									handleOnClick(message.emailOfSender, message.key ?? 'Undefined')
+								}
+							>
+								<h1>Email: {message.emailOfSender}</h1>
+								<h2>Latest Message: {message.latestMessage}</h2>
+								{!message.read && <h3>Unread</h3>}
+								{message.visitorTyping && <Typing />}
+							</div>
+						))
+					)}
 				</div>
 			}
 		/>
@@ -141,4 +91,4 @@ const ChatWindow = () => {
 		<div>404: Not Found!</div>
 	);
 };
-export default ChatWindow;
+export default PersonalChat;
