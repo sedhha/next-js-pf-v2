@@ -8,6 +8,10 @@ type Props = {
 	alter: number;
 } & IEventAndParticipations;
 
+const getAlterParam = (index: number) => {
+	return index % 4 == 0 || index % 4 == 3 ? 1 : 0;
+};
+
 const AwardCard = ({
 	alter,
 	img,
@@ -17,12 +21,13 @@ const AwardCard = ({
 	description,
 	achievementType
 }: Props) => {
+	const altered = getAlterParam(alter);
 	return (
 		<div className={classes.AwardCard}>
 			<LazyImage src={img} className={classes.SideImage} />
 			<div
 				className={`${classes.Details} ${
-					alter === -1 ? classes.oddBG : classes.evenBG
+					altered === 0 ? classes.oddBG : classes.evenBG
 				}`}
 			>
 				<div className={classes.TitleAndDescription}>
@@ -30,7 +35,7 @@ const AwardCard = ({
 						<h1>{name}</h1>
 						<a
 							className={`${classes.AchievementButton} ${
-								alter === -1 ? classes.AlterButton : classes.NormalButton
+								altered === 0 ? classes.AlterButton : classes.NormalButton
 							}`}
 							href={url}
 							target="_blank"

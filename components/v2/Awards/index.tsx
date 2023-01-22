@@ -21,8 +21,6 @@ import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
 
 const limit = 6;
 const initialItems = events.slice(0, limit);
-let reciprocator = -1;
-
 const Awards = () => {
 	const [skip, setSkip] = React.useState(0);
 	const [total, setTotal] = React.useState(18);
@@ -31,7 +29,6 @@ const Awards = () => {
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
 	const awardsViewed = useAppSelector((state) => state.navigation.awardsViewed);
-
 	React.useEffect(() => {
 		if (awardsViewed) dispatch(sendAnalytics());
 	}, [awardsViewed, dispatch]);
@@ -100,8 +97,8 @@ const Awards = () => {
 							Component={
 								<div className={classes.AwardContainer}>
 									{cardItems.map((item, index) => {
-										if (index % 2 === 1) reciprocator *= -1;
-										return <AwardCard {...item} alter={reciprocator} key={index} />;
+										// resetReciprocator();
+										return <AwardCard {...item} alter={index} key={index} />;
 									})}
 								</div>
 							}
