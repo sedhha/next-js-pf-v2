@@ -32,6 +32,7 @@ import {
 	lastModifiedPath,
 	latestMessagePath,
 	readRecipientPath,
+	readRecipientPathUser,
 	typingUserPath
 } from '@/firebase/constants';
 import Typing from '@/v2/common/Typing';
@@ -51,6 +52,8 @@ const Contact = () => {
 	const [msg, setMsg] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
 	const [typing, setTyping] = React.useState(false);
+	const [read, setRead] = React.useState(false);
+	const [readByAdmin, setReadByAdmin] = React.useState(false);
 	React.useEffect(() => {
 		if (auth.currentUser) {
 			const chatRef = ref(db, formMessagesPath(isProd, auth.currentUser.uid));
@@ -58,6 +61,24 @@ const Contact = () => {
 				db,
 				typingUserPath(isProd, auth.currentUser.uid, false)
 			);
+			const readByUserRef = ref(
+				db,
+				readRecipientPathUser(isProd, auth.currentUser.uid)
+			);
+			const readRecipientRef = ref(
+				db,
+				readRecipientPath(isProd, auth.currentUser.uid)
+			);
+			onValue(readByUserRef, async (snapshot) => {
+				if (snapshot.exists()) {
+					setRead(snapshot.val());
+				}
+			});
+			onValue(readRecipientRef, async (snapshot) => {
+				if (snapshot.exists()) {
+					setReadByAdmin(snapshot.val());
+				}
+			});
 			onValue(typingRef, async (snapshot) => {
 				if (snapshot.exists()) {
 					const isTyping = snapshot.val();
@@ -74,11 +95,32 @@ const Contact = () => {
 							return { uri, isFrom, message, id: item };
 						})
 					);
+					Notification.requestPermission().then((permission) => {
+						if (permission === 'granted') {
+							const { message } = results[keys[keys.length - 1]];
+							console.log({
+								visible: document.visibilityState,
+								d: document.visibilityState !== 'visible'
+							});
+							console.log({
+								two: document.visibilityState !== 'visible',
+								three: !read
+							});
+							if (document.visibilityState !== 'visible' && !read)
+								new Notification('Shivam sent a message', {
+									body: message,
+									icon: '/chat-icon.png'
+								});
+						}
+					});
 				} else setUserChat([]);
 			});
+			Notification.requestPermission();
 			return () => {
 				off(chatRef);
 				off(typingRef);
+				off(readByUserRef);
+				off(readRecipientRef);
 			};
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -147,6 +189,10 @@ const Contact = () => {
 				db,
 				readRecipientPath(isProd, auth.currentUser.uid)
 			);
+			const readByUserRef = ref(
+				db,
+				readRecipientPathUser(isProd, auth.currentUser.uid)
+			);
 			const latestMessageRef = ref(
 				db,
 				latestMessagePath(isProd, auth.currentUser.uid)
@@ -160,6 +206,7 @@ const Contact = () => {
 					set(lastModified, new Date().getTime());
 					set(emailRef, auth.currentUser?.email ?? auth.currentUser?.uid);
 					set(readRecipientRef, false);
+					set(readByUserRef, true);
 					set(latestMessageRef, msg);
 					setLoading(false);
 					setMsg('');
@@ -178,6 +225,10 @@ const Contact = () => {
 				db,
 				typingUserPath(isProd, auth.currentUser.uid, true)
 			);
+			const readByUserRef = ref(
+				db,
+				readRecipientPathUser(isProd, auth.currentUser.uid)
+			);
 			set(typingRef, typing)
 				.then(() => {
 					setLoading(false);
@@ -187,8 +238,11 @@ const Contact = () => {
 					setLoading(false);
 					setMsg('Failed to send message');
 				});
+			set(readByUserRef, true);
 		} else setLoading(false);
 	};
+
+	const lastMessageFromAdmin = userChat?.[userChat.length - 1]?.isFrom ?? true;
 
 	return (
 		<section className={classes.ChatWindow}>
@@ -220,6 +274,9 @@ const Contact = () => {
 				)}
 			</div>
 			{typing && <Typing />}
+			{readByAdmin && !typing && !lastMessageFromAdmin && (
+				<p className={classes.ReadRecipient}>Your message was seen by Shivam</p>
+			)}
 			<div className={classes.MessageSendContainer}>
 				<input
 					placeholder="Start typing a message..."

@@ -7,11 +7,11 @@ type Props = {
 	isFrom: boolean;
 };
 
-export default function ChatElement({ message, uri, isFrom }: Props) {
+export default function ChatElement({ message, isFrom }: Props) {
 	return (
 		<div className={classes.ChatElement}>
 			{isFrom && (
-				<LazyImage src={uri ?? '/chat-icon.png'} className={classes.ChatImage} />
+				<LazyImage src={'/chat-icon.png'} className={classes.ChatImage} />
 			)}
 			<p
 				className={`${classes.ElementMessageContainer} ${
@@ -20,9 +20,7 @@ export default function ChatElement({ message, uri, isFrom }: Props) {
 			>
 				{message}
 			</p>
-			{!isFrom && (
-				<LazyImage src={'/chat-icon.png'} className={classes.ChatImage} />
-			)}
+			{!isFrom && <LazyImage src={'/user.png'} className={classes.ChatImage} />}
 		</div>
 	);
 }

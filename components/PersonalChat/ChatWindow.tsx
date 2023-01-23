@@ -4,6 +4,7 @@ import {
 	lastModifiedPath,
 	latestMessagePath,
 	readRecipientPath,
+	readRecipientPathUser,
 	typingUserPath
 } from '@/firebase/constants';
 import { useAppSelector } from '@/redux/hooks';
@@ -44,11 +45,25 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 	const [userChat, setUserChat] = useState<IChat[]>([]);
 	const [msg, setMsg] = useState('');
 	const [typing, setTyping] = useState(false);
+	const [readByUser, setReadByUser] = useState(false);
+	const [readByMe, setReadByMe] = useState(false);
 
 	useEffect(() => {
 		if (isAdmin) {
 			setLoading(true);
 			const chatRef = ref(db, formMessagesPath(isProd, uid));
+			const readRecipientRef = ref(db, readRecipientPath(isProd, uid));
+			const readRecipientUserRef = ref(db, readRecipientPathUser(isProd, uid));
+			onValue(readRecipientUserRef, async (snapshot) => {
+				if (snapshot.exists()) {
+					setReadByUser(snapshot.val());
+				}
+			});
+			onValue(readRecipientRef, async (snapshot) => {
+				if (snapshot.exists()) {
+					setReadByMe(snapshot.val());
+				}
+			});
 			onValue(query(chatRef, limitToLast(100)), async (snapshot) => {
 				if (snapshot.exists()) {
 					const results = snapshot.val();
@@ -83,6 +98,7 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 		const lastModified = ref(db, lastModifiedPath(isProd, uid));
 		const emailRef = ref(db, emailRefPath(isProd, uid));
 		const readRecipientRef = ref(db, readRecipientPath(isProd, uid));
+		const readRecipientUserRef = ref(db, readRecipientPathUser(isProd, uid));
 		const latestMessageRef = ref(db, latestMessagePath(isProd, uid));
 		push(chatRef, {
 			uri: '/chat-icon.png',
@@ -92,7 +108,8 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 			.then(() => {
 				set(lastModified, new Date().getTime());
 				set(emailRef, email ?? uid);
-				set(readRecipientRef, false);
+				set(readRecipientRef, true);
+				set(readRecipientUserRef, false);
 				set(latestMessageRef, msg);
 				setLoading(false);
 				setMsg('');
@@ -106,7 +123,9 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 	const setAdminTyping = (typing: boolean) => {
 		const typingRef = ref(db, typingUserPath(isProd, uid, false));
 		const readRecipientRef = ref(db, readRecipientPath(isProd, uid));
+		const readRecipientUserRef = ref(db, readRecipientPathUser(isProd, uid));
 		set(readRecipientRef, true);
+		set(readRecipientUserRef, false);
 		set(typingRef, typing)
 			.then(() => {
 				setMsg('');
@@ -139,6 +158,7 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 					)}
 				</div>
 				{typing && <Typing />}
+				{readByUser && !typing && <p className={classes.ReadRecipient}>Read</p>}
 				<div className={classes.MessageSendContainer}>
 					<input
 						placeholder="Start typing a message..."

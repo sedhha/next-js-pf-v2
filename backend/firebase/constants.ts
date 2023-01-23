@@ -50,7 +50,10 @@ const emailRefPath = (isProd: boolean, uid: string) =>
 	}/${uid}/emailOfSender`;
 
 const readRecipientPath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/read`;
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/readByMe`;
+
+const readRecipientPathUser = (isProd: boolean, uid: string) =>
+	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/readByUser`;
 
 const latestMessagePath = (isProd: boolean, uid: string) =>
 	`${isProd ? 'prod' : 'dev'}-${
@@ -86,5 +89,6 @@ export {
 	readRecipientPath,
 	latestMessagePath,
 	typingUserPath,
-	formCSRFPath
+	formCSRFPath,
+	readRecipientPathUser
 };

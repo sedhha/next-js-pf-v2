@@ -282,6 +282,13 @@
 .TopNavigation  {
 	cursor: pointer;
 }
+.ReadRecipient {
+	font-size: 1vh;
+	width: 100%;
+	text-align: end;
+	padding: 0 1vw;
+}
+
 
 @media (max-aspect-ratio: 550 / 897) {
 	.Form {
