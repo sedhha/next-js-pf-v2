@@ -96,6 +96,11 @@
 	border: none;
 	color: var(--achievement-button-font-color);
 	background-color: var(--light-blue);
+	cursor: pointer;
+	transition: var(--fade-transition);
+}
+.BlueButton:hover {
+	scale: 0.98;
 }
 
 @media (max-aspect-ratio: 550 / 897) {

@@ -1,0 +1,59 @@
+{
+	"highlighted": {
+		"id": "3aQxNSX3dPI",
+		"title": "Understanding JavaScript Runtime",
+		"yt": true,
+		"date": "2022-07-26T00:00:00.000+05:30",
+		"excerpt": "JavaScript Runtime: You must have heard people saying JavaScript is a single threaded programming language. However it is paradoxical to its nature of being asynchronous. Isn't it contradicting that the language which is single threaded can also run asynchronously? Let's discuss and understand what is the magic going on that makes JavaScript asynchronous and single threaded at the same time!",
+		"author": "Shivam Sahil",
+		"authorAvatar": "/sample.png",
+		"order": 0,
+		"tags": ["highlighted"]
+	},
+	"top4": [
+		{
+			"id": "S5dMtRskjs0",
+			"title": "Insightful conversation with ChatGPT - Its not going to steal away your jobs!",
+			"yt": true,
+			"date": "2023-01-19T00:00:00.000+05:30",
+			"excerpt": "Building complicated UI functionalities - Insightful conversation with ChatGPT - Its not going to steal away your jobs!",
+			"author": "Shivam Sahil",
+			"authorAvatar": "/sample.png",
+			"order": 0,
+			"tags": ["top4"]
+		},
+		{
+			"id": "u0ZiKehP9vA",
+			"title": "Understanding Difference between Session based Authentication Vs JWT Authentication",
+			"yt": true,
+			"date": "2023-09-02T00:00:00.000+05:30",
+			"excerpt": "Which is better in what scenarios? Understanding Difference between Session based Authentication Vs JWT Authentication",
+			"author": "Shivam Sahil",
+			"authorAvatar": "/sample.png",
+			"order": 0,
+			"tags": ["top4"]
+		},
+		{
+			"id": "gevY54vacus",
+			"title": "Fastest JSON Parsing Comparison: Express Vs Fast API Vs Play Framework Vs Go Gin",
+			"yt": true,
+			"date": "2022-09-12T00:00:00.000+05:30",
+			"excerpt": "Fastest JSON Parsing Comparison: Let's run and see which microservice is most optimized for fastest JSON parsing: Express Vs Fast API Vs Play Framework Vs Go Gin",
+			"author": "Shivam Sahil",
+			"authorAvatar": "/sample.png",
+			"order": 0,
+			"tags": ["top4"]
+		},
+		{
+			"id": "vRO0CXJC4Xw",
+			"title": "Understanding and Implementing your own Merge Sort Algorithm using Recursion",
+			"yt": true,
+			"date": "2021-05-28T00:00:00.000+05:30",
+			"excerpt": "How does merge sort work? Why is it one of the fastest possible sorting algorithms for generic use cases?",
+			"author": "Shivam Sahil",
+			"authorAvatar": "/sample.png",
+			"order": 0,
+			"tags": ["top4"]
+		}
+	]
+}

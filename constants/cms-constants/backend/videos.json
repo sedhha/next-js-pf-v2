@@ -1,533 +1,498 @@
 [
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "S5dMtRskjs0",
+		"title": "Insightful conversation with ChatGPT - Its not going to steal away your jobs!",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2023-01-19T00:00:00.000+05:30",
+		"excerpt": "Building complicated UI functionalities - Insightful conversation with ChatGPT - Its not going to steal away your jobs!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0,
+		"tags": ["top4"]
 	},
 	{
 		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"title": "Speed up your web apps by validating forms using CSS and Regex",
 		"yt": true,
 		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"excerpt": "Pseudo classes in CSS - Speed up your web apps by validating forms using CSS and Regex",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "3aQxNSX3dPI",
+		"title": "Understanding JavaScript Runtime",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-07-26T00:00:00.000+05:30",
+		"excerpt": "JavaScript Runtime: You must have heard people saying JavaScript is a single threaded programming language. However it is paradoxical to its nature of being asynchronous. Isn't it contradicting that the language which is single threaded can also run asynchronously? Let's discuss and understand what is the magic going on that makes JavaScript asynchronous and single threaded at the same time!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0,
+		"tags": ["highlighted"]
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "u0ZiKehP9vA",
+		"title": "Understanding Difference between Session based Authentication Vs JWT Authentication",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2023-09-02T00:00:00.000+05:30",
+		"excerpt": "Which is better in what scenarios? Understanding Difference between Session based Authentication Vs JWT Authentication",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0,
+		"tags": ["top4"]
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "llaPniTM46c",
+		"title": "Building Full Stack Development and Securing Web Apps using NEXT - Hack The 6ix 2022: NEXT JS Workshop",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-02T00:00:00.000+05:30",
+		"excerpt": "This is a complete 90 minute workshop for getting quick started, building full stack development and securing Web Apps using NEXT",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "QG7iPjeNJkQ",
+		"title": "JavaScript Promises easy way: Callbacks, resolving, rejecting, then, catch, async await",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-03T00:00:00.000+05:30",
+		"excerpt": "In this video we will learn core concepts of JavaScript promises and see different ways to handle the same.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "B8WfR_mMe1o",
+		"title": "Concurrent requests - Express Vs Fast API Vs Play Framework Vs Go Gin",
 		"yt": true,
 		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"excerpt": "Concurrent Request Handling comparison: Express Vs Fast API Vs Play Framework Vs Go Gin",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "qcX-7RDzRN4",
+		"title": "Navigation in NEXT JS (useRouter hook)",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-05T00:00:00.000+05:30",
+		"excerpt": "Understanding File based routing and navigation in NEXT JS (useRouter hook)",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "zu4lrPCU_xs",
+		"title": "Protecting NEXT APIs with JWT Authentication",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-04T00:00:00.000+05:30",
+		"excerpt": "Protecting NEXT APIs with JWT Authentication: JWT, Session Expiration, Next Middleware",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "7nG8CK5rLbQ",
+		"title": "Implementing Basic Authentication in NEXT",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-03-22T00:00:00.000+05:30",
+		"excerpt": "Implementing Basic Authentication: base64 encoded email and password in NEXT JS",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Bpl4VW_sFXo",
+		"title": "NEXT 12.3: New Features for even better developer experience",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-10T00:00:00.000+05:30",
+		"excerpt": "A brief about new NEXT 12.3: New Features for even better developer experience",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "gevY54vacus",
+		"title": "Fastest JSON Parsing Comparison: Express Vs Fast API Vs Play Framework Vs Go Gin",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-12T00:00:00.000+05:30",
+		"excerpt": "Fastest JSON Parsing Comparison: Let's run and see which microservice is most optimized for fastest JSON parsing: Express Vs Fast API Vs Play Framework Vs Go Gin",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0,
+		"tags": ["top4"]
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "siAMqQLDIec",
+		"title": "Detect Browser Visibility, closing and Tab Switching: JS Visibility API",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-13T00:00:00.000+05:30",
+		"excerpt": "Understanding Visibility and Intersection Observer API - Detect Browser Visibility, closing and Tab Switching: JS Visibility API",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "bczax7itlJU",
+		"title": "Responsive Web Design - CSS",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-18T00:00:00.000+05:30",
+		"excerpt": "Responsive Web Design: Create Fully Customizable, Reusable and Responsive Sass Mixins",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "zhY06B5ejg0",
+		"title": "Intersection API - JavaScript",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-23T00:00:00.000+05:30",
+		"excerpt": "Intersection API - JavaScript - Load components lazily and save network calls",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "VKhULBaHeNM",
+		"title": "Leetcode problem 11 - Container with Most Water O(n2) and O(n) approach",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-09-24T00:00:00.000+05:30",
+		"excerpt": "Competetive Coding - Leetcode problem 11 - Container with Most Water O(n2) and O(n) approach",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "mf-wJEMy32U",
+		"title": "Build a Google Analytics like App",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-10-02T00:00:00.000+05:30",
+		"excerpt": "Build a Google Analytics like App using NEXT JS and Web Sockets - Demo of the End Product - 01",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "eqjrBqLqw7U",
+		"title": "Lazy loading Images - React",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-10-03T00:00:00.000+05:30",
+		"excerpt": "Lazy loading image assets optimized my web app and resource performance by almost 10 times just Wow!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Svt5T48a-Z0",
+		"title": "Implementing infinite scroll data fetching in React JS",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2023-10-07T00:00:00.000+05:30",
+		"excerpt": "Implementing infinite scroll data fetching in React JS - Using Higher Order Scroll Component",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "8FOqKS0i9P8",
+		"title": "Redux Toolkit - Slicers, Reducers, and async Thunks",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-10-24T00:00:00.000+05:30",
+		"excerpt": "In this video we will learn about basics of state management using Redux JS toolkit, I hope this video would serve useful content and info for you. In case you have any questions or doubts, feel free to ask in the comments.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "JtdqkxV_-tE",
+		"title": "Insurance Center - Chubb Innovation Hackathon 2022 Submission",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-11-04T00:00:00.000+05:30",
+		"excerpt": "Chubb Hack Submission Project - Insurance Center - Chubb Innovation Hackathon 2022 Submission",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
+	},
+
+	{
+		"id": "F5_6-21GaxM",
+		"title": "Understanding QuickBooks oAuth",
+		"yt": true,
+		"date": "2022-07-07T00:00:00.000+05:30",
+		"excerpt": "How to Refresh and Regenerate Access and Refresh Tokens for making API calls?",
+		"author": "Shivam Sahil",
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "HAVetZqW-eI",
+		"title": "FunFuse - Online Community for SMBs",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-05-01T00:00:00.000+05:30",
+		"excerpt": "Submission Video for Principal Innovation Challenge Hackathon 2022",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "by9vgcW2tms",
+		"title": "Setting up CI/CD Pipeline using Github Actions",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-04-01T00:00:00.000+05:30",
+		"excerpt": "GitHub Environment Secrets and Actions in NEXT JS",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Y9LsULqXvNk",
+		"title": "Cannot Perform State Update on an Unmounted Component",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-04-08T00:00:00.000+05:30",
+		"excerpt": "Updating state on an unmounted component - Avoiding memory leak issues using custom React Hook!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "bZcfJHSKZcc",
+		"title": "Intercepting API Requests in NEXT JS",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-03-08T00:00:00.000+05:30",
+		"excerpt": "Intercepting APIs for adding cookies/ authentications and many other similar purposes!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "jH7y8doN_QQ",
+		"title": "Using RPA to build Resume Screening Tool",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-12-08T00:00:00.000+05:30",
+		"excerpt": "UIPath as an RPA service to automate resume screening process and auto generating reports!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "jeZ8_NPWfKg",
+		"title": "UIPath Hackathon Submission - Building RPA as a Service Provider",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-10-08T00:00:00.000+05:30",
+		"excerpt": "UIPath as an RPA service to automate resume screening process and auto generating reports!!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "8twIPoXoZeQ",
+		"title": "Setting Up UIPath Orchestrator to Trigger UIPath Files",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-04-08T00:00:00.000+05:30",
+		"excerpt": "How to perform in cloud automation for UIPath using UIPath Cloud Orchestrator",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "vRO0CXJC4Xw",
+		"title": "Understanding and Implementing your own Merge Sort Algorithm using Recursion",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-05-28T00:00:00.000+05:30",
+		"excerpt": "How does merge sort work? Why is it one of the fastest possible sorting algorithms for generic use cases?",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0,
+		"tags": ["top4"]
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "DDPfM5DF368",
+		"title": "SpideyFolio: Build Responsive and Intuitive Portfolio Website in React",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2022-05-31T00:00:00.000+05:30",
+		"excerpt": "An open source portfolio created for people to make use of and build a fully responsive Web portfolio Application.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "8ZFZhe2HoMY",
+		"title": "Intuit oAuth2.0 - API Integration with Python",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-07-28T00:00:00.000+05:30",
+		"excerpt": "Implementing and understanding API Client with Python for QuickBooks Customer and Accounting Data",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "wauI5R_y3D0",
+		"title": "Convert your Internal Seagate Hard drive to External",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-06-27T00:00:00.000+05:30",
+		"excerpt": "This is a quick tutorial about taking out internal Hard drive and moving it to external.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "fysaALvs85s",
+		"title": "Banking the Unbanked - Using Blockchain to avail Digital Transactions",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-05-17T00:00:00.000+05:30",
+		"excerpt": "Hackathon Submission for making digital transaction using blockchain for unbanked people!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Ez6Kvxko72w",
+		"title": "Setting Up UIPath Startup Script on Windows 10 Server)",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2021-05-09T00:00:00.000+05:30",
+		"excerpt": "This is a quick tutorial about setting up UIPath startup script on Windows 10 Server without UIPath Orchestrator or UIPath Cloud!",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Cgzn_7JJ81E",
+		"title": "WebJsonify: Tutorial",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-08-26T00:00:00.000+05:30",
+		"excerpt": "An open source and white-labelled platform to design, customize and create static sites.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "mFHnrSxknFQ",
+		"title": "Water Chain: Using Block Chain to Manage Waste Water Efficiently!",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-07-16T00:00:00.000+05:30",
+		"excerpt": "A complete waste water management system using blockchain, IoT and ML",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "6IS5l1PJOH8",
+		"title": "BlockSquid: Managing Wastewater with BlockChain (Using Python and HTML)",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-05-24T00:00:00.000+05:30",
+		"excerpt": "A complete waste water management system using blockchain, IoT and ML",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Y4PzMjd71GE",
+		"title": "Geecorn: A Tinder App for Geeks (Using Flutter)",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-05-17T00:00:00.000+05:30",
+		"excerpt": "Building a cross platform mobile App using Flutter to facilitate social networking among geeks.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "WAR2-X3veaE",
+		"title": "CoviFitness: Virtual Gaming Demonstration",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-05-12T00:00:00.000+05:30",
+		"excerpt": "Using OpenCV with Python and Pygame to create virtual gaming experience",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Ri9W8guFrXI",
+		"title": "Covid Raccoon: Project Demo 02",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-05-10T00:00:00.000+05:30",
+		"excerpt": "Building a fully functional 2D fun game using Pygame to align with theme of Covid-19 awareness.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "EmStRRYEuuA",
+		"title": "Virtual Gaming Using OpenCV",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-05-03T00:00:00.000+05:30",
+		"excerpt": "This is an attempt to bring the gym at home, just with your laptop front camera.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "6_z0wLbbkE4",
+		"title": "Replicating Wordpress website: Creating HTML structure from scratch",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-03-22T00:00:00.000+05:30",
+		"excerpt": "This is my project to recreate my wordpress created website Technopain. Once the complete website has been replicated using html, CSS and JS, I will create a proper template for others to refer and create websites they want as well.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "r6YVoyKSZhs",
+		"title": "Python Script to manually crop and Save images",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-15-20T00:00:00.000+05:30",
+		"excerpt": "OpenCV Tutorial - Python Script to manually crop and Save images",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "ygu4eohSkKw",
+		"title": "Matlab Project: Music Player (With Play | Pause | Forward | Reverse)",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-05-17T00:00:00.000+05:30",
+		"excerpt": "This is a Matlab App Designer project to create a music player that loads up multiple songs and plays them with their names and specific messages.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "27E_BHPTE",
+		"title": "Demo Video Hacking Homelessness - Flutter App",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-02-01T00:00:00.000+05:30",
+		"excerpt": "This is a submission project for Hacking Homelessness. The submission is made under the category: Contributing for a change.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "VxvWPiqOraE",
+		"title": "Car Detection Using TensorFlow Cocoa Models",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-01-09T00:00:00.000+05:30",
+		"excerpt": "This video is a submission for Mercedez Benz Digital Challenge. Github Link for the video will be soon updated. Here Tensorflow and cocoa models are used to detect the cars in the frame. The demo trial video is obtained from youtube only.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "HZrk7lkHJsI",
+		"title": "Learn to make a simple storybook App with Flutter!",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2019-10-13T00:00:00.000+05:30",
+		"excerpt": "A simplified storybook app which helps you navigate through various conditions until you reach the end.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	},
 	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
+		"id": "Y4PzMjd71GE",
+		"title": "Geecorn: A Tinder App for Geeks (Using Flutter)",
 		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
+		"date": "2020-05-17T00:00:00.000+05:30",
+		"excerpt": "Building a cross platform mobile App using Flutter to facilitate social networking among geeks.",
 		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
-	},
-	{
-		"id": "yjl5I4fwsVE",
-		"title": "CSS only form validations",
-		"yt": true,
-		"date": "2023-01-08T00:00:00.000+05:30",
-		"excerpt": "Speed up your web apps by validating forms using CSS and Regex",
-		"author": "Shivam Sahil",
-		"authorAvatar": "/sample.png"
+		"authorAvatar": "/sample.png",
+		"order": 0
 	}
 ]

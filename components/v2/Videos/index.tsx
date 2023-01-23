@@ -2,14 +2,20 @@ import React from 'react';
 import classes from './Videos.module.css';
 import VideoContainer from '@/v2/common/YTPlayer';
 import VideoCard from './VideoCard';
-import VisibilityHandler from '../common/VisibilityController/lite';
+import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { sendAnalytics, updateViewed } from '@/slices/navigation.slice';
+import topVideos from '@/constants/cms-constants/featured-videos.json';
+import { useRouter } from 'next/router';
 
-const Awards = () => {
+const { highlighted, top4 } = topVideos;
+
+const Videos = () => {
 	const dispatch = useAppDispatch();
 	const { videosViewed } = useAppSelector((state) => state.navigation);
+
+	const router = useRouter();
 
 	React.useEffect(() => {
 		if (videosViewed) dispatch(sendAnalytics());
@@ -22,24 +28,24 @@ const Awards = () => {
 					<section className={classes.FeaturedVideoSection}>
 						<h1>Video Content</h1>
 						<VideoContainer
-							videoID="daduJoiVKsI"
+							videoID={highlighted.id}
 							containerClass={classes.VideoContainer}
 						/>
-						<h2>Getting Started With NEXT JS: A Roadmap to Web Development</h2>
-						<p>
-							The hack theme was based on virtual reality and gaming. We built a mobile
-							platform to manage all of this in one centeralized application to handle
-							any sort of potential issues.
-						</p>
+						<h2>{highlighted.title}</h2>
+						<p>{highlighted.excerpt}</p>
 					</section>
 					<section className={classes.SecondPart}>
 						<div className={classes.VideoGrid}>
-							<VideoCard />
-							<VideoCard />
-							<VideoCard />
-							<VideoCard />
+							{top4.map((video) => (
+								<VideoCard key={video.id} id={video.id} title={video.title} />
+							))}
 						</div>
-						<button className={classes.BlueButton}>View All Videos</button>
+						<button
+							className={classes.BlueButton}
+							onClick={() => router.push('/videos')}
+						>
+							View All Videos
+						</button>
 					</section>
 				</section>
 			}
@@ -47,4 +53,4 @@ const Awards = () => {
 	);
 };
 
-export default Awards;
+export default Videos;

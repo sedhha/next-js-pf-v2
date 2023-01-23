@@ -16,7 +16,7 @@ const handler: IApiHandler<ITotal<IVideoContent>> = (req: NextApiRequest) => {
 		.slice(+(skip ?? 0), +(skip ?? 0) + +(limit ?? 3))
 		.map((item) => ({
 			...item,
-			title: item.title + '-' + skip + '-' + (+(skip ?? 0) + +(limit ?? 0))
+			title: item.title
 		}));
 	const noData = result.length === 0;
 	return {
