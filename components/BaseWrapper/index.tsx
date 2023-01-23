@@ -138,6 +138,18 @@ export default function BaseComponent({ Component }: Props) {
 		<React.Fragment>
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<title>Shivam Sahil</title>
+				<meta
+					name="description"
+					content="Shivam Sahil is a tech enthusiast who loves to build open source applications that involves edge cutting technologies like robotics, IoT, Computer Vision and API automation. He has been working as a web developer from last 1.8 years. In the free time, he loves to interact with techies around the globe and brainstorm amazing ideas."
+				/>
+				<meta
+					property="og:image"
+					content="https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/meta-image.jpg?raw=true"
+				/>
+				<title>Shivam Sahil | Developer</title>
+				<link rel="icon" href="/chat-icon.png" />
+				<link rel="apple-touch-icon" href="/chat-icon.png" />
 			</Head>
 			<Component.type {...Component.props} />
 			<Popup />
