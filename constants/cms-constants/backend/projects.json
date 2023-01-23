@@ -23,150 +23,120 @@
 	},
 	{
 		"name": "IntelliPick",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
-		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/intellipick.gif",
+		"description": "IntelliPick is the goto tool for all tech hiring industries that helps hiring managers go through the resume in bulk and pull out useful insights like github social scores, open source contributions, framwork familarity score, dev community score, etc.\nIn addition to this, one can customize the profiles and scores and choose to prioritise or ignore any specific dev profile like Stack Overflow or Github.",
 		"actionButtons": [
 			{
 				"label": "Source Code",
-				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
-				"identifier": "github-funfuse-source-code"
+				"cta": "https://github.com/sedhha/intellipick-codebase",
+				"identifier": "github-intellipick-source-code"
 			},
 			{
 				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
-				"identifier": "yt-funfuse-video"
-			},
-			{
-				"label": "Open App",
-				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
-				"identifier": "vercel-funfuse-app"
+				"cta": "https://www.youtube.com/watch?v=jH7y8doN_QQ",
+				"identifier": "yt-intellipick-video"
 			}
 		]
 	},
 	{
 		"name": "My Water Chain",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
-		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/waterchain.jpg",
+		"description": "My Water Chain is a full stack project integrated with IoT. I designed the entire project architecture using Raspberry Pi as the Brain of hardware control system and water sensors.\nRaspberry Pi creates it's local server where it pings to the backend database, that was built on Python (Flask).",
 		"actionButtons": [
 			{
 				"label": "Source Code",
-				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
-				"identifier": "github-funfuse-source-code"
+				"cta": "https://github.com/sedhha/my-water-chain",
+				"identifier": "github-water-chain-source-code"
 			},
 			{
 				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
-				"identifier": "yt-funfuse-video"
-			},
-			{
-				"label": "Open App",
-				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
-				"identifier": "vercel-funfuse-app"
+				"cta": "https://www.youtube.com/watch?v=mFHnrSxknFQ",
+				"identifier": "yt-water-chain-video"
 			}
 		]
 	},
 	{
 		"name": "CoviFitness",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
-		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/covifitness.jpg",
+		"description": "Due to extreme slowdown in the pandemic, we all have been used to staying on our beds all the time.\nCovi Fitness is a simple Virtual game that responds to your movements and using computer vision,\nit translates it as a virtual joystick to control the character's movement in the game!",
 		"actionButtons": [
 			{
 				"label": "Source Code",
-				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
-				"identifier": "github-funfuse-source-code"
+				"cta": "https://github.com/sedhha/covifitness",
+				"identifier": "github-covi-fitness-source-code"
 			},
 			{
 				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
-				"identifier": "yt-funfuse-video"
-			},
-			{
-				"label": "Open App",
-				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
-				"identifier": "vercel-funfuse-app"
+				"cta": "https://www.youtube.com/watch?v=WAR2-X3veaE",
+				"identifier": "yt-covi-fitness-video"
 			}
 		]
 	},
 	{
 		"name": "G-Corn",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
-		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/geecorn.png",
+		"description": "Gee-Corn is a Flutter based mobile app which allows geeks all around the world to discover their partners with common interests and accordingly learn a new skill.\nAt the moment, the application is down due to some bugs and I don't have time to relaunch it. Would love to collaborate and work with\nsomeone on this as a hackathon project and maybe we could take it from there.",
 		"actionButtons": [
 			{
 				"label": "Source Code",
-				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
-				"identifier": "github-funfuse-source-code"
+				"cta": "https://github.com/sedhha/GeeCorn",
+				"identifier": "github-gcorn-source-code"
 			},
 			{
 				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
-				"identifier": "yt-funfuse-video"
-			},
-			{
-				"label": "Open App",
-				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
-				"identifier": "vercel-funfuse-app"
+				"cta": "https://www.youtube.com/watch?v=Y4PzMjd71GE",
+				"identifier": "yt-gcorn-video"
 			}
 		]
 	},
 	{
 		"name": "The Third Eye",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
-		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/thirdeye.jpg",
+		"description": "The Third Eye is an all in one solution for the visually impaired people. With the help of advance computer vision algorithms and cloud vision API, we have created an experience for the users to see the world differently.\nThe vibration motors and the ultrasonic sensors helps in building a 3D distance map and accurately compute things going around the surroundings. Azure API moment detection helps users to capture and live the moment with others without gettint the feeling of left out.\nCapitol One Transaction API allows the user to perform purchase and money transfer with ease!",
 		"actionButtons": [
 			{
 				"label": "Source Code",
-				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
-				"identifier": "github-funfuse-source-code"
+				"cta": "https://github.com/sedhha/PennAppsXX",
+				"identifier": "github-the-third-eye-source-code"
 			},
 			{
 				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
-				"identifier": "yt-funfuse-video"
+				"cta": "https://devpost.com/software/the-third-eye",
+				"identifier": "devpost-project-the-third-eye"
 			}
 		]
 	},
 	{
 		"name": "AgroBuddy",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
-		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/agrobuddy.jpg",
+		"description": "A small bot that can navigate through the field and fetch data like soil structure, atmospheric conditions and crop data that are important parameters in estimating the health and life of the crop.\nThis data is analysed intelligent decisions are made to increase the productiveness of farming.\nIt collects data from APIs to get weather forecasts and physical parameters like rainfall, humidity, etc. This combined with a model that identifies the most suitable crops to grow based on the conditions.",
 		"actionButtons": [
 			{
 				"label": "Source Code",
-				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
-				"identifier": "github-funfuse-source-code"
+				"cta": "https://github.com/sedhha/agrobuddy-s-agrobot",
+				"identifier": "github-agrobuddy-source-code"
 			},
 			{
 				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
-				"identifier": "yt-funfuse-video"
-			},
-			{
-				"label": "Open App",
-				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
-				"identifier": "vercel-funfuse-app"
+				"cta": "https://devpost.com/software/agrobuddy",
+				"identifier": "devpost-project-agrobuddy"
 			}
 		]
 	},
 	{
 		"name": "Kratos",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
-		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/kratosrover.png",
+		"description": "In a group project, I worked as an instrumentation and design engineer in building the entire\narchitecture of the rover prototype that would perform various physical and biological tests to detect\nbiosignatures in Martian-like Environment (MDRS, Utah, Hansville).",
 		"actionButtons": [
 			{
 				"label": "Source Code",
-				"cta": "https://github.com/sedhha/gzb-products/tree/main/components/funfuse",
-				"identifier": "github-funfuse-source-code"
+				"cta": "https://github.com/sedhha/URC2019",
+				"identifier": "github-kratos-source-code"
 			},
 			{
 				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
-				"identifier": "yt-funfuse-video"
-			},
-			{
-				"label": "Open App",
-				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
-				"identifier": "vercel-funfuse-app"
+				"cta": "https://www.youtube.com/watch?v=Y4PzMjd71GE",
+				"identifier": "yt-kratos-video"
 			}
 		]
 	}
