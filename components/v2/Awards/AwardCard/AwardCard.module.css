@@ -63,11 +63,11 @@
 
 .RowElements > h1,
 .TitleAndDescription > h2 {
-	font-size: clamp(0.5rem, 2.5vh, 16rem);
+	font-size: clamp(0.5rem, 2vh, 16rem);
 }
 .Details > h3,
 .Details > p {
-	font-size: clamp(0.5rem, 2.1vh, 16rem);
+	font-size: clamp(0.5rem, 1.8vh, 16rem);
 }
 
 .gold,

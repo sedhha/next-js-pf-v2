@@ -1,179 +1,212 @@
 [
 	{
 		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
+		"date": 1655836200000,
+		"url": "https://grabhackforgood.hackerearth.com/",
 		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"description": "As a team of 4, we built an integration with grab cab services to incorporate healthy conversations among drivers and customers.",
 		"isAchievement": true,
 		"achievementType": "gold",
 		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/events/second-runner-up-grab.jpg?raw=true"
 	},
 	{
 		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
+		"date": 1655836200000,
+		"url": "https://grabhackforgood.hackerearth.com/",
 		"title": "Second Runner Up",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"description": "As a team of 4, we built an integration with grab cab services to incorporate healthy conversations among drivers and customers.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/most-unique-solution-grab.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "Principal Hack 2022",
+		"date": 1651343400000,
+		"url": "https://principal-hackathon.bemyapp.com/",
+		"title": "Community Mentoring App Award",
+		"description": "In this Contest, I built a complete platform : Funfuse for SMBs and Individual talented solopreneurs, industry experts, and corporate mentors to connect, collaborate and grow mutually.",
 		"isAchievement": true,
 		"achievementType": "silver",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/r4h.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/principalHack.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "MegaHack 2022",
+		"date": 1648751400000,
+		"url": "https://devpost.com/software/hand-up-lbdeo3",
+		"title": "GNEC Award | Global NGO Prize",
+		"description": "We in a team of 4 people built a Progressive Web App that acts as your digital identity and helps you find the opportunities available out there.",
 		"isAchievement": true,
 		"achievementType": "bronze",
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/app-overview.gif?raw=true"
+	},
+	{
+		"name": "UCW Blockchain Hacks 2021",
+		"date": 1619807400000,
+		"url": "https://devpost.com/software/banking-the-unbanked",
+		"title": "2 Time Winner (2021|22)",
+		"description": "I worked towards building a Blockchain server along with a middleware which scan user's facial expression and biometric data to create key value pair for provisioning all kinds of banking services.",
+		"isAchievement": true,
+		"achievementType": "gold",
 		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
+		"name": "UIPath Innovation RPA Hack 2021",
 		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"url": "https://devpost.com/software/intelli-pick",
+		"title": "Bright Idea Finalist",
+		"description": "I worked towards building an end to end UIPath automation for screening Resume files and generating scores using UIPath Orchestrator API, UIPath Studio, FAST API and React JS.",
 		"isAchievement": false,
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/intellipick.jpg?raw=true"
 	},
+
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "Flutterthon 2020",
+		"date": 1588271400000,
+		"url": "https://devpost.com/software/geecorn",
+		"title": "Category Winner",
+		"description": "I made a simple mobile app for geeks which would help them to share their skills and targets and based on their preferences, they will get a match and learn it together and make use of this pandemic time in a fun and productive way.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/flutterthon.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
+		"name": "Autodesk Designation",
+		"date": 1551378600000,
+		"url": "https://vit.ac.in/school-mechanical-engineeringsmec/design-thon",
+		"title": "Winner",
+		"description": "Autodesk designathon is a global event which focuses and motivates designers and innovators all over the world to design feasible and economical product to solve real world problems.",
+		"isAchievement": true,
+		"achievementType": "gold",
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/fusion360.jpg?raw=true"
+	},
+	{
+		"name": "PennApps XX",
+		"date": 1567276200000,
+		"url": "https://devpost.com/software/the-third-eye",
+		"title": "Top 30 Qualifier",
+		"description": "We received the top 30 team qualifier award among 1200 participants from all around the globe.",
+		"isAchievement": true,
+		"achievementType": "gold",
+		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/000/835/862/datas/gallery.jpg"
+	},
+	{
+		"name": "Hack Harvard",
+		"date": 1538332200000,
+		"url": "https://devpost.com/software/agrobuddy",
+		"title": "HERE.com Category Award",
+		"description": "We created a fully autonomous small bot, capable of performing overall field analysis, through real-time sensor data acquisition and implemented image processing algorithms to study the overall field conditions and obtain relevant information regarding the same.",
+		"isAchievement": true,
+		"achievementType": "gold",
+		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/000/700/934/datas/gallery.jpg"
+	},
+	{
+		"name": "Summer BioFest VIT",
+		"date": 1490985000000,
+		"url": "https://www.facebook.com/photo/?fbid=1379361365458412&set=a.134710699923491",
 		"title": "Second Runner Up",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"description": "We made a bio-inspired whegged robot which could move on any terrain and was actuated by a single motor. ",
 		"isAchievement": true,
 		"achievementType": "gold",
 		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "ASME Mechanical Conference",
+		"date": 1472668200000,
+		"url": "https://www.facebook.com/photo/?fbid=1379361365458412&set=a.134710699923491",
+		"title": "Winner",
+		"description": "We came up with the solutions for means of transport in snowy areas and reliable backup systems to use airbags in cars more efficiently.",
+		"isAchievement": true,
+		"achievementType": "gold",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/4PSNZY3D0Lg0wTFySW4WtY/56d8187402551131952884ef19ce4fce/mech_conf.jpg"
+	},
+	{
+		"name": "ASME Reverse Engineering",
+		"date": 1483209000000,
+		"url": "https://www.facebook.com/photo/?fbid=1379361365458412&set=a.134710699923491",
+		"title": "Winner",
+		"description": "This contest was about using fundamental principles of reverse engineering to solve a real-world problem. We were given by present technology and asked to break down it into its very fundamental units and analyze each of the processes individually.",
+		"isAchievement": true,
+		"achievementType": "gold",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/7nZ134g9KCUupMwwgSj0NB/c87d33c3148f98bd03fe30510aac4a91/reverse_engineering.jpg"
+	},
+	{
+		"name": "ASME Formula Balloon",
+		"date": 1472668200000,
+		"url": "https://www.facebook.com/photo/?fbid=1379361365458412&set=a.134710699923491",
+		"title": "First Runner Up",
+		"description": "The event aimed at creating a wind energy powered vehicle, depending upon the design considerations and mountings of subsystems the one which could travel the most distance without deviating.",
+		"isAchievement": true,
+		"achievementType": "gold",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/4LqordskkCypMC4amRUeH6/a9101d8a4ac3fd08329bb96cbf62fb0b/formula_balloon.jpg"
+	},
+	{
+		"name": "Junior Mathematics Olympiad",
+		"date": 1425148200000,
+		"url": "https://devpost.com/software/banking-the-unbanked",
+		"title": "All India Rank - 28",
+		"description": "I received All India rank 28 in JMO which is a subjective type exam, and one of the biggest mathematics Olympiad conducted by KVS across all the Kendriya Vidyalaya throughout the country.",
+		"isAchievement": true,
+		"achievementType": "gold",
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+	},
+	{
+		"name": "Indian Rover Challenge - 2019",
+		"date": 1619807400000,
+		"url": "https://southasia.marssociety.org/indianroverchallenge/irc-2019/#:~:text=Indian%20Rover%20Challenge%202019&text='Team%20Anveshak'%20from%20IIT%20Madras,Bangladesh%2C%20won%20the%20third%20place.",
+		"title": "4th Rank (Global)",
+		"description": "In a team of 30, we worked on building a martian rover prototype and compete against multiple asian and european countries in Manipal Institute of Technology.",
 		"isAchievement": true,
 		"achievementType": "silver",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/r4h.jpg?raw=true"
+		"img": "https://images.ctfassets.net/koz394rfdzxo/3PhFtS9EPpk0LOJ0Q4VNcw/49e55a66ae13775e74cebb3ef7dd2626/irc2019.jpg"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "LVPEI Eye Care Hackathon",
+		"date": 1530383400000,
+		"url": "https://www.expresshealthcare.in/news/l-v-prasad-eye-institute-hosts-sixth-edition-of-engineering-the-eye-hackathon/403230/?SuperSocializerAuth=LiveJournal",
+		"title": "AT&T Technology Innovation Award",
+		"description": "In a team of 4, we built virtual wearable technology that uses Ultrasonice sensors and stereo vision cameras along with computer vision algorithms to enable blind people experience visibility in a ridiculously intuitive way.",
+		"isAchievement": true,
+		"achievementType": "silver",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/43R0HR9MGdMswpHLF2Mslm/5b51cc57790723744bfa94a9ffa96f1d/lvpei.jpg"
+	},
+	{
+		"name": "Select Makeathon 2018",
+		"date": 1538332200000,
+		"url": "https://devpost.com/software/banking-the-unbanked",
+		"title": "Top 10 Finalist Teams",
+		"description": "We in a team of 3 worked towards building an agricultural bot more of a weather station used to analyse physical conditions based on sensors and soil images.",
+		"isAchievement": true,
+		"achievementType": "silver",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/eLpVk3TkHV55sBmoD8ydq/560e230cd670b4fa811248fe8f8a7dfb/selectMakeathon.jpg"
+	},
+	{
+		"name": "Spark Blockchain University Hackathon",
+		"date": 1596220200000,
+		"url": "https://devpost.com/software/banking-the-unbanked",
+		"title": "Honorable Mention: LivePeer API",
+		"description": "I build a complete IoT hardware integrated with distributed blockchain server and ML for monitoring waste water consumption from industries.",
+		"isAchievement": true,
+		"achievementType": "silver",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/2w41SQNoYl9TOmLXzvbSWi/f03ff34bd6315c04fea7583e8b1cc5e1/waterchain.jpg"
+	},
+	{
+		"name": "Science Olympiad Foundation",
+		"date": 1443637800000,
+		"url": "https://devpost.com/software/banking-the-unbanked",
+		"title": "Silver Medalist",
+		"description": "Won Silver medal at school level in Science Olympiad conducted by SOF (Science Olympiad Foundation)",
+		"isAchievement": true,
+		"achievementType": "silver",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/58CNacSXp9khY215DPlrla/d3d493abdcc65b952ed8df6f6d2884c0/sof.jpg"
+	},
+	{
+		"name": "Science Olympiad Foundation",
+		"date": 1383244200000,
+		"url": "https://devpost.com/software/banking-the-unbanked",
+		"title": "Bronze Medalist",
+		"description": "Won Bronze medal at school level in Science Olympiad conducted by SOF (Science Olympiad Foundation)",
 		"isAchievement": true,
 		"achievementType": "bronze",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": false,
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Second Runner Up",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": true,
-		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": true,
-		"achievementType": "silver",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/r4h.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": true,
-		"achievementType": "gold",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/events/second-runner-up-grab.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Second Runner Up",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": true,
-		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": true,
-		"achievementType": "silver",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/r4h.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": true,
-		"achievementType": "bronze",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": false,
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
-	},
-	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
-		"isAchievement": true,
-		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://images.ctfassets.net/koz394rfdzxo/58CNacSXp9khY215DPlrla/d3d493abdcc65b952ed8df6f6d2884c0/sof.jpg"
 	}
 ]

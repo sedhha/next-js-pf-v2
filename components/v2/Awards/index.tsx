@@ -4,7 +4,6 @@ import SvgLeft from '@/v2/common/SvgLeft';
 import SvgRight from '@/v2/common/SvgRight';
 import AwardCard from './AwardCard';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
-import { println } from '@/utils/dev-utils';
 import attributes from '@/constants/header-attr.json';
 import events from '@/constants/cms-constants/events-participations.json';
 import { PUBLIC_APIS } from '@/utils/fe/apis';

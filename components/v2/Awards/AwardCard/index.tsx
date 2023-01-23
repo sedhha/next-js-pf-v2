@@ -19,7 +19,8 @@ const AwardCard = ({
 	url,
 	date,
 	description,
-	achievementType
+	achievementType,
+	title
 }: Props) => {
 	const altered = getAlterParam(alter);
 	return (
@@ -46,9 +47,7 @@ const AwardCard = ({
 					</div>
 					<h2>{getMonthAndYearString(date)}</h2>
 				</div>
-				<h3 className={classes[achievementType ?? 'rest']}>
-					Community Mentoring App Award
-				</h3>
+				<h3 className={classes[achievementType ?? 'rest']}>{title}</h3>
 				<p>{description}</p>
 			</div>
 		</div>

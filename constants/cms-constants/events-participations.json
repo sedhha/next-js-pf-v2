@@ -1,59 +1,59 @@
 [
 	{
 		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
+		"date": 1655836200000,
+		"url": "https://grabhackforgood.hackerearth.com/",
 		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"description": "As a team of 4, we built an integration with grab cab services to incorporate healthy conversations among drivers and customers.",
 		"isAchievement": true,
 		"achievementType": "gold",
 		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/events/second-runner-up-grab.jpg?raw=true"
 	},
 	{
 		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
+		"date": 1655836200000,
+		"url": "https://grabhackforgood.hackerearth.com/",
 		"title": "Second Runner Up",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"description": "As a team of 4, we built an integration with grab cab services to incorporate healthy conversations among drivers and customers.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/most-unique-solution-grab.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "Principal Hack 2022",
+		"date": 1651343400000,
+		"url": "https://principal-hackathon.bemyapp.com/",
+		"title": "Community Mentoring App Award",
+		"description": "In this Contest, I built a complete platform : Funfuse for SMBs and Individual talented solopreneurs, industry experts, and corporate mentors to connect, collaborate and grow mutually.",
 		"isAchievement": true,
 		"achievementType": "silver",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/r4h.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/principalHack.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "MegaHack 2022",
+		"date": 1648751400000,
+		"url": "https://devpost.com/software/hand-up-lbdeo3",
+		"title": "GNEC Award | Global NGO Prize",
+		"description": "We in a team of 4 people built a Progressive Web App that acts as your digital identity and helps you find the opportunities available out there.",
 		"isAchievement": true,
 		"achievementType": "bronze",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/app-overview.gif?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
+		"name": "UIPath Innovation RPA Hack 2021",
 		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"url": "https://devpost.com/software/intelli-pick",
+		"title": "Bright Idea Finalist",
+		"description": "I worked towards building an end to end UIPath automation for screening Resume files and generating scores using UIPath Orchestrator API, UIPath Studio, FAST API and React JS.",
 		"isAchievement": false,
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/intellipick.jpg?raw=true"
 	},
 	{
-		"name": "HackForGood: Grab",
-		"date": 1656613800000,
-		"url": "https://www.google.com",
-		"title": "Most Unique Submission",
-		"description": "The hack theme was based on virtual reality and gaming. We built a mobile platform to manage all of this in one centeralized application to handle any sort of potential issues.",
+		"name": "UCW Blockchain Hacks 2021",
+		"date": 1619807400000,
+		"url": "https://devpost.com/software/banking-the-unbanked",
+		"title": "Second Runner Up",
+		"description": "I worked towards building a Blockchain server along with a middleware which scan user's facial expression and biometric data to create key value pair for provisioning all kinds of banking services.",
 		"isAchievement": true,
 		"achievementType": "gold",
 		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
