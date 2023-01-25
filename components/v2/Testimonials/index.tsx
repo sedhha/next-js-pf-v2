@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Testimonials.module.css';
 import SvgRight from '@/v2/common/SvgRight';
 import SvgLeft from '@/v2/common/SvgLeft';
-import SocialIcons from '@/v2/common/SocialIcons';
+import SocialIcons from '@/v2/common/SocialIcons/Conditional';
 import LazyImage from '@/v2/common/LazyImage';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
@@ -24,7 +24,7 @@ const initialItems = testimonials.slice(0, limit)[0];
 export default function Testimonials({}: Props) {
 	const [skip, setSkip] = React.useState(0);
 	const [total, setTotal] = React.useState(5);
-	const [cardItem, setCardItem] = React.useState<ITestimonials>(initialItems);
+	const [cardItem, setCardItem] = React.useState(initialItems as ITestimonials);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
 	const { testimonialsViewed } = useAppSelector((state) => state.navigation);
@@ -95,13 +95,20 @@ export default function Testimonials({}: Props) {
 						/>
 						<div className={classes.Testimonial}>
 							<div className={classes.TestimonialEntity}>
-								<LazyImage src={'/chat-icon.png'} className={classes.ChatIcon} />
+								<LazyImage src={cardItem.img} className={classes.ChatIcon} />
 								<h1>{cardItem.name}</h1>
 								<h2>{cardItem.designation}</h2>
 								{cardItem.content.split('\n').map((line, index) => (
 									<p key={index}>{line}</p>
 								))}
-								<SocialIcons iconColorClass={classes.SocialIcon} />
+								<SocialIcons
+									iconColorClass={classes.SocialIcon}
+									socialHandles={cardItem.contact.map((item) => ({
+										id: item.identifier,
+										url: item.url,
+										isSvg: item.isSvg
+									}))}
+								/>
 							</div>
 						</div>
 						<SvgRight

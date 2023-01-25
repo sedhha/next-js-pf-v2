@@ -14,6 +14,7 @@ import { FaFacebookF } from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
 import { ImCross } from 'react-icons/im';
 import { GoSignOut } from 'react-icons/go';
+import { BsLinkedin } from 'react-icons/bs';
 
 interface IconProps extends IconBaseProps {
 	iconKey: string;
@@ -31,8 +32,11 @@ export const icons = {
 	HiViewList: 'HiViewList',
 	ImCross: 'ImCross',
 	GoSignOut: 'GoSignOut',
-	AiOutlineReload: 'AiOutlineReload'
-};
+	AiOutlineReload: 'AiOutlineReload',
+	BsLinkedin: 'BsLinkedin'
+} as const;
+
+export type IconKeys = keyof typeof icons;
 
 export default function Icon({ iconKey, ...rest }: IconProps) {
 	switch (iconKey) {
@@ -60,6 +64,8 @@ export default function Icon({ iconKey, ...rest }: IconProps) {
 			return <GoSignOut {...rest} />;
 		case icons.AiOutlineReload:
 			return <AiOutlineReload {...rest} />;
+		case icons.BsLinkedin:
+			return <BsLinkedin {...rest} />;
 		default:
 			return <div>Component Not Found</div>;
 	}

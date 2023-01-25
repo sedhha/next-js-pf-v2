@@ -36,16 +36,11 @@ import {
 	typingUserPath
 } from '@/firebase/constants';
 import Typing from '@/v2/common/Typing';
+import { IChat } from '@/interfaces/firebase/contact-form';
 
 const db = getDatabase(app);
 const auth = getAuth(app);
 
-interface IChat {
-	uri: string;
-	id: string;
-	isFrom: boolean;
-	message: string;
-}
 const isProd = process.env.NODE_ENV === 'production';
 const Contact = () => {
 	const [userChat, setUserChat] = React.useState<IChat[]>([]);
@@ -91,21 +86,13 @@ const Contact = () => {
 					const keys = Object.keys(results);
 					setUserChat(
 						keys.map((item) => {
-							const { uri, isFrom, message } = results[item];
-							return { uri, isFrom, message, id: item };
+							const { uri, isFromAdmin, message } = results[item];
+							return { uri, isFromAdmin, message, id: item };
 						})
 					);
 					Notification.requestPermission().then((permission) => {
 						if (permission === 'granted') {
 							const { message } = results[keys[keys.length - 1]];
-							console.log({
-								visible: document.visibilityState,
-								d: document.visibilityState !== 'visible'
-							});
-							console.log({
-								two: document.visibilityState !== 'visible',
-								three: !read
-							});
 							if (document.visibilityState !== 'visible' && !read)
 								new Notification('Shivam sent a message', {
 									body: message,
@@ -199,7 +186,7 @@ const Contact = () => {
 			);
 			push(chatRef, {
 				uri: '/chat-icon.png',
-				isFrom: false,
+				isFromAdmin: false,
 				message: msg
 			})
 				.then(() => {
@@ -242,7 +229,8 @@ const Contact = () => {
 		} else setLoading(false);
 	};
 
-	const lastMessageFromAdmin = userChat?.[userChat.length - 1]?.isFrom ?? true;
+	const lastMessageFromAdmin =
+		userChat?.[userChat.length - 1]?.isFromAdmin ?? true;
 
 	return (
 		<section className={classes.ChatWindow}>
@@ -259,7 +247,7 @@ const Contact = () => {
 						<ChatElement
 							key={message.id}
 							uri={message.uri}
-							isFrom={message.isFrom}
+							isFromAdmin={message.isFromAdmin}
 							message={message.message}
 						/>
 					))

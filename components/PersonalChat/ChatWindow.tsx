@@ -26,17 +26,13 @@ import LazyImage from '@/v2/common/LazyImage';
 import Circle from '@/v2/common/Circle';
 import Typing from '../v2/common/Typing';
 import Icon, { icons } from '@/v2/common/Icons';
+import { IChat } from '@/interfaces/firebase/contact-form';
 type Props = {
 	uid: string;
 	email?: string;
 	onExitChat: () => void;
 };
-interface IChat {
-	uri: string;
-	id: string;
-	isFrom: boolean;
-	message: string;
-}
+
 const isProd = process.env.NODE_ENV === 'production';
 const db = getDatabase(app);
 const ChatWindow = ({ uid, email, onExitChat }: Props) => {
@@ -70,10 +66,20 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 					const keys = Object.keys(results);
 					setUserChat(
 						keys.map((item) => {
-							const { uri, isFrom, message } = results[item];
-							return { uri, isFrom, message, id: item };
+							const { uri, isFromAdmin, message } = results[item];
+							return { uri, isFromAdmin, message, id: item };
 						})
 					);
+					Notification.requestPermission().then((permission) => {
+						if (permission === 'granted') {
+							const { message } = results[keys[keys.length - 1]];
+							if (document.visibilityState !== 'visible' && !readByMe)
+								new Notification('User sent a message', {
+									body: message,
+									icon: '/user.png'
+								});
+						}
+					});
 				} else setUserChat([]);
 				setLoading(false);
 			});
@@ -89,7 +95,10 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 				off(typingRef);
 			};
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAdmin, uid]);
+
+	useEffect(() => {}, [isAdmin]);
 
 	const onSendMessage = () => {
 		if (loading || msg === '') return;
@@ -102,9 +111,9 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 		const latestMessageRef = ref(db, latestMessagePath(isProd, uid));
 		push(chatRef, {
 			uri: '/chat-icon.png',
-			isFrom: true,
+			isFromAdmin: true,
 			message: msg
-		})
+		} as IChat)
 			.then(() => {
 				set(lastModified, new Date().getTime());
 				set(emailRef, email ?? uid);
@@ -134,6 +143,8 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 				setMsg('Failed to send message');
 			});
 	};
+	const lastMessageNotFromUser = userChat?.[userChat.length - 1]?.isFromAdmin;
+
 	return isAdmin ? (
 		<div className={classes.ChatWindow}>
 			<div className={classes.EntireChat}>
@@ -143,7 +154,7 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 							<ChatElement
 								key={message.id}
 								uri={message.uri}
-								isFrom={!message.isFrom}
+								isFromAdmin={!message.isFromAdmin}
 								message={message.message}
 							/>
 						))
@@ -158,7 +169,9 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 					)}
 				</div>
 				{typing && <Typing />}
-				{readByUser && !typing && <p className={classes.ReadRecipient}>Read</p>}
+				{readByUser && !typing && lastMessageNotFromUser && (
+					<p className={classes.ReadRecipient}>Read</p>
+				)}
 				<div className={classes.MessageSendContainer}>
 					<input
 						placeholder="Start typing a message..."

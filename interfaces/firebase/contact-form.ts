@@ -4,3 +4,9 @@ export interface IContactForm {
     subject: string;
     message: string;
 }
+export interface IChat {
+	uri: string;
+	id: string;
+	isFromAdmin: boolean;
+	message: string;
+}

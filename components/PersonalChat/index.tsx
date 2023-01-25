@@ -68,7 +68,7 @@ const PersonalChat = () => {
 				<div className={classes.ChatWindow}>
 					{inChat ? (
 						<ChatWindow uid={chatUID} email={email} onExitChat={onExitChat} />
-					) : (
+					) : messages.length > 0 ? (
 						messages.map((message) => (
 							<div
 								key={message.key}
@@ -83,6 +83,8 @@ const PersonalChat = () => {
 								{message.visitorTyping && <Typing />}
 							</div>
 						))
+					) : (
+						<p>No User Messages :/</p>
 					)}
 				</div>
 			}

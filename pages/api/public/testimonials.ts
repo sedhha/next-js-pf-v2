@@ -12,7 +12,10 @@ const handler: IApiHandler<ITotal<ITestimonials>> = (req: NextApiRequest) => {
 			?.toString()
 			.padStart(2, '0')} | Skip:${skip?.toString().padStart(2, '0')} | ${req.url}`
 	);
-	const result = testimonials.slice(+(skip ?? 0), +(skip ?? 0) + +(limit ?? 3));
+	const result = testimonials.slice(
+		+(skip ?? 0),
+		+(skip ?? 0) + +(limit ?? 3)
+	) as ITestimonials[];
 	const noData = result.length === 0;
 	return {
 		statusCode: noData ? 204 : 200,

@@ -4,23 +4,25 @@ import classes from './Contact.module.css';
 type Props = {
 	message: string;
 	uri?: string;
-	isFrom: boolean;
+	isFromAdmin: boolean;
 };
 
-export default function ChatElement({ message, isFrom }: Props) {
+export default function ChatElement({ message, isFromAdmin }: Props) {
 	return (
 		<div className={classes.ChatElement}>
-			{isFrom && (
+			{isFromAdmin && (
 				<LazyImage src={'/chat-icon.png'} className={classes.ChatImage} />
 			)}
 			<p
 				className={`${classes.ElementMessageContainer} ${
-					isFrom ? classes.MessageContainer_from : classes.MessageContainer_to
+					isFromAdmin ? classes.MessageContainer_from : classes.MessageContainer_to
 				}`}
 			>
 				{message}
 			</p>
-			{!isFrom && <LazyImage src={'/user.png'} className={classes.ChatImage} />}
+			{!isFromAdmin && (
+				<LazyImage src={'/user.png'} className={classes.ChatImage} />
+			)}
 		</div>
 	);
 }

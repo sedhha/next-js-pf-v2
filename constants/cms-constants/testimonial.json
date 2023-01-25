@@ -1,13 +1,79 @@
 [
 	{
-		"name": "Ankur",
-		"designation": "Senior Decision Scientist, Yoptima Media Pvt Ltd",
+		"name": "Ankur Verma",
+		"designation": "Senior Decision Scientist at Yoptima",
 		"content": "Shivam is an inquisitive and passionate developer who was an integral part of the product development team and kind of a backbone for adopting newer technologies in a short period.\nDuring his tenure, he worked on several groundbreaking technologies that eased the day to day activities and has laid solid foundations for Software Development lifecycle and Workflow Automation.",
 		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/referrals/ankur.jpg?raw=true",
 		"contact": [
 			{
-				"identifier": "LinkedIn",
-				"url": "http://www.linkedin.com/in/shivam-sahil"
+				"identifier": "BsLinkedin",
+				"url": "https://www.linkedin.com/in/vankur/",
+				"isSvg": true
+			}
+		]
+	},
+	{
+		"name": "Bhushan Kshire",
+		"designation": "Product Manager at Yoptima",
+		"content": "Shivam is a great team player and a quick learner. During my tenure with him for a year and a half, I found Shivam learning technologies quickly with little to no support. What amazed me is his professional maturity, strong decision-making skills, and tendency to go the extra mile to achieve goals. His can-do attitude and diverse tech skills always helped us to deliver projects within timelines.\nNo doubt he would be a valuable asset for any organization.",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/4OpRrMzKl40Fuk4Ed3IFqO/f49bc6b6ece085c47b3eabb187b5c1d7/bhushan.jpg",
+		"contact": [
+			{
+				"identifier": "BsLinkedin",
+				"url": "https://www.linkedin.com/in/bhushan-kshire-069105148/",
+				"isSvg": true
+			}
+		]
+	},
+	{
+		"name": "Kamal Girdher",
+		"designation": "Lead Software Engineer at Optum, UHG",
+		"content": "Thank you Shivam, for your contribution for AEM migration. You did a great job day and night to make this successful. Although the journey was a roller-coster ride, but nothing stopped you and your potential. I appreciate all your efforts and wish you all the best for 2023!",
+		"img": "https://media.licdn.com/dms/image/C5103AQFcqB4H0ePW-w/profile-displayphoto-shrink_800_800/0/1582696465199?e=1680134400&v=beta&t=nHci6sejekR0J63ud0bvAPbO-IKhg-fsdfWU2LT2rOY",
+		"contact": [
+			{
+				"identifier": "BsLinkedin",
+				"url": "https://www.linkedin.com/in/kamalgirdher/",
+				"isSvg": true
+			}
+		]
+	},
+	{
+		"name": "Mridula Pathak",
+		"designation": "Operations Executive at Eckovation",
+		"content": "It gives me immense pleasure to recommend Shivam Sahil. He was hired as Mentor for the MATLAB Course at Eckovation in July 2019. He was able to solve all the course-related queries and helped students to complete their course as well as finish internship projects which have numerous real-world problems.\nHe is hardworking and sincere towards his work. He was also responsible for the evaluation of assignments and providing proper feedback and guidance to the students during the course curriculum. On a personal level, I found Shivam knowledgeable, focused and inquisitive towards his work.",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/6F9odCDMgvJLX65WXKrMcv/9e97626df14b07899b1ea128a906be9c/mridula.jpg",
+		"contact": [
+			{
+				"identifier": "BsLinkedin",
+				"url": "https://in.linkedin.com/in/mridula-pathak-942527141",
+				"isSvg": true
+			}
+		]
+	},
+	{
+		"name": "A. John Rajan",
+		"designation": "Professor (Manufacturing Engineering) at VIT",
+		"content": "Shivam Sahil is my proctee. He is a multi talented student who participated in many events in India and abroad. He involved himself in a research work: \"Application of blockchain technology in waste water management system\" under my supervision. His academic performance is excellent.",
+		"img": "https://images.ctfassets.net/koz394rfdzxo/3R0Tv0RXvD1QEVl5DKCvyQ/cd7cee44f5c6ae30cabab8fbcfd4040c/johnRajan.jpg",
+		"contact": [
+			{
+				"identifier": "BsLinkedin",
+				"url": "https://www.linkedin.com/in/john-rajan-amaladas-728042136/",
+				"isSvg": true
+			}
+		]
+	},
+	{
+		"name": "Gnanaprakash Ravi",
+		"designation": "Campaign Manager at Yoptima",
+		"content": "I had the pleasure of working with Shivam at YOptima. Working with Shivam is fun! He is quick and agile in finding solutions for any tech related issue. He is committed given task and he is ridiculously efficient. ",
+		"img": "https://media.licdn.com/dms/image/C5603AQEMfRENl859QQ/profile-displayphoto-shrink_800_800/0/1661825334368?e=1680134400&v=beta&t=2W8uYHTKY1PxStMq7AE843QE_XSEwcDXANwzjL5SzrI",
+		"contact": [
+			{
+				"identifier": "BsLinkedin",
+				"url": "https://www.linkedin.com/in/gnanaprakash-bhoosam-ravi/",
+				"isSvg": true
 			}
 		]
 	}
