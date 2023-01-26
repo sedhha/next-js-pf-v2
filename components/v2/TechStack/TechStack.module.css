@@ -72,7 +72,7 @@
 }
 
 .Card > img {
-	height: 18vh;
+	max-height: 15vh;
 	aspect-ratio: 1;
 	object-fit: cover;
 	object-position: center;

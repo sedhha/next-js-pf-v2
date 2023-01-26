@@ -144,6 +144,7 @@
 	right: 0;
 	background-color: var(--background-color);
 	transition: var(--fade-transition);
+	z-index: 1;
 }
 
 .TopNavigation h2 {

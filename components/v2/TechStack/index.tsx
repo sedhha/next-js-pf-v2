@@ -108,7 +108,7 @@ export default function TechStack() {
 						{loading && <Spinner />}
 						{cards.map((item, index) => (
 							<div className={classes.Card} key={index}>
-								<LazyImage src={item.thumbnail} />
+								<LazyImage src={`${item.thumbnail}?w=300&h=300&fit=thumb`} />
 								<h4>{item.name}</h4>
 								<div className={classes.Rating}>
 									<Icon
