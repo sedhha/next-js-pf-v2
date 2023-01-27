@@ -51,10 +51,15 @@
 	align-items: center;
 	column-gap: 0.25vw;
 	position: relative;
+	text-decoration: none;
 }
 .Select::after {
 	content: '⌄';
 	margin-top: -12.5%;
+}
+
+.Select.ActiveItem {
+	text-decoration: none;
 }
 
 .Select:hover > .SelectDropDown {

@@ -17,7 +17,6 @@ const Header = () => {
 		(item) => item.value === activeSection
 	);
 	const hiddenActiveElement = indexOfActiveElement > 2;
-	console.log({ indexOfActiveElement, hiddenActiveElement });
 
 	return (
 		<header className={classes.Header}>
@@ -27,9 +26,8 @@ const Header = () => {
 			</div>
 			<div className={classes.HeaderElements}>
 				{headerElements.map((element, index) => {
-					console.log(index === indexOfActiveElement);
 					return (
-						<Link href={'#' + element.value} key={element.value}>
+						<Link href={'#' + element.value} key={element.value} scroll>
 							<h1
 								className={[
 									classes.HeaderElement,
@@ -45,13 +43,14 @@ const Header = () => {
 				<div
 					className={[
 						classes.Select,
+						classes.NoDecoration,
 						hiddenActiveElement ? classes.ActiveItem : null
 					].join(' ')}
 				>
 					More
 					<div className={classes.SelectDropDown}>
 						{headerElements.map((element) => (
-							<Link href={'#' + element.value} key={element.value}>
+							<Link href={'#' + element.value} key={element.value} scroll>
 								<h1
 									key={element.value}
 									className={

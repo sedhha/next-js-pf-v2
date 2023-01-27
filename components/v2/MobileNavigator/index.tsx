@@ -18,7 +18,7 @@ const MobileNavigator = () => {
 	return showMore ? (
 		<div className={classes.ShowMore}>
 			{headerElements.map((element) => (
-				<Link href={'#' + element.value} key={element.value}>
+				<Link href={'#' + element.value} key={element.value} scroll>
 					<h1
 						key={element.value}
 						is-active={`${activeSection === element.value}`}
