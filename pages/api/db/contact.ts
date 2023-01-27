@@ -1,19 +1,24 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest } from 'next';
 import { IContactForm } from '@/interfaces/firebase/contact-form';
-import { IResponse } from '@/interfaces/api';
+import { IApiHandler } from '@/interfaces/api';
 import { uploadToStore } from '@/firebase/uploadContact';
+import { withCSRFProtect } from '@/middleware/withCsrfProtect';
 
-
-
-const handler: NextApiHandler = async (
-    req: NextApiRequest,
-    res: NextApiResponse<IResponse<null>>
-) => {
-    const payload = req.body as IContactForm;
-    console.info(
-        `[${req.method}]: [Contact Form] - Email: ${payload.email} | ${req.url}`
-    );
-    const response = await uploadToStore(payload);
-    return res.status(response.status).json(response);
+const handler: IApiHandler<null> = async (req: NextApiRequest) => {
+	const payload = req.body as IContactForm;
+	console.info(
+		`[${req.method}]: [Contact Form] - Email: ${payload.email} | ${req.url}`
+	);
+	return uploadToStore(payload)
+		.then(() => ({
+			error: false,
+			statusCode: 201
+		}))
+		.catch((error) => ({
+			error: true,
+			statusCode: 500,
+			message: error.message
+		}));
 };
-export default handler;
+
+export default withCSRFProtect(handler);

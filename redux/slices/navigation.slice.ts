@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/redux/store';
 import { feFetch } from '@/utils/fe/fetch-utils';
-import { ANALYTICS_APIS } from '@/utils/fe/apis/public';
+import { ANALYTICS_APIS, USER_APIS } from '@/utils/fe/apis/public';
 
 // Define a type for the slice state
 export interface INavigationSlice {
@@ -59,7 +59,8 @@ export const sendAnalytics = createAsyncThunk(
 			awardsViewed,
 			videosViewed,
 			userEmail,
-			userUid
+			userUid,
+			idToken
 		} = (getState() as RootState).navigation;
 		if (!csrfToken || !geoData) return;
 		feFetch({

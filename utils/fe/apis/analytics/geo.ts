@@ -1,5 +1,4 @@
 import { IGeoAPI } from '@/interfaces/analytics';
-import { feFetch } from '@/utils/fe/fetch-utils';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
 
 export const getGeoData = async (maxRetries = 3): Promise<IGeoAPI> => {
@@ -33,44 +32,46 @@ export const getGeoData = async (maxRetries = 3): Promise<IGeoAPI> => {
 			asn: 'Failed after 3 attempts',
 			org: 'Failed after 3 attempts'
 		};
-	return feFetch<IGeoAPI>({
-		url: HELPER_APIS.GEO
-	}).then((res) => {
-		if (!res.json || res.error) return getGeoData(maxRetries - 1);
-		if (!res.json.ip) return getGeoData(maxRetries - 1);
-		const result = {
-			ip: res.json.ip ?? 'Undefined Field Returned from API',
-			network: res.json.network ?? 'Undefined Field Returned from API',
-			version: res.json.version ?? 'Undefined Field Returned from API',
-			city: res.json.city ?? 'Undefined Field Returned from API',
-			region: res.json.region ?? 'Undefined Field Returned from API',
-			region_code: res.json.region_code ?? 'Undefined Field Returned from API',
-			country: res.json.country ?? 'Undefined Field Returned from API',
-			country_name: res.json.country_name ?? 'Undefined Field Returned from API',
-			country_code: res.json.country_code ?? 'Undefined Field Returned from API',
-			country_code_iso3:
-				res.json.country_code_iso3 ?? 'Undefined Field Returned from API',
-			country_capital:
-				res.json.country_capital ?? 'Undefined Field Returned from API',
-			country_tld: res.json.country_tld ?? 'Undefined Field Returned from API',
-			continent_code:
-				res.json.continent_code ?? 'Undefined Field Returned from API',
-			in_eu: res.json.in_eu ?? false,
-			postal: res.json.postal ?? 'Undefined Field Returned from API',
-			latitude: res.json.latitude ?? -1,
-			longitude: res.json.longitude ?? -1,
-			timezone: res.json.timezone ?? 'Undefined Field Returned from API',
-			utc_offset: res.json.utc_offset ?? 'Undefined Field Returned from API',
-			country_calling_code:
-				res.json.country_calling_code ?? 'Undefined Field Returned from API',
-			currency: res.json.currency ?? 'Undefined Field Returned from API',
-			currency_name: res.json.currency_name ?? 'Undefined Field Returned from API',
-			languages: res.json.languages ?? 'Undefined Field Returned from API',
-			country_area: res.json.country_area ?? -1,
-			country_population: res.json.country_population ?? -1,
-			asn: res.json.asn ?? 'Undefined Field Returned from API',
-			org: res.json.org ?? 'Undefined Field Returned from API'
-		};
-		return result;
+	return fetch(HELPER_APIS.GEO).then((res) => {
+		const error = res.status > 299;
+		if (error) return getGeoData(maxRetries - 1);
+		return res.json().then((data) => {
+			const geoData = data as IGeoAPI;
+			if (!geoData.ip) return getGeoData(maxRetries - 1);
+			const result = {
+				ip: geoData.ip ?? 'Undefined Field Returned from API',
+				network: geoData.network ?? 'Undefined Field Returned from API',
+				version: geoData.version ?? 'Undefined Field Returned from API',
+				city: geoData.city ?? 'Undefined Field Returned from API',
+				region: geoData.region ?? 'Undefined Field Returned from API',
+				region_code: geoData.region_code ?? 'Undefined Field Returned from API',
+				country: geoData.country ?? 'Undefined Field Returned from API',
+				country_name: geoData.country_name ?? 'Undefined Field Returned from API',
+				country_code: geoData.country_code ?? 'Undefined Field Returned from API',
+				country_code_iso3:
+					geoData.country_code_iso3 ?? 'Undefined Field Returned from API',
+				country_capital:
+					geoData.country_capital ?? 'Undefined Field Returned from API',
+				country_tld: geoData.country_tld ?? 'Undefined Field Returned from API',
+				continent_code:
+					geoData.continent_code ?? 'Undefined Field Returned from API',
+				in_eu: geoData.in_eu ?? false,
+				postal: geoData.postal ?? 'Undefined Field Returned from API',
+				latitude: geoData.latitude ?? -1,
+				longitude: geoData.longitude ?? -1,
+				timezone: geoData.timezone ?? 'Undefined Field Returned from API',
+				utc_offset: geoData.utc_offset ?? 'Undefined Field Returned from API',
+				country_calling_code:
+					geoData.country_calling_code ?? 'Undefined Field Returned from API',
+				currency: geoData.currency ?? 'Undefined Field Returned from API',
+				currency_name: geoData.currency_name ?? 'Undefined Field Returned from API',
+				languages: geoData.languages ?? 'Undefined Field Returned from API',
+				country_area: geoData.country_area ?? -1,
+				country_population: geoData.country_population ?? -1,
+				asn: geoData.asn ?? 'Undefined Field Returned from API',
+				org: geoData.org ?? 'Undefined Field Returned from API'
+			};
+			return result;
+		});
 	});
 };

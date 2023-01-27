@@ -63,7 +63,7 @@
 	font-weight: 400;
 	font-size: small;
 	letter-spacing: 0.02em;
-	color: var(--footer-heading-color);
+	color: var(--footer-email-color);
 	transition: var(--fade-transition);
 	text-decoration: underline;
 	text-underline-offset: 0.5vh;

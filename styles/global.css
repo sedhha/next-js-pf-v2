@@ -99,6 +99,7 @@
 	--tech-stack-input-box: white;
 	--special-icon-color: black;
 	--footer-heading-color: white;
+	--footer-email-color: black;
 	--footer-bg: var(--faded-dark-blue);
 	--hover-more-text-color: white;
 	--blog-excerpt-color: var(--dark-gray);
@@ -157,6 +158,7 @@
 	--tech-stack-input-box: white;
 	--special-icon-color: white;
 	--footer-heading-color: white;
+	--footer-email-color: black;
 	--footer-bg: var(--dark-blue);
 	--hover-more-text-color: white;
 	--blog-excerpt-color: var(--light-gray);

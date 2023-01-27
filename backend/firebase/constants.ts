@@ -11,7 +11,8 @@ const getEnvPrefix = () => {
 export const storeCollectionPaths = {
 	feedback: 'feedback',
 	sessions: 'sessions',
-	events: 'events'
+	events: 'events',
+	newsletters: 'newsletters'
 };
 
 export const getCollectionPath = (path: string): string => {
@@ -69,6 +70,11 @@ const typingUserPath = (isProd: boolean, uid: string, isVisitor: boolean) =>
 
 const formCSRFPath = (isProd: boolean) =>
 	`${isProd ? 'prod' : 'dev'}-${dbPaths.csrfTokens}`;
+
+const getNewsLetterPath = () => {
+	const prefix = getEnvPrefix();
+	return `${prefix}-${storeCollectionPaths.newsletters}`;
+};
 export const getDBPath = (path: string): string => {
 	const prefix = getEnvPrefix();
 	const storagePath = dbPaths[path as keyof typeof dbPaths];
@@ -85,6 +91,7 @@ export {
 	formRootMessagesPath,
 	formMessagesPath,
 	lastModifiedPath,
+	getNewsLetterPath,
 	emailRefPath,
 	readRecipientPath,
 	latestMessagePath,

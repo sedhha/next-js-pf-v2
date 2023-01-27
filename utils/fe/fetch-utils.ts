@@ -1,4 +1,4 @@
-import { IFetchFEParams, IResponse } from '@/interfaces/api';
+import { IFetchFEParams, IResponse, IResult } from '@/interfaces/api';
 
 export const feFetch = async <T>({
 	url,
@@ -18,8 +18,13 @@ export const feFetch = async <T>({
 
 		if (!getText) {
 			try {
-				const json = (await res.json()) as T;
-				return { error: res.status > 399, json, status: res.status };
+				const json = (await res.json()) as IResult<T>;
+				return {
+					error: res.status > 399,
+					json: json.json,
+					status: res.status,
+					message: json.message
+				};
 			} catch (error) {
 				return {
 					error: true,

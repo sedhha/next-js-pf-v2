@@ -70,13 +70,13 @@ const Awards = () => {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
-		feFetch<{ json: ITotal<IEventAndParticipations> }>({
+		feFetch<ITotal<IEventAndParticipations>>({
 			url: `${PUBLIC_APIS.EVENTS}?limit=${limit}&skip=${current}`
 		})
 			.then((res) => {
-				if (!res.error && res.json?.json) {
-					setCardItems(res.json.json.items);
-					setTotal(res.json.json.total);
+				if (!res.error && res.json) {
+					setCardItems(res.json.items);
+					setTotal(res.json.total);
 				}
 			})
 			.finally(() => setLoading(false));

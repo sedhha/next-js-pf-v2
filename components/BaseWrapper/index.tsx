@@ -27,6 +27,7 @@ import {
 	signInWithEmailLink
 } from 'firebase/auth';
 import app from '@/utils/fe/apis/services/firebase';
+import { USER_APIS } from '../../utils/fe/apis/public';
 type Props = {
 	Component: JSX.Element;
 };
@@ -41,15 +42,15 @@ export default function BaseComponent({ Component }: Props) {
 		const analyticsEnabled = JSON.parse(
 			process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
 		);
+		feFetch<{ result: string }>({
+			url: AUTH_APIS.CSRF
+		}).then((res) => {
+			if (!res.error && res.json) {
+				dispatch(updateCsrfToken(res.json.result));
+			}
+		});
 		if (analyticsEnabled) {
 			if (isVisible) {
-				feFetch<{ json: { result: string } }>({
-					url: AUTH_APIS.CSRF
-				}).then((res) => {
-					if (!res.error) {
-						dispatch(updateCsrfToken(res.json?.json.result));
-					}
-				});
 				if (!geoData?.ip) {
 					getGeoData().then((res) => {
 						dispatch(updateGeoData(res));
@@ -124,15 +125,23 @@ export default function BaseComponent({ Component }: Props) {
 	}, [updateStoreIfSignedIn, dispatch]);
 	React.useEffect(() => {
 		if (idToken)
-			feFetch<{ json: boolean }>({
+			feFetch<boolean>({
 				url: `${ADMIN_APIS.ADMIN}`,
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': 'Bearer ' + idToken
 				}
 			}).then((res) => {
-				if (res.json) dispatch(updateIsAdmin(res.json.json));
+				if (res.json) dispatch(updateIsAdmin(res.json));
 			});
+		feFetch({
+			url: USER_APIS.SUBSCRIBE_NEWSLETTER,
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + idToken
+			}
+		});
 	}, [idToken, dispatch]);
 	return (
 		<React.Fragment>

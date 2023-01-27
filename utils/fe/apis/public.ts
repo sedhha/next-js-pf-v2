@@ -10,6 +10,7 @@ export const PUBLIC_APIS = {
 };
 
 export const DB_APIS = {
+	// needs CSRF Protection
 	CONTACT: '/api/db/contact'
 };
 
@@ -19,11 +20,16 @@ export const AUTH_APIS = {
 
 export const ANALYTICS_APIS = {
 	RECORD: '/api/analytics/record',
-	CLOSE: '/api/analytics/close'
+	CLOSE: '/api/analytics/close',
+	SIGNUP: '/api/analytics/signup'
 };
 
 export const HELPER_APIS = {
 	GEO: 'https://ipapi.co/json/'
+};
+
+export const USER_APIS = {
+	SUBSCRIBE_NEWSLETTER: '/api/auth/subscribe-newsletter'
 };
 
 export const ADMIN_APIS = {

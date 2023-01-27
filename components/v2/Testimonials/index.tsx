@@ -71,13 +71,13 @@ export default function Testimonials({}: Props) {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
-		feFetch<{ json: ITotal<ITestimonials> }>({
+		feFetch<ITotal<ITestimonials>>({
 			url: `${PUBLIC_APIS.TESTIMONIALS}?limit=${limit}&skip=${current}`
 		})
 			.then((res) => {
-				if (!res.error && res.json?.json) {
-					setCardItem(res.json.json.items[0]);
-					setTotal(res.json.json.total);
+				if (!res.error && res.json) {
+					setCardItem(res.json.items[0]);
+					setTotal(res.json.total);
 				}
 			})
 			.finally(() => setLoading(false));

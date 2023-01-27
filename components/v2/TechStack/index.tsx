@@ -65,12 +65,12 @@ export default function TechStack() {
 
 		setLoading(true);
 		setTriggered(true);
-		feFetch<{ json: ITotal<ITechStack> }>({
+		feFetch<ITotal<ITechStack>>({
 			url: `${PUBLIC_APIS.TECH_STACK}?search=${search}`
 		})
 			.then((res) => {
 				setLastActiveSearch(search);
-				if (!res.error && res.json?.json) setCards(res.json.json.items);
+				if (!res.error && res.json) setCards(res.json.items);
 				if (res.status === 204) setCards([]);
 			})
 			.finally(() => setLoading(false));

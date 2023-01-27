@@ -27,13 +27,13 @@ const VideoFunction = () => {
 
 	const fetchVideos = React.useCallback(
 		(skip: number) =>
-			feFetch<{ json: ITotal<IVideoContent> }>({
+			feFetch<ITotal<IVideoContent>>({
 				url: `${PUBLIC_APIS.VIDEOS}?limit=${limit}&skip=${skip}`
 			}).then((res) => {
 				if (!res.error && res.json) {
-					setTotal(res.json.json.total);
+					setTotal(res.json.total);
 
-					return [...transformerFunction(res.json.json.items)];
+					return [...transformerFunction(res.json.items)];
 				}
 			}),
 		[]
