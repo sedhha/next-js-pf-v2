@@ -18,6 +18,11 @@ export const feFetch = async <T>({
 
 		if (!getText) {
 			try {
+				if (res.status === 204)
+					return {
+						error: false,
+						status: res.status
+					};
 				const json = (await res.json()) as IResult<T>;
 				return {
 					error: res.status > 399,

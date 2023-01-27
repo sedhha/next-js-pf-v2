@@ -6,6 +6,10 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { ANALYTICS_APIS } from '@/utils/fe/apis/public';
+import { sendSignInLinkToEmail, getAuth } from 'firebase/auth';
+import app from '@/fe-client/firebase';
+
+const auth = getAuth(app);
 
 const Footer = () => {
 	const dispatch = useAppDispatch();
@@ -27,6 +31,15 @@ const Footer = () => {
 			return;
 		}
 		setLoading(true);
+		dispatch(
+			updatePopup({
+				type: 'pending',
+				title: 'Adding you to email Newsletter',
+				timeout: 15000,
+				description:
+					'Please wait while I add you to my subscriptions list. Kindly note that once added, you also need to confirm verification by following the link sent to your email!'
+			})
+		);
 		feFetch({
 			url: `${ANALYTICS_APIS.SIGNUP}?email=${email}`,
 			headers: {
@@ -36,7 +49,6 @@ const Footer = () => {
 		})
 			.then((res) => {
 				if (res.error) {
-					console.log(res);
 					dispatch(
 						updatePopup({
 							type: 'error',
@@ -44,16 +56,33 @@ const Footer = () => {
 							description: 'Failed to Subscribe to Newsletter. Error - ' + res.message
 						})
 					);
-				} else
-					dispatch(
-						updatePopup({
-							type: 'success',
-							title: 'Email Subscription Request Recieved!',
-							timeout: 5000,
-							description:
-								'Kindly check your inbox and spam folder and click on the Sign up link to confirm your subscription!'
+				} else {
+					const actionCodeSettings = {
+						url: window.location.origin,
+						handleCodeInApp: true
+					};
+					sendSignInLinkToEmail(auth, email, actionCodeSettings)
+						.then(() => {
+							dispatch(
+								updatePopup({
+									type: 'success',
+									title: 'Email Subscription Request Recieved!',
+									timeout: 5000,
+									description:
+										'Kindly check your inbox and spam folder and click on the Sign up link to confirm your subscription!'
+								})
+							);
 						})
-					);
+						.catch((err) => {
+							dispatch(
+								updatePopup({
+									type: 'error',
+									title: 'Error Sending Verification Email! :(',
+									description: 'Failed to Subscribe to Newsletter. Error -' + err.message
+								})
+							);
+						});
+				}
 			})
 			.catch((err) => {
 				dispatch(

@@ -33,7 +33,6 @@ const signUpForEmailNewsletter = async (
 		.get()
 		.then((snapshot) => {
 			if (!snapshot.empty) {
-				console.log(snapshot.docs.map((doc) => doc.data()));
 				return {
 					statusCode: 409,
 					message: 'Email already subscribed!',
@@ -47,11 +46,13 @@ const signUpForEmailNewsletter = async (
 					signedUpAt: new Date().getTime(),
 					subscribed: false
 				} as INewsletter)
-				.then(() => ({
-					statusCode: 200,
-					message: 'Email successfully subscribed!',
-					error: false
-				}))
+				.then(() => {
+					return {
+						statusCode: 200,
+						message: 'Email successfully subscribed!',
+						error: false
+					};
+				})
 				.catch((error) => ({
 					statusCode: 500,
 					message: error.message,
