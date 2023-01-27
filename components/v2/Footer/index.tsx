@@ -69,7 +69,7 @@ const Footer = () => {
 									title: 'Email Subscription Request Recieved!',
 									timeout: 5000,
 									description:
-										'Kindly check your inbox and spam folder and click on the Sign up link to confirm your subscription!'
+										'Kindly check your inbox and spam folder and click on the Sign In link to confirm your subscription!'
 								})
 							);
 						})
