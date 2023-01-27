@@ -97,7 +97,7 @@ const subscribeDocument = async (
 	const storeCollection = store.collection(newsletterPath);
 	return storeCollection
 		.doc(id)
-		.set({ subscribe: true, uid }, { merge: true })
+		.set({ subscribed: true, uid } as INewsletter, { merge: true })
 		.then(() => ({
 			error: false,
 			statusCode: 201,
