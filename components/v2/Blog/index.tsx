@@ -8,21 +8,25 @@ import { useDispatch } from 'react-redux';
 import {
 	sendAnalytics,
 	updateViewed,
-	updateActiveSection
+	updateActiveSection,
+	updateActiveBlogCategory
 } from '@/slices/navigation.slice';
 import { useAppSelector } from '@/redux/hooks';
-const blogCategories = [
-	'Web Development',
-	'Mern Stack',
-	'IoT Programming',
-	'Life',
-	'Gaming',
-	'APIs',
-	'Docker'
-];
+import blogCategories from '@/constants/blog-categories.json';
+const keys = Object.keys(blogCategories);
+const activeKeyinSelect = (activeKey: string) =>
+	activeKey !== keys[0] && activeKey !== keys[1] && activeKey !== keys[2];
+
 const Blog = () => {
 	const dispatch = useDispatch();
-	const { blogViewed } = useAppSelector((state) => state.navigation);
+	const { blogViewed, activeBlogCategory } = useAppSelector(
+		(state) => state.navigation
+	);
+	const [rank, setRank] = React.useState(1);
+
+	const onChangeRank = (rank: number) => {
+		setRank(rank);
+	};
 
 	React.useEffect(() => {
 		if (blogViewed) {
@@ -43,26 +47,60 @@ const Blog = () => {
 						<div className={classes.BlogHead}>
 							<h1>Blog</h1>
 							<section className={classes.BlogCategories}>
-								{blogCategories.map((item, index) => (
-									<h3 key={index} is-active={`${index === 0}`}>
-										{item}
+								{keys.map((key) => (
+									<h3
+										key={key}
+										is-active={`${key === activeBlogCategory}`}
+										onClick={() => dispatch(updateActiveBlogCategory(key))}
+									>
+										{blogCategories[key as keyof typeof blogCategories]}
 									</h3>
 								))}
-								<select>
+								<select
+									is-active={`${activeKeyinSelect(activeBlogCategory)}`}
+									onChange={(e) =>
+										dispatch(
+											updateActiveBlogCategory(
+												keys[e.target.selectedIndex - 1] ?? 'all-categories'
+											)
+										)
+									}
+								>
 									<option>All Categories</option>
-									{blogCategories.map((item, index) => (
-										<option key={index}>{item}</option>
+									{keys.map((key) => (
+										<option
+											key={key}
+											className={
+												activeBlogCategory === key ? classes.ActiveBlogItem : undefined
+											}
+											value={blogCategories[key as keyof typeof blogCategories]}
+											onClick={() => {
+												dispatch(updateActiveBlogCategory(key));
+											}}
+										>
+											{blogCategories[key as keyof typeof blogCategories]}
+										</option>
 									))}
 								</select>
 							</section>
 						</div>
 						<div className={classes.FeaturedBlogBody}>
 							<div className={classes.Number}>
-								<h4 is-active="true">01</h4>
-								<h4>02</h4>
-								<h4>03</h4>
-								<h4>04</h4>
-								<h4>05</h4>
+								<h4 is-active={`${rank === 1}`} onClick={() => onChangeRank(1)}>
+									01
+								</h4>
+								<h4 is-active={`${rank === 2}`} onClick={() => onChangeRank(2)}>
+									02
+								</h4>
+								<h4 is-active={`${rank === 3}`} onClick={() => onChangeRank(3)}>
+									03
+								</h4>
+								<h4 is-active={`${rank === 4}`} onClick={() => onChangeRank(4)}>
+									04
+								</h4>
+								<h4 is-active={`${rank === 5}`} onClick={() => onChangeRank(5)}>
+									05
+								</h4>
 							</div>
 							<div className={classes.FeaturedBlogElements}>
 								<div className={classes.FeaturedBlogTitleSection}>

@@ -23,7 +23,7 @@
 }
 
 .RelatedBlogCard img {
-	max-height: 36vh;
+	max-height: 30vh;
 	aspect-ratio: 1;
 	object-fit: cover;
 	object-position: center;
@@ -52,6 +52,10 @@
 	flex: auto;
 	max-height: 100%;
 	max-width: 75vw;
+	align-self: stretch;
+	justify-content: stretch;
+	padding: 0.5vh 0.5vw;
+	overflow-y: hidden;
 }
 
 .BlogHead {
@@ -82,15 +86,29 @@
 	font-size: clamp(0.5rem, 2vh, 16rem);
 	letter-spacing: 0.05em;
 	color: var(--inactive-blog-category-text);
+	cursor: pointer;
+	transition: var(--fade-transition);
 }
 
-.BlogCategories > h3:nth-child(n+4) {
+.BlogCategories h3:hover {
+	color: var(--active-blog-category-text);
+	scale: 0.99;
+	transition: var(--fade-transition);
+}
+
+.BlogCategories > h3:nth-child(n + 4) {
 	display: none;
 }
 
 .BlogCategories h3[is-active='true'] {
 	color: var(--active-blog-category-text);
 	transition: var(--fade-transition);
+}
+
+.BlogCategories > select > option:nth-child(2),
+.BlogCategories > select > option:nth-child(3),
+.BlogCategories > select > option:nth-child(4) {
+	display: none;
 }
 
 .BlogCategories > select {
@@ -102,6 +120,22 @@
 	letter-spacing: 0.05em;
 	color: var(--inactive-blog-category-text);
 	background-color: var(--background-color);
+	transition: var(--fade-transition);
+	font-family: 'Courier New', Courier, monospace;
+	cursor: pointer;
+}
+.BlogCategories > select[is-active='true'],
+.BlogCategories > select:hover {
+	border: none;
+	outline: none;
+	font-style: normal;
+	font-weight: 600;
+	font-size: clamp(0.5rem, 2vh, 16rem);
+	letter-spacing: 0.05em;
+	background-color: var(--background-color);
+	transition: var(--fade-transition);
+	color: var(--active-blog-category-text);
+	scale: 0.99;
 	transition: var(--fade-transition);
 	font-family: 'Courier New', Courier, monospace;
 }
@@ -118,21 +152,26 @@
 	padding: 0 2vw;
 }
 
-.Number h4 {
+.Number > h4 {
 	font-style: normal;
 	font-weight: 600;
 	font-size: clamp(0.5rem, 6vh, 36rem);
 	letter-spacing: 0.05em;
 	color: var(--inactive-blog-category-text);
-	transition: var(--fade-transition);
 	font-family: 'Courier New', Courier, monospace;
-	transition: 1.5s all ease-in;
+	transition: var(--fade-transition);
+	cursor: pointer;
 }
 
-.Number h4[is-active='true'] {
+.Number > h4:hover {
 	color: var(--active-blog-category-text);
 	transition: var(--fade-transition);
-	transition: 1.5s all ease-in;
+	font-size: clamp(0.5rem, 8vh, 36rem);
+}
+
+.Number > h4[is-active='true'] {
+	color: var(--active-blog-category-text);
+	transition: var(--fade-transition);
 	font-size: clamp(0.5rem, 8vh, 36rem);
 }
 
@@ -206,7 +245,7 @@
 }
 
 .Img {
-	height: 50vh;
+	max-height: 50vh;
 	object-fit: cover;
 	object-position: center;
 	aspect-ratio: 1;
@@ -252,7 +291,6 @@
 	font-size: clamp(0.5rem, 2vh, 16rem);
 	text-align: justify;
 	color: var(--featured-blog-date-text);
-
 }
 .MobileView {
 	display: none;
@@ -274,7 +312,7 @@
 	.BlogCategories {
 		flex: none;
 	}
-	.BlogCategories > select > option:first-child  {
+	.BlogCategories > select > option:first-child {
 		color: red;
 	}
 	.BlogHead {
