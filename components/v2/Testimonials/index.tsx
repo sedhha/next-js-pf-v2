@@ -99,7 +99,7 @@ export default function Testimonials({}: Props) {
 						/>
 						<div className={classes.Testimonial}>
 							<div className={classes.TestimonialEntity}>
-								<LazyImage src={cardItem.img} className={classes.ChatIcon} />
+								<LazyImage src={cardItem.img} className={classes.ChatIcon} loadLazily />
 								<h1>{cardItem.name}</h1>
 								<h2>{cardItem.designation}</h2>
 								{cardItem.content.split('\n').map((line, index) => (

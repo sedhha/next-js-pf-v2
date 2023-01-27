@@ -73,7 +73,7 @@ const Blog = () => {
 								<h1>Getting Started With NEXT JS</h1>
 								<div className={classes.ContentSection}>
 									<div>
-										<LazyImage src={'/sample.png'} className={classes.Img} />
+										<LazyImage loadLazily src={'/sample.png'} className={classes.Img} />
 										<div>
 											<SocialIcons iconColorClass={classes.Icon} />
 										</div>
@@ -100,13 +100,13 @@ const Blog = () => {
 					</div>
 					<div className={classes.SideBar}>
 						<div className={classes.RelatedBlogCard}>
-							<LazyImage src={'/sample.png'} />
+							<LazyImage loadLazily src={'/sample.png'} />
 							<h3>Web Development</h3>
 							<h4>Getting Started With NEXT JS</h4>
 							<h5>22nd August 2022</h5>
 						</div>
 						<div className={classes.RelatedBlogCard}>
-							<LazyImage src={'/sample.png'} />
+							<LazyImage loadLazily src={'/sample.png'} />
 							<h3>Web Development</h3>
 							<h4>Getting Started With NEXT JS</h4>
 							<h5>22nd August 2022</h5>
@@ -114,7 +114,7 @@ const Blog = () => {
 					</div>
 					<div className={classes.MobileView}>
 						<div className={classes.MobileBlogContainer}>
-							<LazyImage src={'/sample.png'} />
+							<LazyImage loadLazily src={'/sample.png'} />
 							<div className={classes.MobileMetaData}>
 								<h4 is-active="true">01</h4>
 								<h1>Getting Started With NEXT JS</h1>
@@ -125,7 +125,7 @@ const Blog = () => {
 							</div>
 						</div>
 						<div className={classes.MobileBlogContainer}>
-							<LazyImage src={'/sample.png'} />
+							<LazyImage loadLazily src={'/sample.png'} />
 							<div className={classes.MobileMetaData}>
 								<h4 is-active="true">01</h4>
 								<h1>Getting Started With NEXT JS</h1>
@@ -136,7 +136,7 @@ const Blog = () => {
 							</div>
 						</div>
 						<div className={classes.MobileBlogContainer}>
-							<LazyImage src={'/sample.png'} />
+							<LazyImage loadLazily src={'/sample.png'} />
 							<div className={classes.MobileMetaData}>
 								<h4 is-active="true">01</h4>
 								<h1>Getting Started With NEXT JS</h1>

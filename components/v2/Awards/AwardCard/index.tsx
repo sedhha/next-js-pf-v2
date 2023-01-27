@@ -25,7 +25,7 @@ const AwardCard = ({
 	const altered = getAlterParam(alter);
 	return (
 		<div className={classes.AwardCard}>
-			<LazyImage src={img} className={classes.SideImage} />
+			<LazyImage src={img} className={classes.SideImage} loadLazily />
 			<div
 				className={`${classes.Details} ${
 					altered === 0 ? classes.oddBG : classes.evenBG

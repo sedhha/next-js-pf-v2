@@ -26,7 +26,7 @@ const Work = ({
 	return (
 		<div className={className}>
 			<div className={imgClassName}>
-				<LazyImage src={imgSrc} />
+				<LazyImage src={imgSrc} loadLazily />
 			</div>
 			<a href="https://www.google.com" target="_blank" rel="noreferrer">
 				<h1>{h1Text}</h1>
