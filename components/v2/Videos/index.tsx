@@ -5,7 +5,11 @@ import VideoCard from './VideoCard';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { sendAnalytics, updateViewed } from '@/slices/navigation.slice';
+import {
+	sendAnalytics,
+	updateViewed,
+	updateActiveSection
+} from '@/slices/navigation.slice';
 import topVideos from '@/constants/cms-constants/featured-videos.json';
 import { useRouter } from 'next/router';
 
@@ -22,7 +26,10 @@ const Videos = () => {
 	}, [videosViewed, dispatch]);
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateViewed('videosViewed'))}
+			onVisibleCallback={() => {
+				dispatch(updateViewed('videosViewed'));
+				dispatch(updateActiveSection(attributes.Videos));
+			}}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Videos}>
 					<section className={classes.FeaturedVideoSection}>

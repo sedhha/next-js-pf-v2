@@ -12,7 +12,7 @@ import {
 	updateUserUid,
 	updateViewed
 } from '@/slices/navigation.slice';
-import VisibilityHandler from '@/v2/common/VisibilityController/lite';
+import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
 import Input from '@/v2/common/Input';
 import TextArea from '@/v2/common/Input/textarea';
@@ -24,6 +24,7 @@ import { regexExpressions } from '@/utils/regex-validators';
 import Spinner from '@/v2/common/Spinner';
 import app from '@/fe-client/firebase';
 import { getAuth, sendSignInLinkToEmail, User } from 'firebase/auth';
+import { updateActiveSection } from '@/slices/navigation.slice';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 const auth = getAuth(app);
@@ -151,7 +152,10 @@ const Contact = () => {
 
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateViewed('contactViewed'))}
+			onVisibleCallback={() => {
+				dispatch(updateViewed('contactViewed'));
+				dispatch(updateActiveSection(attributes.Contact));
+			}}
 			Component={
 				<section className={classes.ContactForm} id={attributes.Contact}>
 					<h1>Wave a hello or want me to build something cool for you ?</h1>

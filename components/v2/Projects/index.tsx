@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import Card from '@/v2/common/Card';
 import {
 	sendAnalytics,
+	updateActiveSection,
 	updatePopup,
 	updateViewed
 } from '@/slices/navigation.slice';
@@ -84,7 +85,10 @@ const Projects = () => {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateViewed('projectsViewed'))}
+			onVisibleCallback={() => {
+				dispatch(updateViewed('projectsViewed'));
+				dispatch(updateActiveSection(attributes.Projects));
+			}}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Projects}>
 					{loading && <Spinner />}

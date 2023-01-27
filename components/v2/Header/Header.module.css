@@ -92,11 +92,25 @@
 	background-color: var(--light-blue);
 	color: var(--hover-more-text-color);
 }
+.ActiveDropDownElement {
+	background-color: var(--light-blue);
+	color: var(--hover-more-text-color);
+}
 
 .HeaderElement:nth-child(n + 4),
 .SelectDropDown > h1:not(:nth-child(n + 4)),
 .MobileOnly {
 	display: none;
+}
+
+.ActiveItem {
+	color: var(--light-blue);
+	text-decoration: underline;
+	text-underline-offset: 1vh;
+}
+
+.HeaderElement:hover {
+	scale: 0.96;
 }
 
 @media (max-aspect-ratio: 550 / 897) {

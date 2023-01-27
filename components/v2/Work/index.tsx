@@ -19,6 +19,7 @@ import { workDateFormatter } from '@/utils/date-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
+import { updateActiveSection } from '@/slices/navigation.slice';
 
 const limit = 3;
 const initialItems = workExperience.slice(0, limit);
@@ -87,7 +88,10 @@ const Work = () => {
 
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateViewed('workViewed'))}
+			onVisibleCallback={() => {
+				dispatch(updateViewed('workViewed'));
+				dispatch(updateActiveSection(attributes.WorkExperience));
+			}}
 			Component={
 				<section className={classes.BodyModule} id={attributes.WorkExperience}>
 					{loading && <Spinner />}

@@ -2,10 +2,14 @@ import React from 'react';
 import classes from './Blog.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import SocialIcons from '@/v2/common/SocialIcons';
-import VisibilityHandler from '@/v2/common/VisibilityController/io-lite';
+import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
 import { useDispatch } from 'react-redux';
-import { sendAnalytics, updateViewed } from '@/slices/navigation.slice';
+import {
+	sendAnalytics,
+	updateViewed,
+	updateActiveSection
+} from '@/slices/navigation.slice';
 import { useAppSelector } from '@/redux/hooks';
 const blogCategories = [
 	'Web Development',
@@ -31,6 +35,7 @@ const Blog = () => {
 		<VisibilityHandler
 			onVisibleCallback={() => {
 				dispatch(updateViewed('blogViewed'));
+				dispatch(updateActiveSection(attributes.Blog));
 			}}
 			Component={
 				<section className={classes.BlogBody} id={attributes.Blog}>

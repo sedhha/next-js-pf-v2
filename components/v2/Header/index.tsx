@@ -10,7 +10,15 @@ import { updateShowMore } from '@/slices/navigation.slice';
 
 const Header = () => {
 	const dispatch = useAppDispatch();
-	const { showMore } = useAppSelector((state) => state.navigation);
+	const { showMore, activeSection } = useAppSelector(
+		(state) => state.navigation
+	);
+	const indexOfActiveElement = headerElements.findIndex(
+		(item) => item.value === activeSection
+	);
+	const hiddenActiveElement = indexOfActiveElement > 2;
+	console.log({ indexOfActiveElement, hiddenActiveElement });
+
 	return (
 		<header className={classes.Header}>
 			<div className={classes.LogoSection}>
@@ -18,20 +26,42 @@ const Header = () => {
 				<LazyImage className={classes.LogoImage} src={'/morpankh.svg'} />
 			</div>
 			<div className={classes.HeaderElements}>
-				{headerElements.map((element) => {
+				{headerElements.map((element, index) => {
+					console.log(index === indexOfActiveElement);
 					return (
 						<Link href={'#' + element.value} key={element.value}>
-							<h1 className={classes.HeaderElement}>{element.label}</h1>
+							<h1
+								className={[
+									classes.HeaderElement,
+									index === indexOfActiveElement ? classes.ActiveItem : null
+								].join(' ')}
+							>
+								{element.label}
+							</h1>
 						</Link>
 					);
 				})}
 
-				<div className={classes.Select}>
+				<div
+					className={[
+						classes.Select,
+						hiddenActiveElement ? classes.ActiveItem : null
+					].join(' ')}
+				>
 					More
 					<div className={classes.SelectDropDown}>
 						{headerElements.map((element) => (
 							<Link href={'#' + element.value} key={element.value}>
-								<h1 key={element.value}>{element.label}</h1>
+								<h1
+									key={element.value}
+									className={
+										element.value === activeSection
+											? classes.ActiveDropDownElement
+											: undefined
+									}
+								>
+									{element.label}
+								</h1>
 							</Link>
 						))}
 					</div>

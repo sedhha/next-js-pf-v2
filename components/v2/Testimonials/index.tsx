@@ -17,6 +17,7 @@ import {
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
+import { updateActiveSection } from '@/slices/navigation.slice';
 type Props = {};
 const limit = 1;
 const initialItems = testimonials.slice(0, limit)[0];
@@ -83,7 +84,10 @@ export default function Testimonials({}: Props) {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateViewed('testimonialsViewed'))}
+			onVisibleCallback={() => {
+				dispatch(updateViewed('testimonialsViewed'));
+				dispatch(updateActiveSection(attributes.Testimonials));
+			}}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Testimonials}>
 					<h1>A word about me!</h1>

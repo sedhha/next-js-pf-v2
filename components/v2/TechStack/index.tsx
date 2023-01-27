@@ -17,6 +17,7 @@ import { ITechStack } from '@/interfaces/tech-stack';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import Spinner from '@/v2/common/Spinner';
 import Empty from '@/v2/common/Empty';
+import { updateActiveSection } from '@/slices/navigation.slice';
 
 export default function TechStack() {
 	const [search, setSearch] = React.useState('');
@@ -76,7 +77,10 @@ export default function TechStack() {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateViewed('techStackViewed'))}
+			onVisibleCallback={() => {
+				dispatch(updateViewed('techStackViewed'));
+				dispatch(updateActiveSection(attributes.TechStack));
+			}}
 			Component={
 				<section className={classes.BodyModule} id={attributes.TechStack}>
 					<div className={classes.IntroHeader}>

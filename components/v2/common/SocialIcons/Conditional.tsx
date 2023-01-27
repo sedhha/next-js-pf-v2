@@ -14,7 +14,12 @@ export default function SocialIcons({ iconColorClass, socialHandles }: IProps) {
 			{socialHandles.map((icon) =>
 				icon.isSvg ? (
 					<Link key={icon.id} href={icon.url}>
-						<Icon iconKey={icon.id} className={`${iconColorClass ?? classes.Icon}`} />
+						<div>
+							<Icon
+								iconKey={icon.id}
+								className={`${iconColorClass ?? classes.Icon}`}
+							/>
+						</div>
 					</Link>
 				) : (
 					<Link key={icon.id} href={icon.url}>
