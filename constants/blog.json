@@ -1,0 +1,29 @@
+{
+	"mainBlog": {
+		"mainCategory": "Automation",
+		"title": "Setting Up Startup Script on Windows 10 Server",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/5JRUplrKPNg1kw0pCCNrDo/92833035562e8892b45d2f1702ca35dd/thumbnail-uipath-setup.png",
+		"postDate": "2022-02-22T00:00:00.000+05:30",
+		"id": "57ipaNewAcgnAjQsTKOja9",
+		"categoryID": "automation",
+		"excerpt": "UIPath is an amazing tool for doing UI based automations. It does support tons of processes and you can additionally add custom snippets using c# but what took my attention was it’s amazing and accurate support to ui Web Scrapping."
+	},
+	"relatedBlogs": [
+		{
+			"mainCategory": "Mechanical",
+			"title": "How Aircraft Industry Can Boom Indian Manufacturing Sector?",
+			"postDate": "2022-08-18T00:00:00.000+05:30",
+			"id": "5uQPqAz5Fjf5q8uF2QeUw1",
+			"categoryID": "mechanical",
+			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/5VrBtEIwaRDX2yEIYZ2M52/cf15b13ab5bdc9bb4518b24066ff6689/thumbnail-manufacturing-sector-in-india.png"
+		},
+		{
+			"mainCategory": "Life",
+			"title": "Modern Problem: Dopamine Toxification",
+			"postDate": "2021-06-12T00:00:00.000+05:30",
+			"id": "3fNiHG2SY8Rtb792cxCI9J",
+			"categoryID": "life",
+			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/6Itymebe64yVRqDqbyAglz/1884d73fb57d1eeeaa70ab3ef5dcf2d4/thumbnail-dopamine-detox.png"
+		}
+	]
+}

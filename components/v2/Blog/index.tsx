@@ -13,6 +13,11 @@ import {
 } from '@/slices/navigation.slice';
 import { useAppSelector } from '@/redux/hooks';
 import blogCategories from '@/constants/blog-categories.json';
+import blogs from '@/constants/blog.json';
+import { useRouter } from 'next/router';
+import { FE_ROUTES } from '@/utils/fe/apis/public';
+
+const { mainBlog, relatedBlogs } = blogs;
 const keys = Object.keys(blogCategories);
 const activeKeyinSelect = (activeKey: string) =>
 	activeKey !== keys[0] && activeKey !== keys[1] && activeKey !== keys[2];
@@ -22,6 +27,7 @@ const Blog = () => {
 	const { blogViewed, activeBlogCategory } = useAppSelector(
 		(state) => state.navigation
 	);
+	const router = useRouter();
 	const [rank, setRank] = React.useState(1);
 
 	const onChangeRank = (rank: number) => {
@@ -34,6 +40,9 @@ const Blog = () => {
 			dispatch(sendAnalytics());
 		}
 	}, [dispatch, blogViewed]);
+
+	const onClickNavigate = (category: string, id: string) =>
+		router.push(`${FE_ROUTES.CATEGORY_BLOG_COMBO}/${category}/${id}`);
 
 	return (
 		<VisibilityHandler
@@ -104,32 +113,32 @@ const Blog = () => {
 							</div>
 							<div className={classes.FeaturedBlogElements}>
 								<div className={classes.FeaturedBlogTitleSection}>
-									<h2>29 June 2022</h2>
-									<h3>Web Development</h3>
+									<h2>{new Date(mainBlog.postDate).toDateString()}</h2>
+									<h3>{mainBlog.mainCategory}</h3>
 									<h4>View All</h4>
 								</div>
-								<h1>Getting Started With NEXT JS</h1>
+								<h1>{mainBlog.title}</h1>
 								<div className={classes.ContentSection}>
 									<div>
-										<LazyImage loadLazily src={'/sample.png'} className={classes.Img} />
+										<LazyImage
+											loadLazily
+											src={mainBlog.featuredImage ?? '/sample.png'}
+											className={classes.Img}
+										/>
 										<div>
 											<SocialIcons iconColorClass={classes.Icon} />
 										</div>
 									</div>
 									<div>
 										<div>
-											<p>
-												Working as a Software Engineer, I have majorly been involved in
-												making end to end applications using React and Scala as a backend
-												service. I have been also focussing on building microservices ...
-											</p>
-											<p>
-												Working as a Software Engineer, I have majorly been involved in
-												making end to end applications using React and Scala as a backend
-												service. I have been also focussing on building microservices ...
-											</p>
-											<p>I have been also focussing on building microservices ...</p>
-											<button>Read Complete Blog</button>
+											{mainBlog.excerpt.split('\n').map((line, i) => (
+												<p key={i}>{line}</p>
+											))}
+											<button
+												onClick={() => onClickNavigate(mainBlog.categoryID, mainBlog.id)}
+											>
+												Read Complete Blog
+											</button>
 										</div>
 									</div>
 								</div>
@@ -137,75 +146,31 @@ const Blog = () => {
 						</div>
 					</div>
 					<div className={classes.SideBar}>
-						<div className={classes.RelatedBlogCard}>
-							<LazyImage loadLazily src={'/sample.png'} />
-							<h3>Web Development</h3>
-							<h4>Getting Started With NEXT JS</h4>
-							<h5>22nd August 2022</h5>
-						</div>
-						<div className={classes.RelatedBlogCard}>
-							<LazyImage loadLazily src={'/sample.png'} />
-							<h3>Web Development</h3>
-							<h4>Getting Started With NEXT JS</h4>
-							<h5>22nd August 2022</h5>
-						</div>
+						{relatedBlogs.map((blog) => (
+							<div key={blog.id} className={classes.RelatedBlogCard}>
+								<LazyImage loadLazily src={blog.featuedImage ?? '/sample.png'} />
+								<h3>{blog.mainCategory}</h3>
+								<h4 onClick={() => onClickNavigate(blog.categoryID, blog.id)}>
+									{blog.title}
+								</h4>
+								<h5>{new Date(blog.postDate).toDateString()}</h5>
+							</div>
+						))}
 					</div>
 					<div className={classes.MobileView}>
-						<div className={classes.MobileBlogContainer}>
-							<LazyImage loadLazily src={'/sample.png'} />
-							<div className={classes.MobileMetaData}>
-								<h4>01</h4>
-								<h1>Getting Started With NEXT JS</h1>
-								<div className={classes.MetaDataElements}>
-									<h3>Web Development</h3>
-									<h4>29 July 2022</h4>
+						{relatedBlogs.map((blog, index) => (
+							<div key={blog.id} className={classes.MobileBlogContainer}>
+								<LazyImage loadLazily src={blog.featuedImage ?? '/sample.png'} />
+								<div className={classes.MobileMetaData}>
+									<h4>0{index + 1}</h4>
+									<h1>{blog.title}</h1>
+									<div className={classes.MetaDataElements}>
+										<h3>{blog.mainCategory}</h3>
+										<h4>{new Date(blog.postDate).toDateString()}</h4>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div className={classes.MobileBlogContainer}>
-							<LazyImage loadLazily src={'/sample.png'} />
-							<div className={classes.MobileMetaData}>
-								<h4>02</h4>
-								<h1>Getting Started With NEXT JS</h1>
-								<div className={classes.MetaDataElements}>
-									<h3>Web Development</h3>
-									<h4>29 July 2022</h4>
-								</div>
-							</div>
-						</div>
-						<div className={classes.MobileBlogContainer}>
-							<LazyImage loadLazily src={'/sample.png'} />
-							<div className={classes.MobileMetaData}>
-								<h4>03</h4>
-								<h1>Getting Started With NEXT JS</h1>
-								<div className={classes.MetaDataElements}>
-									<h3>Web Development</h3>
-									<h4>29 July 2022</h4>
-								</div>
-							</div>
-						</div>
-						<div className={classes.MobileBlogContainer}>
-							<LazyImage loadLazily src={'/sample.png'} />
-							<div className={classes.MobileMetaData}>
-								<h4>04</h4>
-								<h1>Getting Started With NEXT JS</h1>
-								<div className={classes.MetaDataElements}>
-									<h3>Web Development</h3>
-									<h4>29 July 2022</h4>
-								</div>
-							</div>
-						</div>
-						<div className={classes.MobileBlogContainer}>
-							<LazyImage loadLazily src={'/sample.png'} />
-							<div className={classes.MobileMetaData}>
-								<h4>05</h4>
-								<h1>Getting Started With NEXT JS</h1>
-								<div className={classes.MetaDataElements}>
-									<h3>Web Development</h3>
-									<h4>29 July 2022</h4>
-								</div>
-							</div>
-						</div>
+						))}
 					</div>
 				</section>
 			}

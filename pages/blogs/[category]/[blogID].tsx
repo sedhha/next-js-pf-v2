@@ -1,4 +1,7 @@
 import BlogPage from '@/components/BlogPage';
+import preGenerated from '@/constants/blog-pre-generated.json';
+
+const { blogCategoryCombination } = preGenerated;
 
 type Props = {
 	lastBuild: string;
@@ -15,7 +18,7 @@ export async function getStaticProps() {
 }
 export async function getStaticPaths() {
 	return {
-		paths: [{ params: { blogID: '3fNiHG2SY8Rtb792cxCI9J', category: 'life' } }],
+		paths: blogCategoryCombination.map((item) => ({ params: item })),
 		fallback: true
 	};
 }

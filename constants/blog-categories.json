@@ -1,9 +1,5 @@
 {
-	"web-development": "Web Development",
-	"mern-stack": "Mern Stack",
-	"iot-programming": "IoT Programming",
+	"automation": "Automation",
 	"life": "Life",
-	"gaming": "Gaming",
-	"apis": "APIs",
-	"docker": "Docker"
+	"mechanical": "Mechanical"
 }

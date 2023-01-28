@@ -37,3 +37,9 @@ export const ADMIN_APIS = {
 	ADMIN: '/api/admin',
 	CONTACT_FORMS: '/api/admin/forms'
 };
+
+// FE Routes 
+
+export const FE_ROUTES = {
+	CATEGORY_BLOG_COMBO: '/blogs'
+}
