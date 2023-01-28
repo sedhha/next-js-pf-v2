@@ -7,19 +7,28 @@ import Link from 'next/link';
 interface IProps {
 	iconColorClass?: string;
 	socialHandles: ISocialHandles[];
+	openInNewTab?: boolean;
 }
-export default function SocialIcons({ iconColorClass, socialHandles }: IProps) {
+export default function SocialIcons({
+	iconColorClass,
+	socialHandles,
+	openInNewTab
+}: IProps) {
 	return (
 		<div className={classes.SocialIcon}>
 			{socialHandles.map((icon) =>
 				icon.isSvg ? (
 					<Link key={icon.id} href={icon.url}>
-						<div>
+						<a
+							href={icon.url}
+							target={openInNewTab ? '_blank' : '_self'}
+							rel="noreferrer"
+						>
 							<Icon
 								iconKey={icon.id}
 								className={`${iconColorClass ?? classes.Icon}`}
 							/>
-						</div>
+						</a>
 					</Link>
 				) : (
 					<Link key={icon.id} href={icon.url}>

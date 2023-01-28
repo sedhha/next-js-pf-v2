@@ -1,0 +1,42 @@
+[
+	{
+		"id": "BsLinkedin",
+		"url": "https://www.linkedin.com/in/shivam-sahil/",
+		"isSvg": true
+	},
+	{
+		"id": "BsWordpress",
+		"url": "https://technopain.wordpress.com/",
+		"isSvg": true
+	},
+	{
+		"id": "BsYoutube",
+		"url": "https://www.youtube.com/channel/UCenRU1EVBo-cWz978u4P4gg",
+		"isSvg": true
+	},
+	{
+		"id": "BsGithub",
+		"url": "https://github.com/sedhha",
+		"isSvg": true
+	},
+	{
+		"id": "AiOutlineMail",
+		"url": "mailto:activity.schoolsh2@gmail.com",
+		"isSvg": true
+	},
+	{
+		"id": "FiEdit",
+		"url": "https://wrytin.com/shivamsahil",
+		"isSvg": true
+	},
+	{
+		"id": "BsTwitter",
+		"url": "https://twitter.com/SeedhaB",
+		"isSvg": true
+	},
+	{
+		"id": "BsDiscord",
+		"url": "https://discord.com/users/Spidey#3033",
+		"isSvg": true
+	}
+]

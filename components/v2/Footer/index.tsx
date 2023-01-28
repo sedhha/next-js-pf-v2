@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Footer.module.css';
-import SocialIcons from '@/v2/common/SocialIcons';
+import SocialIcons from '@/v2/common/SocialIcons/Conditional';
 import Icon, { icons } from '@/v2/common/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
@@ -8,10 +8,16 @@ import { feFetch } from '@/utils/fe/fetch-utils';
 import { ANALYTICS_APIS } from '@/utils/fe/apis/public';
 import { sendSignInLinkToEmail, getAuth } from 'firebase/auth';
 import app from '@/fe-client/firebase';
+import myHandles from '@/constants/handles.json';
+import { ISocialHandles } from '@/interfaces/testimonials';
 
 const auth = getAuth(app);
 
-const Footer = () => {
+type Props = {
+	lastBuild: string;
+};
+
+const Footer = ({ lastBuild }: Props) => {
 	const dispatch = useAppDispatch();
 	const { csrfToken } = useAppSelector((state) => state.navigation);
 	const [loading, setLoading] = React.useState(false);
@@ -99,8 +105,16 @@ const Footer = () => {
 		<footer className={classes.FooterModule}>
 			<section className={classes.MyDetails}>
 				<h1>Shivam Sahil</h1>
-				<SocialIcons iconColorClass={classes.Icons} />
+				<SocialIcons
+					iconColorClass={classes.Icons}
+					socialHandles={myHandles as ISocialHandles[]}
+					openInNewTab
+				/>
+
 				<h2>© 2023 | All rights reserved</h2>
+				<h2>
+					🚀 Last build: <strong>{lastBuild}</strong>
+				</h2>
 			</section>
 			<section className={classes.Subscribe}>
 				<div className={classes.TextWithSymbol}>

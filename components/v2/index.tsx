@@ -11,7 +11,10 @@ import TechStack from '@/v2/TechStack';
 import Footer from '@/v2/Footer';
 import MobileNavigator from '@/v2/MobileNavigator';
 
-export default function Index() {
+type Props = {
+	lastBuild: string;
+};
+export default function Index({ lastBuild }: Props) {
 	return (
 		<>
 			<Header />
@@ -25,7 +28,7 @@ export default function Index() {
 			<Videos />
 			<Testimonials />
 			<TechStack />
-			<Footer />
+			<Footer lastBuild={lastBuild} />
 		</>
 	);
 }
