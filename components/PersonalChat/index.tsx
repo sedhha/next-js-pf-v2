@@ -37,7 +37,7 @@ const PersonalChat = () => {
 
 	React.useEffect(() => {
 		if (limit > messages.length && messages.length !== 0) return;
-		const path = formRootMessagesPath(process.env.NODE_ENV === 'production');
+		const path = formRootMessagesPath();
 		const messagesRef = ref(db, path);
 		onValue(
 			query(messagesRef, orderByChild('lastModified'), limitToLast(limit)),

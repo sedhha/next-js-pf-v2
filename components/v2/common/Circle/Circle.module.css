@@ -1,6 +1,5 @@
 .Circle {
-    background-color: var(--green);
-    height: 2vh;
-    aspect-ratio: 1;
-    border-radius: 50%;
+	height: 2vh;
+	aspect-ratio: 1;
+	border-radius: 50%;
 }

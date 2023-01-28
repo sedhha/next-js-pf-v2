@@ -18,18 +18,20 @@ export const feFetch = async <T>({
 
 		if (!getText) {
 			try {
-				if (res.status === 204)
+				if (res.status === 204) {
 					return {
 						error: false,
 						status: res.status
 					};
-				const json = (await res.json()) as IResult<T>;
-				return {
-					error: res.status > 399,
-					json: json.json,
-					status: res.status,
-					message: json.message
-				};
+				} else {
+					const json = (await res.json()) as IResult<T>;
+					return {
+						error: res.status > 399,
+						json: json.json,
+						status: res.status,
+						message: json.message
+					};
+				}
 			} catch (error) {
 				return {
 					error: true,

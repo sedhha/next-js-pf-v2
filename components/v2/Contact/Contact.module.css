@@ -100,6 +100,14 @@
 	height: 2.5vh;
 }
 
+.Online {
+	background-color: var(--green);
+}
+
+.Offline {
+	background-color: var(--error-red);
+}
+
 .ChatDirectlyForm > h2 {
 	font-style: normal;
 	font-weight: 500;
@@ -280,7 +288,7 @@
 	transform: scale(0.98);
 }
 
-.TopNavigation  {
+.TopNavigation {
 	cursor: pointer;
 }
 .ReadRecipient {
@@ -289,7 +297,6 @@
 	text-align: end;
 	padding: 0 1vw;
 }
-
 
 @media (max-aspect-ratio: 550 / 897) {
 	.Form {

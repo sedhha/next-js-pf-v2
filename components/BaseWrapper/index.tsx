@@ -5,6 +5,7 @@ import {
 	updateGeoData,
 	updateIDToken,
 	updateIsAdmin,
+	updateIsAdminOnline,
 	updatePopup,
 	updateRevisitor,
 	updateUserEmail,
@@ -26,17 +27,27 @@ import {
 	getAuth,
 	signInWithEmailLink
 } from 'firebase/auth';
+import { ref, getDatabase, set, get, onValue, off } from 'firebase/database';
 import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '../../utils/fe/apis/public';
+import { formAdminIsOnlinePath } from '@/firebase/constants';
 type Props = {
 	Component: JSX.Element;
 };
 
 // Higher order initiator component
 const auth = getAuth(app);
+const db = getDatabase(app);
+
+const updateAdminOnlineStatus = async (status = true) => {
+	const adminRefPath = formAdminIsOnlinePath();
+	const adminRef = ref(db, adminRefPath);
+	set(adminRef, status);
+};
+
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
-	const { geoData } = useAppSelector((state) => state.navigation);
+	const { geoData, isAdmin } = useAppSelector((state) => state.navigation);
 	const onVisibilityChange = React.useCallback(() => {
 		const isVisible = document.visibilityState === 'visible';
 		const analyticsEnabled = JSON.parse(
@@ -124,6 +135,21 @@ export default function BaseComponent({ Component }: Props) {
 			}
 		});
 	}, [updateStoreIfSignedIn, dispatch]);
+
+	React.useEffect(() => {
+		const adminRefPath = formAdminIsOnlinePath();
+		const adminRef = ref(db, adminRefPath);
+		onValue(adminRef, async (snapshot) => {
+			if (snapshot.exists()) {
+				dispatch(updateIsAdminOnline(snapshot.val() ?? false));
+			}
+		});
+		return () => {
+			off(adminRef);
+			if (isAdmin) updateAdminOnlineStatus(false);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dispatch]);
 	React.useEffect(() => {
 		if (idToken)
 			feFetch<boolean>({
@@ -133,7 +159,10 @@ export default function BaseComponent({ Component }: Props) {
 					'Authorization': 'Bearer ' + idToken
 				}
 			}).then((res) => {
-				if (res.json) dispatch(updateIsAdmin(res.json));
+				if (res.json) {
+					dispatch(updateIsAdmin(res.json));
+					updateAdminOnlineStatus();
+				}
 			});
 		feFetch({
 			url: USER_APIS.SUBSCRIBE_NEWSLETTER,

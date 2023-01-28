@@ -8,7 +8,7 @@ import {
 import { store, db } from '@/firebase/index';
 import { IProcess } from '@/interfaces/firebase/errors';
 
-const ref = db.ref(formCSRFPath(process.env.NODE_ENV === 'production'));
+const ref = db.ref(formCSRFPath());
 
 const initSession = (
 	csrfToken: string,

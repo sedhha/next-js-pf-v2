@@ -65,7 +65,9 @@ const getEmail = (email: string | null, maxRepetation = 3): string | null => {
 };
 
 const Contact = () => {
-	const { inChatMode, csrfToken } = useAppSelector((state) => state.navigation);
+	const { inChatMode, csrfToken, isAdminOnline } = useAppSelector(
+		(state) => state.navigation
+	);
 	const dispatch = useAppDispatch();
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
@@ -234,7 +236,11 @@ const Contact = () => {
 								<React.Fragment>
 									<div className={classes.AvatarWithImage}>
 										<LazyImage src={'/chat-icon.png'} />
-										<Circle className={classes.Circle} />
+										<Circle
+											className={`${classes.Circle} ${
+												isAdminOnline ? classes.Online : classes.Offline
+											}`}
+										/>
 									</div>
 									<h3>Or</h3>
 									<h2>Chat with me directly</h2>

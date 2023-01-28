@@ -8,7 +8,7 @@ import { formCSRFPath } from '@/firebase/constants';
 
 const ttl = 3600 * 1000;
 
-const ref = db.ref(formCSRFPath(process.env.NODE_ENV === 'production'));
+const ref = db.ref(formCSRFPath());
 
 const addSession = async (ua: string): Promise<string> => {
 	const docID = getDocIdForSession();

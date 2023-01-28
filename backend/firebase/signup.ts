@@ -70,17 +70,30 @@ const updateCustomClaims = async (
 	uid: string,
 	claims: Record<string, string | number | boolean>
 ): Promise<{ error: boolean; message?: string }> =>
-	auth.getUser(uid).then(async (user) => {
-		const existingClaims = user.customClaims;
-		return auth
-			.setCustomUserClaims(uid, {
-				...existingClaims,
-				...claims
-			})
-			.then(() => ({
-				error: false
-			}));
-	});
+	auth
+		.getUser(uid)
+		.then(async (user) => {
+			const existingClaims = user.customClaims;
+			return auth
+				.setCustomUserClaims(uid, {
+					...existingClaims,
+					...claims
+				})
+				.then(() => ({
+					error: false
+				}));
+		})
+		.catch((err) => {
+			console.error(
+				'Errored Occured while trying to fetch User: ',
+				err.message,
+				err.code,
+				uid
+			);
+			return {
+				error: true
+			};
+		});
 
 const subscribeDocument = async (
 	id: string,

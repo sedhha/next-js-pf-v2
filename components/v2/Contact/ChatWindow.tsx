@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Contact.module.css';
 import ChatElement from './ChatElement';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
 	updateInChatMode,
 	updatePopup,
@@ -37,12 +37,11 @@ import {
 } from '@/firebase/constants';
 import Typing from '@/v2/common/Typing';
 import { IChat } from '@/interfaces/firebase/contact-form';
-import { areNotificationsSupported, println } from '@/utils/dev-utils';
+import { areNotificationsSupported } from '@/utils/dev-utils';
 
 const db = getDatabase(app);
 const auth = getAuth(app);
 
-const isProd = process.env.NODE_ENV === 'production';
 const Contact = () => {
 	const [userChat, setUserChat] = React.useState<IChat[]>([]);
 	const [msg, setMsg] = React.useState('');
@@ -50,21 +49,13 @@ const Contact = () => {
 	const [typing, setTyping] = React.useState(false);
 	const [read, setRead] = React.useState(false);
 	const [readByAdmin, setReadByAdmin] = React.useState(false);
+	const { isAdminOnline } = useAppSelector((state) => state.navigation);
 	React.useEffect(() => {
 		if (auth.currentUser) {
-			const chatRef = ref(db, formMessagesPath(isProd, auth.currentUser.uid));
-			const typingRef = ref(
-				db,
-				typingUserPath(isProd, auth.currentUser.uid, false)
-			);
-			const readByUserRef = ref(
-				db,
-				readRecipientPathUser(isProd, auth.currentUser.uid)
-			);
-			const readRecipientRef = ref(
-				db,
-				readRecipientPath(isProd, auth.currentUser.uid)
-			);
+			const chatRef = ref(db, formMessagesPath(auth.currentUser.uid));
+			const typingRef = ref(db, typingUserPath(auth.currentUser.uid, false));
+			const readByUserRef = ref(db, readRecipientPathUser(auth.currentUser.uid));
+			const readRecipientRef = ref(db, readRecipientPath(auth.currentUser.uid));
 			onValue(readByUserRef, async (snapshot) => {
 				if (snapshot.exists()) {
 					setRead(snapshot.val());
@@ -177,21 +168,12 @@ const Contact = () => {
 		}
 		setLoading(true);
 		if (auth.currentUser) {
-			const chatRef = ref(db, formMessagesPath(isProd, auth.currentUser.uid));
-			const lastModified = ref(db, lastModifiedPath(isProd, auth.currentUser.uid));
-			const emailRef = ref(db, emailRefPath(isProd, auth.currentUser.uid));
-			const readRecipientRef = ref(
-				db,
-				readRecipientPath(isProd, auth.currentUser.uid)
-			);
-			const readByUserRef = ref(
-				db,
-				readRecipientPathUser(isProd, auth.currentUser.uid)
-			);
-			const latestMessageRef = ref(
-				db,
-				latestMessagePath(isProd, auth.currentUser.uid)
-			);
+			const chatRef = ref(db, formMessagesPath(auth.currentUser.uid));
+			const lastModified = ref(db, lastModifiedPath(auth.currentUser.uid));
+			const emailRef = ref(db, emailRefPath(auth.currentUser.uid));
+			const readRecipientRef = ref(db, readRecipientPath(auth.currentUser.uid));
+			const readByUserRef = ref(db, readRecipientPathUser(auth.currentUser.uid));
+			const latestMessageRef = ref(db, latestMessagePath(auth.currentUser.uid));
 			push(chatRef, {
 				uri: '/chat-icon.png',
 				isFromAdmin: false,
@@ -217,14 +199,8 @@ const Contact = () => {
 	};
 	const setUserTyping = (typing: boolean) => {
 		if (auth.currentUser) {
-			const typingRef = ref(
-				db,
-				typingUserPath(isProd, auth.currentUser.uid, true)
-			);
-			const readByUserRef = ref(
-				db,
-				readRecipientPathUser(isProd, auth.currentUser.uid)
-			);
+			const typingRef = ref(db, typingUserPath(auth.currentUser.uid, true));
+			const readByUserRef = ref(db, readRecipientPathUser(auth.currentUser.uid));
 			set(typingRef, typing)
 				.then(() => {
 					setMsg('');
@@ -262,7 +238,11 @@ const Contact = () => {
 					<div className={classes.EmptyChatScreen}>
 						<div className={classes.AvatarWithImage}>
 							<LazyImage src={'/chat-icon.png'} />
-							<Circle className={classes.Circle} />
+							<Circle
+								className={`${classes.Circle} ${
+									isAdminOnline ? classes.Online : classes.Offline
+								}`}
+							/>
 						</div>
 						<p>Send a message to get started!</p>
 					</div>

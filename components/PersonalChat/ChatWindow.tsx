@@ -34,7 +34,6 @@ type Props = {
 	onExitChat: () => void;
 };
 
-const isProd = process.env.NODE_ENV === 'production';
 const db = getDatabase(app);
 const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 	const { isAdmin } = useAppSelector((state) => state.navigation);
@@ -48,9 +47,9 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 	useEffect(() => {
 		if (isAdmin) {
 			setLoading(true);
-			const chatRef = ref(db, formMessagesPath(isProd, uid));
-			const readRecipientRef = ref(db, readRecipientPath(isProd, uid));
-			const readRecipientUserRef = ref(db, readRecipientPathUser(isProd, uid));
+			const chatRef = ref(db, formMessagesPath(uid));
+			const readRecipientRef = ref(db, readRecipientPath(uid));
+			const readRecipientUserRef = ref(db, readRecipientPathUser(uid));
 			onValue(readRecipientUserRef, async (snapshot) => {
 				if (snapshot.exists()) {
 					setReadByUser(snapshot.val());
@@ -89,7 +88,7 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 				} else setUserChat([]);
 				setLoading(false);
 			});
-			const typingRef = ref(db, typingUserPath(isProd, uid, true));
+			const typingRef = ref(db, typingUserPath(uid, true));
 			onValue(typingRef, async (snapshot) => {
 				if (snapshot.exists()) {
 					const isTyping = snapshot.val();
@@ -109,12 +108,12 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 	const onSendMessage = () => {
 		if (loading || msg === '') return;
 		setLoading(true);
-		const chatRef = ref(db, formMessagesPath(isProd, uid));
-		const lastModified = ref(db, lastModifiedPath(isProd, uid));
-		const emailRef = ref(db, emailRefPath(isProd, uid));
-		const readRecipientRef = ref(db, readRecipientPath(isProd, uid));
-		const readRecipientUserRef = ref(db, readRecipientPathUser(isProd, uid));
-		const latestMessageRef = ref(db, latestMessagePath(isProd, uid));
+		const chatRef = ref(db, formMessagesPath(uid));
+		const lastModified = ref(db, lastModifiedPath(uid));
+		const emailRef = ref(db, emailRefPath(uid));
+		const readRecipientRef = ref(db, readRecipientPath(uid));
+		const readRecipientUserRef = ref(db, readRecipientPathUser(uid));
+		const latestMessageRef = ref(db, latestMessagePath(uid));
 		push(chatRef, {
 			uri: '/chat-icon.png',
 			isFromAdmin: true,
@@ -136,9 +135,9 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 	};
 
 	const setAdminTyping = (typing: boolean) => {
-		const typingRef = ref(db, typingUserPath(isProd, uid, false));
-		const readRecipientRef = ref(db, readRecipientPath(isProd, uid));
-		const readRecipientUserRef = ref(db, readRecipientPathUser(isProd, uid));
+		const typingRef = ref(db, typingUserPath(uid, false));
+		const readRecipientRef = ref(db, readRecipientPath(uid));
+		const readRecipientUserRef = ref(db, readRecipientPathUser(uid));
 		set(readRecipientRef, true);
 		set(readRecipientUserRef, false);
 		set(typingRef, typing)

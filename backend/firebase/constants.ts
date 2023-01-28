@@ -31,45 +31,40 @@ export const getCollectionPath = (path: string): string => {
 export const dbPaths = {
 	userMessages: 'user-messages',
 	userMessageMetadata: 'user-message-metadata',
-	csrfTokens: 'csrf-token'
+	csrfTokens: 'csrf-token',
+	adminMetaData: 'admin-metadata'
 };
 
-const formRootMessagesPath = (isProd: boolean) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}`;
+const formRootMessagesPath = () =>
+	`${getEnvPrefix()}-${dbPaths.userMessageMetadata}`;
 
-const formMessagesPath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessages}/${uid}/messages`;
+const formAdminIsOnlinePath = () =>
+	`${getEnvPrefix()}-${dbPaths.adminMetaData}/isOnline`;
 
-const lastModifiedPath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${
-		dbPaths.userMessageMetadata
-	}/${uid}/lastModified`;
+const formMessagesPath = (uid: string) =>
+	`${getEnvPrefix()}-${dbPaths.userMessages}/${uid}/messages`;
 
-const emailRefPath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${
-		dbPaths.userMessageMetadata
-	}/${uid}/emailOfSender`;
+const lastModifiedPath = (uid: string) =>
+	`${getEnvPrefix()}-${dbPaths.userMessageMetadata}/${uid}/lastModified`;
 
-const readRecipientPath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/readByMe`;
+const emailRefPath = (uid: string) =>
+	`${getEnvPrefix()}-${dbPaths.userMessageMetadata}/${uid}/emailOfSender`;
 
-const readRecipientPathUser = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/readByUser`;
+const readRecipientPath = (uid: string) =>
+	`${getEnvPrefix()}-${dbPaths.userMessageMetadata}/${uid}/readByMe`;
 
-const latestMessagePath = (isProd: boolean, uid: string) =>
-	`${isProd ? 'prod' : 'dev'}-${
-		dbPaths.userMessageMetadata
-	}/${uid}/latestMessage`;
+const readRecipientPathUser = (uid: string) =>
+	`${getEnvPrefix()}-${dbPaths.userMessageMetadata}/${uid}/readByUser`;
 
-const typingUserPath = (isProd: boolean, uid: string, isVisitor: boolean) =>
+const latestMessagePath = (uid: string) =>
+	`${getEnvPrefix()}-${dbPaths.userMessageMetadata}/${uid}/latestMessage`;
+
+const typingUserPath = (uid: string, isVisitor: boolean) =>
 	isVisitor
-		? `${isProd ? 'prod' : 'dev'}-${
-				dbPaths.userMessageMetadata
-		  }/${uid}/visitorTyping`
-		: `${isProd ? 'prod' : 'dev'}-${dbPaths.userMessageMetadata}/${uid}/meTyping`;
+		? `${getEnvPrefix()}-${dbPaths.userMessageMetadata}/${uid}/visitorTyping`
+		: `${getEnvPrefix()}-${dbPaths.userMessageMetadata}/${uid}/meTyping`;
 
-const formCSRFPath = (isProd: boolean) =>
-	`${isProd ? 'prod' : 'dev'}-${dbPaths.csrfTokens}`;
+const formCSRFPath = () => `${getEnvPrefix()}-${dbPaths.csrfTokens}`;
 
 const getNewsLetterPath = () => {
 	const prefix = getEnvPrefix();
@@ -97,5 +92,6 @@ export {
 	latestMessagePath,
 	typingUserPath,
 	formCSRFPath,
-	readRecipientPathUser
+	readRecipientPathUser,
+	formAdminIsOnlinePath
 };
