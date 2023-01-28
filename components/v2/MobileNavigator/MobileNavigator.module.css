@@ -1,8 +1,12 @@
 .ShowMore {
-    display: flex;
-    flex-direction: column;
-    max-width: 100vw;
-    height: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
 }
 .ShowMore > h1 {
 	width: 100%;
@@ -11,8 +15,9 @@
 	min-width: max-content;
 	border-bottom: 1.5px solid var(--light-gray);
 	transition: var(--fade-transition);
+	background-color: var(--background-color);
 }
-.ShowMore > h1[is-active='true']{
+.ShowMore > h1[is-active='true'] {
 	transition: var(--fade-transition);
 	background-color: var(--light-blue);
 	color: var(--hover-more-text-color);

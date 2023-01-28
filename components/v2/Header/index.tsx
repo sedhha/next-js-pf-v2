@@ -72,11 +72,13 @@ const Header = () => {
 				{showMore ? (
 					<Icon
 						iconKey={icons.ImCross}
+						className={classes.ShowMoreIcon}
 						onClick={() => dispatch(updateShowMore(false))}
 					/>
 				) : (
 					<Icon
 						iconKey={icons.HiViewList}
+						className={classes.ShowMoreIcon}
 						onClick={() => dispatch(updateShowMore(true))}
 					/>
 				)}

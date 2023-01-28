@@ -30,11 +30,9 @@ const InfiniteCardComponent = ({
 }: InfiniteCardProps) => {
 	const ref = React.useRef(null);
 	const [isScrollingUp, setScrollingUp] = React.useState(true);
-	const [isScrollingLeft, setScrollingLeft] = React.useState(true);
 	const onWheelEvent = (event: IWheel) => {
-		const { deltaX, deltaY } = event;
+		const { deltaY } = event;
 		if (deltaY) setScrollingUp(event.nativeEvent.wheelDelta > 0);
-		if (deltaX) setScrollingLeft(event.nativeEvent.wheelDelta > 0);
 	};
 	const onScroll = () => {
 		const { current } = ref;
@@ -63,7 +61,7 @@ const InfiniteCardComponent = ({
 
 			if (scrollLeft === 0) {
 				if (onReachedLeftCallback) onReachedLeftCallback?.();
-			} else if (reachedRight && !isScrollingLeft) {
+			} else if (reachedRight) {
 				if (onReachedRightCallback) onReachedRightCallback?.();
 			}
 		}

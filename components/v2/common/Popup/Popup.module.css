@@ -2,38 +2,38 @@
 	padding: 2vh 1vw;
 	color: white;
 	width: 100%;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    bottom: 0;
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	bottom: 0;
 }
 .popup > h2 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    translate: -50% 50%;
-    font-size: 1vw;
-    font-weight: 200;
-    text-align: end;
-    cursor: pointer;
-    transition: var(--fade-transition);
+	position: absolute;
+	top: 0;
+	right: 0;
+	translate: -50% 50%;
+	font-size: 1vw;
+	font-weight: 200;
+	text-align: end;
+	cursor: pointer;
+	transition: var(--fade-transition);
 }
 .popup > h2:hover {
-    transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .popup > h1 {
-    color: white;
+	color: white;
 }
 
 .alert {
 	background-color: var(--error-red);
 }
 .success {
-    background-color: var(--success-green);
+	background-color: var(--success-green);
 }
 .pending {
-    background-color: var(--golden-achievement-text-color);
+	background-color: var(--golden-achievement-text-color);
 }
 
 .ErrorMessage {
@@ -43,18 +43,42 @@
 }
 
 .ErrorMessage > p > strong {
-    text-transform: capitalize;
-    margin-right: 0.5vw;
+	text-transform: capitalize;
+	margin-right: 0.5vw;
 }
 
 .Icon {
-    color: white;
-    font-weight: 100;
-    font-size: 1vw;
+	color: white;
+	font-weight: 100;
+	font-size: 1vw;
 }
 .Toolbar {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    border: 2px solid white;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	border: 2px solid white;
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.popup {
+		padding: 2vh 1vw;
+		color: white;
+		width: 100vw;
+		display: flex;
+		flex-direction: column;
+		position: fixed;
+		top: 50%;
+		max-height: fit-content;
+	}
+	.popup > h2 {
+		position: absolute;
+		top: 0;
+		right: 0;
+		translate: -50% 50%;
+		font-size: 4vh;
+		font-weight: 200;
+		text-align: end;
+		cursor: pointer;
+		transition: var(--fade-transition);
+	}
 }

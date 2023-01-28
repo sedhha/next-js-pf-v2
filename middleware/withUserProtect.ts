@@ -16,7 +16,10 @@ export const withUserProtect = <T>(handler: IApiHandler<T>) => {
 			const verified = await auth
 				.verifyIdToken(tokenValue)
 				.then((user) => ({ uid: user.uid, email: user.email }))
-				.catch(() => null);
+				.catch((e) => {
+					console.error('Error Occured: - ', e.message, e.code);
+					return null;
+				});
 			if (!verified) return res.status(401).end();
 			req.headers['x-secure-uid'] = verified.uid;
 			req.headers['x-secure-email'] = verified.email;
