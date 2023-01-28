@@ -8,7 +8,7 @@ const personalUid = 'dTYacphBekfOxAOcGYiGWHSYTCF2';
 export const withPersonalProtect = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
-            console.info(`[${req.method}]: [Protected CSRF API] - ${req.url}`);
+			console.info(`[${req.method}]: [Protected CSRF API] - ${req.url}`);
 			const { authorization } = req.headers;
 			if (!authorization) return res.status(401).end();
 			const [tokenType, tokenValue] = authorization.split(' ');
@@ -18,7 +18,9 @@ export const withPersonalProtect = <T>(handler: IApiHandler<T>) => {
 			const verified = await auth
 				.verifyIdToken(tokenValue)
 				.then((user) => user.uid)
-				.catch(() => null);
+				.catch((error) => {
+					console.error(error.message, error.code);
+				});
 			if (!verified || verified !== personalUid) return res.status(401).end();
 			const result = await handler(req);
 			return res.status(result.statusCode ?? 200).json({

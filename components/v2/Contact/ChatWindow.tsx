@@ -37,6 +37,7 @@ import {
 } from '@/firebase/constants';
 import Typing from '@/v2/common/Typing';
 import { IChat } from '@/interfaces/firebase/contact-form';
+import { areNotificationsSupported, println } from '@/utils/dev-utils';
 
 const db = getDatabase(app);
 const auth = getAuth(app);
@@ -90,19 +91,24 @@ const Contact = () => {
 							return { uri, isFromAdmin, message, id: item };
 						})
 					);
-					Notification.requestPermission().then((permission) => {
-						if (permission === 'granted') {
-							const { message } = results[keys[keys.length - 1]];
-							if (document.visibilityState !== 'visible' && !read)
-								new Notification('Shivam sent a message', {
-									body: message,
-									icon: '/chat-icon.png'
-								});
-						}
-					});
+					if (areNotificationsSupported())
+						Notification.requestPermission().then((permission) => {
+							if (permission === 'granted') {
+								const { message } = results[keys[keys.length - 1]];
+								if (
+									document.visibilityState !== 'visible' &&
+									!read &&
+									areNotificationsSupported()
+								)
+									new Notification('Shivam sent a message', {
+										body: message,
+										icon: '/chat-icon.png'
+									});
+							}
+						});
 				} else setUserChat([]);
 			});
-			Notification.requestPermission();
+			if (areNotificationsSupported()) Notification.requestPermission();
 			return () => {
 				off(chatRef);
 				off(typingRef);
@@ -166,7 +172,9 @@ const Contact = () => {
 		}
 	};
 	const onSendMessage = () => {
-		if (loading || msg === '') return;
+		if (loading || msg === '') {
+			return;
+		}
 		setLoading(true);
 		if (auth.currentUser) {
 			const chatRef = ref(db, formMessagesPath(isProd, auth.currentUser.uid));
@@ -195,18 +203,19 @@ const Contact = () => {
 					set(readRecipientRef, false);
 					set(readByUserRef, true);
 					set(latestMessageRef, msg);
-					setLoading(false);
 					setMsg('');
 				})
 				.catch(() => {
-					setLoading(false);
 					setMsg('Failed to send message');
+				})
+				.finally(() => {
+					setLoading(false);
 				});
-		} else setLoading(false);
+		} else {
+			setLoading(false);
+		}
 	};
 	const setUserTyping = (typing: boolean) => {
-		if (loading) return;
-		setLoading(true);
 		if (auth.currentUser) {
 			const typingRef = ref(
 				db,
@@ -218,15 +227,13 @@ const Contact = () => {
 			);
 			set(typingRef, typing)
 				.then(() => {
-					setLoading(false);
 					setMsg('');
 				})
 				.catch(() => {
-					setLoading(false);
 					setMsg('Failed to send message');
 				});
 			set(readByUserRef, true);
-		} else setLoading(false);
+		}
 	};
 
 	const lastMessageFromAdmin =

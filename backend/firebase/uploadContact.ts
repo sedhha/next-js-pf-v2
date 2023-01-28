@@ -33,13 +33,15 @@ const transformToRegexFormat = (formData: IContactForm): IRegexForm => {
 };
 
 export const uploadToStore = async (
-	formData: IContactForm
+	formData: IContactForm,
+	csrf: string,
+	ua: string
 ): Promise<IResponse<null>> => {
 	const regexData = transformToRegexFormat(formData);
 	const validData = regexValidator(regexData);
 	if (validData.isValid) {
 		const feedbackPath = getCollectionPath(storeCollectionPaths.feedback);
-		await store.collection(feedbackPath).add(formData);
+		await store.collection(feedbackPath).add({ ...formData, csrf, ua });
 		return {
 			error: false,
 			status: 201,

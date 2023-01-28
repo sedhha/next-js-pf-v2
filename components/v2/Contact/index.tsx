@@ -47,10 +47,10 @@ const loadAuth = () => {
 			);
 		})
 		.catch((error) => {
+			alert(error.message);
 			console.error({
 				errorCode: error.code,
-				errorMessage: error.message,
-				h: 'EE'
+				errorMessage: error.message
 			});
 			alert('The email address you provided was not valid. Please try again!');
 		});
@@ -65,7 +65,7 @@ const getEmail = (email: string | null, maxRepetation = 3): string | null => {
 };
 
 const Contact = () => {
-	const { inChatMode } = useAppSelector((state) => state.navigation);
+	const { inChatMode, csrfToken } = useAppSelector((state) => state.navigation);
 	const dispatch = useAppDispatch();
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
@@ -118,36 +118,56 @@ const Contact = () => {
 			})
 		);
 		const payload: IContactForm = { name, email, subject, message };
-		feFetch<IResponse<null>>({
-			url: `${DB_APIS.CONTACT}`,
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(payload)
-		})
-			.then((res) => {
-				if (res.error) {
+		if (csrfToken)
+			feFetch<IResponse<null>>({
+				url: `${DB_APIS.CONTACT}`,
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'x-csrf-token': csrfToken
+				},
+				body: JSON.stringify(payload)
+			})
+				.then((res) => {
+					if (res.error) {
+						dispatch(
+							updatePopup({
+								type: 'error',
+								title: 'Unable to complete Submission',
+								description:
+									res.json?.message ??
+									'Unexpected error occured while submitting the details. Please try again',
+								timeout: 3000
+							})
+						);
+						return;
+					}
 					dispatch(
 						updatePopup({
-							type: 'error',
-							title: 'Unable to complete Submission',
-							description:
-								res.json?.message ??
-								'Unexpected error occured while submitting the details. Please try again',
+							type: 'success',
+							title: 'Contact Form Added Successfully',
+							description: 'Thank you for your message. Will try to get back shortly.',
 							timeout: 3000
 						})
 					);
-					return;
-				}
-				dispatch(
-					updatePopup({
-						type: 'success',
-						title: 'Contact Form Added Successfully',
-						description: 'Thank you for your message. Will try to get back shortly.',
-						timeout: 3000
-					})
-				);
-			})
-			.finally(() => setLoading(false));
+					setEmail('');
+					setName('');
+					setSubject('');
+					setMessage('');
+				})
+				.finally(() => setLoading(false));
+		else {
+			setLoading(false);
+			dispatch(
+				updatePopup({
+					type: 'error',
+					title: 'Unable to complete Submission',
+					description: 'Connection Error: Please refresh the page and try again!',
+					timeout: 3000
+				})
+			);
+			return;
+		}
 	};
 
 	return (

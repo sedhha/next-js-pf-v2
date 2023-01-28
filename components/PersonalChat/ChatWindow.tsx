@@ -27,6 +27,7 @@ import Circle from '@/v2/common/Circle';
 import Typing from '../v2/common/Typing';
 import Icon, { icons } from '@/v2/common/Icons';
 import { IChat } from '@/interfaces/firebase/contact-form';
+import { areNotificationsSupported } from '@/utils/dev-utils';
 type Props = {
 	uid: string;
 	email?: string;
@@ -70,16 +71,21 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 							return { uri, isFromAdmin, message, id: item };
 						})
 					);
-					Notification.requestPermission().then((permission) => {
-						if (permission === 'granted') {
-							const { message } = results[keys[keys.length - 1]];
-							if (document.visibilityState !== 'visible' && !readByMe)
-								new Notification('User sent a message', {
-									body: message,
-									icon: '/user.png'
-								});
-						}
-					});
+					if (areNotificationsSupported())
+						Notification.requestPermission().then((permission) => {
+							if (permission === 'granted') {
+								const { message } = results[keys[keys.length - 1]];
+								if (
+									document.visibilityState !== 'visible' &&
+									!readByMe &&
+									areNotificationsSupported()
+								)
+									new Notification('User sent a message', {
+										body: message,
+										icon: '/user.png'
+									});
+							}
+						});
 				} else setUserChat([]);
 				setLoading(false);
 			});

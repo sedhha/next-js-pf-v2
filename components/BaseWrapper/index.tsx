@@ -42,13 +42,7 @@ export default function BaseComponent({ Component }: Props) {
 		const analyticsEnabled = JSON.parse(
 			process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
 		);
-		feFetch<{ result: string }>({
-			url: AUTH_APIS.CSRF
-		}).then((res) => {
-			if (!res.error && res.json) {
-				dispatch(updateCsrfToken(res.json.result));
-			}
-		});
+
 		if (analyticsEnabled) {
 			if (isVisible) {
 				if (!geoData?.ip) {
@@ -67,6 +61,13 @@ export default function BaseComponent({ Component }: Props) {
 		if (revisitor === 0) localStorage.setItem('revisitor', '1');
 		else localStorage.setItem('revisitor', `${revisitor + 1}`);
 		dispatch(updateRevisitor(revisitor + 1));
+		feFetch<{ result: string }>({
+			url: AUTH_APIS.CSRF
+		}).then((res) => {
+			if (!res.error && res.json) {
+				dispatch(updateCsrfToken(res.json.result));
+			}
+		});
 	}, [dispatch]);
 	React.useEffect(() => {
 		onVisibilityChange();

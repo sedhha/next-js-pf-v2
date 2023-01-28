@@ -1,14 +1,19 @@
 interface ILogger {
-    logs: unknown[];
-    error: boolean;
+	logs: unknown[];
+	error: boolean;
 }
 export const println = (...logs: ILogger[] | unknown[]) => {
-    if (process.env.NODE_ENV === 'development') {
-        console.log(...logs);
-    }
-}
+	if (process.env.NODE_ENV === 'development') {
+		console.log(...logs);
+	}
+};
 
 export const throwAndLogError = (logMessage: string): Error => {
-    console.error(logMessage);
-    throw new Error(logMessage);
-}
+	console.error(logMessage);
+	throw new Error(logMessage);
+};
+
+export const areNotificationsSupported = () =>
+	'Notification' in window &&
+	'serviceWorker' in navigator &&
+	'PushManager' in window;

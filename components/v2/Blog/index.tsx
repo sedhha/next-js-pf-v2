@@ -154,7 +154,7 @@ const Blog = () => {
 						<div className={classes.MobileBlogContainer}>
 							<LazyImage loadLazily src={'/sample.png'} />
 							<div className={classes.MobileMetaData}>
-								<h4 is-active="true">01</h4>
+								<h4>01</h4>
 								<h1>Getting Started With NEXT JS</h1>
 								<div className={classes.MetaDataElements}>
 									<h3>Web Development</h3>
@@ -165,7 +165,7 @@ const Blog = () => {
 						<div className={classes.MobileBlogContainer}>
 							<LazyImage loadLazily src={'/sample.png'} />
 							<div className={classes.MobileMetaData}>
-								<h4 is-active="true">01</h4>
+								<h4>02</h4>
 								<h1>Getting Started With NEXT JS</h1>
 								<div className={classes.MetaDataElements}>
 									<h3>Web Development</h3>
@@ -176,7 +176,29 @@ const Blog = () => {
 						<div className={classes.MobileBlogContainer}>
 							<LazyImage loadLazily src={'/sample.png'} />
 							<div className={classes.MobileMetaData}>
-								<h4 is-active="true">01</h4>
+								<h4>03</h4>
+								<h1>Getting Started With NEXT JS</h1>
+								<div className={classes.MetaDataElements}>
+									<h3>Web Development</h3>
+									<h4>29 July 2022</h4>
+								</div>
+							</div>
+						</div>
+						<div className={classes.MobileBlogContainer}>
+							<LazyImage loadLazily src={'/sample.png'} />
+							<div className={classes.MobileMetaData}>
+								<h4>04</h4>
+								<h1>Getting Started With NEXT JS</h1>
+								<div className={classes.MetaDataElements}>
+									<h3>Web Development</h3>
+									<h4>29 July 2022</h4>
+								</div>
+							</div>
+						</div>
+						<div className={classes.MobileBlogContainer}>
+							<LazyImage loadLazily src={'/sample.png'} />
+							<div className={classes.MobileMetaData}>
+								<h4>05</h4>
 								<h1>Getting Started With NEXT JS</h1>
 								<div className={classes.MetaDataElements}>
 									<h3>Web Development</h3>

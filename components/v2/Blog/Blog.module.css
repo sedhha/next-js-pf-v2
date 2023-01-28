@@ -346,7 +346,7 @@
 		flex-direction: column;
 		padding: 0.5rem;
 	}
-	.MobileMetaData > h4[is-active='true'] {
+	.MobileMetaData > h4 {
 		color: var(--active-blog-category-text);
 		transition: var(--fade-transition);
 		font-size: clamp(0.5rem, 10vw, 36rem);
