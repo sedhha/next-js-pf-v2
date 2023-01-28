@@ -1,13 +1,16 @@
 import React from 'react';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Footer from '@/components/v2/Footer';
 import Header from '@/components/v2/Header';
 import BlogContent from './BlogContent';
-import { useRouter } from 'next/router';
+import attributes from '@/constants/header-attr.json';
+import { updateActiveSection } from '@/slices/navigation.slice';
 export default function BlogPost() {
 	const { darkMode } = useAppSelector((state) => state.navigation);
-	const router = useRouter();
-	const { blogID } = router.query;
+	const dispatch = useAppDispatch();
+	React.useEffect(() => {
+		dispatch(updateActiveSection(attributes.Blog));
+	}, [dispatch]);
 	return (
 		<div className={darkMode ? 'darkMode' : 'lightMode'}>
 			<Header />

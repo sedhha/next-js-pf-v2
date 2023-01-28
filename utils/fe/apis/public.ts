@@ -6,7 +6,8 @@ export const PUBLIC_APIS = {
 	PROJECTS: '/api/public/projects',
 	EVENTS: '/api/public/events',
 	TESTIMONIALS: '/api/public/testimonials',
-	TECH_STACK: '/api/public/tech-stack'
+	TECH_STACK: '/api/public/tech-stack',
+	BLOG: '/api/public/blog'
 };
 
 export const DB_APIS = {

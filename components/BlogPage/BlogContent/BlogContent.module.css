@@ -1,30 +1,54 @@
 .content {
-    margin: 2vh 2vw;
-    font-size: 1.5vmax;
-    line-height: 4vh;
-    background-color: var(--blog-content-color);
-    border-radius: 6px;
-    padding: 2vh 2vw;
-    flex: auto;
-    transition: var(--fade-transition);
-  }
-  
-  .content p {
-    color: var(--post-excerpt-color);
-  }
+	margin: 2vh 2vw;
+	font-size: 1.5vmax;
+	line-height: 4vh;
+	background-color: var(--blog-content-color);
+	border-radius: 6px;
+	padding: 2vh 2vw;
+	flex: auto;
+	transition: var(--fade-transition);
+}
 
-  .Markdown > p,.Markdown > h1,.Markdown,.Markdown > blockquote > p,.Markdown > ol > li > p,.Markdown > p > a {
-    color: var(--markdown-generic-text-color);
-  }
-  
-  .content .image {
-    margin: 2vh auto;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  @media (min-width: 768px) {
-    .content {
-      padding: 4vh 4vw;
-    }
-  }
+.content p {
+	color: var(--post-excerpt-color);
+}
+
+.Markdown > p,
+.Markdown > h1,
+.Markdown,
+.Markdown > blockquote > p,
+.Markdown > ol > li > p,
+.Markdown > p > a {
+	color: var(--markdown-generic-text-color);
+}
+.Markdown > p > img {
+	max-width: 80vw;
+	max-height: 80vh;
+}
+.Markdown > p:has(img) {
+	text-align: center;
+}
+
+.content .image {
+	margin: 2vh auto;
+	width: 100%;
+	max-width: 600px;
+}
+
+@media (min-width: 768px) {
+	.content {
+		padding: 4vh 4vw;
+	}
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.content {
+		line-height: 2.5vh;
+	}
+	.Markdown > p:not(:nth-child(1)) {
+		margin-top: 1.5vh;
+	}
+	.Markdown > * {
+		font-size: 2vh;
+	}
+}

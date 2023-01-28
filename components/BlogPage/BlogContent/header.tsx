@@ -4,23 +4,36 @@ import classes from './Header.module.css';
 interface IBlogHeader {
 	title: string;
 	featuredImage: string;
+	authorName: string;
+	excerpt: string;
+	authorUrl?: string;
 }
-const BlogHeader = ({ title, featuredImage }: IBlogHeader) => {
+const BlogHeader = ({
+	title,
+	featuredImage,
+	authorName,
+	excerpt,
+	authorUrl
+}: IBlogHeader) => {
 	return (
 		<header className={classes.header}>
 			<div className={classes.headerDetails}>
 				<h1>{title}</h1>
 				<div className={classes.AvatarBox}>
-					<LazyImage src={'/sample.png'} className={classes.AvatarImage} />
-					<h2>Shivam Sahil</h2>
+					<LazyImage
+						src={authorUrl ?? '/sample.png'}
+						className={classes.AvatarImage}
+						loadLazily
+					/>
+					<h2>{authorName ?? 'Shivam Sahil'}</h2>
 				</div>
-				<p className={classes.Excerpt}>
-					Next.js gives you the best developer experience with all the features you
-					need for production: hybrid static & server rendering, TypeScript support,
-					smart bundling, route pre-fetching, and more. No config needed.
-				</p>
+				<p className={classes.Excerpt}>{excerpt}</p>
 			</div>
-			<LazyImage src={featuredImage} />
+			<LazyImage
+				src={featuredImage}
+				className={classes.FeaturedImage}
+				loadLazily
+			/>
 		</header>
 	);
 };

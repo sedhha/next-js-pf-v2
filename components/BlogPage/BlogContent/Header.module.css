@@ -8,8 +8,8 @@
 .headerDetails > h1 {
 	font-size: 8vh;
 	color: var(--light-blue);
-    transition: var(--fade-transition);
-    line-height: 9vh;
+	transition: var(--fade-transition);
+	line-height: 9vh;
 }
 .headerDetails {
 	display: flex;
@@ -30,7 +30,7 @@
 .AvatarBox > h2 {
 	font-size: 1.5vmax;
 	font-weight: 400;
-    color: var(--post-excerpt-color);
+	color: var(--post-excerpt-color);
 }
 
 .header img {
@@ -44,4 +44,40 @@
 	letter-spacing: 0.01em;
 	font-style: italic;
 	transition: var(--fade-transition);
+}
+
+.FeaturedImage {
+	max-height: 45vh;
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.headerDetails > h1 {
+		font-size: 8vw;
+		color: var(--light-blue);
+		transition: var(--fade-transition);
+		line-height: 8vw;
+		order: 1;
+	}
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: column;
+		row-gap: 1vh;
+	}
+	.FeaturedImage {
+		max-height: auto;
+		max-width: 100%;
+	}
+	.AvatarBox {
+		order: 4;
+	}
+	.Excerpt {
+		order: 3;
+		font-size: 4vw;
+		line-height: 4vw;
+	}
+	.AvatarBox > h2 {
+		font-size: 4vw;
+	}
 }

@@ -6,53 +6,9 @@ import { feFetch } from '@/utils/fe/fetch-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis/public';
 import { ITotal } from '@/interfaces/api';
 import { stdDateFormatter } from '@/utils/date-utils';
-// const categoryBlogCards = [
-// 	{
-// 		img: '/sample.png',
-// 		authorImg: '/sample.png',
-// 		authorName: 'Shivam Sahil',
-// 		title: 'Getting Started with Computer Vision - Technology of the Future',
-// 		excerpt:
-// 			'Image Processing and Computer Vision can be fun and automate lots of manual repetative error prone tasks in your daily life.',
-// 		date: '2023-01-08T00:00:00.000+05:30'
-// 	},
-// 	{
-// 		img: '/sample.png',
-// 		authorImg: '/sample.png',
-// 		authorName: 'Shivam Sahil',
-// 		title: 'Getting Started with Computer Vision - Technology of the Future',
-// 		excerpt:
-// 			'Image Processing and Computer Vision can be fun and automate lots of manual repetative error prone tasks in your daily life.',
-// 		date: '2023-01-08T00:00:00.000+05:30'
-// 	},
-// 	{
-// 		img: '/sample.png',
-// 		authorImg: '/sample.png',
-// 		authorName: 'Shivam Sahil',
-// 		title: 'Getting Started with Computer Vision - Technology of the Future',
-// 		excerpt:
-// 			'Image Processing and Computer Vision can be fun and automate lots of manual repetative error prone tasks in your daily life.',
-// 		date: '2023-01-08T00:00:00.000+05:30'
-// 	},
-// 	{
-// 		img: '/sample.png',
-// 		authorImg: '/sample.png',
-// 		authorName: 'Shivam Sahil',
-// 		title: 'Getting Started with Computer Vision - Technology of the Future',
-// 		excerpt:
-// 			'Image Processing and Computer Vision can be fun and automate lots of manual repetative error prone tasks in your daily life.',
-// 		date: '2023-01-08T00:00:00.000+05:30'
-// 	},
-// 	{
-// 		img: '/sample.png',
-// 		authorImg: '/sample.png',
-// 		authorName: 'Shivam Sahil',
-// 		title: 'Getting Started with Computer Vision - Technology of the Future',
-// 		excerpt:
-// 			'Image Processing and Computer Vision can be fun and automate lots of manual repetative error prone tasks in your daily life.',
-// 		date: '2023-01-08T00:00:00.000+05:30'
-// 	}
-// ];
+import { useAppDispatch } from '@/redux/hooks';
+import { updateActiveSection } from '@/slices/navigation.slice';
+import attributes from '@/constants/header-attr.json';
 
 const transformerFunction = (cards: ICategoryArticles[]): InfiniteCardProps[] =>
 	cards.map((card) => ({
@@ -68,8 +24,13 @@ const limit = 10;
 
 const CategoryFunction = () => {
 	const router = useRouter();
+	const dispatch = useAppDispatch();
 	const { category } = router.query;
 	const [total, setTotal] = React.useState<number | null>(null);
+
+	React.useEffect(() => {
+		dispatch(updateActiveSection(attributes.Blog));
+	}, [dispatch]);
 
 	const fetchArticles = React.useCallback(
 		(skip: number) =>

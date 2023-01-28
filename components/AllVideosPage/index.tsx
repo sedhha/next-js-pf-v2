@@ -7,6 +7,9 @@ import { ITotal } from '@/interfaces/api';
 import { stdDateFormatter } from '@/utils/date-utils';
 import { IVideoContent } from '../../interfaces/videos';
 import classes from './Videos.module.css';
+import attributes from '@/constants/header-attr.json';
+import { useAppDispatch } from '@/redux/hooks';
+import { updateActiveSection } from '@/slices/navigation.slice';
 
 const transformerFunction = (cards: IVideoContent[]): InfiniteCardProps[] =>
 	cards.map((card) => ({
@@ -24,6 +27,11 @@ const limit = 6;
 
 const VideoFunction = () => {
 	const [total, setTotal] = React.useState<number | null>(null);
+	const dispatch = useAppDispatch();
+
+	React.useEffect(() => {
+		dispatch(updateActiveSection(attributes.Videos));
+	}, [dispatch]);
 
 	const fetchVideos = React.useCallback(
 		(skip: number) =>

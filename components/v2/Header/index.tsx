@@ -7,15 +7,20 @@ import Link from 'next/link';
 import Icon, { icons } from '@/v2/common/Icons/index';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { updateShowMore } from '@/slices/navigation.slice';
+import { useRouter } from 'next/router';
 
 const Header = () => {
 	const dispatch = useAppDispatch();
 	const { showMore, activeSection } = useAppSelector(
 		(state) => state.navigation
 	);
+	const router = useRouter();
 	const indexOfActiveElement = headerElements.findIndex(
 		(item) => item.value === activeSection
 	);
+	const onChangeRoute = (url: string) => {
+		router.push(`/#${url}`);
+	};
 	const hiddenActiveElement = indexOfActiveElement > 2;
 
 	return (
@@ -27,16 +32,16 @@ const Header = () => {
 			<div className={classes.HeaderElements}>
 				{headerElements.map((element, index) => {
 					return (
-						<Link href={'#' + element.value} key={element.value} scroll>
-							<h1
-								className={[
-									classes.HeaderElement,
-									index === indexOfActiveElement ? classes.ActiveItem : null
-								].join(' ')}
-							>
-								{element.label}
-							</h1>
-						</Link>
+						<h1
+							key={element.value}
+							className={[
+								classes.HeaderElement,
+								index === indexOfActiveElement ? classes.ActiveItem : null
+							].join(' ')}
+							onClick={() => onChangeRoute(element.value)}
+						>
+							{element.label}
+						</h1>
 					);
 				})}
 
@@ -50,18 +55,17 @@ const Header = () => {
 					More
 					<div className={classes.SelectDropDown}>
 						{headerElements.map((element) => (
-							<Link href={'#' + element.value} key={element.value} scroll>
-								<h1
-									key={element.value}
-									className={
-										element.value === activeSection
-											? classes.ActiveDropDownElement
-											: undefined
-									}
-								>
-									{element.label}
-								</h1>
-							</Link>
+							<h1
+								key={element.value}
+								className={
+									element.value === activeSection
+										? classes.ActiveDropDownElement
+										: undefined
+								}
+								onClick={() => onChangeRoute(element.value)}
+							>
+								{element.label}
+							</h1>
 						))}
 					</div>
 				</div>

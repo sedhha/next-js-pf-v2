@@ -2,11 +2,12 @@
 curl 'https://graphql.contentful.com/content/v1/spaces/eowwrv5buqcq/environments/master' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://033bad1b-c8e2-4ee5-b8f8-f4c19c33ca37.ctfcloud.net' -H 'Authorization: Bearer x6cYdXasSQZ7kU31GHsalXGJa1kZsVcWK2gQIRGrom4' --data-binary '{"query":"query($limit:Int!,$skip:Int!) {\n workExperienceCollection(limit:$limit,skip:$skip) {\n  items {\n    orgName\n    designation\n    startDate\n    currentOrg\n    image {\n      url\n    }\n    description\n  }\n}\n}","variables":{"limit":20,"skip":1}}' --compressed
 */
 import fetch from 'node-fetch';
-import { workExperienceQuery } from './query';
+import { blogWithCategoryAndIDQuery, workExperienceQuery } from './query';
 import { ITotal } from '@/interfaces/api';
 import { IWork } from '@/interfaces/work';
 import {
 	ICFWorkExperience,
+	IContentfulBlog,
 	IContentfulResponse
 } from '@/interfaces/contentful';
 
@@ -60,4 +61,44 @@ const queryWorkExperience = async (
 	);
 };
 
-export { queryWorkExperience };
+const queryBlogWithCategoryAndID = async (
+	category: string | string[],
+	ids: string | string[]
+): Promise<IContentfulBlog | null> => {
+	if (!process.env.CONTENTFUL_BASE_URL || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+		throw new Error(
+			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
+		);
+	}
+	const categoryFilter =
+		typeof category !== 'string' ? category?.[0] ?? '' : category;
+	const idsFilter = typeof ids === 'string' ? [ids] : ids;
+	return fetch(process.env.CONTENTFUL_BASE_URL, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Connection': 'keep-alive',
+			'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
+		},
+		body: JSON.stringify({
+			query: blogWithCategoryAndIDQuery,
+			variables: {
+				ids: idsFilter
+			}
+		})
+	}).then((res) =>
+		res.json().then((data) => {
+			const result = (
+				data as IContentfulResponse<IContentfulBlog>
+			).data.output.items.find((item) =>
+				item.categoriesCollection.items.find(
+					(element) => element.slug.toLowerCase() === categoryFilter.toLowerCase()
+				)
+			);
+			return result ?? null;
+		})
+	);
+};
+
+export { queryWorkExperience, queryBlogWithCategoryAndID };
