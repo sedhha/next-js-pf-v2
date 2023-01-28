@@ -96,9 +96,9 @@ const closeSessionAbruptly = async (
 ): Promise<IProcess<null>> => {
 	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
 	const docPath = await getDocId(csrfToken, agent);
-	if (!docPath)
+	if (!docPath?.docID)
 		return { errored: true, message: 'Unable to Obtain session correctly!' };
-	const doc = store.collection(sessionPath).doc(docPath);
+	const doc = store.collection(sessionPath).doc(docPath.docID);
 	const currentSession = await doc.get();
 	if (currentSession.exists) {
 		const data = currentSession.data() as IAnalyticsData;
@@ -131,11 +131,12 @@ const closeSessionAbruptly = async (
 const getDocId = async (
 	session: string,
 	agent: string
-): Promise<string | undefined> => {
+): Promise<{ docID: string; key: string } | undefined> => {
 	const snapshot = await ref.child(session).get();
 	if (snapshot.exists()) {
 		const { ua, docID } = snapshot.val();
-		if (agent === ua) return docID as string;
+		if (agent === ua && snapshot.key)
+			return { docID: docID as string, key: snapshot.key };
 	}
 };
 // Close the session with the events when user disconnects
@@ -146,9 +147,9 @@ const closeSessionGracefully = async (
 ): Promise<IProcess<null>> => {
 	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
 	const docPath = await getDocId(csrfToken, agent);
-	if (!docPath)
+	if (!docPath?.docID || !docPath?.key)
 		return { errored: true, message: 'Unable to Obtain session correctly!' };
-	const doc = store.collection(sessionPath).doc(docPath);
+	const doc = store.collection(sessionPath).doc(docPath.docID);
 	const currentSession = await doc.get();
 	if (currentSession.exists) {
 		const data = currentSession.data() as IAnalyticsData;
@@ -158,7 +159,12 @@ const closeSessionGracefully = async (
 
 			doc
 				.set({ ...events, duration, disconnectedAt }, { merge: true })
-				.then(() => ({ errored: false }))
+				.then(async () => {
+					return ref
+						.child(docPath.key)
+						.remove()
+						.then(() => ({ errored: false }));
+				})
 				.catch((error) => {
 					console.error(
 						`Error Occured while trying to forcefully close session: ${error.message}`
@@ -177,9 +183,9 @@ const recordSession = async (
 ): Promise<IProcess<null>> => {
 	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
 	const docPath = await getDocId(csrfToken, agent);
-	if (!docPath)
+	if (!docPath?.docID)
 		return { errored: true, message: 'Unable to Obtain session correctly!' };
-	const doc = store.collection(sessionPath).doc(docPath);
+	const doc = store.collection(sessionPath).doc(docPath.docID);
 	const currentSession = await doc.get();
 	if (currentSession.exists) {
 		doc
