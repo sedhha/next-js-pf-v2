@@ -42,7 +42,8 @@
 }
 
 .Image img {
-	min-width: 80%;
+	min-width: 70%;
+	max-width: 80%;
 	width: clamp(70%, 75%, 80%);
 	aspect-ratio: 1;
 	object-fit: cover;

@@ -53,8 +53,6 @@
 	flex: auto;
 	max-height: 100%;
 	max-width: 75vw;
-	align-self: stretch;
-	justify-content: stretch;
 	padding: 0.5vh 0.5vw;
 	overflow-y: hidden;
 }
@@ -183,7 +181,6 @@
 	padding: 0 2vw;
 	justify-content: space-evenly;
 }
-
 
 .FeaturedBlogTitleSection {
 	display: flex;

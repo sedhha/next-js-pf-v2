@@ -9,19 +9,18 @@
 	--faded-gray: rgba(255, 255, 255, 0.4);
 	--orange: #f27304;
 	--green: #05ff00;
-	--success-green: #66AC50;
+	--success-green: #66ac50;
 	--faded-purple: rgba(74, 69, 214, 0.74);
 	--light-yellow: rgba(237, 226, 32, 0.961);
 	--light-gray: #e5e5e5;
 	--blue-card-designation-text-color: var(--orange);
 	--error-red: #f44336;
-	--golden-achievement-text-color: #A6843F;
-	--golden-achievement-bg-color: #F6C35F;
+	--golden-achievement-text-color: #a6843f;
+	--golden-achievement-bg-color: #f6c35f;
 	--silver-achievement-text-color: #777777;
-	--silver-achievement-bg-color: #E5E7E6;
-	--bronze-achievement-text-color: #B64433;
-	--bronze-achievement-bg-color: #E2D0AA;
-
+	--silver-achievement-bg-color: #e5e7e6;
+	--bronze-achievement-text-color: #b64433;
+	--bronze-achievement-bg-color: #e2d0aa;
 
 	/* Shadows */
 	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
@@ -33,10 +32,10 @@
 	/* Font Sizes */
 	--standard-headings: 3vmax;
 	--h1-text: 3.5vmax;
-	--h1-card-text: 2.6vh;
-	--h1-date-text: 2vh;
+	--h1-card-text: 3vh;
+	--h1-date-text: 2.5vh;
 	--h1-designation-text: 2.5vh;
-	--h1-para-text: 1.6vh;
+	--h1-para-text: 2vh;
 	--h2-text: 2.8vmax;
 	--p-text: 2vmax;
 	--standard-headings-small: 1.5vmax;
@@ -196,6 +195,15 @@ a {
 }
 .NavigationButton:hover {
 	scale: 0.9;
+}
+
+::-webkit-scrollbar {
+	width: 0.2em;
+}
+
+/* Track */
+::-webkit-scrollbar-thumb {
+	background-color: var(--dark-gray);
 }
 
 /* Media Queries */

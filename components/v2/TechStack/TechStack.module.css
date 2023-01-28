@@ -49,19 +49,29 @@
 .StackCards {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(20vh, 1fr));
-	grid-template-rows: repeat(3, 1fr);
-	grid-row-gap: 1.2vh;
-	grid-auto-flow: column;
-	grid-auto-columns: minmax(20vh, 1fr);
-	overflow-x: auto;
+	grid-template-rows: minmax(20vh, 1fr);
+	grid-row-gap: 2vh;
+	grid-column-gap: 2vw;
+	overflow-y: auto;
 	position: relative;
+	max-height: 80vh;
+}
+
+.StackCards::-webkit-scrollbar {
+	width: 0.2em;
+	display: none;
+}
+
+/* Track */
+.StackCards::-webkit-scrollbar-thumb {
+	background-color: var(--dark-gray);
+	display: none;
 }
 
 .Img {
-    max-height: 65vh;
-    object-fit: cover;
-    object-position: center;
-
+	max-height: 65vh;
+	object-fit: cover;
+	object-position: center;
 }
 
 .Card {
