@@ -19,7 +19,7 @@ import { feFetch } from '@/utils/fe/fetch-utils';
 import { ADMIN_APIS, AUTH_APIS } from '@/utils/fe/apis/public';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { closeAnalytics } from '@/slices/navigation.slice';
-import { useAppSelector } from '../../redux/tools/hooks';
+import { useAppSelector } from '@/redux/hooks';
 import {
 	User,
 	isSignInWithEmailLink,
@@ -29,7 +29,7 @@ import {
 } from 'firebase/auth';
 import { ref, getDatabase, set, get, onValue, off } from 'firebase/database';
 import app from '@/utils/fe/apis/services/firebase';
-import { USER_APIS } from '../../utils/fe/apis/public';
+import { USER_APIS } from '@/utils/fe/apis/public';
 import { formAdminIsOnlinePath } from '@/firebase/constants';
 type Props = {
 	Component: JSX.Element;
@@ -45,6 +45,14 @@ const updateAdminOnlineStatus = async (status = true) => {
 	set(adminRef, status);
 };
 
+const setOnlineStatus = (isAdmin: boolean) => {
+	const isVisible = document.visibilityState === 'visible';
+	if (isAdmin) {
+		if (!isVisible) updateAdminOnlineStatus(false);
+		else updateAdminOnlineStatus(true);
+	}
+};
+
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
 	const { geoData, isAdmin } = useAppSelector((state) => state.navigation);
@@ -53,7 +61,7 @@ export default function BaseComponent({ Component }: Props) {
 		const analyticsEnabled = JSON.parse(
 			process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
 		);
-
+		setOnlineStatus(isAdmin);
 		if (analyticsEnabled) {
 			if (isVisible) {
 				if (!geoData?.ip) {
@@ -146,7 +154,6 @@ export default function BaseComponent({ Component }: Props) {
 		});
 		return () => {
 			off(adminRef);
-			if (isAdmin) updateAdminOnlineStatus(false);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);

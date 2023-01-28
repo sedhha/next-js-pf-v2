@@ -24,6 +24,7 @@ export const withUserProtect = <T>(handler: IApiHandler<T>) => {
 			req.headers['x-secure-uid'] = verified.uid;
 			req.headers['x-secure-email'] = verified.email;
 			const result = await handler(req);
+			if (result.statusCode === 204) return res.status(204).end();
 			return res.status(result.statusCode ?? 200).json({
 				error: result.error ?? true,
 				message: result.message,
