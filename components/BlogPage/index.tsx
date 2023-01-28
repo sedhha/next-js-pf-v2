@@ -5,7 +5,11 @@ import Header from '@/components/v2/Header';
 import BlogContent from './BlogContent';
 import attributes from '@/constants/header-attr.json';
 import { updateActiveSection } from '@/slices/navigation.slice';
-export default function BlogPost() {
+
+type Props = {
+	lastBuild: string;
+};
+export default function BlogPost({ lastBuild }: Props) {
 	const { darkMode } = useAppSelector((state) => state.navigation);
 	const dispatch = useAppDispatch();
 	React.useEffect(() => {
@@ -15,7 +19,7 @@ export default function BlogPost() {
 		<div className={darkMode ? 'darkMode' : 'lightMode'}>
 			<Header />
 			<BlogContent />
-			<Footer />
+			<Footer lastBuild={lastBuild} />
 		</div>
 	);
 }
