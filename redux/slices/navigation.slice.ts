@@ -1,10 +1,12 @@
-import { IEventData, IFEData, IGeoAPI } from '@/interfaces/analytics';
+import { IEventData, IGeoAPI } from '@/interfaces/analytics';
 import { IPopup } from '@/interfaces/popup';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/redux/store';
 import { feFetch } from '@/utils/fe/fetch-utils';
-import { ANALYTICS_APIS, USER_APIS } from '@/utils/fe/apis/public';
+import { ANALYTICS_APIS } from '@/utils/fe/apis/public';
+import { isAnalyticsEnabled, supportedOperations } from '@/firebase/constants';
+import { FEventData } from '../../interfaces/analytics';
 
 // Define a type for the slice state
 export interface INavigationSlice {
@@ -17,6 +19,7 @@ export interface INavigationSlice {
 	activeBlogCategory: string;
 	mostPopularSelectedBlogId: string;
 	inChatMode: boolean;
+	loadingAuthState: boolean;
 	popup: IPopup;
 	showPopup: boolean;
 	isUserSignedIn: boolean;
@@ -28,6 +31,7 @@ export interface INavigationSlice {
 	isAdminOnline: boolean;
 	geoData?: IGeoAPI;
 	eventData?: IEventData[];
+	fingerprint?: string;
 
 	// Viewed Sections
 	workViewed: boolean;
@@ -42,15 +46,11 @@ export interface INavigationSlice {
 
 // Async Thunk to Post Events Data
 
-export const sendAnalytics = createAsyncThunk(
-	'sendAnalytics',
+export const closeAnalytics = createAsyncThunk(
+	'closeAnalytics',
 	async (_, { getState }) => {
-		const analyticsEnabled = JSON.parse(
-			process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
-		);
-		if (!analyticsEnabled) return;
+		if (!isAnalyticsEnabled) return;
 		const {
-			geoData,
 			eventData,
 			csrfToken,
 			workViewed,
@@ -61,52 +61,29 @@ export const sendAnalytics = createAsyncThunk(
 			videosViewed,
 			userEmail,
 			userUid,
-			idToken
+			fingerprint
 		} = (getState() as RootState).navigation;
-		if (!csrfToken || !geoData) return;
+		if (!csrfToken || !fingerprint) return;
+		const eventsData: FEventData = {
+			eventData: eventData ?? [],
+			key: fingerprint,
+			workViewed,
+			blogViewed,
+			contactViewed,
+			projectsViewed,
+			awardsViewed,
+			videosViewed,
+			uid: userUid,
+			email: userEmail
+		};
 		feFetch({
-			url: ANALYTICS_APIS.RECORD,
+			url: `${ANALYTICS_APIS.TRACK}?opType=${supportedOperations.close}`,
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				'x-csrf-token': csrfToken
 			},
-			body: JSON.stringify({
-				...geoData,
-				events: eventData ?? [],
-				workViewed,
-				blogViewed,
-				contactViewed,
-				projectsViewed,
-				awardsViewed,
-				videosViewed,
-				uid: userUid,
-				email: userEmail
-			} as IFEData),
-			keepAlive: true
-		});
-	}
-);
-
-// Async Thunk to Post Events Data
-
-export const closeAnalytics = createAsyncThunk(
-	'closeAnalytics',
-	async (_, { getState }) => {
-		const { geoData, eventData, csrfToken } = (getState() as RootState)
-			.navigation;
-		if (!csrfToken || !geoData) return;
-		feFetch({
-			url: ANALYTICS_APIS.CLOSE,
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-csrf-token': csrfToken
-			},
-			body: JSON.stringify({
-				...geoData,
-				events: eventData ?? []
-			} as IFEData),
+			body: JSON.stringify(eventsData as FEventData),
 			keepAlive: true
 		});
 	}
@@ -123,6 +100,7 @@ const initialState: INavigationSlice = {
 	activeBlogCategory: 'web-development',
 	mostPopularSelectedBlogId: 'get-started-with-next-js',
 	inChatMode: false,
+	loadingAuthState: true,
 	popup: {
 		type: 'error',
 		title: 'Oops, something went wrong',
@@ -249,11 +227,26 @@ export const navSlice = createSlice({
 			action: PayloadAction<string | undefined>
 		) => {
 			state.idToken = action.payload;
-		}
+		},
+		updateAuthState: (
+			state: INavigationSlice,
+			action: PayloadAction<boolean>
+		) => {
+			state.loadingAuthState = action.payload;
+		},
+		updateFingerPrint: (
+			state: INavigationSlice,
+			action: PayloadAction<string>
+		) => {
+			state.fingerprint = action.payload;
+		},
+		sendAnalytics: () => {}
 	}
 });
 
 export const {
+	sendAnalytics,
+	updateFingerPrint,
 	hidePopup,
 	updatePopup,
 	updateViewed,
@@ -271,7 +264,8 @@ export const {
 	updateDarkMode,
 	updateActiveBlogCategory,
 	updateMostPopularSelected,
-	updateInChatMode
+	updateInChatMode,
+	updateAuthState
 } = navSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

@@ -4,11 +4,18 @@ import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
 import React from 'react';
 import BaseWrapper from '@/components/BaseWrapper';
+import { FpjsProvider } from '@fingerprintjs/fingerprintjs-pro-react';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<Provider store={store}>
-			<BaseWrapper Component={<Component {...pageProps} />} />
-		</Provider>
+		<FpjsProvider
+			loadOptions={{
+				apiKey: process.env.NEXT_PUBLIC_ANALYTICS_API_KEY ?? ''
+			}}
+		>
+			<Provider store={store}>
+				<BaseWrapper Component={<Component {...pageProps} />} />
+			</Provider>
+		</FpjsProvider>
 	);
 }

@@ -22,7 +22,8 @@ export const AUTH_APIS = {
 export const ANALYTICS_APIS = {
 	RECORD: '/api/analytics/record',
 	CLOSE: '/api/analytics/close',
-	SIGNUP: '/api/analytics/signup'
+	SIGNUP: '/api/analytics/signup',
+	TRACK: '/api/analytics/track'
 };
 
 export const HELPER_APIS = {

@@ -1,7 +1,8 @@
 import { useAppDispatch } from '@/redux/hooks';
 import {
-	sendAnalytics,
+	updateAuthState,
 	updateCsrfToken,
+	updateFingerPrint,
 	updateGeoData,
 	updateIDToken,
 	updateIsAdmin,
@@ -16,7 +17,7 @@ import React from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
 import { feFetch } from '@/utils/fe/fetch-utils';
-import { ADMIN_APIS, AUTH_APIS } from '@/utils/fe/apis/public';
+import { ADMIN_APIS, ANALYTICS_APIS, AUTH_APIS } from '@/utils/fe/apis/public';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { closeAnalytics } from '@/slices/navigation.slice';
 import { useAppSelector } from '@/redux/hooks';
@@ -30,7 +31,12 @@ import {
 import { ref, getDatabase, set, get, onValue, off } from 'firebase/database';
 import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
-import { formAdminIsOnlinePath } from '@/firebase/constants';
+import {
+	formAdminIsOnlinePath,
+	supportedOperations
+} from '@/firebase/constants';
+import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
+import { IFEStartSession, IFEGeo } from '@/interfaces/analytics';
 type Props = {
 	Component: JSX.Element;
 };
@@ -55,31 +61,123 @@ const setOnlineStatus = (isAdmin: boolean) => {
 
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
-	const { geoData, isAdmin } = useAppSelector((state) => state.navigation);
-	const onVisibilityChange = React.useCallback(() => {
-		const isVisible = document.visibilityState === 'visible';
-		const analyticsEnabled = JSON.parse(
-			process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
-		);
-		setOnlineStatus(isAdmin);
-		if (analyticsEnabled) {
-			if (isVisible) {
-				if (!geoData?.ip) {
-					getGeoData().then((res) => {
-						dispatch(updateGeoData(res));
-						dispatch(sendAnalytics());
-					});
+	const { isAdmin, userUid, userEmail, csrfToken, loadingAuthState } =
+		useAppSelector((state) => state.navigation);
+	const { isLoading, error, data } = useVisitorData({
+		extendedResult: true
+	});
+	const startSession = React.useCallback(
+		async ({ uid, email, csrfToken, geo, fp }: IFEStartSession) => {
+			if (!csrfToken) return;
+			const feAnalyticsData: IFEGeo = {
+				uid,
+				email,
+				visitorID: localStorage.getItem('visitorID') ?? undefined,
+				// Geo Data
+				ip: geo.ip,
+				network: geo.network,
+				version: geo.version,
+				city: geo.city,
+				region: geo.region,
+				region_code: geo.region_code,
+				country: geo.country,
+				country_name: geo.country_name,
+				country_code: geo.country_code,
+				country_code_iso3: geo.country_code_iso3,
+				country_capital: geo.country_capital,
+				country_tld: geo.country_tld,
+				continent_code: geo.continent_code,
+				in_eu: geo.in_eu,
+				postal: geo.postal,
+				latitude: geo.latitude,
+				longitude: geo.longitude,
+				timezone: geo.timezone,
+				utc_offset: geo.utc_offset,
+				country_calling_code: geo.country_calling_code,
+				currency: geo.currency,
+				currency_name: geo.currency_name,
+				languages: geo.languages,
+				country_area: geo.country_area,
+				country_population: geo.country_population,
+				asn: geo.asn,
+				org: geo.org,
+				// FP Data
+				fp_visitorID: fp?.visitorId,
+				fp_browserName: fp?.browserName,
+				fp_browserVersion: fp?.browserVersion,
+				fp_confidenceScore: fp?.confidence?.score,
+				fp_device: fp?.device,
+				fp_firstSeenAt_global: fp?.firstSeenAt?.global ?? undefined,
+				fp_firstSeenAt_subscription: fp?.firstSeenAt?.subscription ?? undefined,
+				fp_incognito: fp?.incognito,
+				fp_ip: fp?.ip,
+				fp_accuracyRadius: fp?.ipLocation?.accuracyRadius,
+				fp_cityName: fp?.ipLocation?.city?.name,
+				fp_continentName: fp?.ipLocation?.continent?.name,
+				fp_continentCode: fp?.ipLocation?.continent?.code,
+				fp_country: fp?.ipLocation?.country?.name,
+				fp_countryCode: fp?.ipLocation?.country?.code,
+				fp_latitude: fp?.ipLocation?.latitude,
+				fp_longitude: fp?.ipLocation?.longitude,
+				fp_postCode: fp?.ipLocation?.postalCode,
+				fp_subDivision: fp?.ipLocation?.subdivisions
+					? [...fp.ipLocation.subdivisions]
+					: undefined,
+				fp_timezone: fp?.ipLocation?.timezone,
+				fp_lastSeenAt_global: fp?.lastSeenAt?.global ?? undefined,
+				fp_lastSeenAt_subscription: fp?.lastSeenAt?.subscription ?? undefined,
+				fp_metaVersion: fp?.meta?.version,
+				fp_OS: fp?.os,
+				fp_OSVersion: fp?.osVersion,
+				fp_Visitor: fp?.visitorFound
+			};
+			feFetch<string>({
+				keepAlive: true,
+				url: `${ANALYTICS_APIS.TRACK}?opType=${supportedOperations.start}`,
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'x-csrf-token': csrfToken
+				},
+				body: JSON.stringify(feAnalyticsData)
+			}).then((res) => {
+				if (res.json) {
+					localStorage.setItem('visitorID', res.json);
+					dispatch(updateFingerPrint(res.json));
 				}
-			} else dispatch(closeAnalytics());
+			});
+		},
+		[dispatch]
+	);
+	const onVisibilityChange = React.useCallback(() => {
+		if (document.visibilityState === 'hidden') {
+			dispatch(closeAnalytics());
+		} else {
+			if (!isLoading && csrfToken && data && !loadingAuthState && !error) {
+				getGeoData().then((res) => {
+					startSession({
+						uid: userUid,
+						email: userEmail,
+						csrfToken: csrfToken,
+						geo: res,
+						fp: data
+					});
+				});
+			}
 		}
+	}, [
+		dispatch,
+		isLoading,
+		data,
+		loadingAuthState,
+		userEmail,
+		userUid,
+		csrfToken,
+		startSession,
+		error
+	]);
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dispatch]);
 	React.useEffect(() => {
-		const revisitor = +(localStorage.getItem('revisitor') ?? 0);
-		if (revisitor === 0) localStorage.setItem('revisitor', '1');
-		else localStorage.setItem('revisitor', `${revisitor + 1}`);
-		dispatch(updateRevisitor(revisitor + 1));
 		feFetch<{ result: string }>({
 			url: AUTH_APIS.CSRF
 		}).then((res) => {
@@ -112,19 +210,23 @@ export default function BaseComponent({ Component }: Props) {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				updateStoreIfSignedIn(user);
+				dispatch(updateAuthState(false));
 				return;
 			} else {
 				const isLoggedIn = isSignInWithEmailLink(auth, window.location.href);
+				dispatch(updateAuthState(false));
 				if (!isLoggedIn) return;
 				let email = window.localStorage.getItem('emailForSignIn');
 				if (!email) {
 					email = window.prompt('Please provide your email for confirmation');
 				}
+
 				if (!email) return;
 				signInWithEmailLink(auth, email, window.location.href)
 					.then((user) => {
 						if (user) {
 							updateStoreIfSignedIn(user.user);
+
 							return;
 						}
 					})
@@ -197,6 +299,7 @@ export default function BaseComponent({ Component }: Props) {
 				<link rel="icon" href="/chat-icon.png" />
 				<link rel="apple-touch-icon" href="/chat-icon.png" />
 			</Head>
+
 			<Component.type {...Component.props} />
 			<Popup />
 		</React.Fragment>

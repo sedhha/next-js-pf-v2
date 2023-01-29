@@ -3,6 +3,7 @@ import { IAnalyticsData, IFEData } from '@/interfaces/analytics';
 import {
 	formCSRFPath,
 	getCollectionPath,
+	isAnalyticsEnabled,
 	storeCollectionPaths
 } from '@/firebase/constants';
 import { store, db } from '@/firebase/index';
@@ -66,7 +67,7 @@ const initSession = (
 
 // Create a session Record in the BE -> Existing API when creating CSRF Token
 const getDocIdForSession = (): string => {
-	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
+	const sessionPath = getCollectionPath(storeCollectionPaths.sessionAnalytics);
 	const newDoc = store.collection(sessionPath).doc();
 	return newDoc.id;
 };
@@ -75,26 +76,29 @@ const initiateSessionInDB = async (
 	ua: string,
 	docID: string
 ): Promise<IProcess<{ id: string }>> => {
-	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
+	const sessionPath = getCollectionPath(storeCollectionPaths.sessionAnalytics);
 	const newDoc = store.collection(sessionPath).doc(docID);
 	const newSession = initSession(csrfToken, docID, ua);
-	return newDoc
-		.set(newSession as IAnalyticsData)
-		.then(() => ({
-			errored: false,
-			payload: { id: newDoc.id }
-		}))
-		.catch((error) => ({
-			errored: true,
-			message: error.message
-		}));
+	return isAnalyticsEnabled
+		? newDoc
+				.set(newSession as IAnalyticsData)
+				.then(() => ({
+					errored: false,
+					payload: { id: newDoc.id }
+				}))
+				.catch((error) => ({
+					errored: true,
+					message: error.message
+				}))
+		: { errored: false };
 };
+
 // Close the session abruptly when ttl expires
 const closeSessionAbruptly = async (
 	csrfToken: string,
 	agent: string
 ): Promise<IProcess<null>> => {
-	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
+	const sessionPath = getCollectionPath(storeCollectionPaths.sessionAnalytics);
 	const docPath = await getDocId(csrfToken, agent);
 	if (!docPath?.docID)
 		return { errored: true, message: 'Unable to Obtain session correctly!' };
@@ -105,24 +109,26 @@ const closeSessionAbruptly = async (
 		if (data) {
 			const disconnectedAt = new Date().getTime();
 			const duration = disconnectedAt - data.connectedAt;
-			if (data.disconnectedAt !== data.connectedAt)
-				doc
-					.set(
-						{
-							disconnectedAt,
-							duration,
-							disconnectedForcefully: true
-						},
-						{ merge: true }
-					)
-					.then(() => ({ errored: false }))
-					.catch((error) => {
-						console.error(
-							`Error Occured while trying to forcefully close session: ${error.message}`
-						);
-						return { errored: true };
-					});
-			else return { errored: false };
+			if (data.disconnectedAt !== data.connectedAt) {
+				if (isAnalyticsEnabled)
+					doc
+						.set(
+							{
+								disconnectedAt,
+								duration,
+								disconnectedForcefully: true
+							},
+							{ merge: true }
+						)
+						.then(() => ({ errored: false }))
+						.catch((error) => {
+							console.error(
+								`Error Occured while trying to forcefully close session: ${error.message}`
+							);
+							return { errored: true };
+						});
+				else return { errored: false };
+			} else return { errored: false };
 		}
 	}
 	return { errored: true };
@@ -145,7 +151,7 @@ const closeSessionGracefully = async (
 	events: IFEData,
 	agent: string
 ): Promise<IProcess<null>> => {
-	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
+	const sessionPath = getCollectionPath(storeCollectionPaths.sessionAnalytics);
 	const docPath = await getDocId(csrfToken, agent);
 	if (!docPath?.docID || !docPath?.key)
 		return { errored: true, message: 'Unable to Obtain session correctly!' };
@@ -154,23 +160,29 @@ const closeSessionGracefully = async (
 	if (currentSession.exists) {
 		const data = currentSession.data() as IAnalyticsData;
 		if (data) {
-			const disconnectedAt = new Date().getTime();
-			const duration = disconnectedAt - data.connectedAt;
-
-			doc
-				.set({ ...events, duration, disconnectedAt }, { merge: true })
-				.then(async () => {
-					return ref
-						.child(docPath.key)
-						.remove()
-						.then(() => ({ errored: false }));
-				})
-				.catch((error) => {
-					console.error(
-						`Error Occured while trying to forcefully close session: ${error.message}`
-					);
-					return { errored: true };
-				});
+			if (isAnalyticsEnabled) {
+				const disconnectedAt = new Date().getTime();
+				const duration = disconnectedAt - data.connectedAt;
+				return doc
+					.set({ ...events, duration, disconnectedAt }, { merge: true })
+					.then(async () => {
+						return ref
+							.child(docPath.key)
+							.remove()
+							.then(() => ({ errored: false }));
+					})
+					.catch((error) => {
+						console.error(
+							`Error Occured while trying to forcefully close session: ${error.message}`
+						);
+						return { errored: true };
+					});
+			} else
+				return ref
+					.child(docPath.key)
+					.remove()
+					.then(() => ({ errored: false }))
+					.catch(() => ({ errored: true }));
 		}
 	}
 	return { errored: true };
@@ -181,22 +193,25 @@ const recordSession = async (
 	agent: string,
 	events: IFEData
 ): Promise<IProcess<null>> => {
-	const sessionPath = getCollectionPath(storeCollectionPaths.sessions);
+	const sessionPath = getCollectionPath(storeCollectionPaths.sessionAnalytics);
 	const docPath = await getDocId(csrfToken, agent);
 	if (!docPath?.docID)
 		return { errored: true, message: 'Unable to Obtain session correctly!' };
 	const doc = store.collection(sessionPath).doc(docPath.docID);
 	const currentSession = await doc.get();
 	if (currentSession.exists) {
-		doc
-			.set(events, { merge: true })
-			.then(() => ({ errored: false, message: 'Recorded successfully!' }))
-			.catch((error) => {
-				console.error(
-					`Error Occured while trying to forcefully close session: ${error.message}`
-				);
-				return { errored: true };
-			});
+		if (isAnalyticsEnabled) {
+			return doc
+				.set(events, { merge: true })
+				.then(() => ({ errored: false, message: 'Recorded successfully!' }))
+				.catch((error) => {
+					console.error(
+						`Error Occured while trying to forcefully close session: ${error.message}`
+					);
+					return { errored: true };
+				});
+		}
+		return { errored: false };
 	}
 	return { errored: true };
 };

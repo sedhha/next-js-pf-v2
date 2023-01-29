@@ -8,11 +8,15 @@ const getEnvPrefix = () => {
 			return 'dev';
 	}
 };
+const isAnalyticsEnabled = JSON.parse(
+	process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'false'
+);
 export const storeCollectionPaths = {
 	feedback: 'feedback',
-	sessions: 'sessions',
-	events: 'events',
-	newsletters: 'newsletters'
+	newsletters: 'newsletters',
+	geoAnalytics: 'geoAnalytics',
+	sessionAnalytics: 'sessionAnalytics',
+	eventAnalytics: 'eventAnalytics'
 };
 
 export const getCollectionPath = (path: string): string => {
@@ -70,7 +74,7 @@ const getNewsLetterPath = () => {
 	const prefix = getEnvPrefix();
 	return `${prefix}-${storeCollectionPaths.newsletters}`;
 };
-export const getDBPath = (path: string): string => {
+const getDBPath = (path: string): string => {
 	const prefix = getEnvPrefix();
 	const storagePath = dbPaths[path as keyof typeof dbPaths];
 	if (!storagePath) {
@@ -82,7 +86,30 @@ export const getDBPath = (path: string): string => {
 	return `${prefix}-${storagePath}`;
 };
 
+// Analytics Paths
+
+const getGeoPath = (identifier: string) => {
+	const prefix = getEnvPrefix();
+	return `${prefix}-${storeCollectionPaths.geoAnalytics}/${identifier}`;
+};
+const getSessionPath = (identifier: string) => {
+	const prefix = getEnvPrefix();
+	return `${prefix}-${storeCollectionPaths.sessionAnalytics}/${identifier}`;
+};
+const getEventPath = () => {
+	const prefix = getEnvPrefix();
+	return `${prefix}-${storeCollectionPaths.eventAnalytics}`;
+};
+
+const supportedOperations = {
+	start: 'start',
+	close: 'close',
+	forceClose: 'forceClose'
+} as const;
+export type SupportedOps = keyof typeof supportedOperations;
+
 export {
+	supportedOperations,
 	formRootMessagesPath,
 	formMessagesPath,
 	lastModifiedPath,
@@ -93,5 +120,11 @@ export {
 	typingUserPath,
 	formCSRFPath,
 	readRecipientPathUser,
-	formAdminIsOnlinePath
+	formAdminIsOnlinePath,
+	isAnalyticsEnabled,
+	getDBPath,
+	// Analytics V2 Paths
+	getGeoPath,
+	getSessionPath,
+	getEventPath
 };
