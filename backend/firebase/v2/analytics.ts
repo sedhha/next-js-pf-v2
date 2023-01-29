@@ -91,7 +91,13 @@ const getSessionInit = (
 });
 const ref = db.ref(formCSRFPath());
 
-const removeCSRF = (token: string) => ref.child(token).remove();
+const removeCSRF = (token: string) =>
+	ref
+		.child(token)
+		.remove()
+		.then(() => {
+			console.info(`Removing CSRF token - ${token}`);
+		});
 
 const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {
 	return (
