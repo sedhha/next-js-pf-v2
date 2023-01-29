@@ -306,7 +306,6 @@ class Analytics {
 		}));
 		return this.data[identifier];
 	}
-	removeCSRFToken(csrfToken: string) {}
 	closeSessionAbruptly(data: FEventData): void {
 		const identifier = data.key;
 		if (!this.data[identifier]) return;
