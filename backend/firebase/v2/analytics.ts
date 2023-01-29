@@ -340,23 +340,26 @@ class Analytics {
 			testimonialsViewed:
 				this.data[identifier].generic.testimonialsViewed ?? false,
 			techStackViewed: this.data[identifier].generic.techStackViewed ?? false
+		}).then(() => {
+			addEvents(
+				data.eventData.map((item) => ({
+					...item,
+					visitorID: this.data[identifier].generic.visitorID,
+					csrfToken: this.data[identifier].generic.csrfToken,
+					ua: this.data[identifier].generic.ua,
+					fp_visitorID: this.data[identifier].generic.fp_visitorID
+				})),
+				this.data[identifier].paths.eventsCollectionPath
+			).then(() => {
+				addSessionData(
+					this.data[identifier].paths.sessionCollectionPath,
+					this.data[identifier].session
+				).then(() => {
+					removeCSRF(this.data[identifier].generic.csrfToken);
+					delete this.data[identifier];
+				});
+			});
 		});
-		addEvents(
-			data.eventData.map((item) => ({
-				...item,
-				visitorID: this.data[identifier].generic.visitorID,
-				csrfToken: this.data[identifier].generic.csrfToken,
-				ua: this.data[identifier].generic.ua,
-				fp_visitorID: this.data[identifier].generic.fp_visitorID
-			})),
-			this.data[identifier].paths.eventsCollectionPath
-		);
-		addSessionData(
-			this.data[identifier].paths.sessionCollectionPath,
-			this.data[identifier].session
-		);
-		removeCSRF(this.data[identifier].generic.csrfToken);
-		delete this.data[identifier];
 	}
 	closeSession(data: FEventData): void {
 		const identifier = data.key;
@@ -389,22 +392,25 @@ class Analytics {
 			testimonialsViewed:
 				this.data[identifier].generic.testimonialsViewed ?? false,
 			techStackViewed: this.data[identifier].generic.techStackViewed ?? false
+		}).then(() => {
+			addEvents(
+				data.eventData.map((item) => ({
+					...item,
+					visitorID: this.data[identifier].generic.visitorID,
+					csrfToken: this.data[identifier].generic.csrfToken,
+					ua: this.data[identifier].generic.ua,
+					fp_visitorID: this.data[identifier].generic.fp_visitorID
+				})),
+				this.data[identifier].paths.eventsCollectionPath
+			).then(() => {
+				addSessionData(
+					this.data[identifier].paths.sessionCollectionPath,
+					this.data[identifier].session
+				).then(() => {
+					delete this.data[identifier];
+				});
+			});
 		});
-		addEvents(
-			data.eventData.map((item) => ({
-				...item,
-				visitorID: this.data[identifier].generic.visitorID,
-				csrfToken: this.data[identifier].generic.csrfToken,
-				ua: this.data[identifier].generic.ua,
-				fp_visitorID: this.data[identifier].generic.fp_visitorID
-			})),
-			this.data[identifier].paths.eventsCollectionPath
-		);
-		addSessionData(
-			this.data[identifier].paths.sessionCollectionPath,
-			this.data[identifier].session
-		);
-		delete this.data[identifier];
 	}
 }
 
