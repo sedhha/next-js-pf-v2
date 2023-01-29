@@ -369,8 +369,9 @@ class Analytics {
 					this.data[identifier].paths.sessionCollectionPath,
 					this.data[identifier].session
 				).then(() => {
-					removeCSRF(this.data[identifier].generic.csrfToken);
-					delete this.data[identifier];
+					removeCSRF(this.data[identifier].generic.csrfToken).then(
+						() => delete this.data[identifier]
+					);
 				});
 			});
 		});
