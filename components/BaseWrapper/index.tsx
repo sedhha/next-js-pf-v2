@@ -1,14 +1,13 @@
 import { useAppDispatch } from '@/redux/hooks';
 import {
 	updateAuthState,
+	updateCloseReqd,
 	updateCsrfToken,
 	updateFingerPrint,
-	updateGeoData,
 	updateIDToken,
 	updateIsAdmin,
 	updateIsAdminOnline,
 	updatePopup,
-	updateRevisitor,
 	updateUserEmail,
 	updateUserSignIn,
 	updateUserUid
@@ -28,7 +27,7 @@ import {
 	getAuth,
 	signInWithEmailLink
 } from 'firebase/auth';
-import { ref, getDatabase, set, get, onValue, off } from 'firebase/database';
+import { ref, getDatabase, set, onValue, off } from 'firebase/database';
 import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
 import {
@@ -51,17 +50,15 @@ const updateAdminOnlineStatus = async (status = true) => {
 	set(adminRef, status);
 };
 
-const setOnlineStatus = (isAdmin: boolean) => {
-	const isVisible = document.visibilityState === 'visible';
+const setOnlineStatus = (isAdmin: boolean, visibility: boolean) => {
 	if (isAdmin) {
-		if (!isVisible) updateAdminOnlineStatus(false);
-		else updateAdminOnlineStatus(true);
+		updateAdminOnlineStatus(visibility);
 	}
 };
 
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
-	const { isAdmin, userUid, userEmail, csrfToken, loadingAuthState } =
+	const { isAdmin, userUid, userEmail, csrfToken, loadingAuthState, closeReqd } =
 		useAppSelector((state) => state.navigation);
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
@@ -149,9 +146,19 @@ export default function BaseComponent({ Component }: Props) {
 		},
 		[dispatch]
 	);
+	const endSession = React.useCallback(
+		(e: BeforeUnloadEvent) => {
+			e.preventDefault();
+			dispatch(updateCloseReqd(false));
+			dispatch(closeAnalytics(true));
+		},
+		[dispatch]
+	);
 	const onVisibilityChange = React.useCallback(() => {
-		if (document.visibilityState === 'hidden') {
-			dispatch(closeAnalytics());
+		const isHidden = document.visibilityState === 'hidden';
+		setOnlineStatus(isAdmin, !isHidden);
+		if (isHidden && closeReqd) {
+			dispatch(closeAnalytics(false));
 		} else {
 			if (!isLoading && csrfToken && data && !loadingAuthState && !error) {
 				getGeoData().then((res) => {
@@ -165,8 +172,10 @@ export default function BaseComponent({ Component }: Props) {
 				});
 			}
 		}
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		dispatch,
+		isAdmin,
 		isLoading,
 		data,
 		loadingAuthState,
@@ -176,6 +185,13 @@ export default function BaseComponent({ Component }: Props) {
 		startSession,
 		error
 	]);
+
+	React.useEffect(() => {
+		window.addEventListener('beforeunload', endSession);
+		return () => {
+			window.removeEventListener('beforeunload', endSession);
+		};
+	}, [endSession]);
 
 	React.useEffect(() => {
 		feFetch<{ result: string }>({

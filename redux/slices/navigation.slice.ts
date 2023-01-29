@@ -32,6 +32,7 @@ export interface INavigationSlice {
 	geoData?: IGeoAPI;
 	eventData?: IEventData[];
 	fingerprint?: string;
+	closeReqd: boolean;
 
 	// Viewed Sections
 	workViewed: boolean;
@@ -48,8 +49,7 @@ export interface INavigationSlice {
 
 export const closeAnalytics = createAsyncThunk(
 	'closeAnalytics',
-	async (_, { getState }) => {
-		if (!isAnalyticsEnabled) return;
+	async (abruptly: boolean = false, { getState }) => {
 		const {
 			eventData,
 			csrfToken,
@@ -77,7 +77,9 @@ export const closeAnalytics = createAsyncThunk(
 			email: userEmail
 		};
 		feFetch({
-			url: `${ANALYTICS_APIS.TRACK}?opType=${supportedOperations.close}`,
+			url: `${ANALYTICS_APIS.TRACK}?opType=${
+				abruptly ? supportedOperations.forceClose : supportedOperations.close
+			}`,
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -119,7 +121,8 @@ const initialState: INavigationSlice = {
 	awardsViewed: false,
 	videosViewed: false,
 	testimonialsViewed: false,
-	techStackViewed: false
+	techStackViewed: false,
+	closeReqd: true
 };
 
 type ViewedKeys =
@@ -240,6 +243,12 @@ export const navSlice = createSlice({
 		) => {
 			state.fingerprint = action.payload;
 		},
+		updateCloseReqd: (
+			state: INavigationSlice,
+			action: PayloadAction<boolean>
+		) => {
+			state.closeReqd = action.payload;
+		},
 		sendAnalytics: () => {}
 	}
 });
@@ -247,6 +256,7 @@ export const navSlice = createSlice({
 export const {
 	sendAnalytics,
 	updateFingerPrint,
+	updateCloseReqd,
 	hidePopup,
 	updatePopup,
 	updateViewed,

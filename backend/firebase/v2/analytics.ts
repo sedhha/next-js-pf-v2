@@ -17,8 +17,9 @@ import {
 	isAnalyticsEnabled,
 	supportedOperations
 } from '@/firebase/constants';
-import { store } from '@/firebase/index';
+import { store, db } from '@/firebase/index';
 import { IViewedData } from '../../../interfaces/analytics';
+import { formCSRFPath } from '@/firebase/constants';
 
 interface IPaths {
 	geoCollectionPath: string;
@@ -88,6 +89,9 @@ const getSessionInit = (
 	latestDisconnectedForcefully: false,
 	totalConnections: 0
 });
+const ref = db.ref(formCSRFPath());
+
+const removeCSRF = (token: string) => ref.child(token).remove();
 
 const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {
 	return (
@@ -129,6 +133,7 @@ const getInitEntry = async (
 		});
 
 const addEvents = async (eventData: IEventsCollection[], eventPath: string) => {
+	if (!isAnalyticsEnabled) return;
 	const eventPromises = eventData.map(
 		(event) =>
 			new Promise((resolve) => {
@@ -143,6 +148,7 @@ const addSessionData = async (
 	sessionPath: string,
 	newSnapshot: ISessionCollection
 ) => {
+	if (!isAnalyticsEnabled) return;
 	const doc = store.doc(sessionPath);
 	doc.get().then((snapshot) => {
 		if (snapshot.exists) {
@@ -300,6 +306,7 @@ class Analytics {
 		}));
 		return this.data[identifier];
 	}
+	removeCSRFToken(csrfToken: string) {}
 	closeSessionAbruptly(data: FEventData): void {
 		const identifier = data.key;
 		if (!this.data[identifier]) return;
@@ -348,6 +355,7 @@ class Analytics {
 			this.data[identifier].paths.sessionCollectionPath,
 			this.data[identifier].session
 		);
+		removeCSRF(this.data[identifier].generic.csrfToken);
 		delete this.data[identifier];
 	}
 	closeSession(data: FEventData): void {
@@ -417,7 +425,7 @@ const operationHandler = async <T extends IFEGeo | FEventData>(
 				fp_visitorID: (opProps as IFEGeo).fp_visitorID
 			};
 			return analytics.createEntity(reqd).then((res) => {
-				// analytics.upsertGeoData(res, opProps as IFEGeo);
+				analytics.upsertGeoData(res, opProps as IFEGeo);
 				return { error: false, data: res };
 			});
 		}
@@ -427,10 +435,12 @@ const operationHandler = async <T extends IFEGeo | FEventData>(
 				error: false
 			};
 		}
-		case supportedOperations.forceClose:
+		case supportedOperations.forceClose: {
+			analytics.closeSessionAbruptly(opProps as FEventData);
 			return {
 				error: false
 			};
+		}
 		default:
 			return { error: true };
 	}
