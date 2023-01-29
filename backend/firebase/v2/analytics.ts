@@ -100,7 +100,11 @@ const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {
 			.doc(path)
 			.get()
 			.then((snapshot) => {
-				if (snapshot.exists) store.doc(path).update(data as Record<string, any>);
+				const filteredData = Object.fromEntries(
+					Object.entries(data).filter(([key, value]) => value != null)
+				);
+				if (snapshot.exists)
+					store.doc(path).update(filteredData as Record<string, any>);
 				else {
 					const filteredData = Object.fromEntries(
 						Object.entries(data).filter(([key, value]) => value != null)
@@ -117,7 +121,11 @@ const updateGeoEntry = async (path: string, data: IViewedData) =>
 		.doc(path)
 		.get()
 		.then((snapshot) => {
-			if (snapshot.exists) store.doc(path).update(data as Record<string, any>);
+			const filteredData = Object.fromEntries(
+				Object.entries(data).filter(([key, value]) => value != null)
+			);
+			if (snapshot.exists)
+				store.doc(path).update(filteredData as Record<string, any>);
 		});
 
 const getInitEntry = async (
