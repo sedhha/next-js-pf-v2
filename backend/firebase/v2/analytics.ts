@@ -96,7 +96,7 @@ const removeCSRF = async (token: string) =>
 		.child(token)
 		.remove()
 		.then(() => {
-			console.info(`Removing CSRF token - ${token}`);
+			console.info(`[CSRF-Log] -- Removing CSRF token - ${token}`);
 		});
 
 const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {
