@@ -4,6 +4,7 @@ import { ICategoryArticles } from '@/interfaces/index';
 import { ITotal } from '@/interfaces/api';
 import { IApiHandler } from '@/interfaces/api';
 import { withApiHandler } from '@/middleware/withApiHandler';
+import { info } from '@/utils/dev-utils';
 
 const handler: IApiHandler<ITotal<ICategoryArticles>> = (
 	req: NextApiRequest
