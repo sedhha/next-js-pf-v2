@@ -2,13 +2,14 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { IResponse } from '@/interfaces/index';
 import { IApiHandler } from '@/interfaces/api';
 import { auth } from '@/firebase/index';
+import { info } from '@/utils/dev-utils';
 
 const personalUid = 'dTYacphBekfOxAOcGYiGWHSYTCF2';
 
 export const withPersonalProtect = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
-			console.info(`[${req.method}]: [Protected CSRF API] - ${req.url}`);
+			info(`[${req.method}]: [Protected CSRF API] - ${req.url}`);
 			const { authorization } = req.headers;
 			if (!authorization) return res.status(401).end();
 			const [tokenType, tokenValue] = authorization.split(' ');

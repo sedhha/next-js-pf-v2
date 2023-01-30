@@ -3,6 +3,7 @@ import { NextApiRequest } from 'next';
 import { IApiHandler } from '@/interfaces/api';
 import security from '@/firebase/generateTokens';
 import { getUAIdentifier } from '@/firebase/csrf';
+import { info } from '@/utils/dev-utils';
 
 const containsSomeFromExpected = (ua: string): boolean => {
 	const searchParams = [
@@ -25,7 +26,7 @@ const containsSomeFromExpected = (ua: string): boolean => {
 const handler: IApiHandler<Record<string, string>> = async (
 	req: NextApiRequest
 ) => {
-	console.info(
+	info(
 		`[${req.method}]: [CSRF Token Issue] - ${req.url} | message: Requesting CSRF Token`
 	);
 	const userAgent = req.headers['user-agent']?.toLowerCase() ?? '';
@@ -43,7 +44,7 @@ const handler: IApiHandler<Record<string, string>> = async (
 		req.headers['sec-ch-ua-platform'] as string
 	);
 	const sessionKey = await security.addSession(ua);
-	console.info(
+	info(
 		`[${req.method}]: [CSRF Token Issue] - ${req.url} | message: Request Completed | ${ua}`
 	);
 	return {

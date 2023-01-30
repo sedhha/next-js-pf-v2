@@ -4,12 +4,11 @@ import { IApiHandler } from '@/interfaces/api';
 import { uploadToStore } from '@/firebase/uploadContact';
 import { withCSRFProtect } from '@/middleware/withCsrfProtect';
 import { getUAIdentifier } from '@/firebase/csrf';
+import { info } from '@/utils/dev-utils';
 
 const handler: IApiHandler<null> = async (req: NextApiRequest) => {
 	const payload = req.body as IContactForm;
-	console.info(
-		`[${req.method}]: [Contact Form] - Email: ${payload.email} | ${req.url}`
-	);
+	info(`[${req.method}]: [Contact Form] - Email: ${payload.email} | ${req.url}`);
 	const ua = getUAIdentifier(
 		req.headers['user-agent'],
 		req.headers['sec-ch-ua-platform'] as string

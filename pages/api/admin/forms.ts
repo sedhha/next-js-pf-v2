@@ -4,11 +4,12 @@ import { withPersonalProtect } from '@/middleware/withPersonalProtect';
 import { IContactForm } from '@/interfaces/firebase';
 import { getForms } from '@/firebase/contactForms';
 import { ITotal } from '@/interfaces/api';
+import { info } from '@/utils/dev-utils';
 const handler: IApiHandler<ITotal<IContactForm>> = async (
 	req: NextApiRequest
 ) => {
 	const { limit, skip } = req.query;
-	console.info(
+	info(
 		`[${req.method}]: [Contact Forms] - Limit:${limit
 			?.toString()
 			.padStart(2, '0')} | Skip:${skip?.toString().padStart(2, '0')} | ${req.url}`

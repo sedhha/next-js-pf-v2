@@ -8,6 +8,10 @@ export const println = (...logs: ILogger[] | unknown[]) => {
 	}
 };
 
+export const info = (...logs: ILogger[] | unknown[]) => {
+	console.log(...logs);
+};
+
 export const throwAndLogError = (logMessage: string): Error => {
 	console.error(logMessage);
 	throw new Error(logMessage);

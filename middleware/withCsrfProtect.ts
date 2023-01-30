@@ -3,6 +3,7 @@ import { IResponse } from '@/interfaces/index';
 import { IApiHandler } from '@/interfaces/api';
 import security from '@/firebase/generateTokens';
 import { getUAIdentifier } from '@/firebase/csrf';
+import { info } from '@/utils/dev-utils';
 
 export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
@@ -22,13 +23,13 @@ export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 				(!csrf || !session) &&
 				JSON.parse(process.env.CSRF_DISABLED ?? 'false')
 			) {
-				console.info(
+				info(
 					`[${req.method}]: [Protected CSRF API] - ${req.url} | Response: statusCode: 404 | message: Failed to retrieve CSRF token`
 				);
 				return res.status(404).end();
 			}
 			const result = await handler(req);
-			console.info(
+			info(
 				`[${req.method}]: [Protected CSRF API] - ${
 					req.url
 				} | Response: statusCode: ${result.statusCode} | message: ${

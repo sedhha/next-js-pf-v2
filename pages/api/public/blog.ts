@@ -3,10 +3,11 @@ import { IApiHandler } from '@/interfaces/api';
 import { withApiHandler } from '@/middleware/withApiHandler';
 import { IContentfulBlog } from '@/interfaces/contentful';
 import { queryBlogWithCategoryAndID } from '@/backend/contentful';
+import { info } from '@/utils/dev-utils';
 
 const handler: IApiHandler<IContentfulBlog> = (req: NextApiRequest) => {
 	const { blogID, category } = req.query;
-	console.info(
+	info(
 		`[${req.method}]: [Category Articles] - ID: ${blogID} | Category: ${category} | ${req.url}`
 	);
 

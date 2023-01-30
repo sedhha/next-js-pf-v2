@@ -20,6 +20,7 @@ import {
 import { store, db } from '@/firebase/index';
 import { IViewedData } from '../../../interfaces/analytics';
 import { formCSRFPath } from '@/firebase/constants';
+import { info } from '@/utils/dev-utils';
 
 interface IPaths {
 	geoCollectionPath: string;
@@ -96,7 +97,7 @@ const removeCSRF = async (token: string) =>
 		.child(token)
 		.remove()
 		.then(() => {
-			console.info(`[CSRF-Log] -- Removing CSRF token - ${token}`);
+			info(`[CSRF-Log] -- Removing CSRF token - ${token}`);
 		});
 
 const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {

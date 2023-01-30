@@ -4,10 +4,11 @@ import { ITotal } from '@/interfaces/api';
 import { ITestimonials } from '@/interfaces/testimonials';
 import { IApiHandler } from '@/interfaces/api';
 import { withApiHandler } from '@/middleware/withApiHandler';
+import { info } from '@/utils/dev-utils';
 
 const handler: IApiHandler<ITotal<ITestimonials>> = (req: NextApiRequest) => {
 	const { limit, skip } = req.query;
-	console.info(
+	info(
 		`[${req.method}]: [Testimonial] - Limit:${limit
 			?.toString()
 			.padStart(2, '0')} | Skip:${skip?.toString().padStart(2, '0')} | ${req.url}`

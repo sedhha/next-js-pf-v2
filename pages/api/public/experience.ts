@@ -4,10 +4,11 @@ import { ITotal } from '@/interfaces/api';
 import { IApiHandler } from '@/interfaces/api';
 import { withApiHandler } from '@/middleware/withApiHandler';
 import { queryWorkExperience } from '@/backend/contentful';
+import { info } from '@/utils/dev-utils';
 
 const handler: IApiHandler<ITotal<IWork>> = async (req: NextApiRequest) => {
 	const { limit, skip } = req.query;
-	console.info(
+	info(
 		`[${req.method}]: [Work Experience] - Limit:${limit
 			?.toString()
 			.padStart(2, '0')} | Skip:${skip?.toString().padStart(2, '0')} | ${req.url}`

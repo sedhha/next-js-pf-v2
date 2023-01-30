@@ -4,12 +4,13 @@ import { ITotal } from '@/interfaces/api';
 import { IEventAndParticipations } from '@/interfaces/events-and-participations';
 import { IApiHandler } from '@/interfaces/api';
 import { withApiHandler } from '@/middleware/withApiHandler';
+import { info } from '@/utils/dev-utils';
 
 const handler: IApiHandler<ITotal<IEventAndParticipations>> = (
 	req: NextApiRequest
 ) => {
 	const { limit, skip } = req.query;
-	console.info(
+	info(
 		`[${req.method}]: [Events-And-Participations] - Limit:${limit
 			?.toString()
 			.padStart(2, '0')} | Skip:${skip?.toString().padStart(2, '0')} | ${req.url}`

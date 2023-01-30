@@ -3,9 +3,10 @@ import videos from '@/constants/cms-constants/backend/videos.json';
 import { IApiHandler } from '@/interfaces/api';
 import { withApiHandler } from '@/middleware/withApiHandler';
 import { IFeaturedVideo } from '@/interfaces/videos';
+import { info } from '@/utils/dev-utils';
 
 const handler: IApiHandler<IFeaturedVideo> = (req: NextApiRequest) => {
-	console.info(`[${req.method}]: [Featured Videos] | ${req.url}`);
+	info(`[${req.method}]: [Featured Videos] | ${req.url}`);
 	const top4 = videos
 		.filter((video) => video.tags?.includes('top4'))
 		.slice(0, 4);
