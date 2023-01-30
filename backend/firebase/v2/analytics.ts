@@ -321,7 +321,7 @@ class Analytics {
 		return this.data[identifier];
 	}
 
-	closeSessionAbruptly(data: FEventData): void {
+	async closeSessionAbruptly(data: FEventData): Promise<void> {
 		const identifier = data.key;
 		if (!this.data[identifier]) return;
 		this.data[identifier].session.latestDisconnectedAt =
@@ -344,17 +344,18 @@ class Analytics {
 		if (data.email) this.data[identifier].generic.email = data.email;
 		if (data.uid) this.data[identifier].generic.uid = data.uid;
 
-		updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
-			workViewed: this.data[identifier].generic.workViewed ?? false,
-			awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
-			blogViewed: this.data[identifier].generic.blogViewed ?? false,
-			contactViewed: this.data[identifier].generic.contactViewed ?? false,
-			projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
-			videosViewed: this.data[identifier].generic.videosViewed ?? false,
-			testimonialsViewed:
-				this.data[identifier].generic.testimonialsViewed ?? false,
-			techStackViewed: this.data[identifier].generic.techStackViewed ?? false
-		}).then(() => {
+		await Promise.all([
+			updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
+				workViewed: this.data[identifier].generic.workViewed ?? false,
+				awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
+				blogViewed: this.data[identifier].generic.blogViewed ?? false,
+				contactViewed: this.data[identifier].generic.contactViewed ?? false,
+				projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
+				videosViewed: this.data[identifier].generic.videosViewed ?? false,
+				testimonialsViewed:
+					this.data[identifier].generic.testimonialsViewed ?? false,
+				techStackViewed: this.data[identifier].generic.techStackViewed ?? false
+			}),
 			addEvents(
 				data.eventData.map((item) => ({
 					...item,
@@ -364,19 +365,17 @@ class Analytics {
 					fp_visitorID: this.data[identifier].generic.fp_visitorID
 				})),
 				this.data[identifier].paths.eventsCollectionPath
-			).then(() => {
-				addSessionData(
-					this.data[identifier].paths.sessionCollectionPath,
-					this.data[identifier].session
-				).then(() => {
-					removeCSRF(this.data[identifier].generic.csrfToken).then(
-						() => delete this.data[identifier]
-					);
-				});
-			});
-		});
+			),
+			addSessionData(
+				this.data[identifier].paths.sessionCollectionPath,
+				this.data[identifier].session
+			),
+			removeCSRF(this.data[identifier].generic.csrfToken)
+		]).then(() => null);
+
+		delete this.data[identifier];
 	}
-	closeSession(data: FEventData): void {
+	async closeSession(data: FEventData): Promise<void> {
 		const identifier = data.key;
 		if (!this.data[identifier]) return;
 		this.data[identifier].session.latestDisconnectedAt =
@@ -397,17 +396,19 @@ class Analytics {
 		this.data[identifier].generic.techStackViewed = data.techStackViewed;
 		if (data.email) this.data[identifier].generic.email = data.email;
 		if (data.uid) this.data[identifier].generic.uid = data.uid;
-		updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
-			workViewed: this.data[identifier].generic.workViewed ?? false,
-			awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
-			blogViewed: this.data[identifier].generic.blogViewed ?? false,
-			contactViewed: this.data[identifier].generic.contactViewed ?? false,
-			projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
-			videosViewed: this.data[identifier].generic.videosViewed ?? false,
-			testimonialsViewed:
-				this.data[identifier].generic.testimonialsViewed ?? false,
-			techStackViewed: this.data[identifier].generic.techStackViewed ?? false
-		}).then(() => {
+
+		await Promise.all([
+			updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
+				workViewed: this.data[identifier].generic.workViewed ?? false,
+				awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
+				blogViewed: this.data[identifier].generic.blogViewed ?? false,
+				contactViewed: this.data[identifier].generic.contactViewed ?? false,
+				projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
+				videosViewed: this.data[identifier].generic.videosViewed ?? false,
+				testimonialsViewed:
+					this.data[identifier].generic.testimonialsViewed ?? false,
+				techStackViewed: this.data[identifier].generic.techStackViewed ?? false
+			}),
 			addEvents(
 				data.eventData.map((item) => ({
 					...item,
@@ -417,15 +418,13 @@ class Analytics {
 					fp_visitorID: this.data[identifier].generic.fp_visitorID
 				})),
 				this.data[identifier].paths.eventsCollectionPath
-			).then(() => {
-				addSessionData(
-					this.data[identifier].paths.sessionCollectionPath,
-					this.data[identifier].session
-				).then(() => {
-					delete this.data[identifier];
-				});
-			});
-		});
+			),
+			addSessionData(
+				this.data[identifier].paths.sessionCollectionPath,
+				this.data[identifier].session
+			)
+		]).then(() => null);
+		delete this.data[identifier];
 	}
 }
 
