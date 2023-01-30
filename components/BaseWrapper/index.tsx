@@ -329,6 +329,8 @@ export default function BaseComponent({ Component }: Props) {
 				<meta property="og:site_name" content="Shivam Sahil | Developer" />
 				<meta name="twitter:card" content="summary" />
 				<meta name="twitter:domain" content="shivam-sahil.vercel.app" />
+				<meta name="category" content="professional" />
+				<meta name="category" content="design portfolio" />
 				<meta
 					name="twitter:title"
 					property="og:title"
