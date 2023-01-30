@@ -110,12 +110,14 @@ const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {
 				const filteredData = Object.fromEntries(
 					Object.entries(data).filter(([key, value]) => value != null)
 				);
+				filteredData.totalVisits = (data.totalVisits ?? 1) + 1;
 				if (snapshot.exists)
 					await store.doc(path).update(filteredData as Record<string, any>);
 				else {
 					const filteredData = Object.fromEntries(
 						Object.entries(data).filter(([key, value]) => value != null)
 					);
+					filteredData.totalVisits = (data.totalVisits ?? 0) + 1;
 					await store.doc(path).set(filteredData);
 				}
 			}))
