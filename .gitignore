@@ -40,3 +40,6 @@ secrets/firebase.json
 
 # Env Secrets
 .env
+
+# Specific files to ignore
+pages/test.tsx
