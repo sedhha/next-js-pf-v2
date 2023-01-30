@@ -1,23 +1,31 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { IResponse } from '@/interfaces/index';
 import { IApiHandler } from '@/interfaces/api';
-import security from '@/firebase/generateTokens';
-import { getUAIdentifier } from '@/firebase/csrf';
 import { info } from '@/utils/dev-utils';
+import fetch from 'node-fetch';
+import { HELPER_APIS } from '../utils/fe/apis/public';
 
 export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
 			const csrf = req.headers['x-csrf-token'] as string;
+			const userAgent = req.headers['user-agent']?.toLowerCase() ?? '';
 
-			const ua = getUAIdentifier(
-				req.headers['user-agent'],
-				req.headers['sec-ch-ua-platform'] as string
-			);
-
-			if (!csrf || !ua) return res.status(401).end();
-
-			const session = await security.getSession(csrf, ua);
+			console.log(`${HELPER_APIS.CSRF_REST_OPEN}?session=${csrf}`);
+			const session = await fetch(
+				`${HELPER_APIS.CSRF_REST_OPEN}?session=${csrf}`,
+				{
+					method: 'GET',
+					headers: {
+						'User-Agent': userAgent,
+						'Content-Type': 'application/json',
+						'Accept': 'application/json'
+					}
+				}
+			).then((res) => {
+				console.log(res.status);
+				return res.status === 200;
+			});
 
 			if (
 				(!csrf || !session) &&

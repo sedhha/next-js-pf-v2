@@ -27,7 +27,23 @@ export const ANALYTICS_APIS = {
 };
 
 export const HELPER_APIS = {
-	GEO: 'https://ipapi.co/json/'
+	GEO: 'https://ipapi.co/json/',
+	CSRF_REST_OPEN:
+		process.env.NODE_ENV === 'development'
+			? `http://localhost:4200/rest/open/add-session`
+			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/open/add-session`,
+	CSRF_REST:
+		process.env.NODE_ENV === 'development'
+			? `http://localhost:4200/rest/add-session`
+			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/rest/add-session`,
+	CSRF_REST_GET_SESSION:
+		process.env.NODE_ENV === 'development'
+			? `http://localhost:4200/rest/get-session`
+			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/rest/get-session`,
+	WEB_SOCKET:
+		process.env.NODE_ENV === 'development'
+			? `ws://localhost:4200/track`
+			: `wss://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/track`
 };
 
 export const USER_APIS = {
@@ -39,8 +55,8 @@ export const ADMIN_APIS = {
 	CONTACT_FORMS: '/api/admin/forms'
 };
 
-// FE Routes 
+// FE Routes
 
 export const FE_ROUTES = {
 	CATEGORY_BLOG_COMBO: '/blogs'
-}
+};

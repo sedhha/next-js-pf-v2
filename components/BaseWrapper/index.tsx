@@ -35,7 +35,14 @@ import {
 	supportedOperations
 } from '@/firebase/constants';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
-import { IFEStartSession, IFEGeo } from '@/interfaces/analytics';
+import {
+	IFEStartSession,
+	IFEGeo,
+	IWSResult,
+	FEventData
+} from '@/interfaces/analytics';
+import { HELPER_APIS } from '../../utils/fe/apis/public';
+import { convertToFEData } from './utils';
 type Props = {
 	Component: JSX.Element;
 };
@@ -58,150 +65,112 @@ const setOnlineStatus = (isAdmin: boolean, visibility: boolean) => {
 
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
-	const { isAdmin, userUid, userEmail, csrfToken, loadingAuthState, closeReqd } =
-		useAppSelector((state) => state.navigation);
+	const {
+		isAdmin,
+		userUid,
+		userEmail,
+		csrfToken,
+		eventData,
+		workViewed,
+		blogViewed,
+		contactViewed,
+		projectsViewed,
+		awardsViewed,
+		videosViewed,
+		fingerprint
+	} = useAppSelector((state) => state.navigation);
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
 	});
-	const startSession = React.useCallback(
-		async ({ uid, email, csrfToken, geo, fp }: IFEStartSession) => {
-			if (!csrfToken) return;
-			const feAnalyticsData: IFEGeo = {
-				uid,
-				email,
-				visitorID: localStorage.getItem('visitorID') ?? undefined,
-				// Geo Data
-				ip: geo.ip,
-				network: geo.network,
-				version: geo.version,
-				city: geo.city,
-				region: geo.region,
-				region_code: geo.region_code,
-				country: geo.country,
-				country_name: geo.country_name,
-				country_code: geo.country_code,
-				country_code_iso3: geo.country_code_iso3,
-				country_capital: geo.country_capital,
-				country_tld: geo.country_tld,
-				continent_code: geo.continent_code,
-				in_eu: geo.in_eu,
-				postal: geo.postal,
-				latitude: geo.latitude,
-				longitude: geo.longitude,
-				timezone: geo.timezone,
-				utc_offset: geo.utc_offset,
-				country_calling_code: geo.country_calling_code,
-				currency: geo.currency,
-				currency_name: geo.currency_name,
-				languages: geo.languages,
-				country_area: geo.country_area,
-				country_population: geo.country_population,
-				asn: geo.asn,
-				org: geo.org,
-				// FP Data
-				fp_visitorID: fp?.visitorId,
-				fp_browserName: fp?.browserName,
-				fp_browserVersion: fp?.browserVersion,
-				fp_confidenceScore: fp?.confidence?.score,
-				fp_device: fp?.device,
-				fp_firstSeenAt_global: fp?.firstSeenAt?.global ?? undefined,
-				fp_firstSeenAt_subscription: fp?.firstSeenAt?.subscription ?? undefined,
-				fp_incognito: fp?.incognito,
-				fp_ip: fp?.ip,
-				fp_accuracyRadius: fp?.ipLocation?.accuracyRadius,
-				fp_cityName: fp?.ipLocation?.city?.name,
-				fp_continentName: fp?.ipLocation?.continent?.name,
-				fp_continentCode: fp?.ipLocation?.continent?.code,
-				fp_country: fp?.ipLocation?.country?.name,
-				fp_countryCode: fp?.ipLocation?.country?.code,
-				fp_latitude: fp?.ipLocation?.latitude,
-				fp_longitude: fp?.ipLocation?.longitude,
-				fp_postCode: fp?.ipLocation?.postalCode,
-				fp_subDivision: fp?.ipLocation?.subdivisions
-					? [...fp.ipLocation.subdivisions]
-					: undefined,
-				fp_timezone: fp?.ipLocation?.timezone,
-				fp_lastSeenAt_global: fp?.lastSeenAt?.global ?? undefined,
-				fp_lastSeenAt_subscription: fp?.lastSeenAt?.subscription ?? undefined,
-				fp_metaVersion: fp?.meta?.version,
-				fp_OS: fp?.os,
-				fp_OSVersion: fp?.osVersion,
-				fp_Visitor: fp?.visitorFound
-			};
-			feFetch<string>({
-				keepAlive: true,
-				url: `${ANALYTICS_APIS.TRACK}?opType=${supportedOperations.start}`,
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'x-csrf-token': csrfToken
-				},
-				body: JSON.stringify(feAnalyticsData)
-			}).then((res) => {
-				if (res.json) {
-					localStorage.setItem('visitorID', res.json);
-					dispatch(updateFingerPrint(res.json));
-				}
-			});
-		},
-		[dispatch]
-	);
-	const endSession = React.useCallback(
-		(e: BeforeUnloadEvent) => {
-			e.preventDefault();
-			dispatch(updateCloseReqd(false));
-			dispatch(closeAnalytics(true));
-		},
-		[dispatch]
-	);
-	const onVisibilityChange = React.useCallback(() => {
-		const isHidden = document.visibilityState === 'hidden';
-		setOnlineStatus(isAdmin, !isHidden);
-		if (isHidden && closeReqd) {
-			dispatch(closeAnalytics(false));
-		} else {
-			if (!isLoading && csrfToken && data && !loadingAuthState && !error) {
-				getGeoData().then((res) => {
-					startSession({
-						uid: userUid,
-						email: userEmail,
-						csrfToken: csrfToken,
-						geo: res,
-						fp: data
-					});
+	const [socket, setSocket] = React.useState<WebSocket | null>(null);
+
+	const startSession = React.useCallback(() => {
+		if (!isLoading && data && socket && csrfToken && !error) {
+			getGeoData().then((geo) => {
+				const body = convertToFEData({
+					uid: userUid,
+					email: userEmail,
+					geo,
+					fp: data,
+					csrfToken
 				});
-			}
-			if (error) {
-				console.error(error);
-			}
+				const ecString = Buffer.from(
+					JSON.stringify({
+						headers: { csrf: csrfToken, actionType: supportedOperations.start },
+						body
+					})
+				).toString('base64');
+				socket.send(ecString);
+			});
 		}
-			// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [csrfToken, data, socket, error, isLoading, userEmail, userUid]);
+
+	const endSession = React.useCallback(() => {
+		if (fingerprint && socket && csrfToken) {
+			const body: FEventData = {
+				eventData: eventData ?? [],
+				key: fingerprint,
+				workViewed,
+				blogViewed,
+				contactViewed,
+				projectsViewed,
+				awardsViewed,
+				videosViewed,
+				uid: userUid,
+				email: userEmail
+			};
+			const ecString = Buffer.from(
+				JSON.stringify({
+					headers: { csrf: csrfToken, actionType: supportedOperations.close },
+					body
+				})
+			).toString('base64');
+			socket.send(ecString);
+		}
 	}, [
-		dispatch,
-		isAdmin,
-		isLoading,
-		data,
-		loadingAuthState,
-		userEmail,
-		userUid,
+		socket,
 		csrfToken,
-		startSession,
-		error
+		eventData,
+		fingerprint,
+		awardsViewed,
+		blogViewed,
+		projectsViewed,
+		workViewed,
+		contactViewed,
+		videosViewed,
+		userUid,
+		userEmail
 	]);
 
 	React.useEffect(() => {
-		window.addEventListener('beforeunload', endSession);
-		return () => {
-			window.removeEventListener('beforeunload', endSession);
+		const socket = new WebSocket(HELPER_APIS.WEB_SOCKET);
+		setSocket(socket);
+		socket.onmessage = (message) => {
+			const result = JSON.parse(message.data) as IWSResult<unknown>;
+			switch (result.identifier) {
+				case supportedOperations.start: {
+					const fingerPrint = result.payload as string;
+					dispatch(updateFingerPrint(fingerPrint));
+				}
+				default: {
+				}
+			}
 		};
-	}, [endSession]);
+	}, [dispatch]);
+	const onVisibilityChange = React.useCallback(() => {
+		const isHidden = document.visibilityState === 'hidden';
+		setOnlineStatus(isAdmin, !isHidden);
+		if (!isHidden) startSession();
+		else if (isHidden) endSession();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	React.useEffect(() => {
-		feFetch<{ result: string }>({
-			url: AUTH_APIS.CSRF
+		feFetch<string>({
+			url: HELPER_APIS.CSRF_REST
 		}).then((res) => {
 			if (!res.error && res.json) {
-				dispatch(updateCsrfToken(res.json.result));
+				dispatch(updateCsrfToken(res.json));
 			}
 		});
 	}, [dispatch]);

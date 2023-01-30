@@ -350,6 +350,13 @@ interface IFingerprintAPI {
 	visitorId: string;
 }
 
+interface IWSResult<T> {
+	status: number;
+	payload?: T;
+	message?: string;
+	identifier: string;
+}
+
 export type {
 	IAnalyticsData,
 	IEventData,
@@ -360,5 +367,6 @@ export type {
 	IAnalyticsCollection,
 	ISessionCollection,
 	IEventsCollection,
-	IFEStartSession
+	IFEStartSession,
+	IWSResult
 };
