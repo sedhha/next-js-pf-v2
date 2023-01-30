@@ -312,7 +312,34 @@ export default function BaseComponent({ Component }: Props) {
 				/>
 				<meta
 					property="og:image"
+					itemProp="image primaryImageOfPage"
 					content="https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/meta-image.jpg?raw=true"
+				/>
+				<meta
+					name="description"
+					content="Stack Overflow is the largest, most trusted online community for developers to learn, share&#x200B; &#x200B;their programming &#x200B;knowledge, and build their careers."
+				/>
+				<meta property="og:type" content="website" />
+				<meta
+					property="og:url"
+					content={
+						process.env.NEXT_PUBLIC_WEBSITE ?? 'https://shivam-sahil.vercel.app/'
+					}
+				/>
+				<meta property="og:site_name" content="Shivam Sahil | Developer" />
+				<meta name="twitter:card" content="summary" />
+				<meta name="twitter:domain" content="shivam-sahil.vercel.app" />
+				<meta
+					name="twitter:title"
+					property="og:title"
+					itemProp="name"
+					content="Shivam Sahil | Full Stack Developer and Passionate Techie"
+				/>
+				<meta
+					name="twitter:description"
+					property="og:description"
+					itemProp="description"
+					content="Shivam Sahil | Full Stack Developer and Passionate Techie"
 				/>
 				<title>Shivam Sahil | Developer</title>
 				<link rel="icon" href="/chat-icon.png" />
