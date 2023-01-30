@@ -232,7 +232,7 @@ class Analytics {
 		};
 		return identifier;
 	}
-	upsertGeoData(identifier: string, data: IFEGeo) {
+	async upsertGeoData(identifier: string, data: IFEGeo) {
 		if (!this.data[identifier]) return;
 		this.data[identifier].generic = {
 			...this.data[identifier].generic,
@@ -302,7 +302,7 @@ class Analytics {
 			uid: data.uid,
 			email: data.email
 		};
-		initiateGeoEntry(
+		await initiateGeoEntry(
 			this.data[identifier].paths.geoCollectionPath,
 			this.data[identifier].generic
 		);
@@ -344,34 +344,32 @@ class Analytics {
 		if (data.email) this.data[identifier].generic.email = data.email;
 		if (data.uid) this.data[identifier].generic.uid = data.uid;
 
-		await Promise.all([
-			updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
-				workViewed: this.data[identifier].generic.workViewed ?? false,
-				awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
-				blogViewed: this.data[identifier].generic.blogViewed ?? false,
-				contactViewed: this.data[identifier].generic.contactViewed ?? false,
-				projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
-				videosViewed: this.data[identifier].generic.videosViewed ?? false,
-				testimonialsViewed:
-					this.data[identifier].generic.testimonialsViewed ?? false,
-				techStackViewed: this.data[identifier].generic.techStackViewed ?? false
-			}),
-			addEvents(
-				data.eventData.map((item) => ({
-					...item,
-					visitorID: this.data[identifier].generic.visitorID,
-					csrfToken: this.data[identifier].generic.csrfToken,
-					ua: this.data[identifier].generic.ua,
-					fp_visitorID: this.data[identifier].generic.fp_visitorID
-				})),
-				this.data[identifier].paths.eventsCollectionPath
-			),
-			addSessionData(
-				this.data[identifier].paths.sessionCollectionPath,
-				this.data[identifier].session
-			),
-			removeCSRF(this.data[identifier].generic.csrfToken)
-		]).then(() => null);
+		await updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
+			workViewed: this.data[identifier].generic.workViewed ?? false,
+			awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
+			blogViewed: this.data[identifier].generic.blogViewed ?? false,
+			contactViewed: this.data[identifier].generic.contactViewed ?? false,
+			projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
+			videosViewed: this.data[identifier].generic.videosViewed ?? false,
+			testimonialsViewed:
+				this.data[identifier].generic.testimonialsViewed ?? false,
+			techStackViewed: this.data[identifier].generic.techStackViewed ?? false
+		});
+		await addEvents(
+			data.eventData.map((item) => ({
+				...item,
+				visitorID: this.data[identifier].generic.visitorID,
+				csrfToken: this.data[identifier].generic.csrfToken,
+				ua: this.data[identifier].generic.ua,
+				fp_visitorID: this.data[identifier].generic.fp_visitorID
+			})),
+			this.data[identifier].paths.eventsCollectionPath
+		);
+		await addSessionData(
+			this.data[identifier].paths.sessionCollectionPath,
+			this.data[identifier].session
+		);
+		await removeCSRF(this.data[identifier].generic.csrfToken);
 
 		delete this.data[identifier];
 	}
@@ -397,33 +395,31 @@ class Analytics {
 		if (data.email) this.data[identifier].generic.email = data.email;
 		if (data.uid) this.data[identifier].generic.uid = data.uid;
 
-		await Promise.all([
-			updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
-				workViewed: this.data[identifier].generic.workViewed ?? false,
-				awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
-				blogViewed: this.data[identifier].generic.blogViewed ?? false,
-				contactViewed: this.data[identifier].generic.contactViewed ?? false,
-				projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
-				videosViewed: this.data[identifier].generic.videosViewed ?? false,
-				testimonialsViewed:
-					this.data[identifier].generic.testimonialsViewed ?? false,
-				techStackViewed: this.data[identifier].generic.techStackViewed ?? false
-			}),
-			addEvents(
-				data.eventData.map((item) => ({
-					...item,
-					visitorID: this.data[identifier].generic.visitorID,
-					csrfToken: this.data[identifier].generic.csrfToken,
-					ua: this.data[identifier].generic.ua,
-					fp_visitorID: this.data[identifier].generic.fp_visitorID
-				})),
-				this.data[identifier].paths.eventsCollectionPath
-			),
-			addSessionData(
-				this.data[identifier].paths.sessionCollectionPath,
-				this.data[identifier].session
-			)
-		]).then(() => null);
+		await updateGeoEntry(this.data[identifier].paths.geoCollectionPath, {
+			workViewed: this.data[identifier].generic.workViewed ?? false,
+			awardsViewed: this.data[identifier].generic.awardsViewed ?? false,
+			blogViewed: this.data[identifier].generic.blogViewed ?? false,
+			contactViewed: this.data[identifier].generic.contactViewed ?? false,
+			projectsViewed: this.data[identifier].generic.projectsViewed ?? false,
+			videosViewed: this.data[identifier].generic.videosViewed ?? false,
+			testimonialsViewed:
+				this.data[identifier].generic.testimonialsViewed ?? false,
+			techStackViewed: this.data[identifier].generic.techStackViewed ?? false
+		});
+		await addEvents(
+			data.eventData.map((item) => ({
+				...item,
+				visitorID: this.data[identifier].generic.visitorID,
+				csrfToken: this.data[identifier].generic.csrfToken,
+				ua: this.data[identifier].generic.ua,
+				fp_visitorID: this.data[identifier].generic.fp_visitorID
+			})),
+			this.data[identifier].paths.eventsCollectionPath
+		);
+		await addSessionData(
+			this.data[identifier].paths.sessionCollectionPath,
+			this.data[identifier].session
+		);
 		delete this.data[identifier];
 	}
 }
@@ -444,19 +440,19 @@ const operationHandler = async <T extends IFEGeo | FEventData>(
 				visitorID: (opProps as IFEGeo).visitorID,
 				fp_visitorID: (opProps as IFEGeo).fp_visitorID
 			};
-			return analytics.createEntity(reqd).then((res) => {
-				analytics.upsertGeoData(res, opProps as IFEGeo);
+			return analytics.createEntity(reqd).then(async (res) => {
+				await analytics.upsertGeoData(res, opProps as IFEGeo);
 				return { error: false, data: res };
 			});
 		}
 		case supportedOperations.close: {
-			analytics.closeSession(opProps as FEventData);
+			await analytics.closeSession(opProps as FEventData);
 			return {
 				error: false
 			};
 		}
 		case supportedOperations.forceClose: {
-			analytics.closeSessionAbruptly(opProps as FEventData);
+			await analytics.closeSessionAbruptly(opProps as FEventData);
 			return {
 				error: false
 			};
