@@ -91,8 +91,8 @@ const getSessionInit = (
 });
 const ref = db.ref(formCSRFPath());
 
-const removeCSRF = (token: string) =>
-	ref
+const removeCSRF = async (token: string) =>
+	await ref
 		.child(token)
 		.remove()
 		.then(() => {
@@ -102,28 +102,28 @@ const removeCSRF = (token: string) =>
 const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {
 	return (
 		isAnalyticsEnabled &&
-		store
+		(await store
 			.doc(path)
 			.get()
-			.then((snapshot) => {
+			.then(async (snapshot) => {
 				const filteredData = Object.fromEntries(
 					Object.entries(data).filter(([key, value]) => value != null)
 				);
 				if (snapshot.exists)
-					store.doc(path).update(filteredData as Record<string, any>);
+					await store.doc(path).update(filteredData as Record<string, any>);
 				else {
 					const filteredData = Object.fromEntries(
 						Object.entries(data).filter(([key, value]) => value != null)
 					);
-					store.doc(path).set(filteredData);
+					await store.doc(path).set(filteredData);
 				}
-			})
+			}))
 	);
 };
 
 const updateGeoEntry = async (path: string, data: IViewedData) =>
 	isAnalyticsEnabled &&
-	store
+	(await store
 		.doc(path)
 		.get()
 		.then((snapshot) => {
@@ -132,30 +132,30 @@ const updateGeoEntry = async (path: string, data: IViewedData) =>
 			);
 			if (snapshot.exists)
 				store.doc(path).update(filteredData as Record<string, any>);
-		});
+		}));
 
 const getInitEntry = async (
 	path: string
 ): Promise<boolean | IAnalyticsCollection> =>
 	isAnalyticsEnabled &&
-	store
+	(await store
 		.doc(path)
 		.get()
 		.then((snapshot) => {
 			if (snapshot.exists) return snapshot.data() as IAnalyticsCollection;
 			else return false;
-		});
+		}));
 
 const addEvents = async (eventData: IEventsCollection[], eventPath: string) => {
 	if (!isAnalyticsEnabled) return;
 	const eventPromises = eventData.map(
 		(event) =>
-			new Promise((resolve) => {
+			new Promise(async (resolve) => {
 				const eventDoc = store.collection(`${eventPath}`).doc();
-				eventDoc.set(event).then(() => resolve(true));
+				await eventDoc.set(event).then(() => resolve(true));
 			})
 	);
-	Promise.all(eventPromises);
+	await Promise.all(eventPromises);
 };
 
 const addSessionData = async (
@@ -164,7 +164,7 @@ const addSessionData = async (
 ) => {
 	if (!isAnalyticsEnabled) return;
 	const doc = store.doc(sessionPath);
-	doc.get().then((snapshot) => {
+	await doc.get().then(async (snapshot) => {
 		if (snapshot.exists) {
 			const existingSnapshot = snapshot.data() as ISessionCollection;
 			const filteredData = Object.fromEntries(
@@ -178,12 +178,12 @@ const addSessionData = async (
 					duration: newSnapshot.latestDuration,
 					disconnectedForcefully: newSnapshot.latestDisconnectedForcefully
 				});
-			doc.update({
+			await doc.update({
 				...filteredData,
 				lastHundredConnections
 			});
 		} else {
-			doc.set(newSnapshot);
+			await doc.set(newSnapshot);
 		}
 	});
 };
