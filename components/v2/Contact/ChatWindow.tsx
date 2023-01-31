@@ -6,7 +6,6 @@ import {
 	updateInChatMode,
 	updatePopup,
 	updateUserEmail,
-	updateUserSignIn,
 	updateUserUid
 } from '@/slices/navigation.slice';
 import Icon from '@/v2/common/Icons';
@@ -146,7 +145,6 @@ const Contact = () => {
 					});
 					dispatch(updateUserEmail());
 					dispatch(updateUserUid());
-					dispatch(updateUserSignIn(false));
 				})
 				.catch((error) => {
 					updatePopup({

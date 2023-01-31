@@ -7,8 +7,8 @@ import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {
 	sendAnalytics,
 	updatePopup,
+	updateUser,
 	updateUserEmail,
-	updateUserSignIn,
 	updateUserUid,
 	updateViewed
 } from '@/slices/navigation.slice';
@@ -83,9 +83,9 @@ const Contact = () => {
 	const updateStoreIfSignedIn = React.useCallback(
 		(user: User) => {
 			const { email, uid } = user;
-			dispatch(updateUserSignIn(true));
 			if (email) dispatch(updateUserEmail(email));
 			dispatch(updateUserUid(uid));
+			dispatch(updateUser(user));
 		},
 		[dispatch]
 	);
