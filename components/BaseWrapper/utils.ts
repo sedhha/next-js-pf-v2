@@ -88,9 +88,9 @@ const handleURLLoginFlow = async (): Promise<void | User> => {
 };
 
 // Set Admin Status
+const adminRefPath = formAdminIsOnlinePath();
+const adminRef = ref(db, adminRefPath);
 const updateAdminOnlineStatus = async (status = true) => {
-	const adminRefPath = formAdminIsOnlinePath();
-	const adminRef = ref(db, adminRefPath);
 	set(adminRef, status);
 };
 
@@ -100,4 +100,4 @@ const setOnlineStatus = (isAdmin: boolean) => {
 		updateAdminOnlineStatus(visibility);
 	}
 };
-export { convertToFEData, handleURLLoginFlow, setOnlineStatus };
+export { convertToFEData, handleURLLoginFlow, setOnlineStatus, adminRef };

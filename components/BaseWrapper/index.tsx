@@ -1,6 +1,7 @@
 import { useAppDispatch } from '@/redux/hooks';
 import {
 	updateCsrfToken,
+	updateIsAdminOnline,
 	updatePopup,
 	updateUser
 } from '@/slices/navigation.slice';
@@ -14,11 +15,17 @@ import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
 import { supportedOperations } from '@/firebase/constants';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
-import { IWSResult, FEventData } from '@/interfaces/analytics';
+import { IWSResult } from '@/interfaces/analytics';
 import { HELPER_APIS } from '../../utils/fe/apis/public';
-import { convertToFEData, handleURLLoginFlow, setOnlineStatus } from './utils';
+import {
+	convertToFEData,
+	handleURLLoginFlow,
+	setOnlineStatus,
+	adminRef
+} from './utils';
 import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
+import { off, onValue } from 'firebase/database';
 type Props = {
 	Component: JSX.Element;
 };
@@ -34,14 +41,7 @@ export default function BaseComponent({ Component }: Props) {
 		csrfToken,
 		isAdmin,
 		subscriptionPending,
-		idToken,
-		eventData,
-		workViewed,
-		blogViewed,
-		contactViewed,
-		projectsViewed,
-		awardsViewed,
-		videosViewed
+		idToken
 	} = useAppSelector((state) => state.navigation);
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
@@ -159,49 +159,27 @@ export default function BaseComponent({ Component }: Props) {
 				dispatch(updateCsrfToken(res.json));
 			}
 		});
+		// Update Admin Online Actiivity
+		onValue(adminRef, (snapshot) => {
+			if (snapshot.exists()) {
+				dispatch(updateIsAdminOnline(snapshot.val()));
+			}
+		});
+		return () => {
+			off(adminRef);
+		};
 	}, [dispatch]);
+	const adminStatusCallback = React.useCallback(() => {
+		setOnlineStatus(isAdmin);
+	}, [isAdmin]);
 
 	// Set / Unset Admin Status
 	React.useEffect(() => {
-		const adminStatusCallback = () => {
-			setOnlineStatus(isAdmin);
-			const isHidden = document.visibilityState === 'hidden';
-			if (isHidden) {
-				const fingerprint = localStorage.getItem('fpp');
-				if (!csrfToken || !fingerprint || !socket) return;
-				const body: FEventData = {
-					eventData: eventData ?? [],
-					key: fingerprint,
-					workViewed,
-					blogViewed,
-					contactViewed,
-					projectsViewed,
-					awardsViewed,
-					videosViewed,
-					uid: userUid,
-					email: userEmail
-				};
-				const ecString = Buffer.from(
-					JSON.stringify({
-						headers: { csrf: csrfToken, actionType: supportedOperations.close },
-						body
-					})
-				).toString('base64');
-				socket.send(ecString);
-				setFirstPacketSent(false);
-				setSocket(null);
-			} else {
-				if (!isHidden && !socket) {
-					initiateSocket();
-				}
-			}
-		};
+		adminStatusCallback();
 		document.addEventListener('visibilitychange', adminStatusCallback);
 		return () =>
 			document.removeEventListener('visibilitychange', adminStatusCallback);
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [socket]);
+	}, [adminStatusCallback]);
 
 	// See if User has requested for newsletter subscription
 	React.useEffect(() => {
@@ -216,9 +194,6 @@ export default function BaseComponent({ Component }: Props) {
 			});
 		}
 	}, [subscriptionPending, idToken]);
-
-	// Send Initial Analytics
-	React.useEffect(() => {}, []);
 
 	return (
 		<React.Fragment>
