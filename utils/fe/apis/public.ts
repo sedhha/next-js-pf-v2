@@ -30,8 +30,8 @@ export const HELPER_APIS = {
 	GEO: 'https://ipapi.co/json/',
 	CSRF_REST_OPEN:
 		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/rest/open/add-session`
-			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/open/add-session`,
+			? `http://localhost:4200/open/get-session`
+			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/open/get-session`,
 	CSRF_REST:
 		process.env.NODE_ENV === 'development'
 			? `http://localhost:4200/rest/add-session`
