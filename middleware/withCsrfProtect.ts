@@ -11,7 +11,6 @@ export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 			const csrf = req.headers['x-csrf-token'] as string;
 			const userAgent = req.headers['user-agent']?.toLowerCase() ?? '';
 
-			console.log(`${HELPER_APIS.CSRF_REST_OPEN}?session=${csrf}`);
 			const session = await fetch(
 				`${HELPER_APIS.CSRF_REST_OPEN}?session=${csrf}`,
 				{
@@ -23,7 +22,6 @@ export const withCSRFProtect = <T>(handler: IApiHandler<T>) => {
 					}
 				}
 			).then((res) => {
-				console.log(res.status);
 				return res.status === 200;
 			});
 

@@ -104,7 +104,8 @@ const getEventPath = () => {
 const supportedOperations = {
 	start: 'start',
 	close: 'close',
-	forceClose: 'forceClose'
+	forceClose: 'forceClose',
+	closedByServer: 'closedByServer'
 } as const;
 export type SupportedOps = keyof typeof supportedOperations;
 

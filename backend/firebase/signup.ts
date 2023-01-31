@@ -46,7 +46,13 @@ const signUpForEmailNewsletter = async (
 					signedUpAt: new Date().getTime(),
 					subscribed: false
 				} as INewsletter)
-				.then(() => {
+				.then(async () => {
+					await auth
+						.getUserByEmail(email)
+						.then((user) => {
+							updateCustomClaims(user.uid, { subscriptionPending: true });
+						})
+						.catch(() => null);
 					return {
 						statusCode: 200,
 						message: 'Email successfully subscribed!',
@@ -79,9 +85,11 @@ const updateCustomClaims = async (
 					...existingClaims,
 					...claims
 				})
-				.then(() => ({
-					error: false
-				}));
+				.then(() => {
+					return {
+						error: false
+					};
+				});
 		})
 		.catch((err) => {
 			console.error(
@@ -137,15 +145,20 @@ const completeSubscription = async (
 	return collection
 		.where('email', '==', email)
 		.get()
-		.then((snapshot) => {
-			if (snapshot.empty)
+		.then(async (snapshot) => {
+			if (snapshot.empty) {
+				await updateCustomClaims(uid, { subscriptionPending: false });
 				return {
 					error: false,
 					statusCode: 204
 				};
+			}
 			const id = snapshot.docs.map((document) => document.id)[0];
 			return subscribeDocument(id, uid, 3).then((res) => {
-				updateCustomClaims(id, { newsletterSubscribed: true });
+				updateCustomClaims(uid, {
+					newsletterSubscribed: true,
+					subscriptionPending: false
+				});
 				return res;
 			});
 		})

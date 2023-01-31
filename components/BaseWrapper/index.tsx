@@ -1,220 +1,139 @@
 import { useAppDispatch } from '@/redux/hooks';
 import {
-	updateAuthState,
-	updateCloseReqd,
 	updateCsrfToken,
-	updateFingerPrint,
-	updateIDToken,
-	updateIsAdmin,
-	updateIsAdminOnline,
 	updatePopup,
-	updateUserEmail,
-	updateUserSignIn,
-	updateUserUid
+	updateUser
 } from '@/slices/navigation.slice';
 import React from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
 import { feFetch } from '@/utils/fe/fetch-utils';
-import { ADMIN_APIS, ANALYTICS_APIS, AUTH_APIS } from '@/utils/fe/apis/public';
-import { getGeoData } from '@/utils/fe/apis/analytics/geo';
-import { closeAnalytics } from '@/slices/navigation.slice';
 import { useAppSelector } from '@/redux/hooks';
-import {
-	User,
-	isSignInWithEmailLink,
-	onAuthStateChanged,
-	getAuth,
-	signInWithEmailLink
-} from 'firebase/auth';
-import { ref, getDatabase, set, onValue, off } from 'firebase/database';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
-import {
-	formAdminIsOnlinePath,
-	supportedOperations
-} from '@/firebase/constants';
+import { supportedOperations } from '@/firebase/constants';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
-import {
-	IFEStartSession,
-	IFEGeo,
-	IWSResult,
-	FEventData
-} from '@/interfaces/analytics';
+import { IWSResult, FEventData } from '@/interfaces/analytics';
 import { HELPER_APIS } from '../../utils/fe/apis/public';
-import { convertToFEData } from './utils';
+import { convertToFEData, handleURLLoginFlow, setOnlineStatus } from './utils';
+import { info } from '@/utils/dev-utils';
+import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 type Props = {
 	Component: JSX.Element;
 };
 
 // Higher order initiator component
 const auth = getAuth(app);
-const db = getDatabase(app);
-
-const updateAdminOnlineStatus = async (status = true) => {
-	const adminRefPath = formAdminIsOnlinePath();
-	const adminRef = ref(db, adminRefPath);
-	set(adminRef, status);
-};
-
-const setOnlineStatus = (isAdmin: boolean, visibility: boolean) => {
-	if (isAdmin) {
-		updateAdminOnlineStatus(visibility);
-	}
-};
 
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
 	const {
-		isAdmin,
 		userUid,
 		userEmail,
 		csrfToken,
+		isAdmin,
+		subscriptionPending,
+		idToken,
 		eventData,
 		workViewed,
 		blogViewed,
 		contactViewed,
 		projectsViewed,
 		awardsViewed,
-		videosViewed,
-		fingerprint
+		videosViewed
 	} = useAppSelector((state) => state.navigation);
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
 	});
 	const [socket, setSocket] = React.useState<WebSocket | null>(null);
+	const [firstPacketSent, setFirstPacketSent] = React.useState(false);
 
-	const startSession = React.useCallback(() => {
-		if (!isLoading && data && socket && csrfToken && !error) {
-			getGeoData().then((geo) => {
-				const body = convertToFEData({
-					uid: userUid,
-					email: userEmail,
-					geo,
-					fp: data,
-					csrfToken
-				});
-				const ecString = Buffer.from(
-					JSON.stringify({
-						headers: { csrf: csrfToken, actionType: supportedOperations.start },
-						body
-					})
-				).toString('base64');
-				socket.send(ecString);
-			});
-		}
-	}, [csrfToken, data, socket, error, isLoading, userEmail, userUid]);
-
-	const endSession = React.useCallback(() => {
-		if (fingerprint && socket && csrfToken) {
-			const body: FEventData = {
-				eventData: eventData ?? [],
-				key: fingerprint,
-				workViewed,
-				blogViewed,
-				contactViewed,
-				projectsViewed,
-				awardsViewed,
-				videosViewed,
-				uid: userUid,
-				email: userEmail
-			};
-			const ecString = Buffer.from(
-				JSON.stringify({
-					headers: { csrf: csrfToken, actionType: supportedOperations.close },
-					body
-				})
-			).toString('base64');
-			socket.send(ecString);
-		}
-	}, [
-		socket,
-		csrfToken,
-		eventData,
-		fingerprint,
-		awardsViewed,
-		blogViewed,
-		projectsViewed,
-		workViewed,
-		contactViewed,
-		videosViewed,
-		userUid,
-		userEmail
-	]);
-
-	React.useEffect(() => {
-		const socket = new WebSocket(HELPER_APIS.WEB_SOCKET);
-		setSocket(socket);
-		socket.onmessage = (message) => {
+	const initiateSocket = React.useCallback(() => {
+		if (socket) return;
+		info('Initiating Analytics');
+		const newSocket = new WebSocket(
+			`${HELPER_APIS.WEB_SOCKET}?csrf=${csrfToken}`
+		);
+		newSocket.onopen = (e) => {
+			info(`ASW Connected`, e);
+		};
+		newSocket.onclose = (e) => {
+			info(`ASW Disconnected`, e);
+		};
+		newSocket.onmessage = (message) => {
 			const result = JSON.parse(message.data) as IWSResult<unknown>;
+			console.log({ result });
 			switch (result.identifier) {
 				case supportedOperations.start: {
 					const fingerPrint = result.payload as string;
-					dispatch(updateFingerPrint(fingerPrint));
+					localStorage.setItem('fpp', fingerPrint);
+					break;
 				}
-				default: {
+				case supportedOperations.closedByServer: {
+					info('ASW Session Ended', result.message);
+					break;
 				}
 			}
 		};
-	}, [dispatch]);
-	const onVisibilityChange = React.useCallback(() => {
-		const isHidden = document.visibilityState === 'hidden';
-		setOnlineStatus(isAdmin, !isHidden);
-		if (!isHidden) startSession();
-		else if (isHidden) endSession();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		setSocket(newSocket);
+	}, [socket, csrfToken]);
 
+	// Create Web Socket
 	React.useEffect(() => {
-		feFetch<string>({
-			url: HELPER_APIS.CSRF_REST
-		}).then((res) => {
-			if (!res.error && res.json) {
-				dispatch(updateCsrfToken(res.json));
-			}
-		});
-	}, [dispatch]);
+		if (!socket && csrfToken && document.visibilityState !== 'hidden')
+			initiateSocket();
+	}, [initiateSocket, socket, csrfToken, dispatch]);
+
+	// Send the Socket Data When Connection is established
 	React.useEffect(() => {
-		onVisibilityChange();
-		document.addEventListener('visibilitychange', onVisibilityChange);
-		return () =>
-			document.removeEventListener('visibilitychange', onVisibilityChange);
-	}, [onVisibilityChange]);
-	const { idToken } = useAppSelector((state) => state.navigation);
-	const updateStoreIfSignedIn = React.useCallback(
-		(user: User) => {
-			const { email, uid } = user;
-			dispatch(updateUserSignIn(true));
-			if (email) dispatch(updateUserEmail(email));
-			dispatch(updateUserUid(uid));
-			user
-				.getIdToken()
-				.then((token) => dispatch(updateIDToken(token)))
-				.catch();
-		},
-		[dispatch]
-	);
+		if (!firstPacketSent && !isLoading && !error && data && csrfToken && socket) {
+			getGeoData()
+				.then((geo) => {
+					const body = convertToFEData({
+						uid: userUid,
+						email: userEmail,
+						geo,
+						fp: data,
+						csrfToken
+					});
+					const ecString = Buffer.from(
+						JSON.stringify({
+							headers: { csrf: csrfToken, actionType: supportedOperations.start },
+							body
+						})
+					).toString('base64');
+					console.log('ASW First Packet Sent');
+					socket.send(ecString);
+				})
+				.catch((error) => {
+					info('Unexpected Error Occured:- ' + error.message);
+					setFirstPacketSent(false);
+				});
+			setFirstPacketSent(true);
+		}
+	}, [
+		firstPacketSent,
+		error,
+		data,
+		isLoading,
+		csrfToken,
+		socket,
+		userEmail,
+		userUid
+	]);
+
+	// See if User is Signed In and Request CSRF Token
 	React.useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				updateStoreIfSignedIn(user);
-				dispatch(updateAuthState(false));
+				dispatch(updateUser(user));
 				return;
 			} else {
-				const isLoggedIn = isSignInWithEmailLink(auth, window.location.href);
-				dispatch(updateAuthState(false));
-				if (!isLoggedIn) return;
-				let email = window.localStorage.getItem('emailForSignIn');
-				if (!email) {
-					email = window.prompt('Please provide your email for confirmation');
-				}
-
-				if (!email) return;
-				signInWithEmailLink(auth, email, window.location.href)
+				handleURLLoginFlow()
 					.then((user) => {
 						if (user) {
-							updateStoreIfSignedIn(user.user);
-
+							dispatch(updateUser(user));
 							return;
 						}
 					})
@@ -232,44 +151,75 @@ export default function BaseComponent({ Component }: Props) {
 					});
 			}
 		});
-	}, [updateStoreIfSignedIn, dispatch]);
-
-	React.useEffect(() => {
-		const adminRefPath = formAdminIsOnlinePath();
-		const adminRef = ref(db, adminRefPath);
-		onValue(adminRef, async (snapshot) => {
-			if (snapshot.exists()) {
-				dispatch(updateIsAdminOnline(snapshot.val() ?? false));
+		// Request CSRF Token
+		feFetch<string>({
+			url: HELPER_APIS.CSRF_REST
+		}).then((res) => {
+			if (!res.error && res.json) {
+				dispatch(updateCsrfToken(res.json));
 			}
 		});
-		return () => {
-			off(adminRef);
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
+
+	// Set / Unset Admin Status
 	React.useEffect(() => {
-		if (idToken)
-			feFetch<boolean>({
-				url: `${ADMIN_APIS.ADMIN}`,
+		const adminStatusCallback = () => {
+			setOnlineStatus(isAdmin);
+			const isHidden = document.visibilityState === 'hidden';
+			if (isHidden) {
+				const fingerprint = localStorage.getItem('fpp');
+				if (!csrfToken || !fingerprint || !socket) return;
+				const body: FEventData = {
+					eventData: eventData ?? [],
+					key: fingerprint,
+					workViewed,
+					blogViewed,
+					contactViewed,
+					projectsViewed,
+					awardsViewed,
+					videosViewed,
+					uid: userUid,
+					email: userEmail
+				};
+				const ecString = Buffer.from(
+					JSON.stringify({
+						headers: { csrf: csrfToken, actionType: supportedOperations.close },
+						body
+					})
+				).toString('base64');
+				socket.send(ecString);
+				setFirstPacketSent(false);
+				setSocket(null);
+			} else {
+				if (!isHidden && !socket) {
+					initiateSocket();
+				}
+			}
+		};
+		document.addEventListener('visibilitychange', adminStatusCallback);
+		return () =>
+			document.removeEventListener('visibilitychange', adminStatusCallback);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [socket]);
+
+	// See if User has requested for newsletter subscription
+	React.useEffect(() => {
+		if (subscriptionPending && idToken) {
+			feFetch({
+				url: USER_APIS.SUBSCRIBE_NEWSLETTER,
+				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': 'Bearer ' + idToken
 				}
-			}).then((res) => {
-				if (res.json) {
-					dispatch(updateIsAdmin(res.json));
-					updateAdminOnlineStatus();
-				}
 			});
-		feFetch({
-			url: USER_APIS.SUBSCRIBE_NEWSLETTER,
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + idToken
-			}
-		});
-	}, [idToken, dispatch]);
+		}
+	}, [subscriptionPending, idToken]);
+
+	// Send Initial Analytics
+	React.useEffect(() => {}, []);
+
 	return (
 		<React.Fragment>
 			<Head>

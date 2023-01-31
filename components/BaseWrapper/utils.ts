@@ -1,5 +1,16 @@
+import { formAdminIsOnlinePath } from '@/firebase/constants';
 import { IFEGeo, IFEStartSession } from '@/interfaces/analytics';
+import app from '@/utils/fe/apis/services/firebase';
+import {
+	User,
+	getAuth,
+	isSignInWithEmailLink,
+	signInWithEmailLink
+} from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database';
 
+const auth = getAuth(app);
+const db = getDatabase(app);
 const convertToFEData = ({ uid, email, geo, fp }: IFEStartSession): IFEGeo => ({
 	uid,
 	email,
@@ -63,4 +74,30 @@ const convertToFEData = ({ uid, email, geo, fp }: IFEStartSession): IFEGeo => ({
 	fp_Visitor: fp?.visitorFound
 });
 
-export { convertToFEData };
+const handleURLLoginFlow = async (): Promise<void | User> => {
+	const isLoggedIn = isSignInWithEmailLink(auth, window.location.href);
+	if (!isLoggedIn) return;
+	let email = window.localStorage.getItem('emailForSignIn');
+	if (!email) {
+		email = window.prompt('Please provide your email for confirmation');
+	}
+	if (!email) return;
+	return signInWithEmailLink(auth, email, window.location.href).then(
+		(user) => user.user
+	);
+};
+
+// Set Admin Status
+const updateAdminOnlineStatus = async (status = true) => {
+	const adminRefPath = formAdminIsOnlinePath();
+	const adminRef = ref(db, adminRefPath);
+	set(adminRef, status);
+};
+
+const setOnlineStatus = (isAdmin: boolean) => {
+	const visibility = document.visibilityState === 'visible';
+	if (isAdmin) {
+		updateAdminOnlineStatus(visibility);
+	}
+};
+export { convertToFEData, handleURLLoginFlow, setOnlineStatus };

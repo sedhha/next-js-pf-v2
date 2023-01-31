@@ -4,8 +4,6 @@ import { IApiHandler } from '@/interfaces/api';
 import { auth } from '@/firebase/index';
 import { info } from '@/utils/dev-utils';
 
-const personalUid = 'dTYacphBekfOxAOcGYiGWHSYTCF2';
-
 export const withPersonalProtect = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
@@ -18,11 +16,15 @@ export const withPersonalProtect = <T>(handler: IApiHandler<T>) => {
 
 			const verified = await auth
 				.verifyIdToken(tokenValue)
-				.then((user) => user.uid)
+				.then((user) => user)
 				.catch((error) => {
 					console.error(error.message, error.code);
 				});
-			if (!verified || verified !== personalUid) return res.status(401).end();
+			if (!verified) return res.status(401).end();
+			const isAdmin = await auth
+				.getUser(verified.uid)
+				.then((user) => user?.customClaims?.admin ?? false);
+			if (!isAdmin) return res.status(401).end();
 			const result = await handler(req);
 			return res.status(result.statusCode ?? 200).json({
 				error: result.error ?? true,
