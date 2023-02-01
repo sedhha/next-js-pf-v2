@@ -13,23 +13,30 @@ export default function BlogCard({
 	date,
 	yt,
 	allowFullScreen,
-	overwriteImageClass
+	overwriteImageClass,
+	onCardClick
 }: InfiniteCardProps) {
 	return (
-		<div className={classes.Card}>
+		<div className={classes.Card} onClick={onCardClick}>
 			{yt ? (
 				<YTPlayer
-					videoID={img}
+					videoID={img as string}
 					title={title}
 					allowFullScreen={allowFullScreen}
 					containerClass={overwriteImageClass ?? classes.YTVideo}
 				/>
 			) : (
-				<LazyImage src={img} className={overwriteImageClass ?? classes.CardImage} />
+				<LazyImage
+					src={img ?? '/waiting.png'}
+					className={overwriteImageClass ?? classes.CardImage}
+				/>
 			)}
 			<div className={classes.BlogMetaData}>
 				<div className={classes.AuthorWithAvatar}>
-					<LazyImage src={avatarImg} className={classes.AvatarImage} />
+					<LazyImage
+						src={avatarImg ?? '/user.png'}
+						className={classes.AvatarImage}
+					/>
 					<h1>{avatarTitle}</h1>
 				</div>
 				<h2>{title}</h2>

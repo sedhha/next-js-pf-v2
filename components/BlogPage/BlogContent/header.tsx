@@ -3,7 +3,7 @@ import classes from './Header.module.css';
 
 interface IBlogHeader {
 	title: string;
-	featuredImage: string;
+	featuredImage?: string;
 	authorName: string;
 	excerpt: string;
 	authorUrl?: string;
@@ -20,11 +20,13 @@ const BlogHeader = ({
 			<div className={classes.headerDetails}>
 				<h1>{title}</h1>
 				<div className={classes.AvatarBox}>
-					<LazyImage
-						src={authorUrl ?? '/sample.png'}
-						className={classes.AvatarImage}
-						loadLazily
-					/>
+					{featuredImage ? (
+						<LazyImage
+							src={authorUrl ?? '/sample.png'}
+							className={classes.AvatarImage}
+							loadLazily
+						/>
+					) : null}
 					<h2>{authorName ?? 'Shivam Sahil'}</h2>
 				</div>
 				<p className={classes.Excerpt}>{excerpt}</p>

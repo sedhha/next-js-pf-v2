@@ -51,4 +51,51 @@ const blogWithCategoryAndIDQuery = `query($ids: [String]!) {
 }
 `;
 
-export { workExperienceQuery, blogWithCategoryAndIDQuery };
+const getBlogIdsByCategory = `query($categorySlug:String!) {
+  output: categoryCollection(where: { slug_contains: $categorySlug }) {
+    items {
+      linkedFrom {
+        output: blogCollection {
+          items {
+            sys {
+              id
+            }
+            
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+const getBlogsByIds = `query($ids: [String]!,$limit:Int!,$skip:Int!) {
+  output:blogCollection(where: { sys: { id_in: $ids } },limit:$limit,skip:$skip) {
+    total
+    items {
+      title
+      excerpt
+      publishDate
+      sys {
+        id
+      }
+      primaryImage @include(if: true) {
+        url
+      }
+      author {
+        avatar {
+          url
+        }
+        authorName
+      }
+    }
+  }
+}
+`;
+
+export {
+	workExperienceQuery,
+	blogWithCategoryAndIDQuery,
+	getBlogIdsByCategory,
+	getBlogsByIds
+};

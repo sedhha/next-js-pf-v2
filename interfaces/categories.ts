@@ -1,5 +1,5 @@
 export interface ICategoryArticles {
-	img: string;
+	img?: string;
 	authorImg: string;
 	authorName: string;
 	title: string;
@@ -9,13 +9,15 @@ export interface ICategoryArticles {
 }
 
 export interface InfiniteCardProps {
-	img: string;
-	avatarImg: string;
+	img?: string;
+	avatarImg?: string;
 	avatarTitle: string;
 	title: string;
 	excerpt: string;
 	date: string;
+	id: string;
 	yt?: boolean;
 	allowFullScreen?: boolean;
 	overwriteImageClass?: string;
+	onCardClick?: () => void;
 }

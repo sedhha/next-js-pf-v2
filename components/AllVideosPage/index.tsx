@@ -10,6 +10,7 @@ import classes from './Videos.module.css';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch } from '@/redux/hooks';
 import { updateActiveSection } from '@/slices/navigation.slice';
+import { useRouter } from 'next/router';
 
 const transformerFunction = (cards: IVideoContent[]): InfiniteCardProps[] =>
 	cards.map((card) => ({
@@ -20,7 +21,8 @@ const transformerFunction = (cards: IVideoContent[]): InfiniteCardProps[] =>
 		excerpt: card.excerpt,
 		date: stdDateFormatter(card.date),
 		yt: card.yt,
-		allowFullScreen: true
+		allowFullScreen: true,
+		id: card.id
 	}));
 
 const limit = 6;
@@ -28,6 +30,7 @@ const limit = 6;
 const VideoFunction = () => {
 	const [total, setTotal] = React.useState<number | null>(null);
 	const dispatch = useAppDispatch();
+	const router = useRouter();
 
 	React.useEffect(() => {
 		dispatch(updateActiveSection(attributes.Videos));
@@ -55,6 +58,7 @@ const VideoFunction = () => {
 			fetchDataCallback={fetchVideos}
 			overwriteContainerClass={classes.Container}
 			overwriteImageClass={classes.YTVideo}
+			onCardClick={(url) => router.push(`videos/${url}`)}
 		/>
 	);
 };

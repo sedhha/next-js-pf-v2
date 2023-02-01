@@ -7,7 +7,8 @@ export const PUBLIC_APIS = {
 	EVENTS: '/api/public/events',
 	TESTIMONIALS: '/api/public/testimonials',
 	TECH_STACK: '/api/public/tech-stack',
-	BLOG: '/api/public/blog'
+	BLOG: '/api/public/blog',
+	TITLE_BY_VIDEO_ID: '/api/public/title-by-video-id'
 };
 
 export const DB_APIS = {

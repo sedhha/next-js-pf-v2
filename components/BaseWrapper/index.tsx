@@ -41,7 +41,8 @@ export default function BaseComponent({ Component }: Props) {
 		csrfToken,
 		isAdmin,
 		subscriptionPending,
-		idToken
+		idToken,
+		darkMode
 	} = useAppSelector((state) => state.navigation);
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
@@ -241,8 +242,9 @@ export default function BaseComponent({ Component }: Props) {
 				<link rel="icon" href="/chat-icon.png" />
 				<link rel="apple-touch-icon" href="/chat-icon.png" />
 			</Head>
-
-			<Component.type {...Component.props} />
+			<div className={darkMode ? 'darkMode' : 'lightMode'}>
+				<Component.type {...Component.props} />
+			</div>
 			<Popup />
 		</React.Fragment>
 	);

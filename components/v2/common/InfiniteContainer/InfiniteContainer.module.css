@@ -16,6 +16,9 @@
     width: 0.15em;
 }
 
+.TakeOver {
+    flex: auto;
+}
 .Container::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
@@ -54,6 +57,11 @@
     padding: 2vh 1vw;
     background-color: var(--card-bg-color);
     transition: var(--fade-transition);
+    cursor: pointer;
+}
+
+.Card:hover {
+    scale: 0.98;
 }
 
 .CardImage {

@@ -109,6 +109,7 @@
 	--blog-content-color: var(--light-gray);
 	--post-excerpt-color: var(--dark-gray);
 	--markdown-generic-text-color: black;
+	--video-heading-color: black;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;
@@ -168,6 +169,7 @@
 	--blog-content-color: #313746;
 	--post-excerpt-color: var(--light-gray);
 	--markdown-generic-text-color: white;
+	--video-heading-color: white;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;

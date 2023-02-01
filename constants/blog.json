@@ -1,29 +1,29 @@
 {
 	"mainBlog": {
-		"mainCategory": "Automation",
-		"title": "Setting Up Startup Script on Windows 10 Server",
-		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/5JRUplrKPNg1kw0pCCNrDo/92833035562e8892b45d2f1702ca35dd/thumbnail-uipath-setup.png",
-		"postDate": "2022-02-22T00:00:00.000+05:30",
-		"id": "57ipaNewAcgnAjQsTKOja9",
-		"categoryID": "automation",
-		"excerpt": "UIPath is an amazing tool for doing UI based automations. It does support tons of processes and you can additionally add custom snippets using c# but what took my attention was it’s amazing and accurate support to ui Web Scrapping."
+		"mainCategory": "Robotics",
+		"title": "Invisible Talking Camera Using Python",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/6fBcxSKAVQ3OFbPkdXfZWr/2aeeeeaaa2cfc66c27c03275cf330da7/image.png",
+		"postDate": "2019-05-05T00:00:00.000+05:30",
+		"id": "5NCdethgGWdzylLaFMQPIQ",
+		"categoryID": "robotics",
+		"excerpt": "The Invisible talking camera uses Python OpenCV and pyttsx library in order to calibrate your background based on HSL thresholding.\nIt then performs bit wise operations background subtraction along with minor Gaussian Bluring and smoothening and segmentation to make you invisible in the frame!\nPyTTS is used to talk with your program to give basic inputs like initiating calibration, varying thresholds etc."
 	},
 	"relatedBlogs": [
 		{
-			"mainCategory": "Mechanical",
-			"title": "How Aircraft Industry Can Boom Indian Manufacturing Sector?",
-			"postDate": "2022-08-18T00:00:00.000+05:30",
-			"id": "5uQPqAz5Fjf5q8uF2QeUw1",
-			"categoryID": "mechanical",
-			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/5VrBtEIwaRDX2yEIYZ2M52/cf15b13ab5bdc9bb4518b24066ff6689/thumbnail-manufacturing-sector-in-india.png"
+			"mainCategory": "Mobile App Development",
+			"title": "Thriller StoryBook App in Flutter",
+			"postDate": "2019-07-31T00:00:00.000+05:30",
+			"id": "7GhgJZ0oLRPiOwysvO32bA",
+			"categoryID": "mobile-app-development",
+			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/4y55dG7U2XBVd2CmbvgNRK/0522c2a5a8cab09faf92ae218d4bf445/4-1-e1570947245316.jpg"
 		},
 		{
-			"mainCategory": "Life",
-			"title": "Modern Problem: Dopamine Toxification",
-			"postDate": "2021-06-12T00:00:00.000+05:30",
+			"mainCategory": "Automation",
+			"title": "UIPath Startup Script on Windows 10 Server",
+			"postDate": "2023-01-28T00:00:00.000+05:30",
 			"id": "3fNiHG2SY8Rtb792cxCI9J",
-			"categoryID": "life",
-			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/6Itymebe64yVRqDqbyAglz/1884d73fb57d1eeeaa70ab3ef5dcf2d4/thumbnail-dopamine-detox.png"
+			"categoryID": "automation",
+			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/5JRUplrKPNg1kw0pCCNrDo/92833035562e8892b45d2f1702ca35dd/thumbnail-uipath-setup.png"
 		}
 	]
 }

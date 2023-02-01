@@ -29,10 +29,10 @@ const BlogPost = () => {
 						content,
 						author: { authorName, avatar },
 						excerpt,
-						primaryImage: { url }
+						primaryImage
 					} = res.json;
 					setTitle(title);
-					setFeaturedImage(url);
+					primaryImage ? setFeaturedImage(primaryImage.url) : null;
 					setMarkdown(content);
 					setExcerpt(excerpt);
 					setAuthorName(authorName);

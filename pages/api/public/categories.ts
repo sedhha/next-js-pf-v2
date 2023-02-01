@@ -1,12 +1,12 @@
 import { NextApiRequest } from 'next';
-import categoryArticles from '@/constants/cms-constants/backend/category-articles.json';
 import { ICategoryArticles } from '@/interfaces/index';
 import { ITotal } from '@/interfaces/api';
 import { IApiHandler } from '@/interfaces/api';
 import { withApiHandler } from '@/middleware/withApiHandler';
 import { info } from '@/utils/dev-utils';
+import { queryBlogsByCategory } from '@/backend/contentful';
 
-const handler: IApiHandler<ITotal<ICategoryArticles>> = (
+const handler: IApiHandler<ITotal<ICategoryArticles>> = async (
 	req: NextApiRequest
 ) => {
 	const { limit, skip, category } = req.query;
@@ -15,27 +15,13 @@ const handler: IApiHandler<ITotal<ICategoryArticles>> = (
 			?.toString()
 			.padStart(2, '0')} | Skip:${skip?.toString().padStart(2, '0')} | ${req.url}`
 	);
-	const result = (
-		categoryArticles[
-			(category ?? '') as string as keyof typeof categoryArticles
-		] ?? []
-	)
-		.slice(+(skip ?? 0), +(skip ?? 0) + +(limit ?? 3))
-		.map((item) => ({
-			...item,
-			title: item.title + '-' + skip + '-' + (+(skip ?? 0) + +(limit ?? 0))
-		}));
-	const noData = result.length === 0;
-	return {
-		statusCode: noData ? 204 : 200,
-		json: {
-			items: result as ICategoryArticles[],
-			total: (
-				categoryArticles[
-					(category ?? '') as string as keyof typeof categoryArticles
-				] ?? []
-			).length
-		}
-	};
+	if (!category || isNaN(+(limit ?? '')) || isNaN(+(skip ?? '')))
+		return { statusCode: 200, json: { items: [], total: 0 } };
+
+	return queryBlogsByCategory(
+		category,
+		+(limit ?? 100) + +(skip ?? 0),
+		+(skip ?? 0)
+	).then((result) => ({ statusCode: 200, json: result }));
 };
 export default withApiHandler(handler);

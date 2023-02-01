@@ -17,7 +17,8 @@ const transformerFunction = (cards: ICategoryArticles[]): InfiniteCardProps[] =>
 		avatarTitle: card.authorName,
 		title: card.title,
 		excerpt: card.excerpt,
-		date: stdDateFormatter(card.date)
+		date: stdDateFormatter(card.date),
+		id: card.id
 	}));
 
 const limit = 10;
@@ -53,6 +54,7 @@ const CategoryFunction = () => {
 			limit={limit}
 			total={total}
 			fetchDataCallback={fetchArticles}
+			onCardClick={(url) => router.push(`/blogs/${category}/${url}`)}
 		/>
 	);
 };

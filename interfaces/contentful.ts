@@ -7,6 +7,21 @@ export interface IContentfulResponse<T> {
 	};
 }
 
+export interface ILinkedForm<T> {
+	linkedFrom: {
+		output: {
+			total?: number;
+			items: T[];
+		};
+	};
+}
+
+export interface IContentfulSys {
+	sys: {
+		id: string;
+	};
+}
+
 export interface IAuthor {
 	authorName: string;
 	bio: string;
@@ -35,7 +50,7 @@ export interface IContentfulBlog {
 	content: string;
 	author: IAuthor;
 	excerpt: string;
-	primaryImage: IContentfulImage;
+	primaryImage?: IContentfulImage;
 	categoriesCollection: IMultiItemResult<ICategories>;
 }
 
@@ -47,4 +62,11 @@ export interface ICFWorkExperience {
 	currentOrg: boolean;
 	image: IContentfulImage;
 	description: string;
+}
+export interface IContentfulBlogs extends IContentfulSys {
+	title: string;
+	excerpt: string;
+	publishDate: string;
+	primaryImage?: IContentfulImage;
+	author: IAuthor;
 }

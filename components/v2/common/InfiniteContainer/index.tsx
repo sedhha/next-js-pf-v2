@@ -17,6 +17,7 @@ interface IContainerProps {
 	total: number | null;
 	overwriteContainerClass?: string;
 	overwriteImageClass?: string;
+	onCardClick: (url: string) => void;
 }
 
 export default function InfiniteContainer({
@@ -27,7 +28,8 @@ export default function InfiniteContainer({
 	fetchDataCallback,
 	total,
 	overwriteContainerClass,
-	overwriteImageClass
+	overwriteImageClass,
+	onCardClick
 }: IContainerProps) {
 	const { darkMode } = useAppSelector((state) => state.navigation);
 	const [skip, setSkip] = React.useState(0);
@@ -66,11 +68,18 @@ export default function InfiniteContainer({
 			) : (
 				<InfiniteCardComponent
 					Component={
-						<div className={overwriteContainerClass ?? classes.Container}>
-							{loading && <Spinner />}
-							{cards.map((item, index) => (
-								<Card {...item} key={index} overwriteImageClass={overwriteImageClass} />
-							))}
+						<div className={classes.TakeOver}>
+							<div className={overwriteContainerClass ?? classes.Container}>
+								{loading && <Spinner />}
+								{cards.map((item, index) => (
+									<Card
+										{...item}
+										key={index}
+										overwriteImageClass={overwriteImageClass}
+										onCardClick={() => onCardClick?.(item.id)}
+									/>
+								))}
+							</div>
 						</div>
 					}
 					onReachedTopCallback={updateSkip}

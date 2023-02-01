@@ -2,14 +2,23 @@
 curl 'https://graphql.contentful.com/content/v1/spaces/eowwrv5buqcq/environments/master' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://033bad1b-c8e2-4ee5-b8f8-f4c19c33ca37.ctfcloud.net' -H 'Authorization: Bearer x6cYdXasSQZ7kU31GHsalXGJa1kZsVcWK2gQIRGrom4' --data-binary '{"query":"query($limit:Int!,$skip:Int!) {\n workExperienceCollection(limit:$limit,skip:$skip) {\n  items {\n    orgName\n    designation\n    startDate\n    currentOrg\n    image {\n      url\n    }\n    description\n  }\n}\n}","variables":{"limit":20,"skip":1}}' --compressed
 */
 import fetch from 'node-fetch';
-import { blogWithCategoryAndIDQuery, workExperienceQuery } from './query';
+import {
+	blogWithCategoryAndIDQuery,
+	getBlogIdsByCategory,
+	getBlogsByIds,
+	workExperienceQuery
+} from './query';
 import { ITotal } from '@/interfaces/api';
 import { IWork } from '@/interfaces/work';
 import {
 	ICFWorkExperience,
 	IContentfulBlog,
-	IContentfulResponse
+	IContentfulBlogs,
+	IContentfulResponse,
+	IContentfulSys,
+	ILinkedForm
 } from '@/interfaces/contentful';
+import { ICategoryArticles } from '@/interfaces/categories';
 
 const standarizeContentfulWorkExperience = (
 	data: IContentfulResponse<ICFWorkExperience>
@@ -101,4 +110,90 @@ const queryBlogWithCategoryAndID = async (
 	);
 };
 
-export { queryWorkExperience, queryBlogWithCategoryAndID };
+const queryBlogsByCategory = async (
+	categorySlug: string | string[],
+	limit: number,
+	skip: number
+): Promise<ITotal<ICategoryArticles>> => {
+	if (!process.env.CONTENTFUL_BASE_URL || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+		throw new Error(
+			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
+		);
+	}
+	const slug =
+		typeof categorySlug === 'string' ? categorySlug : categorySlug?.[0];
+	if (!slug || !slug?.length) return { total: 0, items: [] };
+
+	return fetch(process.env.CONTENTFUL_BASE_URL, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Connection': 'keep-alive',
+			'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
+		},
+		body: JSON.stringify({
+			query: getBlogIdsByCategory,
+			variables: {
+				categorySlug: slug.toLowerCase()
+			}
+		})
+	}).then((res) =>
+		res.json().then((data) => {
+			if (
+				!(data as IContentfulResponse<ILinkedForm<IContentfulSys>>).data.output
+					.items?.length
+			)
+				return { total: 0, items: [] };
+			const result = (data as IContentfulResponse<ILinkedForm<IContentfulSys>>)
+				.data.output.items[0];
+
+			const ids = result.linkedFrom.output.items.map((item) => item.sys.id);
+			return fetch(process.env.CONTENTFUL_BASE_URL as string, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json',
+					'Connection': 'keep-alive',
+					'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
+				},
+				body: JSON.stringify({
+					query: getBlogsByIds,
+					variables: {
+						ids,
+						limit,
+						skip
+					}
+				})
+			}).then((res) =>
+				res.json().then((data) => {
+					const result = (
+						data as IContentfulResponse<IContentfulBlogs>
+					).data.output.items.map(
+						(item) =>
+							({
+								img: item?.primaryImage?.url,
+								authorImg: item.author.avatar?.url,
+								authorName: item.author.authorName,
+								title: item.title,
+								excerpt: item.excerpt,
+								date: item.publishDate,
+								id: item.sys.id
+							} as ICategoryArticles)
+					);
+					return {
+						total:
+							(data as IContentfulResponse<IContentfulBlogs>).data.output.total ??
+							result.length,
+						items: result
+					};
+				})
+			);
+		})
+	);
+};
+export {
+	queryWorkExperience,
+	queryBlogWithCategoryAndID,
+	queryBlogsByCategory
+};
