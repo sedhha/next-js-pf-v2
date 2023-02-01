@@ -1,12 +1,12 @@
 import PostHeader from './header';
 import classes from './BlogContent.module.css';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw'; 
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { IContentfulBlog } from '@/interfaces/contentful';
-import { useAppDispatch } from '@/redux/hooks';
 
 const BlogPost = () => {
 	const router = useRouter();
@@ -51,7 +51,9 @@ const BlogPost = () => {
 				authorUrl={avatarUrl}
 			/>
 			<br />
-			<ReactMarkdown className={classes.Markdown}>{markdown}</ReactMarkdown>
+			<ReactMarkdown className={classes.Markdown} rehypePlugins={[rehypeRaw]}>
+				{markdown}
+			</ReactMarkdown>
 		</article>
 	);
 };
