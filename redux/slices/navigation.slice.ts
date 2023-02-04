@@ -31,7 +31,6 @@ export interface INavigationSlice {
 	activeSection: string; // Which Active Section is user surfing on?
 	showMore: boolean; // If header is visible in mobile devices or not
 	darkMode: boolean; // If the UI is in dark mode
-	activeBlogCategory: string; // We may move it to Blog Specific
 	mostPopularSelectedBlogId: string; // We may move it to Blog Specific
 	inChatMode: boolean;
 	popup: IPopup;
@@ -61,7 +60,6 @@ const initialState: INavigationSlice = {
 	activeSection: 'about',
 	showMore: false,
 	darkMode: false,
-	activeBlogCategory: 'web-development',
 	mostPopularSelectedBlogId: 'get-started-with-next-js',
 	inChatMode: false,
 	popup: {
@@ -109,12 +107,6 @@ export const navSlice = createSlice({
 		},
 		updateDarkMode: (state: INavigationSlice, action: PayloadAction<boolean>) => {
 			state.darkMode = action.payload;
-		},
-		updateActiveBlogCategory: (
-			state: INavigationSlice,
-			action: PayloadAction<string>
-		) => {
-			state.activeBlogCategory = action.payload;
 		},
 		updateMostPopularSelected: (
 			state: INavigationSlice,
@@ -210,7 +202,6 @@ export const {
 	updateActiveSection,
 	updateShowMore,
 	updateDarkMode,
-	updateActiveBlogCategory,
 	updateMostPopularSelected,
 	updateInChatMode
 } = navSlice.actions;

@@ -14,6 +14,7 @@ import {
 	ICFWorkExperience,
 	IContentfulBlog,
 	IContentfulBlogs,
+	IContentfulMainBlogPage,
 	IContentfulResponse,
 	IContentfulSys,
 	ILinkedForm
@@ -192,6 +193,12 @@ const queryBlogsByCategory = async (
 		})
 	);
 };
+
+// const queryAllByCategory = async (
+// 	category: string
+// ): Promise<IContentfulMainBlogPage> => {
+// 	const blogs = await queryBlogsByCategory(category, 7, 0);
+// };
 export {
 	queryWorkExperience,
 	queryBlogWithCategoryAndID,

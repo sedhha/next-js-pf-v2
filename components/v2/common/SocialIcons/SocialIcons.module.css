@@ -16,3 +16,11 @@
 .Icon:hover {
     scale: 0.9;
 }
+
+@media (max-aspect-ratio: 550 / 897) {
+	.SocialIcon {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        column-gap: 1vh;
+    }
+}

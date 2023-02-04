@@ -10,16 +10,15 @@ type Props = {
 	lastBuild: string;
 };
 export default function BlogPost({ lastBuild }: Props) {
-	const { darkMode } = useAppSelector((state) => state.navigation);
 	const dispatch = useAppDispatch();
 	React.useEffect(() => {
 		dispatch(updateActiveSection(attributes.Blog));
 	}, [dispatch]);
 	return (
-		<div className={darkMode ? 'darkMode' : 'lightMode'}>
+		<>
 			<Header />
 			<BlogContent />
 			<Footer lastBuild={lastBuild} />
-		</div>
+		</>
 	);
 }

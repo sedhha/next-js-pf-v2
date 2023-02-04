@@ -70,3 +70,18 @@ export interface IContentfulBlogs extends IContentfulSys {
 	primaryImage?: IContentfulImage;
 	author: IAuthor;
 }
+
+export interface IMainPageBlog {
+	mainCategory: string;
+	title: string;
+	featuredImage?: string;
+	postDate: string;
+	id: string;
+	categoryID: string;
+	excerpt: string;
+}
+
+export interface IContentfulMainBlogPage {
+	mainBlog: IMainPageBlog[];
+	relatedBlogs: IMainPageBlog[];
+}

@@ -110,6 +110,8 @@
 	--post-excerpt-color: var(--dark-gray);
 	--markdown-generic-text-color: black;
 	--video-heading-color: black;
+	--featured-blog-category-text: var(--light-blue);
+	--share-icon-color: black;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;
@@ -170,6 +172,8 @@
 	--post-excerpt-color: var(--light-gray);
 	--markdown-generic-text-color: white;
 	--video-heading-color: white;
+	--featured-blog-category-text: var(--light-blue);
+	--share-icon-color: white;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;

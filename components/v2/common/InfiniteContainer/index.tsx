@@ -31,7 +31,6 @@ export default function InfiniteContainer({
 	overwriteImageClass,
 	onCardClick
 }: IContainerProps) {
-	const { darkMode } = useAppSelector((state) => state.navigation);
 	const [skip, setSkip] = React.useState(0);
 	const [loading, setLoading] = React.useState(false);
 	const [cards, setCards] = React.useState<InfiniteCardProps[]>([]);
@@ -55,9 +54,7 @@ export default function InfiniteContainer({
 			.finally(() => setLoading(false));
 	}, [fetchDataCallback, skip]);
 	return (
-		<div
-			className={`${classes.WholeBody} ${darkMode ? 'darkMode' : 'lightMode'}`}
-		>
+		<div className={classes.WholeBody}>
 			{!includeHeader && <Header />}
 			<br />
 			<h1 className={classes.Heading}>

@@ -29,12 +29,12 @@
 	letter-spacing: 0.05em;
 }
 .TextWithSymbol > h1 {
-	font-size: small;
+	font-size: 1vmax;
 	letter-spacing: 0;
 	font-weight: 600;
 }
 .MyDetails > h2 {
-	font-size: small;
+	font-size: 1vmax;
 }
 
 .Icons {
@@ -48,7 +48,7 @@
 }
 
 .MailIcon {
-	font-size: small;
+	font-size: 2vmax;
 }
 
 .Subscribe {
@@ -67,7 +67,7 @@
 	font-style: 'Courier New', Courier, monospace;
 	font-style: normal;
 	font-weight: 400;
-	font-size: small;
+	font-size: 1vmax;
 	letter-spacing: 0.02em;
 	color: var(--footer-email-color);
 	transition: var(--fade-transition);
@@ -89,4 +89,19 @@
 	padding: 1vh 2vw;
 	font-size: clamp(0.5rem, 1.5vh, 16rem);
 	width: fit-content;
+}
+
+@media (max-aspect-ratio: 550 / 897) {
+	.MailIcon {
+		font-size: 4vmax;
+	}
+
+	.Subscribe {
+		justify-content: center;
+	}
+	.TextWithSymbol > h1,
+	.EmailInputField,
+	.MyDetails > h2 {
+		font-size: 1.2vmax;
+	}
 }

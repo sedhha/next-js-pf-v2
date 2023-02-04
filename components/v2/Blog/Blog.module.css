@@ -198,16 +198,31 @@
 	transition: var(--fade-transition);
 }
 
-.FeaturedBlogTitleSection > h3 {
+.FeaturedBlogTitleSection > div {
+	display: flex;
+	align-items: center;
+	column-gap: 0.5rem;
+	cursor: pointer;
+	transition: var(--fade-transition);
+}
+
+.FeaturedBlogTitleSection > div > h3 {
 	font-style: normal;
 	font-weight: 600;
 	font-size: 2vh;
 	letter-spacing: 0.05em;
-	color: var(--featured-blog-date-text);
+	color: var(--featured-blog-category-text);
 	transition: var(--fade-transition);
 	flex: auto;
 }
 
+.FeaturedBlogTitleSection > div:hover {
+	scale: 0.98;
+}
+.CategoryCircle {
+	height: 1.5vh;
+	background-color: var(--orange);
+}
 .FeaturedBlogTitleSection > h4 {
 	font-style: normal;
 	font-weight: 800;
@@ -247,7 +262,14 @@
 }
 
 .Icon {
+	margin-top: 2vh;
 	font-size: 4vh;
+	color: var(--share-icon-color);
+	transition: var(--fade-transition);
+}
+
+.Icon:hover {
+	scale: 0.95;
 }
 
 .ContentSection > div:nth-child(1) > div {
