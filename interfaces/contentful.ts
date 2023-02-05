@@ -85,3 +85,10 @@ export interface IContentfulMainBlogPage {
 	mainBlog: IMainPageBlog[];
 	relatedBlogs: IMainPageBlog[];
 }
+
+export type IPreRenderedResponse = IContentfulResponse<{
+	categoriesCollection: {
+		items: { slug: string }[];
+	};
+	sys: { id: string };
+}>;

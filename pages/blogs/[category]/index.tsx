@@ -1,5 +1,5 @@
+import { getRequiredPreRenderingBlogAndCategories } from '@/backend/contentful';
 import BlogCategoryPage from '@/components/BlogCategoryPage';
-import blogCategories from '@/constants/blog-categories.json';
 
 type Props = {
 	lastBuild: string;
@@ -16,10 +16,13 @@ export async function getStaticProps() {
 }
 
 export async function getStaticPaths() {
+	const { categories } = await getRequiredPreRenderingBlogAndCategories();
 	return {
-		paths: Object.keys(blogCategories).map((item) => ({
-			params: { category: item }
-		})),
+		paths: categories.map((item) => {
+			return {
+				params: { category: item }
+			};
+		}),
 		fallback: true
 	};
 }

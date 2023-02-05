@@ -1,7 +1,5 @@
+import { getRequiredPreRenderingBlogAndCategories } from '@/backend/contentful';
 import BlogPage from '@/components/BlogPage';
-import preGenerated from '@/constants/blog-pre-generated.json';
-
-const { blogCategoryCombination } = preGenerated;
 
 type Props = {
 	lastBuild: string;
@@ -17,8 +15,10 @@ export async function getStaticProps() {
 	};
 }
 export async function getStaticPaths() {
+	const { blogCategoryCombination } =
+		await getRequiredPreRenderingBlogAndCategories();
 	return {
-		paths: blogCategoryCombination.map((item) => ({ params: item })),
+		paths: blogCategoryCombination.map((item) => ({ params: { ...item } })),
 		fallback: true
 	};
 }

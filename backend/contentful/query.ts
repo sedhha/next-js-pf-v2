@@ -93,9 +93,35 @@ const getBlogsByIds = `query($ids: [String]!,$limit:Int!,$skip:Int!) {
 }
 `;
 
+const blogWithPreRendering = `query {
+  output: blogCollection(where:{preRenderContent:true}) {
+    items {
+      sys {
+        id
+      }
+     categoriesCollection {
+        items {
+          slug
+        }
+      }
+    }
+  }
+}`;
+
+const getAllCategories = `query {
+  output:categoryCollection {
+    items {
+      slug
+    }
+  }
+}
+`;
+
 export {
 	workExperienceQuery,
 	blogWithCategoryAndIDQuery,
 	getBlogIdsByCategory,
-	getBlogsByIds
+	getBlogsByIds,
+	blogWithPreRendering,
+	getAllCategories
 };

@@ -4,6 +4,8 @@ curl 'https://graphql.contentful.com/content/v1/spaces/eowwrv5buqcq/environments
 import fetch from 'node-fetch';
 import {
 	blogWithCategoryAndIDQuery,
+	blogWithPreRendering,
+	getAllCategories,
 	getBlogIdsByCategory,
 	getBlogsByIds,
 	workExperienceQuery
@@ -17,7 +19,8 @@ import {
 	IContentfulMainBlogPage,
 	IContentfulResponse,
 	IContentfulSys,
-	ILinkedForm
+	ILinkedForm,
+	IPreRenderedResponse
 } from '@/interfaces/contentful';
 import { ICategoryArticles } from '@/interfaces/categories';
 
@@ -194,13 +197,97 @@ const queryBlogsByCategory = async (
 	);
 };
 
-// const queryAllByCategory = async (
-// 	category: string
-// ): Promise<IContentfulMainBlogPage> => {
-// 	const blogs = await queryBlogsByCategory(category, 7, 0);
-// };
+const queryPreRenderBlogs = async (): Promise<IPreRenderedResponse> => {
+	if (!process.env.CONTENTFUL_BASE_URL || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+		throw new Error(
+			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
+		);
+	}
+
+	return fetch(process.env.CONTENTFUL_BASE_URL, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Connection': 'keep-alive',
+			'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
+		},
+		body: JSON.stringify({
+			query: blogWithPreRendering,
+			variables: null
+		})
+	}).then((res) =>
+		res.json().then((data) => {
+			return data as IPreRenderedResponse;
+		})
+	);
+};
+
+const queryAllCategories = async (): Promise<
+	IContentfulResponse<{ slug: string }>
+> => {
+	if (!process.env.CONTENTFUL_BASE_URL || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+		throw new Error(
+			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
+		);
+	}
+
+	return fetch(process.env.CONTENTFUL_BASE_URL, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Connection': 'keep-alive',
+			'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
+		},
+		body: JSON.stringify({
+			query: getAllCategories,
+			variables: null
+		})
+	}).then((res) =>
+		res.json().then((data) => {
+			return data as IContentfulResponse<{ slug: string }>;
+		})
+	);
+};
+
+const generateBlogCategoryIds = (
+	blogs: IPreRenderedResponse,
+	categories: IContentfulResponse<{ slug: string }>
+): {
+	categories: string[];
+	blogCategoryCombination: { blogID: string; category: string }[];
+} => {
+	const blogCategoryCombos: { blogID: string; category: string }[] = [];
+	blogs.data.output.items.forEach((blog) => {
+		blog.categoriesCollection.items.forEach((category) => {
+			blogCategoryCombos.push({ blogID: blog.sys.id, category: category.slug });
+		});
+	});
+	const categoryOnlyItems = categories.data.output.items.map(
+		(item) => item.slug
+	);
+
+	return {
+		categories: categoryOnlyItems,
+		blogCategoryCombination: blogCategoryCombos
+	};
+};
+
+const getRequiredPreRenderingBlogAndCategories = async (): Promise<{
+	categories: string[];
+	blogCategoryCombination: { blogID: string; category: string }[];
+}> => {
+	const [blogs, categoryResults] = await Promise.all([
+		queryPreRenderBlogs(),
+		queryAllCategories()
+	]);
+	const result = generateBlogCategoryIds(blogs, categoryResults);
+	return result;
+};
 export {
 	queryWorkExperience,
 	queryBlogWithCategoryAndID,
-	queryBlogsByCategory
+	queryBlogsByCategory,
+	getRequiredPreRenderingBlogAndCategories
 };
