@@ -1,5 +1,7 @@
 import { formAdminIsOnlinePath } from '@/firebase/constants';
 import { IFEGeo, IFEStartSession } from '@/interfaces/analytics';
+import { info } from '@/utils/dev-utils';
+import { HELPER_APIS } from '@/utils/fe/apis/public';
 import app from '@/utils/fe/apis/services/firebase';
 import {
 	User,
@@ -74,6 +76,41 @@ const convertToFEData = ({ uid, email, geo, fp }: IFEStartSession): IFEGeo => ({
 	fp_Visitor: fp?.visitorFound
 });
 
+function* newConnectionRequest(start = 0) {
+	let value = start;
+	while (true) {
+		value += 1;
+		yield value;
+	}
+}
+const g = newConnectionRequest();
+
+const getNewWSConnection = (url: string) => {
+	info(`[getNewWSConnection-${g.next().value}]: Trying to connect`);
+	return new WebSocket(url);
+};
+
+const maxRetriedConnections = async (
+	url: string,
+	maxRetries: number = 0,
+	maxWaitTimeoutInMillis: number = 500, // milliseconds of wait before next retry attempt
+	prevConnection: WebSocket | null = null
+): Promise<WebSocket> => {
+	const connection = prevConnection ? prevConnection : getNewWSConnection(url);
+	if (maxRetries <= 0) return connection; // Returns in whatever state it is currently
+
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			const socketInReadyState = connection.readyState;
+			if (socketInReadyState) {
+				info(`ASW Connected`, connection.readyState);
+				resolve(connection);
+			} else
+				return maxRetriedConnections(url, maxRetries - 1, maxWaitTimeoutInMillis);
+		}, maxWaitTimeoutInMillis);
+	});
+};
+
 const handleURLLoginFlow = async (): Promise<void | User> => {
 	const isLoggedIn = isSignInWithEmailLink(auth, window.location.href);
 	if (!isLoggedIn) return;
@@ -100,4 +137,10 @@ const setOnlineStatus = (isAdmin: boolean) => {
 		updateAdminOnlineStatus(visibility);
 	}
 };
-export { convertToFEData, handleURLLoginFlow, setOnlineStatus, adminRef };
+export {
+	convertToFEData,
+	handleURLLoginFlow,
+	setOnlineStatus,
+	adminRef,
+	maxRetriedConnections
+};

@@ -21,7 +21,8 @@ import {
 	convertToFEData,
 	handleURLLoginFlow,
 	setOnlineStatus,
-	adminRef
+	adminRef,
+	maxRetriedConnections
 } from './utils';
 import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
@@ -53,30 +54,28 @@ export default function BaseComponent({ Component }: Props) {
 	const initiateSocket = React.useCallback(() => {
 		if (socket) return;
 		info('Initiating Analytics');
-		const newSocket = new WebSocket(
-			`${HELPER_APIS.WEB_SOCKET}?csrf=${csrfToken}`
-		);
-		newSocket.onopen = (e) => {
-			info(`ASW Connected`, e.isTrusted);
-		};
-		newSocket.onclose = (e) => {
-			info(`ASW Disconnected`, e.isTrusted);
-		};
-		newSocket.onmessage = (message) => {
-			const result = JSON.parse(message.data) as IWSResult<unknown>;
-			switch (result.identifier) {
-				case supportedOperations.start: {
-					const fingerPrint = result.payload as string;
-					localStorage.setItem('fpp', fingerPrint);
-					break;
-				}
-				case supportedOperations.closedByServer: {
-					info('ASW Session Ended', result.message);
-					break;
-				}
+		maxRetriedConnections(`${HELPER_APIS.WEB_SOCKET}?csrf=${csrfToken}`, 3).then(
+			(newSocket) => {
+				newSocket.onclose = (e) => {
+					info(`ASW Disconnected`, e.isTrusted);
+				};
+				newSocket.onmessage = (message) => {
+					const result = JSON.parse(message.data) as IWSResult<unknown>;
+					switch (result.identifier) {
+						case supportedOperations.start: {
+							const fingerPrint = result.payload as string;
+							localStorage.setItem('fpp', fingerPrint);
+							break;
+						}
+						case supportedOperations.closedByServer: {
+							info('ASW Session Ended', result.message);
+							break;
+						}
+					}
+				};
+				setSocket(newSocket);
 			}
-		};
-		setSocket(newSocket);
+		);
 	}, [socket, csrfToken]);
 
 	// Create Web Socket
