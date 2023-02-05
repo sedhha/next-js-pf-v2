@@ -57,14 +57,13 @@ export default function BaseComponent({ Component }: Props) {
 			`${HELPER_APIS.WEB_SOCKET}?csrf=${csrfToken}`
 		);
 		newSocket.onopen = (e) => {
-			info(`ASW Connected`, e);
+			info(`ASW Connected`, e.isTrusted);
 		};
 		newSocket.onclose = (e) => {
-			info(`ASW Disconnected`, e);
+			info(`ASW Disconnected`, e.isTrusted);
 		};
 		newSocket.onmessage = (message) => {
 			const result = JSON.parse(message.data) as IWSResult<unknown>;
-			console.log({ result });
 			switch (result.identifier) {
 				case supportedOperations.start: {
 					const fingerPrint = result.payload as string;
@@ -104,7 +103,6 @@ export default function BaseComponent({ Component }: Props) {
 							body
 						})
 					).toString('base64');
-					console.log('ASW First Packet Sent');
 					socket.send(ecString);
 				})
 				.catch((error) => {
