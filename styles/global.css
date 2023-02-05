@@ -191,6 +191,12 @@ a {
 	text-decoration: none;
 }
 
+/* Markdown Global Styles */
+
+.md---italic-text {
+	font-style: italic;
+}
+
 /* Common Utilities */
 .NavigationButton {
 	cursor: pointer;
@@ -230,3 +236,4 @@ a {
 		--get-in-touch-input-font-size: 2vw;
 	}
 }
+
