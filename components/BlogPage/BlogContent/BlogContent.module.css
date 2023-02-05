@@ -60,6 +60,11 @@
     color: #666;
     text-align: center;
 }
+
+.AutoSize {
+	flex: auto;
+	height: 100%;
+}
 @media (min-width: 768px) {
 	.content {
 		padding: 4vh 4vw;

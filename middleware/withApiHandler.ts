@@ -6,6 +6,7 @@ export const withApiHandler = <T>(handler: IApiHandler<T>) => {
 	return async (req: NextApiRequest, res: NextApiResponse) => {
 		try {
 			const result = await handler(req);
+			if (result.statusCode === 204) return res.status(204).end();
 			return res.status(result.statusCode ?? 200).json({
 				error: result.error,
 				message: result.message,

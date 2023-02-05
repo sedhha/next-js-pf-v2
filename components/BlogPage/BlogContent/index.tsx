@@ -13,11 +13,11 @@ const BlogPost = () => {
 	const router = useRouter();
 	const { blogID, category } = router.query;
 	const [title, setTitle] = useState('Welcome to NEXT JS');
-	const [featuredImage, setFeaturedImage] = useState('/sample.png');
+	const [featuredImage, setFeaturedImage] = useState('/waiting.png');
 	const [markdown, setMarkdown] = useState('');
 	const [excerpt, setExcerpt] = useState('');
 	const [authorName, setAuthorName] = useState('');
-	const [avatarUrl, setAvatarUrl] = useState('/sample.png');
+	const [avatarUrl, setAvatarUrl] = useState('/chat-icon.png');
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -46,7 +46,9 @@ const BlogPost = () => {
 		}
 	}, [blogID, category]);
 	return loading ? (
-		<Spinner />
+		<div className={classes.AutoSize}>
+			<Spinner />
+		</div>
 	) : (
 		<article className={classes.content}>
 			<PostHeader

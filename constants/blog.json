@@ -1,6 +1,6 @@
 {
 	"mainBlog": {
-		"mainCategory": "Robotics",
+		"mainCategory": "IoT",
 		"title": "Invisible Talking Camera Using Python",
 		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/6fBcxSKAVQ3OFbPkdXfZWr/2aeeeeaaa2cfc66c27c03275cf330da7/image.png",
 		"postDate": "2019-05-05T00:00:00.000+05:30",
@@ -51,7 +51,7 @@
 			"mainCategory": "Mobile App Development",
 			"title": "Thriller StoryBook App in Flutter",
 			"postDate": "2019-07-31T00:00:00.000+05:30",
-			"id": "7GhgJZ0oLRPiOwysvO32bA",
+			"id": "4YMPrxuotjCLYKKeCYx5bk",
 			"categoryID": "mobile-app-development",
 			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/4y55dG7U2XBVd2CmbvgNRK/0522c2a5a8cab09faf92ae218d4bf445/4-1-e1570947245316.jpg"
 		},
@@ -59,7 +59,7 @@
 			"mainCategory": "Automation",
 			"title": "UIPath Startup Script on Windows 10 Server",
 			"postDate": "2023-01-28T00:00:00.000+05:30",
-			"id": "3fNiHG2SY8Rtb792cxCI9J",
+			"id": "57ipaNewAcgnAjQsTKOja9",
 			"categoryID": "automation",
 			"featuedImage": "https://images.ctfassets.net/eowwrv5buqcq/5JRUplrKPNg1kw0pCCNrDo/92833035562e8892b45d2f1702ca35dd/thumbnail-uipath-setup.png"
 		}
