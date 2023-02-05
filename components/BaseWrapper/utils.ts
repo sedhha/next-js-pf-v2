@@ -102,7 +102,7 @@ const maxRetriedConnections = async (
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			const socketInReadyState = connection.readyState;
-			console.log({ socketInReadyState });
+			info({ socketInReadyState });
 			if (socketInReadyState) {
 				info(`ASW Connected`, connection.readyState);
 				resolve(connection);
