@@ -93,7 +93,7 @@ const getNewWSConnection = (url: string) => {
 const maxRetriedConnections = async (
 	url: string,
 	maxRetries: number = 0,
-	maxWaitTimeoutInMillis: number = 500, // milliseconds of wait before next retry attempt
+	maxWaitTimeoutInMillis: number = 5000, // milliseconds of wait before next retry attempt
 	prevConnection: WebSocket | null = null
 ): Promise<WebSocket> => {
 	const connection = prevConnection ? prevConnection : getNewWSConnection(url);

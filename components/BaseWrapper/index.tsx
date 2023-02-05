@@ -80,8 +80,7 @@ export default function BaseComponent({ Component }: Props) {
 
 	// Create Web Socket
 	React.useEffect(() => {
-		if (!socket && csrfToken && document.visibilityState !== 'hidden')
-			initiateSocket();
+		if (!socket && csrfToken) initiateSocket();
 	}, [initiateSocket, socket, csrfToken, dispatch]);
 
 	// Send the Socket Data When Connection is established
