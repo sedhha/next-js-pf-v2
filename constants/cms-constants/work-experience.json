@@ -4,7 +4,7 @@
 		"designation": "Software Engineer",
 		"startDate": 1637433000000,
 		"current": true,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-uhg.jpg?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/79FlZqqOkBsll0fhhvlL7J/07835697b44e303b45d1111007c42dda/we-uhg.jpg",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -12,7 +12,7 @@
 		"designation": "Software Engineer",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-yoptima.png?raw=true",
+		"img": "https:/images.ctfassets.net/eowwrv5buqcq/6SJfeAoPI2n8Epy2Aztb5V/d7ab5da1e486b42ce6a15b1bb0edc19f/we-yoptima.png",
 		"description": "Working as a Software Engineer in Yoptima, My major focus was upon building scalable applications, analytics web dashboards and automated alert chat-bots.\nI worked in building AdCampaign Automation tools used in digital marketing to optimize performance of programmatic campaigns."
 	},
 	{
@@ -20,7 +20,7 @@
 		"designation": "Programming Mentor",
 		"startDate": 1561919400000,
 		"endDate": 1583087400000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-eckovation.png?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/1A0M1a8vEzxPt8zthaSBfi/bf5de549f03fa57b504c6012feec863d/we-eckovation.pn",
 		"description": "I started my journey in Eckovation as a solidworks CAD mentor and robotics instructor. I was responsible for designing assignment curriculum, holding doubt sessions and training students on variety of tech stack.\nLater I also became part of IoT, CAD modelling and programming mentorship."
 	}
 ]

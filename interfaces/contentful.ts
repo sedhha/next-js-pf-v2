@@ -92,3 +92,11 @@ export type IPreRenderedResponse = IContentfulResponse<{
 	};
 	sys: { id: string };
 }>;
+
+export interface IContentfulUploadImage {
+	url: string;
+	title: string;
+	description: string;
+	contentType: string;
+	fileName: string;
+}

@@ -7,7 +7,7 @@
 		"description": "As a team of 4, we built an integration with grab cab services to incorporate healthy conversations among drivers and customers.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/events/second-runner-up-grab.jpg?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/1cZ3EA8saASjgSjj5hsEMQ/88f25ac0966a635ce4db75c341f5b28f/most-unique-solution-grab.jpg"
 	},
 	{
 		"name": "HackForGood: Grab",
@@ -17,7 +17,7 @@
 		"description": "As a team of 4, we built an integration with grab cab services to incorporate healthy conversations among drivers and customers.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/most-unique-solution-grab.jpg?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/5jlULXHT1VJcU5rPVRPehb/603092e87e214544f2554151c3da6c29/second-runner-up-grab.jpg"
 	},
 	{
 		"name": "Principal Hack 2022",
@@ -27,7 +27,7 @@
 		"description": "In this Contest, I built a complete platform : Funfuse for SMBs and Individual talented solopreneurs, industry experts, and corporate mentors to connect, collaborate and grow mutually.",
 		"isAchievement": true,
 		"achievementType": "silver",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/principalHack.jpg?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/3dQElLTg3b8rtAHqOuUZw3/c28cc7c9a63983adb6545d5ae7dccb35/principalHack.jpg"
 	},
 	{
 		"name": "MegaHack 2022",
@@ -37,17 +37,17 @@
 		"description": "We in a team of 4 people built a Progressive Web App that acts as your digital identity and helps you find the opportunities available out there.",
 		"isAchievement": true,
 		"achievementType": "bronze",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/app-overview.gif?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/YoxRah6Mac9p657RhpOOy/51c9486079f67f57eab472ef9230600e/app-overview.gif"
 	},
 	{
-		"name": "UCW Blockchain Hacks 2021",
+		"name": "UCW Blockchain Hacks",
 		"date": 1619807400000,
 		"url": "https://devpost.com/software/banking-the-unbanked",
 		"title": "2 Time Winner (2021|22)",
 		"description": "I worked towards building a Blockchain server along with a middleware which scan user's facial expression and biometric data to create key value pair for provisioning all kinds of banking services.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/1IDf4Fddmu7uLY3I12NocB/f847d16f2cbe86cf02c58fdd1c82cf4b/uw_bc.jpg"
 	},
 	{
 		"name": "UIPath Innovation RPA Hack 2021",
@@ -56,9 +56,8 @@
 		"title": "Bright Idea Finalist",
 		"description": "I worked towards building an end to end UIPath automation for screening Resume files and generating scores using UIPath Orchestrator API, UIPath Studio, FAST API and React JS.",
 		"isAchievement": false,
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/intellipick.jpg?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/4r3NO2FkYWjuMTB85eeCR5/88a169a245106f2001432b65b1e435f5/intellipick.jpg"
 	},
-
 	{
 		"name": "Flutterthon 2020",
 		"date": 1588271400000,
@@ -67,7 +66,7 @@
 		"description": "I made a simple mobile app for geeks which would help them to share their skills and targets and based on their preferences, they will get a match and learn it together and make use of this pandemic time in a fun and productive way.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/flutterthon.jpg?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/A7nQDX9suFcX3NnFhndpu/08388fcff7961792bb91710a54b7161c/flutterthon.jpg"
 	},
 	{
 		"name": "Autodesk Designation",
@@ -77,7 +76,7 @@
 		"description": "Autodesk designathon is a global event which focuses and motivates designers and innovators all over the world to design feasible and economical product to solve real world problems.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/fusion360.jpg?raw=true"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/3JUsu9oRLJjdlJWzCqPHfZ/b192ed96537101a643ded43cf6baff88/fusion360.jpg"
 	},
 	{
 		"name": "PennApps XX",
@@ -87,7 +86,7 @@
 		"description": "We received the top 30 team qualifier award among 1200 participants from all around the globe.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/000/835/862/datas/gallery.jpg"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/2p84cmb8ttNbe7XHVWjvOu/5d1b8cf15d73b17cfa2fd11fd6e64dbc/gallery.jpg"
 	},
 	{
 		"name": "Hack Harvard",
@@ -97,7 +96,7 @@
 		"description": "We created a fully autonomous small bot, capable of performing overall field analysis, through real-time sensor data acquisition and implemented image processing algorithms to study the overall field conditions and obtain relevant information regarding the same.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/000/700/934/datas/gallery.jpg"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/4e7duNa6OhxHKiKeUq6iHj/e585204e2cc6e9e5abfb0b459a253e80/gallery.jpg"
 	},
 	{
 		"name": "Summer BioFest VIT",
@@ -107,7 +106,7 @@
 		"description": "We made a bio-inspired whegged robot which could move on any terrain and was actuated by a single motor. ",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://images.ctfassets.net/koz394rfdzxo/3JywSmL77n19BQjAvs1EBW/5aa8af00b6e403c99977058fe22a5d0f/biofest.jpg"
 	},
 	{
 		"name": "ASME Mechanical Conference",
@@ -117,7 +116,7 @@
 		"description": "We came up with the solutions for means of transport in snowy areas and reliable backup systems to use airbags in cars more efficiently.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://images.ctfassets.net/koz394rfdzxo/4PSNZY3D0Lg0wTFySW4WtY/56d8187402551131952884ef19ce4fce/mech_conf.jpg"
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/1whyKNdfHbSnhhPILSPFLh/8d630920504d55dcf0812c2bb03958ac/mech_conf.jpg"
 	},
 	{
 		"name": "ASME Reverse Engineering",
@@ -147,7 +146,7 @@
 		"description": "I received All India rank 28 in JMO which is a subjective type exam, and one of the biggest mathematics Olympiad conducted by KVS across all the Kendriya Vidyalaya throughout the country.",
 		"isAchievement": true,
 		"achievementType": "gold",
-		"img": "https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/events/uw_bc.jpg?raw=true"
+		"img": "https://images.ctfassets.net/koz394rfdzxo/38MiZYP1FjFo11QEVohmuI/168b40a549b5c048acd134da95c371aa/jmo.jpg"
 	},
 	{
 		"name": "Indian Rover Challenge - 2019",

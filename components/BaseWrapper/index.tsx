@@ -204,7 +204,7 @@ export default function BaseComponent({ Component }: Props) {
 				<meta
 					property="og:image"
 					itemProp="image primaryImageOfPage"
-					content="https://github.com/sedhha/gitpractice/blob/master/webpf/web/images/meta-image.jpg?raw=true"
+					content="https://images.ctfassets.net/eowwrv5buqcq/6YgXIvigHQmv2TyPxBDuWQ/3cd989a9bb4cf419fc1a5382e7ec365e/meta-image.jpg"
 				/>
 				<meta
 					name="description"

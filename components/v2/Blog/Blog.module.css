@@ -142,6 +142,7 @@
 .FeaturedBlogBody {
 	display: flex;
 	height: 90%;
+	overflow-x:hidden;
 }
 
 .Number {

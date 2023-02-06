@@ -53,7 +53,8 @@ export const USER_APIS = {
 
 export const ADMIN_APIS = {
 	ADMIN: '/api/admin',
-	CONTACT_FORMS: '/api/admin/forms'
+	CONTACT_FORMS: '/api/admin/forms',
+	UPLOAD_IMAGES: '/api/admin/import-images'
 };
 
 // FE Routes

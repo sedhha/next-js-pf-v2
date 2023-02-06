@@ -31,7 +31,7 @@ const VisibilityHandler = ({
 			}
 		};
 		checkVisibility();
-		window.addEventListener('scroll', checkVisibility);
+		window.addEventListener('scroll', checkVisibility, { passive: true });
 		return () => {
 			window.removeEventListener('scroll', checkVisibility);
 		};

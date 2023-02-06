@@ -4,7 +4,7 @@
 		"designation": "Software Engineer",
 		"startDate": 1637433000000,
 		"current": true,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-uhg.jpg?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/79FlZqqOkBsll0fhhvlL7J/07835697b44e303b45d1111007c42dda/we-uhg.jpg",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -12,15 +12,15 @@
 		"designation": "Software Engineer",
 		"startDate": 1578853800000,
 		"endDate": 1635618600000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-yoptima.png?raw=true",
+		"img": "https:/images.ctfassets.net/eowwrv5buqcq/6SJfeAoPI2n8Epy2Aztb5V/d7ab5da1e486b42ce6a15b1bb0edc19f/we-yoptima.png",
 		"description": "Working as a Software Engineer in Yoptima, My major focus was upon building scalable applications, analytics web dashboards and automated alert chat-bots.\nI worked in building AdCampaign Automation tools used in digital marketing to optimize performance of programmatic campaigns."
 	},
 	{
 		"org": "Eckovation",
 		"designation": "Programming Mentor",
-		"startDate": 1578853800000,
-		"endDate": 1635618600000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-eckovation.png?raw=true",
+		"startDate": 1561919400000,
+		"endDate": 1583087400000,
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/1A0M1a8vEzxPt8zthaSBfi/bf5de549f03fa57b504c6012feec863d/we-eckovation.pn",
 		"description": "I started my journey in Eckovation as a solidworks CAD mentor and robotics instructor. I was responsible for designing assignment curriculum, holding doubt sessions and training students on variety of tech stack.\nLater I also became part of IoT, CAD modelling and programming mentorship."
 	},
 	{
@@ -28,7 +28,7 @@
 		"designation": "Programming Instructor",
 		"startDate": 1654021800000,
 		"endDate": 1656613800000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-almabetter.png?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/4D6IEnbUxoTPZJ8DvsXBU5/0f9368678b15471dfc3eb031c2e415ee/we-almabetter.png",
 		"description": "I worked in Alma-better as a part time Web Development instructor to teach HTML, CSS and JavaScript concepts to non programming audience.\nThese include but not limited to JavaScript runtimes, basics of HTML, responsive design using CSS, media queries, container queries, grid, flexbox, asynchronous programming, etc."
 	},
 	{
@@ -36,7 +36,7 @@
 		"designation": "Freelancing Tutor",
 		"startDate": 1580495400000,
 		"endDate": 1625077800000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-transtutors.jpeg?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/6z9JqBIade9oCseiDcMzc7/d31a2e474a9a7944165cf998cf3d9ea5/we-transtutors.jpeg",
 		"description": "Working as a freelancing tutor, I was mainly involved in assisting students with their academics problem related to Mechanical Engineering, CAD, Mathematics and programming.\nI also recieved a 5 star feedback for my solutions and resolutions of the problems assigned by the students."
 	},
 	{
@@ -44,7 +44,7 @@
 		"designation": "SME - Mechanical Engineering",
 		"startDate": 1569868200000,
 		"endDate": 1593541800000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-chegg.jpeg?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/4IE8nUxRe2xgeotk9llUlT/f09f39776f6c98412809fae428a45c2a/we-chegg.jpeg",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
 	{
@@ -52,7 +52,7 @@
 		"designation": "Research and Development Intern",
 		"startDate": 1559327400000,
 		"endDate": 1561919400000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-drdo.jpeg?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/2aMiSxGwlRhaxdmfn0ILK8/314f44d95aa9fb7def3dfcd17c2e2480/we-drdo.jpeg",
 		"description": "As a Research and Development intern, I worked on Modelling, design, and simulation of the looped career gas system for analyzing the atmospheric gases to inspect its quality.\nThe designing was focused on optimizing the current Enatica gas analyzer with respect to its size and efficiency."
 	},
 	{
@@ -60,7 +60,7 @@
 		"designation": "IoT Developer",
 		"startDate": 1485887400000,
 		"endDate": 1561919400000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-teamroverx.jpeg?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/38tMXCd2OJZJO9Sd74CBtj/87ac70789cad97d863457b3dce947399/we-teamroverx.jpeg",
 		"description": "I joined Rover-X as a Mechanical Design engineer involved in creating Mechanical design of chassis, robotic arm, gripper, drill, etc.\nFor curiosity reasons, I then moved to IoT development where I was responsible for building Computer Vision sub-systems and IoT sensor board for variety of atmospheric investigations."
 	},
 	{
@@ -68,7 +68,7 @@
 		"designation": "Technical Team Member",
 		"startDate": 1477938600000,
 		"endDate": 1561919400000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-creation-labs.png?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/1JuO62kWfzwft2K1RE1lcx/9bd2f2f4d2236a9d30f13346a4926b0f/we-creation-labs.png",
 		"description": "As a part of creation labs, I worked in a lot of technical projects and also volunteered, organised and held technical events and hackathons supporitng creativity and innovation in STEM."
 	},
 	{
@@ -76,7 +76,7 @@
 		"designation": "Content Writer",
 		"startDate": 1556649000000,
 		"endDate": 1559327400000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-wrytin.png?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/78QzfkRyYBcUpAFiubnohW/5a63eec4f79e44ac0cf7c780062a8095/we-wrytin.png",
 		"description": "Apart from my strong passion towards technology, I am also very passionate about writing. During my initial days, I started my career as a content writer writing about numerous topics!"
 	},
 	{
@@ -84,7 +84,7 @@
 		"designation": "Aircraft Maintenance Trainee",
 		"startDate": 1556649000000,
 		"endDate": 1559327400000,
-		"img": "https://github.com/sedhha/next-js-pf-v2/blob/main/cdn-images/we/we-airindia.jpg?raw=true",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/2jCAYisg57kN1yD9iWeJKK/8536aea128a59f50bd256a96cad889ee/we-airindia.jpg",
 		"description": "I worked here in majorly assembly and maintenance of aircraft part. Due to the short duration I was able to get just an overview of different aspects of aircraft assembly.\nMy favourite part of all that happened in the internship was Non Destructive testing of the parts."
 	}
 ]

@@ -1,0 +1,6 @@
+.AdminContainer {
+    padding: 2vh 2vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5vh;
+}

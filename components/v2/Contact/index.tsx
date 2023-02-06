@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {
 	sendAnalytics,
+	updateInChatMode,
 	updatePopup,
 	updateUser,
 	updateUserEmail,
@@ -86,6 +87,7 @@ const Contact = () => {
 			if (email) dispatch(updateUserEmail(email));
 			dispatch(updateUserUid(uid));
 			dispatch(updateUser(user));
+			if (uid && email) dispatch(updateInChatMode(true));
 		},
 		[dispatch]
 	);
