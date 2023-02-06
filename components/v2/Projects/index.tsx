@@ -20,6 +20,7 @@ import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
 
+
 const limit = 3;
 const initialItems = projects.slice(0, limit);
 const Spinner = dynamic(() => import('@/v2/common/Spinner'));

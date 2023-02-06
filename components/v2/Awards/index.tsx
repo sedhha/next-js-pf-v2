@@ -18,6 +18,8 @@ import {
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
 import { updateActiveSection } from '@/slices/navigation.slice';
+import dynamic from 'next/dynamic';
+const Spinner = dynamic(() => import('@/v2/common/Spinner'));
 
 const limit = 6;
 const initialItems = events.slice(0, limit);
@@ -89,6 +91,7 @@ const Awards = () => {
 			}}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Awards}>
+					{loading && <Spinner />}
 					<h1 className={classes.H1Main}>Events and Participations</h1>
 					<div className={classes.WorkExperienceContainer}>
 						<SvgLeft
