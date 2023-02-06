@@ -49,10 +49,11 @@
 @media (max-width: 1200px) {
     .Container {
         padding: 1vh 0.5vw;
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
         grid-column-gap: 1vw;
         grid-row-gap: 1vh;
     }
+    
 }
 @media (max-width: 600px) {
     .Container {
@@ -61,8 +62,25 @@
         grid-column-gap: 1vw;
         grid-row-gap: 1vh;
     }
+    .YTVideo {
+        max-height: 15vh;
+        aspect-ratio:  var(--yt-video-aspect-ratio);
+        object-fit: cover;
+    }
 }
-
+@media (max-width: 400px) {
+    .Container {
+        padding: 1vh 0.5vw;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-column-gap: 1vw;
+        grid-row-gap: 1vh;
+    }
+    .YTVideo {
+        max-height: 8vh;
+        aspect-ratio:  var(--yt-video-aspect-ratio);
+        object-fit: cover;
+    }
+}
 @media (orientation: portrait) {
     .Container {
         max-height: 85vh;

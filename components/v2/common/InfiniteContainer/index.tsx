@@ -65,18 +65,16 @@ export default function InfiniteContainer({
 			) : (
 				<InfiniteCardComponent
 					Component={
-						<div className={classes.TakeOver}>
-							<div className={overwriteContainerClass ?? classes.Container}>
-								{loading && <Spinner />}
-								{cards.map((item, index) => (
-									<Card
-										{...item}
-										key={index}
-										overwriteImageClass={overwriteImageClass}
-										onCardClick={() => onCardClick?.(item.id)}
-									/>
-								))}
-							</div>
+						<div className={overwriteContainerClass ?? classes.Container}>
+							{loading && <Spinner />}
+							{cards.map((item, index) => (
+								<Card
+									{...item}
+									key={index}
+									overwriteImageClass={overwriteImageClass}
+									onCardClick={() => onCardClick?.(item.id)}
+								/>
+							))}
 						</div>
 					}
 					onReachedTopCallback={updateSkip}
