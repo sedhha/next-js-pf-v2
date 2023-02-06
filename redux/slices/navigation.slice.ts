@@ -59,7 +59,7 @@ export interface INavigationSlice {
 const initialState: INavigationSlice = {
 	activeSection: 'about',
 	showMore: false,
-	darkMode: false,
+	darkMode: true,
 	mostPopularSelectedBlogId: 'get-started-with-next-js',
 	inChatMode: false,
 	popup: {
