@@ -20,8 +20,10 @@ import {
 	BsTwitter,
 	BsYoutube,
 	BsGithub,
-	BsDiscord
+	BsDiscord,
+	BsStackOverflow
 } from 'react-icons/bs';
+import { SiDevpost } from 'react-icons/si';
 import { FiEdit } from 'react-icons/fi';
 interface IconProps extends IconBaseProps {
 	iconKey: string;
@@ -46,7 +48,9 @@ export const icons = {
 	BsGithub: 'BsGithub',
 	FiEdit: 'FiEdit',
 	BsTwitter: 'BsTwitter',
-	BsDiscord: 'BsDiscord'
+	BsDiscord: 'BsDiscord',
+	BsStackOverflow: 'BsStackOverflow',
+	SiDevpost: 'SiDevpost'
 } as const;
 
 export type IconKeys = keyof typeof icons;
@@ -91,6 +95,10 @@ export default function Icon({ iconKey, ...rest }: IconProps) {
 			return <BsTwitter {...rest} />;
 		case icons.BsDiscord:
 			return <BsDiscord {...rest} />;
+		case icons.BsStackOverflow:
+			return <BsStackOverflow {...rest} />;
+		case icons.SiDevpost:
+			return <SiDevpost {...rest} />;
 		default:
 			return <div>Component Not Found</div>;
 	}

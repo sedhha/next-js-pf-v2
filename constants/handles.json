@@ -38,5 +38,15 @@
 		"id": "BsDiscord",
 		"url": "https://discord.com/users/Spidey#3033",
 		"isSvg": true
+	},
+	{
+		"id": "BsStackOverflow",
+		"url": "https://stackoverflow.com/users/8176451/shivam-sahil",
+		"isSvg": true
+	},
+	{
+		"id": "SiDevpost",
+		"url": "https://devpost.com/sedhha",
+		"isSvg": true
 	}
 ]
