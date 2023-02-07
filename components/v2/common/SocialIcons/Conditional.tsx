@@ -8,14 +8,16 @@ interface IProps {
 	iconColorClass?: string;
 	socialHandles: ISocialHandles[];
 	openInNewTab?: boolean;
+	socialIconClass?: string;
 }
 export default function SocialIcons({
 	iconColorClass,
 	socialHandles,
-	openInNewTab
+	openInNewTab,
+	socialIconClass
 }: IProps) {
 	return (
-		<div className={classes.SocialIcon}>
+		<div className={socialIconClass ?? classes.SocialIcon}>
 			{socialHandles.map((icon) =>
 				icon.isSvg ? (
 					<Link key={icon.id} href={icon.url}>

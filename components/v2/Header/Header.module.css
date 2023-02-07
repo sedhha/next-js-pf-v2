@@ -120,6 +120,7 @@
 .ShowMoreIcon {
 	font-size: 2rem;
 	font-weight: 400;
+	color: var(--show-more-text-color);
 }
 
 @media (max-aspect-ratio: 550 / 897) {

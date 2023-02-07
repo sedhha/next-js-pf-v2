@@ -59,9 +59,11 @@
 	padding: 5vh 5vw;
 }
 
-.SocialIconTestimonial {
-	width: 100%;
-	margin: 0 auto;
+.SocialIconClass {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    justify-content: center;
 }
 
 .SocialIcon {

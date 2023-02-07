@@ -105,16 +105,15 @@ export default function Testimonials({}: Props) {
 								{cardItem.content.split('\n').map((line, index) => (
 									<p key={index}>{line}</p>
 								))}
-								<div className={classes.SocialIconTestimonial}>
-									<SocialIcons
-										iconColorClass={classes.SocialIcon}
-										socialHandles={cardItem.contact.map((item) => ({
-											id: item.identifier,
-											url: item.url,
-											isSvg: item.isSvg
-										}))}
-									/>
-								</div>
+								<SocialIcons
+									socialIconClass={classes.SocialIconClass}
+									iconColorClass={classes.SocialIcon}
+									socialHandles={cardItem.contact.map((item) => ({
+										id: item.identifier,
+										url: item.url,
+										isSvg: item.isSvg
+									}))}
+								/>
 							</div>
 						</div>
 						<SvgRight
