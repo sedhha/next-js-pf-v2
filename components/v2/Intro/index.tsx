@@ -15,7 +15,9 @@ const Intro = () => {
 				<section className={classes.BodyModule} id={attributes.About}>
 					<h1 className={classes.H1Main}>Artist By Birth, Engineer by Choice</h1>
 					<h2 className={classes.Intro}>
-						I am a <span>Full Stack Developer</span>
+						Give me TypeScript and I will
+						<br />
+						<span>re-create the world!</span>
 					</h2>
 					<div className={classes.ImageContainer}>
 						<div className={`${classes.Side} ${classes.Front}`}>
@@ -35,13 +37,13 @@ const Intro = () => {
 					</div>
 					<div className={classes.IntroPara}>
 						<h4>
-							Working as a full time software engineer, I specialize in FERN Stack. I
-							am also well versed with end to end application development, automated
-							data processes and pipelines, chatbots and microservices.
+							Found my ikigai in making and breaking things with TypeScript. I am well
+							versed with end to end application development, data processes and
+							pipelines, chatbots and microservices.
 						</h4>
 
 						<h4>
-							For me, the world is nothing more than a complex mathematical model
+							For me, the universe is nothing more than a complex mathematical model
 							embedded with tons of analytical functions and expressions which has been
 							programmed by the almighty god who is probably the greatest mathematician
 							and programmer of all time!
