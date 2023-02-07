@@ -15,6 +15,7 @@
 .LogoSection {
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 }
 
 .LogoSection > h1 {

@@ -21,11 +21,14 @@ const Header = () => {
 	const onChangeRoute = (url: string) => {
 		router.push(`/#${url}`);
 	};
+	const gotoHomeRoute = () => {
+		router.push(`/`);
+	};
 	const hiddenActiveElement = indexOfActiveElement > 2;
 
 	return (
 		<header className={classes.Header}>
-			<div className={classes.LogoSection}>
+			<div className={classes.LogoSection} onClick={gotoHomeRoute}>
 				<h1>Shivam Sahil</h1>
 				<LazyImage className={classes.LogoImage} src={'/morpankh.svg'} />
 			</div>
