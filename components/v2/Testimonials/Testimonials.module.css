@@ -59,6 +59,11 @@
 	padding: 5vh 5vw;
 }
 
+.SocialIconTestimonial {
+	width: 100%;
+	margin: 0 auto;
+}
+
 .SocialIcon {
 	font-size: 4vh;
 	color: var(--featured-blog-date-text);

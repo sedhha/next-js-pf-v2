@@ -391,5 +391,6 @@
 	.MetaDataElements > h3,
 	.MetaDataElements > h4 {
 		font-size: clamp(0.5rem, 3vw, 16rem);
+		color: var(--show-more-text-color);
 	}
 }

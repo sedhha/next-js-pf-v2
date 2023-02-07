@@ -112,6 +112,7 @@
 	--video-heading-color: black;
 	--featured-blog-category-text: var(--light-blue);
 	--share-icon-color: black;
+	--show-more-text-color: black;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;
@@ -174,6 +175,7 @@
 	--video-heading-color: white;
 	--featured-blog-category-text: var(--light-blue);
 	--share-icon-color: white;
+	--show-more-text-color: white;
 
 	font-family: 'Courier New', Courier, monospace;
 	scroll-behavior: smooth;

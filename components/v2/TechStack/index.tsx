@@ -138,34 +138,6 @@ export default function TechStack() {
 								</div>
 							</div>
 						))}
-						{cards.map((item, index) => (
-							<div className={classes.Card} key={index}>
-								<LazyImage src={`${item.thumbnail}?w=300&h=300&fit=thumb`} loadLazily />
-								<h4>{item.name}</h4>
-								<div className={classes.Rating}>
-									<Icon
-										iconKey={icons.AiFillStar}
-										is-active={item.rating > 0 ? 'true' : 'false'}
-									/>
-									<Icon
-										iconKey={icons.AiFillStar}
-										is-active={item.rating > 1 ? 'true' : 'false'}
-									/>
-									<Icon
-										iconKey={icons.AiFillStar}
-										is-active={item.rating > 2 ? 'true' : 'false'}
-									/>
-									<Icon
-										iconKey={icons.AiFillStar}
-										is-active={item.rating > 3 ? 'true' : 'false'}
-									/>
-									<Icon
-										iconKey={icons.AiFillStar}
-										is-active={item.rating > 4 ? 'true' : 'false'}
-									/>
-								</div>
-							</div>
-						))}
 					</div>
 					{cards.length === 0 && (
 						<Empty
