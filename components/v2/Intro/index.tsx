@@ -18,11 +18,20 @@ const Intro = () => {
 						I am a <span>Full Stack Developer</span>
 					</h2>
 					<div className={classes.ImageContainer}>
-						<LazyImage
-							src={'/intro-image.jpeg'}
-							className={classes.Image}
-							alt={'Shivam -Sahil: Developer'}
-						/>
+						<div className={`${classes.Side} ${classes.Front}`}>
+							<LazyImage
+								src={'/intro-image.jpg'}
+								className={classes.Image}
+								alt={'Shivam -Sahil: Developer'}
+							/>
+						</div>
+						<div className={`${classes.Side} ${classes.Back}`}>
+							<LazyImage
+								src={'/intro-image.jpeg'}
+								className={classes.Image}
+								alt={'Shivam -Sahil: Developer'}
+							/>
+						</div>
 					</div>
 					<div className={classes.IntroPara}>
 						<h4>
