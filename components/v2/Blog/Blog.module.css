@@ -23,8 +23,7 @@
 }
 
 .RelatedBlogCard img {
-	max-height: 30vh;
-	aspect-ratio: 1;
+	max-width: 20vw;
 	object-fit: cover;
 	object-position: center;
 }

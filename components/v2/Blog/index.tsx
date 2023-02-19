@@ -122,6 +122,7 @@ const Blog = () => {
 											loadLazily
 											src={numberedBlogs[rank].featuredImage ?? '/sample.png'}
 											className={classes.Img}
+											alt={numberedBlogs[rank].title}
 										/>
 										<div>
 											<SocialIcons

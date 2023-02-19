@@ -166,7 +166,7 @@ const ChatWindow = ({ uid, email, onExitChat }: Props) => {
 					) : (
 						<div className={classes.EmptyChatScreen}>
 							<div className={classes.AvatarWithImage}>
-								<LazyImage src={'/chat-icon.png'} />
+								<LazyImage src={'/chat-icon.png'} alt={'Admin-Chat-Avatar'} />
 								<Circle className={classes.Circle} />
 							</div>
 							<p>Send a message to get started!</p>
