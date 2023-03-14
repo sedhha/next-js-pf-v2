@@ -24,20 +24,12 @@
     padding: 1vh 0;
     position: relative;
 }
-.dropdown > h3 {
-    display: block;
-    font-family: 'Noto Sans Mono', monospace;
-    font-size: calc(0.25*var(--v3-standard-heading-font-size));
-    letter-spacing: 0.08rem;
-    font-weight: bold;
-
-}
 .options {
     display: none;
     flex-direction: column;
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 50%;
     z-index: 10;
     border: 1px solid #ccc;
     background: #f3f4f5;
@@ -46,13 +38,33 @@
 .dropdown:hover > .options {
     display: flex; 
 }
-.down, .dropdown > h3,.options > h3 {
-    color: var(--v3-standard-dark-theme-light-color);
-}
-
 .down {
     font-weight: bold;
     font-size: calc(0.25*var(--v3-standard-heading-font-size));
+}
+
+
+/*---------------------------- VisibleHeaders.tsx ------------------------------------*/
+.visibleHeaders {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1vw;
+    margin-left: 1vw;
+}
+
+/*---------------------------- Common.tsx ------------------------------------*/
+.dropdown > h3,.visibleHeaders > h2 {
+    display: block;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: calc(0.25*var(--v3-standard-heading-font-size));
+    letter-spacing: 0.08rem;
+    font-weight: bold;
+    color: var(--v3-standard-dark-theme-text-color);
+}
+
+.down, .dropdown > h3,.options > h3 {
+    color: var(--v3-standard-dark-theme-light-color);
 }
 
 
