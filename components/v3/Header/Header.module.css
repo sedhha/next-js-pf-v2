@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;500;600;700;800&display=swap');/*---------------------------- index.tsx ------------------------------------*/
+
+
+/*---------------------------- index.tsx ------------------------------------*/
+.Header {
+	width: 100vw;
+	padding: 1vh 2vw;
+	display: flex;
+	align-items: center;
+}
+
+.Header > h1 {
+	font-family: var(--v3-cursive-font);
+	font-size: var(--v3-standard-heading-font-size);
+	flex: auto;
+    color: var(--v3-standard-dark-theme-text-color);
+}
+/*---------------------------- Dropdown.tsx ------------------------------------*/
+.dropdown {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5vw;
+    cursor: pointer;
+    padding: 1vh 0;
+    position: relative;
+}
+.dropdown > h3 {
+    display: block;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: calc(0.25*var(--v3-standard-heading-font-size));
+    letter-spacing: 0.08rem;
+    font-weight: bold;
+
+}
+.options {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10;
+    border: 1px solid #ccc;
+    background: #f3f4f5;
+}
+
+.dropdown:hover > .options {
+    display: flex; 
+}
+.down, .dropdown > h3,.options > h3 {
+    color: var(--v3-standard-dark-theme-light-color);
+}
+
+.down {
+    font-weight: bold;
+    font-size: calc(0.25*var(--v3-standard-heading-font-size));
+}
+
+

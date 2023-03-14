@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;500&display=swap');
+
 :root {
 	/* Constant Colors */
 	--light-blue: #0aa1dd;
@@ -55,6 +58,15 @@
 	--icon-size: 3vh;
 	--tech-stack-title: 1.5vh;
 	--blog-content-color: var(--light-gray);
+
+	/* V3 Styles */
+	--v3-cursive-font: 'Satisfy', cursive;
+	--v3-standard-heading-font-size: clamp(2rem,4vw,16rem);
+	--v3-standard-font: 'Noto Sans Mono', monospace;
+	--v3-standard-dark-theme-text-color: white;
+	--v3-standard-dark-theme-light-color: #ccc;
+	/* V3 Styles */
+
 }
 .lightMode {
 	--logo-heading-color: var(--light-blue);
