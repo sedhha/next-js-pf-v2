@@ -15,6 +15,12 @@
 	flex: auto;
     color: var(--v3-standard-dark-theme-text-color);
 }
+
+.LogoImage {
+	width: clamp(3rem, 2.5vmax, 6rem);
+	aspect-ratio: 1;
+    margin-left: 3vw;
+}
 /*---------------------------- Dropdown.tsx ------------------------------------*/
 .dropdown {
     display: flex;
@@ -24,18 +30,32 @@
     padding: 1vh 0;
     position: relative;
 }
-.options {
+
+.optionsWithArrow {
     display: none;
-    flex-direction: column;
     position: absolute;
     top: 100%;
-    left: 50%;
+    left: 0;
     z-index: 10;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.arrow {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    clip-path: polygon(50% 50%, 0 100%, 100% 100%);
+}
+
+.options {
+    flex-direction: column;
     border: 1px solid #ccc;
     background: #f3f4f5;
 }
 
-.dropdown:hover > .options {
+.dropdown:hover > .optionsWithArrow {
     display: flex; 
 }
 .down {
@@ -49,8 +69,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    column-gap: 1vw;
-    margin-left: 1vw;
+    column-gap: 2vw;
+    margin-left: 2vw;
 }
 
 /*---------------------------- Common.tsx ------------------------------------*/
@@ -64,7 +84,7 @@
 }
 
 .down, .dropdown > h3,.options > h3 {
-    color: var(--v3-standard-dark-theme-light-color);
+    color: var(--v3-standard-dark-theme-text-color);
 }
 
 

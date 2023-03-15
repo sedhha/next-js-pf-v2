@@ -130,6 +130,10 @@
 	scroll-behavior: smooth;
 	background-color: var(--background-color);
 	transition: var(--fade-transition);
+
+	/*--------------------- V3 CSS --------------------*/
+	--v3-standard-dark-theme-text-color: black;
+	--v3-standard-dark-theme-light-color: #979797;
 }
 .darkMode {
 	--logo-heading-color: white;
