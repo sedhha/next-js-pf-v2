@@ -1,0 +1,15 @@
+.AnimateDown {
+    animation: slide-down 3s ease-in forwards;
+    /* Set the height of the container to 0 to start */
+    overflow: hidden;
+  }
+  
+  @keyframes slide-down {
+    0% {
+      max-height: 0;
+    }
+    100% {
+      max-height: 5000px; /* Set the height to auto to accommodate the children */
+    }
+  }
+  

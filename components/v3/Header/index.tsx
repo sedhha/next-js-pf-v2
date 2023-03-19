@@ -1,18 +1,18 @@
 import classes from './Header.module.css';
 import DropDown from './Dropdown';
 import VisibleHeaders from './VisibleHeaders';
-import LazyImage from '@/v2/common/LazyImage';
+import Logo from '@/v3/Header/Logo';
+import HangingRope from '@/v3/HangingRope';
 const Header = () => {
 	return (
 		<header className={classes.Header}>
-			<h1>Shivam Sahil.</h1>
+			<div className={classes.Title}>
+				<Logo />
+				<h1>Shivam Sahil.</h1>
+			</div>
 			<DropDown />
 			<VisibleHeaders />
-			<LazyImage
-				alt="Morpankh - Krishna"
-				className={classes.LogoImage}
-				src={'/morpankh.svg'}
-			/>
+			<HangingRope />
 		</header>
 	);
 };

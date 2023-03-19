@@ -1,0 +1,95 @@
+.container {
+	position: fixed;
+	top: 0;
+	right: 5vw;
+	z-index: 11;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transform-origin: top center;
+	animation: pendulum 1s ease-in-out infinite;
+}
+.rope {
+	height: 3vh;
+	width: 5px;
+	background-color: #875638;
+    border-radius: 1px;
+}
+
+.ropePulled {
+    animation: pullRopeAnimation 1s ease-in-out;
+}
+
+.bulb {
+	aspect-ratio: 1;
+	border-radius: 50%;
+	height: 20px;
+	background-color: rgba(255,255,186,1);
+    animation: sunset 1s ease-out infinite;
+    cursor:grab;
+}
+
+.bulb_dark {
+	aspect-ratio: 1;
+	border-radius: 50%;
+	height: 20px;
+	background-color: yellow;
+	box-shadow: 0 0 0 10px rgba(255, 255, 186, 0.8);
+    animation: sunrise 1s ease-out infinite;
+    cursor:grab;
+}
+
+
+@keyframes pullRopeAnimation {
+    0% {
+        height: 3vh;
+    }
+    50% {
+        height: 10vh;
+    }
+    100% {
+        height: 3vh;
+    }
+}
+
+@keyframes sunrise {
+	0% {
+		box-shadow: 0 0 0 0 rgba(255, 255, 186, 0.8);
+	}
+	100% {
+		box-shadow: 0 0 0 10px rgba(255, 255, 186, 0.8);
+	}
+}
+
+@keyframes sunset {
+	0% {
+		box-shadow: 0 0 0 10px rgba(86, 86, 86, 0.8);
+	}
+	100% {
+        box-shadow: 0 0 0 0 rgba(86, 86, 86, 0.8);
+	}
+}
+
+@keyframes pendulum {
+	0% {
+		transform: rotate(-5deg);
+	}
+	50% {
+		transform: rotate(5deg);
+	}
+	100% {
+		transform: rotate(-5deg);
+	}
+}
+
+@-webkit-keyframes pendulum {
+	0% {
+		transform: rotate(-15deg);
+	}
+	50% {
+		transform: rotate(15deg);
+	}
+	100% {
+		transform: rotate(-15deg);
+	}
+}
