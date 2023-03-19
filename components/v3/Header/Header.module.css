@@ -177,7 +177,7 @@
 	flex-direction: row;
 	align-items: center;
 	column-gap: 2vw;
-	margin-left: 2vw;
+	margin-right: 2vw;
 }
 
 /*---------------------------- Common.tsx ------------------------------------*/

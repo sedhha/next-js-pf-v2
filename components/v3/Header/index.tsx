@@ -10,8 +10,8 @@ const Header = () => {
 				<Logo />
 				<h1>Shivam Sahil.</h1>
 			</div>
-			<DropDown />
 			<VisibleHeaders />
+			<DropDown />
 			<HangingRope />
 		</header>
 	);
