@@ -1,15 +1,23 @@
 import LazyImage from '@/components/v2/common/LazyImage';
 import classes from './Header.module.css';
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 const Logo = () => {
+	const router = useRouter();
+	const gotoHomeRoute = () => {
+		router.push(`/`);
+	};
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const playAudio = () => {
 		const { current } = audioRef;
 		if (current) current.play();
 	};
-	const pauseAudio = () => {
+	const stopAudio = () => {
 		const { current } = audioRef;
-		if (current) current.pause();
+		if (current) {
+			current.pause();
+			current.currentTime = 0;
+		}
 	};
 	return (
 		<>
@@ -17,8 +25,9 @@ const Logo = () => {
 				alt="Morpankh - Krishna"
 				className={classes.LogoImage}
 				src={'/morpankh.svg'}
-				// onMouseEnter={playAudio}
-				// onMouseLeave={pauseAudio}
+				onMouseEnter={playAudio}
+				onMouseLeave={stopAudio}
+				onClick={gotoHomeRoute}
 			/>
 			<audio ref={audioRef} src="/chime-dust.wav" />
 		</>

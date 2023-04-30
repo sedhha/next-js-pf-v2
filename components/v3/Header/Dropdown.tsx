@@ -1,10 +1,28 @@
 import AnimateDown from '@/v3/AnimateDown';
 import classes from './Header.module.css';
 import { AiFillCaretDown } from 'react-icons/ai';
+import headerElements from '@/constants/headers.json';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/router';
 
 const DropDown = () => {
+	const router = useRouter();
+	const { activeSection } = useAppSelector((state) => state.navigation);
+	const onChangeRoute = (url: string) => {
+		router.push(`/#${url}`);
+	};
+	const indexOfActiveElement = headerElements.findIndex(
+		(item) => item.value === activeSection
+	);
+	const hiddenActiveElement = indexOfActiveElement > 4;
 	return (
-		<div className={classes.dropdown}>
+		<div
+			className={[
+				classes.dropdown,
+				classes.NoDecoration,
+				hiddenActiveElement ? classes.ActiveItem : null
+			].join(' ')}
+		>
 			<h3>More</h3>
 			<div className={classes.optionsWithArrow}>
 				<AnimateDown>
@@ -13,11 +31,19 @@ const DropDown = () => {
 							<section className={classes.arrow} />
 						</section>
 						<div className={classes.options}>
-							<h3>Contacts</h3>
-							<h3>Projects</h3>
-							<h3>Awards</h3>
-							<h3>Videos</h3>
-							<h3>Testimonials</h3>
+							{headerElements.map((element) => (
+								<h3
+									key={element.value}
+									className={
+										element.value === activeSection
+											? classes.ActiveDropDownElement
+											: undefined
+									}
+									onClick={() => onChangeRoute(element.value)}
+								>
+									{element.label}
+								</h3>
+							))}
 						</div>
 					</>
 				</AnimateDown>

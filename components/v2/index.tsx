@@ -19,7 +19,6 @@ export default function Index({ lastBuild }: Props) {
 	return (
 		<>
 			<Header />
-			<HeaderV2 />
 			<MobileNavigator />
 			<Intro />
 			<Work />

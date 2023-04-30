@@ -26,11 +26,17 @@ const Header = () => {
 	};
 	const hiddenActiveElement = indexOfActiveElement > 2;
 
+	console.log('Hidden active element-', hiddenActiveElement);
+
 	return (
 		<header className={classes.Header}>
 			<div className={classes.LogoSection} onClick={gotoHomeRoute}>
 				<h1>Shivam Sahil</h1>
-				<LazyImage className={classes.LogoImage} src={'/morpankh.svg'} />
+				<LazyImage
+					className={classes.LogoImage}
+					src={'/morpankh.svg'}
+					alt="Shivam Sahil | Developer - Morpankh Logo"
+				/>
 			</div>
 			<div className={classes.HeaderElements}>
 				{headerElements.map((element, index) => {

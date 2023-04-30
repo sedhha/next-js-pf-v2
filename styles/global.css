@@ -143,7 +143,7 @@
 	--logo-heading-color: white;
 	--header-element-color: white;
 	--intro-header-text-color: white;
-	--header-bg-color: var(--dark-blue);
+	--header-bg-color: var(--faded-dark-blue);
 	--toggle-switch-bg: black;
 	--toggle-switch: white;
 	--background-color: var(--faded-dark-blue);
@@ -201,6 +201,11 @@
 	scroll-behavior: smooth;
 	background-color: var(--background-color);
 	transition: var(--fade-transition);
+
+	/*--------------------- V3 CSS --------------------*/
+	--v3-standard-dark-theme-text-color: white;
+	--v3-standard-dark-theme-light-color: #979797;
+	--v3-sky-blue: var(--light-blue);
 }
 
 * {
