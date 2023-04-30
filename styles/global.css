@@ -50,6 +50,7 @@
 	--fade-transition: 0.3s ease-in all;
 	--send-buttoon-size: clamp(1.5rem, 2.5vw, 5rem);
 	--radio-button-max-size: clamp(0.5rem, 1.5vmin, 1.5rem);
+	--radio-container-max-width: clamp(3rem, 4vmax, 16rem);
 	--chat-avatar-size: 5vh;
 	--chat-directly-font-size: 2vw;
 	--send-button-size: 2vw;
