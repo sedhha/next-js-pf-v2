@@ -11,6 +11,7 @@
 	--dark-gray: #6c6767;
 	--faded-gray: rgba(255, 255, 255, 0.4);
 	--orange: #f27304;
+	--sunlight-orange: #ED732E;
 	--green: #05ff00;
 	--success-green: #66ac50;
 	--faded-purple: rgba(74, 69, 214, 0.74);
@@ -73,8 +74,8 @@
 	--header-element-color: black;
 	--intro-header-text-color: black;
 	--header-bg-color: white;
-	--toggle-switch-bg: rgba(255, 255, 0, 0.4);
-	--toggle-switch: #faff00;
+	--toggle-switch-bg: var(--sunlight-orange);
+	--toggle-switch: white;
 	--background-color: white;
 	--white-card-date-text-color: var(--dark-blue);
 	--white-card-description-text-color: black;
@@ -141,8 +142,8 @@
 	--header-element-color: white;
 	--intro-header-text-color: white;
 	--header-bg-color: var(--dark-blue);
-	--toggle-switch-bg: var(--faded-gray);
-	--toggle-switch: var(--dark-blue);
+	--toggle-switch-bg: var(--faded-dark-blue);
+	--toggle-switch: white;
 	--background-color: var(--faded-dark-blue);
 	--white-card-date-text-color: white;
 	--white-card-description-text-color: white;

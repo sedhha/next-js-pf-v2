@@ -31,3 +31,24 @@
 	translate: calc(clamp(5rem, 6vmax, 16rem) - 150%) -54%;
 	transition: 0.3s all ease-in;
 }
+
+.nightIcon,.dayIcon {
+	font-size: clamp(0.5rem, 5.5vw, 1.5rem);
+	position: absolute;
+	top: calc(50% - calc(clamp(0.5rem, 5.5vw, 1.5rem))/2);
+	display: none;
+	color: var(--toggle-switch);
+}
+
+.nightIcon {
+	right: 1rem;
+}
+
+.dayIcon {
+	left: 1rem;
+}
+
+.showSymbol {
+	display: block;
+	transition: 0.3s all ease-in;
+}
