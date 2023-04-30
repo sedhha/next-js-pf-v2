@@ -13,8 +13,10 @@ import { useAppDispatch } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
-import { onNewSectionView } from '@/slices/analytics.slice';
+import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
 import dynamic from 'next/dynamic';
+import clickActions from '@/constants/click-actions.json';
+
 const Spinner = dynamic(() => import('@/v2/common/Spinner'));
 
 const limit = 6;
@@ -63,6 +65,14 @@ const Awards = () => {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
+		dispatch(
+			onClickEvent({
+				attribute: next
+					? clickActions.awardsAndExperiencesNext
+					: clickActions.awardsAndExperiencesPrevious,
+				description: `Clicked On Awards And Experiences with next:${next} | limit:${limit} | skip:${skip}`
+			})
+		);
 		feFetch<ITotal<IEventAndParticipations>>({
 			url: `${PUBLIC_APIS.EVENTS}?limit=${limit}&skip=${current}`
 		})

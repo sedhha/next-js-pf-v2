@@ -7,5 +7,9 @@
 	"failedContactFormSubmission": "failedContactFormSubmission",
 	"projectsNext": "projectsNext",
 	"projectsPrevious": "projectsPrevious",
-	"cardDetails": "cardDetails"
+	"cardDetails": "cardDetails",
+	"awardsAndExperiencesNext": "awardsAndExperiencesNext",
+	"awardsAndExperiencesPrevious": "awardsAndExperiencesPrevious",
+	"awardCardDetails": "awardCardDetails",
+	"videoPlayEvent": "videoPlayEvent"
 }

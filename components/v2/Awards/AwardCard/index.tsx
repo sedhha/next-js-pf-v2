@@ -3,6 +3,9 @@ import classes from './AwardCard.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import { IEventAndParticipations } from '@/interfaces/events-and-participations';
 import { getMonthAndYearString } from '@/utils/date-utils';
+import { useAppDispatch } from '@/redux/hooks';
+import { onClickEvent } from '@/slices/analytics.slice';
+import clickActions from '@/constants/click-actions.json';
 
 type Props = {
 	alter: number;
@@ -23,6 +26,18 @@ const AwardCard = ({
 	title
 }: Props) => {
 	const altered = getAlterParam(alter);
+	const dispatch = useAppDispatch();
+	const onClick = () =>
+		dispatch(
+			onClickEvent({
+				attribute: clickActions.awardCardDetails,
+				description,
+				identifier1: title,
+				identifier2: url,
+				identifier3: name,
+				identifier4: description
+			})
+		);
 	return (
 		<div className={classes.AwardCard}>
 			<LazyImage src={img} className={classes.SideImage} loadLazily />
@@ -41,6 +56,7 @@ const AwardCard = ({
 							href={url}
 							target="_blank"
 							rel="noreferrer"
+							onClick={onClick}
 						>
 							View Achievement
 						</a>
