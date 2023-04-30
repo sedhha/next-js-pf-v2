@@ -3,6 +3,7 @@ import DropDown from './Dropdown';
 import VisibleHeaders from './VisibleHeaders';
 import Logo from '@/v3/Header/Logo';
 import HangingRope from '@/v3/HangingRope';
+import RadioToggle from '@/v3/RadioToggle';
 const Header = () => {
 	return (
 		<header className={classes.Header}>
@@ -13,6 +14,7 @@ const Header = () => {
 			<VisibleHeaders />
 			<DropDown />
 			<HangingRope />
+			<RadioToggle />
 		</header>
 	);
 };

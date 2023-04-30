@@ -49,6 +49,7 @@
 	--get-in-touch-input-font-size: 3vw;
 	--fade-transition: 0.3s ease-in all;
 	--send-buttoon-size: clamp(1.5rem, 2.5vw, 5rem);
+	--radio-button-max-size: clamp(0.5rem, 1.5vmin, 1.5rem);
 	--chat-avatar-size: 5vh;
 	--chat-directly-font-size: 2vw;
 	--send-button-size: 2vw;
@@ -142,7 +143,7 @@
 	--header-element-color: white;
 	--intro-header-text-color: white;
 	--header-bg-color: var(--dark-blue);
-	--toggle-switch-bg: var(--faded-dark-blue);
+	--toggle-switch-bg: black;
 	--toggle-switch: white;
 	--background-color: var(--faded-dark-blue);
 	--white-card-date-text-color: white;

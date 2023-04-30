@@ -93,3 +93,9 @@
 		transform: rotate(-15deg);
 	}
 }
+
+@media (min-width: 768px) {
+	.container {
+		display: none;
+	}
+}
