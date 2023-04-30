@@ -1,9 +1,8 @@
 .SwitchBoard {
-	width: var(--radio-container-max-width);
-	border-radius: 3vw;
+	width: 100px;
+	border-radius: 50px;
 	aspect-ratio: 2.5;
 	background-color: var(--toggle-switch-bg);
-	box-shadow: -2px 4px 12px -7px #000000;
 	position: relative;
 	cursor: pointer;
 	transition: var(--fade-transition);
@@ -12,7 +11,7 @@
 
 .SwitchBoard section {
 	border-radius: 50%;
-	width: var(--radio-button-max-size);
+	width: 30px;
 	aspect-ratio: 1;
 	background-color: var(--toggle-switch);
 	top:50%;
@@ -24,29 +23,30 @@
 }
 
 .off {
-	translate: calc(calc(var(--radio-container-max-width)/5) - calc(var(--radio-button-max-size)/2)) -54%;
+	translate: 5px -15px;
 	transition: 0.3s all ease-in;
 }
 
 .on {
-	translate: calc(calc(2*var(--radio-container-max-width))/3) -54%;
+	translate: 65px -15px;
 	transition: 0.3s all ease-in;
 }
 
 .nightIcon,.dayIcon {
-	font-size: var(--radio-button-max-size);
+	font-size: 30px;
 	position: absolute;
-	top: calc(50% - calc(var(--radio-button-max-size))/2);
+	top: 5px;
 	display: none;
 	color: var(--toggle-switch);
+	transition: 0.3s all ease-in;
 }
 
 .nightIcon {
-	right: calc(20% - calc(var(--radio-button-max-size))/2);
+	right: 10px;
 }
 
 .dayIcon {
-	left: calc(20% - calc(var(--radio-button-max-size))/2);
+	right: 60px;
 }
 
 .showSymbol {

@@ -196,3 +196,11 @@
 .options > h3 {
 	color: var(--v3-standard-dark-theme-text-color);
 }
+
+/*------------------------------- Media Queries ------------------------------*/
+
+@media (max-width: 420px) {
+	.visibleHeaders,.dropdown {
+		display: none;
+	}
+}
