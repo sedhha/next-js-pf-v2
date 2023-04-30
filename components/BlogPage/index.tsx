@@ -4,7 +4,7 @@ import Footer from '@/components/v2/Footer';
 import Header from '@/components/v2/Header';
 import BlogContent from './BlogContent';
 import attributes from '@/constants/header-attr.json';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 
 type Props = {
 	lastBuild: string;
@@ -12,7 +12,7 @@ type Props = {
 export default function BlogPost({ lastBuild }: Props) {
 	const dispatch = useAppDispatch();
 	React.useEffect(() => {
-		dispatch(updateActiveSection(attributes.Blog));
+		dispatch(onNewSectionView(attributes.Blog));
 	}, [dispatch]);
 	return (
 		<>

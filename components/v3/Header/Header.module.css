@@ -198,12 +198,17 @@
 }
 .visibleHeaders>h2:nth-child(n + 6) {
 	display: none;
+	transition: var(--fade-transition);
 }
 
 .ActiveItem {
 	color: var(--v3-standard-dark-theme-text-color);
 	text-decoration: underline;
 	text-underline-offset: 1vh;
+}
+.visibleHeaders>h2:hover {
+	cursor: pointer;
+	scale: 0.98;
 }
 
 

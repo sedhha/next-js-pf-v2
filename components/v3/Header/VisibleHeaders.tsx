@@ -4,13 +4,17 @@ import headerElements from '@/constants/headers.json';
 import { useAppSelector } from '@/redux/hooks';
 
 const VisibleHeaders = () => {
-	const { activeSection } = useAppSelector((state) => state.navigation);
+	const {
+		staticContent: {
+			navigations: { latestViewed }
+		}
+	} = useAppSelector((state) => state.analytics);
 	const router = useRouter();
 	const onChangeRoute = (url: string) => {
 		router.push(`/#${url}`);
 	};
 	const indexOfActiveElement = headerElements.findIndex(
-		(item) => item.value === activeSection
+		(item) => item.value === latestViewed
 	);
 	return (
 		<div className={classes.visibleHeaders}>

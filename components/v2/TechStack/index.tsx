@@ -6,18 +6,14 @@ import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import techStacks from '@/constants/cms-constants/tech-stacks.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import {
-	sendAnalytics,
-	updatePopup,
-	updateViewed
-} from '@/slices/navigation.slice';
+import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { ITotal } from '@/interfaces/api';
 import { ITechStack } from '@/interfaces/tech-stack';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import Spinner from '@/v2/common/Spinner';
 import Empty from '@/v2/common/Empty';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 
 export default function TechStack() {
 	const [search, setSearch] = React.useState('');
@@ -26,12 +22,6 @@ export default function TechStack() {
 	const [loading, setLoading] = React.useState(false);
 	const [cards, setCards] = React.useState(techStacks);
 	const [triggered, setTriggered] = React.useState(false);
-
-	const { techStackViewed } = useAppSelector((state) => state.navigation);
-
-	React.useEffect(() => {
-		if (techStackViewed) dispatch(sendAnalytics());
-	}, [techStackViewed, dispatch]);
 
 	const onReset = () => {
 		setCards([...techStacks]);
@@ -77,10 +67,7 @@ export default function TechStack() {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => {
-				dispatch(updateViewed('techStackViewed'));
-				dispatch(updateActiveSection(attributes.TechStack));
-			}}
+			onVisibleCallback={() => dispatch(onNewSectionView(attributes.TechStack))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.TechStack}>
 					<div className={classes.IntroHeader}>

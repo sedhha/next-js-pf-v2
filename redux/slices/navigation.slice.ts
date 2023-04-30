@@ -28,9 +28,7 @@ export const updateUser = createAsyncThunk('updateUser', async (user: User) => {
 // Define a type for the slice state
 export interface INavigationSlice {
 	// Global Frontend
-	activeSection: string; // Which Active Section is user surfing on?
 	showMore: boolean; // If header is visible in mobile devices or not
-	darkMode: boolean; // If the UI is in dark mode
 	mostPopularSelectedBlogId: string; // We may move it to Blog Specific
 	inChatMode: boolean;
 	popup: IPopup;
@@ -43,23 +41,11 @@ export interface INavigationSlice {
 	isAdmin: boolean;
 	isAdminOnline: boolean;
 	eventData?: IEventData[];
-
-	// Viewed Sections
-	workViewed: boolean;
-	blogViewed: boolean;
-	contactViewed: boolean;
-	projectsViewed: boolean;
-	awardsViewed: boolean;
-	videosViewed: boolean;
-	testimonialsViewed: boolean;
-	techStackViewed: boolean;
 }
 
 // Define the initial state using that type
 const initialState: INavigationSlice = {
-	activeSection: 'about',
 	showMore: false,
-	darkMode: true,
 	mostPopularSelectedBlogId: 'get-started-with-next-js',
 	inChatMode: false,
 	popup: {
@@ -70,43 +56,15 @@ const initialState: INavigationSlice = {
 	},
 	showPopup: false,
 	isAdmin: false,
-	isAdminOnline: false,
-	// viewed Sections
-	workViewed: false,
-	blogViewed: false,
-	contactViewed: false,
-	projectsViewed: false,
-	awardsViewed: false,
-	videosViewed: false,
-	testimonialsViewed: false,
-	techStackViewed: false
+	isAdminOnline: false
 };
-
-type ViewedKeys =
-	| 'workViewed'
-	| 'blogViewed'
-	| 'contactViewed'
-	| 'projectsViewed'
-	| 'awardsViewed'
-	| 'videosViewed'
-	| 'testimonialsViewed'
-	| 'techStackViewed';
 
 export const navSlice = createSlice({
 	name: 'navigation',
 	initialState,
 	reducers: {
-		updateActiveSection: (
-			state: INavigationSlice,
-			action: PayloadAction<string>
-		) => {
-			state.activeSection = action.payload;
-		},
 		updateShowMore: (state: INavigationSlice, action: PayloadAction<boolean>) => {
 			state.showMore = action.payload;
-		},
-		updateDarkMode: (state: INavigationSlice, action: PayloadAction<boolean>) => {
-			state.darkMode = action.payload;
 		},
 		updateMostPopularSelected: (
 			state: INavigationSlice,
@@ -145,12 +103,6 @@ export const navSlice = createSlice({
 		) => {
 			state.csrfToken = action.payload;
 		},
-		updateViewed: (
-			state: INavigationSlice,
-			action: PayloadAction<ViewedKeys>
-		) => {
-			state[action.payload] = true;
-		},
 		updateIsAdmin: (state: INavigationSlice, action: PayloadAction<boolean>) => {
 			state.isAdmin = action.payload;
 		},
@@ -165,8 +117,7 @@ export const navSlice = createSlice({
 			action: PayloadAction<string | undefined>
 		) => {
 			state.idToken = action.payload;
-		},
-		sendAnalytics: () => {}
+		}
 	},
 	extraReducers: (builder) => {
 		builder
@@ -189,19 +140,15 @@ export const navSlice = createSlice({
 });
 
 export const {
-	sendAnalytics,
 	hidePopup,
 	updatePopup,
-	updateViewed,
 	updateIsAdmin,
 	updateIsAdminOnline,
 	updateCsrfToken,
 	updateIDToken,
 	updateUserEmail,
 	updateUserUid,
-	updateActiveSection,
 	updateShowMore,
-	updateDarkMode,
 	updateMostPopularSelected,
 	updateInChatMode
 } = navSlice.actions;

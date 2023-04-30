@@ -5,13 +5,11 @@ import Circle from '@/v2/common/Circle';
 import dynamic from 'next/dynamic';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {
-	sendAnalytics,
 	updateInChatMode,
 	updatePopup,
 	updateUser,
 	updateUserEmail,
-	updateUserUid,
-	updateViewed
+	updateUserUid
 } from '@/slices/navigation.slice';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
@@ -25,7 +23,7 @@ import { regexExpressions } from '@/utils/regex-validators';
 import Spinner from '@/v2/common/Spinner';
 import app from '@/fe-client/firebase';
 import { getAuth, sendSignInLinkToEmail, User } from 'firebase/auth';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 const auth = getAuth(app);
@@ -75,11 +73,6 @@ const Contact = () => {
 	const [subject, setSubject] = React.useState('');
 	const [message, setMessage] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
-	const { contactViewed } = useAppSelector((state) => state.navigation);
-
-	React.useEffect(() => {
-		if (contactViewed) dispatch(sendAnalytics());
-	}, [contactViewed, dispatch]);
 
 	const updateStoreIfSignedIn = React.useCallback(
 		(user: User) => {
@@ -176,10 +169,7 @@ const Contact = () => {
 
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => {
-				dispatch(updateViewed('contactViewed'));
-				dispatch(updateActiveSection(attributes.Contact));
-			}}
+			onVisibleCallback={() => dispatch(onNewSectionView(attributes.Contact))}
 			Component={
 				<section className={classes.ContactForm} id={attributes.Contact}>
 					<h1>Wave a hello or want me to build something cool for you ?</h1>

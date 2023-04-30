@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import navigation from '@/slices/navigation.slice';
+import analytics from '@/slices/analytics.slice';
 
 export const store = configureStore({
 	reducer: {
-		navigation
+		navigation,
+		analytics
 	}
 });
 

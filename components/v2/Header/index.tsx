@@ -11,12 +11,17 @@ import { useRouter } from 'next/router';
 
 const Header = () => {
 	const dispatch = useAppDispatch();
-	const { showMore, activeSection } = useAppSelector(
-		(state) => state.navigation
-	);
+	const {
+		navigation: { showMore },
+		analytics: {
+			staticContent: {
+				navigations: { latestViewed }
+			}
+		}
+	} = useAppSelector((state) => state);
 	const router = useRouter();
 	const indexOfActiveElement = headerElements.findIndex(
-		(item) => item.value === activeSection
+		(item) => item.value === latestViewed
 	);
 	const onChangeRoute = (url: string) => {
 		router.push(`/#${url}`);
@@ -25,8 +30,6 @@ const Header = () => {
 		router.push(`/`);
 	};
 	const hiddenActiveElement = indexOfActiveElement > 2;
-
-	console.log('Hidden active element-', hiddenActiveElement);
 
 	return (
 		<header className={classes.Header}>
@@ -67,7 +70,7 @@ const Header = () => {
 							<h1
 								key={element.value}
 								className={
-									element.value === activeSection
+									element.value === latestViewed
 										? classes.ActiveDropDownElement
 										: undefined
 								}

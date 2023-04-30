@@ -9,15 +9,11 @@ import events from '@/constants/cms-constants/events-participations.json';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
 import { IEventAndParticipations } from '@/interfaces/events-and-participations';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import {
-	sendAnalytics,
-	updatePopup,
-	updateViewed
-} from '@/slices/navigation.slice';
+import { useAppDispatch } from '@/redux/hooks';
+import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 import dynamic from 'next/dynamic';
 const Spinner = dynamic(() => import('@/v2/common/Spinner'));
 
@@ -30,11 +26,6 @@ const Awards = () => {
 		React.useState<IEventAndParticipations[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
-	const awardsViewed = useAppSelector((state) => state.navigation.awardsViewed);
-	React.useEffect(() => {
-		if (awardsViewed) dispatch(sendAnalytics());
-	}, [awardsViewed, dispatch]);
-
 	const onPaginate = (next: boolean) => {
 		if (loading) {
 			dispatch(
@@ -85,10 +76,7 @@ const Awards = () => {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => {
-				dispatch(updateViewed('awardsViewed'));
-				dispatch(updateActiveSection(attributes.Awards));
-			}}
+			onVisibleCallback={() => dispatch(onNewSectionView(attributes.Awards))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Awards}>
 					{loading && <Spinner />}
