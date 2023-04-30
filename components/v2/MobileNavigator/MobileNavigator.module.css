@@ -16,6 +16,12 @@
 	border-bottom: 1.5px solid var(--light-gray);
 	transition: var(--fade-transition);
 	background-color: var(--background-color);
+	color: var(--v3-standard-dark-theme-text-color);
+	cursor: pointer;
+}
+
+.ShowMore > h1:hover {
+	scale: 0.98;
 }
 .ShowMore > h1[is-active='true'] {
 	transition: var(--fade-transition);

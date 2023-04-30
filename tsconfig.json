@@ -25,6 +25,7 @@
 			"@/redux/*": ["redux/tools/*"],
 			"@/utils/*": ["utils/*"],
 			"@/v2/*": ["components/v2/*"],
+			"@/v3/*": ["components/v3/*"],
 			"@/interfaces/*": ["interfaces/*"],
 			"@/hooks/*": ["hooks/*"],
 			"@/firebase/*": ["backend/firebase/*"],

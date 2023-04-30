@@ -6,6 +6,7 @@
 	position: relative;
 	cursor: pointer;
 	transition: var(--fade-transition);
+	display: none;
 }
 
 .SwitchBoard section {
@@ -51,4 +52,11 @@
 .showSymbol {
 	display: block;
 	transition: 0.3s all ease-in;
+}
+
+
+@media (max-width: 768px) {
+	.SwitchBoard {
+		display: block;
+	}
 }
