@@ -9,17 +9,14 @@ import workExperience from '@/constants/cms-constants/work-experience.json';
 import dynamic from 'next/dynamic';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { IWork } from '@/interfaces/work';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import {
-	sendAnalytics,
-	updatePopup,
-	updateViewed
-} from '@/slices/navigation.slice';
+import { useAppDispatch } from '@/redux/hooks';
+import { updatePopup } from '@/slices/navigation.slice';
 import { workDateFormatter } from '@/utils/date-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import clickActions from '@/constants/click-actions.json';
 
 const limit = 3;
 const initialItems = workExperience.slice(0, limit);
@@ -32,7 +29,6 @@ const Work = () => {
 	const [cardItems, setCardItems] = React.useState<IWork[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
-	const { workViewed } = useAppSelector((state) => state.navigation);
 
 	const onPaginate = (next: boolean) => {
 		if (loading) {
@@ -70,6 +66,14 @@ const Work = () => {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
+		dispatch(
+			onClickEvent({
+				attribute: next
+					? clickActions.workExperienceNext
+					: clickActions.workExperiencePrevious,
+				description: `Clicked On workExperience with next:${next} | limit:${limit} | skip:${skip}`
+			})
+		);
 		feFetch<ITotal<IWork>>({
 			url: `${PUBLIC_APIS.WORK_EXPERIENCE}?limit=${limit}&skip=${current}`
 		})
@@ -82,16 +86,11 @@ const Work = () => {
 			.finally(() => setLoading(false));
 	};
 
-	React.useEffect(() => {
-		if (workViewed) dispatch(sendAnalytics());
-	}, [workViewed, dispatch]);
-
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => {
-				dispatch(updateViewed('workViewed'));
-				dispatch(updateActiveSection(attributes.WorkExperience));
-			}}
+			onVisibleCallback={() =>
+				dispatch(onNewSectionView(attributes.WorkExperience))
+			}
 			Component={
 				<section className={classes.BodyModule} id={attributes.WorkExperience}>
 					{loading && <Spinner />}

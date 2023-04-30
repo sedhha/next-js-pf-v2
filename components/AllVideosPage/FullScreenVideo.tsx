@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Videos.module.css';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch } from '@/redux/hooks';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 import { useRouter } from 'next/router';
 import Header from '@/v2/Header';
 import YTPlayer from '@/v2/common/YTPlayer';
@@ -18,7 +18,7 @@ const VideoFunction = () => {
 	const [videoDetails, setVideoDetails] = React.useState<IVideoContent | null>();
 
 	React.useEffect(() => {
-		dispatch(updateActiveSection(attributes.Videos));
+		dispatch(onNewSectionView(attributes.Videos));
 	}, [dispatch]);
 
 	React.useEffect(() => {

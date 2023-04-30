@@ -1,13 +1,17 @@
 import React from 'react';
 import classes from './RadioToggle.module.css';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { updateDarkMode } from '@/slices/navigation.slice';
+import { onDarkModeTrigger } from '@/slices/analytics.slice';
 import { BsMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 
 export default function DarkModeToggle() {
 	const dispatch = useAppDispatch();
-	const setOn = (value: boolean) => dispatch(updateDarkMode(value));
-	const { darkMode } = useAppSelector((state) => state.navigation);
+	const setOn = (value: boolean) => dispatch(onDarkModeTrigger(value));
+	const {
+		staticContent: {
+			themes: { darkMode }
+		}
+	} = useAppSelector((state) => state.analytics);
 	return (
 		<div className={classes.SwitchBoard} onClick={() => setOn(!darkMode)}>
 			<BsMoonStarsFill

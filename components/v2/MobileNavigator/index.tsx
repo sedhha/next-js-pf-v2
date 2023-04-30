@@ -4,15 +4,21 @@ import classes from './MobileNavigator.module.css';
 import headerElements from '@/constants/headers.json';
 import Link from 'next/link';
 import { useAppDispatch } from '../../../redux/tools/hooks';
-import { updateActiveSection, updateShowMore } from '@/slices/navigation.slice';
+import { updateShowMore } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 
 const MobileNavigator = () => {
-	const { showMore, activeSection } = useAppSelector(
-		(state) => state.navigation
-	);
+	const {
+		navigation: { showMore },
+		analytics: {
+			staticContent: {
+				navigations: { latestViewed }
+			}
+		}
+	} = useAppSelector((state) => state);
 	const dispatch = useAppDispatch();
 	const onNavigationClick = (activeSection: string) => {
-		dispatch(updateActiveSection(activeSection));
+		dispatch(onNewSectionView(activeSection));
 		dispatch(updateShowMore(false));
 	};
 	return showMore ? (
@@ -21,7 +27,7 @@ const MobileNavigator = () => {
 				<Link href={'#' + element.value} key={element.value} scroll>
 					<h1
 						key={element.value}
-						is-active={`${activeSection === element.value}`}
+						is-active={`${latestViewed === element.value}`}
 						onClick={() => onNavigationClick(element.value)}
 					>
 						{element.label}

@@ -7,12 +7,16 @@ import { useRouter } from 'next/router';
 
 const DropDown = () => {
 	const router = useRouter();
-	const { activeSection } = useAppSelector((state) => state.navigation);
+	const {
+		staticContent: {
+			navigations: { latestViewed }
+		}
+	} = useAppSelector((state) => state.analytics);
 	const onChangeRoute = (url: string) => {
 		router.push(`/#${url}`);
 	};
 	const indexOfActiveElement = headerElements.findIndex(
-		(item) => item.value === activeSection
+		(item) => item.value === latestViewed
 	);
 	const hiddenActiveElement = indexOfActiveElement > 4;
 	return (
@@ -35,7 +39,7 @@ const DropDown = () => {
 								<h3
 									key={element.value}
 									className={
-										element.value === activeSection
+										element.value === latestViewed
 											? classes.ActiveDropDownElement
 											: undefined
 									}

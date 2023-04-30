@@ -27,6 +27,7 @@ import {
 import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { off, onValue } from 'firebase/database';
+import { setVisitorID } from '@/slices/analytics.slice';
 type Props = {
 	Component: JSX.Element;
 };
@@ -37,14 +38,20 @@ const auth = getAuth(app);
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
 	const {
-		userUid,
-		userEmail,
-		csrfToken,
-		isAdmin,
-		subscriptionPending,
-		idToken,
-		darkMode
-	} = useAppSelector((state) => state.navigation);
+		navigation: {
+			userUid,
+			userEmail,
+			csrfToken,
+			isAdmin,
+			subscriptionPending,
+			idToken
+		},
+		analytics: {
+			staticContent: {
+				themes: { darkMode }
+			}
+		}
+	} = useAppSelector((state) => state);
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
 	});
@@ -86,6 +93,7 @@ export default function BaseComponent({ Component }: Props) {
 	// Send the Socket Data When Connection is established
 	React.useEffect(() => {
 		if (!firstPacketSent && !isLoading && !error && data && csrfToken && socket) {
+			dispatch(setVisitorID(data.visitorId ?? 'unknown'));
 			getGeoData()
 				.then((geo) => {
 					const body = convertToFEData({
@@ -117,7 +125,8 @@ export default function BaseComponent({ Component }: Props) {
 		csrfToken,
 		socket,
 		userEmail,
-		userUid
+		userUid,
+		dispatch
 	]);
 
 	// See if User is Signed In and Request CSRF Token

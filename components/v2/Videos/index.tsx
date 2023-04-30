@@ -5,11 +5,7 @@ import VideoCard from './VideoCard';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import {
-	sendAnalytics,
-	updateViewed,
-	updateActiveSection
-} from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 import topVideos from '@/constants/cms-constants/featured-videos.json';
 import { useRouter } from 'next/router';
 
@@ -17,19 +13,11 @@ const { highlighted, top4 } = topVideos;
 
 const Videos = () => {
 	const dispatch = useAppDispatch();
-	const { videosViewed } = useAppSelector((state) => state.navigation);
 
 	const router = useRouter();
-
-	React.useEffect(() => {
-		if (videosViewed) dispatch(sendAnalytics());
-	}, [videosViewed, dispatch]);
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => {
-				dispatch(updateViewed('videosViewed'));
-				dispatch(updateActiveSection(attributes.Videos));
-			}}
+			onVisibleCallback={() => dispatch(onNewSectionView(attributes.Videos))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Videos}>
 					<section className={classes.FeaturedVideoSection}>

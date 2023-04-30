@@ -4,13 +4,13 @@ import LazyImage from '@/v2/common/LazyImage';
 import attributes from '@/constants/header-attr.json';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import { useAppDispatch } from '@/redux/hooks';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 
 const Intro = () => {
 	const dispatch = useAppDispatch();
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(updateActiveSection(attributes.About))}
+			onVisibleCallback={() => dispatch(onNewSectionView(attributes.About))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.About}>
 					<h1 className={classes.H1Main}>Artist By Birth, Engineer by Choice</h1>

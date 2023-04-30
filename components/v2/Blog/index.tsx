@@ -6,17 +6,17 @@ import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
 import { useDispatch } from 'react-redux';
 import {
-	sendAnalytics,
-	updateViewed,
-	updateActiveSection
-} from '@/slices/navigation.slice';
-import { useAppSelector } from '@/redux/hooks';
+	onClickSocialHandle,
+	onFeaturedBlogView,
+	onNewSectionView
+} from '@/slices/analytics.slice';
 import blogs from '@/constants/blog.json';
 import { useRouter } from 'next/router';
 import { FE_ROUTES } from '@/utils/fe/apis/public';
 import Circle from '@/v2/common/Circle';
 import { icons } from '@/v2/common/Icons';
 import { ISocialHandles } from '../../../interfaces/testimonials';
+import { useAppSelector } from '@/redux/hooks';
 
 const { mainBlog, relatedBlogs, rankedBlogs } = blogs;
 
@@ -28,7 +28,7 @@ const generateSocialIcons = (
 	blogID: string,
 	categoryID: string
 ): ISocialHandles[] => {
-	const url = `${originUrl}${categoryID}/${blogID}`;
+	const url = `${originUrl}/blogs/${categoryID}/${blogID}`;
 	const facebookShare = {
 		id: icons.FaFacebookF,
 		url: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
@@ -56,35 +56,74 @@ const generateSocialIcons = (
 
 const Blog = () => {
 	const dispatch = useDispatch();
-	const { blogViewed } = useAppSelector((state) => state.navigation);
+	const {
+		analytics: { visitorID },
+		navigation: { userUid }
+	} = useAppSelector((state) => state);
 	const router = useRouter();
 	const [rank, setRank] = React.useState(0);
 
 	const onChangeRank = (rank: number) => {
 		setRank(rank);
+		dispatch(
+			onFeaturedBlogView({
+				blog: {
+					category: numberedBlogs[rank].categoryID,
+					blogID: numberedBlogs[rank].id,
+					timesClicked: 1,
+					actionType: 'rank-navigate'
+				},
+				rank: `${rank}`
+			})
+		);
 	};
 
-	React.useEffect(() => {}, []);
+	const onClickShareIcon = (icon: ISocialHandles) =>
+		dispatch(
+			onClickSocialHandle({
+				url: icon.url,
+				category: numberedBlogs[rank].categoryID,
+				blogID: numberedBlogs[rank].id,
+				clickCount: 1,
+				socialHandle: icon.id,
+				fingerprint: visitorID,
+				userID: userUid
+			})
+		);
 
-	React.useEffect(() => {
-		if (blogViewed) {
-			//@ts-ignore
-			dispatch(sendAnalytics());
-		}
-	}, [dispatch, blogViewed]);
-
-	const onClickNavigate = (category: string, id: string) =>
+	const onClickNavigate = (category: string, id: string) => {
 		router.push(`${FE_ROUTES.CATEGORY_BLOG_COMBO}/${category}/${id}`);
+		dispatch(
+			onFeaturedBlogView({
+				blog: {
+					category: category,
+					blogID: id,
+					timesClicked: 1,
+					actionType: 'blog-navigate'
+				},
+				rank: `${rank}`
+			})
+		);
+	};
 
-	const onCategoryNavigate = (category: string) =>
+	const onCategoryNavigate = (category: string) => {
 		router.push(`${FE_ROUTES.CATEGORY_BLOG_COMBO}/${category}`);
+		dispatch(
+			onFeaturedBlogView({
+				blog: {
+					category: category,
+					blogID: 'category-only-navigate',
+					timesClicked: 1,
+					actionType: 'category-navigate'
+				},
+				rank: `${rank}`
+			})
+		);
+	};
 
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => {
-				dispatch(updateViewed('blogViewed'));
-				dispatch(updateActiveSection(attributes.Blog));
-			}}
+			onVisibleCallback={() => dispatch(onNewSectionView(attributes.Blog))}
 			Component={
 				<section className={classes.BlogBody} id={attributes.Blog}>
 					<div className={classes.BlogMain}>
@@ -130,6 +169,7 @@ const Blog = () => {
 													numberedBlogs[rank].id,
 													numberedBlogs[rank].categoryID
 												)}
+												onClick={onClickShareIcon}
 												openInNewTab
 												iconColorClass={classes.Icon}
 											/>

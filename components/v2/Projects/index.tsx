@@ -9,17 +9,12 @@ import projects from '@/constants/cms-constants/projects.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import dynamic from 'next/dynamic';
 import Card from '@/v2/common/Card';
-import {
-	sendAnalytics,
-	updateActiveSection,
-	updatePopup,
-	updateViewed
-} from '@/slices/navigation.slice';
+import { updatePopup } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
-
 
 const limit = 3;
 const initialItems = projects.slice(0, limit);
@@ -31,11 +26,6 @@ const Projects = () => {
 	const [cardItems, setCardItems] = React.useState<IProject[]>(initialItems);
 	const [loading, setLoading] = React.useState(false);
 	const dispatch = useAppDispatch();
-	const { projectsViewed } = useAppSelector((state) => state.navigation);
-
-	React.useEffect(() => {
-		if (projectsViewed) dispatch(sendAnalytics());
-	}, [dispatch, projectsViewed]);
 
 	const onPaginate = (next: boolean) => {
 		if (loading) {
@@ -86,10 +76,7 @@ const Projects = () => {
 	};
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => {
-				dispatch(updateViewed('projectsViewed'));
-				dispatch(updateActiveSection(attributes.Projects));
-			}}
+			onVisibleCallback={() => dispatch(onNewSectionView(attributes.Projects))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.Projects}>
 					{loading && <Spinner />}

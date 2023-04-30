@@ -9,7 +9,7 @@ import { IVideoContent } from '../../interfaces/videos';
 import classes from './Videos.module.css';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch } from '@/redux/hooks';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 import { useRouter } from 'next/router';
 
 const transformerFunction = (cards: IVideoContent[]): InfiniteCardProps[] =>
@@ -33,7 +33,7 @@ const VideoFunction = () => {
 	const router = useRouter();
 
 	React.useEffect(() => {
-		dispatch(updateActiveSection(attributes.Videos));
+		dispatch(onNewSectionView(attributes.Videos));
 	}, [dispatch]);
 
 	const fetchVideos = React.useCallback(

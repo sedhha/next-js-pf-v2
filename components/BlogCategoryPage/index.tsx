@@ -7,7 +7,7 @@ import { PUBLIC_APIS } from '@/utils/fe/apis/public';
 import { ITotal } from '@/interfaces/api';
 import { stdDateFormatter } from '@/utils/date-utils';
 import { useAppDispatch } from '@/redux/hooks';
-import { updateActiveSection } from '@/slices/navigation.slice';
+import { onNewSectionView } from '@/slices/analytics.slice';
 import attributes from '@/constants/header-attr.json';
 
 const transformerFunction = (cards: ICategoryArticles[]): InfiniteCardProps[] =>
@@ -30,7 +30,7 @@ const CategoryFunction = () => {
 	const [total, setTotal] = React.useState<number | null>(null);
 
 	React.useEffect(() => {
-		dispatch(updateActiveSection(attributes.Blog));
+		dispatch(onNewSectionView(attributes.Blog));
 	}, [dispatch]);
 
 	const fetchArticles = React.useCallback(
