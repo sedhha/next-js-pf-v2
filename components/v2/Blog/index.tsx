@@ -28,7 +28,7 @@ const generateSocialIcons = (
 	blogID: string,
 	categoryID: string
 ): ISocialHandles[] => {
-	const url = `${originUrl}/blogs/${categoryID}/${blogID}`;
+	const url = `${originUrl}blogs/${categoryID}/${blogID}`;
 	const facebookShare = {
 		id: icons.FaFacebookF,
 		url: `https://www.facebook.com/sharer/sharer.php?u=${url}`,

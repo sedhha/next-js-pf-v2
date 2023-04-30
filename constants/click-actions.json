@@ -1,4 +1,8 @@
 {
 	"workExperienceNext": "workExperienceNext",
-	"workExperiencePrevious": "workExperiencePrevious"
+	"workExperiencePrevious": "workExperiencePrevious",
+	"authenticateAndChat": "authenticateAndChat",
+	"unauthenticatedAndChat": "unauthenticatedAndChat",
+	"successContactFormSubmission": "successContactFormSubmission",
+	"failedContactFormSubmission": "failedContactFormSubmission"
 }

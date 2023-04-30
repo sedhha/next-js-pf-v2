@@ -55,12 +55,21 @@ interface IBlogViews {
 	shouldSend: boolean;
 }
 
+interface IContactFormTrigger {
+	name?: string;
+	email?: string;
+	subject?: string;
+	message?: string;
+	shouldSend: boolean;
+}
+
 type StaticContent = {
 	navigations: INavigations;
 	themes: IThemeInteractions;
 	sounds: ISoundInteractions;
 	clicks: Record<ClickActionAttributes, IClickInteractions>;
 	blogs: IBlogViews;
+	contacts: IContactFormTrigger;
 };
 
 type AnalyticsState = {
@@ -92,7 +101,8 @@ const initialState: AnalyticsState = {
 			shouldSend: false,
 			ranksViewed: {},
 			socialClicks: {}
-		}
+		},
+		contacts: { shouldSend: false }
 	}
 };
 
@@ -186,6 +196,12 @@ export const analyticsSlice = createSlice({
 		},
 		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {
 			state.visitorID = action.payload;
+		},
+		onChangeContactForm: (
+			state: AnalyticsState,
+			action: PayloadAction<IContactFormTrigger>
+		) => {
+			state.staticContent.contacts = action.payload;
 		}
 	}
 });
@@ -195,6 +211,7 @@ export const {
 	onDarkModeTrigger,
 	onFeaturedBlogView,
 	onClickSocialHandle,
+	onChangeContactForm,
 	onLogoHover,
 	setVisitorID,
 	onClickEvent
