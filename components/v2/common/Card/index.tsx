@@ -1,6 +1,9 @@
 import React from 'react';
 import LazyImage from '@/v2/common/LazyImage';
 import { IActionButton } from '@/interfaces/projects';
+import { useAppDispatch } from '@/redux/hooks';
+import { onClickEvent } from '@/slices/analytics.slice';
+import clickActions from '@/constants/click-actions.json';
 
 type Props = {
 	className: string;
@@ -23,6 +26,16 @@ const Work = ({
 	actionButtons,
 	pText
 }: Props) => {
+	const dispatch = useAppDispatch();
+	const dispatchOnDetailClick = (details: IActionButton) =>
+		dispatch(
+			onClickEvent({
+				attribute: clickActions.cardDetails,
+				description: details.identifier,
+				identifier1: details.cta,
+				identifier2: details.label
+			})
+		);
 	return (
 		<div className={className}>
 			<div className={imgClassName}>
@@ -36,7 +49,13 @@ const Work = ({
 			{actionButtons ? (
 				<section>
 					{actionButtons.map((item, index) => (
-						<a key={index} href={item.cta} target="_blank" rel="noreferrer">
+						<a
+							key={index}
+							href={item.cta}
+							target="_blank"
+							rel="noreferrer"
+							onClick={() => dispatchOnDetailClick(item)}
+						>
 							<h4>{item.label}</h4>
 						</a>
 					))}

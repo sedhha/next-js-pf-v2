@@ -6,5 +6,6 @@
 	"successContactFormSubmission": "successContactFormSubmission",
 	"failedContactFormSubmission": "failedContactFormSubmission",
 	"projectsNext": "projectsNext",
-	"projectsPrevious": "projectsPrevious"
+	"projectsPrevious": "projectsPrevious",
+	"cardDetails": "cardDetails"
 }

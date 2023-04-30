@@ -20,6 +20,10 @@ interface IClickInteractions {
 	clickPerformedAt: number;
 	clickedTimes: number;
 	clickDescription: string;
+	identifier1?: string;
+	identifier2?: string;
+	identifier3?: string;
+	identifier4?: string;
 }
 
 interface ISoundInteractions {
@@ -161,9 +165,20 @@ export const analyticsSlice = createSlice({
 			action: PayloadAction<{
 				attribute: ClickActionAttributes;
 				description: string;
+				identifier1?: string;
+				identifier2?: string;
+				identifier3?: string;
+				identifier4?: string;
 			}>
 		) => {
-			const { description, attribute } = action.payload;
+			const {
+				description,
+				attribute,
+				identifier1,
+				identifier2,
+				identifier3,
+				identifier4
+			} = action.payload;
 			const attributeExists = state.staticContent.clicks[attribute];
 			if (attributeExists) {
 				state.staticContent.clicks[attribute].clickedTimes =
@@ -173,7 +188,11 @@ export const analyticsSlice = createSlice({
 					clickDescription: description,
 					clickedTimes: 1,
 					clickIdentifier: attribute,
-					clickPerformedAt: new Date().getTime()
+					clickPerformedAt: new Date().getTime(),
+					identifier1,
+					identifier2,
+					identifier3,
+					identifier4
 				};
 		},
 		onFeaturedBlogView: (
