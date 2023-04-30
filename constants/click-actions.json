@@ -12,5 +12,8 @@
 	"awardsAndExperiencesPrevious": "awardsAndExperiencesPrevious",
 	"awardCardDetails": "awardCardDetails",
 	"videoPlayEvent": "videoPlayEvent",
-	"onClickVideos": "onClickVideos"
+	"onClickVideos": "onClickVideos",
+	"testimonialsNext": "testimonialsNext",
+	"testimonialsPrevious": "testimonialsPrevious",
+	"testimonialReferrerProfiles": "testimonialReferrerProfiles"
 }
