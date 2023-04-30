@@ -4,5 +4,7 @@
 	"authenticateAndChat": "authenticateAndChat",
 	"unauthenticatedAndChat": "unauthenticatedAndChat",
 	"successContactFormSubmission": "successContactFormSubmission",
-	"failedContactFormSubmission": "failedContactFormSubmission"
+	"failedContactFormSubmission": "failedContactFormSubmission",
+	"projectsNext": "projectsNext",
+	"projectsPrevious": "projectsPrevious"
 }
