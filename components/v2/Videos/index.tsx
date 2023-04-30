@@ -5,14 +5,23 @@ import VideoCard from './VideoCard';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { onNewSectionView } from '@/slices/analytics.slice';
+import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
 import topVideos from '@/constants/cms-constants/featured-videos.json';
 import { useRouter } from 'next/router';
+import clickActions from '@/constants/click-actions.json';
 
 const { highlighted, top4 } = topVideos;
 
 const Videos = () => {
 	const dispatch = useAppDispatch();
+
+	const onClickAllVideos = () =>
+		dispatch(
+			onClickEvent({
+				attribute: clickActions.onClickVideos,
+				description: 'View All Videos'
+			})
+		);
 
 	const router = useRouter();
 	return (
@@ -37,7 +46,10 @@ const Videos = () => {
 						</div>
 						<button
 							className={classes.BlueButton}
-							onClick={() => router.push('/videos')}
+							onClick={() => {
+								router.push('/videos');
+								onClickAllVideos();
+							}}
 						>
 							View All Videos
 						</button>

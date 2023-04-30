@@ -10,11 +10,12 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import dynamic from 'next/dynamic';
 import Card from '@/v2/common/Card';
 import { updatePopup } from '@/slices/navigation.slice';
-import { onNewSectionView } from '@/slices/analytics.slice';
+import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
+import clickActions from '@/constants/click-actions.json';
 
 const limit = 3;
 const initialItems = projects.slice(0, limit);
@@ -63,6 +64,12 @@ const Projects = () => {
 		setLoading(true);
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
+		dispatch(
+			onClickEvent({
+				attribute: next ? clickActions.projectsNext : clickActions.projectsPrevious,
+				description: `Clicked On project with next:${next} | limit:${limit} | skip:${skip}`
+			})
+		);
 		feFetch<ITotal<IProject>>({
 			url: `${PUBLIC_APIS.PROJECTS}?limit=${limit}&skip=${current}`
 		})

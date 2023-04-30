@@ -20,6 +20,10 @@ interface IClickInteractions {
 	clickPerformedAt: number;
 	clickedTimes: number;
 	clickDescription: string;
+	identifier1?: string;
+	identifier2?: string;
+	identifier3?: string;
+	identifier4?: string;
 }
 
 interface ISoundInteractions {
@@ -55,12 +59,21 @@ interface IBlogViews {
 	shouldSend: boolean;
 }
 
+interface IContactFormTrigger {
+	name?: string;
+	email?: string;
+	subject?: string;
+	message?: string;
+	shouldSend: boolean;
+}
+
 type StaticContent = {
 	navigations: INavigations;
 	themes: IThemeInteractions;
 	sounds: ISoundInteractions;
 	clicks: Record<ClickActionAttributes, IClickInteractions>;
 	blogs: IBlogViews;
+	contacts: IContactFormTrigger;
 };
 
 type AnalyticsState = {
@@ -92,7 +105,8 @@ const initialState: AnalyticsState = {
 			shouldSend: false,
 			ranksViewed: {},
 			socialClicks: {}
-		}
+		},
+		contacts: { shouldSend: false }
 	}
 };
 
@@ -151,9 +165,20 @@ export const analyticsSlice = createSlice({
 			action: PayloadAction<{
 				attribute: ClickActionAttributes;
 				description: string;
+				identifier1?: string;
+				identifier2?: string;
+				identifier3?: string;
+				identifier4?: string;
 			}>
 		) => {
-			const { description, attribute } = action.payload;
+			const {
+				description,
+				attribute,
+				identifier1,
+				identifier2,
+				identifier3,
+				identifier4
+			} = action.payload;
 			const attributeExists = state.staticContent.clicks[attribute];
 			if (attributeExists) {
 				state.staticContent.clicks[attribute].clickedTimes =
@@ -163,7 +188,11 @@ export const analyticsSlice = createSlice({
 					clickDescription: description,
 					clickedTimes: 1,
 					clickIdentifier: attribute,
-					clickPerformedAt: new Date().getTime()
+					clickPerformedAt: new Date().getTime(),
+					identifier1,
+					identifier2,
+					identifier3,
+					identifier4
 				};
 		},
 		onFeaturedBlogView: (
@@ -186,6 +215,12 @@ export const analyticsSlice = createSlice({
 		},
 		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {
 			state.visitorID = action.payload;
+		},
+		onChangeContactForm: (
+			state: AnalyticsState,
+			action: PayloadAction<IContactFormTrigger>
+		) => {
+			state.staticContent.contacts = action.payload;
 		}
 	}
 });
@@ -195,6 +230,7 @@ export const {
 	onDarkModeTrigger,
 	onFeaturedBlogView,
 	onClickSocialHandle,
+	onChangeContactForm,
 	onLogoHover,
 	setVisitorID,
 	onClickEvent

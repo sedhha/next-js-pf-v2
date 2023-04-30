@@ -23,7 +23,12 @@ import { regexExpressions } from '@/utils/regex-validators';
 import Spinner from '@/v2/common/Spinner';
 import app from '@/fe-client/firebase';
 import { getAuth, sendSignInLinkToEmail, User } from 'firebase/auth';
-import { onNewSectionView } from '@/slices/analytics.slice';
+import {
+	onChangeContactForm,
+	onClickEvent,
+	onNewSectionView
+} from '@/slices/analytics.slice';
+import clickAttributes from '@/constants/click-actions.json';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 const auth = getAuth(app);
@@ -67,12 +72,26 @@ const Contact = () => {
 	const { inChatMode, csrfToken, isAdminOnline } = useAppSelector(
 		(state) => state.navigation
 	);
+	const { visitorID } = useAppSelector((state) => state.analytics);
 	const dispatch = useAppDispatch();
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
 	const [subject, setSubject] = React.useState('');
 	const [message, setMessage] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
+
+	const setCallback = (value: string, setterFunction: (e: string) => void) => {
+		setterFunction(value);
+		dispatch(
+			onChangeContactForm({
+				shouldSend: true,
+				subject,
+				email,
+				message,
+				name
+			})
+		);
+	};
 
 	const updateStoreIfSignedIn = React.useCallback(
 		(user: User) => {
@@ -88,9 +107,23 @@ const Contact = () => {
 	const onCheckUserStatus = () => {
 		const { currentUser } = auth;
 		if (currentUser) {
+			dispatch(
+				onClickEvent({
+					attribute: clickAttributes.authenticateAndChat,
+					description: `Clicking on Authenticate and Chat With user - '${currentUser.email}'`
+				})
+			);
 			updateStoreIfSignedIn(currentUser);
 			return;
-		} else loadAuth();
+		} else {
+			loadAuth();
+			dispatch(
+				onClickEvent({
+					attribute: clickAttributes.unauthenticatedAndChat,
+					description: `Clicking on Authenticate and Chat With Unauthenticated User - '${visitorID}'`
+				})
+			);
+		}
 	};
 
 	const onSubmitContactForm = () => {
@@ -137,6 +170,12 @@ const Contact = () => {
 								timeout: 3000
 							})
 						);
+						dispatch(
+							onClickEvent({
+								attribute: clickAttributes.failedContactFormSubmission,
+								description: `${res.json?.message}-Email:${email}||Name:${name}||Subject:${subject}`
+							})
+						);
 						return;
 					}
 					dispatch(
@@ -147,6 +186,12 @@ const Contact = () => {
 							timeout: 3000
 						})
 					);
+					dispatch(
+						onClickEvent({
+							attribute: clickAttributes.successContactFormSubmission,
+							description: `Email:${email}||Name:${name}||Subject:${subject}`
+						})
+					);
 					setEmail('');
 					setName('');
 					setSubject('');
@@ -154,13 +199,21 @@ const Contact = () => {
 				})
 				.finally(() => setLoading(false));
 		else {
+			const description =
+				'Connection Error: Please refresh the page and try again!';
 			setLoading(false);
 			dispatch(
 				updatePopup({
 					type: 'error',
 					title: 'Unable to complete Submission',
-					description: 'Connection Error: Please refresh the page and try again!',
+					description,
 					timeout: 3000
+				})
+			);
+			dispatch(
+				onClickEvent({
+					attribute: clickAttributes.failedContactFormSubmission,
+					description: `${description}-Email:${email}||Name:${name}||Subject:${subject}`
 				})
 			);
 			return;
@@ -181,7 +234,7 @@ const Contact = () => {
 								<Input
 									placeholder="Name"
 									value={name}
-									onChange={(e) => setName(e.target.value)}
+									onChange={(e) => setCallback(e.target.value, setName)}
 									pattern={regexExpressions.name}
 									errorMessage="Name must only contain 2 or more alphabetic characters"
 								/>
@@ -192,7 +245,7 @@ const Contact = () => {
 									placeholder="Email"
 									type="email"
 									value={email}
-									onChange={(e) => setEmail(e.target.value)}
+									onChange={(e) => setCallback(e.target.value, setEmail)}
 									pattern={regexExpressions.email}
 									errorMessage="Invalid Email Address"
 								/>
@@ -202,7 +255,7 @@ const Contact = () => {
 								<Input
 									placeholder="Subject"
 									value={subject}
-									onChange={(e) => setSubject(e.target.value)}
+									onChange={(e) => setCallback(e.target.value, setSubject)}
 									pattern={regexExpressions.subject}
 									errorMessage="Subject must be atleast 10 characters long"
 								/>
@@ -213,7 +266,7 @@ const Contact = () => {
 									placeholder="Message"
 									rows={4}
 									value={message}
-									onChange={(e) => setMessage(e.target.value)}
+									onChange={(e) => setCallback(e.target.value, setMessage)}
 								/>
 								<div />
 							</div>

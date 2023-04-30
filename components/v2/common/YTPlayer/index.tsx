@@ -1,5 +1,9 @@
 import React from 'react';
 import classes from './YTPlayer.module.css';
+import { useAppDispatch } from '@/redux/hooks';
+import { onClickEvent } from '@/slices/analytics.slice';
+import clickActions from '@/constants/click-actions.json';
+
 type Props = {
 	videoID: string;
 	title?: string;
@@ -15,8 +19,21 @@ export default function YTContainer({
 	allowString,
 	containerClass
 }: Props) {
+	const dispatch = useAppDispatch();
+	const onVideoClick = () => {
+		dispatch(
+			onClickEvent({
+				attribute: clickActions.videoPlayEvent,
+				description: videoID,
+				identifier1: title
+			})
+		);
+	};
 	return (
-		<div className={`${containerClass} ${classes.VideoContainer}`}>
+		<div
+			className={`${containerClass} ${classes.VideoContainer}`}
+			onClick={onVideoClick}
+		>
 			<iframe
 				width="560"
 				height="315"
