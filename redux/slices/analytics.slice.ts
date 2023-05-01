@@ -74,6 +74,7 @@ type StaticContent = {
 	clicks: Record<ClickActionAttributes, IClickInteractions>;
 	blogs: IBlogViews;
 	contacts: IContactFormTrigger;
+	viewedBackImage: boolean;
 };
 
 type AnalyticsState = {
@@ -89,6 +90,7 @@ const initialState: AnalyticsState = {
 	restClient: null,
 	visitorID: 'unknown',
 	staticContent: {
+		viewedBackImage: false,
 		themes: { darkModeCount: 0, darkMode: true, shouldSend: false },
 		sounds: {
 			playedSound: false,
@@ -221,6 +223,9 @@ export const analyticsSlice = createSlice({
 			action: PayloadAction<IContactFormTrigger>
 		) => {
 			state.staticContent.contacts = action.payload;
+		},
+		onBackImageViewed: (state: AnalyticsState) => {
+			state.staticContent.viewedBackImage = true;
 		}
 	}
 });
@@ -231,6 +236,7 @@ export const {
 	onFeaturedBlogView,
 	onClickSocialHandle,
 	onChangeContactForm,
+	onBackImageViewed,
 	onLogoHover,
 	setVisitorID,
 	onClickEvent

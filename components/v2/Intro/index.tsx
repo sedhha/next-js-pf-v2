@@ -4,7 +4,7 @@ import LazyImage from '@/v2/common/LazyImage';
 import attributes from '@/constants/header-attr.json';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import { useAppDispatch } from '@/redux/hooks';
-import { onNewSectionView } from '@/slices/analytics.slice';
+import { onBackImageViewed, onNewSectionView } from '@/slices/analytics.slice';
 
 const Intro = () => {
 	const dispatch = useAppDispatch();
@@ -32,6 +32,7 @@ const Intro = () => {
 								src={'/intro-image.jpeg'}
 								className={classes.Image}
 								alt={'Shivam -Sahil: Developer'}
+								onMouseEnter={() => dispatch(onBackImageViewed())}
 							/>
 						</div>
 					</div>

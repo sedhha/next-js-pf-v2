@@ -117,6 +117,7 @@ export default function Testimonials({}: Props) {
 									socialIconClass={classes.SocialIconClass}
 									iconColorClass={classes.SocialIcon}
 									onClick={onClick}
+									openInNewTab
 									socialHandles={cardItem.contact.map((item) => ({
 										id: item.identifier,
 										url: item.url,

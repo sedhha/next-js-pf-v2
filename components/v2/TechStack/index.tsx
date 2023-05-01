@@ -5,7 +5,7 @@ import LazyImage from '@/v2/common/LazyImage';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import techStacks from '@/constants/cms-constants/tech-stacks.json';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import { ITotal } from '@/interfaces/api';
@@ -13,7 +13,8 @@ import { ITechStack } from '@/interfaces/tech-stack';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import Spinner from '@/v2/common/Spinner';
 import Empty from '@/v2/common/Empty';
-import { onNewSectionView } from '@/slices/analytics.slice';
+import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import clickActions from '@/constants/click-actions.json';
 
 export default function TechStack() {
 	const [search, setSearch] = React.useState('');
@@ -55,6 +56,12 @@ export default function TechStack() {
 
 		setLoading(true);
 		setTriggered(true);
+		dispatch(
+			onClickEvent({
+				attribute: clickActions.techStackSearch,
+				description: search
+			})
+		);
 		feFetch<ITotal<ITechStack>>({
 			url: `${PUBLIC_APIS.TECH_STACK}?search=${search}`
 		})
