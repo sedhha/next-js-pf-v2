@@ -215,9 +215,6 @@ export const analyticsSlice = createSlice({
 			const { url } = action.payload;
 			state.staticContent.blogs.socialClicks[url] = action.payload;
 		},
-		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {
-			state.visitorID = action.payload;
-		},
 		onChangeContactForm: (
 			state: AnalyticsState,
 			action: PayloadAction<IContactFormTrigger>
@@ -226,7 +223,15 @@ export const analyticsSlice = createSlice({
 		},
 		onBackImageViewed: (state: AnalyticsState) => {
 			state.staticContent.viewedBackImage = true;
+		},
+
+		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {
+			state.visitorID = action.payload;
+		},
+		setWSClient: (state:AnalyticsState, action: PayloadAction<WebSocket>) => {
+			state.wsClient = action.payload;
 		}
+		
 	}
 });
 
@@ -238,7 +243,8 @@ export const {
 	onChangeContactForm,
 	onBackImageViewed,
 	onLogoHover,
+	onClickEvent,
 	setVisitorID,
-	onClickEvent
+	setWSClient
 } = analyticsSlice.actions;
 export default analyticsSlice.reducer;

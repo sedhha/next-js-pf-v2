@@ -27,7 +27,7 @@ import {
 import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { off, onValue } from 'firebase/database';
-import { setVisitorID } from '@/slices/analytics.slice';
+import { setVisitorID, setWSClient } from '@/slices/analytics.slice';
 type Props = {
 	Component: JSX.Element;
 };
@@ -47,6 +47,7 @@ export default function BaseComponent({ Component }: Props) {
 			idToken
 		},
 		analytics: {
+			wsClient,
 			staticContent: {
 				themes: { darkMode }
 			}
@@ -55,11 +56,10 @@ export default function BaseComponent({ Component }: Props) {
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
 	});
-	const [socket, setSocket] = React.useState<WebSocket | null>(null);
 	const [firstPacketSent, setFirstPacketSent] = React.useState(false);
 
 	const initiateSocket = React.useCallback(() => {
-		if (socket) return;
+		if (wsClient) return;
 		info('Initiating Analytics');
 		maxRetriedConnections(`${HELPER_APIS.WEB_SOCKET}?csrf=${csrfToken}`, 3).then(
 			(newSocket) => {
@@ -80,19 +80,26 @@ export default function BaseComponent({ Component }: Props) {
 						}
 					}
 				};
-				setSocket(newSocket);
+				dispatch(setWSClient(newSocket));
 			}
 		);
-	}, [socket, csrfToken]);
+	}, [dispatch, wsClient, csrfToken]);
 
 	// Create Web Socket
 	React.useEffect(() => {
-		if (!socket && csrfToken) initiateSocket();
-	}, [initiateSocket, socket, csrfToken, dispatch]);
+		if (!wsClient && csrfToken) initiateSocket();
+	}, [initiateSocket, wsClient, csrfToken, dispatch]);
 
 	// Send the Socket Data When Connection is established
 	React.useEffect(() => {
-		if (!firstPacketSent && !isLoading && !error && data && csrfToken && socket) {
+		if (
+			!firstPacketSent &&
+			!isLoading &&
+			!error &&
+			data &&
+			csrfToken &&
+			wsClient
+		) {
 			dispatch(setVisitorID(data.visitorId ?? 'unknown'));
 			getGeoData()
 				.then((geo) => {
@@ -109,7 +116,7 @@ export default function BaseComponent({ Component }: Props) {
 							body
 						})
 					).toString('base64');
-					socket.send(ecString);
+					wsClient.send(ecString);
 				})
 				.catch((error) => {
 					info('Unexpected Error Occured:- ' + error.message);
@@ -123,7 +130,7 @@ export default function BaseComponent({ Component }: Props) {
 		data,
 		isLoading,
 		csrfToken,
-		socket,
+		wsClient,
 		userEmail,
 		userUid,
 		dispatch
