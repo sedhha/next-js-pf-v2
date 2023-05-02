@@ -55,7 +55,7 @@ const uploadImagesToContentful = async (
 				uploadSingleAsset(image).then((res) => resolve(res))
 			)
 	);
-	await Promise.all(uploadPromises).then((result) => console.log(result));
+	await Promise.all(uploadPromises);
 	return {
 		statusCode: 201,
 		message: 'Upload Success',

@@ -1,5 +1,7 @@
 import { AttributeValue, ClickActionAttributes } from '@/interfaces/fe';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { sendWSNavigationEvent } from '@/redux/wsUtils';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../tools/store';
 
 /*--------------------------- Type Definitions ---------------------- */
 
@@ -112,6 +114,28 @@ const initialState: AnalyticsState = {
 	}
 };
 
+export const onNewSectionView = createAsyncThunk(
+	'sendNavigationEvent',
+	async (payload: AttributeValue, { getState, dispatch }) => {
+		const {
+			navigation: { csrfToken, firstPacketSent },
+			analytics: {
+				wsClient,
+				staticContent: {
+					navigations: { viewedSections }
+				}
+			}
+		} = getState() as RootState;
+		if (csrfToken && wsClient && !viewedSections[payload] && firstPacketSent) {
+			sendWSNavigationEvent(wsClient, csrfToken, {
+				...viewedSections,
+				[payload]: true
+			});
+		}
+		dispatch(setNewSectionView(payload));
+	}
+);
+
 export const analyticsSlice = createSlice({
 	name: 'AnalyticsSlice',
 	initialState,
@@ -130,13 +154,18 @@ export const analyticsSlice = createSlice({
 			const { payload } = action;
 			state.staticContent.navigations.viewedSections[payload] = true;
 		},
-		onNewSectionView: (
+		setNewSectionView: (
 			state: AnalyticsState,
 			action: PayloadAction<AttributeValue>
 		) => {
 			const { payload } = action;
+			if (
+				!state.staticContent.navigations.viewedSections[payload] &&
+				state.wsClient
+			) {
+				state.staticContent.navigations.viewedSections[payload] = true;
+			}
 			state.staticContent.navigations.latestViewed = payload;
-			state.staticContent.navigations.viewedSections[payload] = true;
 		},
 		onDarkModeTrigger: (
 			state: AnalyticsState,
@@ -228,15 +257,14 @@ export const analyticsSlice = createSlice({
 		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {
 			state.visitorID = action.payload;
 		},
-		setWSClient: (state:AnalyticsState, action: PayloadAction<WebSocket>) => {
+		setWSClient: (state: AnalyticsState, action: PayloadAction<WebSocket>) => {
 			state.wsClient = action.payload;
 		}
-		
 	}
 });
 
 export const {
-	onNewSectionView,
+	setNewSectionView,
 	onDarkModeTrigger,
 	onFeaturedBlogView,
 	onClickSocialHandle,

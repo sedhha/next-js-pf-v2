@@ -105,7 +105,8 @@ const supportedOperations = {
 	start: 'start',
 	close: 'close',
 	forceClose: 'forceClose',
-	closedByServer: 'closedByServer'
+	closedByServer: 'closedByServer',
+	viewEvents: 'viewEvents'
 } as const;
 export type SupportedOps = keyof typeof supportedOperations;
 

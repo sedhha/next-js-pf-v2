@@ -23,7 +23,6 @@ const UploadImage = () => {
 				body: JSON.stringify(json)
 			})
 				.then((res) => {
-					console.log({ res });
 					if (res.error) {
 						setError(res.message ?? 'Unknown Error');
 						setSuccess(null);

@@ -26,7 +26,6 @@ export const withPersonalProtect = <T>(handler: IApiHandler<T>) => {
 				.then((user) => user?.customClaims?.admin ?? false);
 			if (!isAdmin) return res.status(401).end();
 			const result = await handler(req);
-			console.log({ result });
 			return res.status(result.statusCode ?? 200).json({
 				error: result.error ?? true,
 				message: result.message,

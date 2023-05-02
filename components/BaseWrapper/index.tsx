@@ -1,5 +1,6 @@
 import { useAppDispatch } from '@/redux/hooks';
 import {
+	setFirstPacketSent,
 	updateCsrfToken,
 	updateIsAdminOnline,
 	updatePopup,
@@ -44,7 +45,8 @@ export default function BaseComponent({ Component }: Props) {
 			csrfToken,
 			isAdmin,
 			subscriptionPending,
-			idToken
+			idToken,
+			firstPacketSent
 		},
 		analytics: {
 			wsClient,
@@ -56,7 +58,6 @@ export default function BaseComponent({ Component }: Props) {
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
 	});
-	const [firstPacketSent, setFirstPacketSent] = React.useState(false);
 
 	const initiateSocket = React.useCallback(() => {
 		if (wsClient) return;
@@ -120,9 +121,9 @@ export default function BaseComponent({ Component }: Props) {
 				})
 				.catch((error) => {
 					info('Unexpected Error Occured:- ' + error.message);
-					setFirstPacketSent(false);
+					dispatch(setFirstPacketSent(false));
 				});
-			setFirstPacketSent(true);
+			dispatch(setFirstPacketSent(true));
 		}
 	}, [
 		firstPacketSent,
