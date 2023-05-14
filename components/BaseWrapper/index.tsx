@@ -28,7 +28,8 @@ import {
 import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { off, onValue } from 'firebase/database';
-import { setVisitorID } from '@/slices/analytics.slice';
+import { onNewSectionView, setVisitorID } from '@/slices/analytics.slice';
+import { useRouter } from 'next/router';
 type Props = {
 	Component: JSX.Element;
 };
@@ -38,6 +39,8 @@ const auth = getAuth(app);
 
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
+	const router = useRouter();
+	const { asPath } = router;
 	const {
 		analytics: {
 			staticContent: {
@@ -51,6 +54,11 @@ export default function BaseComponent({ Component }: Props) {
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
 	});
+
+	// Page View Analytics
+	useEffect(() => {
+		dispatch(onNewSectionView(asPath));
+	}, [asPath, dispatch]);
 
 	// Set Visitor ID
 	useEffect(() => {

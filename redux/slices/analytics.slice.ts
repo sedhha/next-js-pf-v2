@@ -139,8 +139,6 @@ export const onNewSectionView = createAsyncThunk(
 						[payload]: true
 					}
 				})
-			}).then((res) => {
-				console.log('Recording view = ', res);
 			});
 		}
 		dispatch(setNewSectionView(payload));
