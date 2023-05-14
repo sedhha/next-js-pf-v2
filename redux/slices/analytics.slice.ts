@@ -2,6 +2,8 @@ import { AttributeValue, ClickActionAttributes } from '@/interfaces/fe';
 import { sendWSNavigationEvent } from '@/redux/wsUtils';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../tools/store';
+import { feFetch } from '../../utils/fe/fetch-utils';
+import { HELPER_APIS } from '@/utils/fe/apis/public';
 
 /*--------------------------- Type Definitions ---------------------- */
 
@@ -80,7 +82,6 @@ type StaticContent = {
 };
 
 type AnalyticsState = {
-	wsClient: WebSocket | null;
 	restClient: string | null;
 	staticContent: StaticContent;
 	visitorID: string;
@@ -88,7 +89,6 @@ type AnalyticsState = {
 /*--------------------------- Type Definitions ---------------------- */
 
 const initialState: AnalyticsState = {
-	wsClient: null,
 	restClient: null,
 	visitorID: 'unknown',
 	staticContent: {
@@ -120,16 +120,27 @@ export const onNewSectionView = createAsyncThunk(
 		const {
 			navigation: { csrfToken, firstPacketSent },
 			analytics: {
-				wsClient,
 				staticContent: {
 					navigations: { viewedSections }
 				}
 			}
 		} = getState() as RootState;
-		if (csrfToken && wsClient && !viewedSections[payload] && firstPacketSent) {
-			sendWSNavigationEvent(wsClient, csrfToken, {
-				...viewedSections,
-				[payload]: true
+		if (csrfToken && !viewedSections[payload] && firstPacketSent) {
+			feFetch({
+				method: 'POST',
+				url: HELPER_APIS.CSRF_REST_RECORD_VIEW,
+				headers: {
+					'Content-Type': 'application/json',
+					'x-csrf-token': csrfToken
+				},
+				body: JSON.stringify({
+					events: {
+						...viewedSections,
+						[payload]: true
+					}
+				})
+			}).then((res) => {
+				console.log('Recording view = ', res);
 			});
 		}
 		dispatch(setNewSectionView(payload));
@@ -159,10 +170,7 @@ export const analyticsSlice = createSlice({
 			action: PayloadAction<AttributeValue>
 		) => {
 			const { payload } = action;
-			if (
-				!state.staticContent.navigations.viewedSections[payload] &&
-				state.wsClient
-			) {
+			if (!state.staticContent.navigations.viewedSections[payload]) {
 				state.staticContent.navigations.viewedSections[payload] = true;
 			}
 			state.staticContent.navigations.latestViewed = payload;
@@ -256,9 +264,6 @@ export const analyticsSlice = createSlice({
 
 		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {
 			state.visitorID = action.payload;
-		},
-		setWSClient: (state: AnalyticsState, action: PayloadAction<WebSocket>) => {
-			state.wsClient = action.payload;
 		}
 	}
 });
@@ -272,7 +277,6 @@ export const {
 	onBackImageViewed,
 	onLogoHover,
 	onClickEvent,
-	setVisitorID,
-	setWSClient
+	setVisitorID
 } = analyticsSlice.actions;
 export default analyticsSlice.reducer;

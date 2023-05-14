@@ -259,16 +259,6 @@ export interface IFEGeo {
 	uid?: string;
 	email?: string;
 	visitorID?: string;
-
-	// Visibility
-	workViewed?: boolean;
-	blogViewed?: boolean;
-	contactViewed?: boolean;
-	projectsViewed?: boolean;
-	awardsViewed?: boolean;
-	videosViewed?: boolean;
-	testimonialsViewed?: boolean;
-	techStackViewed?: boolean;
 }
 
 type ISessionCollection = {
