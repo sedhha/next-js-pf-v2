@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Contact.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import Circle from '@/v2/common/Circle';
@@ -25,10 +25,11 @@ import app from '@/fe-client/firebase';
 import { getAuth, sendSignInLinkToEmail, User } from 'firebase/auth';
 import {
 	onChangeContactForm,
-	onClickEvent,
+	onClickEventTrigger,
 	onNewSectionView
 } from '@/slices/analytics.slice';
 import clickAttributes from '@/constants/click-actions.json';
+import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 const auth = getAuth(app);
@@ -69,10 +70,13 @@ const getEmail = (email: string | null, maxRepetation = 3): string | null => {
 };
 
 const Contact = () => {
-	const { inChatMode, csrfToken, isAdminOnline } = useAppSelector(
-		(state) => state.navigation
-	);
-	const { visitorID } = useAppSelector((state) => state.analytics);
+	const {
+		navigation: { inChatMode, csrfToken, isAdminOnline },
+		analytics: {
+			visitorID,
+			staticContent: { clickEvents }
+		}
+	} = useAppSelector((state) => state);
 	const dispatch = useAppDispatch();
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
@@ -93,6 +97,31 @@ const Contact = () => {
 		);
 	};
 
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			if (
+				visitorID &&
+				(email.length || name.length || subject.length || message.length)
+			) {
+				const key = `contactFormSubmission-${visitorID}`;
+				const payload = {
+					clickIdentifier: key,
+					clickDescription:
+						'This event denotes that user is trying to add feedback in feedback form.',
+					clickedTimes: (clickEvents[key]?.clickedTimes ?? 0) + 1,
+					clickPerformedAt: new Date().toISOString(),
+					identifier1: email,
+					identifier2: message,
+					identifier3: name,
+					identifier4: subject
+				};
+				if (csrfToken) logEvent(csrfToken, key, payload);
+			}
+		}, 3000);
+		return () => clearTimeout(timeout);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [email, name, subject, message, csrfToken, visitorID]);
+
 	const updateStoreIfSignedIn = React.useCallback(
 		(user: User) => {
 			const { email, uid } = user;
@@ -108,7 +137,7 @@ const Contact = () => {
 		const { currentUser } = auth;
 		if (currentUser) {
 			dispatch(
-				onClickEvent({
+				onClickEventTrigger({
 					attribute: clickAttributes.authenticateAndChat,
 					description: `Clicking on Authenticate and Chat With user - '${currentUser.email}'`
 				})
@@ -118,7 +147,7 @@ const Contact = () => {
 		} else {
 			loadAuth();
 			dispatch(
-				onClickEvent({
+				onClickEventTrigger({
 					attribute: clickAttributes.unauthenticatedAndChat,
 					description: `Clicking on Authenticate and Chat With Unauthenticated User - '${visitorID}'`
 				})
@@ -171,7 +200,7 @@ const Contact = () => {
 							})
 						);
 						dispatch(
-							onClickEvent({
+							onClickEventTrigger({
 								attribute: clickAttributes.failedContactFormSubmission,
 								description: `${res.json?.message}-Email:${email}||Name:${name}||Subject:${subject}`
 							})
@@ -187,7 +216,7 @@ const Contact = () => {
 						})
 					);
 					dispatch(
-						onClickEvent({
+						onClickEventTrigger({
 							attribute: clickAttributes.successContactFormSubmission,
 							description: `Email:${email}||Name:${name}||Subject:${subject}`
 						})
@@ -211,7 +240,7 @@ const Contact = () => {
 				})
 			);
 			dispatch(
-				onClickEvent({
+				onClickEventTrigger({
 					attribute: clickAttributes.failedContactFormSubmission,
 					description: `${description}-Email:${email}||Name:${name}||Subject:${subject}`
 				})

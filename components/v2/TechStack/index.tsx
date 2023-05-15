@@ -13,7 +13,10 @@ import { ITechStack } from '@/interfaces/tech-stack';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import Spinner from '@/v2/common/Spinner';
 import Empty from '@/v2/common/Empty';
-import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import {
+	onClickEventTrigger,
+	onNewSectionView
+} from '@/slices/analytics.slice';
 import clickActions from '@/constants/click-actions.json';
 
 export default function TechStack() {
@@ -57,7 +60,7 @@ export default function TechStack() {
 		setLoading(true);
 		setTriggered(true);
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: clickActions.techStackSearch,
 				description: search
 			})

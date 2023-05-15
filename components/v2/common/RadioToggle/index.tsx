@@ -16,6 +16,7 @@ export default function DarkModeToggle() {
 		navigation: { csrfToken },
 		analytics: {
 			staticContent: {
+				clickEvents,
 				themes: { darkMode }
 			}
 		}
@@ -30,7 +31,7 @@ export default function DarkModeToggle() {
 		const payload = {
 			clickIdentifier: key,
 			clickPerformedAt: new Date().toISOString(),
-			clickedTimes: 1,
+			clickedTimes: (clickEvents[key]?.clickedTimes ?? 0) + 1,
 			clickDescription: description
 		};
 		dispatch(
@@ -39,11 +40,7 @@ export default function DarkModeToggle() {
 				value: payload
 			})
 		);
-		console.log('CSRF = ', csrfToken);
-		if (csrfToken) {
-			console.log('Comes in ', csrfToken);
-			logEvent(csrfToken, key, payload);
-		}
+		if (csrfToken) logEvent(csrfToken, key, payload);
 	};
 	return (
 		<div className={classes.SwitchBoard} onClick={() => setOn(!darkMode)}>

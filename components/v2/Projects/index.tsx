@@ -10,7 +10,10 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import dynamic from 'next/dynamic';
 import Card from '@/v2/common/Card';
 import { updatePopup } from '@/slices/navigation.slice';
-import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import {
+	onClickEventTrigger,
+	onNewSectionView
+} from '@/slices/analytics.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -65,7 +68,7 @@ const Projects = () => {
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: next ? clickActions.projectsNext : clickActions.projectsPrevious,
 				description: `Clicked On project with next:${next} | limit:${limit} | skip:${skip}`
 			})

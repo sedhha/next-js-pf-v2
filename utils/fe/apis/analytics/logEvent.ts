@@ -7,7 +7,7 @@ export const logEvent = async (
 	key: string,
 	event: IClickInteractions
 ) => {
-	feFetch({
+	return feFetch({
 		url: HELPER_APIS.CSRF_REST_RECORD_EVENT,
 		method: 'POST',
 		headers: {

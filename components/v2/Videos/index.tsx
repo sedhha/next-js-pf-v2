@@ -5,7 +5,10 @@ import VideoCard from './VideoCard';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import {
+	onClickEventTrigger,
+	onNewSectionView
+} from '@/slices/analytics.slice';
 import topVideos from '@/constants/cms-constants/featured-videos.json';
 import { useRouter } from 'next/router';
 import clickActions from '@/constants/click-actions.json';
@@ -17,7 +20,7 @@ const Videos = () => {
 
 	const onClickAllVideos = () =>
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: clickActions.onClickVideos,
 				description: 'View All Videos'
 			})

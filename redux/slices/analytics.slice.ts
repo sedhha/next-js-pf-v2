@@ -5,6 +5,7 @@ import { RootState } from '../tools/store';
 import { feFetch } from '../../utils/fe/fetch-utils';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
 import { IClickInteractions } from '@/interfaces/analytics';
+import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
 
 /*--------------------------- Type Definitions ---------------------- */
 
@@ -96,6 +97,48 @@ export const onNewSectionView = createAsyncThunk(
 			});
 		}
 		dispatch(setNewSectionView(payload));
+	}
+);
+
+export const onClickEventTrigger = createAsyncThunk(
+	'sendClickEvent',
+	async (
+		payload: {
+			attribute: ClickActionAttributes;
+			description: string;
+			identifier1?: string;
+			identifier2?: string;
+			identifier3?: string;
+			identifier4?: string;
+		},
+		{ getState, dispatch }
+	) => {
+		const {
+			attribute,
+			description,
+			identifier1,
+			identifier2,
+			identifier3,
+			identifier4
+		} = payload;
+		const {
+			navigation: { csrfToken },
+			analytics: {
+				staticContent: { clickEvents }
+			}
+		} = getState() as RootState;
+		if (csrfToken)
+			logEvent(csrfToken, attribute, {
+				clickDescription: description,
+				clickedTimes: (clickEvents[attribute]?.clickedTimes ?? 0) + 1,
+				clickIdentifier: attribute,
+				clickPerformedAt: new Date().toISOString(),
+				identifier1,
+				identifier2,
+				identifier3,
+				identifier4
+			});
+		dispatch(onClickEvent(payload));
 	}
 );
 
@@ -263,9 +306,7 @@ export const analyticsSlice = createSlice({
 			action: PayloadAction<{ key: string; value: IClickInteractions }>
 		) => {
 			const { key, value } = action.payload;
-			if (state.staticContent.clickEvents[key]) {
-				state.staticContent.clickEvents[key].clickedTimes += 1;
-			} else state.staticContent.clickEvents[key] = value;
+			state.staticContent.clickEvents[key] = value;
 		},
 
 		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {

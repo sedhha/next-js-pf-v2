@@ -13,7 +13,10 @@ import { useAppDispatch } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
 import { feFetch } from '@/utils/fe/fetch-utils';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
-import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import {
+	onClickEventTrigger,
+	onNewSectionView
+} from '@/slices/analytics.slice';
 import dynamic from 'next/dynamic';
 import clickActions from '@/constants/click-actions.json';
 
@@ -66,7 +69,7 @@ const Awards = () => {
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: next
 					? clickActions.awardsAndExperiencesNext
 					: clickActions.awardsAndExperiencesPrevious,

@@ -2,7 +2,7 @@ import React from 'react';
 import LazyImage from '@/v2/common/LazyImage';
 import { IActionButton } from '@/interfaces/projects';
 import { useAppDispatch } from '@/redux/hooks';
-import { onClickEvent } from '@/slices/analytics.slice';
+import { onClickEventTrigger } from '@/slices/analytics.slice';
 import clickActions from '@/constants/click-actions.json';
 
 type Props = {
@@ -29,7 +29,7 @@ const Work = ({
 	const dispatch = useAppDispatch();
 	const dispatchOnDetailClick = (details: IActionButton) =>
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: clickActions.cardDetails,
 				description: details.identifier,
 				identifier1: details.cta,
