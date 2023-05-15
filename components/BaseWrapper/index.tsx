@@ -57,7 +57,8 @@ export default function BaseComponent({ Component }: Props) {
 
 	// Page View Analytics
 	useEffect(() => {
-		dispatch(onNewSectionView(asPath));
+		if (asPath === '/') dispatch(onNewSectionView('root'));
+		else dispatch(onNewSectionView(asPath.split('/').join('--')));
 	}, [asPath, dispatch]);
 
 	// Set Visitor ID

@@ -1,42 +1,21 @@
 import { AttributeValue, ClickActionAttributes } from '@/interfaces/fe';
-import { sendWSNavigationEvent } from '@/redux/wsUtils';
+import allEvents from '@/constants/all-interaction-events.json';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../tools/store';
 import { feFetch } from '../../utils/fe/fetch-utils';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
+import { IClickInteractions } from '@/interfaces/analytics';
 
 /*--------------------------- Type Definitions ---------------------- */
 
 interface INavigations {
-	shouldSend: boolean;
 	latestViewed: AttributeValue;
 	viewedSections: Record<AttributeValue, boolean>;
 }
 
 interface IThemeInteractions {
-	darkModeCount: number;
 	darkMode: boolean;
-	shouldSend: boolean;
 }
-
-interface IClickInteractions {
-	clickIdentifier: string;
-	clickPerformedAt: number;
-	clickedTimes: number;
-	clickDescription: string;
-	identifier1?: string;
-	identifier2?: string;
-	identifier3?: string;
-	identifier4?: string;
-}
-
-interface ISoundInteractions {
-	playedSound: boolean;
-	playedSoundDuration: number;
-	shouldSend: boolean;
-	playedTimes: number;
-}
-
 interface IBlogDetails {
 	category: string;
 	blogID: string;
@@ -56,13 +35,6 @@ interface IExtraDetails {
 	fingerprint: string;
 	clickCount: number;
 }
-
-interface IBlogViews {
-	ranksViewed: Record<string, IBlogView>;
-	socialClicks: Record<string, IBlogDetails & IExtraDetails>;
-	shouldSend: boolean;
-}
-
 interface IContactFormTrigger {
 	name?: string;
 	email?: string;
@@ -74,11 +46,7 @@ interface IContactFormTrigger {
 type StaticContent = {
 	navigations: INavigations;
 	themes: IThemeInteractions;
-	sounds: ISoundInteractions;
-	clicks: Record<ClickActionAttributes, IClickInteractions>;
-	blogs: IBlogViews;
-	contacts: IContactFormTrigger;
-	viewedBackImage: boolean;
+	clickEvents: Record<string, IClickInteractions>;
 };
 
 type AnalyticsState = {
@@ -92,25 +60,11 @@ const initialState: AnalyticsState = {
 	restClient: null,
 	visitorID: 'unknown',
 	staticContent: {
-		viewedBackImage: false,
-		themes: { darkModeCount: 0, darkMode: true, shouldSend: false },
-		sounds: {
-			playedSound: false,
-			shouldSend: false,
-			playedSoundDuration: -1,
-			playedTimes: 0
-		},
+		clickEvents: {},
+		themes: { darkMode: true },
 		navigations: {
-			shouldSend: false,
 			viewedSections: {}
-		} as INavigations,
-		clicks: {},
-		blogs: {
-			shouldSend: false,
-			ranksViewed: {},
-			socialClicks: {}
-		},
-		contacts: { shouldSend: false }
+		} as INavigations
 	}
 };
 
@@ -178,8 +132,6 @@ export const analyticsSlice = createSlice({
 			action: PayloadAction<boolean>
 		) => {
 			const { payload } = action;
-			state.staticContent.themes.darkModeCount =
-				state.staticContent.themes.darkModeCount + 1;
 			state.staticContent.themes.darkMode = payload;
 		},
 		onLogoHover: (
@@ -189,13 +141,22 @@ export const analyticsSlice = createSlice({
 			const {
 				payload: { duration, soundPlayed }
 			} = action;
-			state.staticContent.sounds.playedSound = soundPlayed;
-			state.staticContent.sounds.playedSoundDuration = Math.max(
-				state.staticContent.sounds.playedSoundDuration,
-				duration
-			);
-			state.staticContent.sounds.playedTimes =
-				state.staticContent.sounds.playedTimes + 1;
+			const key = (soundPlayed ? allEvents.soundPlayed : allEvents.soundPaused)
+				.identifier;
+			const description = (
+				soundPlayed ? allEvents.soundPlayed : allEvents.soundPaused
+			).description;
+
+			state.staticContent.clickEvents[key] = {
+				clickIdentifier: key,
+				clickPerformedAt: new Date().toISOString(),
+				clickedTimes: (state.staticContent.clickEvents[key]?.clickedTimes ?? 0) + 1,
+				clickDescription: description,
+				identifier1: Math.max(
+					+(state.staticContent.clickEvents[key]?.identifier1 ?? 0),
+					duration
+				).toString()
+			};
 		},
 		onClickEvent: (
 			state: AnalyticsState,
@@ -216,16 +177,16 @@ export const analyticsSlice = createSlice({
 				identifier3,
 				identifier4
 			} = action.payload;
-			const attributeExists = state.staticContent.clicks[attribute];
+			const attributeExists = state.staticContent.clickEvents[attribute];
 			if (attributeExists) {
-				state.staticContent.clicks[attribute].clickedTimes =
-					(state.staticContent.clicks[attribute].clickedTimes ?? 1) + 1;
+				state.staticContent.clickEvents[attribute].clickedTimes =
+					(state.staticContent.clickEvents[attribute].clickedTimes ?? 1) + 1;
 			} else
-				state.staticContent.clicks[attribute] = {
+				state.staticContent.clickEvents[attribute] = {
 					clickDescription: description,
 					clickedTimes: 1,
 					clickIdentifier: attribute,
-					clickPerformedAt: new Date().getTime(),
+					clickPerformedAt: new Date().toISOString(),
 					identifier1,
 					identifier2,
 					identifier3,
@@ -237,27 +198,74 @@ export const analyticsSlice = createSlice({
 			action: PayloadAction<{ blog: IBlogView; rank: string }>
 		) => {
 			const { blog, rank } = action.payload;
-			if (!state.staticContent.blogs.ranksViewed[rank]) {
-				state.staticContent.blogs.ranksViewed[rank] = blog;
-			} else
-				state.staticContent.blogs.ranksViewed[rank].timesClicked =
-					state.staticContent.blogs.ranksViewed[rank].timesClicked + 1;
+			const key = `featuredBlog-${blog.blogID}-${blog.category}-${rank}`;
+			const description = `This event denotes that user has viewed ${blog.blogID} blog with category: ${blog.category}`;
+			if (!state.staticContent.clickEvents[key])
+				state.staticContent.clickEvents[key] = {
+					clickDescription: description,
+					clickedTimes: 1,
+					clickIdentifier: key,
+					clickPerformedAt: new Date().toISOString(),
+					identifier1: 'featuredBlogView',
+					identifier2: rank.toString(),
+					identifier3: blog.blogID,
+					identifier4: blog.category
+				};
+			else state.staticContent.clickEvents[key].clickedTimes += 1;
 		},
 		onClickSocialHandle: (
 			state: AnalyticsState,
 			action: PayloadAction<IBlogDetails & IExtraDetails>
 		) => {
 			const { url } = action.payload;
-			state.staticContent.blogs.socialClicks[url] = action.payload;
+
+			const key = `featuredBlogSocialClick-${url}`;
+			if (!state.staticContent.clickEvents[key])
+				state.staticContent.clickEvents[key] = {
+					clickDescription: `This event denotes that user has clicked on social icon url to share the blog - ${url}`,
+					clickedTimes: 1,
+					clickIdentifier: key,
+					clickPerformedAt: new Date().toISOString(),
+					identifier1: 'featuredBlogSocialShare',
+					identifier2: url
+				};
 		},
 		onChangeContactForm: (
 			state: AnalyticsState,
 			action: PayloadAction<IContactFormTrigger>
 		) => {
-			state.staticContent.contacts = action.payload;
+			const { payload } = action;
+			const key = `contactFormSubmission-${state.visitorID}`;
+			state.staticContent.clickEvents[key] = {
+				clickIdentifier: key,
+				clickDescription:
+					'This event denotes that user is trying to add feedback in feedback form.',
+				clickedTimes: (state.staticContent.clickEvents[key]?.clickedTimes ?? 0) + 1,
+				clickPerformedAt: new Date().toISOString(),
+				identifier1: payload.email,
+				identifier2: payload.message,
+				identifier3: payload.name,
+				identifier4: payload.subject
+			};
 		},
 		onBackImageViewed: (state: AnalyticsState) => {
-			state.staticContent.viewedBackImage = true;
+			const key = `viewedBackImage-${state.visitorID}`;
+			state.staticContent.clickEvents[key] = {
+				clickIdentifier: key,
+				clickDescription:
+					'This event denotes that user has viewed the back image by hovering over the front image.',
+				clickPerformedAt: new Date().toISOString(),
+				clickedTimes: 1
+			};
+		},
+		onCommonClickDispatcher: (
+			state: AnalyticsState,
+			action: PayloadAction<{ key: string; value: IClickInteractions }>
+		) => {
+			const { key, value } = action.payload;
+			if (state.staticContent.clickEvents[key]) {
+				state.staticContent.clickEvents[key].clickedTimes += 1;
+			} else state.staticContent.clickEvents[key] = value;
 		},
 
 		setVisitorID: (state: AnalyticsState, action: PayloadAction<string>) => {
@@ -268,6 +276,7 @@ export const analyticsSlice = createSlice({
 
 export const {
 	setNewSectionView,
+	onCommonClickDispatcher,
 	onDarkModeTrigger,
 	onFeaturedBlogView,
 	onClickSocialHandle,

@@ -53,6 +53,10 @@ export const HELPER_APIS = {
 		process.env.NODE_ENV === 'development'
 			? `http://localhost:4200/web-analytics/record-view`
 			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/web-analytics/record-view`,
+	CSRF_REST_RECORD_EVENT:
+		process.env.NODE_ENV === 'development'
+			? `http://localhost:4200/web-analytics/record-event`
+			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/web-analytics/record-event`,
 	WEB_SOCKET:
 		process.env.NODE_ENV === 'development'
 			? `ws://localhost:4200/track`
