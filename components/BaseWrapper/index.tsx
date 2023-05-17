@@ -168,7 +168,6 @@ export default function BaseComponent({ Component }: Props) {
 
 	// See if User has requested for newsletter subscription
 	useEffect(() => {
-		console.log({ subscriptionPending, idToken });
 		if (subscriptionPending && idToken) {
 			feFetch({
 				url: USER_APIS.SUBSCRIBE_NEWSLETTER,
@@ -190,7 +189,8 @@ export default function BaseComponent({ Component }: Props) {
 					url: HELPER_APIS.CSRF_REST_KILL,
 					headers: {
 						'x-csrf-token': csrfToken
-					}
+					},
+					keepAlive: true
 				});
 			};
 			window.addEventListener('beforeunload', handleBeforeUnload);
