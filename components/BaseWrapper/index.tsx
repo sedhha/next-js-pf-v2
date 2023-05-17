@@ -47,7 +47,14 @@ export default function BaseComponent({ Component }: Props) {
 				themes: { darkMode }
 			}
 		},
-		navigation: { csrfToken, userEmail, userUid, firstPacketSent }
+		navigation: {
+			csrfToken,
+			userEmail,
+			userUid,
+			firstPacketSent,
+			subscriptionPending,
+			idToken
+		}
 	} = useAppSelector((state) => state);
 
 	// Data From FingerPrint
@@ -80,6 +87,45 @@ export default function BaseComponent({ Component }: Props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, data]);
 
+	// Check User Status
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				dispatch(updateUser(user));
+				return;
+			} else {
+				handleURLLoginFlow()
+					.then((user) => {
+						if (user) {
+							dispatch(updateUser(user));
+							return;
+						}
+					})
+					.catch((error) => {
+						console.error(error.message);
+						dispatch(
+							updatePopup({
+								type: 'error',
+								title: 'Login Failed',
+								description:
+									'User not logged in. Sign In Link may have expired. Kindly generate a new URL and try again!',
+								timeout: 3000
+							})
+						);
+					});
+			}
+		});
+		// Update Admin Online Actiivity
+		onValue(adminRef, (snapshot) => {
+			if (snapshot.exists()) {
+				dispatch(updateIsAdminOnline(snapshot.val()));
+			}
+		});
+		return () => {
+			off(adminRef);
+		};
+	}, [dispatch]);
+
 	// Update Geo Details
 	useEffect(() => {
 		if (csrfToken && !isLoading && !error && data && !firstPacketSent) {
@@ -107,6 +153,21 @@ export default function BaseComponent({ Component }: Props) {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [csrfToken, isLoading, error, data, firstPacketSent, dispatch]);
+
+	// See if User has requested for newsletter subscription
+	useEffect(() => {
+		console.log({ subscriptionPending, idToken });
+		if (subscriptionPending && idToken) {
+			feFetch({
+				url: USER_APIS.SUBSCRIBE_NEWSLETTER,
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + idToken
+				}
+			});
+		}
+	}, [subscriptionPending, idToken]);
 
 	// Disconnect Analytics on Closing window
 	useEffect(() => {
