@@ -6,7 +6,7 @@ import {
 	updatePopup,
 	updateUser
 } from '@/slices/navigation.slice';
-import React, { useEffect } from 'react';
+import { useEffect, useCallback, Fragment } from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -16,7 +16,6 @@ import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
 import { supportedOperations } from '@/firebase/constants';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
-import { IWSResult } from '@/interfaces/analytics';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
 import {
 	convertToFEData,
@@ -53,7 +52,8 @@ export default function BaseComponent({ Component }: Props) {
 			userUid,
 			firstPacketSent,
 			subscriptionPending,
-			idToken
+			idToken,
+			isAdmin
 		}
 	} = useAppSelector((state) => state);
 
@@ -126,6 +126,18 @@ export default function BaseComponent({ Component }: Props) {
 		};
 	}, [dispatch]);
 
+	const adminStatusCallback = useCallback(() => {
+		setOnlineStatus(isAdmin);
+	}, [isAdmin]);
+
+	// Set / Unset Admin Status
+	useEffect(() => {
+		adminStatusCallback();
+		document.addEventListener('visibilitychange', adminStatusCallback);
+		return () =>
+			document.removeEventListener('visibilitychange', adminStatusCallback);
+	}, [adminStatusCallback]);
+
 	// Update Geo Details
 	useEffect(() => {
 		if (csrfToken && !isLoading && !error && data && !firstPacketSent) {
@@ -189,7 +201,7 @@ export default function BaseComponent({ Component }: Props) {
 	}, [csrfToken]);
 
 	return (
-		<React.Fragment>
+		<Fragment>
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<title>Shivam Sahil</title>
@@ -238,6 +250,6 @@ export default function BaseComponent({ Component }: Props) {
 				<Component.type {...Component.props} />
 			</div>
 			<Popup />
-		</React.Fragment>
+		</Fragment>
 	);
 }
