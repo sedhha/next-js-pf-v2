@@ -4,7 +4,7 @@ import LazyImage from '@/v2/common/LazyImage';
 import { IEventAndParticipations } from '@/interfaces/events-and-participations';
 import { getMonthAndYearString } from '@/utils/date-utils';
 import { useAppDispatch } from '@/redux/hooks';
-import { onClickEvent } from '@/slices/analytics.slice';
+import { onClickEventTrigger } from '@/slices/analytics.slice';
 import clickActions from '@/constants/click-actions.json';
 
 type Props = {
@@ -29,7 +29,7 @@ const AwardCard = ({
 	const dispatch = useAppDispatch();
 	const onClick = () =>
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: clickActions.awardCardDetails,
 				description,
 				identifier1: title,

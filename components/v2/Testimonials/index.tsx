@@ -13,7 +13,10 @@ import { updatePopup } from '@/slices/navigation.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { feFetch } from '@/utils/fe/fetch-utils';
-import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import {
+	onClickEventTrigger,
+	onNewSectionView
+} from '@/slices/analytics.slice';
 import clickActions from '@/constants/click-actions.json';
 
 type Props = {};
@@ -65,7 +68,7 @@ export default function Testimonials({}: Props) {
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: next
 					? clickActions.testimonialsNext
 					: clickActions.testimonialsPrevious,
@@ -86,7 +89,7 @@ export default function Testimonials({}: Props) {
 
 	const onClick = (item: ISocialHandles) =>
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: clickActions.testimonialReferrerProfiles,
 				description: `Clicked On Testimonials with Referrer Profile`,
 				identifier1: item.id,
@@ -117,6 +120,7 @@ export default function Testimonials({}: Props) {
 									socialIconClass={classes.SocialIconClass}
 									iconColorClass={classes.SocialIcon}
 									onClick={onClick}
+									openInNewTab
 									socialHandles={cardItem.contact.map((item) => ({
 										id: item.identifier,
 										url: item.url,

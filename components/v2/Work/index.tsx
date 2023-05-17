@@ -15,7 +15,10 @@ import { workDateFormatter } from '@/utils/date-utils';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
 import { ITotal } from '@/interfaces/api';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard/index';
-import { onClickEvent, onNewSectionView } from '@/slices/analytics.slice';
+import {
+	onClickEventTrigger,
+	onNewSectionView
+} from '@/slices/analytics.slice';
 import clickActions from '@/constants/click-actions.json';
 
 const limit = 3;
@@ -67,7 +70,7 @@ const Work = () => {
 		const current = next ? skip + limit : skip - limit;
 		setSkip(current);
 		dispatch(
-			onClickEvent({
+			onClickEventTrigger({
 				attribute: next
 					? clickActions.workExperienceNext
 					: clickActions.workExperiencePrevious,

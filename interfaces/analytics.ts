@@ -1,4 +1,15 @@
 import { Timestamp } from 'firebase-admin/firestore';
+
+export interface IClickInteractions {
+	clickIdentifier: string;
+	clickPerformedAt: string;
+	clickedTimes: number;
+	clickDescription: string;
+	identifier1?: string;
+	identifier2?: string;
+	identifier3?: string;
+	identifier4?: string;
+}
 interface IGeoAPI {
 	ip: string;
 	network: string;
@@ -259,16 +270,6 @@ export interface IFEGeo {
 	uid?: string;
 	email?: string;
 	visitorID?: string;
-
-	// Visibility
-	workViewed?: boolean;
-	blogViewed?: boolean;
-	contactViewed?: boolean;
-	projectsViewed?: boolean;
-	awardsViewed?: boolean;
-	videosViewed?: boolean;
-	testimonialsViewed?: boolean;
-	techStackViewed?: boolean;
 }
 
 type ISessionCollection = {

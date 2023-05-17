@@ -17,6 +17,8 @@ import Circle from '@/v2/common/Circle';
 import { icons } from '@/v2/common/Icons';
 import { ISocialHandles } from '../../../interfaces/testimonials';
 import { useAppSelector } from '@/redux/hooks';
+import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
+import { AttributeValue } from '@/interfaces/fe';
 
 const { mainBlog, relatedBlogs, rankedBlogs } = blogs;
 
@@ -57,8 +59,11 @@ const generateSocialIcons = (
 const Blog = () => {
 	const dispatch = useDispatch();
 	const {
-		analytics: { visitorID },
-		navigation: { userUid }
+		analytics: {
+			visitorID,
+			staticContent: { clickEvents }
+		},
+		navigation: { userUid, csrfToken }
 	} = useAppSelector((state) => state);
 	const router = useRouter();
 	const [rank, setRank] = React.useState(0);
@@ -78,7 +83,7 @@ const Blog = () => {
 		);
 	};
 
-	const onClickShareIcon = (icon: ISocialHandles) =>
+	const onClickShareIcon = (icon: ISocialHandles) => {
 		dispatch(
 			onClickSocialHandle({
 				url: icon.url,
@@ -90,6 +95,17 @@ const Blog = () => {
 				userID: userUid
 			})
 		);
+		const key = `featuredBlogSocialClick-${icon.url}`;
+		const payload = {
+			clickDescription: `This event denotes that user has clicked on social icon url to share the blog - ${icon.url}`,
+			clickedTimes: 1,
+			clickIdentifier: key,
+			clickPerformedAt: new Date().toISOString(),
+			identifier1: 'featuredBlogSocialShare',
+			identifier2: icon.url
+		};
+		if (csrfToken) logEvent(csrfToken, key, payload);
+	};
 
 	const onClickNavigate = (category: string, id: string) => {
 		router.push(`${FE_ROUTES.CATEGORY_BLOG_COMBO}/${category}/${id}`);
@@ -104,6 +120,19 @@ const Blog = () => {
 				rank: `${rank}`
 			})
 		);
+		const key = `featuredBlog-${id}-${category}-${rank}`;
+		const description = `This event denotes that user has viewed ${id} blog with category: ${category}`;
+		const payload = {
+			clickDescription: description,
+			clickedTimes: (clickEvents[key]?.clickedTimes ?? 0) + 1,
+			clickIdentifier: key,
+			clickPerformedAt: new Date().toISOString(),
+			identifier1: 'featuredBlogView',
+			identifier2: rank.toString(),
+			identifier3: id,
+			identifier4: category
+		};
+		if (csrfToken) logEvent(csrfToken, key, payload);
 	};
 
 	const onCategoryNavigate = (category: string) => {
@@ -119,11 +148,27 @@ const Blog = () => {
 				rank: `${rank}`
 			})
 		);
+		const key = `featuredBlog-category-only-navigate-${category}-${rank}`;
+		const description = `This event denotes that user has viewed 'category-only-navigate' blog with category: ${category}`;
+		const payload = {
+			clickDescription: description,
+			clickedTimes: (clickEvents[key]?.clickedTimes ?? 0) + 1,
+			clickIdentifier: key,
+			clickPerformedAt: new Date().toISOString(),
+			identifier1: 'featuredBlogView',
+			identifier2: rank.toString(),
+			identifier3: 'category-only-navigate',
+			identifier4: category
+		};
+		if (csrfToken) logEvent(csrfToken, key, payload);
 	};
 
 	return (
 		<VisibilityHandler
-			onVisibleCallback={() => dispatch(onNewSectionView(attributes.Blog))}
+			onVisibleCallback={() =>
+				//@ts-ignore
+				dispatch(onNewSectionView(attributes.Blog as AttributeValue))
+			}
 			Component={
 				<section className={classes.BlogBody} id={attributes.Blog}>
 					<div className={classes.BlogMain}>

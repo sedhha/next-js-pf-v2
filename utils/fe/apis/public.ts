@@ -31,16 +31,28 @@ export const HELPER_APIS = {
 	GEO: 'https://ipapi.co/json/',
 	CSRF_REST_OPEN:
 		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/open/get-session`
-			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/open/get-session`,
+			? `http://localhost:4200/auth/get-session`
+			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-session`,
 	CSRF_REST:
 		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/rest/add-session`
-			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/rest/add-session`,
-	CSRF_REST_GET_SESSION:
+			? `http://localhost:4200/auth/get-csrf`
+			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-csrf`,
+	CSRF_REST_START:
 		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/rest/get-session`
-			: `https://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/rest/get-session`,
+			? `http://localhost:4200/web-analytics/record-session`
+			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-session`,
+	CSRF_REST_KILL:
+		process.env.NODE_ENV === 'development'
+			? `http://localhost:4200/web-analytics/close-session`
+			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/close-session`,
+	CSRF_REST_RECORD_VIEW:
+		process.env.NODE_ENV === 'development'
+			? `http://localhost:4200/web-analytics/record-view`
+			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-view`,
+	CSRF_REST_RECORD_EVENT:
+		process.env.NODE_ENV === 'development'
+			? `http://localhost:4200/web-analytics/record-event`
+			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-event`,
 	WEB_SOCKET:
 		process.env.NODE_ENV === 'development'
 			? `ws://localhost:4200/track`

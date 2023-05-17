@@ -41,6 +41,7 @@ export interface INavigationSlice {
 	isAdmin: boolean;
 	isAdminOnline: boolean;
 	eventData?: IEventData[];
+	firstPacketSent: boolean;
 }
 
 // Define the initial state using that type
@@ -56,7 +57,8 @@ const initialState: INavigationSlice = {
 	},
 	showPopup: false,
 	isAdmin: false,
-	isAdminOnline: false
+	isAdminOnline: false,
+	firstPacketSent: false
 };
 
 export const navSlice = createSlice({
@@ -65,6 +67,12 @@ export const navSlice = createSlice({
 	reducers: {
 		updateShowMore: (state: INavigationSlice, action: PayloadAction<boolean>) => {
 			state.showMore = action.payload;
+		},
+		setFirstPacketSent: (
+			state: INavigationSlice,
+			action: PayloadAction<boolean>
+		) => {
+			state.firstPacketSent = action.payload;
 		},
 		updateMostPopularSelected: (
 			state: INavigationSlice,
@@ -149,6 +157,7 @@ export const {
 	updateUserEmail,
 	updateUserUid,
 	updateShowMore,
+	setFirstPacketSent,
 	updateMostPopularSelected,
 	updateInChatMode
 } = navSlice.actions;

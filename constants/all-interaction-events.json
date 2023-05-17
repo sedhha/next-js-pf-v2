@@ -1,0 +1,18 @@
+{
+	"darkModeEnabled": {
+		"identifier": "Enable-Dark-Mode",
+		"description": "This event indicates that the user has enabled the dark mode"
+	},
+	"darkModeDisabled": {
+		"identifier": "Disable-Dark-Mode",
+		"description": "This event indicates that the user has disabled the dark mode"
+	},
+	"soundPlayed": {
+		"identifier": "Play-Hover-Sound",
+		"description": "This event indicates that the user has hovered on the logo and sound was played."
+	},
+	"soundPaused": {
+		"identifier": "Pause-Hover-Sound",
+		"description": "This event indicates that the user has hovered out of the logo and sound was paused."
+	}
+}

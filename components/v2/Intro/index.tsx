@@ -3,11 +3,19 @@ import classes from './Intro.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import attributes from '@/constants/header-attr.json';
 import VisibilityHandler from '@/v2/common/VisibilityController';
-import { useAppDispatch } from '@/redux/hooks';
-import { onNewSectionView } from '@/slices/analytics.slice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { onBackImageViewed, onNewSectionView } from '@/slices/analytics.slice';
+import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
 
 const Intro = () => {
 	const dispatch = useAppDispatch();
+	const {
+		navigation: { csrfToken },
+		analytics: {
+			visitorID,
+			staticContent: { clickEvents }
+		}
+	} = useAppSelector((state) => state);
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => dispatch(onNewSectionView(attributes.About))}
@@ -32,6 +40,20 @@ const Intro = () => {
 								src={'/intro-image.jpeg'}
 								className={classes.Image}
 								alt={'Shivam -Sahil: Developer'}
+								onMouseEnter={() => {
+									dispatch(onBackImageViewed());
+									if (csrfToken) {
+										const key = `viewedBackImage-${visitorID}`;
+										const payload = {
+											clickIdentifier: key,
+											clickDescription:
+												'This event denotes that user has viewed the back image by hovering over the front image.',
+											clickPerformedAt: new Date().toISOString(),
+											clickedTimes: (clickEvents[key]?.clickedTimes ?? 0) + 1
+										};
+										logEvent(csrfToken, key, payload);
+									}
+								}}
 							/>
 						</div>
 					</div>

@@ -1,5 +1,4 @@
 import Header from '@/v3/Header';
-import HeaderV2 from '@/v2/Header';
 import Intro from '@/v2/Intro';
 import Work from '@/v2/Work';
 import Blog from '@/v2/Blog';

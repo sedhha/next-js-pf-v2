@@ -6,7 +6,7 @@ import {
 	updatePopup,
 	updateUser
 } from '@/slices/navigation.slice';
-import { useEffect, useCallback, Fragment } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -16,7 +16,8 @@ import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
 import { supportedOperations } from '@/firebase/constants';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
-import { HELPER_APIS } from '@/utils/fe/apis/public';
+import { IWSResult } from '@/interfaces/analytics';
+import { HELPER_APIS } from '../../utils/fe/apis/public';
 import {
 	convertToFEData,
 	handleURLLoginFlow,
@@ -27,8 +28,7 @@ import {
 import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { off, onValue } from 'firebase/database';
-import { onNewSectionView, setVisitorID } from '@/slices/analytics.slice';
-import { useRouter } from 'next/router';
+import { setVisitorID } from '@/slices/analytics.slice';
 type Props = {
 	Component: JSX.Element;
 };
@@ -38,57 +38,107 @@ const auth = getAuth(app);
 
 export default function BaseComponent({ Component }: Props) {
 	const dispatch = useAppDispatch();
-	const router = useRouter();
-	const { asPath } = router;
+	const [wsClient, setWSClient] = useState<WebSocket | null>(null);
 	const {
+		navigation: {
+			userUid,
+			userEmail,
+			csrfToken,
+			isAdmin,
+			subscriptionPending,
+			idToken,
+			firstPacketSent
+		},
 		analytics: {
 			staticContent: {
 				themes: { darkMode }
 			}
-		},
-		navigation: {
-			csrfToken,
-			userEmail,
-			userUid,
-			firstPacketSent,
-			subscriptionPending,
-			idToken,
-			isAdmin
 		}
 	} = useAppSelector((state) => state);
-
-	// Data From FingerPrint
 	const { isLoading, error, data } = useVisitorData({
 		extendedResult: true
 	});
 
-	// Page View Analytics
-	useEffect(() => {
-		if (asPath === '/') dispatch(onNewSectionView('root'));
-		else dispatch(onNewSectionView(asPath.split('/').join('--')));
-	}, [asPath, dispatch]);
+	const initiateSocket = React.useCallback(() => {
+		if (wsClient) return;
+		info('Initiating Analytics');
+		maxRetriedConnections(`${HELPER_APIS.WEB_SOCKET}?csrf=${csrfToken}`, 3).then(
+			(newSocket) => {
+				newSocket.onclose = (e) => {
+					info(`ASW Disconnected`, e.isTrusted);
+				};
+				newSocket.onmessage = (message) => {
+					const result = JSON.parse(message.data) as IWSResult<unknown>;
+					switch (result.identifier) {
+						case supportedOperations.start: {
+							const fingerPrint = result.payload as string;
+							localStorage.setItem('fpp', fingerPrint);
+							break;
+						}
+						case supportedOperations.closedByServer: {
+							info('ASW Session Ended', result.message);
+							break;
+						}
+					}
+				};
+				setWSClient(newSocket);
+			}
+		);
+	}, [wsClient, csrfToken]);
 
-	// Set Visitor ID
-	useEffect(() => {
-		if (data?.visitorId) setVisitorID(data.visitorId);
-	}, [data]);
+	// Create Web Socket
+	React.useEffect(() => {
+		if (!wsClient && csrfToken) initiateSocket();
+	}, [initiateSocket, wsClient, csrfToken, dispatch]);
 
-	// Request CSRF Token
-	useEffect(() => {
-		if (!csrfToken && data)
-			feFetch<string>({
-				url: HELPER_APIS.CSRF_REST,
-				headers: {
-					'x-visitor-id': data.visitorId
-				}
-			}).then((res) => {
-				if (!res.error && res.json) dispatch(updateCsrfToken(res.json));
-			});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dispatch, data]);
+	// Send the Socket Data When Connection is established
+	React.useEffect(() => {
+		if (
+			!firstPacketSent &&
+			!isLoading &&
+			!error &&
+			data &&
+			csrfToken &&
+			wsClient
+		) {
+			dispatch(setVisitorID(data.visitorId ?? 'unknown'));
+			getGeoData()
+				.then((geo) => {
+					const body = convertToFEData({
+						uid: userUid,
+						email: userEmail,
+						geo,
+						fp: data,
+						csrfToken
+					});
+					const ecString = Buffer.from(
+						JSON.stringify({
+							headers: { csrf: csrfToken, actionType: supportedOperations.start },
+							body
+						})
+					).toString('base64');
+					wsClient.send(ecString);
+				})
+				.catch((error) => {
+					info('Unexpected Error Occured:- ' + error.message);
+					dispatch(setFirstPacketSent(false));
+				});
+			dispatch(setFirstPacketSent(true));
+		}
+	}, [
+		firstPacketSent,
+		error,
+		data,
+		isLoading,
+		csrfToken,
+		wsClient,
+		userEmail,
+		userUid,
+		dispatch
+	]);
 
-	// Check User Status
-	useEffect(() => {
+	// See if User is Signed In and Request CSRF Token
+	React.useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				dispatch(updateUser(user));
@@ -115,6 +165,14 @@ export default function BaseComponent({ Component }: Props) {
 					});
 			}
 		});
+		// Request CSRF Token
+		feFetch<string>({
+			url: HELPER_APIS.CSRF_REST
+		}).then((res) => {
+			if (!res.error && res.json) {
+				dispatch(updateCsrfToken(res.json));
+			}
+		});
 		// Update Admin Online Actiivity
 		onValue(adminRef, (snapshot) => {
 			if (snapshot.exists()) {
@@ -125,49 +183,20 @@ export default function BaseComponent({ Component }: Props) {
 			off(adminRef);
 		};
 	}, [dispatch]);
-
-	const adminStatusCallback = useCallback(() => {
+	const adminStatusCallback = React.useCallback(() => {
 		setOnlineStatus(isAdmin);
 	}, [isAdmin]);
 
 	// Set / Unset Admin Status
-	useEffect(() => {
+	React.useEffect(() => {
 		adminStatusCallback();
 		document.addEventListener('visibilitychange', adminStatusCallback);
 		return () =>
 			document.removeEventListener('visibilitychange', adminStatusCallback);
 	}, [adminStatusCallback]);
 
-	// Update Geo Details
-	useEffect(() => {
-		if (csrfToken && !isLoading && !error && data && !firstPacketSent) {
-			getGeoData().then((geo) => {
-				const body = convertToFEData({
-					uid: userUid,
-					email: userEmail,
-					geo,
-					fp: data,
-					csrfToken
-				});
-				feFetch<null>({
-					url: HELPER_APIS.CSRF_REST_START,
-					method: 'POST',
-					body: JSON.stringify(body),
-					headers: {
-						'x-csrf-token': csrfToken,
-						'Content-Type': 'application/json',
-						'Accept': 'application/json'
-					}
-				}).then((res) => {
-					if (!res.error) dispatch(setFirstPacketSent(true));
-				});
-			});
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [csrfToken, isLoading, error, data, firstPacketSent, dispatch]);
-
 	// See if User has requested for newsletter subscription
-	useEffect(() => {
+	React.useEffect(() => {
 		if (subscriptionPending && idToken) {
 			feFetch({
 				url: USER_APIS.SUBSCRIBE_NEWSLETTER,
@@ -180,28 +209,8 @@ export default function BaseComponent({ Component }: Props) {
 		}
 	}, [subscriptionPending, idToken]);
 
-	// Disconnect Analytics on Closing window
-	useEffect(() => {
-		if (csrfToken) {
-			const handleBeforeUnload = async () => {
-				// Make your API call here
-				await feFetch<null>({
-					url: HELPER_APIS.CSRF_REST_KILL,
-					headers: {
-						'x-csrf-token': csrfToken
-					},
-					keepAlive: true
-				});
-			};
-			window.addEventListener('beforeunload', handleBeforeUnload);
-			return () => {
-				window.removeEventListener('beforeunload', handleBeforeUnload);
-			};
-		}
-	}, [csrfToken]);
-
 	return (
-		<Fragment>
+		<React.Fragment>
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<title>Shivam Sahil</title>
@@ -250,6 +259,6 @@ export default function BaseComponent({ Component }: Props) {
 				<Component.type {...Component.props} />
 			</div>
 			<Popup />
-		</Fragment>
+		</React.Fragment>
 	);
 }

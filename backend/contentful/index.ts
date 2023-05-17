@@ -50,6 +50,7 @@ const queryWorkExperience = async (
 			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
 		);
 	}
+
 	return fetch(process.env.CONTENTFUL_BASE_URL, {
 		method: 'POST',
 		headers: {
