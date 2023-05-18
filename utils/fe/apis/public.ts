@@ -27,36 +27,31 @@ export const ANALYTICS_APIS = {
 	TRACK: '/api/analytics/track'
 };
 
+const isDevelopmentEnv = process.env.NODE_ENV === 'development';
+
 export const HELPER_APIS = {
 	GEO: 'https://ipapi.co/json/',
-	CSRF_REST_OPEN:
-		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/auth/get-session`
-			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-session`,
-	CSRF_REST:
-		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/auth/get-csrf`
-			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-csrf`,
-	CSRF_REST_START:
-		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/web-analytics/record-session`
-			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-session`,
-	CSRF_REST_KILL:
-		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/web-analytics/close-session`
-			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/close-session`,
-	CSRF_REST_RECORD_VIEW:
-		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/web-analytics/record-view`
-			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-view`,
-	CSRF_REST_RECORD_EVENT:
-		process.env.NODE_ENV === 'development'
-			? `http://localhost:4200/web-analytics/record-event`
-			: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-event`,
-	WEB_SOCKET:
-		process.env.NODE_ENV === 'development'
-			? `ws://localhost:4200/track`
-			: `wss://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/track`
+	CSRF_REST_OPEN: isDevelopmentEnv
+		? `http://localhost:4200/auth/get-session`
+		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-session`,
+	CSRF_REST: isDevelopmentEnv
+		? `http://localhost:4200/auth/get-csrf`
+		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-csrf`,
+	CSRF_REST_START: isDevelopmentEnv
+		? `http://localhost:4200/web-analytics/record-session`
+		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-session`,
+	CSRF_REST_KILL: isDevelopmentEnv
+		? `http://localhost:4200/web-analytics/close-session`
+		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/close-session`,
+	CSRF_REST_RECORD_VIEW: isDevelopmentEnv
+		? `http://localhost:4200/web-analytics/record-view`
+		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-view`,
+	CSRF_REST_RECORD_EVENT: isDevelopmentEnv
+		? `http://localhost:4200/web-analytics/record-event`
+		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-event`,
+	WEB_SOCKET: isDevelopmentEnv
+		? `ws://localhost:4200/track`
+		: `wss://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/track`
 };
 
 export const USER_APIS = {
