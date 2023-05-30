@@ -1,4 +1,22 @@
 import { IFetchFEParams, IResponse, IResult } from '@/interfaces/api';
+import { PUBLIC_APIS, isDevelopmentEnv } from './apis/public';
+
+const getUserAgentInfo = (): {
+	'user-agent': string;
+	'sec-ch-ua': string;
+} => {
+	const userAgent = navigator?.userAgent ?? 'unknown-agent';
+	//@ts-ignore
+	const secChUa = navigator?.userAgentData?.brands
+		?.map((brand: { brand: string; version: string }) => {
+			return brand.brand + ' ' + brand.version;
+		})
+		.join(', ');
+	return {
+		'sec-ch-ua': secChUa,
+		'user-agent': userAgent
+	};
+};
 
 export const feFetch = async <T>({
 	url,
@@ -8,6 +26,30 @@ export const feFetch = async <T>({
 	body,
 	keepAlive
 }: IFetchFEParams): Promise<IResponse<T>> => {
+	if (!isDevelopmentEnv && !url?.startsWith('/api/')) {
+		const completeHeaders = { ...getUserAgentInfo(), ...headers };
+		return fetch(PUBLIC_APIS.PROXY_API, {
+			keepalive: true,
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				url,
+				method: method ?? 'GET',
+				headers: completeHeaders,
+				payload: body
+			})
+		}).then((res) =>
+			res.json().then((data) => {
+				return {
+					status: data.code,
+					error: data.error,
+					json: data.content.json
+				};
+			})
+		);
+	}
 	try {
 		const res = await fetch(url, {
 			keepalive: keepAlive,
