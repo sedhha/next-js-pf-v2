@@ -29,27 +29,29 @@ export const feFetch = async <T>({
 }: IFetchFEParams): Promise<IResponse<T>> => {
 	if (sendToProxy) {
 		const completeHeaders = { ...getUserAgentInfo(), ...headers };
-		return fetch(PUBLIC_APIS.PROXY_API, {
-			keepalive: true,
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				url,
-				method: method ?? 'GET',
-				headers: completeHeaders,
-				payload: body
-			})
-		}).then((res) =>
-			res.json().then((data) => {
-				return {
-					status: data.code,
-					error: data.error,
-					json: data.content.json
-				};
-			})
-		);
+		if (JSON.parse(process.env.NEXT_PUBLIC_RUN_ANALYTICS ?? 'false')) {
+			return fetch(PUBLIC_APIS.PROXY_API, {
+				keepalive: true,
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					url,
+					method: method ?? 'GET',
+					headers: completeHeaders,
+					payload: body
+				})
+			}).then((res) =>
+				res.json().then((data) => {
+					return {
+						status: data.code,
+						error: data.error,
+						json: data.content.json
+					};
+				})
+			);
+		} else return { status: 200, error: false };
 	}
 	try {
 		const res = await fetch(url, {

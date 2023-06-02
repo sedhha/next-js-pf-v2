@@ -14,15 +14,13 @@ import { useAppSelector } from '@/redux/hooks';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
-import { supportedOperations } from '@/firebase/constants';
 import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
 import {
 	convertToFEData,
 	handleURLLoginFlow,
 	setOnlineStatus,
-	adminRef,
-	maxRetriedConnections
+	adminRef
 } from './utils';
 import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
@@ -70,8 +68,8 @@ export default function BaseComponent({ Component }: Props) {
 
 	// Set Visitor ID
 	useEffect(() => {
-		if (data?.visitorId) setVisitorID(data.visitorId);
-	}, [data]);
+		if (data?.visitorId) dispatch(setVisitorID(data.visitorId));
+	}, [data, dispatch]);
 
 	// Request CSRF Token
 	useEffect(() => {
