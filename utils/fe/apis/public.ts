@@ -8,7 +8,8 @@ export const PUBLIC_APIS = {
 	TESTIMONIALS: '/api/public/testimonials',
 	TECH_STACK: '/api/public/tech-stack',
 	BLOG: '/api/public/blog',
-	TITLE_BY_VIDEO_ID: '/api/public/title-by-video-id'
+	TITLE_BY_VIDEO_ID: '/api/public/title-by-video-id',
+	PROXY_API: '/api/public/proxy'
 };
 
 export const DB_APIS = {
@@ -27,28 +28,18 @@ export const ANALYTICS_APIS = {
 	TRACK: '/api/analytics/track'
 };
 
-const isDevelopmentEnv = process.env.NODE_ENV === 'development';
-
+export const isDevelopmentEnv = process.env.NODE_ENV === 'development';
+const BASE_URL = !isDevelopmentEnv
+	? `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}`
+	: 'http://localhost:4200';
 export const HELPER_APIS = {
 	GEO: 'https://ipapi.co/json/',
-	CSRF_REST_OPEN: isDevelopmentEnv
-		? `http://localhost:4200/auth/get-session`
-		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-session`,
-	CSRF_REST: isDevelopmentEnv
-		? `http://localhost:4200/auth/get-csrf`
-		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/auth/get-csrf`,
-	CSRF_REST_START: isDevelopmentEnv
-		? `http://localhost:4200/web-analytics/record-session`
-		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-session`,
-	CSRF_REST_KILL: isDevelopmentEnv
-		? `http://localhost:4200/web-analytics/close-session`
-		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/close-session`,
-	CSRF_REST_RECORD_VIEW: isDevelopmentEnv
-		? `http://localhost:4200/web-analytics/record-view`
-		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-view`,
-	CSRF_REST_RECORD_EVENT: isDevelopmentEnv
-		? `http://localhost:4200/web-analytics/record-event`
-		: `https://${process.env.NEXT_PUBLIC_REST_ENDPOINT}/web-analytics/record-event`,
+	CSRF_REST_OPEN: `${BASE_URL}/auth/get-session`,
+	CSRF_REST: `/auth/get-csrf`,
+	CSRF_REST_START: `/web-analytics/record-session`,
+	CSRF_REST_KILL: `/web-analytics/close-session`,
+	CSRF_REST_RECORD_VIEW: `/web-analytics/record-view`,
+	CSRF_REST_RECORD_EVENT: `/web-analytics/record-event`,
 	WEB_SOCKET: isDevelopmentEnv
 		? `ws://localhost:4200/track`
 		: `wss://${process.env.NEXT_PUBLIC_WS_ENDPOINT}/track`

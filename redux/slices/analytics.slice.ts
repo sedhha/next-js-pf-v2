@@ -84,6 +84,7 @@ export const onNewSectionView = createAsyncThunk(
 			feFetch({
 				method: 'POST',
 				url: HELPER_APIS.CSRF_REST_RECORD_VIEW,
+				sendToProxy: true,
 				headers: {
 					'Content-Type': 'application/json',
 					'x-csrf-token': csrfToken

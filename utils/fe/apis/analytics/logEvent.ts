@@ -9,6 +9,7 @@ export const logEvent = async (
 ) => {
 	return feFetch({
 		url: HELPER_APIS.CSRF_REST_RECORD_EVENT,
+		sendToProxy: true,
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
