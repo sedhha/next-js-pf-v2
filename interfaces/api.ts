@@ -6,6 +6,7 @@ export interface IFetchFEParams {
 	headers?: Record<string, string>;
 	body?: BodyInit | null;
 	keepAlive?: boolean;
+	sendToProxy?: boolean;
 }
 
 export interface IResponse<T> {

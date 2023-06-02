@@ -167,7 +167,8 @@ export default function BaseComponent({ Component }: Props) {
 		});
 		// Request CSRF Token
 		feFetch<string>({
-			url: HELPER_APIS.CSRF_REST
+			url: HELPER_APIS.CSRF_REST,
+			sendToProxy: true
 		}).then((res) => {
 			if (!res.error && res.json) {
 				dispatch(updateCsrfToken(res.json));

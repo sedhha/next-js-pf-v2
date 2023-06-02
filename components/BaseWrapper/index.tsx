@@ -78,6 +78,7 @@ export default function BaseComponent({ Component }: Props) {
 		if (!csrfToken && data)
 			feFetch<string>({
 				url: HELPER_APIS.CSRF_REST,
+				sendToProxy: true,
 				headers: {
 					'x-visitor-id': data.visitorId
 				}
@@ -151,6 +152,7 @@ export default function BaseComponent({ Component }: Props) {
 				});
 				feFetch<null>({
 					url: HELPER_APIS.CSRF_REST_START,
+					sendToProxy: true,
 					method: 'POST',
 					body: JSON.stringify(body),
 					headers: {
@@ -187,6 +189,7 @@ export default function BaseComponent({ Component }: Props) {
 				// Make your API call here
 				await feFetch<null>({
 					url: HELPER_APIS.CSRF_REST_KILL,
+					sendToProxy: true,
 					headers: {
 						'x-csrf-token': csrfToken
 					},

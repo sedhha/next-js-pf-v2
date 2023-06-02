@@ -1,4 +1,6 @@
 import { IProxyRequest } from '@/interfaces/gzb-proxy';
+import { info } from '@/utils/dev-utils';
+import { isDevelopmentEnv } from '@/utils/fe/apis/public';
 import fetch, { Response } from 'node-fetch';
 
 const getMethod = (method: string) =>
@@ -6,7 +8,10 @@ const getMethod = (method: string) =>
 		? method?.toLowerCase?.()
 		: 'get';
 
-const getUrl = (url: string) => `https://blushing-yak-tutu.cyclic.app${url}`;
+const getUrl = (url: string) =>
+	isDevelopmentEnv
+		? `http://localhost:4200${url}`
+		: `https://blushing-yak-tutu.cyclic.app${url}`;
 
 const returnResponse = async (
 	response: Response
@@ -17,10 +22,27 @@ const returnResponse = async (
 	message?: string;
 }> => {
 	const status = response.status;
-	return response
-		.json()
-		.then((data) => ({ status, content: data, error: false }))
-		.catch((error) => ({ error: true, message: error.message }));
+	try {
+		return response
+			.json()
+			.then((data) => {
+				info(
+					`Proxy Server Success Response: ${status} | Content: ${JSON.stringify(
+						data
+					)}\n\n\n`
+				);
+				return { status, content: data, error: false };
+			})
+			.catch((error) => {
+				info(
+					`Proxy Server Error Response: ${status} | Message: ${error.message}\n\n\n`
+				);
+				return { errored: true, message: error.message };
+			});
+	} catch (er) {
+		console.log('Error occured = ', (er as { message: string }).message);
+		return { errored: true, message: (er as { message: string }).message };
+	}
 };
 
 export const proxyGZBServer = async (reqObject: IProxyRequest) => {
@@ -34,6 +56,11 @@ export const proxyGZBServer = async (reqObject: IProxyRequest) => {
 		return { code: 400, content: { message: 'Invalid Request' } };
 	const reqMethod = getMethod(method);
 	const reqUrl = getUrl(url);
+	info(
+		`Proxy to External Server Request: ${reqMethod} | URL: ${reqUrl} | Body: ${JSON.stringify(
+			payload
+		)} | Headers: ${JSON.stringify(headers)}\n\n\n`
+	);
 	switch (reqMethod) {
 		case 'get': {
 			return fetch(reqUrl, {

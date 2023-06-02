@@ -24,9 +24,10 @@ export const feFetch = async <T>({
 	getText,
 	headers,
 	body,
-	keepAlive
+	keepAlive,
+	sendToProxy
 }: IFetchFEParams): Promise<IResponse<T>> => {
-	if (!isDevelopmentEnv && !url?.startsWith('/api/')) {
+	if (sendToProxy) {
 		const completeHeaders = { ...getUserAgentInfo(), ...headers };
 		return fetch(PUBLIC_APIS.PROXY_API, {
 			keepalive: true,
