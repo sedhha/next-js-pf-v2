@@ -37,7 +37,7 @@ export const HELPER_APIS = {
 	// IP: 'https://checkip.amazonaws.com', // Only for BE
 	IP: 'https://api.db-ip.com/v2/free/self',
 	ID: '/api/public/get-id',
-	IPLOOKUP: 'http://ipwho.is',
+	IP_SERVER: '/api/public/ip-lookup',
 	CSRF_REST_OPEN: `${BASE_URL}/auth/get-session`,
 	CSRF_REST: `/auth/get-csrf`,
 	CSRF_REST_START: `/web-analytics/record-session`,

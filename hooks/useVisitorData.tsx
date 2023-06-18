@@ -93,7 +93,13 @@ const useVisitorData = () => {
 
 	useEffect(() => {
 		if (userIP != null && navigator.userAgent)
-			cacheFetch<DetailedIPData>(`${HELPER_APIS.IPLOOKUP}/${userIP}`)
+			cacheFetch<DetailedIPData>(`${HELPER_APIS.IP_SERVER}`, true, {
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json',
+					'x-client-ip': userIP
+				}
+			})
 				.then(async (res) => {
 					const { browserName, browserVersion, osName, osVersion } =
 						getBrowserData();
