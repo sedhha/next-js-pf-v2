@@ -143,6 +143,7 @@ interface IFingerPrint {
 	fp_OS?: string;
 	fp_OSVersion?: string;
 	fp_Visitor?: boolean;
+	visitorId?: string;
 }
 
 interface Identification {
@@ -285,7 +286,8 @@ type IFEStartSession = {
 	uid?: string;
 	email?: string;
 	geo: IGeoAPINew;
-	fp: IFingerprintAPI;
+	// fp: IFingerprintAPI | IFingerPrint;
+	fp: IFingerPrint;
 	csrfToken: string;
 };
 
@@ -369,5 +371,6 @@ export type {
 	ISessionCollection,
 	IEventsCollection,
 	IFEStartSession,
-	IWSResult
+	IWSResult,
+	IFingerPrint
 };

@@ -14,7 +14,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
-import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
+// import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
 import {
 	convertToFEData,
@@ -22,11 +22,11 @@ import {
 	setOnlineStatus,
 	adminRef
 } from './utils';
-import { info } from '@/utils/dev-utils';
 import { getGeoData } from '@/utils/fe/apis/analytics/geo';
 import { off, onValue } from 'firebase/database';
 import { onNewSectionView, setVisitorID } from '@/slices/analytics.slice';
 import { useRouter } from 'next/router';
+import { useVisitorData } from '@/hooks/useVisitorData';
 type Props = {
 	Component: JSX.Element;
 };
@@ -56,9 +56,7 @@ export default function BaseComponent({ Component }: Props) {
 	} = useAppSelector((state) => state);
 
 	// Data From FingerPrint
-	const { isLoading, error, data } = useVisitorData({
-		extendedResult: true
-	});
+	const { isLoading, error, data } = useVisitorData();
 
 	// Page View Analytics
 	useEffect(() => {
@@ -73,7 +71,7 @@ export default function BaseComponent({ Component }: Props) {
 
 	// Request CSRF Token
 	useEffect(() => {
-		if (!csrfToken && data)
+		if (!csrfToken && data && data.visitorId)
 			feFetch<string>({
 				url: HELPER_APIS.CSRF_REST,
 				sendToProxy: true,

@@ -70,6 +70,7 @@ export const feFetch = async <T>({
 					};
 				} else {
 					const json = (await res.json()) as IResult<T>;
+					console.log('JSON = ', json);
 					return {
 						error: res.status > 399,
 						json: json.json,

@@ -34,6 +34,10 @@ const BASE_URL = !isDevelopmentEnv
 	: 'http://localhost:4200';
 export const HELPER_APIS = {
 	GEO: 'https://ipapi.co/json/',
+	// IP: 'https://checkip.amazonaws.com', // Only for BE
+	IP: 'https://api.db-ip.com/v2/free/self',
+	ID: '/api/public/get-id',
+	IPLOOKUP: 'http://ipwho.is',
 	CSRF_REST_OPEN: `${BASE_URL}/auth/get-session`,
 	CSRF_REST: `/auth/get-csrf`,
 	CSRF_REST_START: `/web-analytics/record-session`,

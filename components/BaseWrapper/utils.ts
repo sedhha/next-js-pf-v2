@@ -47,33 +47,21 @@ const convertToFEData = ({ uid, email, geo, fp }: IFEStartSession): IFEGeo => ({
 	org: geo.org,
 	// FP Data
 	fp_visitorID: fp?.visitorId,
-	fp_browserName: fp?.browserName,
-	fp_browserVersion: fp?.browserVersion,
-	fp_confidenceScore: fp?.confidence?.score,
-	fp_device: fp?.device,
-	fp_firstSeenAt_global: fp?.firstSeenAt?.global ?? undefined,
-	fp_firstSeenAt_subscription: fp?.firstSeenAt?.subscription ?? undefined,
-	fp_incognito: fp?.incognito,
-	fp_ip: fp?.ip,
-	fp_accuracyRadius: fp?.ipLocation?.accuracyRadius,
-	fp_cityName: fp?.ipLocation?.city?.name,
-	fp_continentName: fp?.ipLocation?.continent?.name,
-	fp_continentCode: fp?.ipLocation?.continent?.code,
-	fp_country: fp?.ipLocation?.country?.name,
-	fp_countryCode: fp?.ipLocation?.country?.code,
-	fp_latitude: fp?.ipLocation?.latitude,
-	fp_longitude: fp?.ipLocation?.longitude,
-	fp_postCode: fp?.ipLocation?.postalCode,
-	fp_subDivision: fp?.ipLocation?.subdivisions
-		? [...fp.ipLocation.subdivisions]
-		: undefined,
-	fp_timezone: fp?.ipLocation?.timezone,
-	fp_lastSeenAt_global: fp?.lastSeenAt?.global ?? undefined,
-	fp_lastSeenAt_subscription: fp?.lastSeenAt?.subscription ?? undefined,
-	fp_metaVersion: fp?.meta?.version,
-	fp_OS: fp?.os,
-	fp_OSVersion: fp?.osVersion,
-	fp_Visitor: fp?.visitorFound
+	fp_browserName: fp?.fp_browserName,
+	fp_browserVersion: fp?.fp_browserVersion,
+	fp_device: fp?.fp_device,
+	fp_ip: fp?.fp_ip,
+	fp_cityName: fp.fp_cityName,
+	fp_continentName: fp.fp_continentName,
+	fp_continentCode: fp.fp_continentCode,
+	fp_country: fp.fp_country,
+	fp_countryCode: fp.fp_countryCode,
+	fp_latitude: fp.fp_latitude,
+	fp_longitude: fp.fp_longitude,
+	fp_postCode: fp.fp_postCode,
+	fp_timezone: fp.fp_timezone,
+	fp_OS: fp.fp_OS,
+	fp_OSVersion: fp.fp_OSVersion
 });
 
 function* newConnectionRequest(start = 0) {
