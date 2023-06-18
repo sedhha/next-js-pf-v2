@@ -1,5 +1,5 @@
 import { IFetchFEParams, IResponse, IResult } from '@/interfaces/api';
-import { PUBLIC_APIS, isDevelopmentEnv } from './apis/public';
+import { PUBLIC_APIS } from './apis/public';
 
 const getUserAgentInfo = (): {
 	'user-agent': string;
