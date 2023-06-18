@@ -1,5 +1,5 @@
 import { IFetchFEParams, IResponse, IResult } from '@/interfaces/api';
-import { PUBLIC_APIS, isDevelopmentEnv } from './apis/public';
+import { PUBLIC_APIS } from './apis/public';
 
 const getUserAgentInfo = (): {
 	'user-agent': string;
@@ -70,6 +70,7 @@ export const feFetch = async <T>({
 					};
 				} else {
 					const json = (await res.json()) as IResult<T>;
+					console.log('JSON = ', json);
 					return {
 						error: res.status > 399,
 						json: json.json,

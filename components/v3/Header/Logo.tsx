@@ -1,11 +1,12 @@
 import LazyImage from '@/components/v2/common/LazyImage';
 import classes from './Header.module.css';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { onLogoHover } from '@/slices/analytics.slice';
 import allEvents from '@/constants/all-interaction-events.json';
 import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
+import { cacheFetch } from '@/utils/fe/cachedRequest';
 const Logo = () => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
