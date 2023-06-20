@@ -3,6 +3,7 @@ import { IFEGeo, IFEStartSession } from '@/interfaces/analytics';
 import { info } from '@/utils/dev-utils';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
 import app from '@/utils/fe/apis/services/firebase';
+import { getUniqueBrowserID } from '@/utils/fe/getVisitor';
 import {
 	User,
 	getAuth,
@@ -16,7 +17,7 @@ const db = getDatabase(app);
 const convertToFEData = ({ uid, email, geo, fp }: IFEStartSession): IFEGeo => ({
 	uid,
 	email,
-	visitorID: localStorage.getItem('visitorID') ?? undefined,
+	visitorID: getUniqueBrowserID() ?? undefined,
 	// Geo Data
 	ip: geo.ip,
 	network: geo.network,
