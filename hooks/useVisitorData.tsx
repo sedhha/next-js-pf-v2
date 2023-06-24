@@ -105,7 +105,6 @@ const useVisitorData = () => {
 				.then(async (res) => {
 					const { browserName, browserVersion, osName, osVersion } =
 						getBrowserData();
-					alert(`${browserName}::${browserVersion}::${osName}::${osVersion}`);
 					if (!res.success) {
 						console.error(
 							'Lookup option returns null on search. Failed to get IP details',
@@ -184,7 +183,6 @@ const useVisitorData = () => {
 				})
 				.catch((error) => {
 					console.error('Unable to get IP Details - ', error.message);
-					alert('Unable to get IP Details - ' + error.message);
 					setError(true);
 					setLoading(false);
 				});
