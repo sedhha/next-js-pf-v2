@@ -94,7 +94,6 @@ const useVisitorData = () => {
 	}, []);
 
 	useEffect(() => {
-		alert(`${fpVisitor}::${userIP}::${navigator.userAgent}`);
 		if (fpVisitor != null && userIP != null && navigator.userAgent)
 			cacheFetch<DetailedIPData>(`${HELPER_APIS.IP_SERVER}`, true, {
 				headers: {
@@ -106,13 +105,12 @@ const useVisitorData = () => {
 				.then(async (res) => {
 					const { browserName, browserVersion, osName, osVersion } =
 						getBrowserData();
+					alert(`${browserName}::${browserVersion}::${osName}::${osVersion}`);
 					if (!res.success) {
 						console.error(
 							'Lookup option returns null on search. Failed to get IP details',
 							res
 						);
-						alert(`'Lookup option returns null on search. Failed to get IP details',
-						${res}`);
 						setError(true);
 						setLoading(false);
 						return;
@@ -146,21 +144,18 @@ const useVisitorData = () => {
 							.then(({ id }) => {
 								if (id) return id;
 								console.error('No ID returned for the given request.');
-								alert(`'No ID returned for the given request.'`);
 								setError(true);
 								setLoading(false);
 								return '';
 							})
 							.catch((error) => {
 								console.error('Unable to get Unique ID - ', error.message);
-								alert(`'Unable to get Unique ID - ', ${error.message}`);
 								setError(true);
 								setLoading(false);
 								return '';
 							}));
 					if (!visitorId) {
 						console.error('Visitor ID not found - ', visitorId);
-						alert(`'Visitor ID not found - ', ${visitorId}`);
 						setError(true);
 						setLoading(false);
 					}
