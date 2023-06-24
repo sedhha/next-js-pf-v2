@@ -22,11 +22,11 @@ const getBrowserData = (
 	];
 
 	const osRegexList = [
+		{ name: 'Android', regex: /Android\s([\d.]+)/i },
 		{ name: 'Windows', regex: /Windows NT ([\d.]+)/i },
 		{ name: 'Mac OS', regex: /Mac OS X ([\d_]+)/i },
 		{ name: 'Linux', regex: /Linux/i },
-		{ name: 'iOS', regex: /iPhone OS ([\d_]+)/i },
-		{ name: 'Android', regex: /Android\s([\d.]+)/i }
+		{ name: 'iOS', regex: /iPhone OS ([\d_]+)/i }
 		// Add more OS names and their corresponding regular expressions as needed
 	];
 
@@ -53,7 +53,7 @@ const getBrowserData = (
 					item.regex
 				}:: userAgent::${userAgent} match::${match.join(',')}`
 			);
-			osVersion = match?.[1]?.replace?.(/_/g, '.');
+			osVersion = match?.[1]?.replace?.(/_/g, '.') ?? item.name;
 			break;
 		}
 	}
