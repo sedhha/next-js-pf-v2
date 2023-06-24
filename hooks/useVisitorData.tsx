@@ -94,6 +94,7 @@ const useVisitorData = () => {
 	}, []);
 
 	useEffect(() => {
+		alert(`${fpVisitor}::${userIP}::${navigator.userAgent}`);
 		if (fpVisitor != null && userIP != null && navigator.userAgent)
 			cacheFetch<DetailedIPData>(`${HELPER_APIS.IP_SERVER}`, true, {
 				headers: {
