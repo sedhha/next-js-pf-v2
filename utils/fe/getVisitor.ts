@@ -48,7 +48,12 @@ const getBrowserData = (
 		const match = userAgent.match(item.regex);
 		if (match) {
 			osName = item.name;
-			osVersion = match[1].replace(/_/g, '.');
+			alert(
+				`Name: ${item.name}:: Regex::${
+					item.regex
+				}:: userAgent::${userAgent} match::${match.join(',')}`
+			);
+			osVersion = match?.[1]?.replace?.(/_/g, '.');
 			break;
 		}
 	}
