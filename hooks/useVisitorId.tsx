@@ -5,7 +5,6 @@ const useVisitorId = () => {
 	const [visitorId, setVisitorId] = useState<string | null>(null);
 
 	useEffect(() => {
-		alert('Visitor ID = ' + FingerprintJS);
 		try {
 			const fpPromise = FingerprintJS.load();
 			fpPromise
@@ -13,7 +12,6 @@ const useVisitorId = () => {
 				.then((result) => {
 					const currentVisitorId = result.visitorId;
 					setVisitorId(currentVisitorId);
-					alert('Visitor ID = ' + currentVisitorId);
 				})
 				.catch((err) => {
 					console.error('Fp Visitor Not Supported - ', err.message);

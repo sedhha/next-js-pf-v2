@@ -111,6 +111,8 @@ const useVisitorData = () => {
 							'Lookup option returns null on search. Failed to get IP details',
 							res
 						);
+						alert(`'Lookup option returns null on search. Failed to get IP details',
+						${res}`);
 						setError(true);
 						setLoading(false);
 						return;
@@ -144,18 +146,21 @@ const useVisitorData = () => {
 							.then(({ id }) => {
 								if (id) return id;
 								console.error('No ID returned for the given request.');
+								alert(`'No ID returned for the given request.'`);
 								setError(true);
 								setLoading(false);
 								return '';
 							})
 							.catch((error) => {
 								console.error('Unable to get Unique ID - ', error.message);
+								alert(`'Unable to get Unique ID - ', ${error.message}`);
 								setError(true);
 								setLoading(false);
 								return '';
 							}));
 					if (!visitorId) {
 						console.error('Visitor ID not found - ', visitorId);
+						alert(`'Visitor ID not found - ', ${visitorId}`);
 						setError(true);
 						setLoading(false);
 					}
@@ -184,6 +189,7 @@ const useVisitorData = () => {
 				})
 				.catch((error) => {
 					console.error('Unable to get IP Details - ', error.message);
+					alert('Unable to get IP Details - ' + error.message);
 					setError(true);
 					setLoading(false);
 				});
