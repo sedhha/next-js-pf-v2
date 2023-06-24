@@ -9,6 +9,7 @@ import {
 	getUniqueBrowserID,
 	setUniqueBrowserID
 } from '@/utils/fe/getVisitor';
+import useVisitorId from '@/hooks/useVisitorId';
 
 interface IPData {
 	ipAddress: string;
@@ -70,6 +71,7 @@ const useVisitorData = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [data, setData] = useState<IFingerPrint>({});
+	const fpVisitor = useVisitorId();
 	useEffect(() => {
 		cacheFetch<IPData>(HELPER_APIS.IP).then((res) => {
 			const {
@@ -92,7 +94,7 @@ const useVisitorData = () => {
 	}, []);
 
 	useEffect(() => {
-		if (userIP != null && navigator.userAgent)
+		if (fpVisitor != null && userIP != null && navigator.userAgent)
 			cacheFetch<DetailedIPData>(`${HELPER_APIS.IP_SERVER}`, true, {
 				headers: {
 					'Content-Type': 'application/json',
@@ -113,6 +115,7 @@ const useVisitorData = () => {
 						return;
 					}
 					const visitorId =
+						fpVisitor ??
 						getUniqueBrowserID() ??
 						(await cacheFetch<{ id: string }>(HELPER_APIS.ID, true, {
 							headers: {
@@ -130,17 +133,15 @@ const useVisitorData = () => {
 										//@ts-ignore
 										eventCountSize: window.performance?.eventCounts?.size,
 										//@ts-ignore
-										jsHeapSize: window.performance?.memory?.jsHeapSizeLimit
+										jsHeapSize: window.performance?.memory?.jsHeapSizeLimit,
+										fpJS: fpVisitor
 									}),
 									'utf-8'
 								).toString('base64')
 							}
 						})
 							.then(({ id }) => {
-								if (id) {
-									setUniqueBrowserID(id);
-									return id;
-								}
+								if (id) return id;
 								console.error('No ID returned for the given request.');
 								setError(true);
 								setLoading(false);
@@ -157,6 +158,8 @@ const useVisitorData = () => {
 						setError(true);
 						setLoading(false);
 					}
+					setUniqueBrowserID(visitorId);
+
 					const fpData: IFingerPrint = {
 						fp_browserName: browserName,
 						fp_browserVersion: browserVersion,
@@ -184,7 +187,7 @@ const useVisitorData = () => {
 					setLoading(false);
 				});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [userIP]);
+	}, [userIP, fpVisitor]);
 	return { data, isLoading, error };
 };
 

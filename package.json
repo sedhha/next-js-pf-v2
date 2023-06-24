@@ -11,6 +11,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@fingerprintjs/fingerprintjs": "^3.4.1",
 		"@playwright/test": "^1.31.1",
 		"@reduxjs/toolkit": "^1.8.6",
 		"@vercel/analytics": "^0.1.8",

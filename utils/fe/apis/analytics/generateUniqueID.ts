@@ -10,6 +10,7 @@ interface IBrowserProps {
 	pixelRatio: number;
 	eventCountSize?: number;
 	jsHeapSize?: number;
+	fpJS?: string;
 }
 
 const generateUniqueID = (b64string: string) => {
@@ -24,24 +25,28 @@ const generateUniqueID = (b64string: string) => {
 			mxTouchPoints: z.number(),
 			pixelRatio: z.number(),
 			eventCountSize: z.number().optional(),
-			jsHeapSize: z.number().optional()
+			jsHeapSize: z.number().optional(),
+			fpJS: z.string().optional()
 		})
 		.safeParse(browserProps);
 	if (!parsed.success) return '';
-	const browserID = crypto.AES.encrypt(
-		JSON.stringify({
-			ua: browserProps.ua,
-			platform: browserProps.platform,
-			hwConcurrency: browserProps.hwConcurrency,
-			deviceMemory: browserProps.deviceMemory,
-			mxTouchPoints: browserProps.mxTouchPoints,
-			pixelRatio: browserProps.pixelRatio,
-			eventCountSize: browserProps.eventCountSize ?? -1,
-			jsHeapSize: browserProps.jsHeapSize ?? -1,
-			idx: generator.randomUUID()
-		}),
-		process.env.APPSCRIPT_API_KEY as string
-	).toString();
+	const browserID =
+		browserProps.fpJS != undefined
+			? browserProps.fpJS
+			: crypto.AES.encrypt(
+					JSON.stringify({
+						ua: browserProps.ua,
+						platform: browserProps.platform,
+						hwConcurrency: browserProps.hwConcurrency,
+						deviceMemory: browserProps.deviceMemory,
+						mxTouchPoints: browserProps.mxTouchPoints,
+						pixelRatio: browserProps.pixelRatio,
+						eventCountSize: browserProps.eventCountSize ?? -1,
+						jsHeapSize: browserProps.jsHeapSize ?? -1,
+						idx: generator.randomUUID()
+					}),
+					process.env.APPSCRIPT_API_KEY as string
+			  ).toString();
 	return browserID;
 };
 

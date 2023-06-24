@@ -76,5 +76,9 @@ const getUniqueBrowserID = () => {
 };
 
 const setUniqueBrowserID = (value: string) =>
-	localStorage.setItem(variableName, value);
+	{
+		if (localStorage.setItem) localStorage.setItem(variableName, value);
+		if (document.cookie)
+			document.cookie = `${variableName}=${value}; Path=/; Max-Age=31536000`;
+	}
 export { getUniqueBrowserID, setUniqueBrowserID, getBrowserData };
