@@ -1,5 +1,4 @@
-const priceListsCacheMap: Map<string, Promise<Response>> = new Map();
-
+const requestCache: Map<string, Promise<Response>> = new Map();
 const cacheFetch = async <T>(
 	url: string,
 	isJson: boolean = true,
@@ -9,8 +8,8 @@ const cacheFetch = async <T>(
 	const body = JSON.stringify(init?.body ?? '');
 	const method = init?.method ?? '';
 	const hash = `${url}-${headers}-${body}-${method}`;
-	if (!priceListsCacheMap.get(hash)) {
-		priceListsCacheMap.set(
+	if (!requestCache.get(hash)) {
+		requestCache.set(
 			hash,
 			fetch(url, init).then(async (res) => {
 				if (res.status === 204) return isJson ? {} : '';
@@ -18,6 +17,6 @@ const cacheFetch = async <T>(
 			})
 		);
 	}
-	return priceListsCacheMap.get(hash) as unknown as Promise<T>;
+	return requestCache.get(hash) as unknown as Promise<T>;
 };
 export { cacheFetch };
