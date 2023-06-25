@@ -241,17 +241,8 @@ class Analytics {
 			fp_visitorID: data.fp_visitorID,
 			fp_browserName: data.fp_browserName,
 			fp_browserVersion: data.fp_browserVersion,
-			fp_confidenceScore: data.fp_confidenceScore,
 			fp_device: data.fp_device,
-			fp_firstSeenAt_global: data.fp_firstSeenAt_global
-				? firestore.Timestamp.fromDate(new Date(data.fp_firstSeenAt_global))
-				: undefined,
-			fp_firstSeenAt_subscription: data.fp_firstSeenAt_subscription
-				? firestore.Timestamp.fromDate(new Date(data.fp_firstSeenAt_subscription))
-				: undefined,
-			fp_incognito: data.fp_incognito,
 			fp_ip: data.fp_ip,
-			fp_accuracyRadius: data.fp_accuracyRadius,
 			fp_cityName: data.fp_cityName,
 			fp_continentName: data.fp_continentName,
 			fp_continentCode: data.fp_continentCode,
@@ -262,16 +253,8 @@ class Analytics {
 			fp_postCode: data.fp_postCode,
 			fp_subDivision: data.fp_subDivision,
 			fp_timezone: data.fp_timezone,
-			fp_lastSeenAt_global: data.fp_lastSeenAt_global
-				? firestore.Timestamp.fromDate(new Date(data.fp_lastSeenAt_global))
-				: undefined,
-			fp_lastSeenAt_subscription: data.fp_lastSeenAt_subscription
-				? firestore.Timestamp.fromDate(new Date(data.fp_lastSeenAt_subscription))
-				: undefined,
-			fp_metaVersion: data.fp_metaVersion,
 			fp_OS: data.fp_OS,
 			fp_OSVersion: data.fp_OSVersion,
-			fp_Visitor: data.fp_Visitor,
 
 			ip: data.ip,
 			network: data.network,

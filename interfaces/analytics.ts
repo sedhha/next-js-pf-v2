@@ -120,13 +120,8 @@ interface ITransformData {
 interface IFingerPrint {
 	fp_browserName?: string;
 	fp_browserVersion?: string;
-	fp_confidenceScore?: number;
 	fp_device?: string;
-	fp_firstSeenAt_global?: Timestamp;
-	fp_firstSeenAt_subscription?: Timestamp;
-	fp_incognito?: boolean;
 	fp_ip?: string;
-	fp_accuracyRadius?: number;
 	fp_cityName?: string;
 	fp_continentName?: string;
 	fp_continentCode?: string;
@@ -137,12 +132,8 @@ interface IFingerPrint {
 	fp_postCode?: string;
 	fp_subDivision?: unknown[];
 	fp_timezone?: string;
-	fp_lastSeenAt_global?: Timestamp;
-	fp_lastSeenAt_subscription?: Timestamp;
-	fp_metaVersion?: string;
 	fp_OS?: string;
 	fp_OSVersion?: string;
-	fp_Visitor?: boolean;
 	visitorId?: string;
 }
 
@@ -215,13 +206,8 @@ export interface IFEGeo {
 	fp_visitorID?: string;
 	fp_browserName?: string;
 	fp_browserVersion?: string;
-	fp_confidenceScore?: number;
 	fp_device?: string;
-	fp_firstSeenAt_global?: string;
-	fp_firstSeenAt_subscription?: string;
-	fp_incognito?: boolean;
 	fp_ip?: string;
-	fp_accuracyRadius?: number;
 	fp_cityName?: string;
 	fp_continentName?: string;
 	fp_continentCode?: string;
@@ -232,12 +218,8 @@ export interface IFEGeo {
 	fp_postCode?: string;
 	fp_subDivision?: unknown[];
 	fp_timezone?: string;
-	fp_lastSeenAt_global?: string;
-	fp_lastSeenAt_subscription?: string;
-	fp_metaVersion?: string;
 	fp_OS?: string;
 	fp_OSVersion?: string;
-	fp_Visitor?: boolean;
 
 	// GEO API
 	ip?: string;
