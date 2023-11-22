@@ -1,9 +1,16 @@
 [
 	{
+		"org": "Apple Inc.",
+		"designation": "SDE-2 OSV",
+		"startDate": 1699986600000,
+		"current": true,
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/4NSnIn1X2iQgTgQxMFgHg2/9b79b34215eabf55c72d24c8c70bd38a/apple-inc.jpeg",
+		"description": "Working as a Scala Developer, part of Apple Maps team ,I am working on multiple Scala and Java based microservices. These services involve interaction with Big Data using Spark, CI/CD pipelines, and managing binary blob storage and retrieval services at scale."
+	},
+	{
 		"org": "Optum Inc, UnitedHealth Group",
 		"designation": "Software Engineer",
 		"startDate": 1637433000000,
-		"current": true,
 		"img": "https://images.ctfassets.net/eowwrv5buqcq/79FlZqqOkBsll0fhhvlL7J/07835697b44e303b45d1111007c42dda/we-uhg.jpg",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
