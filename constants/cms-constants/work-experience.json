@@ -11,6 +11,7 @@
 		"org": "Optum Inc, UnitedHealth Group",
 		"designation": "Software Engineer",
 		"startDate": 1637433000000,
+		"endDate": 1699986600000,
 		"img": "https://images.ctfassets.net/eowwrv5buqcq/79FlZqqOkBsll0fhhvlL7J/07835697b44e303b45d1111007c42dda/we-uhg.jpg",
 		"description": "Working as a Software Engineer, I have majorly been involved in making end to end applications using React and Scala as a backend service.\nI have been also focussing on building microservices and creating CI/CD workflow pipeline to optimize and facilitate automated testing and deployment of apps."
 	},
