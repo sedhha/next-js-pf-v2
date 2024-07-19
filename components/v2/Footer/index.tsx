@@ -111,7 +111,7 @@ const Footer = ({ lastBuild }: Props) => {
 					openInNewTab
 				/>
 
-				<h2>© 2023 | All rights reserved</h2>
+				<h2>© {new Date().getFullYear()} | All rights reserved</h2>
 				<h2>
 					🚀 Last build: <strong>{lastBuild}</strong>
 				</h2>
