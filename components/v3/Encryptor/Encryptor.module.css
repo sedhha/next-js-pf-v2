@@ -1,0 +1,83 @@
+.container {
+	padding: 20px;
+	color: #ffffff;
+	background-color: #282c34;
+	font-family: Arial, sans-serif;
+}
+
+.title {
+	color: #61dafb;
+}
+
+.inputGroup {
+	margin-bottom: 10px;
+}
+
+.input {
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.buttonGroup {
+	margin-top: 10px;
+	display: flex;
+	gap: 10px;
+}
+
+.button {
+	padding: 8px 12px;
+	background-color: #61dafb;
+	border: none;
+	color: #282c34;
+	cursor: pointer;
+	border-radius: 4px;
+	font-weight: bold;
+}
+
+.button:hover {
+	background-color: #4fa6d4;
+}
+
+.encryptedPreview {
+	margin-top: 20px;
+	padding: 10px;
+	background-color: #1e1e1e;
+	border-radius: 4px;
+	color: #d4d4d4;
+	overflow: auto;
+}
+.passwordWrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.input {
+	flex: 1; /* Ensures the input takes up available space */
+}
+
+.eyeIcon {
+	position: absolute;
+	right: 10px;
+	cursor: pointer;
+	color: #888;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%; /* Ensures the icon is vertically centered */
+}
+
+.errorMessage {
+	color: #ff0000;
+	background: #f4f5d4;
+	padding: 0.5rem;
+}
+
+.successMessage {
+	color: #00ff00;
+	background: #d4f5d4;
+	padding: 0.5rem;
+}
