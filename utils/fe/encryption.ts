@@ -1,6 +1,7 @@
+import { IExpectedData } from '@/components/v3/Encryptor/interfaces';
 import CryptoJS from 'crypto-js';
 
-const base64 = {
+export const base64 = {
 	decode: (s: string) => Buffer.from(s, 'base64'),
 	encode: (b: string) => Buffer.from(b).toString('base64')
 };
@@ -16,7 +17,7 @@ export const decryptJSON = (encrypted: string, key: string): object => {
 		const decryptedB64 = CryptoJS.AES.decrypt(decrypted, key).toString(
 			CryptoJS.enc.Utf8
 		);
-		return JSON.parse(decryptedB64);
+		return JSON.parse(decryptedB64) as IExpectedData[];
 	} catch (error) {
 		return {
 			error: 'Decryption failed: Invalid key or corrupted data'

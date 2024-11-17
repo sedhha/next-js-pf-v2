@@ -28,7 +28,9 @@ const getEncryptedString = async (key: string): Promise<string> =>
 		.collection(collectionName)
 		.doc(key)
 		.get()
-		.then((doc) => (doc.data() as IEncryptedData).accessor);
+		.then((doc) => {
+			return (doc.data() as IEncryptedData).accessor;
+		});
 
 const updateEncryptedString = async (
 	encrypted: string,

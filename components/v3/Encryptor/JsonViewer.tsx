@@ -1,15 +1,17 @@
 import React from 'react';
-import styles from './Encryptor.module.css';
+import { IExpectedData, IJsonViewerProps } from './interfaces';
 
-interface IJsonViewerProps {
-	json: object;
-	encryptionKey?: string;
-}
-
-const JsonViewer = ({ json, encryptionKey }: IJsonViewerProps) => {
+const JsonViewer = ({
+	json,
+	encryptionKey,
+	maskPassword
+}: IJsonViewerProps) => {
 	if (!encryptionKey) return <p>Begin Decoding</p>;
-	const formatJson = (data: object) => {
-		return JSON.stringify(data, null, 2);
+	const formatJson = (data: IExpectedData[]) => {
+		const maskedData = data.map((item) =>
+			maskPassword ? { ...item, password: '*'.repeat(item.password.length) } : item
+		);
+		return JSON.stringify(maskedData, null, 2);
 	};
 
 	return <pre>{formatJson(json)}</pre>;

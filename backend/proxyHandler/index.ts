@@ -40,7 +40,6 @@ const returnResponse = async (
 				return { errored: true, message: error.message };
 			});
 	} catch (er) {
-		console.log('Error occured = ', (er as { message: string }).message);
 		return { errored: true, message: (er as { message: string }).message };
 	}
 };
