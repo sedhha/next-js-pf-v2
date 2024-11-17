@@ -14,7 +14,6 @@ describe('Sample', () => {
       'href',
       '/health/uhcarticle/hwal-staying-sharp'
     );
-    console.log('12345', stayingSharpLink?.getAttribute('target'));
     screen.debug();
  
     expect(stayingSharpLink).toHaveAttribute('target', '_blank');
