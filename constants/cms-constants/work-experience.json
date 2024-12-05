@@ -1,10 +1,10 @@
 [
 	{
-		"org": "Apple Inc.",
+		"org": "ThoughtGenesis",
 		"designation": "Senior Software Engineer (OSV)",
 		"startDate": 1699986600000,
 		"current": true,
-		"img": "https://images.ctfassets.net/eowwrv5buqcq/4NSnIn1X2iQgTgQxMFgHg2/9b79b34215eabf55c72d24c8c70bd38a/apple-inc.jpeg",
+		"img": "https://images.ctfassets.net/eowwrv5buqcq/1xb9H5lExwcaL13gUhnoS3/30e19fa82c2273dcb3ad7429e42ebe64/tg_logo.png",
 		"description": "Working as a Scala Developer (OSV Via ThoughtGenesis), part of Apple Maps team ,I am working on multiple Scala and Java based microservices. These services involve interaction with Big Data using Spark, CI/CD pipelines, and managing binary blob storage and retrieval services at scale."
 	},
 	{
