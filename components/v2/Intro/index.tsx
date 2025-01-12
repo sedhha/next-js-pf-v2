@@ -21,11 +21,11 @@ const Intro = () => {
 			onVisibleCallback={() => dispatch(onNewSectionView(attributes.About))}
 			Component={
 				<section className={classes.BodyModule} id={attributes.About}>
-					<h1 className={classes.H1Main}>Artist By Birth, Engineer by Choice</h1>
+					<h1 className={classes.H1Main}>Tat Tvam Asi</h1>
 					<h2 className={classes.Intro}>
-						Give me TypeScript and I will
+						The cosmos might not be
 						<br />
-						<span>re-create the world!</span>
+						<span>or it might be? ☢️🐱</span>
 					</h2>
 					<div className={classes.ImageContainer}>
 						<div className={`${classes.Side} ${classes.Front}`}>
@@ -59,16 +59,15 @@ const Intro = () => {
 					</div>
 					<div className={classes.IntroPara}>
 						<h4>
-							Found my ikigai in making and breaking things with TypeScript. I am well
-							versed with end to end application development, data processes and
-							pipelines, chatbots and microservices.
+							Still figuring out why am I here? What is that elusive force, entangled
+							so deeply within me, that dares to project the infinite onto the canvas
+							of my being? Re-discovering the things but from inside this time.
 						</h4>
 
 						<h4>
-							For me, the universe is nothing more than a complex mathematical model
-							embedded with tons of analytical functions and expressions which has been
-							programmed by the almighty god who is probably the greatest mathematician
-							and programmer of all time!
+							The universe might just be a complex quantum computer where whatever that
+							can happen will happen! Wondering if my choices are algorithms in motion
+							or merely outcomes of probabilities collapsing into reality.
 						</h4>
 					</div>
 				</section>
