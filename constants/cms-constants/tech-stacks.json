@@ -12,27 +12,27 @@
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/2nJZaRzfoTmDmOVOeiUDLU/8b074adc7536a8bf7b108ae1bae28f9e/iot.png",
 		"name": "IoT",
-		"rating": 3
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/7J7OCaVonNEL2EfqAvwp38/ab9600520f10239a5a9eb4a00758879b/raspberry-pi.png",
 		"name": "Raspberry Pi",
-		"rating": 4
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/5ePqH2C2mnnxtRh2MavoNW/3e1a1b54962221a92e950e41d340744f/blender.png",
 		"name": "Blender 3D",
-		"rating": 2
+		"rating": 1
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/8YFeBb5Cgwj2RJv2N7aRU/4d2390077b06e6fa5bbb3fd8859d2977/opencv.png",
 		"name": "OpenCV",
-		"rating": 4
+		"rating": 3
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/5A1mxckxRjXvim4tfgx2tW/df0f35dc0f48f43e462fff204e34da06/solidworks.png",
 		"name": "SolidWorks",
-		"rating": 4
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/7qCBtOPnednPZNj6shFdfj/6640abc91de73b8aa85960072242ce85/ansys.png",
@@ -42,7 +42,7 @@
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/KMnWouIAmVi1MdzPeQBuh/2e37524185e390e162f1eb2a5ae706c3/fusion360.jpeg",
 		"name": "Autodesk Fusion 360",
-		"rating": 3
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/LmZaMGGxYZIGiAmLIkcd8/5ce2eefe2f9358e3dab9f842a9953044/git-github.png",
@@ -52,7 +52,7 @@
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/2huhBLBiVDDiEeUWTxrICp/48468925b3c9c9420625c5ed0f528488/tensorflow.png",
 		"name": "Tensorflow",
-		"rating": 3
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/1UOnqSCYOVCsu1WG0v4tID/d8627cb85a4aef76d761f89861e08561/pytorch.png",
@@ -77,27 +77,27 @@
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/1b2yJVJQ8cC3nqnR2noGCs/bf3f0220173b4ed17a861e2c7083d15f/gcp.webp",
 		"name": "Google Cloud",
-		"rating": 5
+		"rating": 3
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/2AjgoOEAQ9HrKTM6agZAo0/035997e8c3bbaff4fff8538a6d3def43/aem.png",
 		"name": "Adobe Experience Manager",
-		"rating": 5
+		"rating": 3
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/5dHCzMqfsIfN1PK85QvMoe/8b98676c4828158c8cd369059c5966e7/contentful.png",
 		"name": "Contentful CMS",
-		"rating": 5
+		"rating": 3
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/5z4ifIFGEWf2oXfDiOg7qW/672e67b8e08910f51c558c0c3f25b67f/react-native.png",
 		"name": "React Native",
-		"rating": 4
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/5YnKo3pnlsa8sTdGoM3X8P/e94ed3d7b90773eb425e90dd9a4b943e/quickbooks.png",
 		"name": "Quickbooks",
-		"rating": 5
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/7MfB7Muz7tHBQpcIPTDEG5/d5ff8444808ec47222c9a36ac5655879/mongoDB.png",
@@ -115,11 +115,6 @@
 		"rating": 5
 	},
 	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/7B9jml6CDZPFHsDFAlcsez/f4b3e2e2a789807d8b2f8ffecac5c14f/golang.png",
-		"name": "Golang",
-		"rating": 2
-	},
-	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/1wCKDKwq2tMVpDA1dtUytH/b6313dfd2c92982ee8e9690bd6374e9c/html.png",
 		"name": "HTML | HTML5",
 		"rating": 5
@@ -127,53 +122,17 @@
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/2MbTjjdp5BVbzUZyPgMmI4/07862b170ff6079900a201604921c347/css.png",
 		"name": "Cascading Style Sheets (CSS)",
-		"rating": 5
-	},
-	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/5wxYA8BdHpRzT2mPsdsH4F/0f24668097a6c98933838a1fb42d9ff8/cv.png",
-		"name": "Computer Vision",
 		"rating": 4
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/3aPd9sYZxKcSwOWH1S40qK/d3495d07db317d71be11b620e7f15027/matlab.png",
 		"name": "Matlab",
-		"rating": 4
-	},
-	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/2AqhH3fRB9p3uUwvYfSewF/fd1a470e8b695e0eabd9ce8efe86ff35/microcontroller.png",
-		"name": "Microcontrollers",
-		"rating": 4
-	},
-	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/x8StKUeyIo9oyWOWVmEqZ/a68e95daae4578928e0e15c7c8f6b80f/content-creation.jpeg",
-		"name": "Content Creation",
-		"rating": 4
-	},
-	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/3F1dniR3hzSTwGw6xfHVeK/0d184b66b1db85fa7ee735ed25a2dbe2/video-editing.png",
-		"name": "Video Editing",
-		"rating": 4
-	},
-	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/1r4cEsOOs7szxyftq7OZ8e/127b01fa8d8df3d992465b91528b34d8/Screenshot_2023-01-26_at_10.46.56_AM.png",
-		"name": "Robotics",
-		"rating": 4
+		"rating": 3
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/d22VRqCRTfts1DyCzKzNn/bae66b819687c0ee951f2619d461f483/ms-office.png",
 		"name": "Microsoft Office",
 		"rating": 5
-	},
-
-	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/1BxHJge8sC0xxW8jMpPwW4/65f2b911e9bff62c05b691f0309429e0/wordpress.jpg",
-		"name": "Wordpress Development",
-		"rating": 3
-	},
-	{
-		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/618SwS0f4uW9jpxwjzzPZp/8fd69c36fd784ef51fdab8c105079fc8/flutter.png",
-		"name": "Flutter",
-		"rating": 3
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/1NDzRb2rvIJjtK9CTjoZ1k/0294634da0ada1b7874f235112eebd39/flask.png",
@@ -183,7 +142,7 @@
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/2EoK5etMkgThhkIvjdGHJP/4995fb9fb3dd293882707e19f3a60c42/Screenshot_2023-01-26_at_10.42.12_AM.png",
 		"name": "Blockchain",
-		"rating": 4
+		"rating": 2
 	},
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/4YoEBD1Sfr8mKm2ZmB61n2/6986e26cbd7d455509e3ef8c4dc4a662/javascript.png",
@@ -193,6 +152,6 @@
 	{
 		"thumbnail": "https://images.ctfassets.net/eowwrv5buqcq/1qPrKRsWsFQJW12whb4rhf/33b4be86e8efdb687d6fb108cc779ed8/uipath.svg",
 		"name": "UIPath - RPA",
-		"rating": 4
+		"rating": 3
 	}
 ]
