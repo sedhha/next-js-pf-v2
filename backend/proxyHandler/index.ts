@@ -11,7 +11,7 @@ const getMethod = (method: string) =>
 const getUrl = (url: string) =>
 	isDevelopmentEnv
 		? `http://localhost:4200${url}`
-		: `https://blushing-yak-tutu.cyclic.app${url}`;
+		: `https://gzb-services.onrender.com${url}`;
 
 const returnResponse = async (
 	response: Response
