@@ -65,9 +65,9 @@ const Intro = () => {
 						</h4>
 
 						<h4>
-							The universe might just be a complex quantum computer where whatever that
-							can happen will happen! Wondering if my choices are algorithms in motion
-							or merely outcomes of probabilities collapsing into reality.
+							The universe might just be a quantum computer where whatever that can
+							happen will happen! Wondering if my choices are algorithms in motion or
+							merely outcomes of probabilities collapsing into reality.
 						</h4>
 					</div>
 				</section>
