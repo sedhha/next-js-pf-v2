@@ -41,9 +41,9 @@ const Work = ({
 			<div className={imgClassName}>
 				<LazyImage src={imgSrc} loadLazily />
 			</div>
-			<a href="https://www.google.com" target="_blank" rel="noreferrer">
-				<h1>{h1Text}</h1>
-			</a>
+
+			<h1>{h1Text}</h1>
+
 			{h2Text ? <h2>{h2Text}</h2> : null}
 			{h3Text ? <h3>{h3Text}</h3> : null}
 			{actionButtons ? (
