@@ -44,7 +44,7 @@
 .Image img {
 	aspect-ratio: auto;
 	min-width: 60%;
-	max-width: 100%;
+	max-width: 70%;
 	width: auto;
 	object-fit: contain;
 	object-position: center;
