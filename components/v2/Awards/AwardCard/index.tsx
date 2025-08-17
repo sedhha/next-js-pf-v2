@@ -6,6 +6,8 @@ import { getMonthAndYearString } from '@/utils/date-utils';
 import { useAppDispatch } from '@/redux/hooks';
 import { onClickEventTrigger } from '@/slices/analytics.slice';
 import clickActions from '@/constants/click-actions.json';
+import { BlogDate } from '@/components/v2/FormattedDate';
+
 
 type Props = {
 	alter: number;
@@ -42,17 +44,15 @@ const AwardCard = ({
 		<div className={classes.AwardCard}>
 			<LazyImage src={img} className={classes.SideImage} loadLazily />
 			<div
-				className={`${classes.Details} ${
-					altered === 0 ? classes.oddBG : classes.evenBG
-				}`}
+				className={`${classes.Details} ${altered === 0 ? classes.oddBG : classes.evenBG
+					}`}
 			>
 				<div className={classes.TitleAndDescription}>
 					<div className={classes.RowElements}>
 						<h1>{name}</h1>
 						<a
-							className={`${classes.AchievementButton} ${
-								altered === 0 ? classes.AlterButton : classes.NormalButton
-							}`}
+							className={`${classes.AchievementButton} ${altered === 0 ? classes.AlterButton : classes.NormalButton
+								}`}
 							href={url}
 							target="_blank"
 							rel="noreferrer"
@@ -61,7 +61,7 @@ const AwardCard = ({
 							View Achievement
 						</a>
 					</div>
-					<h2>{getMonthAndYearString(date)}</h2>
+					<h2><BlogDate date={getMonthAndYearString(date)} /></h2>
 				</div>
 				<h3 className={classes[achievementType ?? 'rest']}>{title}</h3>
 				<p>{description}</p>

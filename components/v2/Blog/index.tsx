@@ -19,6 +19,7 @@ import { ISocialHandles } from '../../../interfaces/testimonials';
 import { useAppSelector } from '@/redux/hooks';
 import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
 import { AttributeValue } from '@/interfaces/fe';
+import { BlogDate } from '@/components/v2/FormattedDate';
 
 const { mainBlog, relatedBlogs, rankedBlogs } = blogs;
 
@@ -189,7 +190,7 @@ const Blog = () => {
 							</div>
 							<div className={classes.FeaturedBlogElements}>
 								<div className={classes.FeaturedBlogTitleSection}>
-									<h2>{new Date(numberedBlogs[rank].postDate).toDateString()}</h2>
+									<h2><BlogDate date={numberedBlogs[rank].postDate} /></h2>
 									<div>
 										<Circle className={classes.CategoryCircle} />
 										<h3
@@ -249,7 +250,7 @@ const Blog = () => {
 								<h4 onClick={() => onClickNavigate(blog.categoryID, blog.id)}>
 									{blog.title}
 								</h4>
-								<h5>{new Date(blog.postDate).toDateString()}</h5>
+								<h5><BlogDate date={blog.postDate} /></h5>
 							</div>
 						))}
 					</div>
@@ -264,7 +265,7 @@ const Blog = () => {
 										<h3 onClick={() => onClickNavigate(blog.categoryID, blog.id)}>
 											{blog.mainCategory}
 										</h3>
-										<h4>{new Date(blog.postDate).toDateString()}</h4>
+										<h4><BlogDate date={blog.postDate} /></h4>
 									</div>
 								</div>
 							</div>
