@@ -217,6 +217,9 @@ export default function BaseComponent({ Component }: Props) {
 					name="description"
 					content="Stack Overflow is the largest, most trusted online community for developers to learn, share&#x200B; &#x200B;their programming &#x200B;knowledge, and build their careers."
 				/>
+				<meta name="description" content="Shivam Sahil – Full-stack AI/ML engineer building intelligent agentic tools and RAG systems. Available for part-time consulting, global hackathons, and async collabs." />
+				<meta name="keywords" content="AI consultant, RAG pipelines, LangChain developer, OpenAI, hackathon teammate, full-stack LLM engineer" />
+
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:url"
