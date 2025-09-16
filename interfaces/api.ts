@@ -4,7 +4,7 @@ export interface IFetchFEParams {
 	method?: string;
 	getText?: boolean;
 	headers?: Record<string, string>;
-	body?: unknown | null;
+	body?: BodyInit | null;
 	keepAlive?: boolean;
 	sendToProxy?: boolean;
 }
