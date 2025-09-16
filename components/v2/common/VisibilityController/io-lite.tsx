@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 interface IVisibility {
-	Component: JSX.Element;
+	Component: ReactElement;
 	visibilityThreshold?: number;
 	onVisibleCallback?: (entry: IntersectionObserverEntry) => void;
 }
@@ -10,7 +10,7 @@ const VisibilityHandler = ({
 	Component,
 	visibilityThreshold,
 	onVisibleCallback
-}: IVisibility): JSX.Element => {
+}: IVisibility): ReactElement => {
 	const ref = React.useRef(null);
 	const [triggered, setTriggered] = React.useState(false);
 	React.useEffect(() => {
@@ -38,7 +38,7 @@ const VisibilityHandler = ({
 		}
 	}, [visibilityThreshold, onVisibleCallback, triggered]);
 
-	return <Component.type {...Component.props} ref={ref} />;
+	return <div ref={ref}>{Component}</div>;
 };
 
 export default VisibilityHandler;

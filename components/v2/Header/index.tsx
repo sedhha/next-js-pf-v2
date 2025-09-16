@@ -8,17 +8,17 @@ import Icon, { icons } from '@/v2/common/Icons/index';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { updateShowMore } from '@/slices/navigation.slice';
 import { useRouter } from 'next/router';
+import { shallowEqual } from 'react-redux';
 
 const Header = () => {
 	const dispatch = useAppDispatch();
 	const {
-		navigation: { showMore },
-		analytics: {
-			staticContent: {
-				navigations: { latestViewed }
-			}
-		}
-	} = useAppSelector((state) => state);
+		showMore,
+		latestViewed
+	} = useAppSelector((state) => ({
+		showMore: state.navigation.showMore,
+		latestViewed: state.analytics.staticContent.navigations.latestViewed
+	}), shallowEqual);
 	const router = useRouter();
 	const indexOfActiveElement = headerElements.findIndex(
 		(item) => item.value === latestViewed

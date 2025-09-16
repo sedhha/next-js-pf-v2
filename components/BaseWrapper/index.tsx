@@ -1,3 +1,4 @@
+'use client';
 import { useAppDispatch } from '@/redux/hooks';
 import {
 	setFirstPacketSent,
@@ -6,7 +7,7 @@ import {
 	updatePopup,
 	updateUser
 } from '@/slices/navigation.slice';
-import { useEffect, useCallback, Fragment } from 'react';
+import { useEffect, useCallback, Fragment, ReactElement } from 'react';
 import Head from 'next/head';
 import Popup from '@/v2/common/Popup';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -14,7 +15,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import app from '@/utils/fe/apis/services/firebase';
 import { USER_APIS } from '@/utils/fe/apis/public';
-// import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-react';
+import { shallowEqual } from 'react-redux';
 import { HELPER_APIS } from '@/utils/fe/apis/public';
 import {
 	convertToFEData,
@@ -28,7 +29,7 @@ import { onNewSectionView, setVisitorID } from '@/slices/analytics.slice';
 import { useRouter } from 'next/router';
 import { useVisitorData } from '@/hooks/useVisitorData';
 type Props = {
-	Component: JSX.Element;
+	Component: ReactElement;
 };
 
 // Higher order initiator component
@@ -39,21 +40,27 @@ export default function BaseComponent({ Component }: Props) {
 	const router = useRouter();
 	const { asPath } = router;
 	const {
-		analytics: {
-			staticContent: {
-				themes: { darkMode }
-			}
-		},
-		navigation: {
-			csrfToken,
-			userEmail,
-			userUid,
-			firstPacketSent,
-			subscriptionPending,
-			idToken,
-			isAdmin
-		}
-	} = useAppSelector((state) => state);
+		csrfToken,
+		userEmail,
+		userUid,
+		firstPacketSent,
+		subscriptionPending,
+		idToken,
+		isAdmin,
+		darkMode
+	} = useAppSelector(
+		(s) => ({
+			darkMode: s.analytics.staticContent.themes.darkMode,
+			csrfToken: s.navigation.csrfToken,
+			userEmail: s.navigation.userEmail,
+			userUid: s.navigation.userUid,
+			firstPacketSent: s.navigation.firstPacketSent,
+			subscriptionPending: s.navigation.subscriptionPending,
+			idToken: s.navigation.idToken,
+			isAdmin: s.navigation.isAdmin,
+		}),
+		shallowEqual
+	);
 
 	// Data From FingerPrint
 	const { isLoading, error, data } = useVisitorData();
@@ -249,7 +256,7 @@ export default function BaseComponent({ Component }: Props) {
 				<link rel="apple-touch-icon" href="/chat-icon.png" />
 			</Head>
 			<div className={darkMode ? 'darkMode' : 'lightMode'}>
-				<Component.type {...Component.props} />
+				{Component}
 			</div>
 			<Popup />
 		</Fragment>

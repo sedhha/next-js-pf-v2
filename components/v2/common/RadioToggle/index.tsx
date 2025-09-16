@@ -8,19 +8,20 @@ import {
 import { BsMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 import allEvents from '@/constants/all-interaction-events.json';
 import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
+import { shallowEqual } from 'react-redux';
 
 export default function DarkModeToggle() {
 	const dispatch = useAppDispatch();
 
-	const {
-		navigation: { csrfToken },
-		analytics: {
-			staticContent: {
-				clickEvents,
-				themes: { darkMode }
-			}
-		}
-	} = useAppSelector((state) => state);
+	const { csrfToken, clickEvents, darkMode } = useAppSelector(
+		(state) => ({
+			csrfToken: state.navigation.csrfToken,
+			clickEvents: state.analytics.staticContent.clickEvents,
+			darkMode: state.analytics.staticContent.themes.darkMode
+		}),
+		shallowEqual
+	);
+
 	const setOn = async (value: boolean) => {
 		dispatch(onDarkModeTrigger(value));
 		const key = (value ? allEvents.darkModeEnabled : allEvents.darkModeDisabled)
@@ -45,9 +46,8 @@ export default function DarkModeToggle() {
 	return (
 		<div className={classes.SwitchBoard} onClick={() => setOn(!darkMode)}>
 			<BsMoonStarsFill
-				className={`${classes.nightIcon}${
-					darkMode ? ' ' + classes.showSymbol : ''
-				}`}
+				className={`${classes.nightIcon}${darkMode ? ' ' + classes.showSymbol : ''
+					}`}
 			/>
 			<section className={darkMode ? classes.off : classes.on} />
 			<BsFillSunFill

@@ -6,16 +6,16 @@ import Link from 'next/link';
 import { useAppDispatch } from '../../../redux/tools/hooks';
 import { updateShowMore } from '@/slices/navigation.slice';
 import { onNewSectionView } from '@/slices/analytics.slice';
+import { shallowEqual } from 'react-redux';
 
 const MobileNavigator = () => {
 	const {
-		navigation: { showMore },
-		analytics: {
-			staticContent: {
-				navigations: { latestViewed }
-			}
-		}
-	} = useAppSelector((state) => state);
+		showMore,
+		latestViewed
+	} = useAppSelector((state) => ({
+		showMore: state.navigation.showMore,
+		latestViewed: state.analytics.staticContent.navigations.latestViewed
+	}), shallowEqual);
 	const dispatch = useAppDispatch();
 	const onNavigationClick = (activeSection: string) => {
 		dispatch(onNewSectionView(activeSection));

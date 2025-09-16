@@ -23,18 +23,16 @@ export default function SocialIcons({
 		<div className={socialIconClass ?? classes.SocialIcon}>
 			{socialHandles.map((icon) =>
 				icon.isSvg ? (
-					<Link key={icon.id} href={icon.url}>
-						<a
-							href={icon.url}
-							target={openInNewTab ? '_blank' : '_self'}
-							rel="noreferrer"
-							onClick={() => onClick?.(icon)}
-						>
-							<Icon
-								iconKey={icon.id}
-								className={`${iconColorClass ?? classes.Icon}`}
-							/>
-						</a>
+					<Link key={icon.id} href={icon.url}
+						target={openInNewTab ? '_blank' : '_self'}
+						rel="noreferrer"
+						onClick={() => onClick?.(icon)}>
+
+						<Icon
+							iconKey={icon.id}
+							className={`${iconColorClass ?? classes.Icon}`}
+						/>
+
 					</Link>
 				) : (
 					<Link key={icon.id} href={icon.url}>

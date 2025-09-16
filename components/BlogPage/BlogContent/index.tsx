@@ -1,7 +1,7 @@
 import PostHeader from './header';
 import classes from './BlogContent.module.css';
 import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw'; 
+import rehypeRaw from 'rehype-raw';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { feFetch } from '@/utils/fe/fetch-utils';
@@ -59,9 +59,12 @@ const BlogPost = () => {
 				authorUrl={avatarUrl}
 			/>
 			<br />
-			<ReactMarkdown className={classes.Markdown} rehypePlugins={[rehypeRaw]}>
-				{markdown}
-			</ReactMarkdown>
+			<div className={classes.Markdown}>
+				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+					{markdown}
+				</ReactMarkdown>
+			</div>
+
 		</article>
 	);
 };

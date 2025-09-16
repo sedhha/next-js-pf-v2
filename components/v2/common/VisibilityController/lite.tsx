@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 interface IVisibility {
-	Component: JSX.Element;
+	Component: ReactElement;
 	onVisibleCallback?: () => void;
 }
 
 const VisibilityHandler = ({
 	Component,
 	onVisibleCallback
-}: IVisibility): JSX.Element => {
+}: IVisibility): ReactElement => {
 	const ref = React.useRef(null);
 	const visibleCallBack = React.useCallback(() => {
 		if (onVisibleCallback) onVisibleCallback();
@@ -37,7 +37,7 @@ const VisibilityHandler = ({
 		};
 	}, [ref, visibleCallBack]);
 
-	return <Component.type {...Component.props} ref={ref} />;
+	return <div ref={ref}>{Component}</div>;
 };
 
 export default VisibilityHandler;

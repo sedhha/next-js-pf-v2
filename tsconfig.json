@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"target": "ES2022",
+		"lib": ["DOM", "DOM.Iterable", "ES2023"],
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"jsx": "preserve",
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
@@ -9,11 +12,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"jsx": "preserve",
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
@@ -32,9 +32,16 @@
 			"@/appscript/*": ["backend/appscript/*"],
 			"@/fe-client/*": ["utils/fe/apis/services/*"],
 			"@/middleware/*": ["middleware/*"],
-			"@/backend/*": ["backend/*"],
-		}
+			"@/backend/*": ["backend/*"]
+		},
+		"types": ["node", "react", "react-dom"]
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "backend/security/index.js"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"types.d.ts",
+		"backend/security/index.js"
+	],
 	"exclude": ["node_modules"]
 }
