@@ -3,7 +3,6 @@ import classes from './Header.module.css';
 import LazyImage from '@/v2/common/LazyImage';
 import Toggle from '@/v2/common/RadioToggle';
 import headerElements from '@/constants/headers.json';
-import Link from 'next/link';
 import Icon, { icons } from '@/v2/common/Icons/index';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { updateShowMore } from '@/slices/navigation.slice';

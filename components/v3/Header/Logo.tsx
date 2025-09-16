@@ -1,6 +1,6 @@
 import LazyImage from '@/components/v2/common/LazyImage';
 import classes from './Header.module.css';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { onLogoHover } from '@/slices/analytics.slice';

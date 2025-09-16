@@ -6,7 +6,7 @@ import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { IProject } from '@/interfaces/projects';
 import projects from '@/constants/cms-constants/projects.json';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import dynamic from 'next/dynamic';
 import Card from '@/v2/common/Card';
 import { updatePopup } from '@/slices/navigation.slice';

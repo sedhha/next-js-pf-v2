@@ -35,7 +35,9 @@ const BlogPost = () => {
 							primaryImage
 						} = res.json;
 						setTitle(title);
-						primaryImage ? setFeaturedImage(primaryImage.url) : null;
+						if (primaryImage) {
+							setFeaturedImage(primaryImage.url);
+						}
 						setMarkdown(content);
 						setExcerpt(excerpt);
 						setAuthorName(authorName);

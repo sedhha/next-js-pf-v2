@@ -4,7 +4,7 @@ export interface IFetchFEParams {
 	method?: string;
 	getText?: boolean;
 	headers?: Record<string, string>;
-	body?: BodyInit | null;
+	body?: unknown | null;
 	keepAlive?: boolean;
 	sendToProxy?: boolean;
 }
@@ -31,5 +31,6 @@ export interface IResult<T> {
 }
 
 export type IApiHandler<T> = (
+	// eslint-disable-next-line no-unused-vars
 	req: NextApiRequest
 ) => Promise<IResult<T>> | IResult<T>;

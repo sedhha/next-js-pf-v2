@@ -1,5 +1,4 @@
 import React from 'react';
-import { useAppSelector } from '@/redux/hooks';
 import Header from '@/v2/Header';
 import InfiniteCardComponent from '@/v2/common/InfiniteCard';
 import classes from './InfiniteContainer.module.css';
@@ -12,11 +11,13 @@ interface IContainerProps {
 	mainHeading: string;
 	mainHeadingIdentifier: string;
 	includeHeader?: boolean;
+	// eslint-disable-next-line no-unused-vars
 	fetchDataCallback: (skip: number) => Promise<InfiniteCardProps[] | undefined>;
 	limit: number;
 	total: number | null;
 	overwriteContainerClass?: string;
 	overwriteImageClass?: string;
+	// eslint-disable-next-line no-unused-vars
 	onCardClick: (url: string) => void;
 }
 

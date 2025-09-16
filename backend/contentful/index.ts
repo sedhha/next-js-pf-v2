@@ -16,7 +16,6 @@ import {
 	ICFWorkExperience,
 	IContentfulBlog,
 	IContentfulBlogs,
-	IContentfulMainBlogPage,
 	IContentfulResponse,
 	IContentfulSys,
 	ILinkedForm,

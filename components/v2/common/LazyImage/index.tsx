@@ -12,7 +12,9 @@ interface ILazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 
 const LazyImage: React.FunctionComponent<ILazyImageProps> = ({
 	loadLazily,
+	// eslint-disable-next-line no-unused-vars
 	lazySrc,
+	// eslint-disable-next-line no-unused-vars
 	onVisibleCallback,
 	...rest
 }) => {

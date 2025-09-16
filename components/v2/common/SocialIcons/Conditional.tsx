@@ -4,13 +4,13 @@ import LazyImage from '@/v2/common/LazyImage';
 import Icon from '@/v2/common/Icons';
 import { ISocialHandles } from '@/interfaces/testimonials';
 import Link from 'next/link';
-import { useAppDispatch } from '@/redux/hooks';
 interface IProps {
 	iconColorClass?: string;
 	socialHandles: ISocialHandles[];
 	openInNewTab?: boolean;
 	socialIconClass?: string;
-	onClick?: (icon: ISocialHandles) => void;
+	// eslint-disable-next-line no-unused-vars
+	onClick?: (_: ISocialHandles) => void;
 }
 export default function SocialIcons({
 	iconColorClass,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import Footer from '@/components/v2/Footer';
 import Header from '@/components/v2/Header';
 import BlogContent from './BlogContent';

@@ -87,6 +87,7 @@ const Contact = () => {
 	const [message, setMessage] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
 
+	// eslint-disable-next-line no-unused-vars
 	const setCallback = (value: string, setterFunction: (e: string) => void) => {
 		setterFunction(value);
 		dispatch(

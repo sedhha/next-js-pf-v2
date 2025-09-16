@@ -275,66 +275,6 @@ type IFEStartSession = {
 
 type IEventsCollection = IEventData & Identification;
 
-interface IFingerprintAPI {
-	requestId: string;
-	browserName: string;
-	browserVersion: string;
-	confidence: {
-		score: number;
-	};
-	device: string;
-	firstSeenAt: {
-		global: string | null;
-		subscription: string | null;
-	};
-	incognito: boolean;
-	ip: string;
-	ipLocation?: {
-		accuracyRadius?: number;
-
-		latitude?: number;
-
-		longitude?: number;
-
-		timezone?: string;
-
-		postalCode?: string;
-
-		city?: {
-			name: string;
-		};
-
-		subdivisions?: [
-			{
-				isoCode: string;
-				name: string;
-			}
-		];
-
-		country?: {
-			code: string;
-			name: string;
-		};
-
-		continent?: {
-			code: string;
-			name: string;
-		};
-	};
-
-	lastSeenAt: {
-		global: string | null;
-		subscription: string | null;
-	};
-	meta?: {
-		version?: string;
-	};
-	os: string;
-	osVersion: string;
-	visitorFound: boolean;
-	visitorId: string;
-}
-
 interface IWSResult<T> {
 	status: number;
 	payload?: T;

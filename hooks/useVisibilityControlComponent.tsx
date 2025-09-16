@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 interface IVisibility {
 	Component: ReactElement;
 	visibilityThreshold?: number;
+	// eslint-disable-next-line no-unused-vars
 	onVisibleCallback?: (entry: IntersectionObserverEntry) => void;
 }
 

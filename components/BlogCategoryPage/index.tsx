@@ -44,7 +44,7 @@ const CategoryFunction = () => {
 					return [...transformerFunction(res.json.items)];
 				}
 			}),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+
 		[category]
 	);
 	return (
