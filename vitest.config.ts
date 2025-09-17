@@ -25,6 +25,7 @@ export default defineConfig({
 			{ find: '@/utils', replacement: path.resolve(__dirname, './utils') },
 			{ find: '@/v2', replacement: path.resolve(__dirname, './components/v2') },
 			{ find: '@/v3', replacement: path.resolve(__dirname, './components/v3') },
+			{ find: '@/v4', replacement: path.resolve(__dirname, './components/v4') },
 			{
 				find: '@/interfaces',
 				replacement: path.resolve(__dirname, './interfaces')

@@ -26,6 +26,7 @@
 			"@/utils/*": ["utils/*"],
 			"@/v2/*": ["components/v2/*"],
 			"@/v3/*": ["components/v3/*"],
+			"@/v4/*": ["components/v4/*"],
 			"@/interfaces/*": ["interfaces/*"],
 			"@/hooks/*": ["hooks/*"],
 			"@/firebase/*": ["backend/firebase/*"],
