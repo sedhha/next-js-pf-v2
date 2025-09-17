@@ -1,4 +1,3 @@
-import '@/styles/global.css';
 import HomePage from '@/components/HomePage';
 
 type Props = {
