@@ -39,8 +39,7 @@
 			"react",
 			"react-dom",
 			"vitest/globals",
-			"@testing-library/jest-dom",
-			"jest"
+			"@testing-library/jest-dom"
 		]
 	},
 	"include": [
