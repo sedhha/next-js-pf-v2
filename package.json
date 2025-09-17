@@ -15,6 +15,7 @@
 		"@fingerprintjs/fingerprintjs": "^4.6.2",
 		"@playwright/test": "^1.55.0",
 		"@reduxjs/toolkit": "^2.9.0",
+		"@tailwindcss/postcss": "^4.1.13",
 		"@vercel/analytics": "^1.5.0",
 		"contentful-management": "11.57.3",
 		"crypto-js": "^4.2.0",
@@ -24,6 +25,7 @@
 		"jsonwebtoken": "^9.0.2",
 		"next": "latest",
 		"node-fetch": "^3.3.2",
+		"postcss": "^8.5.6",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
 		"react-icons": "^5",
@@ -31,6 +33,7 @@
 		"react-redux": "^9.2.0",
 		"rehype-raw": "^7.0.0",
 		"rehype-sanitize": "^6.0.0",
+		"tailwindcss": "^4.1.13",
 		"zod": "^4.1.8"
 	},
 	"devDependencies": {
