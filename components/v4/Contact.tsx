@@ -160,6 +160,12 @@ const Contact = () => {
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [isClient, setIsClient] = useState(false);
+
+    // Fix hydration mismatch by only rendering form on client-side
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     // Form validation on change
     useEffect(() => {
@@ -280,65 +286,90 @@ const Contact = () => {
                                     </div>
                                 )}
 
-                                {/* Contact Form */}
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    <div className="grid md:grid-cols-2 gap-6">
+                                {/* Contact Form - Only render after hydration */}
+                                {isClient ? (
+                                    <form onSubmit={handleSubmit} className="space-y-6">
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            <ModernInput
+                                                label="Name"
+                                                value={formData.name}
+                                                onChange={handleInputChange('name')}
+                                                error={errors.name}
+                                                placeholder="Your name"
+                                            />
+                                            <ModernInput
+                                                label="Email"
+                                                type="email"
+                                                value={formData.email}
+                                                onChange={handleInputChange('email')}
+                                                error={errors.email}
+                                                placeholder="your@email.com"
+                                            />
+                                        </div>
+
                                         <ModernInput
-                                            label="Name"
-                                            value={formData.name}
-                                            onChange={handleInputChange('name')}
-                                            error={errors.name}
-                                            placeholder="Your name"
+                                            label="Subject"
+                                            value={formData.subject}
+                                            onChange={handleInputChange('subject')}
+                                            error={errors.subject}
+                                            placeholder="What's this about?"
                                         />
+
                                         <ModernInput
-                                            label="Email"
-                                            type="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange('email')}
-                                            error={errors.email}
-                                            placeholder="your@email.com"
+                                            label="Message"
+                                            type="textarea"
+                                            rows={5}
+                                            value={formData.message}
+                                            onChange={handleInputChange('message')}
+                                            error={errors.message}
+                                            placeholder="Tell me about your project, idea, or just say hello..."
                                         />
+
+                                        {/* Submit Button */}
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-bold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer"
+                                        >
+                                            {isSubmitting ? (
+                                                <span className="flex items-center justify-center gap-3">
+                                                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
+                                                    Sending Message...
+                                                </span>
+                                            ) : (
+                                                <span className="flex items-center justify-center gap-3">
+                                                    Send Message
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                                    </svg>
+                                                </span>
+                                            )}
+                                        </button>
+                                    </form>
+                                ) : (
+                                    // Loading skeleton for SSR
+                                    <div className="space-y-6 animate-pulse">
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            <div className="space-y-2">
+                                                <div className="h-5 bg-gray-700/50 rounded w-16"></div>
+                                                <div className="h-12 bg-gray-700/30 rounded-xl"></div>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <div className="h-5 bg-gray-700/50 rounded w-16"></div>
+                                                <div className="h-12 bg-gray-700/30 rounded-xl"></div>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <div className="h-5 bg-gray-700/50 rounded w-20"></div>
+                                            <div className="h-12 bg-gray-700/30 rounded-xl"></div>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <div className="h-5 bg-gray-700/50 rounded w-20"></div>
+                                            <div className="h-32 bg-gray-700/30 rounded-xl"></div>
+                                        </div>
+                                        <div className="h-14 bg-gray-700/30 rounded-xl"></div>
                                     </div>
-
-                                    <ModernInput
-                                        label="Subject"
-                                        value={formData.subject}
-                                        onChange={handleInputChange('subject')}
-                                        error={errors.subject}
-                                        placeholder="What's this about?"
-                                    />
-
-                                    <ModernInput
-                                        label="Message"
-                                        type="textarea"
-                                        rows={5}
-                                        value={formData.message}
-                                        onChange={handleInputChange('message')}
-                                        error={errors.message}
-                                        placeholder="Tell me about your project, idea, or just say hello..."
-                                    />
-
-                                    {/* Submit Button */}
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-bold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer"
-                                    >
-                                        {isSubmitting ? (
-                                            <span className="flex items-center justify-center gap-3">
-                                                <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
-                                                Sending Message...
-                                            </span>
-                                        ) : (
-                                            <span className="flex items-center justify-center gap-3">
-                                                Send Message
-                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                                                </svg>
-                                            </span>
-                                        )}
-                                    </button>
-                                </form>
+                                )}
                             </div>
                         </div>
                     </div>

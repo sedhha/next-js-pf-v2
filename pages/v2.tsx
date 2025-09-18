@@ -1,4 +1,4 @@
-import HomePage from '@/components/HomePage';
+import HomePage from '@/components/v2';
 
 type Props = {
     lastBuild: string;

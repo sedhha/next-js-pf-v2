@@ -1,9 +1,10 @@
 import React from 'react';
-import IntroV4 from '@/components/v4/Intro';
-import Work from '@/components/v4/Work';
+import Awards from '@/components/v4/Awards';
 import Blog from '@/components/v4/Blog';
 import Contact from '@/components/v4/Contact';
+import IntroV4 from '@/components/v4/Intro';
 import Projects from '@/components/v4/Projects';
+import Work from '@/components/v4/Work';
 
 type Props = {
     lastBuild: string;
@@ -18,6 +19,7 @@ export default function HomePageV4({ lastBuild }: Props) {
             <Blog />
             <Contact />
             <Projects />
+            <Awards />
 
         </>
     );
