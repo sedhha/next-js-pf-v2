@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+/* Define the keyframes */
+@keyframes grid {
+	0%,
+	100% {
+		transform: translate(0, 0);
+	}
+	25% {
+		transform: translate(10px, 5px);
+	}
+	50% {
+		transform: translate(-5px, 10px);
+	}
+	75% {
+		transform: translate(-10px, -5px);
+	}
+}
+
+/* Give the animation a token so you can use `animate-grid` as a class */
+@theme {
+	--animate-grid: grid 20s ease-in-out infinite;
+}

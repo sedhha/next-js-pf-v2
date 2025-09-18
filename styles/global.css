@@ -1,2 +1,264 @@
-@import 'tailwindcss';
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;500&display=swap');
+
+:root {
+	/* Constant Colors */
+	--light-blue: #0aa1dd;
+	--dark-blue: #001d6e;
+	--faded-dark-blue: #172752;
+	--blue-card-date-text-color: white;
+	--blue-card-description-text-color: white;
+	--dark-gray: #6c6767;
+	--faded-gray: rgba(255, 255, 255, 0.4);
+	--orange: #f27304;
+	--sunlight-orange: #ed732e;
+	--green: #05ff00;
+	--success-green: #66ac50;
+	--faded-purple: rgba(74, 69, 214, 0.74);
+	--light-yellow: rgba(237, 226, 32, 0.961);
+	--light-gray: #e5e5e5;
+	--blue-card-designation-text-color: var(--orange);
+	--error-red: #f44336;
+	--golden-achievement-text-color: #a6843f;
+	--golden-achievement-bg-color: #f6c35f;
+	--silver-achievement-text-color: #777777;
+	--silver-achievement-bg-color: #e5e7e6;
+	--bronze-achievement-text-color: #b64433;
+	--bronze-achievement-bg-color: #e2d0aa;
+
+	/* Shadows */
+	--box-shadow-thick: -4px 4px 10px 7px rgba(0, 0, 0, 0.25);
+	--box-shadow-thin: -4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+	--box-shadow-mod: 0px 0px 12px 4px rgba(0, 0, 0, 0.44);
+	--box-shadow-mid: 4px 4px 11px #000000;
+	--testimonial-box-shadow-effect: 0px 4px 9px 19px rgba(192, 243, 247, 0.33);
+
+	/* Font Sizes */
+	--standard-headings: 3vmax;
+	--h1-text: 3.5vmax;
+	--h1-card-text: 3vh;
+	--h1-date-text: 2.5vh;
+	--h1-designation-text: 2.5vh;
+	--h1-para-text: 2vh;
+	--h2-text: 2.8vmax;
+	--p-text: 2vmax;
+	--standard-headings-small: 1.5vmax;
+	--contact-header-text: 2.8vw;
+	--get-in-touch-header-text: 3.2vw;
+	--nav-button-max-width: 5vw;
+	--get-in-touch-input-font-size: 3vw;
+	--fade-transition: 0.3s ease-in all;
+	--send-buttoon-size: clamp(1.5rem, 2.5vw, 5rem);
+	--radio-button-max-size: clamp(0.5rem, 1.5vmin, 1.5rem);
+	--radio-container-max-width: clamp(3rem, 4vmax, 16rem);
+	--chat-avatar-size: 5vh;
+	--chat-directly-font-size: 2vw;
+	--send-button-size: 2vw;
+	--video-container-height: 45vh;
+	--yt-video-aspect-ratio: 1.7777777778;
+	--video-content-text: 2.4vh;
+	--testimonial-entity-text: 3.5vh;
+	--icon-size: 3vh;
+	--tech-stack-title: 1.5vh;
+	--blog-content-color: var(--light-gray);
+
+	/* V3 Styles */
+	--v3-cursive-font: 'Satisfy', cursive;
+	--v3-standard-heading-font-size: clamp(2rem, 3vw, 16rem);
+	--v3-standard-font: 'Noto Sans Mono', monospace;
+	--v3-standard-dark-theme-text-color: white;
+	--v3-standard-dark-theme-light-color: #ccc;
+	/* V3 Styles */
+}
+.lightMode {
+	--logo-heading-color: var(--light-blue);
+	--header-element-color: black;
+	--intro-header-text-color: black;
+	--header-bg-color: white;
+	--toggle-switch-bg: var(--sunlight-orange);
+	--toggle-switch: white;
+	--background-color: white;
+	--white-card-date-text-color: var(--dark-blue);
+	--white-card-description-text-color: black;
+	--white-card-action-button-text-color: var(--dark-blue);
+	--white-card-hover-text-color: white;
+	--related-blog-title: var(--light-blue);
+	--related-blog-category: black;
+	--related-blog-date: var(--dark-blue);
+	--inactive-blog-category-text: var(--dark-gray);
+	--active-blog-category-text: var(--light-blue);
+	--featured-blog-date-text: black;
+	--featured-blog-view-all-button-text: var(--light-blue);
+	--featured-blog-heading: var(--light-blue);
+	--orange-button-color: var(--orange);
+	--orange-button-color-text: white;
+	--get-in-touch-color: var(--orange);
+	--anonymous-chat-header-bg: var(--faded-dark-blue);
+	--anonymous-chat-header-color: white;
+	--input-field-text-placeholder-color: black;
+	--send-button-color: black;
+	--message-container-from-color: var(--orange);
+	--message-container-text-color: white;
+	--message-container-to-color: var(--light-blue);
+	--awards-card-background-b1: var(--orange);
+	--awards-card-background-b2: var(--dark-blue);
+	--achievement-button-color: white;
+	--achievement-button-font-color: white;
+	--video-content-p-font-color: var(--dark-gray);
+	--testimonial-content-title: black;
+	--testimonial-content-name: var(--dark-gray);
+	--testimonial-content-p-color: var(--dark-gray);
+	--tech-stack-title-color: black;
+	--tech-stack-input-box: white;
+	--special-icon-color: black;
+	--footer-heading-color: white;
+	--footer-email-color: black;
+	--footer-bg: var(--faded-dark-blue);
+	--hover-more-text-color: white;
+	--blog-excerpt-color: var(--dark-gray);
+	--featured-video-text-color: var(--light-blue);
+	--blog-author-avatar-color: black;
+	--blog-header-color: var(--light-blue);
+	--card-bg-color: white;
+	--blog-content-color: var(--light-gray);
+	--post-excerpt-color: var(--dark-gray);
+	--markdown-generic-text-color: black;
+	--video-heading-color: black;
+	--featured-blog-category-text: var(--light-blue);
+	--share-icon-color: black;
+	--show-more-text-color: black;
+
+	font-family: 'Courier New', Courier, monospace;
+	scroll-behavior: smooth;
+	background-color: var(--background-color);
+	transition: var(--fade-transition);
+
+	/*--------------------- V3 CSS --------------------*/
+	--v3-standard-dark-theme-text-color: black;
+	--v3-standard-dark-theme-light-color: #979797;
+	--v3-sky-blue: var(--light-blue);
+}
+.darkMode {
+	--logo-heading-color: white;
+	--header-element-color: white;
+	--intro-header-text-color: white;
+	--header-bg-color: var(--faded-dark-blue);
+	--toggle-switch-bg: black;
+	--toggle-switch: white;
+	--background-color: var(--faded-dark-blue);
+	--white-card-date-text-color: white;
+	--white-card-description-text-color: white;
+	--white-card-action-button-text-color: white;
+	--white-card-hover-text-color: var(--dark-blue);
+	--related-blog-title: var(--light-blue);
+	--related-blog-category: white;
+	--related-blog-date: white;
+	--inactive-blog-category-text: white;
+	--active-blog-category-text: var(--light-blue);
+	--featured-blog-date-text: white;
+	--featured-blog-view-all-button-text: var(--light-blue);
+	--featured-blog-heading: var(--light-blue);
+	--orange-button-color: var(--orange);
+	--orange-button-color-text: white;
+	--get-in-touch-color: var(--orange);
+	--anonymous-chat-header-bg: var(--faded-dark-blue);
+	--anonymous-chat-header-color: white;
+	--input-field-text-placeholder-color: white;
+	--send-button-color: white;
+	--message-container-from-color: var(--orange);
+	--message-container-text-color: white;
+	--message-container-to-color: var(--light-blue);
+	--awards-card-background-b1: var(--dark-blue);
+	--awards-card-background-b2: var(--orange);
+	--achievement-button-color: white;
+	--achievement-button-font-color: white;
+	--video-content-p-font-color: white;
+	--testimonial-content-title: white;
+	--testimonial-content-name: white;
+	--testimonial-content-p-color: white;
+	--tech-stack-title-color: white;
+	--tech-stack-input-box: white;
+	--special-icon-color: white;
+	--footer-heading-color: white;
+	--footer-email-color: black;
+	--footer-bg: var(--dark-blue);
+	--hover-more-text-color: white;
+	--blog-excerpt-color: var(--light-gray);
+	--featured-video-text-color: white;
+	--blog-author-avatar-color: white;
+	--blog-header-color: var(--light-blue);
+	--card-bg-color: var(--dark-blue);
+	--blog-content-color: #313746;
+	--post-excerpt-color: var(--light-gray);
+	--markdown-generic-text-color: white;
+	--video-heading-color: white;
+	--featured-blog-category-text: var(--light-blue);
+	--share-icon-color: white;
+	--show-more-text-color: white;
+
+	font-family: 'Courier New', Courier, monospace;
+	scroll-behavior: smooth;
+	background-color: var(--background-color);
+	transition: var(--fade-transition);
+
+	/*--------------------- V3 CSS --------------------*/
+	--v3-standard-dark-theme-text-color: white;
+	--v3-standard-dark-theme-light-color: #979797;
+	--v3-sky-blue: var(--light-blue);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* Markdown Global Styles */
+
+.md---italic-text {
+	font-style: italic;
+}
+
+/* Common Utilities */
+.NavigationButton {
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+	align-self: center;
+	flex-shrink: 0;
+	max-width: var(--nav-button-max-width);
+}
+.NavigationButton:hover {
+	scale: 0.9;
+}
+
+::-webkit-scrollbar {
+	width: 0.2em;
+}
+
+/* Track */
+::-webkit-scrollbar-thumb {
+	background-color: var(--dark-gray);
+}
+
+/* Media Queries */
+
+@media (max-aspect-ratio: 550 / 897) {
+	:root {
+		--nav-button-max-width: 4vw;
+		--contact-header-text: 2.8vh;
+		--get-in-touch-header-text: 3.2vh;
+		--chat-directly-font-size: 3vh;
+		--send-button-size: 4vh;
+		--h1-text: 3.2vh;
+	}
+}
+
+@media screen and (max-height: 700px) {
+	:root {
+		--get-in-touch-input-font-size: 2vw;
+	}
+}

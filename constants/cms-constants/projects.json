@@ -54,5 +54,22 @@
 				"identifier": "yt-water-chain-video"
 			}
 		]
+	},
+	{
+		"name": "My Water Chain V2",
+		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/waterchain.jpg",
+		"description": "My Water Chain is a full stack project integrated with IoT. I designed the entire project architecture using Raspberry Pi as the Brain of hardware control system and water sensors.\nRaspberry Pi creates it's local server where it pings to the backend database, that was built on Python (Flask).",
+		"actionButtons": [
+			{
+				"label": "Source Code",
+				"cta": "https://github.com/sedhha/my-water-chain",
+				"identifier": "github-water-chain-source-code-v2"
+			},
+			{
+				"label": "View",
+				"cta": "https://www.youtube.com/watch?v=mFHnrSxknFQ",
+				"identifier": "yt-water-chain-video-v2"
+			}
+		]
 	}
 ]
