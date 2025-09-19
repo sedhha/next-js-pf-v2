@@ -75,9 +75,8 @@ const Testimonials = () => {
                         {testimonials.map((testimonial, index) => (
                             <div
                                 key={index}
-                                className={`absolute inset-0 w-full max-w-2xl mx-auto flex items-center justify-center transition-all duration-1000 ease-in-out ${
-                                    index === 0 ? 'opacity-100 visible z-10' : 'opacity-0 invisible z-[-1]'
-                                }`}
+                                className={`absolute inset-0 w-full max-w-2xl mx-auto flex items-center justify-center transition-all duration-1000 ease-in-out ${index === 0 ? 'opacity-100 visible z-10' : 'opacity-0 invisible z-[-1]'
+                                    }`}
                                 style={{
                                     animation: `testimonial-show-${index + 1} 20s infinite`,
                                 }}
