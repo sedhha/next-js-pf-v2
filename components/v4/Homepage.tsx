@@ -4,6 +4,7 @@ import Blog from '@/components/v4/Blog';
 import Contact from '@/components/v4/Contact';
 import IntroV4 from '@/components/v4/Intro';
 import Projects from '@/components/v4/Projects';
+import Testimonials from '@/components/v4/Testimonials';
 import Videos from '@/components/v4/Videos';
 import Work from '@/components/v4/Work';
 
@@ -22,6 +23,7 @@ export default function HomePageV4({ lastBuild }: Props) {
             <Projects />
             <Awards />
             <Videos />
+            <Testimonials />
 
         </>
     );
