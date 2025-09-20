@@ -1,7 +1,8 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import "./global.css";
-import Header from "@/components/v4/Header";
+import StaticHeader from "@/components/v4/StaticHeader";
+import Footer from "@/components/v4/Footer";
 
 const baseUrl =
     process.env.NEXT_PUBLIC_WEBSITE || "https://shivam-sahil.vercel.app";
@@ -75,10 +76,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
-            <body>
-                <Header />
-                <main className="flex-1">{children}</main>
+        <html lang="en" className="bg-black" data-scroll-behavior="smooth">
+            <body className="min-h-screen bg-black text-white">
+                <StaticHeader />
+                <main className="pt-24">
+                    {children}
+                </main>
+                <Footer />
             </body>
         </html>
     );

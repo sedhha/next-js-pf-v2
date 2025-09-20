@@ -1,6 +1,5 @@
-import HomePage from '@/components/v4/Homepage';
+import { redirect } from 'next/navigation';
 
-
-export default function Index() {
-    return <HomePage lastBuild={'lastBuild'} />;
+export default function HomePage() {
+    redirect('/portfolio-intro');
 }

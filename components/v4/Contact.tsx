@@ -213,7 +213,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="connect" className="relative py-20 px-4 bg-black">
+        <section className="relative py-20 px-4 bg-black">
             {/* Animated Background */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-l from-emerald-500/15 to-cyan-500/10 blur-3xl animate-pulse [animation-delay:2s]"></div>

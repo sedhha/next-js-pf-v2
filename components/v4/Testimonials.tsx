@@ -20,7 +20,7 @@ const Testimonials = () => {
     }
 
     return (
-        <section id="testimonials" className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <section className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
 
             {/* Haunted background atmosphere */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -40,7 +40,7 @@ const Testimonials = () => {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Mysterious header */}
-                <div className="text-center mb-20 relative">
+                <div className="text-center mb-2 relative">
                     {/* Eerie badge */}
                     <div className="inline-flex items-center gap-3 px-6 py-3 mb-8 bg-gradient-to-r from-red-500/20 to-purple-500/20 backdrop-blur-xl border border-red-400/40 rounded-full shadow-lg shadow-red-500/20">
                         <div className="flex items-center gap-2">
@@ -183,42 +183,7 @@ const Testimonials = () => {
                     </div>
                 </div>
 
-                {/* Dark energy CTA */}
-                <div className="mt-32 text-center">
-                    <div className="relative inline-block">
-                        {/* Pulsating dark aura */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-red-500/30 via-purple-500/20 to-red-500/30 rounded-3xl blur-xl scale-110 animate-pulse" />
 
-                        <div className="relative bg-black/50 backdrop-blur-xl border border-red-400/30 rounded-3xl p-12 hover:border-red-400/50 hover:bg-black/60 transition-all duration-500 shadow-2xl hover:shadow-red-500/20">
-                            <h3 className="text-3xl font-bold text-white mb-4 glitch-text">
-                                Want to add your voice?
-                            </h3>
-                            <p className="text-gray-300 mb-8 max-w-lg mx-auto">
-                                Join the ranks of those who&apos;ve witnessed the transformation.
-                                Your experience could be the next whisper in the void.
-                            </p>
-                            <a
-                                href="#connect"
-                                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 to-purple-500 hover:from-red-400 hover:to-purple-600 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40"
-                            >
-                                <span>Work With Me</span>
-                                <svg
-                                    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2.5}
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                    />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     );

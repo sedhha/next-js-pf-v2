@@ -24,7 +24,7 @@ const Intro = () => {
     ];
 
     return (
-        <div id="intro" className="min-h-screen relative overflow-hidden bg-black">
+        <div className="min-h-screen relative overflow-hidden bg-black">
             {/* Dynamic Background */}
             <div className="absolute inset-0">
                 {/* Gradient mesh */}
@@ -187,15 +187,7 @@ const Intro = () => {
                     </div>
                 </div>
 
-                {/* Navigation Hint */}
-                <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer group">
-                        <span className="text-lg">Explore the Journey</span>
-                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </div>
-                </div>
+
             </div>
         </div>
     );

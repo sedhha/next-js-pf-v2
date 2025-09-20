@@ -1,0 +1,14 @@
+import Blog from '@/components/v4/Blog';
+import NavigationButtons from '@/components/v4/NavigationButtons';
+
+export default function BlogPage() {
+    return (
+        <>
+            <Blog />
+            <NavigationButtons
+                prevPage={{ label: 'Back to Projects', href: '/portfolio-projects' }}
+                nextPage={{ label: 'View Awards', href: '/portfolio-awards' }}
+            />
+        </>
+    );
+}

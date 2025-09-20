@@ -63,7 +63,6 @@ const Awards = async () => {
 
     return (
         <section
-            id="awards"
             className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
         >
             {/* Mysterious Animated Background - Darker and more ominous */}

@@ -282,7 +282,7 @@ const Blog = () => {
         : allBlogs.filter(blog => blog.mainCategory === selectedCategory);
 
     return (
-        <section id="thoughts" className="relative py-20 px-4 bg-black">
+        <section className="relative py-20 px-4 bg-black">
             {/* Animated Background */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-gradient-to-l from-violet-500/20 to-purple-500/10 blur-3xl animate-pulse [animation-delay:1s]"></div>
