@@ -329,21 +329,21 @@ body {
 	}
 }
 
-/* Mobile Menu CSS-only animations */
-#main-mobile-menu:checked ~ .mobile-menu-dropdown {
+/* Mobile Menu - CSS-only fallback with peer selectors for progressive enhancement */
+.peer:checked ~ .mobile-menu-dropdown {
 	opacity: 1;
 	pointer-events: auto;
 }
 
-#main-mobile-menu:checked ~ .mobile-menu-button .hamburger-line-1 {
+.peer:checked ~ .mobile-menu-button .hamburger-line-1 {
 	transform: rotate(45deg) translateY(6px);
 }
 
-#main-mobile-menu:checked ~ .mobile-menu-button .hamburger-line-2 {
+.peer:checked ~ .mobile-menu-button .hamburger-line-2 {
 	opacity: 0;
 }
 
-#main-mobile-menu:checked ~ .mobile-menu-button .hamburger-line-3 {
+.peer:checked ~ .mobile-menu-button .hamburger-line-3 {
 	transform: rotate(-45deg) translateY(-6px);
 }
 

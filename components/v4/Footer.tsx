@@ -190,18 +190,27 @@ const Footer = () => {
 
             {/* Cosmic dust overlay */}
             <div className="absolute inset-0 pointer-events-none opacity-20">
-                {[...Array(100)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-px h-px bg-white rounded-full animate-pulse"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`,
-                            animationDuration: `${2 + Math.random() * 3}s`
-                        }}
-                    />
-                ))}
+                {[...Array(100)].map((_, i) => {
+                    // Use deterministic values based on index to prevent hydration mismatch
+                    const seed = i * 17; // Simple seed based on index
+                    const left = (seed % 100);
+                    const top = ((seed * 7) % 100);
+                    const delay = (seed % 5);
+                    const duration = 2 + (seed % 3);
+
+                    return (
+                        <div
+                            key={i}
+                            className="absolute w-px h-px bg-white rounded-full animate-pulse"
+                            style={{
+                                left: `${left}%`,
+                                top: `${top}%`,
+                                animationDelay: `${delay}s`,
+                                animationDuration: `${duration}s`
+                            }}
+                        />
+                    );
+                })}
             </div>
         </footer>
     );
