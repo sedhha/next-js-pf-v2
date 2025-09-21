@@ -187,8 +187,8 @@ const Awards = async () => {
                     </div>
                 ) : (
                     <div className="relative max-w-5xl mx-auto px-4">
-                        {/* 3×2 Grid Layout with Amazing Hover Effects */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+                        {/* Responsive Grid Layout - Desktop: hover cards, Mobile: stacked cards */}
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
                             {awards.slice(0, 6).map((award, index) => {
                                 const styling = getTierStyling(award.achievementType || 'rest');
                                 const isGold = award.achievementType === 'gold';
@@ -207,125 +207,220 @@ const Awards = async () => {
 
                                 // Enhanced styling for tiers
                                 const tierEnhancements = isGold
-                                    ? "ring-2 ring-yellow-300/20 hover:ring-yellow-300/60"
+                                    ? "ring-2 ring-yellow-300/20 md:hover:ring-yellow-300/60"
                                     : isSilver
-                                        ? "ring-1 ring-slate-300/20 hover:ring-slate-300/50"
+                                        ? "ring-1 ring-slate-300/20 md:hover:ring-slate-300/50"
                                         : isBronze
-                                            ? "ring-1 ring-orange-300/20 hover:ring-orange-300/50"
-                                            : "ring-1 ring-emerald-300/20 hover:ring-emerald-300/50";
+                                            ? "ring-1 ring-orange-300/20 md:hover:ring-orange-300/50"
+                                            : "ring-1 ring-emerald-300/20 md:hover:ring-emerald-300/50";
 
                                 return (
-                                    <article
+                                    <div
                                         key={`${award.name}-${award.date}-${index}`}
-                                        className={`group relative aspect-[4/3] bg-black/60 backdrop-blur-sm border-2 ${styling.border} rounded-3xl overflow-hidden transition-all duration-700 ease-out ${tierEnhancements} shadow-xl hover:shadow-3xl ${styling.glow} cursor-pointer`}
-                                        style={{
-                                            animationDelay: `${index * 150}ms`,
-                                            perspective: '1000px',
-                                            transformStyle: 'preserve-3d'
-                                        }}
+                                        className="space-y-4"
                                     >
-                                        {/* 3D Card Container with Amazing Hover Effects */}
-                                        <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-110 group-hover:-rotate-y-12 group-hover:rotate-x-6 group-hover:opacity-100 opacity-80"
+                                        {/* Desktop: Hover Card (hidden on mobile) */}
+                                        <article
+                                            className={`hidden md:block group relative aspect-[4/3] bg-black/60 backdrop-blur-sm border-2 ${styling.border} rounded-3xl overflow-hidden transition-all duration-700 ease-out ${tierEnhancements} shadow-xl hover:shadow-3xl ${styling.glow} cursor-pointer`}
                                             style={{
-                                                transform: 'rotateX(0deg) rotateY(0deg)',
+                                                animationDelay: `${index * 150}ms`,
+                                                perspective: '1000px',
                                                 transformStyle: 'preserve-3d'
-                                            }}>
+                                            }}
+                                        >
+                                            {/* 3D Card Container with Amazing Hover Effects - Desktop Only */}
+                                            <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-110 group-hover:-rotate-y-12 group-hover:rotate-x-6 group-hover:opacity-100 opacity-80"
+                                                style={{
+                                                    transform: 'rotateX(0deg) rotateY(0deg)',
+                                                    transformStyle: 'preserve-3d'
+                                                }}>
 
-                                            {/* Award Image with Parallax Effect */}
-                                            <div className="relative w-full h-full overflow-hidden rounded-3xl">
+                                                {/* Award Image with Parallax Effect */}
+                                                <div className="relative w-full h-full overflow-hidden rounded-3xl">
+                                                    <Image
+                                                        src={award.img}
+                                                        alt={award.name}
+                                                        fill
+                                                        className="object-cover transition-all duration-1000 ease-out group-hover:scale-125 group-hover:brightness-125 group-hover:contrast-110 group-hover:saturate-110"
+                                                        sizes="(max-width: 640px) 100vw, 50vw"
+                                                        unoptimized
+                                                        priority={index < 6}
+                                                    />
+
+                                                    {/* Dynamic Gradient Overlay */}
+                                                    <div className={`absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-black/80 group-hover:via-transparent group-hover:to-black/60 transition-all duration-700 opacity-70 group-hover:opacity-50`} />
+
+                                                    {/* Animated Light Ray Effect */}
+                                                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 transform -translate-x-full group-hover:translate-x-full"
+                                                        style={{
+                                                            background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
+                                                            animation: 'shimmer 2s ease-in-out infinite'
+                                                        }} />
+                                                </div>
+
+                                                {/* Floating Achievement Badge with Pulse */}
+                                                <div className="absolute top-4 right-4 z-30 transform transition-all duration-500 group-hover:scale-125 group-hover:-translate-y-2 group-hover:rotate-12">
+                                                    <div className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r ${styling.gradient} rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-2xl animate-pulse border-2 border-white/20 backdrop-blur-sm`}
+                                                        style={{
+                                                            boxShadow: `0 0 30px ${styling.glow.split('-')[1]}, inset 0 0 20px rgba(255,255,255,0.2)`
+                                                        }}>
+                                                        <span className="text-black drop-shadow-lg transform group-hover:scale-110 transition-transform duration-300">{badge}</span>
+                                                    </div>
+                                                </div>
+
+                                                {/* External Link Button with Morph Animation */}
+                                                <div className="absolute top-4 left-4 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 transform -translate-y-4 group-hover:translate-y-0">
+                                                    <a
+                                                        href={award.url}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className={`w-10 h-10 md:w-12 md:h-12 bg-black/90 backdrop-blur-md border-2 ${styling.border} rounded-2xl flex items-center justify-center hover:scale-125 hover:rotate-12 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:${styling.glow} group-hover:bg-black/80`}
+                                                        title="View Achievement"
+                                                    >
+                                                        <svg className={`w-5 h-5 md:w-6 md:h-6 ${styling.text} transform hover:scale-110 transition-transform duration-200`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+
+                                                {/* Content Overlay with Slide-Up Animation */}
+                                                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-100 bg-gradient-to-t from-black/90 via-black/70 to-transparent backdrop-blur-sm">
+                                                    <div className="space-y-2">
+                                                        <h3 className={`font-black ${styling.text} text-lg md:text-xl leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200`}>
+                                                            {award.title}
+                                                        </h3>
+                                                        <div className="text-sm md:text-base text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-300 font-medium">
+                                                            {award.name}
+                                                        </div>
+                                                        <div className="text-xs md:text-sm text-gray-400 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-400">
+                                                            {formatDate(award.date)}
+                                                        </div>
+                                                        {/* Achievement Description for Gold */}
+                                                        {isGold && award.description && (
+                                                            <p className="text-xs md:text-sm text-gray-300 leading-relaxed mt-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-500 line-clamp-2">
+                                                                {award.description}
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {/* Mystical Particle Effects */}
+                                                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                                                    {/* Floating Particles */}
+                                                    {[...Array(6)].map((_, i) => (
+                                                        <div
+                                                            key={i}
+                                                            className={`absolute w-1 h-1 ${styling.particle} rounded-full animate-bounce`}
+                                                            style={{
+                                                                left: `${10 + i * 15}%`,
+                                                                top: `${20 + (i % 3) * 20}%`,
+                                                                animationDelay: `${i * 200}ms`,
+                                                                animationDuration: `${2 + i * 0.3}s`,
+                                                                boxShadow: `0 0 10px ${styling.glow.split('-')[1]}`
+                                                            }}
+                                                        />
+                                                    ))}
+                                                </div>
+
+                                                {/* Holographic Edge Glow */}
+                                                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none`}
+                                                    style={{
+                                                        background: `linear-gradient(45deg, transparent 30%, ${styling.glow.split('/')[0].replace('shadow-', 'rgba(').replace('-', ',')}0.3) 50%, transparent 70%)`,
+                                                        filter: 'blur(1px)'
+                                                    }} />
+                                            </div>
+                                        </article>
+
+                                        {/* Mobile: Stacked Card Layout (visible only on mobile) */}
+                                        <article
+                                            className={`md:hidden bg-black/60 backdrop-blur-sm border-2 ${styling.border} rounded-3xl overflow-hidden shadow-xl ${styling.glow}`}
+                                            style={{
+                                                animationDelay: `${index * 150}ms`
+                                            }}
+                                        >
+                                            {/* Mobile Image Section */}
+                                            <div className="relative aspect-[4/3] overflow-hidden">
                                                 <Image
                                                     src={award.img}
                                                     alt={award.name}
                                                     fill
-                                                    className="object-cover transition-all duration-1000 ease-out group-hover:scale-125 group-hover:brightness-125 group-hover:contrast-110 group-hover:saturate-110"
-                                                    sizes="(max-width: 640px) 100vw, 50vw"
+                                                    className="object-cover"
+                                                    sizes="100vw"
                                                     unoptimized
                                                     priority={index < 6}
                                                 />
+                                                {/* Gradient Overlay */}
+                                                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-black/60" />
 
-                                                {/* Dynamic Gradient Overlay */}
-                                                <div className={`absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-black/80 group-hover:via-transparent group-hover:to-black/60 transition-all duration-700 opacity-70 group-hover:opacity-50`} />
+                                                {/* Achievement Badge - Mobile */}
+                                                <div className="absolute top-4 right-4 z-30">
+                                                    <div className={`w-12 h-12 bg-gradient-to-r ${styling.gradient} rounded-2xl flex items-center justify-center text-lg font-black shadow-2xl border-2 border-white/20 backdrop-blur-sm`}>
+                                                        <span className="text-black drop-shadow-lg">{badge}</span>
+                                                    </div>
+                                                </div>
 
-                                                {/* Animated Light Ray Effect */}
-                                                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 transform -translate-x-full group-hover:translate-x-full"
-                                                    style={{
-                                                        background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
-                                                        animation: 'shimmer 2s ease-in-out infinite'
-                                                    }} />
-                                            </div>
-
-                                            {/* Floating Achievement Badge with Pulse */}
-                                            <div className="absolute top-4 right-4 z-30 transform transition-all duration-500 group-hover:scale-125 group-hover:-translate-y-2 group-hover:rotate-12">
-                                                <div className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r ${styling.gradient} rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-2xl animate-pulse border-2 border-white/20 backdrop-blur-sm`}
-                                                    style={{
-                                                        boxShadow: `0 0 30px ${styling.glow.split('-')[1]}, inset 0 0 20px rgba(255,255,255,0.2)`
-                                                    }}>
-                                                    <span className="text-black drop-shadow-lg transform group-hover:scale-110 transition-transform duration-300">{badge}</span>
+                                                {/* External Link Button - Mobile */}
+                                                <div className="absolute top-4 left-4 z-30">
+                                                    <a
+                                                        href={award.url}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className={`w-12 h-12 bg-black/90 backdrop-blur-md border-2 ${styling.border} rounded-2xl flex items-center justify-center shadow-2xl`}
+                                                        title="View Achievement"
+                                                    >
+                                                        <svg className={`w-6 h-6 ${styling.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                        </svg>
+                                                    </a>
                                                 </div>
                                             </div>
 
-                                            {/* External Link Button with Morph Animation */}
-                                            <div className="absolute top-4 left-4 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 transform -translate-y-4 group-hover:translate-y-0">
-                                                <a
-                                                    href={award.url}
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    className={`w-10 h-10 md:w-12 md:h-12 bg-black/90 backdrop-blur-md border-2 ${styling.border} rounded-2xl flex items-center justify-center hover:scale-125 hover:rotate-12 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:${styling.glow} group-hover:bg-black/80`}
-                                                    title="View Achievement"
-                                                >
-                                                    <svg className={`w-5 h-5 md:w-6 md:h-6 ${styling.text} transform hover:scale-110 transition-transform duration-200`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-
-                                            {/* Content Overlay with Slide-Up Animation */}
-                                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-100 bg-gradient-to-t from-black/90 via-black/70 to-transparent backdrop-blur-sm">
-                                                <div className="space-y-2">
-                                                    <h3 className={`font-black ${styling.text} text-lg md:text-xl leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200`}>
+                                            {/* Mobile Details Section */}
+                                            <div className="p-6 space-y-4">
+                                                {/* Header */}
+                                                <div>
+                                                    <h3 className={`font-black ${styling.text} text-xl leading-tight mb-2`}>
                                                         {award.title}
                                                     </h3>
-                                                    <div className="text-sm md:text-base text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-300 font-medium">
+                                                    <div className="text-base text-gray-300 font-medium mb-1">
                                                         {award.name}
                                                     </div>
-                                                    <div className="text-xs md:text-sm text-gray-400 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-400">
+                                                    <div className="text-sm text-gray-400">
                                                         {formatDate(award.date)}
                                                     </div>
-                                                    {/* Achievement Description for Gold */}
-                                                    {isGold && award.description && (
-                                                        <p className="text-xs md:text-sm text-gray-300 leading-relaxed mt-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-500 line-clamp-2">
+                                                </div>
+
+                                                {/* Achievement Type */}
+                                                <div className="flex items-center gap-3 pt-2">
+                                                    <div className={`w-8 h-8 bg-gradient-to-r ${styling.gradient} rounded-xl flex items-center justify-center text-sm font-black shadow-lg border border-white/20`}>
+                                                        <span className="text-black drop-shadow-lg">{badge}</span>
+                                                    </div>
+                                                    <div className="text-sm text-gray-300 capitalize">
+                                                        <span className={`${styling.text} font-semibold`}>
+                                                            {award.achievementType || 'Achievement'}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                {/* Description */}
+                                                {award.description && (
+                                                    <div className="pt-3 border-t border-gray-700/50">
+                                                        <p className="text-sm text-gray-300 leading-relaxed">
                                                             {award.description}
                                                         </p>
-                                                    )}
-                                                </div>
-                                            </div>
+                                                    </div>
+                                                )}
 
-                                            {/* Mystical Particle Effects */}
-                                            <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-                                                {/* Floating Particles */}
-                                                {[...Array(6)].map((_, i) => (
-                                                    <div
-                                                        key={i}
-                                                        className={`absolute w-1 h-1 ${styling.particle} rounded-full animate-bounce`}
-                                                        style={{
-                                                            left: `${10 + i * 15}%`,
-                                                            top: `${20 + (i % 3) * 20}%`,
-                                                            animationDelay: `${i * 200}ms`,
-                                                            animationDuration: `${2 + i * 0.3}s`,
-                                                            boxShadow: `0 0 10px ${styling.glow.split('-')[1]}`
-                                                        }}
-                                                    />
-                                                ))}
+                                                {/* Gold Achievement Special Note */}
+                                                {isGold && (
+                                                    <div className="flex items-center gap-2 pt-2">
+                                                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                                                        <span className="text-xs text-yellow-300 font-medium">Top tier achievement</span>
+                                                    </div>
+                                                )}
                                             </div>
-
-                                            {/* Holographic Edge Glow */}
-                                            <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none`}
-                                                style={{
-                                                    background: `linear-gradient(45deg, transparent 30%, ${styling.glow.split('/')[0].replace('shadow-', 'rgba(').replace('-', ',')}0.3) 50%, transparent 70%)`,
-                                                    filter: 'blur(1px)'
-                                                }} />
-                                        </div>
-                                    </article>
+                                        </article>
+                                    </div>
                                 );
                             })}
                         </div>

@@ -26,17 +26,17 @@ const Intro = () => {
     return (
         <div className="min-h-screen relative overflow-hidden bg-black">
             {/* Dynamic Background */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 overflow-hidden">
                 {/* Gradient mesh */}
                 <div className="absolute inset-0 opacity-60">
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-900/20 via-black to-violet-900/20"></div>
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-cyan-900/15 via-transparent to-rose-900/15"></div>
                 </div>
 
-                {/* Animated orbs */}
-                <div className="absolute top-20 -left-20 w-96 h-96 rounded-full bg-gradient-to-r from-emerald-500/30 to-cyan-500/20 blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-20 -right-20 w-[30rem] h-[30rem] rounded-full bg-gradient-to-l from-violet-500/25 to-purple-500/15 blur-3xl animate-pulse [animation-delay:2s]"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 blur-3xl animate-pulse [animation-delay:4s]"></div>
+                {/* Animated orbs - constrained for mobile */}
+                <div className="absolute top-20 -left-10 sm:-left-20 w-64 h-64 sm:w-96 sm:h-96 rounded-full bg-gradient-to-r from-emerald-500/30 to-cyan-500/20 blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 -right-10 sm:-right-20 w-64 h-64 sm:w-[30rem] sm:h-[30rem] rounded-full bg-gradient-to-l from-violet-500/25 to-purple-500/15 blur-3xl animate-pulse [animation-delay:2s]"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 sm:w-[40rem] sm:h-[40rem] rounded-full bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 blur-3xl animate-pulse [animation-delay:4s]"></div>
 
                 {/* Fixed floating particles */}
                 <div className="absolute inset-0">

@@ -76,10 +76,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="bg-black" data-scroll-behavior="smooth">
-            <body className="min-h-screen bg-black text-white">
+        <html lang="en" className="bg-black overflow-x-hidden" data-scroll-behavior="smooth">
+            <body className="min-h-screen bg-black text-white overflow-x-hidden">
                 <StaticHeader />
-                <main className="pt-24">
+                <main className="pt-24 overflow-x-hidden">
                     {children}
                 </main>
                 <Footer />

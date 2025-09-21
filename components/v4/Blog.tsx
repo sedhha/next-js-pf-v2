@@ -160,17 +160,17 @@ const HeroBlogCard = ({ blog }: { blog: typeof allBlogs[number] }) => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 p-8 md:p-12 h-full flex flex-col justify-end min-h-[400px] md:min-h-[500px]">
-                {/* Featured Badge */}
-                <div className="absolute top-8 left-8">
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                        <span className="text-xl">{theme.icon}</span>
-                        <span className="text-white font-medium text-sm">Featured Story</span>
+            <div className="relative z-10 p-6 md:p-8 lg:p-12 h-full flex flex-col justify-end min-h-[400px] md:min-h-[500px]">
+                {/* Featured Badge - Responsive positioning to prevent mobile collision */}
+                <div className="absolute top-4 right-4 md:top-8 md:left-8 md:right-auto">
+                    <div className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                        <span className="text-lg md:text-xl">{theme.icon}</span>
+                        <span className="text-white font-medium text-xs md:text-sm">Featured Story</span>
                     </div>
                 </div>
 
                 {/* Category */}
-                <div className="mb-4">
+                <div className="mb-4 mt-16 md:mt-4">
                     <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-${theme.bg} text-${theme.secondary} border border-${theme.border} backdrop-blur-sm`}>
                         {blog.mainCategory}
                     </span>
@@ -187,9 +187,9 @@ const HeroBlogCard = ({ blog }: { blog: typeof allBlogs[number] }) => {
                 </p>
 
                 {/* Meta and CTA */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <BlogDate date={blog.postDate} />
-                    <button className={`inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r ${theme.gradient} text-black font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer`}>
+                    <button className={`inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r ${theme.gradient} text-black font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer w-fit sm:w-auto`}>
                         Read Story
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
