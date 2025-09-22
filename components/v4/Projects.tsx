@@ -205,7 +205,7 @@ const Projects = async () => {
                                 great project starts with a conversation.
                             </p>
                             <a
-                                href="/contact"
+                                href="/portfolio-contact"
                                 className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-violet-400 text-black font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/40"
                             >
                                 <span>Start a Project</span>
