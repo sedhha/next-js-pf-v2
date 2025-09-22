@@ -5,7 +5,7 @@ import MobileMenu from './MobileMenu';
 import ClientNavUpdater from './ClientNavUpdater';
 
 const navigationItems = [
-    { label: 'Intro', href: '/portfolio-intro' },
+    { label: 'Intro', href: '/portfolio' },
     { label: 'Work', href: '/portfolio-work' },
     { label: 'Projects', href: '/portfolio-projects' },
     { label: 'Blog', href: '/portfolio-blog' },
@@ -28,15 +28,15 @@ const StaticHeader = async () => {
     }
 
     const isActive = (href: string) => {
-        return pathname === href || (pathname === '/' && href === '/portfolio-intro');
+        return pathname === href || (pathname === '/' && href === '/portfolio');
     };
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/10 overflow-hidden">
-            {/* Multi-layered background with cosmic theme */}
-            <div className="absolute inset-0 bg-black/80"></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-black/50 to-violet-900/30"></div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-rose-900/20"></div>
+            {/* Multi-layered background with cosmic theme - pointer-events-none to prevent click interference */}
+            <div className="absolute inset-0 bg-black/80 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-black/50 to-violet-900/30 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-rose-900/20 pointer-events-none"></div>
 
             <div className="relative max-w-6xl mx-auto overflow-hidden">
                 <div className="px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between">
@@ -62,19 +62,19 @@ const StaticHeader = async () => {
                                     : 'text-gray-300 hover:text-white hover:-translate-y-1 hover:scale-105 hover:shadow-cyan-500/50 hover:shadow-2xl'
                                     }`}
                             >
-                                {/* Multi-layered glow effects - only on hover */}
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/0 via-cyan-500/0 to-emerald-500/0 group-hover:from-purple-500/30 group-hover:via-cyan-500/40 group-hover:to-emerald-500/30 transition-all duration-500 blur-sm"></div>
+                                {/* Multi-layered glow effects - only on hover, pointer-events-none to prevent click interference */}
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/0 via-cyan-500/0 to-emerald-500/0 group-hover:from-purple-500/30 group-hover:via-cyan-500/40 group-hover:to-emerald-500/30 transition-all duration-500 blur-sm pointer-events-none"></div>
 
                                 {/* Outer glow ring */}
-                                <div className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-cyan-400/30 via-purple-400/30 to-emerald-400/30 blur-lg"></div>
+                                <div className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-cyan-400/30 via-purple-400/30 to-emerald-400/30 blur-lg pointer-events-none"></div>
 
                                 {/* Text content */}
                                 <span className="relative z-10">
                                     {item.label}
                                 </span>
 
-                                {/* Shimmer sweep effect */}
-                                <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                {/* Shimmer sweep effect - pointer-events-none to prevent click interference */}
+                                <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out skew-x-12"></div>
                                 </div>
                             </Link>

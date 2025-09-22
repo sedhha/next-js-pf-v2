@@ -82,7 +82,7 @@ const BlogDate = ({ date }: { date: string }) => {
     return <span className="text-sm text-gray-400">{formatted}</span>;
 };
 
-// Enhanced category color mapping with multiple properties
+// Enhanced category color mapping with consistent emerald-purple theme
 const getCategoryTheme = (category: string) => {
     const themes: { [key: string]: { primary: string, secondary: string, bg: string, border: string, gradient: string, icon: string } } = {
         'IoT': {
@@ -94,19 +94,19 @@ const getCategoryTheme = (category: string) => {
             icon: '🔌'
         },
         'Mechanical': {
-            primary: 'blue-400',
-            secondary: 'blue-300',
-            bg: 'blue-500/10',
-            border: 'blue-500/30',
-            gradient: 'from-blue-400 to-indigo-400',
+            primary: 'cyan-400',
+            secondary: 'cyan-300',
+            bg: 'cyan-500/10',
+            border: 'cyan-500/30',
+            gradient: 'from-cyan-400 to-emerald-400',
             icon: '⚙️'
         },
         'Life': {
-            primary: 'rose-400',
-            secondary: 'rose-300',
-            bg: 'rose-500/10',
-            border: 'rose-500/30',
-            gradient: 'from-rose-400 to-pink-400',
+            primary: 'purple-400',
+            secondary: 'purple-300',
+            bg: 'purple-500/10',
+            border: 'purple-500/30',
+            gradient: 'from-purple-400 to-violet-400',
             icon: '💭'
         },
         'Web Development': {
@@ -122,21 +122,21 @@ const getCategoryTheme = (category: string) => {
             secondary: 'cyan-300',
             bg: 'cyan-500/10',
             border: 'cyan-500/30',
-            gradient: 'from-cyan-400 to-teal-400',
+            gradient: 'from-cyan-400 to-emerald-400',
             icon: '📱'
         },
         'Automation': {
-            primary: 'orange-400',
-            secondary: 'orange-300',
-            bg: 'orange-500/10',
-            border: 'orange-500/30',
-            gradient: 'from-orange-400 to-yellow-400',
+            primary: 'emerald-400',
+            secondary: 'emerald-300',
+            bg: 'emerald-500/10',
+            border: 'emerald-500/30',
+            gradient: 'from-emerald-400 to-cyan-400',
             icon: '🤖'
         }
     };
     return themes[category] || {
-        primary: 'gray-400', secondary: 'gray-300', bg: 'gray-500/10',
-        border: 'gray-500/30', gradient: 'from-gray-400 to-gray-500', icon: '📝'
+        primary: 'violet-400', secondary: 'violet-300', bg: 'violet-500/10',
+        border: 'violet-500/30', gradient: 'from-violet-400 to-purple-400', icon: '📝'
     };
 };
 
@@ -366,7 +366,7 @@ const Blog = () => {
                                 <StatsCard icon="📝" value={allBlogs.length.toString()} label="Total Stories" color="emerald-400" />
                                 <StatsCard icon="🏷️" value="6" label="Categories" color="violet-400" />
                                 <StatsCard icon="📅" value="2023" label="Latest Year" color="cyan-400" />
-                                <StatsCard icon="💡" value="∞" label="Ideas" color="rose-400" />
+                                <StatsCard icon="💡" value="∞" label="Ideas" color="purple-400" />
                             </div>
                         </div>
 

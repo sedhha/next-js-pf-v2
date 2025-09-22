@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import Link from 'next/link';
 
 const navigationItems = [
-    { label: 'Intro', href: '/portfolio-intro' },
+    { label: 'Intro', href: '/portfolio' },
     { label: 'Work', href: '/portfolio-work' },
     { label: 'Projects', href: '/portfolio-projects' },
     { label: 'Blog', href: '/portfolio-blog' },
@@ -56,7 +56,7 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
     }, [isOpen]);
 
     const isActive = (href: string) => {
-        return currentPath === href || (currentPath === '/' && href === '/portfolio-intro');
+        return currentPath === href || (currentPath === '/' && href === '/portfolio');
     };
 
     const toggleMenu = () => {

@@ -42,13 +42,13 @@ const categorizeTeechnologies = (): TechCategories => {
     return categories;
 };
 
-const getPowerLevel = (rating: number) => {
-    switch (rating) {
-        case 5: return { color: 'from-red-400 to-orange-400', shadow: 'shadow-red-500/50', glow: 'bg-red-400/20' };
-        case 4: return { color: 'from-purple-400 to-pink-400', shadow: 'shadow-purple-500/50', glow: 'bg-purple-400/20' };
-        case 3: return { color: 'from-cyan-400 to-blue-400', shadow: 'shadow-cyan-500/50', glow: 'bg-cyan-400/20' };
-        case 2: return { color: 'from-green-400 to-emerald-400', shadow: 'shadow-green-500/50', glow: 'bg-green-400/20' };
-        default: return { color: 'from-gray-400 to-gray-500', shadow: 'shadow-gray-500/50', glow: 'bg-gray-400/20' };
+const getPowerLevel = (powerLevel: number) => {
+    switch (powerLevel) {
+        case 5: return { color: 'from-emerald-400 to-cyan-400', shadow: 'shadow-emerald-500/50', glow: 'bg-emerald-400/20' };
+        case 4: return { color: 'from-violet-400 to-purple-400', shadow: 'shadow-violet-500/50', glow: 'bg-violet-400/20' };
+        case 3: return { color: 'from-cyan-400 to-emerald-400', shadow: 'shadow-cyan-500/50', glow: 'bg-cyan-400/20' };
+        case 2: return { color: 'from-purple-400 to-violet-400', shadow: 'shadow-purple-500/50', glow: 'bg-purple-400/20' };
+        default: return { color: 'from-emerald-400 to-cyan-400', shadow: 'shadow-emerald-500/50', glow: 'bg-emerald-400/20' };
     }
 };
 
@@ -109,15 +109,15 @@ const CategorySection = ({ title, technologies }: {
     return (
         <div className="mb-16 transform transition-all duration-1000 opacity-0 translate-y-8 animate-[fadeInUp_1.2s_ease-out_forwards]">
             <div className="text-center mb-8 relative">
-                <div className="inline-flex items-center gap-3 px-6 py-3 mb-6 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-xl border border-purple-400/40 rounded-full shadow-lg shadow-purple-500/20">
+                <div className="inline-flex items-center gap-3 px-6 py-3 mb-6 bg-gradient-to-r from-violet-500/20 to-cyan-500/20 backdrop-blur-xl border border-violet-400/40 rounded-full shadow-lg shadow-violet-500/20">
                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50" />
+                        <div className="w-2 h-2 bg-violet-400 rounded-full animate-pulse shadow-lg shadow-violet-400/50" />
                         <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse shadow-lg shadow-cyan-400/50 [animation-delay:0.2s]" />
                     </div>
-                    <span className="text-purple-300 font-semibold tracking-wide text-sm uppercase">
+                    <span className="text-violet-300 font-semibold tracking-wide">
                         {title}
                     </span>
-                    <div className="w-6 h-0.5 bg-gradient-to-r from-purple-400 via-cyan-400 to-transparent" />
+                    <div className="w-6 h-0.5 bg-gradient-to-r from-violet-400 via-cyan-400 to-transparent" />
                 </div>
             </div>
 
@@ -150,30 +150,30 @@ const TechStack = () => {
                 <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-yellow-400/40 rounded-full floating-orb blur-sm [animation-delay:4s]" />
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-[radial-gradient(var(--tw-gradient-stops))] from-cyan-500/15 via-purple-500/10 to-transparent rounded-full blur-3xl animate-pulse" />
                 <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[radial-gradient(var(--tw-gradient-stops))] from-purple-500/10 via-red-500/5 to-transparent rounded-full blur-3xl animate-pulse [animation-delay:2s]" />
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent scanning-line" />
-                <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400/50 to-transparent scanning-line [animation-delay:2s]" />
-                <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/50 to-transparent scanning-line [animation-delay:4s]" />
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-theme-cyan-400/50 to-transparent scanning-line" />
+                <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-theme-violet-400/50 to-transparent scanning-line [animation-delay:2s]" />
+                <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-theme-emerald-400/50 to-transparent scanning-line [animation-delay:4s]" />
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16 relative animate-[fadeInUp_1s_ease-out_forwards]">
-                    <div className="inline-flex items-center gap-3 px-6 py-3 mb-8 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-xl border border-cyan-400/40 rounded-full shadow-lg shadow-cyan-500/20">
+                    <div className="inline-flex items-center gap-3 px-6 py-3 mb-8 bg-gradient-to-r from-theme-cyan-500/20 to-theme-violet-500/20 backdrop-blur-xl border border-theme-cyan-400/40 rounded-full shadow-lg shadow-theme-cyan-500/20">
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse shadow-lg shadow-cyan-400/50" />
                             <div className="w-1 h-1 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50 [animation-delay:0.2s]" />
                         </div>
-                        <span className="text-cyan-300 font-semibold tracking-wide">
+                        <span className="text-theme-cyan-300 font-semibold tracking-wide">
                             DIGITAL ARSENAL
                         </span>
-                        <div className="w-6 h-0.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-transparent" />
+                        <div className="w-6 h-0.5 bg-gradient-to-r from-theme-cyan-400 via-theme-violet-400 to-transparent" />
                     </div>
 
                     <h2 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6">
-                        <span className="glitch-text inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-300 to-purple-300 hover:from-cyan-400 hover:via-purple-400 hover:to-red-400 transition-all duration-700 transform hover:scale-105 drop-shadow-lg">
+                        <span className="glitch-text inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-theme-cyan-300 to-theme-violet-300 hover:from-theme-cyan-400 hover:via-theme-violet-400 hover:to-theme-emerald-400 transition-all duration-700 transform hover:scale-105 drop-shadow-lg">
                             Tech
                         </span>
                         <br />
-                        <span className="glitch-text inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-red-400 hover:from-white hover:via-cyan-300 hover:to-purple-300 transition-all duration-700 transform hover:scale-105 drop-shadow-lg [animation-delay:0.1s]">
+                        <span className="glitch-text inline-block text-transparent bg-clip-text bg-gradient-to-r from-theme-cyan-400 via-theme-violet-400 to-theme-emerald-400 hover:from-white hover:via-theme-cyan-300 hover:to-theme-violet-300 transition-all duration-700 transform hover:scale-105 drop-shadow-lg [animation-delay:0.1s]">
                             Arsenal
                         </span>
                     </h2>

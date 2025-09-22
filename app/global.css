@@ -92,6 +92,271 @@ body {
 	}
 }
 
+/* Emerald-Purple Theme Color System */
+:root {
+	/* Primary theme colors */
+	--theme-emerald-100: #d1fae5;
+	--theme-emerald-200: #a7f3d0;
+	--theme-emerald-300: #6ee7b7;
+	--theme-emerald-400: #34d399;
+	--theme-emerald-500: #10b981;
+	--theme-emerald-600: #059669;
+
+	--theme-cyan-100: #cffafe;
+	--theme-cyan-200: #a5f3fc;
+	--theme-cyan-300: #67e8f9;
+	--theme-cyan-400: #22d3ee;
+	--theme-cyan-500: #06b6d4;
+	--theme-cyan-600: #0891b2;
+
+	--theme-violet-100: #ede9fe;
+	--theme-violet-200: #ddd6fe;
+	--theme-violet-300: #c4b5fd;
+	--theme-violet-400: #a78bfa;
+	--theme-violet-500: #8b5cf6;
+	--theme-violet-600: #7c3aed;
+
+	--theme-purple-100: #f3e8ff;
+	--theme-purple-200: #e9d5ff;
+	--theme-purple-300: #d8b4fe;
+	--theme-purple-400: #c084fc;
+	--theme-purple-500: #a855f7;
+	--theme-purple-600: #9333ea;
+
+	/* Gradients */
+	--gradient-primary: linear-gradient(
+		to right,
+		var(--theme-emerald-400),
+		var(--theme-cyan-400)
+	);
+	--gradient-secondary: linear-gradient(
+		to right,
+		var(--theme-violet-400),
+		var(--theme-purple-400)
+	);
+}
+
+/* Theme utility classes */
+.theme-emerald-100 {
+	color: var(--theme-emerald-100);
+}
+.theme-emerald-200 {
+	color: var(--theme-emerald-200);
+}
+.theme-emerald-300 {
+	color: var(--theme-emerald-300);
+}
+.theme-emerald-400 {
+	color: var(--theme-emerald-400);
+}
+.theme-emerald-500 {
+	color: var(--theme-emerald-500);
+}
+.theme-emerald-600 {
+	color: var(--theme-emerald-600);
+}
+
+.theme-cyan-100 {
+	color: var(--theme-cyan-100);
+}
+.theme-cyan-200 {
+	color: var(--theme-cyan-200);
+}
+.theme-cyan-300 {
+	color: var(--theme-cyan-300);
+}
+.theme-cyan-400 {
+	color: var(--theme-cyan-400);
+}
+.theme-cyan-500 {
+	color: var(--theme-cyan-500);
+}
+.theme-cyan-600 {
+	color: var(--theme-cyan-600);
+}
+
+.theme-violet-100 {
+	color: var(--theme-violet-100);
+}
+.theme-violet-200 {
+	color: var(--theme-violet-200);
+}
+.theme-violet-300 {
+	color: var(--theme-violet-300);
+}
+.theme-violet-400 {
+	color: var(--theme-violet-400);
+}
+.theme-violet-500 {
+	color: var(--theme-violet-500);
+}
+.theme-violet-600 {
+	color: var(--theme-violet-600);
+}
+
+.theme-purple-100 {
+	color: var(--theme-purple-100);
+}
+.theme-purple-200 {
+	color: var(--theme-purple-200);
+}
+.theme-purple-300 {
+	color: var(--theme-purple-300);
+}
+.theme-purple-400 {
+	color: var(--theme-purple-400);
+}
+.theme-purple-500 {
+	color: var(--theme-purple-500);
+}
+.theme-purple-600 {
+	color: var(--theme-purple-600);
+}
+
+/* Background color utilities */
+.bg-theme-emerald-100 {
+	background-color: var(--theme-emerald-100);
+}
+.bg-theme-emerald-200 {
+	background-color: var(--theme-emerald-200);
+}
+.bg-theme-emerald-300 {
+	background-color: var(--theme-emerald-300);
+}
+.bg-theme-emerald-400 {
+	background-color: var(--theme-emerald-400);
+}
+.bg-theme-emerald-500 {
+	background-color: var(--theme-emerald-500);
+}
+.bg-theme-emerald-600 {
+	background-color: var(--theme-emerald-600);
+}
+
+.bg-theme-cyan-100 {
+	background-color: var(--theme-cyan-100);
+}
+.bg-theme-cyan-200 {
+	background-color: var(--theme-cyan-200);
+}
+.bg-theme-cyan-300 {
+	background-color: var(--theme-cyan-300);
+}
+.bg-theme-cyan-400 {
+	background-color: var(--theme-cyan-400);
+}
+.bg-theme-cyan-500 {
+	background-color: var(--theme-cyan-500);
+}
+.bg-theme-cyan-600 {
+	background-color: var(--theme-cyan-600);
+}
+
+.bg-theme-violet-100 {
+	background-color: var(--theme-violet-100);
+}
+.bg-theme-violet-200 {
+	background-color: var(--theme-violet-200);
+}
+.bg-theme-violet-300 {
+	background-color: var(--theme-violet-300);
+}
+.bg-theme-violet-400 {
+	background-color: var(--theme-violet-400);
+}
+.bg-theme-violet-500 {
+	background-color: var(--theme-violet-500);
+}
+.bg-theme-violet-600 {
+	background-color: var(--theme-violet-600);
+}
+
+.bg-theme-purple-100 {
+	background-color: var(--theme-purple-100);
+}
+.bg-theme-purple-200 {
+	background-color: var(--theme-purple-200);
+}
+.bg-theme-purple-300 {
+	background-color: var(--theme-purple-300);
+}
+.bg-theme-purple-400 {
+	background-color: var(--theme-purple-400);
+}
+.bg-theme-purple-500 {
+	background-color: var(--theme-purple-500);
+}
+.bg-theme-purple-600 {
+	background-color: var(--theme-purple-600);
+}
+
+/* Border color utilities */
+.border-theme-emerald-300\/50 {
+	border-color: rgba(110, 231, 183, 0.5);
+}
+.border-theme-emerald-400\/40 {
+	border-color: rgba(52, 211, 153, 0.4);
+}
+.border-theme-emerald-500\/30 {
+	border-color: rgba(16, 185, 129, 0.3);
+}
+
+.border-theme-cyan-300\/50 {
+	border-color: rgba(103, 232, 249, 0.5);
+}
+.border-theme-cyan-400\/40 {
+	border-color: rgba(34, 211, 238, 0.4);
+}
+.border-theme-cyan-500\/30 {
+	border-color: rgba(6, 182, 212, 0.3);
+}
+
+.border-theme-violet-300\/50 {
+	border-color: rgba(196, 181, 253, 0.5);
+}
+.border-theme-violet-400\/40 {
+	border-color: rgba(167, 139, 250, 0.4);
+}
+.border-theme-violet-500\/30 {
+	border-color: rgba(139, 92, 246, 0.3);
+}
+
+.border-theme-purple-300\/50 {
+	border-color: rgba(216, 180, 254, 0.5);
+}
+.border-theme-purple-400\/40 {
+	border-color: rgba(192, 132, 252, 0.4);
+}
+.border-theme-purple-500\/30 {
+	border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Gradient utilities */
+.from-theme-emerald-400 {
+	--tw-gradient-from: var(--theme-emerald-400);
+}
+.to-theme-cyan-400 {
+	--tw-gradient-to: var(--theme-cyan-400);
+}
+.from-theme-violet-400 {
+	--tw-gradient-from: var(--theme-violet-400);
+}
+.to-theme-purple-400 {
+	--tw-gradient-to: var(--theme-purple-400);
+}
+.from-theme-cyan-400 {
+	--tw-gradient-from: var(--theme-cyan-400);
+}
+.to-theme-emerald-400 {
+	--tw-gradient-to: var(--theme-emerald-400);
+}
+.from-theme-purple-400 {
+	--tw-gradient-from: var(--theme-purple-400);
+}
+.to-theme-violet-400 {
+	--tw-gradient-to: var(--theme-violet-400);
+}
+
 /* Define the keyframes */
 @keyframes grid {
 	0%,
@@ -480,4 +745,73 @@ body {
 	--animate-fade-in-backdrop: fade-in-backdrop 0.3s ease-out;
 	--animate-fade-out-backdrop: fade-out-backdrop 0.3s ease-out;
 	--animate-stagger-in: stagger-in 0.4s ease-out forwards;
+
+	/* Consistent Emerald-Purple Theme Colors */
+	/* Primary Colors */
+	--color-theme-primary: #10b981; /* emerald-500 */
+	--color-theme-primary-light: #34d399; /* emerald-400 */
+	--color-theme-primary-dark: #059669; /* emerald-600 */
+
+	--color-theme-secondary: #8b5cf6; /* violet-500 */
+	--color-theme-secondary-light: #a78bfa; /* violet-400 */
+	--color-theme-secondary-dark: #7c3aed; /* violet-600 */
+
+	--color-theme-accent: #06b6d4; /* cyan-500 */
+	--color-theme-accent-light: #22d3ee; /* cyan-400 */
+	--color-theme-accent-dark: #0891b2; /* cyan-600 */
+
+	--color-theme-tertiary: #a855f7; /* purple-500 */
+	--color-theme-tertiary-light: #c084fc; /* purple-400 */
+	--color-theme-tertiary-dark: #9333ea; /* purple-600 */
+
+	/* Theme Color Classes */
+	--color-theme-emerald-100: #d1fae5;
+	--color-theme-emerald-200: #a7f3d0;
+	--color-theme-emerald-300: #6ee7b7;
+	--color-theme-emerald-400: #34d399;
+	--color-theme-emerald-500: #10b981;
+	--color-theme-emerald-600: #059669;
+
+	--color-theme-cyan-100: #cffafe;
+	--color-theme-cyan-200: #a5f3fc;
+	--color-theme-cyan-300: #67e8f9;
+	--color-theme-cyan-400: #22d3ee;
+	--color-theme-cyan-500: #06b6d4;
+	--color-theme-cyan-600: #0891b2;
+
+	--color-theme-violet-100: #ede9fe;
+	--color-theme-violet-200: #ddd6fe;
+	--color-theme-violet-300: #c4b5fd;
+	--color-theme-violet-400: #a78bfa;
+	--color-theme-violet-500: #8b5cf6;
+	--color-theme-violet-600: #7c3aed;
+
+	--color-theme-purple-100: #f3e8ff;
+	--color-theme-purple-200: #e9d5ff;
+	--color-theme-purple-300: #d8b4fe;
+	--color-theme-purple-400: #c084fc;
+	--color-theme-purple-500: #a855f7;
+	--color-theme-purple-600: #9333ea;
+
+	/* Gradient Combinations */
+	--gradient-primary: linear-gradient(
+		to right,
+		var(--color-theme-emerald-400),
+		var(--color-theme-cyan-400)
+	);
+	--gradient-secondary: linear-gradient(
+		to right,
+		var(--color-theme-violet-400),
+		var(--color-theme-purple-400)
+	);
+	--gradient-accent: linear-gradient(
+		to right,
+		var(--color-theme-cyan-400),
+		var(--color-theme-emerald-400)
+	);
+	--gradient-tertiary: linear-gradient(
+		to right,
+		var(--color-theme-purple-400),
+		var(--color-theme-violet-400)
+	);
 }

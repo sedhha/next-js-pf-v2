@@ -6,7 +6,7 @@ export default function WorkPage() {
         <>
             <Work />
             <NavigationButtons
-                prevPage={{ label: 'Back to Intro', href: '/portfolio-intro' }}
+                prevPage={{ label: 'Back to Intro', href: '/portfolio' }}
                 nextPage={{ label: 'View Projects', href: '/portfolio-projects' }}
             />
         </>

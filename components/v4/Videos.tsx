@@ -37,7 +37,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ videoId, title, className =
             {!isLoaded && (
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
                     <div className="flex flex-col items-center gap-4">
-                        <div className="w-16 h-16 border-4 border-red-500/30 border-t-red-500 rounded-full animate-spin"></div>
+                        <div className="w-16 h-16 border-4 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin"></div>
                         <p className="text-gray-400 text-sm">Loading video...</p>
                     </div>
                 </div>
@@ -67,12 +67,12 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
 
     return (
         <article
-            className="group relative bg-black/40 backdrop-blur-sm border border-red-900/30 rounded-2xl overflow-hidden hover:border-red-500/60 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-700 hover:scale-[1.02]"
+            className="group relative bg-black/40 backdrop-blur-sm border border-emerald-900/30 rounded-2xl overflow-hidden hover:border-emerald-400/60 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-700 hover:scale-[1.02]"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Eerie glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600/0 via-red-500/20 to-red-600/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 blur-sm" />
+            {/* Theme-consistent glow effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600/0 via-emerald-500/20 to-violet-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 blur-sm" />
 
             {/* Video thumbnail area */}
             <div className="relative">
@@ -87,14 +87,14 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
                         unoptimized
                     />
 
-                    {/* Dark mysterious overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 group-hover:from-red-900/40 transition-all duration-700" />
+                    {/* Theme-consistent overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 group-hover:from-emerald-900/40 transition-all duration-700" />
 
-                    {/* Floating play button with eerie glow */}
+                    {/* Theme-consistent play button */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-red-500/30 rounded-full blur-xl animate-pulse" />
-                            <div className="relative w-16 h-16 bg-red-600/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-red-500 transition-colors cursor-pointer border border-red-400/50">
+                            <div className="absolute inset-0 bg-emerald-500/30 rounded-full blur-xl animate-pulse" />
+                            <div className="relative w-16 h-16 bg-emerald-600/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-emerald-500 transition-colors cursor-pointer border border-emerald-400/50">
                                 <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
@@ -102,13 +102,13 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
                         </div>
                     </div>
 
-                    {/* Mysterious floating particles */}
+                    {/* Theme-consistent floating particles */}
                     {isHovered && (
                         <div className="absolute inset-0">
                             {[...Array(6)].map((_, i) => (
                                 <div
                                     key={i}
-                                    className="absolute w-1 h-1 bg-red-400/60 rounded-full animate-pulse"
+                                    className="absolute w-1 h-1 bg-emerald-400/60 rounded-full animate-pulse"
                                     style={{
                                         top: `${20 + i * 10}%`,
                                         left: `${10 + i * 15}%`,
@@ -124,7 +124,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
 
             {/* Content area */}
             <div className="p-6 space-y-4">
-                <h3 className="font-bold text-white group-hover:text-red-300 transition-colors duration-300 line-clamp-2 text-lg leading-tight">
+                <h3 className="font-bold text-white group-hover:text-emerald-300 transition-colors duration-300 line-clamp-2 text-lg leading-tight">
                     {video.title}
                 </h3>
 
@@ -134,8 +134,8 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
 
                 {/* Date with mysterious styling */}
                 <div className="flex items-center gap-2 text-xs">
-                    <div className="w-2 h-2 bg-red-500/60 rounded-full animate-pulse" />
-                    <span className="text-gray-500 group-hover:text-red-400/80 transition-colors">
+                    <div className="w-2 h-2 bg-emerald-500/60 rounded-full animate-pulse" />
+                    <span className="text-gray-500 group-hover:text-emerald-400/80 transition-colors">
                         {formatDate(video.date).short}
                     </span>
                 </div>
@@ -145,7 +145,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
                     href={`https://www.youtube.com/watch?v=${video.id}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-500/40 hover:border-red-400 rounded-lg text-sm font-medium text-red-300 hover:text-red-200 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-red-500/20"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 hover:border-emerald-400 rounded-lg text-sm font-medium text-emerald-300 hover:text-emerald-200 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-emerald-500/20"
                 >
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
@@ -156,7 +156,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
 
             {/* Subtle border animation */}
             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-red-500/10 to-transparent animate-pulse" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent animate-pulse" />
             </div>
         </article>
     );
@@ -191,7 +191,7 @@ const Videos = () => {
                     {eerieParticles.map((particle, i) => (
                         <div
                             key={i}
-                            className={`absolute ${particle.size} bg-red-400/30 rounded-full animate-pulse`}
+                            className={`absolute ${particle.size} bg-emerald-400/30 rounded-full animate-pulse`}
                             style={{
                                 top: particle.top,
                                 left: particle.left,
@@ -209,33 +209,33 @@ const Videos = () => {
 
                 {/* Subtle scanning lines */}
                 <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-pulse [animation-duration:8s]" />
-                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500/30 to-transparent animate-pulse [animation-duration:12s] [animation-delay:4s]" />
+                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent animate-pulse [animation-duration:8s]" />
+                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-violet-500/30 to-transparent animate-pulse [animation-duration:12s] [animation-delay:4s]" />
                 </div>
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10 px-4">
                 {/* Mysterious Header */}
                 <div className="text-center mb-16 lg:mb-20 relative">
-                    {/* Floating badge with eerie glow */}
-                    <div className="inline-flex items-center gap-3 px-6 py-3 mb-8 bg-gradient-to-r from-red-600/20 to-orange-600/20 backdrop-blur-xl border border-red-500/40 rounded-full shadow-lg shadow-red-500/20">
+                    {/* Theme-consistent badge */}
+                    <div className="inline-flex items-center gap-3 px-6 py-3 mb-8 bg-gradient-to-r from-emerald-500/20 to-violet-500/20 backdrop-blur-xl border border-emerald-400/40 rounded-full shadow-lg shadow-emerald-500/20">
                         <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-lg shadow-red-500/50" />
-                            <div className="w-1 h-1 bg-orange-500 rounded-full animate-pulse [animation-delay:300ms] shadow-lg shadow-orange-500/50" />
+                            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
+                            <div className="w-1 h-1 bg-violet-400 rounded-full animate-pulse [animation-delay:300ms] shadow-lg shadow-violet-400/50" />
                         </div>
-                        <span className="text-red-300 font-semibold tracking-wide">
+                        <span className="text-emerald-300 font-semibold tracking-wide">
                             VIDEO TRANSMISSIONS
                         </span>
-                        <div className="w-6 h-0.5 bg-gradient-to-r from-red-400 via-orange-400 to-transparent" />
+                        <div className="w-6 h-0.5 bg-gradient-to-r from-emerald-400 via-violet-400 to-transparent" />
                     </div>
 
-                    {/* Mysterious title */}
+                    {/* Theme-consistent title */}
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 px-4">
-                        <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-red-300 to-orange-300 hover:from-red-400 hover:via-orange-400 hover:to-yellow-400 transition-all duration-700 transform hover:scale-105 drop-shadow-lg">
+                        <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-300 to-cyan-300 hover:from-emerald-400 hover:via-cyan-400 hover:to-violet-400 transition-all duration-700 transform hover:scale-105 drop-shadow-lg">
                             Digital
                         </span>
                         <br />
-                        <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 hover:from-white hover:via-red-300 hover:to-orange-300 transition-all duration-700 delay-100 transform hover:scale-105 drop-shadow-lg">
+                        <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 hover:from-white hover:via-emerald-300 hover:to-cyan-300 transition-all duration-700 delay-100 transform hover:scale-105 drop-shadow-lg">
                             Chronicles
                         </span>
                     </h1>
@@ -245,9 +245,9 @@ const Videos = () => {
                             Exploring the depths of technology, consciousness, and the mysteries that bind them.
                         </p>
                         <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
-                            <div className="h-px w-12 bg-gradient-to-r from-transparent via-red-400/60 to-orange-400/60" />
-                            <span className="text-red-300 font-medium">Knowledge Transmissions</span>
-                            <div className="h-px w-12 bg-gradient-to-l from-transparent via-orange-400/60 to-yellow-400/60" />
+                            <div className="h-px w-12 bg-gradient-to-r from-transparent via-emerald-400/60 to-violet-400/60" />
+                            <span className="text-emerald-300 font-medium">Knowledge Transmissions</span>
+                            <div className="h-px w-12 bg-gradient-to-l from-transparent via-cyan-400/60 to-violet-400/60" />
                         </div>
                     </div>
                 </div>
@@ -256,25 +256,25 @@ const Videos = () => {
                 <div className="mb-20 relative">
                     <div className="group relative max-w-5xl mx-auto">
                         {/* Mysterious glow around featured video */}
-                        <div className="absolute -inset-4 bg-gradient-to-r from-red-600/30 via-orange-500/20 to-red-600/30 rounded-3xl blur-2xl opacity-50 group-hover:opacity-70 transition-all duration-1000" />
+                        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-600/30 via-violet-500/20 to-emerald-600/30 rounded-3xl blur-2xl opacity-50 group-hover:opacity-70 transition-all duration-1000" />
 
                         <div className="relative bg-black/60 backdrop-blur-xl border border-red-800/40 rounded-3xl p-8 hover:border-red-600/60 transition-all duration-700 shadow-2xl">
                             {/* Featured label */}
                             <div className="flex items-center gap-2 mb-6">
                                 <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-lg shadow-red-500/50" />
-                                <span className="text-red-300 font-semibold text-sm tracking-wider">FEATURED TRANSMISSION</span>
+                                <span className="text-emerald-300 font-semibold text-sm tracking-wider">FEATURED TRANSMISSION</span>
                             </div>
 
                             {/* Video embed */}
                             <YouTubeEmbed
                                 videoId={highlighted.id}
                                 title={highlighted.title}
-                                className="mb-6 border border-red-900/30 shadow-2xl shadow-red-900/20"
+                                className="mb-6 border border-emerald-900/30 shadow-2xl shadow-emerald-900/20"
                             />
 
                             {/* Video details */}
                             <div className="space-y-4">
-                                <h2 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-red-200 transition-colors duration-300">
+                                <h2 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-emerald-200 transition-colors duration-300">
                                     {highlighted.title}
                                 </h2>
 
@@ -285,7 +285,7 @@ const Videos = () => {
                                 {/* Metadata */}
                                 <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 bg-red-500/60 rounded-full animate-pulse" />
+                                        <div className="w-2 h-2 bg-emerald-500/60 rounded-full animate-pulse" />
                                         <span>{formatDate(highlighted.date).long}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
@@ -300,7 +300,7 @@ const Videos = () => {
                                         href={`https://www.youtube.com/watch?v=${highlighted.id}`}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-yellow-500 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-red-500/30"
+                                        className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-600 to-violet-600 hover:from-emerald-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-emerald-500/30"
                                     >
                                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -318,7 +318,7 @@ const Videos = () => {
                     {/* Section header */}
                     <div className="text-center">
                         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-orange-300 to-yellow-300">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-cyan-300 to-violet-300">
                                 More Chronicles
                             </span>
                         </h2>
@@ -338,7 +338,7 @@ const Videos = () => {
                     <div className="text-center mt-16">
                         <div className="relative inline-block">
                             {/* Mysterious background glow */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-red-600/30 via-orange-500/20 to-red-600/30 rounded-3xl blur-xl scale-110 animate-pulse" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/30 via-violet-500/20 to-emerald-600/30 rounded-3xl blur-xl scale-110 animate-pulse" />
 
                             <div className="relative bg-black/60 backdrop-blur-xl border border-red-700/40 rounded-3xl p-10 hover:border-red-500/60 hover:bg-black/70 transition-all duration-500 shadow-2xl">
                                 <h3 className="text-3xl font-bold text-white mb-4">
@@ -349,7 +349,7 @@ const Videos = () => {
                                 </p>
                                 <Link
                                     href="/videos"
-                                    className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-yellow-500 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30"
+                                    className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-violet-600 hover:from-emerald-500 hover:to-purple-500 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/30"
                                 >
                                     <span>View All Videos</span>
                                     <svg
