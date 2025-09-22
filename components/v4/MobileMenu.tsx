@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const navigationItems = [
@@ -24,10 +25,17 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
 
+    // Use client-side pathname for real-time updates
+    const pathname = usePathname();
+    // Fall back to currentPath for SSR compatibility
+    const activePath = pathname || currentPath;
+
     useEffect(() => {
         setMounted(true);
         return () => setMounted(false);
     }, []);
+
+
 
     // Prevent body scroll when menu is open
     useEffect(() => {
@@ -56,7 +64,7 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
     }, [isOpen]);
 
     const isActive = (href: string) => {
-        return currentPath === href || (currentPath === '/' && href === '/portfolio');
+        return activePath === href || (activePath === '/' && href === '/portfolio');
     };
 
     const toggleMenu = () => {
@@ -142,6 +150,7 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
                                                 <Link
                                                     href={item.href}
                                                     onClick={closeMenu}
+                                                    data-mobile-nav-link
                                                     className={`relative group block w-full px-4 py-3 rounded-xl transition-all duration-300 overflow-hidden ${isActive(item.href)
                                                         ? 'text-emerald-300 bg-emerald-500/20 border border-emerald-500/40'
                                                         : 'text-gray-300 hover:text-white hover:bg-white/5 hover:border-white/10 border border-transparent'
