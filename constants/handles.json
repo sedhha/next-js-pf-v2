@@ -2,51 +2,61 @@
 	{
 		"id": "BsLinkedin",
 		"url": "https://www.linkedin.com/in/shivam-sahil/",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "linkedin"
 	},
 	{
 		"id": "BsWordpress",
 		"url": "https://technopain.wordpress.com/",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "wordpress"
 	},
 	{
 		"id": "BsYoutube",
 		"url": "https://www.youtube.com/channel/UCenRU1EVBo-cWz978u4P4gg",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "youtube"
 	},
 	{
 		"id": "BsGithub",
 		"url": "https://github.com/sedhha",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "github"
 	},
 	{
 		"id": "AiOutlineMail",
 		"url": "mailto:activity.schoolsh2@gmail.com",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "email"
 	},
 	{
 		"id": "FiEdit",
 		"url": "https://wrytin.com/shivamsahil",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "blog"
 	},
 	{
 		"id": "BsTwitter",
 		"url": "https://twitter.com/SahilShiva37132",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "twitter"
 	},
 	{
 		"id": "BsDiscord",
 		"url": "https://discord.com/users/Spidey#3033",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "discord"
 	},
 	{
 		"id": "BsStackOverflow",
 		"url": "https://stackoverflow.com/users/8176451/shivam-sahil",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "stackoverflow"
 	},
 	{
 		"id": "SiDevpost",
 		"url": "https://devpost.com/sedhha",
-		"isSvg": true
+		"isSvg": true,
+		"platform": "devpost"
 	}
 ]

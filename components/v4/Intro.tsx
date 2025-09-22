@@ -57,7 +57,6 @@ const Intro = () => {
 
             {/* Main Content */}
             <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20 pt-32">
-
                 {/* Hero Section */}
                 <div className="text-center max-w-6xl mx-auto space-y-8 mb-16">
                     {/* Main Title */}
@@ -91,7 +90,6 @@ const Intro = () => {
 
                 {/* Content Cards */}
                 <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
-
                     {/* Philosophy Card */}
                     <div className="group relative">
                         <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
@@ -103,8 +101,9 @@ const Intro = () => {
                                         The Inner Quest
                                     </h3>
                                     <p className="text-gray-300 leading-relaxed text-lg">
-                                        Still figuring out why am I here? What is that elusive force, entangled so deeply within me,
-                                        that dares to project the infinite onto the canvas of my being?
+                                        Still figuring out why am I here? What is that elusive force,
+                                        entangled so deeply within me, that dares to project the infinite onto
+                                        the canvas of my being?
                                     </p>
                                     <p className="text-emerald-400 font-medium text-lg">
                                         Re-discovering the things but from inside this time.
@@ -125,10 +124,12 @@ const Intro = () => {
                                         Quantum Reality
                                     </h3>
                                     <p className="text-gray-300 leading-relaxed text-lg">
-                                        The universe might just be a quantum computer where whatever that can happen will happen!
+                                        The universe might just be a quantum computer where whatever that can
+                                        happen will happen!
                                     </p>
                                     <p className="text-violet-400 font-medium text-lg">
-                                        Wondering if my choices are algorithms in motion or merely outcomes of probabilities collapsing into reality.
+                                        Wondering if my choices are algorithms in motion or merely outcomes of
+                                        probabilities collapsing into reality.
                                     </p>
                                 </div>
                             </div>
@@ -140,7 +141,6 @@ const Intro = () => {
                 <div className="relative group max-w-4xl mx-auto">
                     <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500/30 via-cyan-500/30 to-violet-500/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-70 transition-all duration-1000"></div>
                     <div className="relative bg-black/70 backdrop-blur-2xl border border-gray-700/50 rounded-3xl p-12 text-center group-hover:border-gray-600/50 transition-all duration-500">
-
                         {/* Avatar */}
                         <div className="relative mx-auto mb-8 w-32 h-32">
                             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400 via-cyan-400 to-violet-400 animate-pulse"></div>
@@ -161,33 +161,38 @@ const Intro = () => {
                         </div>
 
                         <h2 className="text-4xl font-bold text-white mb-2">Shivam Sahil</h2>
-                        <p className="text-xl text-gray-400 mb-8">Digital Philosopher & Reality Explorer</p>
+                        <p className="text-xl text-gray-400 mb-8">
+                            Digital Philosopher & Reality Explorer
+                        </p>
 
                         {/* Tags */}
                         <div className="flex flex-wrap justify-center gap-4 mb-8">
-                            {['Consciousness', 'Quantum Theory', 'Philosophy', 'Creation'].map((tag, index) => (
-                                <span
-                                    key={tag}
-                                    className={`px-6 py-3 rounded-full text-sm font-medium border transition-all duration-300 hover:scale-105 ${index === 0 ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20' :
-                                        index === 1 ? 'bg-violet-500/10 border-violet-500/30 text-violet-300 hover:bg-violet-500/20' :
-                                            index === 2 ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20' :
-                                                'bg-rose-500/10 border-rose-500/30 text-rose-300 hover:bg-rose-500/20'
-                                        }`}
-                                >
-                                    {tag}
-                                </span>
-                            ))}
+                            {['Consciousness', 'Quantum Theory', 'Philosophy', 'Creation'].map(
+                                (tag, index) => (
+                                    <span
+                                        key={tag}
+                                        className={`px-6 py-3 rounded-full text-sm font-medium border transition-all duration-300 hover:scale-105 ${index === 0
+                                                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20'
+                                                : index === 1
+                                                    ? 'bg-violet-500/10 border-violet-500/30 text-violet-300 hover:bg-violet-500/20'
+                                                    : index === 2
+                                                        ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20'
+                                                        : 'bg-rose-500/10 border-rose-500/30 text-rose-300 hover:bg-rose-500/20'
+                                            }`}
+                                    >
+                                        {tag}
+                                    </span>
+                                )
+                            )}
                         </div>
 
                         {/* Quote */}
                         <blockquote className="text-gray-300 text-xl italic font-light leading-relaxed">
-                            &quot;That thou art — recognizing the infinite within the finite, <br />
-                            the eternal dance of consciousness exploring itself&quot;
+                            &quot;That thou art — The finite is but the mask; the infinite wears it
+                            to behold itself.&quot;
                         </blockquote>
                     </div>
                 </div>
-
-
             </div>
         </div>
     );

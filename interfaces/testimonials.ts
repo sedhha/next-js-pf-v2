@@ -12,4 +12,5 @@ export interface ISocialHandles {
 	id: IconKeys;
 	url: string;
 	isSvg: boolean;
+	platform?: string;
 }
