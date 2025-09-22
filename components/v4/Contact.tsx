@@ -14,7 +14,8 @@ const contactMethods = [
     {
         icon: '📧',
         label: 'Email',
-        value: 'hello@shivsahil.com',
+        value: 'activity.schoolsh2@gmail.com',
+        displayText: 'Let\'s talk!',
         description: 'Drop me a line anytime',
         gradient: 'from-emerald-400 to-cyan-400',
         delay: '0s'
@@ -22,7 +23,8 @@ const contactMethods = [
     {
         icon: '🔗',
         label: 'LinkedIn',
-        value: '/in/shivsahil',
+        value: 'https://linkedin.com/in/shivam-sahil',
+        displayText: '@shivam-sahil',
         description: 'Professional network',
         gradient: 'from-blue-400 to-indigo-400',
         delay: '0.2s'
@@ -30,18 +32,11 @@ const contactMethods = [
     {
         icon: '🐙',
         label: 'GitHub',
-        value: '@shivsahil',
+        value: 'https://github.com/sedhha',
+        displayText: '@sedhha',
         description: 'Code repositories',
         gradient: 'from-gray-400 to-gray-600',
         delay: '0.4s'
-    },
-    {
-        icon: '📱',
-        label: 'Social',
-        value: 'Multiple platforms',
-        description: 'Connect everywhere',
-        gradient: 'from-violet-400 to-purple-400',
-        delay: '0.6s'
     }
 ];
 
@@ -122,13 +117,21 @@ const ModernInput = ({
 const ContactMethodCard = ({ method, onClick }: { method: typeof contactMethods[0]; onClick: () => void }) => (
     <div
         onClick={onClick}
-        className="group relative cursor-pointer"
+        className="group relative cursor-pointer transform transition-transform duration-300 hover:scale-105"
         style={{ animationDelay: method.delay }}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onClick();
+            }
+        }}
     >
         <div className="absolute -inset-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl blur-sm"
             style={{ background: `linear-gradient(to right, var(--tw-gradient-stops))` }}>
         </div>
-        <div className={`relative bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:bg-black/60 hover:border-gray-700/50 transition-all duration-500 group-hover:scale-105`}>
+        <div className={`relative bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:bg-black/60 hover:border-gray-700/50 transition-all duration-500 active:scale-95`}>
             <div className="flex items-center gap-4 mb-4">
                 <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${method.gradient} flex items-center justify-center text-black font-bold text-xl group-hover:scale-110 transition-transform duration-300`}>
                     {method.icon}
@@ -137,10 +140,19 @@ const ContactMethodCard = ({ method, onClick }: { method: typeof contactMethods[
                     <h3 className="text-white font-bold text-lg group-hover:text-emerald-300 transition-colors duration-300">
                         {method.label}
                     </h3>
-                    <p className="text-gray-400 text-sm">{method.description}</p>
+                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{method.description}</p>
                 </div>
             </div>
-            <p className="text-emerald-400 font-mono text-sm">{method.value}</p>
+            <p className="text-emerald-400 font-mono text-sm group-hover:text-emerald-300 transition-colors duration-300">
+                {method.displayText}
+            </p>
+
+            {/* Click indicator */}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg className="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+            </div>
 
             {/* Hover effect overlay */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -208,8 +220,13 @@ const Contact = () => {
     };
 
     const handleContactMethodClick = (method: typeof contactMethods[0]) => {
-        // Handle contact method clicks (open email, social links, etc.)
-        console.log(`Opening ${method.label}: ${method.value}`);
+        if (method.label === 'Email') {
+            // Open email client with pre-filled email
+            window.location.href = `mailto:${method.value}`;
+        } else if (method.label === 'LinkedIn' || method.label === 'GitHub') {
+            // Open social links in new tab
+            window.open(method.value, '_blank', 'noopener,noreferrer');
+        }
     };
 
     return (
@@ -243,13 +260,14 @@ const Contact = () => {
                 </div>
 
                 {/* Contact Methods Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+                <div className="flex flex-wrap justify-center gap-6 mb-20 md:justify-between lg:justify-evenly">
                     {contactMethods.map((method) => (
-                        <ContactMethodCard
-                            key={method.label}
-                            method={method}
-                            onClick={() => handleContactMethodClick(method)}
-                        />
+                        <div key={method.label} className="flex-shrink-0 w-full sm:w-80 md:w-64 lg:w-72">
+                            <ContactMethodCard
+                                method={method}
+                                onClick={() => handleContactMethodClick(method)}
+                            />
+                        </div>
                     ))}
                 </div>
 
@@ -418,7 +436,7 @@ const Contact = () => {
                                 Focus Areas
                             </h3>
                             <div className="flex flex-wrap gap-2">
-                                {['Full Stack Development', 'System Architecture', 'Data Engineering', 'Philosophy', 'Innovation'].map((skill) => (
+                                {['Full Stack Development', 'Workflow Automation', 'Agentic Framework', 'System Architecture', 'Data Engineering', 'Philosophy', 'Innovation'].map((skill) => (
                                     <span key={skill} className="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">
                                         {skill}
                                     </span>

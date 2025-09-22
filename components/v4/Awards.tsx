@@ -1,13 +1,16 @@
-import React from "react";
-import Image from "next/image";
-import { IEventAndParticipations } from "@/interfaces/events-and-participations";
-import awardsData from "@/constants/cms-constants/events-participations.json";
+import React from 'react';
+import Image from 'next/image';
+import { IEventAndParticipations } from '@/interfaces/events-and-participations';
+import awardsData from '@/constants/cms-constants/events-participations.json';
 
 // Server Component - fetches data directly
-async function getAwards(): Promise<{ awards: IEventAndParticipations[]; total: number }> {
+async function getAwards(): Promise<{
+    awards: IEventAndParticipations[];
+    total: number;
+}> {
     return {
         awards: awardsData,
-        total: awardsData.length,
+        total: awardsData.length
     };
 }
 
@@ -62,9 +65,7 @@ const Awards = async () => {
     };
 
     return (
-        <section
-            className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-        >
+        <section className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Mysterious Animated Background - Darker and more ominous */}
             <div className="absolute inset-0 overflow-hidden">
                 {/* Haunting Grid Pattern */}
@@ -104,19 +105,22 @@ const Awards = async () => {
                     {/* Spinning Morpankh in Center Background */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-10 z-0">
                         <div className="w-32 h-32 animate-spin [animation-duration:15s] [animation-timing-function:linear] [animation-iteration-count:infinite]">
-                            <svg
-                                viewBox="0 0 1380 1375"
-                                className="w-full h-full drop-shadow-lg"
-                            >
-                                <path d="M2254.8 1120.51C2370.52 1004.8 2535.53 982.195 2623.36 1070.03 2711.19 1157.86 2688.59 1322.87 2572.87 1438.58 2457.16 1554.3 2292.15 1576.9 2204.32 1489.07 2116.48 1401.24 2139.09 1236.23 2254.8 1120.51Z"
+                            <svg viewBox="0 0 1380 1375" className="w-full h-full drop-shadow-lg">
+                                <path
+                                    d="M2254.8 1120.51C2370.52 1004.8 2535.53 982.195 2623.36 1070.03 2711.19 1157.86 2688.59 1322.87 2572.87 1438.58 2457.16 1554.3 2292.15 1576.9 2204.32 1489.07 2116.48 1401.24 2139.09 1236.23 2254.8 1120.51Z"
                                     fill="rgba(255, 215, 102, 0.4)"
-                                    transform="translate(-1732 -632)" />
-                                <path d="M2304.69 1160.9C2387.88 1077.7 2507.62 1062.54 2572.12 1127.04 2636.62 1191.55 2621.47 1311.28 2538.27 1394.48 2455.07 1477.68 2335.34 1492.83 2270.83 1428.33 2206.33 1363.83 2221.49 1244.09 2304.69 1160.9Z"
+                                    transform="translate(-1732 -632)"
+                                />
+                                <path
+                                    d="M2304.69 1160.9C2387.88 1077.7 2507.62 1062.54 2572.12 1127.04 2636.62 1191.55 2621.47 1311.28 2538.27 1394.48 2455.07 1477.68 2335.34 1492.83 2270.83 1428.33 2206.33 1363.83 2221.49 1244.09 2304.69 1160.9Z"
                                     fill="rgba(0, 176, 240, 0.3)"
-                                    transform="translate(-1732 -632)" />
-                                <path d="M649.797 285.625C428.437 285.625 249.922 464.141 249.922 685.5 249.922 755.478 268.487 821.172 299.906 878.297 329.897 846.878 362.744 815.459 398.447 781.184 488.419 696.925 594.1 611.237 682.644 548.4 688.356 544.116 694.069 541.259 701.209 541.259 716.919 541.259 729.772 554.112 729.772 569.822 729.772 579.819 725.487 586.959 718.347 592.672L718.347 592.672C591.244 684.072 422.725 825.456 308.475 953.987 308.475 953.987 292.766 971.125 285.625 979.694 221.359 1055.38 178.516 1123.93 178.516 1172.49L264.203 1172.49C264.203 1141.07 314.187 1072.52 389.878 991.119 459.856 1051.1 549.828 1086.8 649.797 1086.8 721.203 1086.8 789.753 1068.24 848.306 1033.96 1153.92 864.016 1192.48 551.256 1192.48 199.937 1192.48 199.937 859.731 291.337 649.797 285.625Z"
+                                    transform="translate(-1732 -632)"
+                                />
+                                <path
+                                    d="M649.797 285.625C428.437 285.625 249.922 464.141 249.922 685.5 249.922 755.478 268.487 821.172 299.906 878.297 329.897 846.878 362.744 815.459 398.447 781.184 488.419 696.925 594.1 611.237 682.644 548.4 688.356 544.116 694.069 541.259 701.209 541.259 716.919 541.259 729.772 554.112 729.772 569.822 729.772 579.819 725.487 586.959 718.347 592.672L718.347 592.672C591.244 684.072 422.725 825.456 308.475 953.987 308.475 953.987 292.766 971.125 285.625 979.694 221.359 1055.38 178.516 1123.93 178.516 1172.49L264.203 1172.49C264.203 1141.07 314.187 1072.52 389.878 991.119 459.856 1051.1 549.828 1086.8 649.797 1086.8 721.203 1086.8 789.753 1068.24 848.306 1033.96 1153.92 864.016 1192.48 551.256 1192.48 199.937 1192.48 199.937 859.731 291.337 649.797 285.625Z"
                                     fill="rgba(0, 176, 80, 0.2)"
-                                    transform="matrix(1 0 0 1.00073 5 1)" />
+                                    transform="matrix(1 0 0 1.00073 5 1)"
+                                />
                             </svg>
                         </div>
                     </div>
@@ -137,7 +141,7 @@ const Awards = async () => {
                     {/* Title with mystical gradient */}
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 px-4">
                         <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-indigo-300 hover:from-blue-300 hover:via-indigo-300 hover:to-purple-400 transition-all duration-700 transform hover:scale-105 drop-shadow-lg">
-                            Learning
+                            Rewarding
                         </span>
                         <br />
                         <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-400 hover:from-teal-200 hover:via-emerald-300 hover:to-blue-300 transition-all duration-700 delay-100 transform hover:scale-105 drop-shadow-lg">
@@ -147,12 +151,14 @@ const Awards = async () => {
 
                     <div className="max-w-3xl mx-auto space-y-4 px-4">
                         <p className="text-xl text-gray-300 leading-relaxed">
-                            Milestones and experiences gathered along the path of continuous learning and growth.
+                            Moments and milestones from a journey of ever-evolving growth.
                         </p>
                         {total > 0 && (
                             <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
                                 <div className="h-px w-12 bg-gradient-to-r from-transparent via-violet-400/60 to-purple-400/60" />
-                                <span className="text-violet-300 font-medium">{total} learning experiences</span>
+                                <span className="text-violet-300 font-medium">
+                                    {total} Most Recent Experiences
+                                </span>
                                 <div className="h-px w-12 bg-gradient-to-l from-transparent via-purple-400/60 to-indigo-400/60" />
                             </div>
                         )}
@@ -180,7 +186,9 @@ const Awards = async () => {
                                 </svg>
                             </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-red-300 mb-4">Experiences Loading</h3>
+                        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-red-300 mb-4">
+                            Experiences Loading
+                        </h3>
                         <p className="text-gray-300 max-w-md mx-auto">
                             Gathering moments of learning and growth from the journey...
                         </p>
@@ -197,22 +205,22 @@ const Awards = async () => {
 
                                 // Get tier badge
                                 const getTierBadge = () => {
-                                    if (isGold) return "⭐";
-                                    if (isSilver) return "✨";
-                                    if (isBronze) return "🌟";
-                                    return "💫";
+                                    if (isGold) return '⭐';
+                                    if (isSilver) return '✨';
+                                    if (isBronze) return '🌟';
+                                    return '💫';
                                 };
 
                                 const badge = getTierBadge();
 
                                 // Enhanced styling for tiers
                                 const tierEnhancements = isGold
-                                    ? "ring-2 ring-yellow-300/20 md:hover:ring-yellow-300/60"
+                                    ? 'ring-2 ring-yellow-300/20 md:hover:ring-yellow-300/60'
                                     : isSilver
-                                        ? "ring-1 ring-slate-300/20 md:hover:ring-slate-300/50"
+                                        ? 'ring-1 ring-slate-300/20 md:hover:ring-slate-300/50'
                                         : isBronze
-                                            ? "ring-1 ring-orange-300/20 md:hover:ring-orange-300/50"
-                                            : "ring-1 ring-emerald-300/20 md:hover:ring-emerald-300/50";
+                                            ? 'ring-1 ring-orange-300/20 md:hover:ring-orange-300/50'
+                                            : 'ring-1 ring-emerald-300/20 md:hover:ring-emerald-300/50';
 
                                 return (
                                     <div
@@ -229,12 +237,13 @@ const Awards = async () => {
                                             }}
                                         >
                                             {/* 3D Card Container with Amazing Hover Effects - Desktop Only */}
-                                            <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-110 group-hover:-rotate-y-12 group-hover:rotate-x-6 group-hover:opacity-100 opacity-80"
+                                            <div
+                                                className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-110 group-hover:-rotate-y-12 group-hover:rotate-x-6 group-hover:opacity-100 opacity-80"
                                                 style={{
                                                     transform: 'rotateX(0deg) rotateY(0deg)',
                                                     transformStyle: 'preserve-3d'
-                                                }}>
-
+                                                }}
+                                            >
                                                 {/* Award Image with Parallax Effect */}
                                                 <div className="relative w-full h-full overflow-hidden rounded-3xl">
                                                     <Image
@@ -248,23 +257,33 @@ const Awards = async () => {
                                                     />
 
                                                     {/* Dynamic Gradient Overlay */}
-                                                    <div className={`absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-black/80 group-hover:via-transparent group-hover:to-black/60 transition-all duration-700 opacity-70 group-hover:opacity-50`} />
+                                                    <div
+                                                        className={`absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-black/80 group-hover:via-transparent group-hover:to-black/60 transition-all duration-700 opacity-70 group-hover:opacity-50`}
+                                                    />
 
                                                     {/* Animated Light Ray Effect */}
-                                                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 transform -translate-x-full group-hover:translate-x-full"
+                                                    <div
+                                                        className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 transform -translate-x-full group-hover:translate-x-full"
                                                         style={{
-                                                            background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
+                                                            background:
+                                                                'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
                                                             animation: 'shimmer 2s ease-in-out infinite'
-                                                        }} />
+                                                        }}
+                                                    />
                                                 </div>
 
                                                 {/* Floating Achievement Badge with Pulse */}
                                                 <div className="absolute top-4 right-4 z-30 transform transition-all duration-500 group-hover:scale-125 group-hover:-translate-y-2 group-hover:rotate-12">
-                                                    <div className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r ${styling.gradient} rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-2xl animate-pulse border-2 border-white/20 backdrop-blur-sm`}
+                                                    <div
+                                                        className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r ${styling.gradient} rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-2xl animate-pulse border-2 border-white/20 backdrop-blur-sm`}
                                                         style={{
-                                                            boxShadow: `0 0 30px ${styling.glow.split('-')[1]}, inset 0 0 20px rgba(255,255,255,0.2)`
-                                                        }}>
-                                                        <span className="text-black drop-shadow-lg transform group-hover:scale-110 transition-transform duration-300">{badge}</span>
+                                                            boxShadow: `0 0 30px ${styling.glow.split('-')[1]
+                                                                }, inset 0 0 20px rgba(255,255,255,0.2)`
+                                                        }}
+                                                    >
+                                                        <span className="text-black drop-shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                                                            {badge}
+                                                        </span>
                                                     </div>
                                                 </div>
 
@@ -277,8 +296,18 @@ const Awards = async () => {
                                                         className={`w-10 h-10 md:w-12 md:h-12 bg-black/90 backdrop-blur-md border-2 ${styling.border} rounded-2xl flex items-center justify-center hover:scale-125 hover:rotate-12 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:${styling.glow} group-hover:bg-black/80`}
                                                         title="View Achievement"
                                                     >
-                                                        <svg className={`w-5 h-5 md:w-6 md:h-6 ${styling.text} transform hover:scale-110 transition-transform duration-200`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                        <svg
+                                                            className={`w-5 h-5 md:w-6 md:h-6 ${styling.text} transform hover:scale-110 transition-transform duration-200`}
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2.5}
+                                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                                            />
                                                         </svg>
                                                     </a>
                                                 </div>
@@ -286,7 +315,9 @@ const Awards = async () => {
                                                 {/* Content Overlay with Slide-Up Animation */}
                                                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-100 bg-gradient-to-t from-black/90 via-black/70 to-transparent backdrop-blur-sm">
                                                     <div className="space-y-2">
-                                                        <h3 className={`font-black ${styling.text} text-lg md:text-xl leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200`}>
+                                                        <h3
+                                                            className={`font-black ${styling.text} text-lg md:text-xl leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200`}
+                                                        >
                                                             {award.title}
                                                         </h3>
                                                         <div className="text-sm md:text-base text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-300 font-medium">
@@ -323,11 +354,16 @@ const Awards = async () => {
                                                 </div>
 
                                                 {/* Holographic Edge Glow */}
-                                                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none`}
+                                                <div
+                                                    className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none`}
                                                     style={{
-                                                        background: `linear-gradient(45deg, transparent 30%, ${styling.glow.split('/')[0].replace('shadow-', 'rgba(').replace('-', ',')}0.3) 50%, transparent 70%)`,
+                                                        background: `linear-gradient(45deg, transparent 30%, ${styling.glow
+                                                            .split('/')[0]
+                                                            .replace('shadow-', 'rgba(')
+                                                            .replace('-', ',')}0.3) 50%, transparent 70%)`,
                                                         filter: 'blur(1px)'
-                                                    }} />
+                                                    }}
+                                                />
                                             </div>
                                         </article>
 
@@ -354,7 +390,9 @@ const Awards = async () => {
 
                                                 {/* Achievement Badge - Mobile */}
                                                 <div className="absolute top-4 right-4 z-30">
-                                                    <div className={`w-12 h-12 bg-gradient-to-r ${styling.gradient} rounded-2xl flex items-center justify-center text-lg font-black shadow-2xl border-2 border-white/20 backdrop-blur-sm`}>
+                                                    <div
+                                                        className={`w-12 h-12 bg-gradient-to-r ${styling.gradient} rounded-2xl flex items-center justify-center text-lg font-black shadow-2xl border-2 border-white/20 backdrop-blur-sm`}
+                                                    >
                                                         <span className="text-black drop-shadow-lg">{badge}</span>
                                                     </div>
                                                 </div>
@@ -368,8 +406,18 @@ const Awards = async () => {
                                                         className={`w-12 h-12 bg-black/90 backdrop-blur-md border-2 ${styling.border} rounded-2xl flex items-center justify-center shadow-2xl`}
                                                         title="View Achievement"
                                                     >
-                                                        <svg className={`w-6 h-6 ${styling.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                        <svg
+                                                            className={`w-6 h-6 ${styling.text}`}
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2.5}
+                                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                                            />
                                                         </svg>
                                                     </a>
                                                 </div>
@@ -379,7 +427,9 @@ const Awards = async () => {
                                             <div className="p-6 space-y-4">
                                                 {/* Header */}
                                                 <div>
-                                                    <h3 className={`font-black ${styling.text} text-xl leading-tight mb-2`}>
+                                                    <h3
+                                                        className={`font-black ${styling.text} text-xl leading-tight mb-2`}
+                                                    >
                                                         {award.title}
                                                     </h3>
                                                     <div className="text-base text-gray-300 font-medium mb-1">
@@ -392,7 +442,9 @@ const Awards = async () => {
 
                                                 {/* Achievement Type */}
                                                 <div className="flex items-center gap-3 pt-2">
-                                                    <div className={`w-8 h-8 bg-gradient-to-r ${styling.gradient} rounded-xl flex items-center justify-center text-sm font-black shadow-lg border border-white/20`}>
+                                                    <div
+                                                        className={`w-8 h-8 bg-gradient-to-r ${styling.gradient} rounded-xl flex items-center justify-center text-sm font-black shadow-lg border border-white/20`}
+                                                    >
                                                         <span className="text-black drop-shadow-lg">{badge}</span>
                                                     </div>
                                                     <div className="text-sm text-gray-300 capitalize">
@@ -415,7 +467,9 @@ const Awards = async () => {
                                                 {isGold && (
                                                     <div className="flex items-center gap-2 pt-2">
                                                         <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                                                        <span className="text-xs text-yellow-300 font-medium">Top tier achievement</span>
+                                                        <span className="text-xs text-yellow-300 font-medium">
+                                                            Top tier achievement
+                                                        </span>
                                                     </div>
                                                 )}
                                             </div>
@@ -432,8 +486,18 @@ const Awards = async () => {
                                     <span className="text-violet-300 font-semibold">
                                         View All {awards.length} Experiences
                                     </span>
-                                    <svg className="w-5 h-5 text-violet-400 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    <svg
+                                        className="w-5 h-5 text-violet-400 group-hover:translate-x-1 transition-transform duration-300"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                        />
                                     </svg>
                                 </div>
                             </div>
@@ -451,11 +515,12 @@ const Awards = async () => {
                             <div className="space-y-6">
                                 <div className="text-6xl animate-bounce">�</div>
                                 <h3 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-orange-300 to-yellow-300">
-                                    Always Learning
+                                    Let&apos;s Create Together
                                 </h3>
-                                <p className="text-gray-300 max-w-lg mx-auto leading-relaxed">
-                                    Every experience teaches something new and opens doors to fresh perspectives.
-                                    The path of growth continues with curiosity and humility.
+                                <p className="text-gray-300 italic max-w-lg mx-auto leading-relaxed">
+                                    “I love the energy of hackathons and events — a space where ideas grow
+                                    through collaboration and knowledge sharing. Always open to teaming up
+                                    and creating together.”
                                 </p>
                                 <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
                                     <div className="w-2 h-2 bg-amber-400/60 rounded-full animate-pulse" />
