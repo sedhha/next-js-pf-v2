@@ -6,16 +6,19 @@ import VisibilityHandler from '@/v2/common/VisibilityController';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { onBackImageViewed, onNewSectionView } from '@/slices/analytics.slice';
 import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
+import { shallowEqual } from 'react-redux';
 
 const Intro = () => {
 	const dispatch = useAppDispatch();
 	const {
-		navigation: { csrfToken },
-		analytics: {
-			visitorID,
-			staticContent: { clickEvents }
-		}
-	} = useAppSelector((state) => state);
+		csrfToken,
+		visitorID,
+		clickEvents } = useAppSelector((state) => ({
+			csrfToken: state.navigation.csrfToken,
+			visitorID: state.analytics.visitorID,
+			clickEvents: state.analytics.staticContent.clickEvents
+		}), shallowEqual);
+
 	return (
 		<VisibilityHandler
 			onVisibleCallback={() => dispatch(onNewSectionView(attributes.About))}

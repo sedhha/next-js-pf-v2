@@ -1,7 +1,6 @@
 import { formAdminIsOnlinePath } from '@/firebase/constants';
 import { IFEGeo, IFEStartSession } from '@/interfaces/analytics';
 import { info } from '@/utils/dev-utils';
-import { HELPER_APIS } from '@/utils/fe/apis/public';
 import app from '@/utils/fe/apis/services/firebase';
 import { getUniqueBrowserID } from '@/utils/fe/getVisitor';
 import {

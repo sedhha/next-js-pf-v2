@@ -8,7 +8,7 @@ import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
 import { ISocialHandles, ITestimonials } from '@/interfaces/testimonials';
 import testimonials from '@/constants/cms-constants/testimonial.json';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import { updatePopup } from '@/slices/navigation.slice';
 import { ITotal } from '@/interfaces/api';
 import { PUBLIC_APIS } from '@/utils/fe/apis';
@@ -19,11 +19,10 @@ import {
 } from '@/slices/analytics.slice';
 import clickActions from '@/constants/click-actions.json';
 
-type Props = {};
 const limit = 1;
 const initialItems = testimonials.slice(0, limit)[0];
 
-export default function Testimonials({}: Props) {
+export default function Testimonials() {
 	const [skip, setSkip] = React.useState(0);
 	const [total, setTotal] = React.useState(5);
 	const [cardItem, setCardItem] = React.useState(initialItems as ITestimonials);

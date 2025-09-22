@@ -23,7 +23,7 @@ export const JsonEditor = ({ json, setNewPairs }: IJsonProps) => {
 				setNewPairs(isValid.data);
 			}
 			setError(!isValid.success);
-		} catch (e) {
+		} catch {
 			setError(true);
 		}
 	};

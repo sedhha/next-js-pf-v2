@@ -18,6 +18,8 @@ const getUserAgentInfo = (): {
 	};
 };
 
+// Test feFetch
+
 export const feFetch = async <T>({
 	url,
 	method,

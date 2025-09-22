@@ -7,17 +7,17 @@ import {
 } from '@/slices/analytics.slice';
 import allEvents from '@/constants/all-interaction-events.json';
 import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
+import { shallowEqual } from 'react-redux';
 const HangingRope = () => {
 	const dispatch = useAppDispatch();
-	const {
-		navigation: { csrfToken },
-		analytics: {
-			staticContent: {
-				themes: { darkMode },
-				clickEvents
-			}
-		}
-	} = useAppSelector((state) => state);
+	const { csrfToken, darkMode, clickEvents } = useAppSelector(
+		(state) => ({
+			csrfToken: state.navigation.csrfToken,
+			darkMode: state.analytics.staticContent.themes.darkMode,
+			clickEvents: state.analytics.staticContent.clickEvents
+		}),
+		shallowEqual
+	);
 	const [ropeClass, setRopeClass] = useState(classes.rope);
 	const onRopePull = () => {
 		setRopeClass(classes.rope + ' ' + classes.ropePulled);

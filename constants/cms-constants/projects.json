@@ -1,5 +1,44 @@
 [
 	{
+		"name": "Compliance Copilot",
+		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/750/539/datas/original.png",
+		"description": "Compliance Copilot is an AI-powered compliance auditing system that ingests regulations (GDPR, ISO-27001, SOC2, SCC, etc.) along with organizational policies and documents. It uses a hybrid retrieval pipeline with deterministic comparison heuristics to deliver clear PASS, GAP, or UNCLEAR verdicts with citations and actionable recommendations.",
+		"actionButtons": [
+			{
+				"label": "View",
+				"cta": "https://drive.google.com/file/d/1n5Y6eRIOeA6z-WwSQmYF1lAVSQ7q53wr/view?usp=drive_link",
+				"identifier": "yt-compliance-copilot-video"
+			},
+			{
+				"label": "Devpost",
+				"cta": "https://devpost.com/software/idp",
+				"identifier": "devpost-ccp"
+			}
+		]
+	},
+	{
+		"name": "Ella (Effortless Learning & Lookup Assistant)",
+		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/503/573/datas/gallery.jpg",
+		"description": "Ella is an AI agent that transforms your team’s resolved chat threads into a living FAQ knowledge base so no question has to be answered twice. It captures Slack conversations, applies RAG-powered retrieval, semantic deduplication, and AI relevance scoring to deliver instant answers, smart content curation, and seamless onboarding support.",
+		"actionButtons": [
+			{
+				"label": "GitHub Repo",
+				"cta": "https://github.com/ishank-dev/google-adk-hackathon",
+				"identifier": "github-ella-repo"
+			},
+			{
+				"label": "Devpost",
+				"cta": "https://devpost.com/software/ella-effortless-learning-lookup-assistant",
+				"identifier": "devpost-ella"
+			},
+			{
+				"label": "View",
+				"cta": "https://youtu.be/dxeVhAzYlFI",
+				"identifier": "yt-ella-video"
+			}
+		]
+	},
+	{
 		"name": "Funfuse",
 		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/funfuse.JPG",
 		"description": "Unlike most professional platforms, FunFuse takes a completely different approach to its users.It enables the users to filter out and discover the talent and community where they can dissolve well and grow collaboratively.\nIt also allows mentors to show their visibility and connect on one on one video call based on video sdk.",
@@ -13,28 +52,6 @@
 				"label": "View",
 				"cta": "https://www.youtube.com/watch?v=HAVetZqW-eI",
 				"identifier": "yt-funfuse-video"
-			},
-			{
-				"label": "Open App",
-				"cta": "https://gzb-products-sedhha.vercel.app/funfuse",
-				"identifier": "vercel-funfuse-app"
-			}
-		]
-	},
-	{
-		"name": "IntelliPick",
-		"img": "https://raw.githubusercontent.com/sedhha/gitpractice/master/webpf/web/images/projects/intellipick.gif",
-		"description": "IntelliPick is the goto tool for all tech hiring industries that helps hiring managers go through the resume in bulk and pull out useful insights like github social scores, open source contributions, framwork familarity score, dev community score, etc.\nIn addition to this, one can customize the profiles and scores and choose to prioritise or ignore any specific dev profile like Stack Overflow or Github.",
-		"actionButtons": [
-			{
-				"label": "Source Code",
-				"cta": "https://github.com/sedhha/intellipick-codebase",
-				"identifier": "github-intellipick-source-code"
-			},
-			{
-				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=jH7y8doN_QQ",
-				"identifier": "yt-intellipick-video"
 			}
 		]
 	},
@@ -47,11 +64,6 @@
 				"label": "Source Code",
 				"cta": "https://github.com/sedhha/my-water-chain",
 				"identifier": "github-water-chain-source-code"
-			},
-			{
-				"label": "View",
-				"cta": "https://www.youtube.com/watch?v=mFHnrSxknFQ",
-				"identifier": "yt-water-chain-video"
 			}
 		]
 	}

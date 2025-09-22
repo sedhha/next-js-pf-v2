@@ -7,11 +7,11 @@ import { IContactForm } from '../../interfaces/firebase/contact-form';
 import { updatePopup } from '@/slices/navigation.slice';
 import classes from './ContactForms.module.css';
 
+const limit = 100;
+const skip = 0;
 const ContactForms = () => {
 	const { isAdmin, idToken } = useAppSelector((state) => state.navigation);
 	const dispatch = useAppDispatch();
-	const [limit, setLimit] = useState(100);
-	const [skip, setSkip] = useState(0);
 	const [total, setTotal] = useState(100);
 	const [loading, setLoading] = useState(false);
 	const [items, setItems] = useState<IContactForm[]>([]);

@@ -18,7 +18,7 @@ export const decryptJSON = (encrypted: string, key: string): object => {
 			CryptoJS.enc.Utf8
 		);
 		return JSON.parse(decryptedB64) as IExpectedData[];
-	} catch (error) {
+	} catch {
 		return {
 			error: 'Decryption failed: Invalid key or corrupted data'
 		};

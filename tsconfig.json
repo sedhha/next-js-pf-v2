@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"target": "ES2022",
+		"lib": ["DOM", "DOM.Iterable", "ES2023"],
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"jsx": "preserve",
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
@@ -9,11 +12,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"jsx": "preserve",
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
@@ -26,6 +26,7 @@
 			"@/utils/*": ["utils/*"],
 			"@/v2/*": ["components/v2/*"],
 			"@/v3/*": ["components/v3/*"],
+			"@/v4/*": ["components/v4/*"],
 			"@/interfaces/*": ["interfaces/*"],
 			"@/hooks/*": ["hooks/*"],
 			"@/firebase/*": ["backend/firebase/*"],
@@ -33,8 +34,29 @@
 			"@/fe-client/*": ["utils/fe/apis/services/*"],
 			"@/middleware/*": ["middleware/*"],
 			"@/backend/*": ["backend/*"],
-		}
+			"@/lib/*": ["lib/*"],
+			"@/data/*": ["data/*"]
+		},
+		"types": [
+			"node",
+			"react",
+			"react-dom",
+			"vitest/globals",
+			"@testing-library/jest-dom"
+		],
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", "backend/security/index.js"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"backend/security/index.js",
+		"next-env.d.ts",
+		"types.d.ts",
+		".next/types/**/*.ts"
+	],
 	"exclude": ["node_modules"]
 }

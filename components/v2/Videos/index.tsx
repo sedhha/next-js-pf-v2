@@ -4,7 +4,7 @@ import VideoContainer from '@/v2/common/YTPlayer';
 import VideoCard from './VideoCard';
 import VisibilityHandler from '@/v2/common/VisibilityController/lite';
 import attributes from '@/constants/header-attr.json';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import {
 	onClickEventTrigger,
 	onNewSectionView

@@ -1,4 +1,3 @@
-import { AddNewPair } from './AddNewPair';
 import { INewPair } from './interfaces';
 import { JsonEditor } from './JsonEditor';
 import { KeyValueEditor } from './KeyValueEditor';

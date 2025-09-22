@@ -11,7 +11,7 @@
 	--dark-gray: #6c6767;
 	--faded-gray: rgba(255, 255, 255, 0.4);
 	--orange: #f27304;
-	--sunlight-orange: #ED732E;
+	--sunlight-orange: #ed732e;
 	--green: #05ff00;
 	--success-green: #66ac50;
 	--faded-purple: rgba(74, 69, 214, 0.74);
@@ -64,12 +64,11 @@
 
 	/* V3 Styles */
 	--v3-cursive-font: 'Satisfy', cursive;
-	--v3-standard-heading-font-size: clamp(2rem,3vw,16rem);
+	--v3-standard-heading-font-size: clamp(2rem, 3vw, 16rem);
 	--v3-standard-font: 'Noto Sans Mono', monospace;
 	--v3-standard-dark-theme-text-color: white;
 	--v3-standard-dark-theme-light-color: #ccc;
 	/* V3 Styles */
-
 }
 .lightMode {
 	--logo-heading-color: var(--light-blue);
@@ -214,6 +213,56 @@
 	padding: 0;
 }
 
+/* Additional overflow prevention */
+body,
+main,
+section,
+div {
+	max-width: 100vw;
+}
+
+/* Ensure no elements can cause horizontal scroll */
+img,
+video,
+canvas,
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Prevent text overflow */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+	/* Reduce large widths on mobile */
+	.max-w-6xl {
+		max-width: calc(100vw - 2rem);
+	}
+
+	.max-w-7xl {
+		max-width: calc(100vw - 2rem);
+	}
+
+	/* Ensure containers don't overflow */
+	section,
+	main,
+	div {
+		overflow-x: hidden;
+	}
+}
+
 a {
 	text-decoration: none;
 }
@@ -263,4 +312,3 @@ a {
 		--get-in-touch-input-font-size: 2vw;
 	}
 }
-

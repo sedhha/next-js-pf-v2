@@ -30,6 +30,7 @@ import {
 } from '@/slices/analytics.slice';
 import clickAttributes from '@/constants/click-actions.json';
 import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
+import { shallowEqual } from 'react-redux';
 
 const ChatWindow = dynamic(() => import('./ChatWindow'));
 const auth = getAuth(app);
@@ -70,13 +71,15 @@ const getEmail = (email: string | null, maxRepetation = 3): string | null => {
 };
 
 const Contact = () => {
-	const {
-		navigation: { inChatMode, csrfToken, isAdminOnline },
-		analytics: {
-			visitorID,
-			staticContent: { clickEvents }
-		}
-	} = useAppSelector((state) => state);
+
+
+	const { inChatMode, csrfToken, isAdminOnline, visitorID, clickEvents } = useAppSelector(state => ({
+		inChatMode: state.navigation.inChatMode,
+		csrfToken: state.navigation.csrfToken,
+		isAdminOnline: state.navigation.isAdminOnline,
+		visitorID: state.analytics.visitorID,
+		clickEvents: state.analytics.staticContent.clickEvents
+	}), shallowEqual);
 	const dispatch = useAppDispatch();
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
@@ -84,6 +87,7 @@ const Contact = () => {
 	const [message, setMessage] = React.useState('');
 	const [loading, setLoading] = React.useState(false);
 
+	// eslint-disable-next-line no-unused-vars
 	const setCallback = (value: string, setterFunction: (e: string) => void) => {
 		setterFunction(value);
 		dispatch(
@@ -311,9 +315,8 @@ const Contact = () => {
 									<div className={classes.AvatarWithImage}>
 										<LazyImage src={'/chat-icon.png'} />
 										<Circle
-											className={`${classes.Circle} ${
-												isAdminOnline ? classes.Online : classes.Offline
-											}`}
+											className={`${classes.Circle} ${isAdminOnline ? classes.Online : classes.Offline
+												}`}
 										/>
 									</div>
 									<h3>Or</h3>

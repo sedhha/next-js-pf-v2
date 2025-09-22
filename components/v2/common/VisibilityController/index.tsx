@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 interface IVisibility {
-	Component: JSX.Element;
+	Component: ReactElement;
 	visibilityThreshold?: number;
+	// eslint-disable-next-line no-unused-vars
 	onVisibleCallback?: (entry: IntersectionObserverEntry) => void;
 }
 
@@ -10,7 +11,7 @@ const VisibilityHandler = ({
 	Component,
 	visibilityThreshold,
 	onVisibleCallback
-}: IVisibility): JSX.Element => {
+}: IVisibility): ReactElement => {
 	const ref = React.useRef(null);
 	React.useEffect(() => {
 		const componentObserver = new IntersectionObserver(
@@ -34,7 +35,7 @@ const VisibilityHandler = ({
 		};
 	}, [visibilityThreshold, onVisibleCallback]);
 
-	return <Component.type {...Component.props} ref={ref} />;
+	return <div ref={ref}>{Component}</div>;
 };
 
 export default VisibilityHandler;

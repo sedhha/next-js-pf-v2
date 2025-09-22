@@ -1,24 +1,25 @@
 import LazyImage from '@/components/v2/common/LazyImage';
 import classes from './Header.module.css';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { onLogoHover } from '@/slices/analytics.slice';
 import allEvents from '@/constants/all-interaction-events.json';
 import { logEvent } from '@/utils/fe/apis/analytics/logEvent';
-import { cacheFetch } from '@/utils/fe/cachedRequest';
+import { shallowEqual } from 'react-redux';
 const Logo = () => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 	const gotoHomeRoute = () => {
 		router.push(`/`);
 	};
-	const {
-		analytics: {
-			staticContent: { clickEvents }
-		},
-		navigation: { csrfToken }
-	} = useAppSelector((state) => state);
+	const { clickEvents, csrfToken } = useAppSelector(
+		(state) => ({
+			clickEvents: state.analytics.staticContent.clickEvents,
+			csrfToken: state.navigation.csrfToken
+		}),
+		shallowEqual
+	);
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const [soundPlayed, setSoundPlayed] = useState(false);
 	const playAudio = () => {

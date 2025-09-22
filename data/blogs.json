@@ -1,0 +1,148 @@
+[
+	{
+		"id": "5NCdethgGWdzylLaFMQPIQ",
+		"title": "Invisible Talking Camera Using Python",
+		"slug": "invisible-talking-camera-using-python",
+		"category": "iot",
+		"excerpt": "The Invisible talking camera uses Python OpenCV and pyttsx library in order to calibrate your background based on HSL thresholding. It then performs bit wise operations background subtraction along with minor Gaussian Bluring and smoothening and segmentation to make you invisible in the frame! PyTTS is used to talk with your program to give basic inputs like initiating calibration, varying thresholds etc.",
+		"content": "<h2>Building an Invisible Talking Camera</h2><p>The concept of invisibility has fascinated humans for centuries. While we can't achieve true invisibility like in science fiction, we can create the illusion using computer vision techniques.</p><h3>Technical Implementation</h3><p>The Invisible Talking Camera project leverages several key technologies:</p><ul><li><strong>OpenCV</strong>: For computer vision operations and image processing</li><li><strong>HSL Color Space</strong>: For better color-based background subtraction</li><li><strong>pyttsx3</strong>: For text-to-speech functionality</li><li><strong>Background Subtraction</strong>: To isolate moving objects from static background</li></ul><h3>How It Works</h3><p>The system works by first calibrating the background when no person is present. This creates a reference frame that represents the 'empty' scene. When a person enters the frame:</p><ol><li>The system captures the current frame</li><li>Compares it with the reference background</li><li>Uses HSL thresholding to identify the person</li><li>Applies bitwise operations to make the person 'invisible'</li><li>Provides voice feedback for user interaction</li></ol><h3>Voice Commands</h3><p>The talking functionality allows users to:</p><ul><li>Initiate background calibration</li><li>Adjust HSL thresholds in real-time</li><li>Toggle invisibility mode</li><li>Save current settings</li></ul><h3>Applications</h3><p>This technology has practical applications in:</p><ul><li>Security systems</li><li>Interactive installations</li><li>Augmented reality experiences</li><li>Educational demonstrations</li></ul><p>The project demonstrates how computer vision can create engaging interactive experiences that feel almost magical to users.</p>",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/6fBcxSKAVQ3OFbPkdXfZWr/2aeeeeaaa2cfc66c27c03275cf330da7/image.png",
+		"publishDate": "2019-05-05T00:00:00.000+05:30",
+		"author": {
+			"name": "Shivam Sahil",
+			"avatar": "/user.png",
+			"bio": "Full-stack developer passionate about IoT and computer vision"
+		},
+		"readTime": 8,
+		"tags": [
+			"Python",
+			"OpenCV",
+			"Computer Vision",
+			"IoT",
+			"pyttsx3",
+			"Image Processing"
+		],
+		"featured": true
+	},
+	{
+		"id": "6YFNbCpC6LYHhccXdyf4oo",
+		"title": "How To Make Your Own Artificial Spider Sense Device?",
+		"slug": "how-to-make-your-own-artificial-spider-sense-device",
+		"category": "iot",
+		"excerpt": "We all have grown up watching cool superhero movies and cartoon series. Every superhero is involved either with some cool super power or super awesome sci-fi tech. Spiderman is one of those. I personally like the character most due to the fact I can relate so many things to him.",
+		"content": "<h2>Creating Your Own Spider Sense</h2><p>Spider-Man's spider sense has always been one of the coolest superpowers in comic book history. While we can't replicate the exact biological mechanism, we can create a device that mimics this ability using modern sensors and electronics.</p><h3>What You'll Need</h3><ul><li>Arduino Uno or similar microcontroller</li><li>Ultrasonic sensors (HC-SR04)</li><li>Vibration motors</li><li>Battery pack</li><li>Wearable housing (wristband or vest)</li><li>Jumper wires and breadboard</li></ul><h3>How It Works</h3><p>The artificial spider sense device uses multiple ultrasonic sensors positioned around the body to detect approaching objects or people. When something gets within a predetermined range:</p><ol><li>Sensors detect the proximity</li><li>Arduino processes the sensor data</li><li>Vibration motors activate to alert the wearer</li><li>Different vibration patterns indicate direction and distance</li></ol><h3>Sensor Placement</h3><p>For optimal coverage, place sensors:</p><ul><li>Front chest area</li><li>Left and right sides</li><li>Back (if using vest configuration)</li><li>Wrist-mounted for basic version</li></ul><h3>Programming Logic</h3><p>The Arduino code includes:</p><ul><li>Sensor polling routines</li><li>Distance calculation algorithms</li><li>Vibration pattern generation</li><li>Power management features</li></ul><h3>Real-World Applications</h3><p>Beyond the cool factor, this technology has practical uses:</p><ul><li>Assistance for visually impaired individuals</li><li>Safety equipment for workers in hazardous environments</li><li>Gaming and VR applications</li><li>Security and surveillance systems</li></ul><p>Building your own spider sense device is not just about recreating a superhero gadget—it's about understanding how we can augment human senses with technology.</p>",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/7tVFtoXSQB5yqmThMBsYlt/6ef2579858198a151af10c0e91775368/how-to-make-your-own-artificial-spider-sense-device--jw4cozxs.jpeg",
+		"publishDate": "2019-05-15T00:00:00.000+05:30",
+		"author": {
+			"name": "Shivam Sahil",
+			"avatar": "/user.png",
+			"bio": "Full-stack developer passionate about IoT and computer vision"
+		},
+		"readTime": 6,
+		"tags": ["Arduino", "IoT", "Sensors", "Wearable Tech", "Electronics"],
+		"featured": false
+	},
+	{
+		"id": "3aLEKtdfPgti7hIgz2PLJo",
+		"title": "Additive Manufacturing and SolidWorks",
+		"slug": "additive-manufacturing-and-solidworks",
+		"category": "mechanical",
+		"excerpt": "We all know Additive Manufacturing is booming today's industrial sector. With the help of Additive manufacturing, there's now almost no limit to design constraints and material wastage is also reduced by a significant amount.",
+		"content": "<h2>The Revolution of Additive Manufacturing</h2><p>Additive Manufacturing (AM), commonly known as 3D printing, has transformed how we approach product design and manufacturing. Unlike traditional subtractive manufacturing methods, AM builds objects layer by layer, opening up new possibilities in design and production.</p><h3>SolidWorks Integration</h3><p>SolidWorks has become an industry standard for 3D CAD design, and its integration with additive manufacturing workflows has revolutionized the design-to-production pipeline:</p><ul><li><strong>Design for Additive Manufacturing (DfAM)</strong>: Built-in tools help optimize designs for 3D printing</li><li><strong>Print3D Feature</strong>: Direct integration with various 3D printers</li><li><strong>Material Libraries</strong>: Extensive database of printable materials</li><li><strong>Simulation Tools</strong>: Predict print behavior before actual production</li></ul><h3>Advantages of Additive Manufacturing</h3><ol><li><strong>Design Freedom</strong>: Create complex geometries impossible with traditional methods</li><li><strong>Rapid Prototyping</strong>: Quick iteration from concept to physical model</li><li><strong>Customization</strong>: Easy production of personalized products</li><li><strong>Reduced Waste</strong>: Only use material that becomes part of the final product</li><li><strong>Supply Chain Simplification</strong>: Reduce inventory and shipping costs</li></ol><h3>Applications Across Industries</h3><ul><li><strong>Aerospace</strong>: Lightweight components with complex internal structures</li><li><strong>Medical</strong>: Custom prosthetics and surgical guides</li><li><strong>Automotive</strong>: Rapid prototyping and low-volume production parts</li><li><strong>Consumer Goods</strong>: Personalized products and limited editions</li></ul><h3>Design Considerations</h3><p>When designing for additive manufacturing in SolidWorks:</p><ul><li>Consider support structures and overhangs</li><li>Optimize wall thickness for material properties</li><li>Design for the specific printing technology</li><li>Account for post-processing requirements</li></ul><p>The combination of SolidWorks' powerful design capabilities with additive manufacturing technology continues to push the boundaries of what's possible in modern manufacturing.</p>",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/2VGZR6l5I1GknOyHUMBuib/cc940b915f8007fad81edc0082df7ec5/thumbnail-additive-manufacturing-and-solidworks.png",
+		"publishDate": "2019-12-25T00:00:00.000+05:30",
+		"author": {
+			"name": "Shivam Sahil",
+			"avatar": "/user.png",
+			"bio": "Full-stack developer passionate about IoT and computer vision"
+		},
+		"readTime": 7,
+		"tags": ["SolidWorks", "3D Printing", "Manufacturing", "CAD", "Design"],
+		"featured": false
+	},
+	{
+		"id": "WrKoeYkBOfWNBXdyp7Wuk",
+		"title": "Dear Best Friend...",
+		"slug": "dear-best-friend",
+		"category": "life",
+		"excerpt": "I did stand for you. I understand we all have preferences and sometimes our experiments can go wrong. I know deep inside you were crying hard but then you just smiled and moved out.",
+		"content": "<h2>A Letter to Friendship</h2><p>Friendship is one of life's most precious gifts. It's a bond that transcends time, distance, and circumstances. Sometimes, we need to reflect on what these relationships mean to us.</p><h3>The Weight of Understanding</h3><p>True friendship isn't about always agreeing with each other. It's about understanding that we all have our preferences, our ways of seeing the world, and sometimes our experiments in life don't go as planned.</p><p>I've learned that the most valuable friends are those who stand by you even when you make mistakes, even when your choices don't align with theirs.</p><h3>Silent Strength</h3><p>There's something profoundly moving about watching a friend smile through pain. That moment when you know they're hurting inside, but they choose to put on a brave face and move forward—it speaks to an incredible inner strength.</p><p>These are the moments that define us, not our successes or our failures, but how we handle both with grace.</p><h3>Growth Through Connection</h3><p>Every friendship teaches us something:</p><ul><li>How to be vulnerable</li><li>How to offer support without judgment</li><li>How to celebrate others' victories</li><li>How to be present in difficult times</li></ul><h3>The Unspoken Bond</h3><p>Sometimes the most powerful communication happens without words. A look, a gesture, simply being there—these speak louder than any conversation.</p><p>Real friends don't need constant validation of their bond. They just know that no matter what happens, they have each other's backs.</p><h3>Moving Forward</h3><p>Life takes us in different directions, but true friendships endure. They adapt, they evolve, but the core connection remains.</p><p>So to my best friend, and to all the friends who have shaped who I am—thank you for the laughter, the tears, the growth, and the unwavering support.</p><p>Friendship isn't just about the good times; it's about choosing to stay connected through all of life's seasons.</p>",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/7u25VSC3DZfhvFyucAH2Wn/b8cd18452cdf91692a5812a79af85a6b/the-garden-or-words-featured-image-jwa531ht.jpeg",
+		"publishDate": "2019-05-30T00:00:00.000+05:30",
+		"author": {
+			"name": "Shivam Sahil",
+			"avatar": "/user.png",
+			"bio": "Full-stack developer passionate about IoT and computer vision"
+		},
+		"readTime": 5,
+		"tags": ["Friendship", "Relationships", "Personal Growth", "Life Lessons"],
+		"featured": false
+	},
+	{
+		"id": "1gFsRM3HHf95pAb9IGuFv7",
+		"title": "Getting Started With HTML and Web Development",
+		"slug": "getting-started-with-html-and-web-development",
+		"category": "web-development",
+		"excerpt": "For a better sense of understanding, take an example of the entire human body. The skeleton of the human body is the HTML part of it. Skeleton is the supporting structure consisting of bones and joints.",
+		"content": "<h2>Understanding HTML: The Skeleton of the Web</h2><p>Web development can seem overwhelming at first, but like any skill, it starts with understanding the fundamentals. HTML (HyperText Markup Language) is the foundation upon which all websites are built.</p><h3>The Human Body Analogy</h3><p>Think of a website like a human body:</p><ul><li><strong>HTML</strong> = The skeleton (structure and support)</li><li><strong>CSS</strong> = The skin and appearance (styling and layout)</li><li><strong>JavaScript</strong> = The muscles and nervous system (functionality and interactivity)</li></ul><p>Just as a skeleton provides the framework for the entire body, HTML provides the structural foundation for every web page.</p><h3>What is HTML?</h3><p>HTML is a markup language that uses tags to define the structure and content of web pages. These tags tell the browser how to display different elements like headings, paragraphs, images, and links.</p><h3>Basic HTML Structure</h3><p>Every HTML document follows a basic structure:</p><pre><code>&lt;!DOCTYPE html&gt;\n&lt;html lang=\"en\"&gt;\n&lt;head&gt;\n  &lt;meta charset=\"UTF-8\"&gt;\n  &lt;title&gt;Page Title&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n  &lt;h1&gt;Welcome to My Website&lt;/h1&gt;\n  &lt;p&gt;This is a paragraph.&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><h3>Essential HTML Elements</h3><ul><li><strong>Headings</strong>: &lt;h1&gt; to &lt;h6&gt; for different levels of headings</li><li><strong>Paragraphs</strong>: &lt;p&gt; for text content</li><li><strong>Links</strong>: &lt;a&gt; for navigation between pages</li><li><strong>Images</strong>: &lt;img&gt; for visual content</li><li><strong>Lists</strong>: &lt;ul&gt;, &lt;ol&gt;, and &lt;li&gt; for organized information</li><li><strong>Divisions</strong>: &lt;div&gt; for grouping content</li></ul><h3>Best Practices for Beginners</h3><ol><li><strong>Semantic HTML</strong>: Use elements that describe the content's meaning</li><li><strong>Proper Nesting</strong>: Ensure tags are properly opened and closed</li><li><strong>Indentation</strong>: Keep your code readable and organized</li><li><strong>Accessibility</strong>: Use alt attributes for images and proper heading hierarchy</li></ol><h3>Learning Path</h3><p>To master web development:</p><ol><li>Start with HTML fundamentals</li><li>Learn CSS for styling</li><li>Add JavaScript for interactivity</li><li>Explore frameworks and libraries</li><li>Build real projects</li></ol><h3>Tools You'll Need</h3><ul><li>A text editor (VS Code, Sublime Text, or Atom)</li><li>A web browser for testing</li><li>Basic understanding of file structures</li><li>Patience and practice!</li></ul><p>Remember, every expert was once a beginner. Start with HTML, practice regularly, and gradually build up your skills. The web development journey is rewarding and full of opportunities to create amazing digital experiences.</p>",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/6ywjAk5sqc4QkjHAQdj0w/24b83c86f814b95920abd06b2c959941/webdev.jpeg",
+		"publishDate": "2020-03-22T00:00:00.000+05:30",
+		"author": {
+			"name": "Shivam Sahil",
+			"avatar": "/user.png",
+			"bio": "Full-stack developer passionate about IoT and computer vision"
+		},
+		"readTime": 10,
+		"tags": ["HTML", "Web Development", "Beginner", "Frontend", "Tutorial"],
+		"featured": false
+	},
+	{
+		"id": "4YMPrxuotjCLYKKeCYx5bk",
+		"title": "Thriller StoryBook App in Flutter",
+		"slug": "thriller-storybook-app-in-flutter",
+		"category": "mobile-app-development",
+		"excerpt": "Building an immersive thriller storybook application using Flutter framework. This app combines interactive storytelling with modern mobile app development practices to create engaging user experiences.",
+		"content": "<h2>Creating a Thriller StoryBook App with Flutter</h2><p>Interactive storytelling apps have gained popularity as they combine the engagement of traditional books with the interactivity of modern technology. Building a thriller storybook app in Flutter presents unique challenges and opportunities.</p><h3>Project Overview</h3><p>The Thriller StoryBook app is designed to provide an immersive reading experience with:</p><ul><li>Interactive story branches based on user choices</li><li>Atmospheric sound effects and background music</li><li>Dynamic theming that reflects story mood</li><li>Progress tracking and bookmarking</li><li>Offline reading capabilities</li></ul><h3>Flutter Advantages</h3><p>Flutter was chosen for this project because of:</p><ul><li><strong>Cross-platform development</strong>: Single codebase for iOS and Android</li><li><strong>Rich UI capabilities</strong>: Custom animations and transitions</li><li><strong>Performance</strong>: Near-native performance for smooth interactions</li><li><strong>Hot reload</strong>: Fast development and testing cycles</li></ul><h3>Key Features Implemented</h3><ol><li><strong>Story Engine</strong>: Dynamic story progression based on user choices</li><li><strong>Audio Integration</strong>: Ambient sounds and music using Flutter audio plugins</li><li><strong>Custom Animations</strong>: Page transitions and interactive elements</li><li><strong>State Management</strong>: Efficient app state handling with Provider</li><li><strong>Local Storage</strong>: Save progress and user preferences</li></ol><h3>Technical Implementation</h3><p>The app architecture includes:</p><ul><li><strong>Story Models</strong>: Data structures for chapters, choices, and outcomes</li><li><strong>Audio Manager</strong>: Centralized audio control and mixing</li><li><strong>Theme Controller</strong>: Dynamic UI theming based on story context</li><li><strong>Progress Manager</strong>: Save states and achievement tracking</li></ul><h3>User Experience Design</h3><p>Special attention was paid to:</p><ul><li>Intuitive navigation between story segments</li><li>Visual feedback for user interactions</li><li>Accessibility features for different reading preferences</li><li>Performance optimization for various device capabilities</li></ul><h3>Challenges and Solutions</h3><ul><li><strong>Memory Management</strong>: Efficient loading of story content and media</li><li><strong>Audio Synchronization</strong>: Seamless audio transitions between scenes</li><li><strong>Responsive Design</strong>: Adapting to different screen sizes and orientations</li><li><strong>Content Organization</strong>: Scalable structure for multiple story paths</li></ul><h3>Future Enhancements</h3><p>Potential improvements include:</p><ul><li>Multiplayer story experiences</li><li>AI-generated story branches</li><li>Voice narration capabilities</li><li>Social sharing features</li><li>Analytics for story engagement</li></ul><p>This project demonstrates how Flutter can be used to create engaging, interactive applications that go beyond traditional mobile app paradigms, combining storytelling with technology in innovative ways.</p>",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/4y55dG7U2XBVd2CmbvgNRK/0522c2a5a8cab09faf92ae218d4bf445/4-1-e1570947245316.jpg",
+		"publishDate": "2019-07-31T00:00:00.000+05:30",
+		"author": {
+			"name": "Shivam Sahil",
+			"avatar": "/user.png",
+			"bio": "Full-stack developer passionate about IoT and computer vision"
+		},
+		"readTime": 12,
+		"tags": [
+			"Flutter",
+			"Mobile App",
+			"Interactive Storytelling",
+			"Cross-platform",
+			"Dart"
+		],
+		"featured": false
+	},
+	{
+		"id": "57ipaNewAcgnAjQsTKOja9",
+		"title": "UIPath Startup Script on Windows 10 Server",
+		"slug": "uipath-startup-script-on-windows-10-server",
+		"category": "automation",
+		"excerpt": "Learn how to configure UIPath Robot to automatically start on Windows 10 Server using startup scripts, scheduled tasks, and service configuration for robust automation deployment.",
+		"content": "<h2>Automating UIPath Robot Startup on Windows Server</h2><p>In enterprise automation environments, ensuring that UIPath Robot starts automatically and reliably is crucial for maintaining continuous automation workflows. This guide covers various methods to achieve robust startup automation.</p><h3>Why Automation Startup Matters</h3><p>Reliable startup procedures ensure:</p><ul><li>Continuous automation execution without manual intervention</li><li>Reduced downtime in production environments</li><li>Consistent bot availability for scheduled processes</li><li>Improved operational efficiency</li></ul><h3>Method 1: Windows Service Configuration</h3><p>The most reliable method is configuring UIPath Robot as a Windows service:</p><ol><li>Open Services.msc as Administrator</li><li>Locate 'UIPath Robot' service</li><li>Set startup type to 'Automatic (Delayed Start)'</li><li>Configure recovery actions for service failures</li></ol><h3>Method 2: Startup Script</h3><p>Create a PowerShell script for advanced startup control:</p><pre><code># UIPath Robot Startup Script\n# Check if UIPath Robot is running\n$robotProcess = Get-Process -Name \"UiPath.Executor\" -ErrorAction SilentlyContinue\n\nif (-not $robotProcess) {\n    # Start UIPath Robot\n    Start-Process -FilePath \"C:\\Program Files\\UiPath\\Studio\\UiPath.Executor.exe\" -ArgumentList \"--connect-robot\"\n    \n    # Log startup event\n    Write-EventLog -LogName Application -Source \"UIPath Automation\" -EntryType Information -EventId 1001 -Message \"UIPath Robot started successfully\"\n}\n\n# Wait for robot to initialize\nStart-Sleep -Seconds 30\n\n# Verify robot is connected to Orchestrator\n$orchestratorConnection = Test-NetConnection -ComputerName \"your-orchestrator-url.com\" -Port 443\nif ($orchestratorConnection.TcpTestSucceeded) {\n    Write-EventLog -LogName Application -Source \"UIPath Automation\" -EntryType Information -EventId 1002 -Message \"Robot connected to Orchestrator successfully\"\n} else {\n    Write-EventLog -LogName Application -Source \"UIPath Automation\" -EntryType Error -EventId 1003 -Message \"Failed to connect to Orchestrator\"\n}</code></pre><h3>Method 3: Scheduled Task</h3><p>Use Task Scheduler for more control:</p><ol><li>Open Task Scheduler as Administrator</li><li>Create Basic Task with system startup trigger</li><li>Configure to run with highest privileges</li><li>Set action to start UIPath Robot executable</li><li>Configure conditions and settings for reliability</li></ol><h3>Method 4: Group Policy Deployment</h3><p>For enterprise environments:</p><ul><li>Create Group Policy Object (GPO) for automated deployment</li><li>Configure startup scripts through Computer Configuration</li><li>Apply to specific Organizational Units (OUs)</li><li>Test deployment in staging environment first</li></ul><h3>Best Practices</h3><ol><li><strong>Error Handling</strong>: Include comprehensive error checking and logging</li><li><strong>Retry Logic</strong>: Implement retry mechanisms for failed startups</li><li><strong>Monitoring</strong>: Set up monitoring for startup success/failure</li><li><strong>Security</strong>: Run with appropriate service account permissions</li><li><strong>Documentation</strong>: Maintain clear documentation for troubleshooting</li></ol><h3>Troubleshooting Common Issues</h3><ul><li><strong>Permission Problems</strong>: Ensure service account has necessary rights</li><li><strong>Network Dependencies</strong>: Configure proper startup delays for network availability</li><li><strong>License Issues</strong>: Verify robot licensing and Orchestrator connectivity</li><li><strong>Resource Conflicts</strong>: Check for competing processes or resource locks</li></ul><h3>Monitoring and Maintenance</h3><p>Implement monitoring solutions:</p><ul><li>Windows Event Log monitoring</li><li>Performance counter tracking</li><li>Orchestrator dashboard monitoring</li><li>Automated alert systems for failures</li></ul><h3>Security Considerations</h3><ul><li>Use dedicated service accounts with minimal required permissions</li><li>Implement credential management best practices</li><li>Regular security updates and patches</li><li>Network segmentation for automation infrastructure</li></ul><p>Proper startup configuration is essential for reliable automation operations. Choose the method that best fits your environment and requirements, and always test thoroughly before production deployment.</p>",
+		"featuredImage": "https://images.ctfassets.net/eowwrv5buqcq/5JRUplrKPNg1kw0pCCNrDo/92833035562e8892b45d2f1702ca35dd/thumbnail-uipath-setup.png",
+		"publishDate": "2023-01-28T00:00:00.000+05:30",
+		"author": {
+			"name": "Shivam Sahil",
+			"avatar": "/user.png",
+			"bio": "Full-stack developer passionate about IoT and computer vision"
+		},
+		"readTime": 15,
+		"tags": [
+			"UIPath",
+			"RPA",
+			"Windows Server",
+			"Automation",
+			"PowerShell",
+			"Enterprise"
+		],
+		"featured": false
+	}
+]

@@ -1,5 +1,4 @@
 import { IContactForm } from '@/interfaces/firebase';
-import { IResponse } from '@/interfaces/api';
 import { store } from '@/firebase/index';
 import { getCollectionPath, storeCollectionPaths } from '@/firebase/constants';
 import { ITotal } from '@/interfaces/api';

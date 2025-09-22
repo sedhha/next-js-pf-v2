@@ -108,13 +108,13 @@ const initiateGeoEntry = async (path: string, data: IAnalyticsCollection) => {
 			.get()
 			.then(async (snapshot) => {
 				const filteredData = Object.fromEntries(
-					Object.entries(data).filter(([key, value]) => value != null)
+					Object.entries(data).filter(([, value]) => value != null)
 				);
 				if (snapshot.exists)
-					await store.doc(path).update(filteredData as Record<string, any>);
+					await store.doc(path).update(filteredData as Record<string, unknown>);
 				else {
 					const filteredData = Object.fromEntries(
-						Object.entries(data).filter(([key, value]) => value != null)
+						Object.entries(data).filter(([, value]) => value != null)
 					);
 					await store.doc(path).set(filteredData);
 				}
@@ -129,10 +129,10 @@ const updateGeoEntry = async (path: string, data: IViewedData) =>
 		.get()
 		.then((snapshot) => {
 			const filteredData = Object.fromEntries(
-				Object.entries(data).filter(([key, value]) => value != null)
+				Object.entries(data).filter(([, value]) => value != null)
 			);
 			if (snapshot.exists)
-				store.doc(path).update(filteredData as Record<string, any>);
+				store.doc(path).update(filteredData as Record<string, unknown>);
 		}));
 
 const getInitEntry = async (
@@ -149,14 +149,11 @@ const getInitEntry = async (
 
 const addEvents = async (eventData: IEventsCollection[], eventPath: string) => {
 	if (!isAnalyticsEnabled) return;
-	const eventPromises = eventData.map(
-		(event) =>
-			new Promise(async (resolve) => {
-				const eventDoc = store.collection(`${eventPath}`).doc();
-				await eventDoc.set(event).then(() => resolve(true));
-			})
-	);
-	await Promise.all(eventPromises);
+	const eventPromises = eventData.map((event) => {
+		const eventDoc = store.collection(eventPath).doc();
+		return eventDoc.set(event).then(() => true);
+	});
+	return Promise.all(eventPromises);
 };
 
 const addSessionData = async (
@@ -169,7 +166,7 @@ const addSessionData = async (
 		if (snapshot.exists) {
 			const existingSnapshot = snapshot.data() as ISessionCollection;
 			const filteredData = Object.fromEntries(
-				Object.entries(newSnapshot).filter(([key, value]) => value != null)
+				Object.entries(newSnapshot).filter(([, value]) => value != null)
 			);
 			const lastHundredConnections = existingSnapshot.lastHundredConnections
 				.slice(0, 99)

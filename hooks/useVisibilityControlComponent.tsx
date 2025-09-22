@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 interface IVisibility {
-	Component: JSX.Element;
+	Component: ReactElement;
 	visibilityThreshold?: number;
+	// eslint-disable-next-line no-unused-vars
 	onVisibleCallback?: (entry: IntersectionObserverEntry) => void;
 }
 
 interface IVisibilityReturnProps {
 	scrollToComponent: () => void;
-	Component: JSX.Element;
+	Component: ReactElement;
 }
 
 const useVisibilityControlComponent = ({
@@ -51,7 +52,7 @@ const useVisibilityControlComponent = ({
 	}, []);
 	return {
 		scrollToComponent,
-		Component: <Component.type {...Component.props} ref={ref} />
+		Component: <div ref={ref}>{Component}</div>
 	};
 };
 

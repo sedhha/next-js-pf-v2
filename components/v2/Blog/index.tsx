@@ -4,7 +4,7 @@ import LazyImage from '@/v2/common/LazyImage';
 import SocialIcons from '@/v2/common/SocialIcons/Conditional';
 import VisibilityHandler from '@/v2/common/VisibilityController';
 import attributes from '@/constants/header-attr.json';
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch } from 'react-redux';
 import {
 	onClickSocialHandle,
 	onFeaturedBlogView,
@@ -59,13 +59,16 @@ const generateSocialIcons = (
 
 const Blog = () => {
 	const dispatch = useDispatch();
-	const {
-		analytics: {
-			visitorID,
-			staticContent: { clickEvents }
-		},
-		navigation: { userUid, csrfToken }
-	} = useAppSelector((state) => state);
+	const { visitorID, clickEvents, userUid, csrfToken } = useAppSelector(
+		(state) => ({
+			visitorID: state.analytics.visitorID,
+			clickEvents: state.analytics.staticContent.clickEvents,
+			userUid: state.navigation.userUid,
+			csrfToken: state.navigation.csrfToken
+		}),
+		shallowEqual
+	);
+
 	const router = useRouter();
 	const [rank, setRank] = React.useState(0);
 
@@ -190,7 +193,9 @@ const Blog = () => {
 							</div>
 							<div className={classes.FeaturedBlogElements}>
 								<div className={classes.FeaturedBlogTitleSection}>
-									<h2><BlogDate date={numberedBlogs[rank].postDate} /></h2>
+									<h2>
+										<BlogDate date={numberedBlogs[rank].postDate} />
+									</h2>
 									<div>
 										<Circle className={classes.CategoryCircle} />
 										<h3
@@ -250,7 +255,9 @@ const Blog = () => {
 								<h4 onClick={() => onClickNavigate(blog.categoryID, blog.id)}>
 									{blog.title}
 								</h4>
-								<h5><BlogDate date={blog.postDate} /></h5>
+								<h5>
+									<BlogDate date={blog.postDate} />
+								</h5>
 							</div>
 						))}
 					</div>
@@ -265,7 +272,9 @@ const Blog = () => {
 										<h3 onClick={() => onClickNavigate(blog.categoryID, blog.id)}>
 											{blog.mainCategory}
 										</h3>
-										<h4><BlogDate date={blog.postDate} /></h4>
+										<h4>
+											<BlogDate date={blog.postDate} />
+										</h4>
 									</div>
 								</div>
 							</div>

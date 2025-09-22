@@ -6,7 +6,6 @@ import client from '@/backend/contentful/managementClient';
 environmentCheck();
 
 // Set up API credentials and headers
-const spaceId = process.env.CONTENTFUL_SPACE_ID;
 
 const uploadSingleAsset = async (content: IContentfulUploadImage) =>
 	client.then((envInstance) =>

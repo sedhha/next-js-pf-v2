@@ -1,8 +1,7 @@
-import React, { WheelEventHandler } from 'react';
-import { println } from '../../../../utils/dev-utils';
+import React, { ReactElement, useRef, useState } from 'react';
 
 interface InfiniteCardProps {
-	Component: JSX.Element;
+	Component: ReactElement;
 	onReachedTopCallback?: () => void;
 	onReachedBottomCallback?: () => void;
 	onReachedLeftCallback?: () => void;
@@ -10,16 +9,7 @@ interface InfiniteCardProps {
 }
 
 const clearancePixel = 0.5;
-const inRange = (value: number, min: number, max: number): boolean =>
-	value >= min && value <= max;
-
-interface IWheel {
-	nativeEvent: {
-		wheelDelta: number;
-	};
-	deltaX: number;
-	deltaY: number;
-}
+const inRange = (v: number, min: number, max: number) => v >= min && v <= max;
 
 const InfiniteCardComponent = ({
 	Component,
@@ -28,51 +18,56 @@ const InfiniteCardComponent = ({
 	onReachedLeftCallback,
 	onReachedRightCallback
 }: InfiniteCardProps) => {
-	const ref = React.useRef(null);
-	const [isScrollingUp, setScrollingUp] = React.useState(true);
-	const onWheelEvent = (event: IWheel) => {
-		const { deltaY } = event;
-		if (deltaY) setScrollingUp(event.nativeEvent.wheelDelta > 0);
-	};
-	const onScroll = () => {
-		const { current } = ref;
-		if (current) {
-			const {
-				scrollTop,
-				clientHeight,
-				scrollHeight,
-				scrollLeft,
-				scrollWidth,
-				clientWidth
-			} = current;
-			const reachedBottom = inRange(
-				scrollTop + clientHeight,
-				scrollHeight - clearancePixel,
-				scrollHeight + clearancePixel
-			);
-			const reachedRight = inRange(
-				scrollLeft + clientWidth,
-				scrollWidth - clearancePixel,
-				scrollWidth + clearancePixel
-			);
+	const ref = useRef<HTMLDivElement | null>(null);
+	const [isScrollingUp, setScrollingUp] = useState(true);
 
-			if (scrollTop === 0) onReachedTopCallback?.();
-			else if (reachedBottom && !isScrollingUp) onReachedBottomCallback?.();
-
-			if (scrollLeft === 0) {
-				if (onReachedLeftCallback) onReachedLeftCallback?.();
-			} else if (reachedRight) {
-				if (onReachedRightCallback) onReachedRightCallback?.();
-			}
-		}
+	const onWheelEvent: React.WheelEventHandler<HTMLDivElement> = (event) => {
+		// deltaY < 0 => scrolling up; > 0 => down
+		setScrollingUp(event.deltaY < 0);
 	};
+
+	const onScroll: React.UIEventHandler<HTMLDivElement> = () => {
+		const current = ref.current;
+		if (!current) return;
+
+		const {
+			scrollTop,
+			clientHeight,
+			scrollHeight,
+			scrollLeft,
+			scrollWidth,
+			clientWidth
+		} = current;
+
+		const reachedBottom = inRange(
+			scrollTop + clientHeight,
+			scrollHeight - clearancePixel,
+			scrollHeight + clearancePixel
+		);
+		const reachedRight = inRange(
+			scrollLeft + clientWidth,
+			scrollWidth - clearancePixel,
+			scrollWidth + clearancePixel
+		);
+
+		if (scrollTop === 0) onReachedTopCallback?.();
+		else if (reachedBottom && !isScrollingUp) onReachedBottomCallback?.();
+
+		if (scrollLeft === 0) onReachedLeftCallback?.();
+		else if (reachedRight) onReachedRightCallback?.();
+	};
+
 	return (
-		<Component.type
-			{...Component.props}
+		<div
 			ref={ref}
 			onScroll={onScroll}
 			onWheel={onWheelEvent}
-		/>
+			// ensure the wrapper can actually scroll:
+			style={{ overflow: 'auto', maxHeight: '100%', maxWidth: '100%' }}
+		>
+			{Component}
+		</div>
 	);
 };
+
 export default InfiniteCardComponent;

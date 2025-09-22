@@ -1,7 +1,8 @@
+import { ReactElement } from 'react';
 import classes from './AnimateDown.module.css';
 
 interface IAnimationProp {
-	children: JSX.Element;
+	children: ReactElement;
 }
 const AnimateDown = ({ children }: IAnimationProp) => (
 	<div className={classes.AnimateDown}>{children}</div>
