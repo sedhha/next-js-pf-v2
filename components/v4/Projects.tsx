@@ -68,7 +68,7 @@ const Projects = async () => {
                         {total > 0 && (
                             <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
                                 <div className="h-px w-12 bg-gradient-to-r from-transparent via-emerald-400/60 to-cyan-400/60" />
-                                <span className="text-emerald-300 font-medium">{total} projects delivered</span>
+                                <span className="text-emerald-300 font-medium">Top {total} Most Recent Projects</span>
                                 <div className="h-px w-12 bg-gradient-to-l from-transparent via-cyan-400/60 to-violet-400/60" />
                             </div>
                         )}
