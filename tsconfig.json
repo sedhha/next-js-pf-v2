@@ -33,7 +33,9 @@
 			"@/appscript/*": ["backend/appscript/*"],
 			"@/fe-client/*": ["utils/fe/apis/services/*"],
 			"@/middleware/*": ["middleware/*"],
-			"@/backend/*": ["backend/*"]
+			"@/backend/*": ["backend/*"],
+			"@/lib/*": ["lib/*"],
+			"@/data/*": ["data/*"]
 		},
 		"types": [
 			"node",
