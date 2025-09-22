@@ -27,6 +27,33 @@ function formatDate(dateString: string): string {
     return `${months[date.getUTCMonth()]} ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
 }
 
+// Helper function to get consistent theme classes
+const getCategoryClasses = (themeKey: string) => {
+    const themes: Record<string, { bg: string; border: string; text: string }> = {
+        'emerald-400': {
+            bg: 'bg-emerald-500/10',
+            border: 'border-emerald-500/30',
+            text: 'text-emerald-300'
+        },
+        'cyan-400': {
+            bg: 'bg-cyan-500/10',
+            border: 'border-cyan-500/30',
+            text: 'text-cyan-300'
+        },
+        'purple-400': {
+            bg: 'bg-purple-500/10',
+            border: 'border-purple-500/30',
+            text: 'text-purple-300'
+        },
+        'violet-400': {
+            bg: 'bg-violet-500/10',
+            border: 'border-violet-500/30',
+            text: 'text-violet-300'
+        }
+    };
+    return themes[themeKey] || themes['emerald-400'];
+};
+
 export default async function BlogPage({ params }: Props) {
     const { category: categorySlug, blogId } = await params;
     const blog = getBlogBySlug(categorySlug, blogId);
@@ -36,7 +63,7 @@ export default async function BlogPage({ params }: Props) {
         notFound();
     }
 
-    return (
+    const categoryClasses = getCategoryClasses(category.theme.primary); return (
         <div className="min-h-screen bg-black">
             {/* Hero Section */}
             <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -78,9 +105,9 @@ export default async function BlogPage({ params }: Props) {
 
                     {/* Category Badge */}
                     <div className="mb-6">
-                        <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-full bg-${category.theme.bg} border border-${category.theme.border} backdrop-blur-sm`}>
+                        <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-full ${categoryClasses.bg} border ${categoryClasses.border} backdrop-blur-sm`}>
                             <span className="text-xl">{category.icon}</span>
-                            <span className={`text-${category.theme.secondary} font-semibold text-sm`}>
+                            <span className={`${categoryClasses.text} font-semibold text-sm`}>
                                 {category.name}
                             </span>
                         </div>

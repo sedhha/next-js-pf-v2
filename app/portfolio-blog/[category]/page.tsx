@@ -220,17 +220,59 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                     </div>
                 }>
                     {blogs.length === 0 ? (
-                        <div className="text-center py-32">
-                            <div className="relative mx-auto mb-8 w-32 h-32">
-                                <div className={`absolute inset-0 bg-gradient-to-br ${category.theme.gradient} opacity-30 rounded-3xl rotate-12 animate-pulse shadow-lg`} />
-                                <div className="relative bg-black/50 backdrop-blur-sm border border-gray-700/50 rounded-3xl w-full h-full flex items-center justify-center">
-                                    <span className="text-4xl">{category.icon}</span>
+                        <div className="text-center py-32 relative">
+                            {/* Floating Animation Elements */}
+                            <div className="absolute top-12 left-1/2 -translate-x-1/2">
+                                <div className="flex items-center gap-4 opacity-40">
+                                    <div className="w-2 h-2 bg-emerald-400/60 rounded-full animate-bounce delay-0" />
+                                    <div className="w-2 h-2 bg-cyan-400/60 rounded-full animate-bounce delay-200" />
+                                    <div className="w-2 h-2 bg-violet-400/60 rounded-full animate-bounce delay-400" />
                                 </div>
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-4">No articles yet</h3>
-                            <p className="text-gray-300 max-w-md mx-auto">
-                                Articles in the {category.name} category are coming soon. Check back later for exciting content!
-                            </p>
+
+                            {/* Main Icon */}
+                            <div className="relative mx-auto mb-8 w-32 h-32">
+                                <div className={`absolute inset-0 bg-gradient-to-br ${category.theme.gradient} opacity-20 rounded-3xl rotate-12 animate-pulse shadow-2xl`} />
+                                <div className="relative bg-black/40 backdrop-blur-sm border border-gray-700/30 rounded-3xl w-full h-full flex items-center justify-center group hover:scale-105 transition-transform duration-300">
+                                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300">{category.icon}</span>
+                                </div>
+                            </div>
+
+                            {/* Creative Message */}
+                            <div className="mb-8">
+                                <h3 className="text-3xl font-black mb-4 bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+                                    The Canvas Awaits
+                                </h3>
+                                <p className="text-xl text-gray-300 max-w-lg mx-auto leading-relaxed mb-6">
+                                    Nothing has been written in <span className={`font-semibold text-${category.theme.secondary}`}>{category.name}</span> yet, but great ideas are brewing! ✨
+                                </p>
+                                <p className="text-gray-400 max-w-md mx-auto">
+                                    While we craft amazing content for this category, why not explore what&apos;s already live?
+                                </p>
+                            </div>
+
+                            {/* Call to Action */}
+                            <div className="space-y-4">
+                                <Link
+                                    href="/portfolio-blog"
+                                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-violet-500 text-black font-bold hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 group"
+                                >
+                                    <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    Explore All Categories
+                                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </Link>
+
+                                <div className="text-sm text-gray-500">
+                                    <span className="inline-flex items-center gap-1">
+                                        <span>💡</span>
+                                        Stay tuned for exciting {category.name.toLowerCase()} content
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     ) : (
                         <>
