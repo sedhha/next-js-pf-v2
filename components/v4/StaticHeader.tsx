@@ -81,7 +81,6 @@ const StaticHeader = async () => {
                         ))}
                     </nav>
 
-                    {/* Mobile menu - Server-side with current path */}
                     <MobileMenu currentPath={pathname} />
                 </div>
             </div>

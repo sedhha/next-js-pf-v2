@@ -396,8 +396,88 @@ body {
 	}
 }
 
+/* Mobile Menu Animations */
+@keyframes slide-in-right {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-out-right {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes fade-in-backdrop {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out-backdrop {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes stagger-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes hamburger-to-x-top {
+	from {
+		transform: rotate(0) translateY(0);
+	}
+	to {
+		transform: rotate(45deg) translateY(6px);
+	}
+}
+
+@keyframes hamburger-to-x-bottom {
+	from {
+		transform: rotate(0) translateY(0);
+	}
+	to {
+		transform: rotate(-45deg) translateY(-6px);
+	}
+}
+
+@keyframes hamburger-middle-fade {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
 /* Give the animation a token so you can use `animate-grid` as a class */
 @theme {
 	--animate-grid: grid 20s ease-in-out infinite;
 	--animate-fadeInUp: fadeInUp 1s ease-out forwards;
+	--animate-slide-in-right: slide-in-right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	--animate-slide-out-right: slide-out-right 0.3s ease-in;
+	--animate-fade-in-backdrop: fade-in-backdrop 0.3s ease-out;
+	--animate-fade-out-backdrop: fade-out-backdrop 0.3s ease-out;
+	--animate-stagger-in: stagger-in 0.4s ease-out forwards;
 }
