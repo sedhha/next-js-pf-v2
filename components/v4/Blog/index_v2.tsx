@@ -95,7 +95,8 @@ const allBlogs = [
 ];
 
 // Main Blog Component
-const Blog = () => {
+// eslint-disable-next-line no-empty-pattern
+const Blog = ({ }: { category?: string }) => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const categories = [
         'All',

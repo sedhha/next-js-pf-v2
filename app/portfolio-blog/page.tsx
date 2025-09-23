@@ -2,10 +2,11 @@ import Blog from '@/components/v4/Blog/index_v2';
 import NavigationButtons from '@/components/v4/NavigationButtons';
 
 
-export default function BlogPage() {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+    const params = await searchParams;
     return (
         <>
-            <Blog />
+            <Blog category={params?.category} />
             <NavigationButtons
                 prevPage={{ label: 'Back to Projects', href: '/portfolio-projects' }}
                 nextPage={{ label: 'View Awards', href: '/portfolio-awards' }}
