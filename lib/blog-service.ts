@@ -1,5 +1,5 @@
-import blogData from '../data/blogs.json';
-import categoryData from '../data/blog-categories.json';
+import blogData from '@/data/blogs.json';
+import categoryData from '@/data/blog-categories.json';
 
 export interface BlogPost {
 	id: string;

@@ -1,5 +1,6 @@
-import Blog from '@/components/v4/Blog';
+import Blog from '@/components/v4/Blog/index_v2';
 import NavigationButtons from '@/components/v4/NavigationButtons';
+
 
 export default function BlogPage() {
     return (

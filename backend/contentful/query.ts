@@ -88,6 +88,12 @@ const getBlogsByIds = `query($ids: [String]!,$limit:Int!,$skip:Int!) {
         }
         authorName
       }
+      categoriesCollection {
+        items {
+          title
+          slug
+        }
+      }
     }
   }
 }

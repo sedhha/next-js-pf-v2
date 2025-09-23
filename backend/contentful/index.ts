@@ -182,7 +182,11 @@ const queryBlogsByCategory = async (
 								title: item.title,
 								excerpt: item.excerpt,
 								date: item.publishDate,
-								id: item.sys.id
+								id: item.sys.id,
+								categories: item.categoriesCollection.items.map((cat) => ({
+									title: cat.title,
+									slug: cat.slug
+								}))
 							} as ICategoryArticles)
 					);
 					return {
@@ -286,6 +290,7 @@ const getRequiredPreRenderingBlogAndCategories = async (): Promise<{
 	return result;
 };
 export {
+	queryAllCategories,
 	queryWorkExperience,
 	queryBlogWithCategoryAndID,
 	queryBlogsByCategory,

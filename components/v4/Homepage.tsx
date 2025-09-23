@@ -1,6 +1,6 @@
 import React from 'react';
 import Awards from '@/components/v4/Awards';
-import Blog from '@/components/v4/Blog';
+import Blog from '@/components/v4/Blog/index_v2';
 import Contact from '@/components/v4/Contact';
 import Footer from '@/components/v4/Footer';
 import IntroV4 from '@/components/v4/Intro';

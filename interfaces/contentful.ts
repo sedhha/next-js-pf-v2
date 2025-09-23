@@ -42,6 +42,11 @@ export interface ICategories {
 	title?: string;
 	slug: string;
 }
+
+export interface ICategoriesWithTitle {
+	title: string;
+	slug: string;
+}
 export interface IContentfulBlog {
 	sys: {
 		id: string;
@@ -69,6 +74,7 @@ export interface IContentfulBlogs extends IContentfulSys {
 	publishDate: string;
 	primaryImage?: IContentfulImage;
 	author: IAuthor;
+	categoriesCollection: IMultiItemResult<ICategoriesWithTitle>;
 }
 
 export interface IMainPageBlog {

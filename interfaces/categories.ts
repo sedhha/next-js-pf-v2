@@ -6,6 +6,7 @@ export interface ICategoryArticles {
 	excerpt: string;
 	date: string;
 	id: string;
+	categories: { title: string; slug: string }[];
 }
 
 export interface InfiniteCardProps {
