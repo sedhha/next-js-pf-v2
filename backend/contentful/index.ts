@@ -228,7 +228,7 @@ const queryPreRenderBlogs = async (): Promise<IPreRenderedResponse> => {
 };
 
 const queryAllCategories = async (): Promise<
-	IContentfulResponse<{ slug: string }>
+	IContentfulResponse<{ slug: string; title: string }>
 > => {
 	if (!process.env.CONTENTFUL_BASE_URL || !process.env.CONTENTFUL_ACCESS_TOKEN) {
 		throw new Error(
@@ -250,7 +250,7 @@ const queryAllCategories = async (): Promise<
 		})
 	}).then((res) =>
 		res.json().then((data) => {
-			return data as IContentfulResponse<{ slug: string }>;
+			return data as IContentfulResponse<{ slug: string; title: string }>;
 		})
 	);
 };

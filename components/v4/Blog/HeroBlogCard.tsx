@@ -17,6 +17,7 @@ export const HeroBlogCard = ({ blog }: { blog: IBlog }) => {
                     src={blog.featuredImage || '/placeholder-blog.jpg'}
                     alt={blog.title}
                     fill
+                    priority
                     className="object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-1000"
                     sizes="(max-width: 768px) 100vw, 80vw"
                 />

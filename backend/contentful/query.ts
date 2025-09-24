@@ -118,6 +118,7 @@ const getAllCategories = `query {
   output:categoryCollection {
     items {
       slug
+      title
     }
   }
 }

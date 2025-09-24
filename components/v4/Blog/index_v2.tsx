@@ -1,117 +1,19 @@
-'use client';
-import { useState } from 'react';
 import { WorkInProgressBar } from '@/components/v4/Blog/WorkInProgressBar';
-import { getCategoryTheme } from '@/components/v4/Blog/utils';
-import { HeroBlogCard } from './HeroBlogCard';
-import { TimelineBlogCard } from './TimelineBlogCard';
-import { StatsCard } from './StatsCard';
-
-// Blog data from your JSON
-const blogData = {
-    mainBlog: {
-        mainCategory: 'IoT',
-        title: 'Invisible Talking Camera Using Python',
-        featuredImage:
-            'https://images.ctfassets.net/eowwrv5buqcq/6fBcxSKAVQ3OFbPkdXfZWr/2aeeeeaaa2cfc66c27c03275cf330da7/image.png',
-        postDate: '2019-05-05T00:00:00.000+05:30',
-        id: '5NCdethgGWdzylLaFMQPIQ',
-        categoryID: 'iot',
-        excerpt:
-            'The Invisible talking camera uses Python OpenCV and pyttsx library in order to calibrate your background based on HSL thresholding.\nIt then performs bit wise operations background subtraction along with minor Gaussian Bluring and smoothening and segmentation to make you invisible in the frame!\nPyTTS is used to talk with your program to give basic inputs like initiating calibration, varying thresholds etc.'
-    },
-    rankedBlogs: [
-        {
-            mainCategory: 'IoT',
-            title: 'How To Make Your Own Artificial Spider Sense Device?',
-            postDate: '2019-05-15T00:00:00.000+05:30',
-            id: '6YFNbCpC6LYHhccXdyf4oo',
-            categoryID: 'iot',
-            featuredImage:
-                'https://images.ctfassets.net/eowwrv5buqcq/7tVFtoXSQB5yqmThMBsYlt/6ef2579858198a151af10c0e91775368/how-to-make-your-own-artificial-spider-sense-device--jw4cozxs.jpeg',
-            excerpt:
-                'We all have grown up watching cool superhero movies and cartoon series. Every superhero is involved either with some cool super power or super awesome sci-fi tech. Spiderman is one of those. I personally like the character most due to the fact I can relate so many things to him.'
-        },
-        {
-            mainCategory: 'Mechanical',
-            title: 'Additive Manufacturing and SolidWorks',
-            postDate: '2019-12-25T00:00:00.000+05:30',
-            id: '3aLEKtdfPgti7hIgz2PLJo',
-            categoryID: 'mechanical',
-            featuredImage:
-                'https://images.ctfassets.net/eowwrv5buqcq/2VGZR6l5I1GknOyHUMBuib/cc940b915f8007fad81edc0082df7ec5/thumbnail-additive-manufacturing-and-solidworks.png',
-            excerpt:
-                "We all know Additive Manufacturing is booming today's industrial sector. With the help of Additive manufacturing, there's now almost no limit to design constraints and material wastage is also reduced by a significant amount."
-        },
-        {
-            mainCategory: 'Life',
-            title: 'Dear Best Friend...',
-            postDate: '2019-05-30T00:00:00.000+05:30',
-            id: 'WrKoeYkBOfWNBXdyp7Wuk',
-            categoryID: 'life',
-            featuredImage:
-                'https://images.ctfassets.net/eowwrv5buqcq/7u25VSC3DZfhvFyucAH2Wn/b8cd18452cdf91692a5812a79af85a6b/the-garden-or-words-featured-image-jwa531ht.jpeg',
-            excerpt:
-                'I did stand for you. I understand we all have preferences and sometimes our experiments can go wrong. I know deep inside you were crying hard but then you just smiled and moved out.'
-        },
-        {
-            mainCategory: 'Web Development',
-            title: 'Getting Started With HTML and Web Development',
-            postDate: '2020-03-22T00:00:00.000+05:30',
-            id: '1gFsRM3HHf95pAb9IGuFv7',
-            categoryID: 'web-development',
-            featuredImage:
-                'https://images.ctfassets.net/eowwrv5buqcq/6ywjAk5sqc4QkjHAQdj0w/24b83c86f814b95920abd06b2c959941/webdev.jpeg',
-            excerpt:
-                'For a better sense of understanding, take an example of the entire human body. The skeleton of the human body is the HTML part of it. Skeleton is the supporting structure consisting of bones and joints.'
-        }
-    ],
-    relatedBlogs: [
-        {
-            mainCategory: 'Mobile App Development',
-            title: 'Thriller StoryBook App in Flutter',
-            postDate: '2019-07-31T00:00:00.000+05:30',
-            id: '4YMPrxuotjCLYKKeCYx5bk',
-            categoryID: 'mobile-app-development',
-            featuredImage:
-                'https://images.ctfassets.net/eowwrv5buqcq/4y55dG7U2XBVd2CmbvgNRK/0522c2a5a8cab09faf92ae218d4bf445/4-1-e1570947245316.jpg'
-        },
-        {
-            mainCategory: 'Automation',
-            title: 'UIPath Startup Script on Windows 10 Server',
-            postDate: '2023-01-28T00:00:00.000+05:30',
-            id: '57ipaNewAcgnAjQsTKOja9',
-            categoryID: 'automation',
-            featuredImage:
-                'https://images.ctfassets.net/eowwrv5buqcq/5JRUplrKPNg1kw0pCCNrDo/92833035562e8892b45d2f1702ca35dd/thumbnail-uipath-setup.png'
-        }
-    ]
-};
-
-// Combine all blogs for the timeline
-const allBlogs = [
-    blogData.mainBlog,
-    ...blogData.rankedBlogs,
-    ...blogData.relatedBlogs
-];
+import { HeroBlogCard } from '@/components/v4/Blog/HeroBlogCard';
+import { TimelineBlogCard } from '@/components/v4/Blog/TimelineBlogCard';
+import { StatsCard } from '@/components/v4/Blog/StatsCard';
+import { Categories } from '@/components/v4/Blog/Categories';
+import { SelectCategories } from '@/components/v4/Blog/SelectCategories';
+import { queryAllCategories, queryBlogsByCategory } from '@/backend/contentful';
+import { toFEBlog, toFECategory } from '@/components/v4/Blog/utils';
 
 // Main Blog Component
-// eslint-disable-next-line no-empty-pattern
-const Blog = ({ }: { category?: string }) => {
-    const [selectedCategory, setSelectedCategory] = useState('All');
-    const categories = [
-        'All',
-        'IoT',
-        'Mechanical',
-        'Life',
-        'Web Development',
-        'Mobile App Development',
-        'Automation'
-    ];
+const Blog = async ({ category: selectedCategory }: { category?: string }) => {
+    const categories = toFECategory(await queryAllCategories());
+    const allBlogs = await queryBlogsByCategory(selectedCategory ?? '*', 100, 0);
+    const [mainBlog, ...filteredBlogs] = toFEBlog(allBlogs);
 
-    const filteredBlogs =
-        selectedCategory === 'All'
-            ? allBlogs.slice(1) // Skip main blog for timeline
-            : allBlogs.filter((blog) => blog.mainCategory === selectedCategory);
+
 
     return (
         <section className="relative py-20 px-4 bg-black pb-32">
@@ -148,24 +50,11 @@ const Blog = ({ }: { category?: string }) => {
 
                 {/* Hero Featured Story */}
                 <div className="mb-20">
-                    <HeroBlogCard blog={blogData.mainBlog} />
+                    <HeroBlogCard blog={mainBlog} />
                 </div>
 
                 {/* Category Filter Pills */}
-                <div className="flex flex-wrap justify-center gap-3 mb-12">
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            onClick={() => setSelectedCategory(category)}
-                            className={`px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 cursor-pointer ${selectedCategory === category
-                                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-black shadow-lg'
-                                : 'bg-black/40 border border-gray-700 text-gray-300 hover:border-gray-600 hover:text-white'
-                                }`}
-                        >
-                            {category === 'All' && '🌟'} {category}
-                        </button>
-                    ))}
-                </div>
+                <Categories categories={categories} selectedCategory={selectedCategory} />
 
                 {/* Main Content Grid */}
                 <div className="grid lg:grid-cols-3 gap-12">
@@ -201,11 +90,11 @@ const Blog = ({ }: { category?: string }) => {
                             <div className="grid grid-cols-2 gap-4">
                                 <StatsCard
                                     icon="📝"
-                                    value={allBlogs.length.toString()}
+                                    value={allBlogs.total.toString()}
                                     label="Total Stories"
                                     color="emerald-400"
                                 />
-                                <StatsCard icon="🏷️" value="6" label="Categories" color="violet-400" />
+                                <StatsCard icon="🏷️" value={categories.length.toString()} label="Categories" color="violet-400" />
                                 <StatsCard
                                     icon="📅"
                                     value="2023"
@@ -223,27 +112,7 @@ const Blog = ({ }: { category?: string }) => {
                                 Quick Access
                             </h3>
 
-                            <div className="space-y-3">
-                                {categories.slice(1, 4).map((category) => {
-                                    const theme = getCategoryTheme(category);
-                                    const count = allBlogs.filter(
-                                        (blog) => blog.mainCategory === category
-                                    ).length;
-                                    return (
-                                        <button
-                                            key={category}
-                                            onClick={() => setSelectedCategory(category)}
-                                            className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-900/30 hover:bg-gray-800/50 transition-all duration-200 group cursor-pointer"
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                <span className="text-lg">{theme.icon}</span>
-                                                <span className="text-white font-medium">{category}</span>
-                                            </div>
-                                            <span className={`text-${theme.secondary} font-bold`}>{count}</span>
-                                        </button>
-                                    );
-                                })}
-                            </div>
+                            <SelectCategories categories={categories} allBlogs={filteredBlogs} />
                         </div>
 
                         {/* Philosophy Quote */}

@@ -1,3 +1,8 @@
+import { ITotal } from '@/interfaces/api';
+import { ICategoryArticles } from '@/interfaces/categories';
+import { IBlog } from './types';
+import { IContentfulResponse } from '@/interfaces/contentful';
+
 // Enhanced category color mapping with consistent emerald-purple theme
 export const getCategoryTheme = (category: string) => {
 	const themes: {
@@ -69,4 +74,30 @@ export const getCategoryTheme = (category: string) => {
 			icon: '📝'
 		}
 	);
+};
+
+export const toFEBlog = (data: ITotal<ICategoryArticles>): IBlog[] => {
+	return data.items.reduce((acc, blog) => {
+		const { title = '', slug = '' } = blog.categories?.[0] ?? {};
+		if (!title || !slug) return acc;
+		acc.push({
+			id: blog.id,
+			title: blog.title,
+			mainCategory: title,
+			featuredImage: blog.img,
+			postDate: blog.date,
+			categoryID: slug,
+			excerpt: blog.excerpt
+		});
+		return acc;
+	}, [] as IBlog[]);
+};
+
+export const toFECategory = (
+	result: IContentfulResponse<{ slug: string; title: string }>
+): { title: string; slug: string }[] => {
+	return result.data.output.items.map((item) => ({
+		title: item.title,
+		slug: item.slug
+	}));
 };
