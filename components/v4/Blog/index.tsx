@@ -4,7 +4,11 @@ import { TimelineBlogCard } from '@/components/v4/Blog/TimelineBlogCard';
 import { StatsCard } from '@/components/v4/Blog/StatsCard';
 import { Categories } from '@/components/v4/Blog/Categories';
 import { SelectCategories } from '@/components/v4/Blog/SelectCategories';
-import { queryAllCategories, queryBlogsByCategory } from '@/backend/contentful';
+import {
+    getCategoriesWithBlogCount,
+    queryAllCategories,
+    queryBlogsByCategory
+} from '@/backend/contentful';
 import { toFEBlog, toFECategory } from '@/components/v4/Blog/utils';
 
 // Main Blog Component
@@ -13,7 +17,7 @@ const Blog = async ({ category: selectedCategory }: { category?: string }) => {
     const allBlogs = await queryBlogsByCategory(selectedCategory ?? '*', 100, 0);
     const [mainBlog, ...filteredBlogs] = toFEBlog(allBlogs);
 
-
+    const categoryCount = await getCategoriesWithBlogCount();
 
     return (
         <section className="relative py-20 px-4 bg-black pb-32">
@@ -94,7 +98,12 @@ const Blog = async ({ category: selectedCategory }: { category?: string }) => {
                                     label="Total Stories"
                                     color="emerald-400"
                                 />
-                                <StatsCard icon="🏷️" value={categories.length.toString()} label="Categories" color="violet-400" />
+                                <StatsCard
+                                    icon="🏷️"
+                                    value={categories.length.toString()}
+                                    label="Categories"
+                                    color="violet-400"
+                                />
                                 <StatsCard
                                     icon="📅"
                                     value="2023"
@@ -112,7 +121,7 @@ const Blog = async ({ category: selectedCategory }: { category?: string }) => {
                                 Quick Access
                             </h3>
 
-                            <SelectCategories categories={categories} allBlogs={filteredBlogs} />
+                            <SelectCategories categories={categoryCount} />
                         </div>
 
                         {/* Philosophy Quote */}
@@ -121,9 +130,8 @@ const Blog = async ({ category: selectedCategory }: { category?: string }) => {
                             <div className="relative bg-black/60 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 text-center">
                                 <div className="text-4xl mb-4">💭</div>
                                 <blockquote className="text-gray-300 italic leading-relaxed">
-                                    &quot;Every blog post is a quantum of thought—collapsing infinite
-                                    possibilities into finite words, yet somehow expanding
-                                    consciousness.&quot;
+                                    &quot;Every blog post is just a thought captured in words—simple,
+                                    finite, yet able to spark new ideas.&quot;
                                 </blockquote>
                                 <div className="text-emerald-400 font-medium mt-4">
                                     — The Digital Philosopher

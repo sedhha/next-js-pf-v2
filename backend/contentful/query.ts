@@ -124,11 +124,27 @@ const getAllCategories = `query {
 }
 `;
 
+const getCategoriesWithBlogCountQuery = `query {
+  output: categoryCollection {
+    items {
+      slug
+      title
+      linkedFrom {
+        blogCollection {
+          total
+        }
+      }
+    }
+  }
+}
+`;
+
 export {
 	workExperienceQuery,
 	blogWithCategoryAndIDQuery,
 	getBlogIdsByCategory,
 	getBlogsByIds,
+	getCategoriesWithBlogCountQuery,
 	blogWithPreRendering,
 	getAllCategories
 };

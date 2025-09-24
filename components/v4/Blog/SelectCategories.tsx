@@ -1,14 +1,12 @@
 'use client';
 import { getCategoryTheme } from '@/v4/Blog/utils';
 import { useRouter } from 'next/navigation';
-import { IBlog } from '@/v4/Blog/types';
 
 type SelectCategoriesProps = {
-    categories: { title: string; slug: string; }[];
-    allBlogs: IBlog[];
+    categories: { slug: string; title: string; total: number }[];
 }
 
-export const SelectCategories = ({ categories, allBlogs }: SelectCategoriesProps) => {
+export const SelectCategories = ({ categories }: SelectCategoriesProps) => {
     const router = useRouter();
     const onCategorySelect = (category: string) => {
         const url = category === 'All'
@@ -18,11 +16,9 @@ export const SelectCategories = ({ categories, allBlogs }: SelectCategoriesProps
     }
 
     return <div className="space-y-3">
-        {categories.slice(1, 4).map((category) => {
+        {categories.map((category) => {
             const theme = getCategoryTheme(category.title);
-            const count = allBlogs.filter(
-                (blog) => blog.mainCategory === category.title
-            ).length;
+            const count = category.total ?? 0;
             return (
                 <button
                     key={category.slug}

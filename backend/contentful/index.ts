@@ -8,6 +8,7 @@ import {
 	getAllCategories,
 	getBlogIdsByCategory,
 	getBlogsByIds,
+	getCategoriesWithBlogCountQuery,
 	workExperienceQuery
 } from './query';
 import { ITotal } from '@/interfaces/api';
@@ -289,10 +290,59 @@ const getRequiredPreRenderingBlogAndCategories = async (): Promise<{
 	const result = generateBlogCategoryIds(blogs, categoryResults);
 	return result;
 };
+
+const getCategoriesWithBlogCount = async (): Promise<
+	{ title: string; total: number; slug: string }[]
+> => {
+	if (!process.env.CONTENTFUL_BASE_URL || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+		throw new Error(
+			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
+		);
+	}
+
+	return fetch(process.env.CONTENTFUL_BASE_URL, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Connection': 'keep-alive',
+			'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
+		},
+		body: JSON.stringify({
+			query: getCategoriesWithBlogCountQuery,
+			variables: null
+		})
+	}).then((res) =>
+		res.json().then((res) => {
+			const finalItems =
+				(
+					(res as IContentfulResponse<{
+						slug: string;
+						title: string;
+						linkedFrom: { blogCollection: { total: number } };
+					}>) ?? { data: { output: { items: [] } } }
+				)?.data?.output?.items ?? [];
+			return finalItems
+				.reduce((acc, curr) => {
+					if (curr.title && curr.slug && curr.linkedFrom?.blogCollection?.total)
+						acc.push({
+							title: curr.title,
+							total: curr.linkedFrom.blogCollection.total,
+							slug: curr.slug
+						});
+					return acc;
+				}, [] as { title: string; total: number; slug: string }[])
+				.sort((a, b) => b.total - a.total)
+				.slice(0, 4); // Max 4 categories
+		})
+	);
+};
+
 export {
 	queryAllCategories,
 	queryWorkExperience,
 	queryBlogWithCategoryAndID,
 	queryBlogsByCategory,
+	getCategoriesWithBlogCount,
 	getRequiredPreRenderingBlogAndCategories
 };
