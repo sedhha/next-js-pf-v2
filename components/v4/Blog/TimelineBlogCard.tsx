@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { getCategoryTheme } from '@/components/v4/Blog/utils';
 import { BlogDate } from "@/components/v4/Blog/BlogDate";
@@ -66,9 +67,12 @@ export const TimelineBlogCard = ({
                     {/* Footer */}
                     <div className="flex items-center justify-between">
                         <BlogDate date={blog.postDate} />
-                        <button className="text-emerald-400 hover:text-emerald-300 transition-colors duration-200 text-sm font-medium cursor-pointer">
+                        <Link
+                            href={`/portfolio-blog/${blog.categoryID}/${blog.id}`}
+                            className="text-emerald-400 hover:text-emerald-300 transition-colors duration-200 text-sm font-medium cursor-pointer"
+                        >
                             Read more →
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
