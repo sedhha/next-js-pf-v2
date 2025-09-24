@@ -1,4 +1,4 @@
-import Blog from '@/components/v4/Blog/index_v2';
+import Blog from '@/components/v4/Blog';
 import NavigationButtons from '@/components/v4/NavigationButtons';
 
 
