@@ -1,10 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { BlogDate } from "@/components/v4/Blog/BlogDate";
 import { getCategoryTheme } from '@/components/v4/Blog/utils';
 
-
 import type { IBlog } from '@/components/v4/Blog/types';
-
 
 export const HeroBlogCard = ({ blog }: { blog: IBlog }) => {
     const theme = getCategoryTheme(blog.mainCategory);
@@ -63,7 +62,8 @@ export const HeroBlogCard = ({ blog }: { blog: IBlog }) => {
                 {/* Meta and CTA */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <BlogDate date={blog.postDate} />
-                    <button
+                    <Link
+                        href={`/portfolio-blog/${blog.categoryID}/${blog.id}`}
                         className={`inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r ${theme.gradient} text-black font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer w-fit sm:w-auto`}
                     >
                         Read Story
@@ -80,7 +80,7 @@ export const HeroBlogCard = ({ blog }: { blog: IBlog }) => {
                                 d="M17 8l4 4m0 0l-4 4m4-4H3"
                             />
                         </svg>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

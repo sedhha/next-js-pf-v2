@@ -28,6 +28,20 @@
 		}
 	},
 	{
+		"id": "robotics",
+		"name": "Robotics",
+		"slug": "robotics",
+		"icon": "🤖",
+		"description": "Robotic systems, autonomous control, and mechatronics engineering",
+		"theme": {
+			"primary": "orange-400",
+			"secondary": "orange-300",
+			"bg": "orange-500/10",
+			"border": "orange-500/30",
+			"gradient": "from-orange-400 to-red-400"
+		}
+	},
+	{
 		"id": "life",
 		"name": "Life",
 		"slug": "life",
@@ -73,7 +87,7 @@
 		"id": "automation",
 		"name": "Automation",
 		"slug": "automation",
-		"icon": "🤖",
+		"icon": "🦾",
 		"description": "Process automation, RPA, and workflow optimization",
 		"theme": {
 			"primary": "emerald-400",

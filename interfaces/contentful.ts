@@ -57,6 +57,7 @@ export interface IContentfulBlog {
 	excerpt: string;
 	primaryImage?: IContentfulImage;
 	categoriesCollection: IMultiItemResult<ICategories>;
+	publishDate: string;
 }
 
 export interface ICFWorkExperience {

@@ -70,17 +70,6 @@ export function getBlogsByCategory(
 	};
 }
 
-export function getBlogBySlug(
-	categorySlug: string,
-	blogSlug: string
-): BlogPost | null {
-	return (
-		blogData.find(
-			(blog) => blog.category === categorySlug && blog.slug === blogSlug
-		) || null
-	);
-}
-
 export function getAllBlogs(
 	from: number = 0,
 	to: number = 10

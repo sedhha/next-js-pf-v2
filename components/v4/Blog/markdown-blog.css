@@ -1,0 +1,201 @@
+/* Dark theme syntax highlighting for MarkdownBlog component */
+/* Based on GitHub Dark theme with cosmic touches */
+
+/* Font family styling */
+.markdown-container {
+	font-family: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+.markdown-container code,
+.markdown-container pre {
+	font-family: var(--font-jetbrains-mono), 'JetBrains Mono', 'Fira Code',
+		'SF Mono', Monaco, Inconsolata, 'Roboto Mono', 'Source Code Pro', monospace !important;
+}
+
+.markdown-container h1,
+.markdown-container h2,
+.markdown-container h3,
+.markdown-container h4,
+.markdown-container h5,
+.markdown-container h6 {
+	font-family: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+.markdown-container .hljs {
+	display: block;
+	overflow-x: auto;
+	padding: 0;
+	color: #e6edf3;
+	background: transparent;
+}
+
+.markdown-container .hljs-comment,
+.markdown-container .hljs-quote {
+	color: #7d8590;
+	font-style: italic;
+}
+
+.markdown-container .hljs-variable,
+.markdown-container .hljs-template-variable,
+.markdown-container .hljs-tag,
+.markdown-container .hljs-name,
+.markdown-container .hljs-selector-id,
+.markdown-container .hljs-selector-class,
+.markdown-container .hljs-regexp,
+.markdown-container .hljs-deletion {
+	color: #ff7b72;
+}
+
+.markdown-container .hljs-number,
+.markdown-container .hljs-built_in,
+.markdown-container .hljs-builtin-name,
+.markdown-container .hljs-literal,
+.markdown-container .hljs-type,
+.markdown-container .hljs-params,
+.markdown-container .hljs-meta,
+.markdown-container .hljs-link {
+	color: #79c0ff;
+}
+
+.markdown-container .hljs-attribute {
+	color: #79c0ff;
+}
+
+.markdown-container .hljs-string,
+.markdown-container .hljs-symbol,
+.markdown-container .hljs-bullet,
+.markdown-container .hljs-addition {
+	color: #a5d6ff;
+}
+
+.markdown-container .hljs-title,
+.markdown-container .hljs-section {
+	color: #d2a8ff;
+	font-weight: bold;
+}
+
+.markdown-container .hljs-keyword,
+.markdown-container .hljs-selector-tag {
+	color: #ff7b72;
+	font-weight: bold;
+}
+
+.markdown-container .hljs-function {
+	color: #d2a8ff;
+}
+
+.markdown-container .hljs-class {
+	color: #79c0ff;
+}
+
+.markdown-container .hljs-operator {
+	color: #ff7b72;
+}
+
+.markdown-container .hljs-punctuation {
+	color: #e6edf3;
+}
+
+/* Enhanced colors - clean dark theme without excessive glows */
+.markdown-container .hljs-keyword {
+	color: #10b981; /* emerald-500 */
+}
+
+.markdown-container .hljs-string {
+	color: #06b6d4; /* cyan-500 */
+}
+
+.markdown-container .hljs-function {
+	color: #8b5cf6; /* violet-500 */
+}
+
+.markdown-container .hljs-number {
+	color: #f59e0b; /* amber-500 */
+}
+
+.markdown-container .hljs-comment {
+	color: #6b7280; /* gray-500 */
+	font-style: italic;
+	opacity: 0.8;
+}
+
+.markdown-container .hljs-variable {
+	color: #ec4899; /* pink-500 */
+}
+
+.markdown-container .hljs-title {
+	color: #3b82f6; /* blue-500 */
+	font-weight: bold;
+}
+
+.markdown-container .hljs-operator,
+.markdown-container .hljs-punctuation {
+	color: #e5e7eb; /* gray-200 */
+}
+
+/* Remove any default line highlighting and clean up code blocks */
+.markdown-container .hljs .hljs-line {
+	background: none !important;
+	border: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.markdown-container code[class*='language-'],
+.markdown-container pre[class*='language-'] {
+	text-shadow: none !important;
+	font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, Inconsolata,
+		'Roboto Mono', 'Source Code Pro', monospace;
+	font-size: 0.9em;
+	line-height: 1.5;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	tab-size: 4;
+	hyphens: none;
+}
+
+/* Override any existing line highlighting */
+.markdown-container .hljs-ln-line {
+	background: transparent !important;
+	border: none !important;
+}
+
+.markdown-container .hljs-ln {
+	border-collapse: separate;
+	margin: 0;
+}
+
+.markdown-container .hljs-ln td {
+	background: none !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+/* Remove any text shadows from syntax highlighted elements */
+.markdown-container .hljs * {
+	text-shadow: none !important;
+	background: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+/* Ensure clean code block styling */
+.markdown-container pre code {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+
+/* Remove any line-by-line styling */
+.markdown-container .hljs-line,
+.markdown-container .code-line,
+.markdown-container pre .line {
+	background: none !important;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+}

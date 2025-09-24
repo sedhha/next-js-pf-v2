@@ -21,8 +21,8 @@ query($limit: Int!, $skip: Int!) {
 }
 `;
 
-const blogWithCategoryAndIDQuery = `query($ids: [String]!) {
-  output: blogCollection(where: { sys: { id_in: $ids } }) {
+const blogWithCategoryAndIDQuery = `query($ids: [String]!, $slugs: [String]!) {
+  output: blogCollection(where: { sys: { id_in: $ids }, categories: {slug_in: $slugs } }) {
     items {
       title
       content
@@ -35,6 +35,7 @@ const blogWithCategoryAndIDQuery = `query($ids: [String]!) {
         }
         bio
       }
+      publishDate
       primaryImage {
         title
         description
@@ -44,6 +45,7 @@ const blogWithCategoryAndIDQuery = `query($ids: [String]!) {
       categoriesCollection {
         items {
           slug
+          title
         }
       }
     }

@@ -84,8 +84,6 @@ const queryBlogWithCategoryAndID = async (
 			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
 		);
 	}
-	const categoryFilter =
-		typeof category !== 'string' ? category?.[0] ?? '' : category;
 	const idsFilter = typeof ids === 'string' ? [ids] : ids;
 	return fetch(process.env.CONTENTFUL_BASE_URL, {
 		method: 'POST',
@@ -98,19 +96,15 @@ const queryBlogWithCategoryAndID = async (
 		body: JSON.stringify({
 			query: blogWithCategoryAndIDQuery,
 			variables: {
-				ids: idsFilter
+				ids: idsFilter,
+				slugs: typeof category === 'string' ? [category] : category
 			}
 		})
 	}).then((res) =>
 		res.json().then((data) => {
-			const result = (
-				data as IContentfulResponse<IContentfulBlog>
-			).data.output.items.find((item) =>
-				item.categoriesCollection.items.find(
-					(element) => element.slug.toLowerCase() === categoryFilter.toLowerCase()
-				)
-			);
-			return result ?? null;
+			const finalResult = (data as IContentfulResponse<IContentfulBlog>)?.data
+				?.output?.items;
+			return finalResult[0] || null;
 		})
 	);
 };

@@ -18,6 +18,7 @@ export default defineConfig({
 				replacement: path.resolve(__dirname, './components')
 			},
 			{ find: '@/pages', replacement: path.resolve(__dirname, './pages') },
+			{ find: '@/app', replacement: path.resolve(__dirname, './app') },
 			{ find: '@/styles', replacement: path.resolve(__dirname, './styles') },
 			{ find: '@/constants', replacement: path.resolve(__dirname, './constants') },
 			{ find: '@/slices', replacement: path.resolve(__dirname, './redux/slices') },

@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+/* Font Variables */
+:root {
+	--font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	--font-playfair: 'Playfair Display', ui-serif, Georgia, serif;
+	--font-jetbrains-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
 /* Prevent horizontal overflow globally */
 html,
 body {

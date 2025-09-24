@@ -1,8 +1,28 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google';
 import "./global.css";
 import StaticHeader from "@/components/v4/StaticHeader";
 import Footer from "@/components/v4/Footer";
+
+// Font configurations
+const inter = Inter({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-inter',
+});
+
+const playfair = Playfair_Display({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-playfair',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-jetbrains-mono',
+});
 
 const baseUrl =
     process.env.NEXT_PUBLIC_WEBSITE || "https://shivam-sahil.vercel.app";
@@ -76,7 +96,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="bg-black overflow-x-hidden" data-scroll-behavior="smooth">
+        <html
+            lang="en"
+            className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable} bg-black overflow-x-hidden`}
+            data-scroll-behavior="smooth"
+        >
             <body className="min-h-screen bg-black text-white overflow-x-hidden">
                 <StaticHeader />
                 <main className="pt-24 overflow-x-hidden">

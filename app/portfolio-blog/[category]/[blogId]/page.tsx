@@ -1,7 +1,23 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getBlogBySlug, getCategoryBySlug, getAllBlogs } from '@/lib/blog-service';
+import { getCategoryBySlug, getAllBlogs } from '@/lib/blog-service';
+import { queryBlogWithCategoryAndID } from '@/backend/contentful';
+import MarkdownBlog from '@/components/v4/Blog/MarkdownBlog';
+
+const calculateReadTime = (content: string, wordsPerMinute: number = 200): number => {
+    if (!content) return 1;
+
+    // Count words (split by whitespace and filter empty strings)
+    const wordCount = content
+        .split(/\s+/)
+        .filter(word => word.length > 0).length;
+
+    // Calculate read time in minutes, minimum 1 minute
+    const readTime = Math.ceil(wordCount / wordsPerMinute);
+
+    return Math.max(1, readTime);
+}
 
 interface Props {
     params: Promise<{
@@ -56,7 +72,7 @@ const getCategoryClasses = (themeKey: string) => {
 
 export default async function BlogPage({ params }: Props) {
     const { category: categorySlug, blogId } = await params;
-    const blog = getBlogBySlug(categorySlug, blogId);
+    const blog = await queryBlogWithCategoryAndID(categorySlug, blogId);
     const category = getCategoryBySlug(categorySlug);
 
     if (!blog || !category) {
@@ -129,15 +145,15 @@ export default async function BlogPage({ params }: Props) {
                         <div className="flex items-center gap-3">
                             <div className="relative w-10 h-10 rounded-full overflow-hidden">
                                 <Image
-                                    src={blog.author.avatar}
-                                    alt={blog.author.name}
+                                    src={blog.author.avatar?.url || '/user.png'}
+                                    alt={blog.author.authorName}
                                     fill
                                     className="object-cover"
                                     sizes="40px"
                                 />
                             </div>
                             <div>
-                                <div className="text-white font-semibold">{blog.author.name}</div>
+                                <div className="text-white font-semibold">{blog.author.authorName}</div>
                                 <div className="text-gray-400 text-sm">{blog.author.bio}</div>
                             </div>
                         </div>
@@ -150,19 +166,22 @@ export default async function BlogPage({ params }: Props) {
                             <div>{formatDate(blog.publishDate)}</div>
                             <div className="flex items-center gap-1 mt-1">
                                 <span>📖</span>
-                                <span>{blog.readTime} min read</span>
+                                <span>{calculateReadTime(blog.content)} min read</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-8">
-                        {blog.tags.map((tag) => (
+                        {blog.categoriesCollection.items.map((tag, index) => (
                             <span
-                                key={tag}
-                                className="px-3 py-1 rounded-full text-sm bg-gray-800/50 text-gray-300 border border-gray-700/50"
+                                key={tag.slug}
+                                className={`px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm transition-all duration-300 hover:scale-105 ${index % 2 === 0
+                                        ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30 shadow-lg shadow-emerald-500/10'
+                                        : 'bg-purple-500/10 text-purple-300 border-purple-500/30 shadow-lg shadow-purple-500/10'
+                                    }`}
                             >
-                                #{tag}
+                                #{tag.slug}
                             </span>
                         ))}
                     </div>
@@ -174,7 +193,7 @@ export default async function BlogPage({ params }: Props) {
                 <div className="max-w-4xl mx-auto">
                     <div className="relative aspect-video rounded-2xl overflow-hidden bg-gray-900 border border-gray-800/50">
                         <Image
-                            src={blog.featuredImage}
+                            src={blog.primaryImage?.url || '/cover-photo.png'}
                             alt={blog.title}
                             fill
                             className="object-cover"
@@ -186,26 +205,7 @@ export default async function BlogPage({ params }: Props) {
             </section>
 
             {/* Blog Content */}
-            <section className="px-4 sm:px-6 lg:px-8 pb-20">
-                <div className="max-w-4xl mx-auto">
-                    <article
-                        className="prose prose-invert prose-lg max-w-none
-              prose-headings:text-white prose-headings:font-bold
-              prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-12
-              prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-8
-              prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
-              prose-ul:text-gray-300 prose-ol:text-gray-300
-              prose-li:mb-2 prose-li:leading-relaxed
-              prose-strong:text-white prose-strong:font-semibold
-              prose-code:text-emerald-400 prose-code:bg-gray-900 prose-code:px-2 prose-code:py-1 prose-code:rounded
-              prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-800 prose-pre:rounded-xl
-              prose-blockquote:border-l-4 prose-blockquote:border-emerald-500 prose-blockquote:bg-gray-900/50 prose-blockquote:p-6 prose-blockquote:rounded-r-xl
-              prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300 hover:prose-a:underline
-            "
-                        dangerouslySetInnerHTML={{ __html: blog.content }}
-                    />
-                </div>
-            </section>
+            <MarkdownBlog content={blog.content} />
 
             {/* Navigation Footer */}
             <section className="px-4 sm:px-6 lg:px-8 pb-20">
