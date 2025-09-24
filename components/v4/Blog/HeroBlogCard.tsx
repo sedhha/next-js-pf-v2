@@ -14,7 +14,7 @@ export const HeroBlogCard = ({ blog }: { blog: IBlog }) => {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0">
                 <Image
-                    src={blog.featuredImage || '/placeholder-blog.jpg'}
+                    src={blog.featuredImage || '/cover-photo.png'}
                     alt={blog.title}
                     fill
                     priority

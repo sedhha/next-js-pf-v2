@@ -32,7 +32,7 @@ export const TimelineBlogCard = ({
                     <div className="flex items-start gap-4 mb-4">
                         <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                             <Image
-                                src={blog.featuredImage || '/placeholder-blog.jpg'}
+                                src={blog.featuredImage || '/writing.png'}
                                 alt={blog.title}
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-500"
