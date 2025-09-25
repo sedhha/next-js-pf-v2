@@ -1,36 +1,28 @@
-import * as brevo from '@getbrevo/brevo';
+import nodemailer from 'nodemailer';
 
-interface IEmail {
-	to: string;
-	sender: string;
-	subject: string;
-	textContent?: string;
-	htmlContent?: string;
-}
-
-if (!process.env.BREVO_API_KEY || !process.env.PERSONAL_EMAIL) {
-	throw new Error('BREVO_API_KEY is not defined in environment variables');
-}
-export async function sendEmail(props: IEmail): Promise<boolean> {
-	const apiInstance = new brevo.TransactionalEmailsApi();
-	apiInstance.setApiKey(
-		brevo.TransactionalEmailsApiApiKeys.apiKey,
-		process.env.BREVO_API_KEY as string
+if (
+	!process.env.GMAIL_USER ||
+	!process.env.GMAIL_APP_PASS ||
+	!process.env.TO_USER
+) {
+	throw new Error(
+		'GMAIL_USER and GMAIL_APP_PASS environment variables are required'
 	);
+}
 
-	const sendSmtpEmail = new brevo.SendSmtpEmail();
-
-	sendSmtpEmail.subject = 'Contact Form Submission';
-	sendSmtpEmail.to = [{ email: props.to, name: 'Shivam' }];
-	sendSmtpEmail.sender = { email: 'yourverified@domain.com', name: 'Your App' };
-	sendSmtpEmail.htmlContent = props.htmlContent;
-
-	try {
-		await apiInstance.sendTransacEmail(sendSmtpEmail);
-		console.log('✅ Email sent:');
-		return true;
-	} catch (error) {
-		console.error('❌ Email failed:', error);
-		return false;
+const transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: process.env.GMAIL_USER, // your Gmail
+		pass: process.env.GMAIL_APP_PASS // app password
 	}
+});
+
+export async function sendEmail(to: string, subject: string, html: string) {
+	await transporter.sendMail({
+		from: `"GZB Services" <${process.env.GMAIL_USER}>`,
+		to,
+		subject,
+		html
+	});
 }

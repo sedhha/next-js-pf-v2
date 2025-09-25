@@ -26,17 +26,11 @@ export async function POST(request: Request) {
 
 	// Try sending email, but don't let it affect response
 	try {
-		await sendEmail({
-			to: process.env.PERSONAL_EMAIL ?? '',
-			sender: form.email,
-			subject: `Shivam Sahil Contact Form: ${form.subject}`,
-			htmlContent: htmlTemplate(
-				form.name,
-				form.email,
-				form.subject,
-				form.description
-			)
-		});
+		await sendEmail(
+			process.env.TO_USER ?? '',
+			'New Contact Form Submission',
+			htmlTemplate(form.name, form.email, form.subject, form.description)
+		);
 	} catch (err) {
 		console.error('Email sending failed:', err);
 		// swallow error intentionally
