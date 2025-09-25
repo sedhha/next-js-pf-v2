@@ -1,4 +1,6 @@
 'use client';
+import { V2_APIS } from '@/utils/fe/apis/public';
+import { feFetch } from '@/utils/fe/fetch-utils';
 import React, { useState, useEffect } from 'react';
 
 // Static contact form interface
@@ -6,7 +8,7 @@ interface ContactFormData {
     name: string;
     email: string;
     subject: string;
-    message: string;
+    description: string;
 }
 
 // Contact methods data
@@ -15,7 +17,7 @@ const contactMethods = [
         icon: '📧',
         label: 'Email',
         value: 'activity.schoolsh2@gmail.com',
-        displayText: 'Let\'s talk!',
+        displayText: "Let's talk!",
         description: 'Drop me a line anytime',
         gradient: 'from-emerald-400 to-cyan-400',
         delay: '0s'
@@ -57,8 +59,8 @@ const validateForm = (data: ContactFormData): { [key: string]: string } => {
         errors.subject = 'Subject must be at least 5 characters';
     }
 
-    if (!data.message || data.message.length < 10) {
-        errors.message = 'Message must be at least 10 characters';
+    if (!data.description || data.description.length < 10) {
+        errors.description = 'Description must be at least 10 characters';
     }
 
     return errors;
@@ -114,7 +116,13 @@ const ModernInput = ({
 };
 
 // Contact method card component
-const ContactMethodCard = ({ method, onClick }: { method: typeof contactMethods[0]; onClick: () => void }) => (
+const ContactMethodCard = ({
+    method,
+    onClick
+}: {
+    method: (typeof contactMethods)[0];
+    onClick: () => void;
+}) => (
     <div
         onClick={onClick}
         className="group relative cursor-pointer transform transition-transform duration-300 hover:scale-105"
@@ -128,19 +136,26 @@ const ContactMethodCard = ({ method, onClick }: { method: typeof contactMethods[
             }
         }}
     >
-        <div className="absolute -inset-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl blur-sm"
-            style={{ background: `linear-gradient(to right, var(--tw-gradient-stops))` }}>
-        </div>
-        <div className={`relative bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:bg-black/60 hover:border-gray-700/50 transition-all duration-500 active:scale-95`}>
+        <div
+            className="absolute -inset-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl blur-sm"
+            style={{ background: `linear-gradient(to right, var(--tw-gradient-stops))` }}
+        ></div>
+        <div
+            className={`relative bg-black/40 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:bg-black/60 hover:border-gray-700/50 transition-all duration-500 active:scale-95`}
+        >
             <div className="flex items-center gap-4 mb-4">
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${method.gradient} flex items-center justify-center text-black font-bold text-xl group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                    className={`w-12 h-12 rounded-full bg-gradient-to-r ${method.gradient} flex items-center justify-center text-black font-bold text-xl group-hover:scale-110 transition-transform duration-300`}
+                >
                     {method.icon}
                 </div>
                 <div>
                     <h3 className="text-white font-bold text-lg group-hover:text-emerald-300 transition-colors duration-300">
                         {method.label}
                     </h3>
-                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{method.description}</p>
+                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                        {method.description}
+                    </p>
                 </div>
             </div>
             <p className="text-emerald-400 font-mono text-sm group-hover:text-emerald-300 transition-colors duration-300">
@@ -149,8 +164,18 @@ const ContactMethodCard = ({ method, onClick }: { method: typeof contactMethods[
 
             {/* Click indicator */}
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg className="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg
+                    className="w-5 h-5 text-emerald-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
                 </svg>
             </div>
 
@@ -161,12 +186,12 @@ const ContactMethodCard = ({ method, onClick }: { method: typeof contactMethods[
 );
 
 // Main Contact Component
-const Contact = () => {
+const Contact = ({ id }: { id: string }) => {
     const [formData, setFormData] = useState<ContactFormData>({
         name: '',
         email: '',
         subject: '',
-        message: ''
+        description: ''
     });
 
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -187,13 +212,14 @@ const Contact = () => {
         }
     }, [formData, errors]);
 
-    const handleInputChange = (field: keyof ContactFormData) => (value: string) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-        // Clear error when user starts typing
-        if (errors[field]) {
-            setErrors(prev => ({ ...prev, [field]: '' }));
-        }
-    };
+    const handleInputChange =
+        (field: keyof ContactFormData) => (value: string) => {
+            setFormData((prev) => ({ ...prev, [field]: value }));
+            // Clear error when user starts typing
+            if (errors[field]) {
+                setErrors((prev) => ({ ...prev, [field]: '' }));
+            }
+        };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -208,10 +234,23 @@ const Contact = () => {
 
         // Simulate API call
         try {
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            setSubmitSuccess(true);
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            setTimeout(() => setSubmitSuccess(false), 5000);
+            const response = await feFetch({
+                url: V2_APIS.CONTACT,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${id}`
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.error) {
+                setErrors({ form: 'Failed to send message. Please try again later.' });
+            } else {
+                setSubmitSuccess(true);
+                setFormData({ name: '', email: '', subject: '', description: '' });
+                setErrors({});
+            }
         } catch (error) {
             console.error('Form submission error:', error);
         } finally {
@@ -219,7 +258,7 @@ const Contact = () => {
         }
     };
 
-    const handleContactMethodClick = (method: typeof contactMethods[0]) => {
+    const handleContactMethodClick = (method: (typeof contactMethods)[0]) => {
         if (method.label === 'Email') {
             // Open email client with pre-filled email
             window.location.href = `mailto:${method.value}`;
@@ -243,7 +282,9 @@ const Contact = () => {
                 <div className="text-center mb-20">
                     <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 mb-8">
                         <span className="text-2xl">🚀</span>
-                        <span className="text-emerald-300 font-medium">Let&apos;s Build Something Amazing</span>
+                        <span className="text-emerald-300 font-medium">
+                            Let&apos;s Build Something Amazing
+                        </span>
                     </div>
 
                     <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight mb-8">
@@ -253,16 +294,20 @@ const Contact = () => {
                     </h2>
 
                     <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                        Have an idea that&apos;s burning to become reality? Need help with a project?
-                        Or just want to discuss the fascinating intersection of consciousness and code?
-                        I&apos;m all ears and ready to create something extraordinary together.
+                        Have an idea that&apos;s burning to become reality? Need help with a
+                        project? Or just want to discuss the fascinating intersection of
+                        consciousness and code? I&apos;m all ears and ready to create something
+                        extraordinary together.
                     </p>
                 </div>
 
                 {/* Contact Methods Grid */}
                 <div className="flex flex-wrap justify-center gap-6 mb-20 md:justify-between lg:justify-evenly">
                     {contactMethods.map((method) => (
-                        <div key={method.label} className="flex-shrink-0 w-full sm:w-80 md:w-64 lg:w-72">
+                        <div
+                            key={method.label}
+                            className="flex-shrink-0 w-full sm:w-80 md:w-64 lg:w-72"
+                        >
                             <ContactMethodCard
                                 method={method}
                                 onClick={() => handleContactMethodClick(method)}
@@ -273,13 +318,11 @@ const Contact = () => {
 
                 {/* Main Content Grid */}
                 <div className="grid lg:grid-cols-5 gap-12">
-
                     {/* Contact Form - Takes 3 columns */}
                     <div className="lg:col-span-3">
                         <div className="relative group">
                             <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
                             <div className="relative bg-black/40 backdrop-blur-xl border border-gray-800/50 rounded-3xl p-8 hover:border-gray-700/50 transition-all duration-500">
-
                                 {/* Form Header */}
                                 <div className="flex items-center gap-4 mb-8">
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 flex items-center justify-center">
@@ -298,7 +341,9 @@ const Contact = () => {
                                             <span className="text-2xl">✅</span>
                                             <div>
                                                 <h4 className="font-bold">Message Sent Successfully!</h4>
-                                                <p className="text-sm opacity-80">Thank you for reaching out. I&apos;ll get back to you soon.</p>
+                                                <p className="text-sm opacity-80">
+                                                    Thank you for reaching out. I&apos;ll get back to you soon.
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -337,9 +382,9 @@ const Contact = () => {
                                             label="Message"
                                             type="textarea"
                                             rows={5}
-                                            value={formData.message}
-                                            onChange={handleInputChange('message')}
-                                            error={errors.message}
+                                            value={formData.description}
+                                            onChange={handleInputChange('description')}
+                                            error={errors.description}
                                             placeholder="Tell me about your project, idea, or just say hello..."
                                         />
 
@@ -357,8 +402,18 @@ const Contact = () => {
                                             ) : (
                                                 <span className="flex items-center justify-center gap-3">
                                                     Send Message
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                                    <svg
+                                                        className="w-5 h-5"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                                                        />
                                                     </svg>
                                                 </span>
                                             )}
@@ -394,16 +449,18 @@ const Contact = () => {
 
                     {/* Sidebar - Takes 2 columns */}
                     <div className="lg:col-span-2 space-y-8">
-
                         {/* Philosophy Quote */}
                         <div className="relative group">
                             <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-rose-500/20 rounded-3xl blur-lg opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
                             <div className="relative bg-black/60 backdrop-blur-xl border border-gray-700/50 rounded-3xl p-8 text-center">
                                 <div className="text-4xl mb-4">💭</div>
                                 <blockquote className="text-gray-300 italic leading-relaxed mb-4">
-                                    &quot;Every great project begins with a simple conversation. Every breakthrough starts with &apos;What if we could...?&apos;&quot;
+                                    &quot;Every great project begins with a simple conversation. Every
+                                    breakthrough starts with &apos;What if we could...?&apos;&quot;
                                 </blockquote>
-                                <div className="text-emerald-400 font-medium">— Let&apos;s start that conversation</div>
+                                <div className="text-emerald-400 font-medium">
+                                    — Let&apos;s start that conversation
+                                </div>
                             </div>
                         </div>
 
@@ -436,8 +493,19 @@ const Contact = () => {
                                 Focus Areas
                             </h3>
                             <div className="flex flex-wrap gap-2">
-                                {['Full Stack Development', 'Workflow Automation', 'Agentic Framework', 'System Architecture', 'Data Engineering', 'Philosophy', 'Innovation'].map((skill) => (
-                                    <span key={skill} className="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full">
+                                {[
+                                    'Full Stack Development',
+                                    'Workflow Automation',
+                                    'Agentic Framework',
+                                    'System Architecture',
+                                    'Data Engineering',
+                                    'Philosophy',
+                                    'Innovation'
+                                ].map((skill) => (
+                                    <span
+                                        key={skill}
+                                        className="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded-full"
+                                    >
                                         {skill}
                                     </span>
                                 ))}

@@ -64,3 +64,7 @@ export const ADMIN_APIS = {
 export const FE_ROUTES = {
 	CATEGORY_BLOG_COMBO: '/blogs'
 };
+
+export const V2_APIS = {
+	CONTACT: '/apis/v2/contact'
+};
