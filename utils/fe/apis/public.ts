@@ -66,5 +66,6 @@ export const FE_ROUTES = {
 };
 
 export const V2_APIS = {
-	CONTACT: '/apis/v2/contact'
+	CONTACT: '/apis/v2/contact',
+	VIDEOS: '/apis/v2/videos'
 };
