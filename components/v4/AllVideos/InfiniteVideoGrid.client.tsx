@@ -147,7 +147,7 @@ export default function InfiniteVideoGridClient({
                             </span>
                         </h1>
                         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                            Explore our collection of tutorials and workshops
+                            Explore my collection of tutorials and workshops
                         </p>
                     </div>
 

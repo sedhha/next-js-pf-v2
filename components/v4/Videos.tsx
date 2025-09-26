@@ -421,7 +421,7 @@ const Videos = () => {
                                         Journey through the complete archive of digital chronicles and unlock hidden knowledge
                                     </p>
                                     <Link
-                                        href="/videos"
+                                        href="/portfolio-videos/all"
                                         className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-violet-600 hover:from-emerald-500 hover:to-purple-500 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/30"
                                     >
                                         <span>View All Videos</span>
