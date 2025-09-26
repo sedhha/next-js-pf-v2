@@ -56,9 +56,23 @@ const Intro = () => {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20 pt-32">
+            <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20 pt-20">
                 {/* Hero Section */}
                 <div className="text-center max-w-6xl mx-auto space-y-8 mb-16">
+                    {/* Small text before title */}
+                    <p
+                        className="
+                            relative inline-block italic text-2xl font-light mb-2
+                            bg-clip-text text-transparent
+                            [background-image:linear-gradient(90deg,rgba(255,255,255,0.2),var(--color-theme-emerald-300),var(--color-theme-cyan-400),var(--color-theme-violet-400),rgba(255,255,255,0.2))]
+                            [background-size:200%_100%]
+                            animate-[text-shimmer_3s_linear_infinite]
+                            drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]
+                            sm:drop-shadow-[0_0_14px_rgba(167,139,250,0.5)]
+                        "
+                    >
+                        You are that
+                    </p>
                     {/* Main Title */}
                     <div className="relative group">
                         <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter leading-none">
@@ -75,6 +89,7 @@ const Intro = () => {
                         {/* Animated underline */}
                         <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent transition-all duration-1000 blur-sm"></div>
                     </div>
+
 
                     {/* Subtitle with emoji */}
                     <div className="space-y-4">
@@ -172,12 +187,12 @@ const Intro = () => {
                                     <span
                                         key={tag}
                                         className={`px-6 py-3 rounded-full text-sm font-medium border transition-all duration-300 hover:scale-105 ${index === 0
-                                                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20'
-                                                : index === 1
-                                                    ? 'bg-violet-500/10 border-violet-500/30 text-violet-300 hover:bg-violet-500/20'
-                                                    : index === 2
-                                                        ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20'
-                                                        : 'bg-rose-500/10 border-rose-500/30 text-rose-300 hover:bg-rose-500/20'
+                                            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20'
+                                            : index === 1
+                                                ? 'bg-violet-500/10 border-violet-500/30 text-violet-300 hover:bg-violet-500/20'
+                                                : index === 2
+                                                    ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20'
+                                                    : 'bg-rose-500/10 border-rose-500/30 text-rose-300 hover:bg-rose-500/20'
                                             }`}
                                     >
                                         {tag}
