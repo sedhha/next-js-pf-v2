@@ -1,5 +1,7 @@
 import blogData from '@/data/blogs.json';
 import categoryData from '@/data/blog-categories.json';
+import { queryBlogsByCategory } from '@/backend/contentful';
+import { ICategoryArticles } from '@/interfaces/index';
 
 export interface BlogPost {
 	id: string;
@@ -36,7 +38,7 @@ export interface BlogCategory {
 }
 
 export interface BlogListResponse {
-	blogs: BlogPost[];
+	blogs: ICategoryArticles[];
 	total: number;
 	hasMore: boolean;
 	currentPage: number;
@@ -51,37 +53,19 @@ export function getCategoryBySlug(slug: string): BlogCategory | null {
 	return categoryData.find((category) => category.slug === slug) || null;
 }
 
-export function getBlogsByCategory(
+export async function getBlogsByCategory(
 	categorySlug: string,
-	from: number = 0,
-	to: number = 10
-): BlogListResponse {
-	const categoryBlogs = blogData.filter(
-		(blog) => blog.category === categorySlug
-	);
-	const paginatedBlogs = categoryBlogs.slice(from, to);
+	skip: number = 0,
+	limit: number = 10
+): Promise<BlogListResponse> {
+	const categoryBlogs = await queryBlogsByCategory(categorySlug, limit, skip);
 
 	return {
-		blogs: paginatedBlogs,
-		total: categoryBlogs.length,
-		hasMore: to < categoryBlogs.length,
-		currentPage: Math.floor(from / (to - from)) + 1,
-		totalPages: Math.ceil(categoryBlogs.length / (to - from))
-	};
-}
-
-export function getAllBlogs(
-	from: number = 0,
-	to: number = 10
-): BlogListResponse {
-	const paginatedBlogs = blogData.slice(from, to);
-
-	return {
-		blogs: paginatedBlogs,
-		total: blogData.length,
-		hasMore: to < blogData.length,
-		currentPage: Math.floor(from / (to - from)) + 1,
-		totalPages: Math.ceil(blogData.length / (to - from))
+		blogs: categoryBlogs.items,
+		total: categoryBlogs.total,
+		hasMore: limit < categoryBlogs.total,
+		currentPage: Math.floor(skip / (limit - skip)) + 1,
+		totalPages: Math.ceil(categoryBlogs.total / (limit - skip))
 	};
 }
 

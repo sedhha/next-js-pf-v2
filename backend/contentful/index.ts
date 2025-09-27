@@ -13,6 +13,7 @@ import {
 import { ITotal } from '@/interfaces/api';
 import { IWork } from '@/interfaces/work';
 import {
+	IBlogShort,
 	ICFWorkExperience,
 	IContentfulBlog,
 	IContentfulBlogs,
@@ -307,7 +308,48 @@ const getCategoriesWithBlogCount = async (): Promise<
 	);
 };
 
+const queryAllBlogs = async (): Promise<
+	{ category: string; slug: string }[]
+> => {
+	if (!process.env.CONTENTFUL_BASE_URL || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+		throw new Error(
+			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
+		);
+	}
+
+	return fetch(process.env.CONTENTFUL_BASE_URL, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Connection': 'keep-alive',
+			'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
+		},
+		body: JSON.stringify({
+			query: blogWithPreRendering,
+			variables: null
+		})
+	}).then((res) =>
+		res.json().then((data) => {
+			const finalResult =
+				(data as IContentfulResponse<IBlogShort>)?.data?.output?.items ?? [];
+			const transformed = finalResult.reduce((acc, curr) => {
+				const [category] = curr.categoriesCollection.items;
+				if (category?.slug) {
+					acc.push({
+						slug: curr.sys.id,
+						category: category.slug
+					});
+				}
+				return acc;
+			}, [] as { category: string; slug: string }[]);
+			return transformed;
+		})
+	);
+};
+
 export {
+	queryAllBlogs,
 	queryAllCategories,
 	queryWorkExperience,
 	queryBlogWithCategoryAndID,

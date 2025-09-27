@@ -135,7 +135,7 @@ const getBlogsByIds = `query($ids: [String]!,$limit:Int!,$skip:Int!) {
 `;
 
 const blogWithPreRendering = `query {
-  output: blogCollection(where:{preRenderContent:true}) {
+  output: blogCollection(where:{preRenderContent:true}, order: publishDate_DESC) {
     items {
       sys {
         id

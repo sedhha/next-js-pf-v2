@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getCategoryBySlug, getAllBlogs } from '@/lib/blog-service';
-import { queryBlogWithCategoryAndID } from '@/backend/contentful';
+import { getCategoryBySlug } from '@/lib/blog-service';
+import { queryAllBlogs, queryBlogWithCategoryAndID } from '@/backend/contentful';
 import MarkdownBlog from '@/components/v4/Blog/MarkdownBlog';
 
-const calculateReadTime = (content: string, wordsPerMinute: number = 200): number => {
+const calculateReadTime = (content: string, wordsPerMinute: number = 150): number => {
     if (!content) return 1;
 
     // Count words (split by whitespace and filter empty strings)
@@ -28,7 +28,7 @@ interface Props {
 
 // Generate static paths for all blog posts
 export async function generateStaticParams() {
-    const allBlogs = getAllBlogs(0, 1000).blogs; // Get all blogs
+    const allBlogs = await queryAllBlogs();
 
     return allBlogs.map((blog) => ({
         category: blog.category,
@@ -215,7 +215,7 @@ export default async function BlogPage({ params }: Props) {
                         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                             {/* Back to Category */}
                             <Link
-                                href={`/portfolio-blogs/${category.slug}`}
+                                href={`/portfolio-blogs?category=${category.slug}`}
                                 className="group flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 text-white font-medium transition-all duration-300 hover:scale-105"
                             >
                                 <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

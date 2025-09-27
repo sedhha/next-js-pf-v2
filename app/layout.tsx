@@ -2,7 +2,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google';
 import "./global.css";
-import StaticHeader from "@/components/v4/StaticHeader";
+import StaticHeader from "@/components/v4/ClientHeader";
 import Footer from "@/components/v4/Footer";
 
 // Font configurations

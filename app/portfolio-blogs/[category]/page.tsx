@@ -2,8 +2,9 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getBlogsByCategory, getCategoryBySlug, type BlogPost, type BlogCategory } from '@/lib/blog-service';
+import { getBlogsByCategory, getCategoryBySlug, type BlogCategory } from '@/lib/blog-service';
 import BlogPagination from './BlogPagination';
+import { ICategoryArticles } from '@/interfaces/categories';
 
 interface Props {
     params: Promise<{
@@ -32,10 +33,11 @@ function formatDate(dateString: string): string {
 }
 
 // Blog card component with v4 styling
-function BlogCard({ blog, category }: { blog: BlogPost; category: BlogCategory }) {
+function BlogCard({ blog, category }: { blog: ICategoryArticles; category: BlogCategory; }) {
+    const tags = blog.categories.map(element => element.slug);
     return (
         <Link
-            href={`/portfolio-blogs/${category.slug}/${blog.slug}`}
+            href={`/portfolio-blogs/${category.slug}/${blog.id}`}
             className="group block"
         >
             <article className="bg-black/30 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:bg-black/50 hover:border-gray-700/50 transition-all duration-500 group-hover:transform group-hover:scale-105">
@@ -43,7 +45,7 @@ function BlogCard({ blog, category }: { blog: BlogPost; category: BlogCategory }
                 <div className="flex items-start gap-4 mb-4">
                     <div className="relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
                         <Image
-                            src={blog.featuredImage}
+                            src={blog.img ?? '/writing.png'}
                             alt={blog.title}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -71,14 +73,14 @@ function BlogCard({ blog, category }: { blog: BlogPost; category: BlogCategory }
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                    {blog.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="text-xs px-2 py-1 rounded-md bg-gray-800/50 text-gray-300">
+                    {tags.slice(0, 3).map((tag) => (
+                        <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-gray-800/80 to-gray-900/80 text-gray-300 border border-gray-700/50 hover:border-emerald-500/50 hover:text-emerald-300 transition-all duration-300 backdrop-blur-sm">
                             #{tag}
                         </span>
                     ))}
-                    {blog.tags.length > 3 && (
-                        <span className="text-xs px-2 py-1 rounded-md bg-gray-800/50 text-gray-400">
-                            +{blog.tags.length - 3} more
+                    {tags.length > 3 && (
+                        <span className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 text-emerald-400 border border-emerald-500/30 backdrop-blur-sm">
+                            +{tags.length - 3} more
                         </span>
                     )}
                 </div>
@@ -88,22 +90,18 @@ function BlogCard({ blog, category }: { blog: BlogPost; category: BlogCategory }
                     <div className="flex items-center gap-3">
                         <div className="relative w-6 h-6 rounded-full overflow-hidden">
                             <Image
-                                src={blog.author.avatar}
-                                alt={blog.author.name}
+                                src={blog.authorImg ?? '/user.png'}
+                                alt={blog.authorName}
                                 fill
                                 className="object-cover"
                                 sizes="24px"
                             />
                         </div>
                         <div className="text-sm">
-                            <span className="text-gray-300">{blog.author.name}</span>
+                            <span className="text-gray-300">{blog.authorName}</span>
                             <span className="text-gray-500 mx-2">•</span>
-                            <span className="text-gray-500">{formatDate(blog.publishDate)}</span>
+                            <span className="text-gray-500">{formatDate(blog.date)}</span>
                         </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <span>📖</span>
-                        <span>{blog.readTime} min read</span>
                     </div>
                 </div>
             </article>
@@ -158,7 +156,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     const from = parseInt(fromParam || '0', 10);
     const to = parseInt(toParam || '10', 10);
 
-    const { blogs, total, currentPage, totalPages } = getBlogsByCategory(
+    const { blogs, total, currentPage, totalPages } = await getBlogsByCategory(
         categorySlug,
         from,
         to

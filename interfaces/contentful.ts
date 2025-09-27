@@ -60,6 +60,13 @@ export interface IContentfulBlog {
 	publishDate: string;
 }
 
+export interface IBlogShort {
+	sys: {
+		id: string;
+	};
+	categoriesCollection: IMultiItemResult<ICategories>;
+}
+
 export interface ICFWorkExperience {
 	orgName: string;
 	designation: string;
