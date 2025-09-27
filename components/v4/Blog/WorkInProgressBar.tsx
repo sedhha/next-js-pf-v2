@@ -8,13 +8,13 @@ export const WorkInProgressBar = () => {
             </div>
 
             <div className="w-full bg-gray-800 rounded-full h-2 mb-3 overflow-hidden">
-                <div className="bg-gradient-to-r from-emerald-500 to-cyan-500 h-2 rounded-full w-[65%] relative">
+                <div className="bg-gradient-to-r from-emerald-500 to-cyan-500 h-2 rounded-full w-[90%] relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
                 </div>
             </div>
 
             <p className="text-sm text-gray-400 text-center">
-                Blog section is being enhanced • 65% complete
+                Blog section is being enhanced • 90% complete
             </p>
         </div>
     );

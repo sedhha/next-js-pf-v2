@@ -14,7 +14,7 @@ import { toFEBlog, toFECategory } from '@/components/v4/Blog/utils';
 // Main Blog Component
 const Blog = async ({ category: selectedCategory }: { category?: string }) => {
     const categories = toFECategory(await queryAllCategories());
-    const allBlogs = await queryBlogsByCategory(selectedCategory ?? '*', 100, 0);
+    const allBlogs = await queryBlogsByCategory(selectedCategory ?? categories.map(e => e.slug), 5, 0);
     const [mainBlog, ...filteredBlogs] = toFEBlog(allBlogs);
 
     const categoryCount = await getCategoriesWithBlogCount();

@@ -71,6 +71,39 @@ const getBlogIdsByCategory = `query($categorySlug:String!) {
 }
 `;
 
+export const getBlogsByCategorySlugs = `query($slugs:[String!], $skip:Int!, $limit:Int!) {
+  output:blogCollection(
+    limit: $limit, skip: $skip, 
+    where: {categories: {slug_in: $slugs}},
+    order: publishDate_DESC
+  ) {
+    total
+    items {
+      title
+      excerpt
+      publishDate
+      sys {
+        id
+      }
+      primaryImage @include(if: true) {
+        url
+      }
+      author {
+        avatar {
+          url
+        }
+        authorName
+      }
+      categoriesCollection {
+        items {
+          title
+          slug
+        }
+      }
+    }
+  }
+}`;
+
 const getBlogsByIds = `query($ids: [String]!,$limit:Int!,$skip:Int!) {
   output:blogCollection(where: { sys: { id_in: $ids } },limit:$limit,skip:$skip) {
     total

@@ -148,7 +148,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     const { category: categorySlug } = await params;
     const { from: fromParam, to: toParam } = await searchParams;
 
-    console.log("CategoryPage params:", categorySlug, fromParam, toParam);
 
     const category = getCategoryBySlug(categorySlug);
 

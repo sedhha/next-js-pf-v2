@@ -6,8 +6,7 @@ import {
 	blogWithCategoryAndIDQuery,
 	blogWithPreRendering,
 	getAllCategories,
-	getBlogIdsByCategory,
-	getBlogsByIds,
+	getBlogsByCategorySlugs,
 	getCategoriesWithBlogCountQuery,
 	workExperienceQuery
 } from './query';
@@ -119,9 +118,7 @@ const queryBlogsByCategory = async (
 			'Unable to get Work Experience Data. Database URL not found or Authentication Failed'
 		);
 	}
-	const slug =
-		typeof categorySlug === 'string' ? categorySlug : categorySlug?.[0];
-	if (!slug || !slug?.length) return { total: 0, items: [] };
+	const slugs = typeof categorySlug === 'string' ? [categorySlug] : categorySlug;
 
 	return fetch(process.env.CONTENTFUL_BASE_URL, {
 		method: 'POST',
@@ -132,9 +129,11 @@ const queryBlogsByCategory = async (
 			'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
 		},
 		body: JSON.stringify({
-			query: getBlogIdsByCategory,
+			query: getBlogsByCategorySlugs,
 			variables: {
-				categorySlug: slug.toLowerCase()
+				slugs,
+				limit,
+				skip
 			}
 		})
 	}).then((res) =>
@@ -144,54 +143,30 @@ const queryBlogsByCategory = async (
 					.items?.length
 			)
 				return { total: 0, items: [] };
-			const result = (data as IContentfulResponse<ILinkedForm<IContentfulSys>>)
-				.data.output.items[0];
-
-			const ids = result.linkedFrom.output.items.map((item) => item.sys.id);
-			return fetch(process.env.CONTENTFUL_BASE_URL as string, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Accept': 'application/json',
-					'Connection': 'keep-alive',
-					'Authorization': 'Bearer ' + process.env.CONTENTFUL_ACCESS_TOKEN
-				},
-				body: JSON.stringify({
-					query: getBlogsByIds,
-					variables: {
-						ids,
-						limit,
-						skip
-					}
-				})
-			}).then((res) =>
-				res.json().then((data) => {
-					const result = (
-						data as IContentfulResponse<IContentfulBlogs>
-					).data.output.items.map(
-						(item) =>
-							({
-								img: item?.primaryImage?.url,
-								authorImg: item.author.avatar?.url,
-								authorName: item.author.authorName,
-								title: item.title,
-								excerpt: item.excerpt,
-								date: item.publishDate,
-								id: item.sys.id,
-								categories: item.categoriesCollection.items.map((cat) => ({
-									title: cat.title,
-									slug: cat.slug
-								}))
-							} as ICategoryArticles)
-					);
-					return {
-						total:
-							(data as IContentfulResponse<IContentfulBlogs>).data.output.total ??
-							result.length,
-						items: result
-					};
-				})
+			const result = (
+				data as IContentfulResponse<IContentfulBlogs>
+			).data.output.items.map(
+				(item) =>
+					({
+						img: item?.primaryImage?.url,
+						authorImg: item.author.avatar?.url,
+						authorName: item.author.authorName,
+						title: item.title,
+						excerpt: item.excerpt,
+						date: item.publishDate,
+						id: item.sys.id,
+						categories: item.categoriesCollection.items.map((cat) => ({
+							title: cat.title,
+							slug: cat.slug
+						}))
+					} as ICategoryArticles)
 			);
+			return {
+				total:
+					(data as IContentfulResponse<IContentfulBlogs>).data.output.total ??
+					result.length,
+				items: result
+			};
 		})
 	);
 };
