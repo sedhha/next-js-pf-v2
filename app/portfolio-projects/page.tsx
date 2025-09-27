@@ -7,7 +7,7 @@ export default function ProjectsPage() {
             <Projects />
             <NavigationButtons
                 prevPage={{ label: 'Back to Work', href: '/portfolio-work' }}
-                nextPage={{ label: 'Read My Thoughts', href: '/portfolio-blog' }}
+                nextPage={{ label: 'Read My Thoughts', href: '/portfolio-blogs' }}
             />
         </>
     );

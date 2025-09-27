@@ -79,7 +79,8 @@ export default async function BlogPage({ params }: Props) {
         notFound();
     }
 
-    const categoryClasses = getCategoryClasses(category.theme.primary); return (
+    const categoryClasses = getCategoryClasses(category.theme.primary);
+    return (
         <div className="min-h-screen bg-black">
             {/* Hero Section */}
             <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -102,7 +103,7 @@ export default async function BlogPage({ params }: Props) {
                     <nav className="mb-8">
                         <div className="flex items-center gap-2 text-sm text-gray-400">
                             <Link
-                                href="/portfolio-blog"
+                                href="/portfolio-blogs"
                                 className="hover:text-emerald-400 transition-colors duration-200"
                             >
                                 Blog
@@ -177,8 +178,8 @@ export default async function BlogPage({ params }: Props) {
                             <span
                                 key={tag.slug}
                                 className={`px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm transition-all duration-300 hover:scale-105 ${index % 2 === 0
-                                        ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30 shadow-lg shadow-emerald-500/10'
-                                        : 'bg-purple-500/10 text-purple-300 border-purple-500/30 shadow-lg shadow-purple-500/10'
+                                    ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30 shadow-lg shadow-emerald-500/10'
+                                    : 'bg-purple-500/10 text-purple-300 border-purple-500/30 shadow-lg shadow-purple-500/10'
                                     }`}
                             >
                                 #{tag.slug}
@@ -231,7 +232,7 @@ export default async function BlogPage({ params }: Props) {
 
                             {/* Blog Home */}
                             <Link
-                                href="/portfolio-blog"
+                                href="/portfolio-blogs"
                                 className="group flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-bold hover:scale-105 transition-all duration-300"
                             >
                                 All Blogs

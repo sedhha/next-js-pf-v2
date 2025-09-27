@@ -6,7 +6,7 @@ export default function AwardsPage() {
         <>
             <Awards />
             <NavigationButtons
-                prevPage={{ label: 'Back to Blog', href: '/portfolio-blog' }}
+                prevPage={{ label: 'Back to Blog', href: '/portfolio-blogs' }}
                 nextPage={{ label: 'Watch Videos', href: '/portfolio-videos' }}
             />
         </>

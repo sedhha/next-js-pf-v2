@@ -68,7 +68,7 @@ export const TimelineBlogCard = ({
                     <div className="flex items-center justify-between">
                         <BlogDate date={blog.postDate} />
                         <Link
-                            href={`/portfolio-blog/${blog.categoryID}/${blog.id}`}
+                            href={`/portfolio-blogs/${blog.categoryID}/${blog.id}`}
                             className="text-emerald-400 hover:text-emerald-300 transition-colors duration-200 text-sm font-medium cursor-pointer"
                         >
                             Read more →

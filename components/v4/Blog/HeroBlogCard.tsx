@@ -63,7 +63,7 @@ export const HeroBlogCard = ({ blog }: { blog: IBlog }) => {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <BlogDate date={blog.postDate} />
                     <Link
-                        href={`/portfolio-blog/${blog.categoryID}/${blog.id}`}
+                        href={`/portfolio-blogs/${blog.categoryID}/${blog.id}`}
                         className={`inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r ${theme.gradient} text-black font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer w-fit sm:w-auto`}
                     >
                         Read Story

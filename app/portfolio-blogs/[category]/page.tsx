@@ -255,7 +255,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                             {/* Call to Action */}
                             <div className="space-y-4">
                                 <Link
-                                    href="/portfolio-blog"
+                                    href="/portfolio-blogs"
                                     className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-violet-500 text-black font-bold hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 group"
                                 >
                                     <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -8,7 +8,7 @@ const navigationItems = [
     { label: 'Intro', href: '/portfolio' },
     { label: 'Work', href: '/portfolio-work' },
     { label: 'Projects', href: '/portfolio-projects' },
-    { label: 'Blog', href: '/portfolio-blog' },
+    { label: 'Blog', href: '/portfolio-blogs' },
     { label: 'Awards', href: '/portfolio-awards' },
     { label: 'Videos', href: '/portfolio-videos' },
     { label: 'Testimonials', href: '/portfolio-testimonials' },

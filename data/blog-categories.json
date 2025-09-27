@@ -96,5 +96,19 @@
 			"border": "emerald-500/30",
 			"gradient": "from-emerald-400 to-cyan-400"
 		}
+	},
+	{
+		"id": "ai",
+		"name": "AI",
+		"slug": "ai",
+		"icon": "🧠",
+		"description": "Artificial Intelligence, Machine Learning, LLMs, agents, RAG, and MLOps",
+		"theme": {
+			"primary": "fuchsia-400",
+			"secondary": "pink-300",
+			"bg": "fuchsia-500/10",
+			"border": "fuchsia-500/30",
+			"gradient": "from-fuchsia-400 to-violet-400"
+		}
 	}
 ]

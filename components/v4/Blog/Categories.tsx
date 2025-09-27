@@ -19,8 +19,8 @@ export const Categories = ({ categories, selectedCategory }: CategoriesProps) =>
 
     const onCategorySelect = (category?: string) => {
         const url = !category || category === 'All'
-            ? '/portfolio-blog'
-            : `/portfolio-blog?category=${encodeURIComponent(category)}`;
+            ? '/portfolio-blogs'
+            : `/portfolio-blogs?category=${encodeURIComponent(category)}`;
         router.push(url);
         setIsDropdownOpen(false);
     };

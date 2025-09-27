@@ -1,594 +1,72 @@
-/* Enhanced Dark theme syntax highlighting for MarkdownBlog component */
-/* Based on GitHub Dark theme with cosmic touches and animations */
+/* Minimal CSS: fonts, tiny helpers, hljs polish, and scrollbars.
+   Everything else is Tailwind in the TSX. */
 
-/* Font family styling */
 .markdown-container {
-	font-family: var(--font-playfair), ui-serif, Georgia, serif;
+	font-family: var(--font-playfair, ui-serif, Georgia, serif);
+	color-scheme: dark;
 }
 
+/* Mono stack for code */
 .markdown-container code,
 .markdown-container pre {
-	font-family: var(--font-jetbrains-mono), 'JetBrains Mono', 'Fira Code',
-		'SF Mono', Monaco, Inconsolata, 'Roboto Mono', 'Source Code Pro', monospace !important;
+	font-family: var(
+		--font-jetbrains-mono,
+		'JetBrains Mono',
+		'Fira Code',
+		'SF Mono',
+		Monaco,
+		Inconsolata,
+		'Roboto Mono',
+		'Source Code Pro',
+		monospace
+	) !important;
 }
 
-.markdown-container h1,
-.markdown-container h2,
-.markdown-container h3,
-.markdown-container h4,
-.markdown-container h5,
-.markdown-container h6 {
-	font-family: var(--font-playfair), ui-serif, Georgia, serif;
-}
-
-/* Custom Animations */
-@keyframes float-1 {
-	0%,
-	100% {
-		transform: translateY(0px) translateX(0px) rotate(0deg);
-		opacity: 0.4;
-	}
-	33% {
-		transform: translateY(-20px) translateX(10px) rotate(120deg);
-		opacity: 0.7;
-	}
-	66% {
-		transform: translateY(10px) translateX(-15px) rotate(240deg);
-		opacity: 0.5;
-	}
-}
-
-@keyframes float-2 {
-	0%,
-	100% {
-		transform: translateY(0px) translateX(0px) rotate(0deg);
-		opacity: 0.3;
-	}
-	50% {
-		transform: translateY(-30px) translateX(-20px) rotate(180deg);
-		opacity: 0.6;
-	}
-}
-
-@keyframes float-3 {
-	0%,
-	100% {
-		transform: translateY(0px) translateX(0px) scale(1);
-		opacity: 0.2;
-	}
-	25% {
-		transform: translateY(-10px) translateX(15px) scale(1.2);
-		opacity: 0.4;
-	}
-	75% {
-		transform: translateY(15px) translateX(-10px) scale(0.8);
-		opacity: 0.3;
-	}
-}
-
-@keyframes float-4 {
-	0%,
-	100% {
-		transform: translateY(0px) translateX(0px);
-		opacity: 0.25;
-	}
-	40% {
-		transform: translateY(-25px) translateX(20px);
-		opacity: 0.5;
-	}
-	80% {
-		transform: translateY(5px) translateX(-25px);
-		opacity: 0.35;
-	}
-}
-
-@keyframes float-5 {
-	0%,
-	100% {
-		transform: translateY(0px) translateX(0px) rotate(0deg);
-		opacity: 0.35;
-	}
-	60% {
-		transform: translateY(-15px) translateX(-10px) rotate(216deg);
-		opacity: 0.6;
-	}
-}
-
-@keyframes pulse-slow {
-	0%,
-	100% {
-		opacity: 0.3;
-		transform: scale(1);
-	}
-	50% {
-		opacity: 0.6;
-		transform: scale(1.05);
-	}
-}
-
-@keyframes gradient-shift {
-	0%,
-	100% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-}
-
-@keyframes pulse-glow {
-	0%,
-	100% {
-		opacity: 0.3;
-		transform: scale(0.95);
-	}
-	50% {
-		opacity: 0.5;
-		transform: scale(1.02);
-	}
-}
-
-@keyframes pulse-glow-outer {
-	0%,
-	100% {
-		opacity: 0.1;
-		transform: scale(0.9);
-	}
-	50% {
-		opacity: 0.2;
-		transform: scale(1.1);
-	}
-}
-
-@keyframes twinkle {
-	0%,
-	100% {
-		opacity: 0.2;
-		transform: scale(1);
-	}
-	25% {
-		opacity: 0.8;
-		transform: scale(1.3);
-	}
-	50% {
-		opacity: 0.1;
-		transform: scale(0.8);
-	}
-	75% {
-		opacity: 0.9;
-		transform: scale(1.2);
-	}
-}
-
-@keyframes scan-line {
-	0% {
-		transform: translateY(-100vh);
-		opacity: 0;
-	}
-	10%,
-	90% {
-		opacity: 0.3;
-	}
-	100% {
-		transform: translateY(100vh);
-		opacity: 0;
-	}
-}
-
-@keyframes float {
-	0%,
-	100% {
-		transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		transform: translateY(-20px) rotate(180deg);
-	}
-}
-
-/* Animation classes */
-.animate-float-1 {
-	animation: float-1 8s ease-in-out infinite;
-}
-
-.animate-float-2 {
-	animation: float-2 12s ease-in-out infinite;
-}
-
-.animate-float-3 {
-	animation: float-3 10s ease-in-out infinite;
-}
-
-.animate-float-4 {
-	animation: float-4 14s ease-in-out infinite;
-}
-
-.animate-float-5 {
-	animation: float-5 16s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-	animation: pulse-slow 4s ease-in-out infinite;
-}
-
-.animate-gradient-shift {
-	animation: gradient-shift 8s ease infinite;
-	background-size: 200% 200%;
-}
-
-.animate-pulse-glow {
-	animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-pulse-glow-outer {
-	animation: pulse-glow-outer 4s ease-in-out infinite;
-}
-
-.animate-twinkle {
-	animation: twinkle 3s ease-in-out infinite;
-}
-
-.animate-scan-line {
-	animation: scan-line 8s linear infinite;
-}
-
-.animate-float {
-	animation: float 6s ease-in-out infinite;
-}
-
-/* Radial gradient utility */
-.bg-gradient-radial {
-	background: radial-gradient(var(--tw-gradient-stops));
-}
-
-/* Enhanced syntax highlighting */
+/* Highlight.js base (we already import github-dark.css) — small tweaks for contrast */
 .markdown-container .hljs {
-	display: block;
-	overflow-x: auto;
-	padding: 0;
-	color: #e6edf3;
 	background: transparent;
+	color: #e6edf3; /* readable on black */
 }
 
 .markdown-container .hljs-comment,
 .markdown-container .hljs-quote {
-	color: #7d8590;
+	color: #8b949e;
 	font-style: italic;
 }
 
-.markdown-container .hljs-variable,
-.markdown-container .hljs-template-variable,
-.markdown-container .hljs-tag,
-.markdown-container .hljs-name,
-.markdown-container .hljs-selector-id,
-.markdown-container .hljs-selector-class,
-.markdown-container .hljs-regexp,
-.markdown-container .hljs-deletion {
-	color: #ff7b72;
-}
-
-.markdown-container .hljs-number,
-.markdown-container .hljs-built_in,
-.markdown-container .hljs-builtin-name,
-.markdown-container .hljs-literal,
-.markdown-container .hljs-type,
-.markdown-container .hljs-params,
-.markdown-container .hljs-meta,
-.markdown-container .hljs-link {
-	color: #79c0ff;
-}
-
-.markdown-container .hljs-attribute {
-	color: #79c0ff;
-}
-
-.markdown-container .hljs-string,
-.markdown-container .hljs-symbol,
-.markdown-container .hljs-bullet,
-.markdown-container .hljs-addition {
-	color: #a5d6ff;
-}
-
-.markdown-container .hljs-title,
-.markdown-container .hljs-section {
-	color: #d2a8ff;
-	font-weight: bold;
-}
-
-.markdown-container .hljs-keyword,
-.markdown-container .hljs-selector-tag {
-	color: #ff7b72;
-	font-weight: bold;
-}
-
-.markdown-container .hljs-function {
-	color: #d2a8ff;
-}
-
-.markdown-container .hljs-class {
-	color: #79c0ff;
-}
-
-.markdown-container .hljs-operator {
-	color: #ff7b72;
-}
-
-.markdown-container .hljs-punctuation {
-	color: #e6edf3;
-}
-
-/* Enhanced colors - clean dark theme with cosmic touches */
-.markdown-container .hljs-keyword {
-	color: #10b981; /* emerald-500 */
-	text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-}
-
-.markdown-container .hljs-string {
-	color: #06b6d4; /* cyan-500 */
-	text-shadow: 0 0 8px rgba(6, 182, 212, 0.2);
-}
-
-.markdown-container .hljs-function {
-	color: #8b5cf6; /* violet-500 */
-	text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
-}
-
-.markdown-container .hljs-number {
-	color: #f59e0b; /* amber-500 */
-	text-shadow: 0 0 8px rgba(245, 158, 11, 0.2);
-}
-
-.markdown-container .hljs-comment {
-	color: #6b7280; /* gray-500 */
-	font-style: italic;
-	opacity: 0.8;
-}
-
-.markdown-container .hljs-variable {
-	color: #ec4899; /* pink-500 */
-	text-shadow: 0 0 8px rgba(236, 72, 153, 0.2);
-}
-
-.markdown-container .hljs-title {
-	color: #3b82f6; /* blue-500 */
-	font-weight: bold;
-	text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-}
-
-.markdown-container .hljs-operator,
-.markdown-container .hljs-punctuation {
-	color: #e5e7eb; /* gray-200 */
-}
-
-.markdown-container .hljs-attr {
-	color: #10b981; /* emerald-500 */
-}
-
-.markdown-container .hljs-built_in {
-	color: #f59e0b; /* amber-500 */
-}
-
-.markdown-container .hljs-selector-tag {
-	color: #ec4899; /* pink-500 */
-}
-
-.markdown-container .hljs-selector-class,
-.markdown-container .hljs-selector-id {
-	color: #06b6d4; /* cyan-500 */
-}
-
-/* Enhanced mobile responsiveness */
-@media (max-width: 640px) {
-	.markdown-container {
-		font-size: 14px;
-		line-height: 1.6;
-	}
-
-	.markdown-container h1 {
-		font-size: 2rem;
-		line-height: 1.2;
-		margin-bottom: 1.5rem;
-	}
-
-	.markdown-container h2 {
-		font-size: 1.75rem;
-		line-height: 1.3;
-		margin-bottom: 1.25rem;
-	}
-
-	.markdown-container h3 {
-		font-size: 1.5rem;
-		line-height: 1.3;
-		margin-bottom: 1rem;
-	}
-
-	.markdown-container pre {
-		font-size: 12px;
-		padding: 1rem;
-		margin: 1rem 0;
-		border-radius: 12px;
-	}
-
-	.markdown-container code {
-		font-size: 11px;
-		padding: 2px 4px;
-	}
-
-	.markdown-container blockquote {
-		padding: 1rem;
-		margin: 1.5rem 0;
-		border-radius: 12px;
-	}
-
-	.markdown-container table {
-		font-size: 12px;
-	}
-
-	.markdown-container th,
-	.markdown-container td {
-		padding: 8px 12px;
-	}
-}
-
-@media (min-width: 641px) and (max-width: 768px) {
-	.markdown-container {
-		font-size: 15px;
-		line-height: 1.65;
-	}
-
-	.markdown-container pre {
-		font-size: 13px;
-		padding: 1.25rem;
-	}
-
-	.markdown-container code {
-		font-size: 12px;
-	}
-}
-
-@media (min-width: 1024px) {
-	.markdown-container {
-		font-size: 18px;
-		line-height: 1.8;
-	}
-
-	.markdown-container pre {
-		font-size: 15px;
-		padding: 2rem;
-	}
-
-	.markdown-container code {
-		font-size: 14px;
-	}
-}
-
-/* Remove any default line highlighting and clean up code blocks */
-.markdown-container .hljs .hljs-line {
-	background: none !important;
-	border: none !important;
-	margin: 0 !important;
-	padding: 0 !important;
-}
-
-.markdown-container code[class*='language-'],
-.markdown-container pre[class*='language-'] {
-	font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, Inconsolata,
-		'Roboto Mono', 'Source Code Pro', monospace;
-	direction: ltr;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	tab-size: 4;
-	hyphens: none;
-}
-
-/* Override any existing line highlighting */
-.markdown-container .hljs-ln-line {
-	background: transparent !important;
-	border: none !important;
-}
-
-.markdown-container .hljs-ln {
-	border-collapse: separate;
-	margin: 0;
-}
-
-.markdown-container .hljs-ln td {
-	background: none !important;
-	border: none !important;
-	padding: 0 !important;
-}
-
-/* Remove any text shadows from syntax highlighted elements except enhanced ones */
-.markdown-container .hljs * {
-	background: none !important;
-	border: none !important;
-	box-shadow: none !important;
-}
-
-/* Ensure clean code block styling */
-.markdown-container pre code {
-	background: transparent !important;
-	border: none !important;
-	box-shadow: none !important;
-}
-
-/* Remove any line-by-line styling */
-.markdown-container .hljs-line,
-.markdown-container .code-line,
-.markdown-container pre .line {
-	background: none !important;
-	border: none !important;
-	outline: none !important;
-	box-shadow: none !important;
-}
-
-/* Smooth scrolling for code blocks */
+/* Smooth horizontal scrolling for code blocks + subtle scrollbar */
 .markdown-container pre {
-	scroll-behavior: smooth;
 	scrollbar-width: thin;
-	scrollbar-color: rgba(16, 185, 129, 0.3) rgba(0, 0, 0, 0.1);
+	scrollbar-color: rgba(16, 185, 129, 0.35) rgba(24, 24, 27, 0.6); /* emerald / zinc-900 */
 }
 
 .markdown-container pre::-webkit-scrollbar {
 	height: 8px;
 	width: 8px;
 }
-
 .markdown-container pre::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.1);
+	background: rgba(24, 24, 27, 0.6);
 	border-radius: 4px;
 }
-
 .markdown-container pre::-webkit-scrollbar-thumb {
-	background: rgba(16, 185, 129, 0.3);
+	background: rgba(16, 185, 129, 0.35);
 	border-radius: 4px;
 }
-
 .markdown-container pre::-webkit-scrollbar-thumb:hover {
-	background: rgba(16, 185, 129, 0.5);
+	background: rgba(16, 185, 129, 0.55);
 }
 
-/* Enhanced focus states for accessibility */
-.markdown-container a:focus,
-.markdown-container button:focus {
-	outline: 2px solid #10b981;
-	outline-offset: 2px;
-	border-radius: 4px;
+/* Selection */
+.markdown-container ::selection {
+	background: rgba(16, 185, 129, 0.35);
+	color: #fff;
+}
+.markdown-container ::-moz-selection {
+	background: rgba(16, 185, 129, 0.35);
+	color: #fff;
 }
 
-/* Interactive elements hover states */
-.markdown-container a:hover {
-	cursor: pointer;
-}
-
-.markdown-container pre:hover {
-	transform: translateY(-2px);
-	transition: transform 0.3s ease;
-}
-
-/* Loading states for images */
-.markdown-container img {
-	transition: opacity 0.3s ease;
-}
-
-.markdown-container img:not([src]) {
-	opacity: 0.5;
-	background: linear-gradient(90deg, #374151 25%, transparent 50%, #374151 75%);
-	background-size: 200% 100%;
-	animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-	0% {
-		background-position: 200% 0;
-	}
-	100% {
-		background-position: -200% 0;
-	}
-}
-
-/* Reduced motion preferences */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	.markdown-container *,
 	.markdown-container *::before,
@@ -598,136 +76,35 @@
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
-
-	.markdown-container pre:hover {
-		transform: none !important;
-	}
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-	.markdown-container {
-		--tw-text-opacity: 1;
-		color: rgb(255 255 255);
-	}
-
-	.markdown-container code {
-		border: 2px solid #10b981;
-		background: rgba(0, 0, 0, 0.9);
-	}
-
-	.markdown-container pre {
-		border: 2px solid #06b6d4;
-		background: rgba(0, 0, 0, 0.95);
-	}
-
-	.markdown-container a {
-		text-decoration: underline;
-		text-decoration-thickness: 2px;
-	}
-
-	.markdown-container blockquote {
-		border-left-width: 6px;
-	}
-}
-
-/* Dark mode specific enhancements */
-@media (prefers-color-scheme: dark) {
-	.markdown-container {
-		color-scheme: dark;
-	}
-
-	.markdown-container pre {
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-	}
-
-	.markdown-container code {
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-	}
-}
-
-/* Print styles */
+/* Print: keep legible */
 @media print {
 	.markdown-container {
-		color: black;
-		background: white;
+		color: #000;
+		background: #fff;
 	}
-
 	.markdown-container pre,
 	.markdown-container code {
-		background: #f5f5f5;
-		border: 1px solid #ccc;
-		color: black;
+		background: #f5f5f5 !important;
+		border: 1px solid #ccc !important;
+		color: #111 !important;
 	}
-
 	.markdown-container a {
-		color: black;
+		color: #000 !important;
 		text-decoration: underline;
 	}
-
 	.markdown-container h1,
 	.markdown-container h2,
 	.markdown-container h3,
 	.markdown-container h4,
 	.markdown-container h5,
 	.markdown-container h6 {
-		color: black;
+		color: #000 !important;
 		page-break-after: avoid;
 	}
-
 	.markdown-container blockquote {
-		border-left: 4px solid #ccc;
-		background: #f9f9f9;
+		border-left: 4px solid #ccc !important;
+		background: #f9f9f9 !important;
 	}
-}
-
-/* Selection styles */
-.markdown-container ::selection {
-	background: rgba(16, 185, 129, 0.3);
-	color: white;
-}
-
-.markdown-container ::-moz-selection {
-	background: rgba(16, 185, 129, 0.3);
-	color: white;
-}
-
-/* Custom scrollbar for the entire container on webkit browsers */
-.markdown-container::-webkit-scrollbar {
-	width: 12px;
-}
-
-.markdown-container::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.1);
-	border-radius: 6px;
-}
-
-.markdown-container::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, #10b981, #06b6d4);
-	border-radius: 6px;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.markdown-container::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(to bottom, #059669, #0891b2);
-}
-
-/* Performance optimizations */
-.markdown-container * {
-	will-change: auto;
-}
-
-.markdown-container .animate-float-1,
-.markdown-container .animate-float-2,
-.markdown-container .animate-float-3,
-.markdown-container .animate-float-4,
-.markdown-container .animate-float-5,
-.markdown-container .animate-twinkle {
-	will-change: transform, opacity;
-}
-
-.markdown-container a,
-.markdown-container button,
-.markdown-container [role='button'] {
-	will-change: transform;
 }

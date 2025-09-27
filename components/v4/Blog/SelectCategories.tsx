@@ -10,8 +10,8 @@ export const SelectCategories = ({ categories }: SelectCategoriesProps) => {
     const router = useRouter();
     const onCategorySelect = (category: string) => {
         const url = category === 'All'
-            ? '/portfolio-blog'
-            : `/portfolio-blog?category=${encodeURIComponent(category)}`;
+            ? '/portfolio-blogs'
+            : `/portfolio-blogs?category=${encodeURIComponent(category)}`;
         router.push(url);
     }
 
