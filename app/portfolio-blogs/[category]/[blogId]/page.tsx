@@ -72,6 +72,7 @@ const getCategoryClasses = (themeKey: string) => {
 
 export default async function BlogPage({ params }: Props) {
     const { category: categorySlug, blogId } = await params;
+    console.log('Rendering blog page for category:', categorySlug, 'and blogId:', blogId);
     const blog = await queryBlogWithCategoryAndID(categorySlug, blogId);
     const category = getCategoryBySlug(categorySlug);
 

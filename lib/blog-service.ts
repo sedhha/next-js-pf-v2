@@ -49,8 +49,24 @@ export function getAllCategories(): BlogCategory[] {
 	return categoryData;
 }
 
-export function getCategoryBySlug(slug: string): BlogCategory | null {
-	return categoryData.find((category) => category.slug === slug) || null;
+export function getCategoryBySlug(slug: string): BlogCategory {
+	const category = categoryData.find((category) => category.slug === slug);
+	if (!category)
+		return {
+			id: slug,
+			name: slug?.charAt(0).toUpperCase() + slug?.slice(1),
+			slug: slug,
+			icon: '📂',
+			description: 'General category for uncategorized or fallback content',
+			theme: {
+				primary: 'gray-400',
+				secondary: 'gray-300',
+				bg: 'gray-500/10',
+				border: 'gray-500/30',
+				gradient: 'from-gray-400 to-gray-500'
+			}
+		};
+	return category;
 }
 
 export async function getBlogsByCategory(
