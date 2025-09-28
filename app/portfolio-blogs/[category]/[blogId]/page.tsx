@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -69,6 +70,77 @@ const getCategoryClasses = (themeKey: string) => {
     };
     return themes[themeKey] || themes['emerald-400'];
 };
+
+interface Props {
+    params: Promise<{
+        category: string;
+        blogId: string;
+    }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { category, blogId } = await params;
+    const blog = await queryBlogWithCategoryAndID(category, blogId);
+    const categoryObj = getCategoryBySlug(category);
+
+    if (!blog) {
+        return {
+            title: "Not Found · Shivam Sahil",
+            description: "Blog post not found",
+        };
+    }
+
+    const baseUrl = "https://shivam-sahil.vercel.app"; // replace with your actual site URL
+    const siteName = "Shivam Sahil";
+
+    return {
+        metadataBase: new URL(baseUrl),
+        title: {
+            default: blog.title,
+            template: "%s · Shivam Sahil",
+        },
+        description: blog.excerpt || `Read ${blog.title} in ${categoryObj?.name}`,
+        keywords: [
+            blog.title,
+            blog.categoriesCollection.items.map((tag: any) => tag.slug).join(", ")
+        ],
+        authors: [{ name: blog.author.authorName }],
+        openGraph: {
+            type: "article",
+            url: `${baseUrl}/portfolio-blogs/${category}/${blog.sys.id}`,
+            siteName,
+            title: blog.title,
+            description: blog.excerpt,
+            images: [
+                {
+                    url: blog.primaryImage?.url || "/writing.png",
+                    width: 1200,
+                    height: 630,
+                    alt: blog.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: blog.title,
+            description: blog.excerpt,
+            images: [blog.primaryImage?.url || "/meta-image.jpg"],
+        },
+        alternates: {
+            canonical: `${baseUrl}/portfolio-blogs/${category}/${blog.sys.id}`,
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+        icons: {
+            icon: "/chat-icon.png",
+            apple: "/chat-icon.png",
+        },
+        applicationName: siteName,
+    };
+}
+
 
 export default async function BlogPage({ params }: Props) {
     const { category: categorySlug, blogId } = await params;
