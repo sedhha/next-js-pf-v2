@@ -58,6 +58,7 @@ export interface IContentfulBlog {
 	primaryImage?: IContentfulImage;
 	categoriesCollection: IMultiItemResult<ICategories>;
 	publishDate: string;
+	youtubeUrl?: string;
 }
 
 export interface IBlogShort {

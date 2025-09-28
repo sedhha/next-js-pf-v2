@@ -36,6 +36,7 @@ const blogWithCategoryAndIDQuery = `query($ids: [String]!, $slugs: [String]!) {
         bio
       }
       publishDate
+      youtubeUrl
       primaryImage {
         title
         description

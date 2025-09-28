@@ -289,6 +289,37 @@ export default async function BlogPage({ params }: Props) {
             {/* Blog Content */}
             <MarkdownBlog content={blog.content} />
 
+            {/* View on Youtube */}
+            {/* Watch on YouTube CTA (renders only if a URL is provided) */}
+            {blog.youtubeUrl ? (
+                <section className="px-4 sm:px-6 lg:px-8 mb-12">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="relative group flex justify-center">
+                            {/* soft glow */}
+                            <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500/25 via-rose-500/25 to-amber-400/25 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            {/* gradient border wrapper */}
+                            <div className="relative p-[2px] rounded-2xl bg-gradient-to-r from-red-600 via-rose-500 to-amber-400">
+                                <Link
+                                    href={blog.youtubeUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative inline-flex items-center gap-3 rounded-2xl px-6 sm:px-8 py-4 bg-black text-white font-semibold tracking-wide
+                       ring-1 ring-white/10 hover:ring-white/20 transition-all duration-300
+                       hover:scale-[1.015] shadow-lg shadow-red-500/20"
+                                >
+                                    {/* YouTube play icon */}
+                                    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" className="shrink-0">
+                                        <path fill="currentColor" d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.8 3 12 3 12 3s-6.8 0-8.7.4A4 4 0 0 0 .5 6.2 41.9 41.9 0 0 0 0 12a41.9 41.9 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.2 21 12 21 12 21s6.8 0 8.7-.4a4 4 0 0 0 2.8-2.8c.4-1.9.5-3.8.5-5.8s0-3.9-.5-5.8ZM9.75 15.5v-7l6 3.5-6 3.5Z" />
+                                    </svg>
+                                    <span className="text-base sm:text-lg">Watch it on YouTube</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            ) : null}
+
+
             {/* Navigation Footer */}
             <section className="px-4 sm:px-6 lg:px-8 pb-20">
                 <div className="max-w-4xl mx-auto">
