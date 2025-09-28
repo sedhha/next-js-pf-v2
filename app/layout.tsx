@@ -1,5 +1,6 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google';
 import "./global.css";
 import StaticHeader from "@/components/v4/ClientHeader";
@@ -105,6 +106,7 @@ export default function RootLayout({
                 <StaticHeader />
                 <main className="pt-24 overflow-x-hidden">
                     {children}
+                    <SpeedInsights />
                 </main>
                 <Footer />
             </body>
