@@ -26,3 +26,4 @@ export async function sendEmail(to: string, subject: string, html: string) {
 		html
 	});
 }
+// this can be changed in future accordingly
