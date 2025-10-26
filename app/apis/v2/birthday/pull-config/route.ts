@@ -3,10 +3,7 @@ import {
 	withAuthHeaders,
 	AuthContext
 } from '@/backend/auth/birthday-middleware';
-import {
-	pullConfigByUserId,
-	getConfigJson
-} from '@/backend/supabase/birthday-config';
+import { pullConfigByUserId } from '@/backend/supabase/birthday-config';
 
 /**
  * Handler for pulling user configuration
@@ -81,46 +78,6 @@ async function pullConfigHandler(
 }
 
 /**
- * Alternative handler that returns just the config JSON (no metadata)
- * Useful if you only need the configuration
- */
-async function pullConfigJsonHandler(
-	req: NextRequest,
-	auth: AuthContext
-): Promise<NextResponse> {
-	try {
-		const userId = auth.payload.token_id;
-
-		console.log(`[Pull Config JSON] Fetching config for user: ${userId}`);
-
-		const configJson = await getConfigJson(userId);
-
-		if (!configJson) {
-			return NextResponse.json(
-				{
-					error: 'Not Found',
-					message: `No configuration found for user: ${userId}`
-				},
-				{ status: 404 }
-			);
-		}
-
-		// Return the config JSON as is (no wrapping)
-		return NextResponse.json(configJson, { status: 200 });
-	} catch (error) {
-		console.error('[Pull Config JSON Error]:', error);
-
-		return NextResponse.json(
-			{
-				error: 'Internal Server Error',
-				message: error instanceof Error ? error.message : 'Unknown error'
-			},
-			{ status: 500 }
-		);
-	}
-}
-
-/**
  * GET endpoint to pull configuration
  * Requires valid JWT Bearer token
  * Token_id from JWT is used as user_id to query the database
@@ -131,6 +88,3 @@ export const GET = withAuthHeaders(pullConfigHandler);
  * POST endpoint also supported (in case you want to use POST for config retrieval)
  */
 export const POST = withAuthHeaders(pullConfigHandler);
-
-// Export handlers for alternative routes
-export { pullConfigJsonHandler };
