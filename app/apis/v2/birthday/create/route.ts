@@ -202,27 +202,3 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 		);
 	}
 }
-
-// Handle other methods
-export async function GET(): Promise<NextResponse> {
-	return NextResponse.json(
-		{
-			error: 'Method Not Allowed',
-			message: 'This endpoint only accepts POST requests',
-			usage: {
-				method: 'POST',
-				headers: {
-					'Authorization': 'Basic base64(clientId:clientSecret)',
-					'Content-Type': 'application/json'
-				},
-				body: {
-					clientId: 'sfewfGNbjYjGbbhYcdlKqQ',
-					clientSecret: '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',
-					clientName: 'my-app',
-					expirationAge: 3600
-				}
-			}
-		},
-		{ status: 405 }
-	);
-}
