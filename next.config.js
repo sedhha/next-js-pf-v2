@@ -16,6 +16,10 @@ module.exports = {
             {
                 protocol: 'https',
                 hostname: 'technopain.files.wordpress.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com'
             }
         ],
     },

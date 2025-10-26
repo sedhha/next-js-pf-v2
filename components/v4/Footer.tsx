@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { ISocialHandles } from '@/interfaces/testimonials';
 import myHandles from '@/constants/handles.json';
 
@@ -19,7 +22,7 @@ const socialIcons = {
     ),
     twitter: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417a9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
         </svg>
     ),
     youtube: (
@@ -34,7 +37,7 @@ const socialIcons = {
     ),
     wordpress: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.135-2.85-.135-.584-.031-.661.854-.08.899 0 0 .548.075 1.116.105l1.659 4.537-2.330 7.013-3.88-11.55c.645-.03 1.231-.105 1.231-.105.582-.075.515-.930-.067-.899 0 0-1.755.135-2.88.135-.206 0-.438-.008-.69-.015C4.911 2.015 8.235 0 12.015 0c2.972 0 5.691 1.1 7.754 2.906-.05-.006-.105-.016-.159-.016-.058 0-.12.008-.18.023-1.064 0-1.818.93-1.818 1.92 0 .9.514 1.659 1.065 2.56.412.72.899 1.635.899 2.970 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12.015 24C5.8 24 .705 18.665.705 12.015c0-1.52.165-3.015.465-4.445l4.881 13.378c1.395.455 2.88.7 4.435.7 1.808 0 3.540-.362 5.110-1.02-.045-.075-.075-.165-.105-.24L12.015 24zm6.9-19.665c.15.315.255.675.255 1.050 0 .645-.12 1.365-.48 2.265l-1.92 6.255c-.915 2.220-1.665 3.6-2.295 4.785C16.965 17.205 19.005 14.850 19.005 12.015c0-1.8-.48-3.495-1.32-4.95l.23.27z" />
+            <path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.135-2.85-.135-.584-.031-.661.854-.08.899 0 0 .548.075 1.116.105l1.659 4.537-2.330 7.013-3.88-11.55c.645-.03 1.231-.105 1.231-.105.582-.075.515-.930-.067-.899 0 0-1.755.135-2.88.135-.206 0-.438-.008-.69-.015C4.911 2.015 8.235 0 12.015 0c2.972 0 5.691 1.1 7.754 2.906-.05-.006-.105-.016-.159-.016-.058 0-.12.008-.18.023-1.064 0-1.818.93-1.818 1.92 0 .9.514 1.659 1.065 2.56.412.72.899 1.635.899 2.97 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12.015 24C5.8 24 .705 18.665.705 12.015c0-1.52.165-3.015.465-4.445l4.881 13.378c1.395.455 2.88.7 4.435.7 1.808 0 3.54-.362 5.11-1.02-.045-.075-.075-.165-.105-.24L12.015 24zm6.9-19.665c.15.315.255.675.255 1.05 0 .645-.12 1.365-.48 2.265l-1.92 6.255c-.915 2.22-1.665 3.6-2.295 4.785C16.965 17.205 19.005 14.85 19.005 12.015c0-1.8-.48-3.495-1.32-4.95l.23.27z" />
         </svg>
     ),
     email: (
@@ -49,7 +52,7 @@ const socialIcons = {
     ),
     discord: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.120.098.246.195.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.210 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.210 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z" />
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.195.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z" />
         </svg>
     ),
     stackoverflow: (
@@ -64,16 +67,15 @@ const socialIcons = {
     )
 };
 
-// Social Constellation Component - Pure server component
-const SocialConstellation = () => {
-
+// Social Constellation Component
+const SocialConstellation: React.FC = (): React.ReactElement => {
     return (
         <div className="relative">
             {/* Constellation background */}
             <div className="absolute inset-0 -m-8 rounded-full bg-gradient-to-r from-purple-500/10 via-cyan-500/5 to-red-500/10 blur-2xl animate-pulse" />
 
             <div className="relative flex flex-wrap justify-center gap-8">
-                {socialHandles.map((handle, index) => {
+                {socialHandles.map((handle): React.ReactElement | null => {
                     // Use the platform field directly, fallback to string manipulation for backward compatibility
                     const platformKey = (handle.platform || handle.id.replace(/^(Bs|Ai|Fi|Si)/, '').toLowerCase()) as keyof typeof socialIcons;
                     const Icon = socialIcons[platformKey];
@@ -99,41 +101,18 @@ const SocialConstellation = () => {
                                 href={handle.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="relative w-14 h-14 bg-black/80 backdrop-blur-xl border border-gray-700/50 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:border-cyan-400/60 transition-all duration-500 hover:scale-110 hover:rotate-12 group-hover:shadow-2xl group-hover:shadow-cyan-500/30"
+                                className="relative flex items-center justify-center w-12 h-12 rounded-full border border-gray-700 bg-black/50 backdrop-blur-sm hover:border-cyan-400/50 hover:text-cyan-400 transition-all duration-300 group-hover:scale-110"
+                                aria-label={displayName}
                             >
-                                {Icon}
-
-                                {/* Energy pulse */}
-                                <div className="absolute inset-0 rounded-full border border-cyan-400/30 animate-ping opacity-0 group-hover:opacity-100" />
-
-                                {/* Platform label */}
-                                <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <div className="px-3 py-1 bg-black/90 backdrop-blur-xl border border-gray-700/50 rounded-lg text-xs text-white whitespace-nowrap">
-                                        {displayName}
-                                    </div>
+                                <div className="text-gray-400 group-hover:text-cyan-300 transition-colors">
+                                    {Icon}
                                 </div>
                             </a>
 
-                            {/* Connecting energy lines - CSS hover only */}
-                            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ zIndex: -1 }}>
-                                <defs>
-                                    <linearGradient id={`energy-line-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="rgba(34, 211, 238, 0.8)" />
-                                        <stop offset="50%" stopColor="rgba(168, 85, 247, 0.8)" />
-                                        <stop offset="100%" stopColor="rgba(239, 68, 68, 0.8)" />
-                                    </linearGradient>
-                                </defs>
-                                <circle
-                                    cx="50%"
-                                    cy="50%"
-                                    r="40"
-                                    fill="none"
-                                    stroke={`url(#energy-line-${index})`}
-                                    strokeWidth="2"
-                                    opacity="0.6"
-                                    className="animate-pulse"
-                                />
-                            </svg>
+                            {/* Tooltip */}
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-black/80 rounded whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                {displayName}
+                            </div>
                         </div>
                     );
                 })}
@@ -143,22 +122,30 @@ const SocialConstellation = () => {
 };
 
 // Main Footer Component
-const Footer = () => {
+const Footer: React.FC = (): React.ReactElement | null => {
+    const pathname = usePathname() || '/';
+
+    // Don't show footer on /happy-birthday routes
+    if (pathname.includes('/happy-birthday')) {
+        return null;
+    }
+
     const lastBuild = new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
     });
+
     return (
-        <footer className="relative bg-black pt-20 pb-10 overflow-hidden">
-            {/* Cosmic background */}
+        <footer className="relative bg-black/50 backdrop-blur-md border-t border-gray-800/50 py-16 overflow-hidden">
+            {/* Animated background */}
             <div className="absolute inset-0 pointer-events-none">
                 {/* Deep space gradient */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/20 to-black" />
 
                 {/* Matrix rain effect */}
                 <div className="absolute inset-0 opacity-10">
-                    {[...Array(20)].map((_, i) => (
+                    {[...Array(20)].map((_, i): React.ReactElement => (
                         <div
                             key={i}
                             className="absolute w-px h-full bg-gradient-to-b from-transparent via-green-400 to-transparent animate-pulse"
@@ -226,7 +213,7 @@ const Footer = () => {
 
             {/* Cosmic dust overlay */}
             <div className="absolute inset-0 pointer-events-none opacity-20">
-                {[...Array(100)].map((_, i) => {
+                {[...Array(100)].map((_, i): React.ReactElement => {
                     // Use deterministic values based on index to prevent hydration mismatch
                     const seed = i * 17; // Simple seed based on index
                     const left = (seed % 100);

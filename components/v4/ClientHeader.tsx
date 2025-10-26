@@ -17,12 +17,17 @@ const navigationItems = [
     { label: 'Contact', href: '/portfolio-contact' }
 ];
 
-const ClientHeader = () => {
+const ClientHeader: React.FC = (): React.ReactElement | null => {
     const pathname = usePathname() || '/';
 
-    const normalize = (p: string) => (p === '/' ? '/' : p.replace(/\/+$/, ''));
+    // Don't show header on /happy-birthday routes
+    if (pathname.includes('/happy-birthday')) {
+        return null;
+    }
 
-    const isActive = (href: string) => {
+    const normalize = (p: string): string => (p === '/' ? '/' : p.replace(/\/+$/, ''));
+
+    const isActive = (href: string): boolean => {
         const p = normalize(pathname);
         const h = normalize(href);
 
