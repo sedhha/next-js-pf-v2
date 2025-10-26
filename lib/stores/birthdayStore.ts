@@ -57,9 +57,37 @@ interface BirthdayStore {
 	resetState: () => void;
 }
 
+// Helper functions for sessionStorage
+const getStoredToken = (): string | null => {
+	if (typeof window === 'undefined') return null;
+	try {
+		return sessionStorage.getItem('birthdayToken');
+	} catch {
+		return null;
+	}
+};
+
+const setStoredToken = (token: string): void => {
+	if (typeof window === 'undefined') return;
+	try {
+		sessionStorage.setItem('birthdayToken', token);
+	} catch {
+		// Silently fail if sessionStorage is not available
+	}
+};
+
+const removeStoredToken = (): void => {
+	if (typeof window === 'undefined') return;
+	try {
+		sessionStorage.removeItem('birthdayToken');
+	} catch {
+		// Silently fail if sessionStorage is not available
+	}
+};
+
 export const useBirthdayStore = create<BirthdayStore>((set) => ({
 	currentView: 'intro',
-	birthdayToken: null,
+	birthdayToken: getStoredToken(),
 	selectedConfig: null,
 	configCards: [],
 	messages: [],
@@ -68,13 +96,17 @@ export const useBirthdayStore = create<BirthdayStore>((set) => ({
 	messagesPerPage: 100,
 
 	setCurrentView: (view) => set({ currentView: view }),
-	setBirthdayToken: (token) => set({ birthdayToken: token }),
+	setBirthdayToken: (token) => {
+		setStoredToken(token);
+		set({ birthdayToken: token });
+	},
 	setSelectedConfig: (config) => set({ selectedConfig: config }),
 	setConfigCards: (cards) => set({ configCards: cards }),
 	setMessages: (messages) => set({ messages }),
 	setCurrentMessagePage: (page) => set({ currentMessagePage: page }),
 	setTotalMessages: (total) => set({ totalMessages: total }),
-	resetState: () =>
+	resetState: () => {
+		removeStoredToken();
 		set({
 			currentView: 'intro',
 			birthdayToken: null,
@@ -83,7 +115,8 @@ export const useBirthdayStore = create<BirthdayStore>((set) => ({
 			messages: [],
 			currentMessagePage: 0,
 			totalMessages: 0
-		})
+		});
+	}
 }));
 
 const getCurrentView = () => useBirthdayStore.getState().currentView;

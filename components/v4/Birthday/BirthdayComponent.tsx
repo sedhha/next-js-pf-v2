@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useBirthdayStore } from '@/lib/stores/birthdayStore';
 import BirthdayIntro from '@/components/v4/Birthday/Intro';
 import TokenView from '@/components/v4/Birthday/TokenView';
@@ -8,11 +8,18 @@ import Component1 from '@/components/v4/Birthday/ConfigComponents/Component1';
 import Component2 from '@/components/v4/Birthday/ConfigComponents/Component2';
 
 const HappyBirthdayPage: React.FC = (): React.ReactElement => {
-    const currentView = useBirthdayStore((state) => state.currentView);
+    const [isHydrated, setIsHydrated] = useState(false);
+    const { currentView, birthdayToken, setCurrentView } = useBirthdayStore();
+
 
     useEffect(() => {
+        // Mark as hydrated after client-side mount
+        setIsHydrated(true);
+
         // Initialize store on mount
-        useBirthdayStore.setState({ currentView: 'intro' });
+        if (!birthdayToken)
+            setCurrentView('intro');
+        else setCurrentView('token');
 
         // Prevent scrolling on html and body
         const htmlElement = document.documentElement;
@@ -30,9 +37,7 @@ const HappyBirthdayPage: React.FC = (): React.ReactElement => {
             htmlElement.style.height = '';
             bodyElement.style.height = '';
         };
-    }, []);
-
-    console.log('Current View:', currentView);
+    }, [birthdayToken, setCurrentView]);
 
     const renderView = (): React.ReactElement => {
         switch (currentView) {
@@ -50,6 +55,28 @@ const HappyBirthdayPage: React.FC = (): React.ReactElement => {
                 return <BirthdayIntro />;
         }
     };
+
+    // Show loading state until hydration is complete
+    if (!isHydrated) {
+        return (
+            <div className="fixed inset-0 overflow-hidden bg-black flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="flex gap-2">
+                        {[0, 1, 2].map((i) => (
+                            <div
+                                key={i}
+                                className="w-3 h-3 rounded-full bg-cyan-500 animate-pulse"
+                                style={{
+                                    animationDelay: `${i * 0.15}s`,
+                                }}
+                            />
+                        ))}
+                    </div>
+                    <p className="text-gray-400 text-sm">Loading...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="fixed inset-0 overflow-hidden bg-black">
