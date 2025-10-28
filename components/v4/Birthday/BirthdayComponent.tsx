@@ -36,6 +36,7 @@ const HappyBirthdayPage: React.FC = (): React.ReactElement => {
             htmlElement.style.height = '';
             bodyElement.style.height = '';
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Empty dependency array - only run once on mount
 
     const renderView = (): React.ReactElement => {
