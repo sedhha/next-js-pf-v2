@@ -98,7 +98,7 @@ const BirthdayIntro: React.FC = (): React.ReactElement => {
                     <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-center gap-2">
                         <span className="text-cyan-400 text-sm">💡</span>
                         <p className="text-gray-300 text-sm font-light">
-                            This experience is optimized for mobile. For best results, view on your phone or tablet.
+                            This experience is optimized for desktop. For best results, view on your desktop or tablet.
                         </p>
                     </div>
                 </motion.div>
