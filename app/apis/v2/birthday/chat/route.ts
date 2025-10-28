@@ -6,8 +6,8 @@ import {
 	AuthContext
 } from '@/backend/auth/birthday-middleware';
 import { pullConfigByUserId } from '@/backend/supabase/birthday-config';
-import { searchInCollection } from '@/backend/qdrant/client';
-import { chatWithPersona } from '@/backend/digital_clone/groq_llama';
+// import { searchInCollection } from '@/backend/qdrant/client';
+import { chatWithPersona } from '@/backend/digital_clone/gpt_4o';
 import {
 	saveChatMessage,
 	getRecentChatMessages,
@@ -75,20 +75,22 @@ async function chatHandler(
 		}
 
 		// Search vector database for context
-		const searchResults = await searchInCollection(
-			message,
-			config.qdrant_colection_name
-		);
+		// const searchResults = await searchInCollection(
+		// 	message,
+		// 	config.qdrant_colection_name
+		// );
 
-		const personaContext = searchResults
-			.slice(0, 5)
-			.map((r: any) => r.payload?.text)
-			.join('\n');
+		// console.log('search results:', searchResults);
+
+		// const personaContext = searchResults
+		// 	.slice(0, 5)
+		// 	.map((r: any) => r.payload?.text)
+		// 	.join('\n');
 
 		// Get stream from Groq
 		const stream = await chatWithPersona(
 			message,
-			personaContext,
+			'',
 			config.system_prompt,
 			chatHistory.map((msg) => ({
 				role: msg.role,
