@@ -12,7 +12,9 @@ export interface BirthdayConfiguration {
 	system_prompt: string;
 	qdrant_colection_name: string;
 	initial_message: string;
+	s3_folder: string;
 	created_at: string;
+	image_captions: string[];
 }
 
 /**

@@ -5,7 +5,7 @@ import BirthdayIntro from '@/components/v4/Birthday/Intro';
 import TokenView from '@/components/v4/Birthday/TokenView';
 import ConfigCardsView from '@/components/v4/Birthday/ConfigCards';
 import ChatComponent from '@/components/v4/Birthday/ConfigComponents/ChatComponent';
-import Component2 from '@/components/v4/Birthday/ConfigComponents/Component2';
+import BirthdayWish from '@/components/v4/Birthday/BirthdayWish/BirthdayWish';
 
 const HappyBirthdayPage: React.FC = (): React.ReactElement => {
     const [isHydrated, setIsHydrated] = useState(false);
@@ -50,7 +50,7 @@ const HappyBirthdayPage: React.FC = (): React.ReactElement => {
             case 'component1':
                 return <ChatComponent />;
             case 'component2':
-                return <Component2 />;
+                return <BirthdayWish />;
             default:
                 return <BirthdayIntro />;
         }
