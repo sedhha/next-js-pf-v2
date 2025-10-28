@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Heart, Sparkles } from 'lucide-react';
+import { Heart, Sparkles, Loader } from 'lucide-react';
 import { useBirthdayStore } from '@/lib/stores/birthdayStore';
 
 // CSS animations for 3D effects and glowing
@@ -158,6 +158,11 @@ const BirthdayWish: React.FC = (): React.ReactElement => {
         fetchImages();
     }, [birthdayToken]);
 
+    // Calculate split point: 3 rows (9 images) above, rest below
+    const splitIndex = 9; // 3 rows × 3 columns = 9 images in top gallery
+    const topImages = images.slice(0, splitIndex);
+    const bottomImages = images.slice(splitIndex);
+
     return (
         <div className="relative w-full h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 overflow-hidden">
             <style>{styles}</style>
@@ -231,11 +236,23 @@ const BirthdayWish: React.FC = (): React.ReactElement => {
                         </p>
                     </div>
 
+                    {/* Loading State */}
+                    {isLoadingImages && (
+                        <div className="w-full max-w-7xl mx-auto mb-12 flex flex-col items-center justify-center py-12">
+                            <div className="flex flex-col items-center gap-4">
+                                <Loader className="w-12 h-12 text-purple-600 animate-spin" />
+                                <p className="text-xl font-bold text-purple-600 animate-pulse">
+                                    Loading beautiful memories... ✨
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Top Image Gallery - First Half of Images */}
-                    {!isLoadingImages && images.length > 0 && (
+                    {!isLoadingImages && topImages.length > 0 && (
                         <div className="w-full max-w-7xl mx-auto mb-12">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-4">
-                                {images.slice(0, Math.ceil(images.length / 2)).map((image, index) => (
+                                {topImages.map((image, index) => (
                                     <div
                                         key={index}
                                         className="relative group cursor-pointer transform transition-all duration-300 hover:-translate-y-2"
@@ -353,10 +370,10 @@ const BirthdayWish: React.FC = (): React.ReactElement => {
 
                     {/* Bottom Image Gallery - Second Half of Images */}
                     <div className="w-full max-w-7xl mx-auto mb-12">
-                        {!isLoadingImages && images.length > 0 && (
+                        {!isLoadingImages && bottomImages.length > 0 && (
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-4">
-                                {images.slice(Math.ceil(images.length / 2)).map((image, index) => {
-                                    const actualIndex = Math.ceil(images.length / 2) + index;
+                                {bottomImages.map((image, index) => {
+                                    const actualIndex = splitIndex + index;
                                     return (
                                         <div
                                             key={actualIndex}
