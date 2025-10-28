@@ -4,22 +4,21 @@ import { useBirthdayStore } from '@/lib/stores/birthdayStore';
 import BirthdayIntro from '@/components/v4/Birthday/Intro';
 import TokenView from '@/components/v4/Birthday/TokenView';
 import ConfigCardsView from '@/components/v4/Birthday/ConfigCards';
-import Component1 from '@/components/v4/Birthday/ConfigComponents/Component1';
+import ChatComponent from '@/components/v4/Birthday/ConfigComponents/ChatComponent';
 import Component2 from '@/components/v4/Birthday/ConfigComponents/Component2';
 
 const HappyBirthdayPage: React.FC = (): React.ReactElement => {
     const [isHydrated, setIsHydrated] = useState(false);
     const { currentView, birthdayToken, setCurrentView } = useBirthdayStore();
 
-
     useEffect(() => {
         // Mark as hydrated after client-side mount
         setIsHydrated(true);
 
-        // Initialize store on mount
-        if (!birthdayToken)
+        // Initialize store on mount - only set initial view if not already set
+        if (!birthdayToken) {
             setCurrentView('intro');
-        else setCurrentView('token');
+        }
 
         // Prevent scrolling on html and body
         const htmlElement = document.documentElement;
@@ -37,7 +36,7 @@ const HappyBirthdayPage: React.FC = (): React.ReactElement => {
             htmlElement.style.height = '';
             bodyElement.style.height = '';
         };
-    }, [birthdayToken, setCurrentView]);
+    }, []); // Empty dependency array - only run once on mount
 
     const renderView = (): React.ReactElement => {
         switch (currentView) {
@@ -48,7 +47,7 @@ const HappyBirthdayPage: React.FC = (): React.ReactElement => {
             case 'cards':
                 return <ConfigCardsView />;
             case 'component1':
-                return <Component1 />;
+                return <ChatComponent />;
             case 'component2':
                 return <Component2 />;
             default:

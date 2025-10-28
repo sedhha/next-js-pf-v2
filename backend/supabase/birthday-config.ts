@@ -9,6 +9,9 @@ export interface BirthdayConfiguration {
 	id: string;
 	user_id: string;
 	configuration: Record<string, unknown>; // JSON column
+	system_prompt: string;
+	qdrant_colection_name: string;
+	initial_message: string;
 	created_at: string;
 }
 

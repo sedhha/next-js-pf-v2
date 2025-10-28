@@ -5,9 +5,50 @@ import { motion } from 'framer-motion';
 import { useBirthdayStore, ConfigCard } from '@/lib/stores/birthdayStore';
 
 const ConfigCardsView: React.FC = (): React.ReactElement => {
-    const { configCards, selectedConfig, setSelectedConfig, setCurrentView } = useBirthdayStore();
+    const { configCards, selectedConfig, setSelectedConfig, setCurrentView, birthdayToken, setConfigCards } = useBirthdayStore();
     const [showBeginButton, setShowBeginButton] = useState(false);
     const [cards, setCards] = useState<ConfigCard[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Fetch config on mount if token exists
+    useEffect(() => {
+        const fetchConfig = async () => {
+            try {
+                if (!birthdayToken) {
+                    setIsLoading(false);
+                    return;
+                }
+
+                const response = await fetch('/apis/v2/birthday/pull-config', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${birthdayToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    const config = result.data;
+
+                    // Convert config to ConfigCard format
+                    const configCards = convertConfigToCards(config);
+                    setConfigCards(configCards);
+                    setCards(configCards);
+                } else {
+                    console.error('Failed to fetch config:', response.status);
+                    setCards([]);
+                }
+            } catch (error) {
+                console.error('Error fetching config:', error);
+                setCards([]);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchConfig();
+    }, [birthdayToken, setConfigCards]);
 
     // Sync cards from store
     useEffect(() => {
@@ -15,6 +56,39 @@ const ConfigCardsView: React.FC = (): React.ReactElement => {
             setCards(configCards);
         }
     }, [configCards]);
+
+    const convertConfigToCards = (config: any): ConfigCard[] => {
+        // If config has 'cards' array property
+        if (Array.isArray(config)) {
+            return config.map((card: unknown, index: number) => {
+                if (typeof card !== 'object' || card === null) return null;
+                const cardObj = card as Record<string, unknown>;
+
+                return {
+                    id: cardObj.id ? String(cardObj.id) : `config-${index}`,
+                    title: String(cardObj.title || `Card ${index + 1}`),
+                    description: String(
+                        cardObj.description || 'Special moment in your celebration'
+                    ),
+                    icon: String(cardObj.icon || '✨'),
+                    gradient: String(
+                        cardObj.gradient || 'from-cyan-600 to-blue-600'
+                    ),
+                    borderColor: String(
+                        cardObj.borderColor || 'border-cyan-500/30 hover:border-cyan-400/60'
+                    ),
+                    glowColor: String(
+                        cardObj.glowColor || 'from-cyan-500/30 to-blue-500/20'
+                    ),
+                    componentTarget: String(
+                        cardObj.componentTarget || `component${index + 1}`
+                    ),
+                } as ConfigCard;
+            }).filter((card): card is ConfigCard => card !== null);
+        }
+
+        return [];
+    };
 
     const handleCardSelect = (card: ConfigCard): void => {
         setSelectedConfig(card);
@@ -64,6 +138,27 @@ const ConfigCardsView: React.FC = (): React.ReactElement => {
             transition: { duration: 0.3 },
         },
     };
+
+    if (isLoading) {
+        return (
+            <div className="fixed inset-0 overflow-hidden bg-black flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="flex gap-2">
+                        {[0, 1, 2].map((i) => (
+                            <div
+                                key={i}
+                                className="w-3 h-3 rounded-full bg-cyan-500 animate-pulse"
+                                style={{
+                                    animationDelay: `${i * 0.15}s`,
+                                }}
+                            />
+                        ))}
+                    </div>
+                    <p className="text-gray-400 text-sm">Loading your options...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="w-screen min-h-screen bg-black relative overflow-hidden">
@@ -267,7 +362,7 @@ const ConfigCardsView: React.FC = (): React.ReactElement => {
                     >
                         <motion.button
                             onClick={handleBegin}
-                            className={`px-12 py-4 rounded-full font-semibold text-lg transition-all duration-300 ${selectedConfig?.id === 'config-1'
+                            className={`cursor-pointer px-12 py-4 rounded-full font-semibold text-lg transition-all duration-300 ${selectedConfig?.id === 'config-1'
                                 ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white hover:shadow-lg hover:shadow-cyan-500/50'
                                 : 'bg-gradient-to-r from-violet-600 to-pink-600 text-white hover:shadow-lg hover:shadow-violet-500/50'
                                 }`}
@@ -280,7 +375,7 @@ const ConfigCardsView: React.FC = (): React.ReactElement => {
                 )}
 
                 {/* Hint text */}
-                {!showBeginButton && (
+                {!showBeginButton && cards.length > 0 && (
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
