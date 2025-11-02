@@ -20,6 +20,10 @@ module.exports = {
             {
                 protocol: 'https',
                 hostname: 'images.unsplash.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'google.github.io'
             }
         ],
     },

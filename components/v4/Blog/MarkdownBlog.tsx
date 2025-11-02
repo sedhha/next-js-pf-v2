@@ -251,7 +251,7 @@ const MarkdownBlog = ({ content }: MarkdownBlogProps) => {
 
                                 // Enhanced images with zoom effect
                                 img: ({ src, alt, ...props }: ComponentProps) => (
-                                    <div className="group/img my-6 sm:my-8 lg:my-12 overflow-hidden rounded-2xl">
+                                    <span className="group/img my-6 sm:my-8 lg:my-12 overflow-hidden rounded-2xl block">
                                         <Image
                                             src={src || '/waiting.png'}
                                             alt={alt || 'image'}
@@ -261,7 +261,7 @@ const MarkdownBlog = ({ content }: MarkdownBlogProps) => {
                                             style={{ width: '100%', height: 'auto' }}
                                             {...props}
                                         />
-                                    </div>
+                                    </span>
                                 ),
 
                                 // Enhanced emphasis
