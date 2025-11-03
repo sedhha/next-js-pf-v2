@@ -286,9 +286,6 @@ export default async function BlogPage({ params }: Props) {
                 </div>
             </section>
 
-            {/* Blog Content */}
-            <MarkdownBlog content={blog.content} />
-
             {/* View on Youtube */}
             {/* Watch on YouTube CTA (renders only if a URL is provided) */}
             {blog.youtubeUrl ? (
@@ -318,6 +315,10 @@ export default async function BlogPage({ params }: Props) {
                     </div>
                 </section>
             ) : null}
+
+
+            {/* Blog Content */}
+            <MarkdownBlog content={blog.content} />
 
 
             {/* Navigation Footer */}
