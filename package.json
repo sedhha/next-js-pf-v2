@@ -7,7 +7,7 @@
 		"build": "next build",
 		"build:no-sync": "next build",
 		"start": "next start",
-		"sync-env": "node --env-file=.env --experimental-strip-types scripts/sync-env.ts",
+		"sync-env": "bash scripts/run-sync.sh",
 		"test": "vitest",
 		"test:ci": "vitest run",
 		"test:e2e": "playwright test --config=playwright.config.ts",
