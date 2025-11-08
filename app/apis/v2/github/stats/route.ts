@@ -1,6 +1,5 @@
 // app/api/streak/route.ts
 import { NextRequest } from 'next/server';
-import { loadEnvOverrides } from '@/backend/supabase/env-cache';
 
 type Day = { date: string; count: number };
 
@@ -427,9 +426,6 @@ function svgTemplate({
 // === GET handler (unchanged logic; new theme params) ===
 export async function GET(req: NextRequest) {
 	try {
-		// Load environment overrides from cache
-		await loadEnvOverrides();
-
 		const { searchParams } = new URL(req.url);
 		const user = searchParams.get('user') || 'sedhha';
 
