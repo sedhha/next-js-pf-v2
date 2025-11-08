@@ -1,5 +1,6 @@
 // app/api/streak/route.ts
 import { NextRequest } from 'next/server';
+import { loadEnvOverrides } from '@/backend/supabase/env-cache';
 
 type Day = { date: string; count: number };
 
@@ -53,7 +54,22 @@ async function fetchCalendar(
 
 	if (!res.ok) {
 		const txt = await res.text().catch(() => '');
-		throw new Error(`GitHub GraphQL error: ${res.status} ${txt}`);
+		// Parse error details for SVG display
+		let errorMessage = 'Unknown error';
+		let errorStatus = res.status.toString();
+
+		try {
+			const errorJson = JSON.parse(txt);
+			errorMessage = errorJson.message || errorMessage;
+			errorStatus = errorJson.status || errorStatus;
+		} catch {
+			// If not JSON, use status text
+			errorMessage = res.statusText || `HTTP ${res.status}`;
+		}
+
+		throw new Error(
+			JSON.stringify({ message: errorMessage, status: errorStatus })
+		);
 	}
 	const json = await res.json();
 	const cal = json?.data?.user?.contributionsCollection?.contributionCalendar;
@@ -169,6 +185,95 @@ const THEMES: Record<string, Palette> = {
 	}
 };
 
+function errorSvgTemplate({
+	palette,
+	errorMessage,
+	errorStatus,
+	transparentBackground = false
+}: {
+	palette: Palette;
+	errorMessage: string;
+	errorStatus: string;
+	transparentBackground?: boolean;
+}) {
+	const { bg, border, text, subtext } = palette;
+	const errorColor = '#EF4444'; // red-500
+
+	return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'
+     style='isolation: isolate' viewBox='0 0 495 195' width='495px' height='195px' direction='ltr'>
+  <style>
+    @keyframes fadein {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+      20%, 40%, 60%, 80% { transform: translateX(3px); }
+    }
+    text { paint-order: stroke; }
+  </style>
+  <defs>
+    <clipPath id='outer_rectangle'>
+      <rect width='495' height='195' rx='4.5'/>
+    </clipPath>
+  </defs>
+
+  <g clip-path='url(#outer_rectangle)'>
+    <g style='isolation: isolate'>
+      <rect stroke='${border}' fill='${
+		transparentBackground ? 'none' : bg
+	}' rx='4.5' x='0.5' y='0.5' width='494' height='194'/>
+    </g>
+
+    <!-- Error Icon (Alert Triangle) -->
+    <g transform='translate(247.5, 35)' style='opacity: 0; animation: fadein 0.5s linear forwards, shake 0.5s ease-in-out 0.5s'>
+      <circle cx='0' cy='0' r='30' fill='${errorColor}' opacity='0.1'/>
+      <path d='M 0 -20 L 17.32 10 L -17.32 10 Z' fill='none' stroke='${errorColor}' stroke-width='3' stroke-linejoin='round'/>
+      <line x1='0' y1='-5' x2='0' y2='5' stroke='${errorColor}' stroke-width='3' stroke-linecap='round'/>
+      <circle cx='0' cy='9' r='1.5' fill='${errorColor}'/>
+    </g>
+
+    <!-- Error Title -->
+    <g transform='translate(247.5, 95)'>
+      <text x='0' y='0' text-anchor='middle' fill='${errorColor}'
+            font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='700' font-size='18px'
+            style='opacity: 0; animation: fadein 0.5s linear forwards 0.3s'>
+        Trouble Fetching Stats
+      </text>
+    </g>
+
+    <!-- Error Details -->
+    <g transform='translate(247.5, 120)'>
+      <text x='0' y='0' text-anchor='middle' fill='${text}'
+            font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='600' font-size='13px'
+            style='opacity: 0; animation: fadein 0.5s linear forwards 0.5s'>
+        Error: ${errorMessage}
+      </text>
+    </g>
+
+    <!-- Status Code -->
+    <g transform='translate(247.5, 145)'>
+      <text x='0' y='0' text-anchor='middle' fill='${subtext}'
+            font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='400' font-size='12px'
+            style='opacity: 0; animation: fadein 0.5s linear forwards 0.7s'>
+        Status: ${errorStatus}
+      </text>
+    </g>
+
+    <!-- Suggestion -->
+    <g transform='translate(247.5, 170)'>
+      <text x='0' y='0' text-anchor='middle' fill='${subtext}'
+            font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='400' font-size='11px'
+            style='opacity: 0; animation: fadein 0.5s linear forwards 0.9s'>
+        Please check your GitHub token and regenerate
+      </text>
+    </g>
+  </g>
+</svg>`;
+}
+
 function svgTemplate({
 	palette,
 	totalContrib,
@@ -202,6 +307,11 @@ function svgTemplate({
     @keyframes fadein {
       0% { opacity: 0; }
       100% { opacity: 1; }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
     }
     text { paint-order: stroke; }
   </style>
@@ -317,6 +427,9 @@ function svgTemplate({
 // === GET handler (unchanged logic; new theme params) ===
 export async function GET(req: NextRequest) {
 	try {
+		// Load environment overrides from cache
+		await loadEnvOverrides();
+
 		const { searchParams } = new URL(req.url);
 		const user = searchParams.get('user') || 'sedhha';
 
@@ -384,9 +497,40 @@ export async function GET(req: NextRequest) {
 			}
 		});
 	} catch (err: any) {
-		return new Response(`<!-- ${err?.message || 'error'} -->`, {
+		// Parse error details
+		let errorMessage = 'Unknown error';
+		let errorStatus = '500';
+
+		try {
+			const errorData = JSON.parse(err?.message || '{}');
+			errorMessage = errorData.message || err?.message || 'Unknown error';
+			errorStatus = errorData.status || '500';
+		} catch {
+			errorMessage = err?.message || 'Unknown error';
+		}
+
+		// Get theme for error display
+		const { searchParams } = new URL(req.url);
+		const themeParam = (searchParams.get('theme') || 'light').toLowerCase();
+		const palette = THEMES[themeParam] || THEMES.light;
+		const transparentBackground =
+			(searchParams.get('bg') || '').toLowerCase() === 'transparent';
+
+		const errorSvg = errorSvgTemplate({
+			palette,
+			errorMessage,
+			errorStatus,
+			transparentBackground
+		});
+
+		return new Response(errorSvg, {
 			status: 200,
-			headers: { 'Content-Type': 'image/svg+xml; charset=utf-8' }
+			headers: {
+				'Content-Type': 'image/svg+xml; charset=utf-8',
+				'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+				'Pragma': 'no-cache',
+				'Expires': '0'
+			}
 		});
 	}
 }
