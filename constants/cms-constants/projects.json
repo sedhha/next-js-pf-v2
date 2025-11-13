@@ -1,7 +1,7 @@
 [
 	{
 		"name": "Compliance Copilot",
-		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/750/539/datas/original.png",
+		"img": "https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/873/936/datas/gallery.jpg",
 		"description": "Compliance Copilot is an AI-powered compliance auditing system that ingests regulations (GDPR, ISO-27001, SOC2, SCC, etc.) along with organizational policies and documents. It uses a hybrid retrieval pipeline with deterministic comparison heuristics to deliver clear PASS, GAP, or UNCLEAR verdicts with citations and actionable recommendations.",
 		"actionButtons": [
 			{
