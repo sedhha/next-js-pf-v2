@@ -94,9 +94,9 @@ const Intro = () => {
                     {/* Subtitle with emoji */}
                     <div className="space-y-4">
                         <p className="text-xl sm:text-3xl lg:text-4xl font-light text-gray-300">
-                            The cosmos might not be{' '}
+                            The cosmos might be{' '}
                             <span className="font-bold bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">
-                                or it might be?
+                                or it might not be?
                             </span>
                         </p>
                         <div className="text-4xl sm:text-6xl animate-pulse">☢️🐱</div>
