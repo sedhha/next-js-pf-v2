@@ -26,9 +26,9 @@ const Intro = () => {
 				<section className={classes.BodyModule} id={attributes.About}>
 					<h1 className={classes.H1Main}>Tat Tvam Asi</h1>
 					<h2 className={classes.Intro}>
-						The cosmos might not be
+						The cosmos might be—
 						<br />
-						<span>or it might be? ☢️🐱</span>
+						<span>or it might not be? ☢️🐱</span>
 					</h2>
 					<div className={classes.ImageContainer}>
 						<div className={`${classes.Side} ${classes.Front}`}>
