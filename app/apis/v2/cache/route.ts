@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { parse as parseDotEnv } from 'dotenv';
 import admin from '@/backend/supabase/client';
 
 const CACHE_TABLE = 'cache';
@@ -19,7 +20,9 @@ async function verifyApiKey(apiKey: string): Promise<boolean> {
 
 /**
  * GET /apis/v2/cache?key=<key>
- * Reads a row from the cache table by key and returns the base64-decoded value.
+ * Reads a row from the cache table by key, base64-decodes it, parses it as
+ * .env format, and returns the result as a flat JSON key-value object.
+ * Comments and blank lines are stripped server-side — clients receive clean data.
  * Requires a valid X-Api-Key header matching the ACCESS_TOKEN stored in the cache table.
  */
 export async function GET(req: NextRequest) {
@@ -64,8 +67,9 @@ export async function GET(req: NextRequest) {
 		}
 
 		const decoded = Buffer.from(data.value, 'base64').toString('utf-8');
+		const parsed = parseDotEnv(decoded);
 
-		return NextResponse.json({ success: true, key, value: decoded }, { status: 200 });
+		return NextResponse.json(parsed, { status: 200 });
 	} catch (error: any) {
 		console.error('[Cache API] GET error:', error);
 		return NextResponse.json(
