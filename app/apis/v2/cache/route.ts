@@ -24,6 +24,12 @@ interface CacheUpdateBody {
 	dotenv?: unknown;
 }
 
+interface CacheRawUpdateBody {
+	key?: unknown;
+	value?: unknown;
+	raw?: unknown;
+}
+
 class CacheRouteError extends Error {
 	status: number;
 
@@ -47,7 +53,17 @@ async function verifyApiKey(apiKey: string): Promise<boolean> {
 	return apiKey === decoded;
 }
 
-function normalizeCacheKey(rawKey: string | null | undefined): string {
+async function authorizeRequest(req: NextRequest): Promise<NextResponse | null> {
+	const apiKey = req.headers.get('x-api-key');
+
+	if (!apiKey || !(await verifyApiKey(apiKey))) {
+		return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+	}
+
+	return null;
+}
+
+function getRequiredCacheKey(rawKey: string | null | undefined): string {
 	const key = rawKey?.trim();
 
 	if (!key) {
@@ -56,6 +72,12 @@ function normalizeCacheKey(rawKey: string | null | undefined): string {
 			400
 		);
 	}
+
+	return key;
+}
+
+function normalizeCacheKey(rawKey: string | null | undefined): string {
+	const key = getRequiredCacheKey(rawKey);
 
 	if (RESERVED_CACHE_KEYS.has(key)) {
 		throw new CacheRouteError(
@@ -329,6 +351,89 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+function shouldReturnRawValue(searchParams: URLSearchParams): boolean {
+	const rawMode = searchParams.get('raw')?.trim().toLowerCase();
+	return rawMode === 'true' || rawMode === '1';
+}
+
+function getRawCacheResponse(value: string): NextResponse {
+	return new NextResponse(value, {
+		status: 200,
+		headers: {
+			'Content-Type': 'text/plain; charset=utf-8',
+			'Cache-Control': 'no-store'
+		}
+	});
+}
+
+function getIncomingRawStringValue(
+	body: CacheRawUpdateBody,
+	rawRequestBody: string | null
+): string {
+	if (rawRequestBody !== null) {
+		if (rawRequestBody.length === 0) {
+			throw new CacheRouteError(
+				'Raw string value must not be empty.',
+				400
+			);
+		}
+
+		if (rawRequestBody.includes('\0')) {
+			throw new CacheRouteError(
+				'Raw string value must not contain null bytes.',
+				400
+			);
+		}
+
+		return rawRequestBody;
+	}
+
+	const payloadEntries = [
+		['raw', body.raw],
+		['value', body.value]
+	].filter(([, value]) => value !== undefined);
+
+	if (payloadEntries.length === 0) {
+		throw new CacheRouteError(
+			'Missing raw string payload. Provide it as a plain-text body or in raw/value.',
+			400
+		);
+	}
+
+	if (payloadEntries.length > 1) {
+		const names = payloadEntries.map(([name]) => name).join(', ');
+		throw new CacheRouteError(
+			`Provide only one raw string payload. Received: ${names}.`,
+			400
+		);
+	}
+
+	const [, payload] = payloadEntries[0];
+
+	if (typeof payload !== 'string') {
+		throw new CacheRouteError(
+			'Invalid raw string payload. Expected a string in raw or value.',
+			400
+		);
+	}
+
+	if (payload.length === 0) {
+		throw new CacheRouteError(
+			'Raw string value must not be empty.',
+			400
+		);
+	}
+
+	if (payload.includes('\0')) {
+		throw new CacheRouteError(
+			'Raw string value must not contain null bytes.',
+			400
+		);
+	}
+
+	return payload;
+}
+
 function getIncomingPayload(body: CacheUpdateBody): unknown {
 	const payloadEntries = [
 		['raw', body.raw],
@@ -432,14 +537,15 @@ function isSameCacheContent(
 /**
  * GET /apis/v2/cache?key=<key>
  * Reads a row from the cache table by key, parses supported JSON/.env formats,
- * and returns the result as a flat JSON key-value object.
+ * and returns the result as a flat JSON key-value object. Use raw=true to
+ * return the stored Postgres value unchanged as plain text.
  * Requires a valid X-Api-Key header matching the ACCESS_TOKEN stored in the cache table.
  */
 export async function GET(req: NextRequest) {
-	const apiKey = req.headers.get('x-api-key');
+	const unauthorizedResponse = await authorizeRequest(req);
 
-	if (!apiKey || !(await verifyApiKey(apiKey))) {
-		return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+	if (unauthorizedResponse) {
+		return unauthorizedResponse;
 	}
 
 	const { searchParams } = new URL(req.url);
@@ -470,7 +576,25 @@ export async function GET(req: NextRequest) {
 			throw error;
 		}
 
-		if (!data?.value) {
+		if (!data || data.value === null || data.value === undefined) {
+			return NextResponse.json(
+				{ error: `Cache entry for key "${key}" has no value` },
+				{ status: 404 }
+			);
+		}
+
+		if (shouldReturnRawValue(searchParams)) {
+			if (data.value === null || data.value === undefined) {
+				return NextResponse.json(
+					{ error: `Cache entry for key "${key}" has no value` },
+					{ status: 404 }
+				);
+			}
+
+			return getRawCacheResponse(data.value);
+		}
+
+		if (!data.value) {
 			return NextResponse.json(
 				{ error: `Cache entry for key "${key}" has no value` },
 				{ status: 404 }
@@ -505,10 +629,10 @@ export async function GET(req: NextRequest) {
  * Requires a valid X-Api-Key header matching the ACCESS_TOKEN stored in the cache table.
  */
 export async function POST(req: NextRequest) {
-	const apiKey = req.headers.get('x-api-key');
+	const unauthorizedResponse = await authorizeRequest(req);
 
-	if (!apiKey || !(await verifyApiKey(apiKey))) {
-		return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+	if (unauthorizedResponse) {
+		return unauthorizedResponse;
 	}
 
 	let body: CacheUpdateBody;
@@ -653,6 +777,146 @@ export async function POST(req: NextRequest) {
 		);
 	} catch (error: any) {
 		console.error('[Cache API] POST error:', error);
+
+		if (error instanceof CacheRouteError) {
+			return NextResponse.json(
+				{ error: error.message },
+				{ status: error.status }
+			);
+		}
+
+		return NextResponse.json(
+			{ error: 'Failed to update cache', message: error?.message },
+			{ status: 500 }
+		);
+	}
+}
+
+/**
+ * PUT /apis/v2/cache?key=<key>
+ * Replaces the cache row's stored value with the provided raw string as-is.
+ * Accepts text/plain, a JSON string body, or an object with raw/value.
+ * Requires a valid X-Api-Key header matching the ACCESS_TOKEN stored in the cache table.
+ */
+export async function PUT(req: NextRequest) {
+	const unauthorizedResponse = await authorizeRequest(req);
+
+	if (unauthorizedResponse) {
+		return unauthorizedResponse;
+	}
+
+	let body: CacheRawUpdateBody;
+	let rawRequestBody: string | null = null;
+	const contentType = req.headers.get('content-type')?.split(';')[0]?.trim().toLowerCase();
+
+	try {
+		if (contentType === 'text/plain') {
+			rawRequestBody = await req.text();
+			body = {};
+		} else {
+			const parsedBody = await req.json();
+
+			if (typeof parsedBody === 'string') {
+				rawRequestBody = parsedBody;
+				body = {};
+			} else {
+				if (!isPlainObject(parsedBody)) {
+					return NextResponse.json(
+						{
+							error:
+								'Invalid JSON body. Expected an object or a raw string.'
+						},
+						{ status: 400 }
+					);
+				}
+
+				body = parsedBody;
+			}
+		}
+	} catch {
+		return NextResponse.json(
+			{ error: 'Invalid request body' },
+			{ status: 400 }
+		);
+	}
+
+	const { searchParams } = new URL(req.url);
+
+	try {
+		const bodyKey = typeof body.key === 'string' ? body.key : undefined;
+		const key = normalizeCacheKey(searchParams.get('key') ?? bodyKey);
+		const rawValue = getIncomingRawStringValue(body, rawRequestBody);
+		const { data, error } = await admin
+			.from(CACHE_TABLE)
+			.select('value')
+			.eq('key', key)
+			.single();
+
+		if (error && error.code !== 'PGRST116') {
+			throw error;
+		}
+
+		if (data && data.value === rawValue) {
+			return NextResponse.json(
+				{
+					success: true,
+					key,
+					unchanged: true,
+					mode: 'raw'
+				},
+				{ status: 200 }
+			);
+		}
+
+		if (data) {
+			const { data: updatedRow, error: updateError } = await admin
+				.from(CACHE_TABLE)
+				.update({
+					value: rawValue
+				})
+				.eq('key', key)
+				.eq('value', data.value)
+				.select('key')
+				.maybeSingle();
+
+			if (updateError) {
+				throw updateError;
+			}
+
+			if (!updatedRow) {
+				throw new CacheRouteError(
+					`Cache entry "${key}" changed while updating. Existing entry was left unchanged; please retry.`,
+					409
+				);
+			}
+		} else {
+			const { error: insertError } = await admin.from(CACHE_TABLE).insert({
+				key,
+				value: rawValue
+			});
+
+			if (insertError) {
+				if (insertError.code === '23505') {
+					throw new CacheRouteError(
+						`Cache entry "${key}" was created by another request. Existing entry was left unchanged; please retry.`,
+						409
+					);
+				}
+
+				throw insertError;
+			}
+		}
+
+		return NextResponse.json(
+			{
+				success: true,
+				key,
+				mode: 'raw'
+			},
+			{ status: 200 }
+		);
+	} catch (error: any) {
+		console.error('[Cache API] PUT error:', error);
 
 		if (error instanceof CacheRouteError) {
 			return NextResponse.json(
