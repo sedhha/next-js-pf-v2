@@ -287,6 +287,44 @@ function serializeCacheValue(content: CacheContent, format: CacheFormat): string
 	}
 }
 
+function getWriteFormatCandidates(
+	cacheKey: string,
+	existingFormat?: CacheFormat
+): CacheFormat[] {
+	const defaultFormat = getDefaultCacheFormat(cacheKey);
+
+	return [...new Set([existingFormat, defaultFormat, 'base64-json'].filter(Boolean))] as CacheFormat[];
+}
+
+function serializeCacheValueForWrite(
+	content: CacheContent,
+	cacheKey: string,
+	existingFormat?: CacheFormat
+): {
+	serializedValue: string;
+	format: CacheFormat;
+} {
+	for (const format of getWriteFormatCandidates(cacheKey, existingFormat)) {
+		const serializedValue = serializeCacheValue(content, format);
+		const reparsedContent = parseStoredCacheValue(
+			serializedValue,
+			cacheKey
+		).content;
+
+		if (isSameCacheContent(content, reparsedContent)) {
+			return {
+				serializedValue,
+				format
+			};
+		}
+	}
+
+	throw new CacheRouteError(
+		'Internal validation failed while preparing the cache update. Existing entry was left unchanged.',
+		500
+	);
+}
+
 function isPlainObject(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -544,9 +582,11 @@ export async function POST(req: NextRequest) {
 			...existingContent,
 			...normalizedIncomingContent
 		};
-		const storageFormat =
-			parsedExistingValue?.format ?? getDefaultCacheFormat(key);
-		const encodedValue = serializeCacheValue(mergedContent, storageFormat);
+		const { serializedValue, format: storageFormat } = serializeCacheValueForWrite(
+			mergedContent,
+			key,
+			parsedExistingValue?.format
+		);
 
 		if (data?.value && isSameCacheContent(existingContent, mergedContent)) {
 			return NextResponse.json(
@@ -555,21 +595,10 @@ export async function POST(req: NextRequest) {
 					key,
 					count: Object.keys(mergedContent).length,
 					updatedKeys: [],
-					unchanged: true
+					unchanged: true,
+					format: storageFormat
 				},
 				{ status: 200 }
-			);
-		}
-
-		const verifiedMergedContent = parseStoredCacheValue(
-			encodedValue,
-			key
-		).content;
-
-		if (!isSameCacheContent(mergedContent, verifiedMergedContent)) {
-			throw new CacheRouteError(
-				'Internal validation failed while preparing the cache update. Existing entry was left unchanged.',
-				500
 			);
 		}
 
@@ -577,7 +606,7 @@ export async function POST(req: NextRequest) {
 			const { data: updatedRow, error: updateError } = await admin
 				.from(CACHE_TABLE)
 				.update({
-					value: encodedValue
+					value: serializedValue
 				})
 				.eq('key', key)
 				.eq('value', data.value)
@@ -597,7 +626,7 @@ export async function POST(req: NextRequest) {
 		} else {
 			const { error: insertError } = await admin.from(CACHE_TABLE).insert({
 				key,
-				value: encodedValue
+				value: serializedValue
 			});
 
 			if (insertError) {
@@ -617,7 +646,8 @@ export async function POST(req: NextRequest) {
 				success: true,
 				key,
 				count: Object.keys(mergedContent).length,
-				updatedKeys: Object.keys(normalizedIncomingContent)
+				updatedKeys: Object.keys(normalizedIncomingContent),
+				format: storageFormat
 			},
 			{ status: 200 }
 		);
