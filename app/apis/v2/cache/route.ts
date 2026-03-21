@@ -8,6 +8,12 @@ const RESERVED_CACHE_KEYS = new Set([ACCESS_TOKEN_KEY]);
 const ENV_KEY_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*$/;
 const BASE64_PATTERN = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
 type CacheContent = Record<string, string>;
+type CacheFormat = 'base64-json' | 'base64-dotenv' | 'raw-json' | 'raw-dotenv';
+
+interface ParsedCacheValue {
+	content: CacheContent;
+	format: CacheFormat;
+}
 
 class CacheRouteError extends Error {
 	status: number;
@@ -52,21 +58,75 @@ function normalizeCacheKey(rawKey: string | null | undefined): string {
 	return key;
 }
 
-function assertValidBase64(value: string, cacheKey: string): void {
+function getDefaultCacheFormat(cacheKey: string): CacheFormat {
+	return cacheKey === 'ENV_OVERRIDE' || cacheKey.endsWith('_ENV_OVERRIDE')
+		? 'base64-json'
+		: 'base64-dotenv';
+}
+
+function toDotEnvString(content: CacheContent): string {
+	return Object.entries(content)
+		.map(([key, value]) => `${key}=${JSON.stringify(value)}`)
+		.join('\n');
+}
+
+function tryDecodeBase64(value: string): string | null {
 	const normalized = value.trim();
 
 	if (!normalized || !BASE64_PATTERN.test(normalized)) {
+		return null;
+	}
+
+	return Buffer.from(normalized, 'base64').toString('utf-8');
+}
+
+function normalizeStoredJsonContent(
+	cacheKey: string,
+	sourceLabel: string,
+	value: unknown
+): CacheContent {
+	if (!isPlainObject(value)) {
 		throw new CacheRouteError(
-			`Cache entry "${cacheKey}" is not valid base64. Refusing to overwrite it.`,
+			`Cache entry "${cacheKey}" contains ${sourceLabel}, but it is not a JSON object. Refusing to overwrite it.`,
 			409
 		);
 	}
+
+	const normalized: CacheContent = {};
+
+	for (const [envKey, envValue] of Object.entries(value)) {
+		if (!ENV_KEY_PATTERN.test(envKey)) {
+			throw new CacheRouteError(
+				`Cache entry "${cacheKey}" contains invalid variable name "${envKey}" in ${sourceLabel}. Refusing to overwrite it.`,
+				409
+			);
+		}
+
+		if (typeof envValue !== 'string') {
+			throw new CacheRouteError(
+				`Cache entry "${cacheKey}" contains non-string value for "${envKey}" in ${sourceLabel}. Refusing to overwrite it.`,
+				409
+			);
+		}
+
+		if (envValue.includes('\0')) {
+			throw new CacheRouteError(
+				`Cache entry "${cacheKey}" contains a null byte in "${envKey}". Refusing to overwrite it.`,
+				409
+			);
+		}
+
+		normalized[envKey] = envValue;
+	}
+
+	return normalized;
 }
 
 function assertMergeSafeEnvContent(
 	cacheKey: string,
 	decodedValue: string,
-	content: CacheContent
+	content: CacheContent,
+	sourceLabel: string
 ): void {
 	const lines = decodedValue.replace(/^\uFEFF/, '').split(/\r?\n/);
 
@@ -84,7 +144,7 @@ function assertMergeSafeEnvContent(
 
 		if (separatorIndex <= 0) {
 			throw new CacheRouteError(
-				`Cache entry "${cacheKey}" contains unsupported content. Refusing to overwrite it.`,
+				`Cache entry "${cacheKey}" contains unsupported ${sourceLabel} content. Refusing to overwrite it.`,
 				409
 			);
 		}
@@ -93,7 +153,7 @@ function assertMergeSafeEnvContent(
 
 		if (!ENV_KEY_PATTERN.test(envKey)) {
 			throw new CacheRouteError(
-				`Cache entry "${cacheKey}" contains invalid variable name "${envKey}". Refusing to overwrite it.`,
+				`Cache entry "${cacheKey}" contains invalid variable name "${envKey}" in ${sourceLabel}. Refusing to overwrite it.`,
 				409
 			);
 		}
@@ -102,30 +162,120 @@ function assertMergeSafeEnvContent(
 	for (const [envKey, envValue] of Object.entries(content)) {
 		if (!ENV_KEY_PATTERN.test(envKey) || typeof envValue !== 'string') {
 			throw new CacheRouteError(
-				`Cache entry "${cacheKey}" could not be safely parsed. Refusing to overwrite it.`,
+				`Cache entry "${cacheKey}" could not be safely parsed from ${sourceLabel}. Refusing to overwrite it.`,
 				409
 			);
 		}
 	}
 }
 
-function decodeCacheValue(encodedValue: string, cacheKey: string): CacheContent {
-	assertValidBase64(encodedValue, cacheKey);
+function tryParseJsonContent(
+	value: string,
+	cacheKey: string,
+	sourceLabel: string
+): CacheContent | null {
+	try {
+		const parsedValue = JSON.parse(value);
+		return normalizeStoredJsonContent(cacheKey, sourceLabel, parsedValue);
+	} catch (error) {
+		if (error instanceof CacheRouteError) {
+			throw error;
+		}
 
-	const decodedValue = Buffer.from(encodedValue, 'base64').toString('utf-8');
-	const parsedValue = parseDotEnv(decodedValue);
-
-	assertMergeSafeEnvContent(cacheKey, decodedValue, parsedValue);
-
-	return parsedValue;
+		return null;
+	}
 }
 
-function encodeCacheValue(content: CacheContent): string {
-	const envString = Object.entries(content)
-		.map(([key, value]) => `${key}=${JSON.stringify(value)}`)
-		.join('\n');
+function tryParseDotEnvContent(
+	value: string,
+	cacheKey: string,
+	sourceLabel: string
+): CacheContent | null {
+	try {
+		const parsedValue = parseDotEnv(value);
+		assertMergeSafeEnvContent(cacheKey, value, parsedValue, sourceLabel);
+		return parsedValue;
+	} catch (error) {
+		if (error instanceof CacheRouteError) {
+			throw error;
+		}
 
-	return Buffer.from(envString).toString('base64');
+		return null;
+	}
+}
+
+function parseStoredCacheValue(
+	storedValue: string,
+	cacheKey: string
+): ParsedCacheValue {
+	const decodedValue = tryDecodeBase64(storedValue);
+
+	if (decodedValue !== null) {
+		const parsedBase64Json = tryParseJsonContent(
+			decodedValue,
+			cacheKey,
+			'base64-encoded JSON'
+		);
+
+		if (parsedBase64Json) {
+			return {
+				content: parsedBase64Json,
+				format: 'base64-json'
+			};
+		}
+
+		const parsedBase64DotEnv = tryParseDotEnvContent(
+			decodedValue,
+			cacheKey,
+			'base64-encoded .env'
+		);
+
+		if (parsedBase64DotEnv) {
+			return {
+				content: parsedBase64DotEnv,
+				format: 'base64-dotenv'
+			};
+		}
+	}
+
+	const parsedRawJson = tryParseJsonContent(storedValue, cacheKey, 'raw JSON');
+
+	if (parsedRawJson) {
+		return {
+			content: parsedRawJson,
+			format: 'raw-json'
+		};
+	}
+
+	const parsedRawDotEnv = tryParseDotEnvContent(storedValue, cacheKey, 'raw .env');
+
+	if (parsedRawDotEnv) {
+		return {
+			content: parsedRawDotEnv,
+			format: 'raw-dotenv'
+		};
+	}
+
+	throw new CacheRouteError(
+		`Cache entry "${cacheKey}" is not in a supported JSON or .env format. Refusing to overwrite it.`,
+		409
+	);
+}
+
+function serializeCacheValue(content: CacheContent, format: CacheFormat): string {
+	const envString = toDotEnvString(content);
+	const jsonString = JSON.stringify(content);
+
+	switch (format) {
+		case 'base64-json':
+			return Buffer.from(jsonString).toString('base64');
+		case 'base64-dotenv':
+			return Buffer.from(envString).toString('base64');
+		case 'raw-json':
+			return jsonString;
+		case 'raw-dotenv':
+			return envString;
+	}
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -187,9 +337,8 @@ function isSameCacheContent(
 
 /**
  * GET /apis/v2/cache?key=<key>
- * Reads a row from the cache table by key, base64-decodes it, parses it as
- * .env format, and returns the result as a flat JSON key-value object.
- * Comments and blank lines are stripped server-side — clients receive clean data.
+ * Reads a row from the cache table by key, parses supported JSON/.env formats,
+ * and returns the result as a flat JSON key-value object.
  * Requires a valid X-Api-Key header matching the ACCESS_TOKEN stored in the cache table.
  */
 export async function GET(req: NextRequest) {
@@ -234,7 +383,7 @@ export async function GET(req: NextRequest) {
 			);
 		}
 
-		const parsed = decodeCacheValue(data.value, key);
+		const parsed = parseStoredCacheValue(data.value, key).content;
 
 		return NextResponse.json(parsed, { status: 200 });
 	} catch (error: any) {
@@ -256,8 +405,8 @@ export async function GET(req: NextRequest) {
 
 /**
  * POST /apis/v2/cache?key=<key>
- * Merges incoming key-value pairs into the existing decoded cache content
- * and writes the merged result back to the cache table.
+ * Merges incoming key-value pairs into the existing parsed cache content
+ * and writes the merged result back using the existing row's storage format.
  * Requires a valid X-Api-Key header matching the ACCESS_TOKEN stored in the cache table.
  */
 export async function POST(req: NextRequest) {
@@ -318,12 +467,17 @@ export async function POST(req: NextRequest) {
 			throw error;
 		}
 
-		const existingContent = data?.value ? decodeCacheValue(data.value, key) : {};
+		const parsedExistingValue = data?.value
+			? parseStoredCacheValue(data.value, key)
+			: null;
+		const existingContent = parsedExistingValue?.content ?? {};
 		const mergedContent = {
 			...existingContent,
 			...normalizedIncomingContent
 		};
-		const encodedValue = encodeCacheValue(mergedContent);
+		const storageFormat =
+			parsedExistingValue?.format ?? getDefaultCacheFormat(key);
+		const encodedValue = serializeCacheValue(mergedContent, storageFormat);
 
 		if (data?.value && isSameCacheContent(existingContent, mergedContent)) {
 			return NextResponse.json(
@@ -338,7 +492,10 @@ export async function POST(req: NextRequest) {
 			);
 		}
 
-		const verifiedMergedContent = decodeCacheValue(encodedValue, key);
+		const verifiedMergedContent = parseStoredCacheValue(
+			encodedValue,
+			key
+		).content;
 
 		if (!isSameCacheContent(mergedContent, verifiedMergedContent)) {
 			throw new CacheRouteError(
