@@ -50,7 +50,8 @@ async function verifyApiKey(apiKey: string): Promise<boolean> {
 
 	if (error || !data?.value) return false;
 
-	return apiKey === data.value;
+	const decoded = Buffer.from(data.value, 'base64').toString('utf-8');
+	return apiKey === decoded;
 }
 
 async function authorizeRequest(
