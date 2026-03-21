@@ -6,7 +6,8 @@ const CACHE_TABLE = 'cache';
 const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
 const RESERVED_CACHE_KEYS = new Set([ACCESS_TOKEN_KEY]);
 const ENV_KEY_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*$/;
-const BASE64_PATTERN = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+const BASE64_PATTERN =
+	/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
 type CacheContent = Record<string, string>;
 type CacheFormat = 'base64-json' | 'base64-dotenv' | 'raw-json' | 'raw-dotenv';
 
@@ -49,11 +50,12 @@ async function verifyApiKey(apiKey: string): Promise<boolean> {
 
 	if (error || !data?.value) return false;
 
-	const decoded = Buffer.from(data.value, 'base64').toString('utf-8');
-	return apiKey === decoded;
+	return apiKey === data.value;
 }
 
-async function authorizeRequest(req: NextRequest): Promise<NextResponse | null> {
+async function authorizeRequest(
+	req: NextRequest
+): Promise<NextResponse | null> {
 	const apiKey = req.headers.get('x-api-key');
 
 	if (!apiKey || !(await verifyApiKey(apiKey))) {
@@ -278,7 +280,11 @@ function parseStoredCacheValue(
 		};
 	}
 
-	const parsedRawDotEnv = tryParseDotEnvContent(storedValue, cacheKey, 'raw .env');
+	const parsedRawDotEnv = tryParseDotEnvContent(
+		storedValue,
+		cacheKey,
+		'raw .env'
+	);
 
 	if (parsedRawDotEnv) {
 		return {
@@ -293,7 +299,10 @@ function parseStoredCacheValue(
 	);
 }
 
-function serializeCacheValue(content: CacheContent, format: CacheFormat): string {
+function serializeCacheValue(
+	content: CacheContent,
+	format: CacheFormat
+): string {
 	const envString = toDotEnvString(content);
 	const jsonString = JSON.stringify(content);
 
@@ -315,7 +324,9 @@ function getWriteFormatCandidates(
 ): CacheFormat[] {
 	const defaultFormat = getDefaultCacheFormat(cacheKey);
 
-	return [...new Set([existingFormat, defaultFormat, 'base64-json'].filter(Boolean))] as CacheFormat[];
+	return [
+		...new Set([existingFormat, defaultFormat, 'base64-json'].filter(Boolean))
+	] as CacheFormat[];
 }
 
 function serializeCacheValueForWrite(
@@ -372,10 +383,7 @@ function getIncomingRawStringValue(
 ): string {
 	if (rawRequestBody !== null) {
 		if (rawRequestBody.length === 0) {
-			throw new CacheRouteError(
-				'Raw string value must not be empty.',
-				400
-			);
+			throw new CacheRouteError('Raw string value must not be empty.', 400);
 		}
 
 		if (rawRequestBody.includes('\0')) {
@@ -418,10 +426,7 @@ function getIncomingRawStringValue(
 	}
 
 	if (payload.length === 0) {
-		throw new CacheRouteError(
-			'Raw string value must not be empty.',
-			400
-		);
+		throw new CacheRouteError('Raw string value must not be empty.', 400);
 	}
 
 	if (payload.includes('\0')) {
@@ -461,7 +466,9 @@ function getIncomingPayload(body: CacheUpdateBody): unknown {
 	return payloadEntries[0][1];
 }
 
-function normalizeIncomingContent(content: Record<string, unknown>): CacheContent {
+function normalizeIncomingContent(
+	content: Record<string, unknown>
+): CacheContent {
 	const normalized: CacheContent = {};
 
 	for (const [key, value] of Object.entries(content)) {
@@ -500,10 +507,7 @@ function normalizeIncomingContent(content: Record<string, unknown>): CacheConten
 
 function normalizeIncomingRawContent(rawValue: string): CacheContent {
 	if (!rawValue.trim()) {
-		throw new CacheRouteError(
-			'Raw .env content must not be empty.',
-			400
-		);
+		throw new CacheRouteError('Raw .env content must not be empty.', 400);
 	}
 
 	const parsedValue = parseDotEnv(rawValue);
@@ -518,10 +522,7 @@ function normalizeIncomingRawContent(rawValue: string): CacheContent {
 	return normalizeIncomingContent(parsedValue);
 }
 
-function isSameCacheContent(
-	left: CacheContent,
-	right: CacheContent
-): boolean {
+function isSameCacheContent(left: CacheContent, right: CacheContent): boolean {
 	const leftKeys = Object.keys(left).sort();
 	const rightKeys = Object.keys(right).sort();
 
@@ -608,10 +609,7 @@ export async function GET(req: NextRequest) {
 		console.error('[Cache API] GET error:', error);
 
 		if (error instanceof CacheRouteError) {
-			return NextResponse.json(
-				{ error: error.message },
-				{ status: error.status }
-			);
+			return NextResponse.json({ error: error.message }, { status: error.status });
 		}
 
 		return NextResponse.json(
@@ -637,7 +635,11 @@ export async function POST(req: NextRequest) {
 
 	let body: CacheUpdateBody;
 	let rawRequestBody: string | null = null;
-	const contentType = req.headers.get('content-type')?.split(';')[0]?.trim().toLowerCase();
+	const contentType = req.headers
+		.get('content-type')
+		?.split(';')[0]
+		?.trim()
+		.toLowerCase();
 
 	try {
 		if (contentType === 'text/plain') {
@@ -653,8 +655,7 @@ export async function POST(req: NextRequest) {
 				if (!isPlainObject(parsedBody)) {
 					return NextResponse.json(
 						{
-							error:
-								'Invalid JSON body. Expected an object or a raw .env string.'
+							error: 'Invalid JSON body. Expected an object or a raw .env string.'
 						},
 						{ status: 400 }
 					);
@@ -664,10 +665,7 @@ export async function POST(req: NextRequest) {
 			}
 		}
 	} catch {
-		return NextResponse.json(
-			{ error: 'Invalid request body' },
-			{ status: 400 }
-		);
+		return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
 	}
 
 	const { searchParams } = new URL(req.url);
@@ -675,8 +673,7 @@ export async function POST(req: NextRequest) {
 	try {
 		const bodyKey = typeof body.key === 'string' ? body.key : undefined;
 		const key = normalizeCacheKey(searchParams.get('key') ?? bodyKey);
-		const incomingPayload =
-			rawRequestBody ?? getIncomingPayload(body);
+		const incomingPayload = rawRequestBody ?? getIncomingPayload(body);
 		const normalizedIncomingContent =
 			typeof incomingPayload === 'string'
 				? normalizeIncomingRawContent(incomingPayload)
@@ -706,11 +703,8 @@ export async function POST(req: NextRequest) {
 			...existingContent,
 			...normalizedIncomingContent
 		};
-		const { serializedValue, format: storageFormat } = serializeCacheValueForWrite(
-			mergedContent,
-			key,
-			parsedExistingValue?.format
-		);
+		const { serializedValue, format: storageFormat } =
+			serializeCacheValueForWrite(mergedContent, key, parsedExistingValue?.format);
 
 		if (data?.value && isSameCacheContent(existingContent, mergedContent)) {
 			return NextResponse.json(
@@ -779,10 +773,7 @@ export async function POST(req: NextRequest) {
 		console.error('[Cache API] POST error:', error);
 
 		if (error instanceof CacheRouteError) {
-			return NextResponse.json(
-				{ error: error.message },
-				{ status: error.status }
-			);
+			return NextResponse.json({ error: error.message }, { status: error.status });
 		}
 
 		return NextResponse.json(
@@ -807,7 +798,11 @@ export async function PUT(req: NextRequest) {
 
 	let body: CacheRawUpdateBody;
 	let rawRequestBody: string | null = null;
-	const contentType = req.headers.get('content-type')?.split(';')[0]?.trim().toLowerCase();
+	const contentType = req.headers
+		.get('content-type')
+		?.split(';')[0]
+		?.trim()
+		.toLowerCase();
 
 	try {
 		if (contentType === 'text/plain') {
@@ -823,8 +818,7 @@ export async function PUT(req: NextRequest) {
 				if (!isPlainObject(parsedBody)) {
 					return NextResponse.json(
 						{
-							error:
-								'Invalid JSON body. Expected an object or a raw string.'
+							error: 'Invalid JSON body. Expected an object or a raw string.'
 						},
 						{ status: 400 }
 					);
@@ -834,10 +828,7 @@ export async function PUT(req: NextRequest) {
 			}
 		}
 	} catch {
-		return NextResponse.json(
-			{ error: 'Invalid request body' },
-			{ status: 400 }
-		);
+		return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
 	}
 
 	const { searchParams } = new URL(req.url);
@@ -919,10 +910,7 @@ export async function PUT(req: NextRequest) {
 		console.error('[Cache API] PUT error:', error);
 
 		if (error instanceof CacheRouteError) {
-			return NextResponse.json(
-				{ error: error.message },
-				{ status: error.status }
-			);
+			return NextResponse.json({ error: error.message }, { status: error.status });
 		}
 
 		return NextResponse.json(
