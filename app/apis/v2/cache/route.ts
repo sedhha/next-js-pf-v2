@@ -15,6 +15,15 @@ interface ParsedCacheValue {
 	format: CacheFormat;
 }
 
+interface CacheUpdateBody {
+	key?: unknown;
+	content?: unknown;
+	data?: unknown;
+	value?: unknown;
+	raw?: unknown;
+	dotenv?: unknown;
+}
+
 class CacheRouteError extends Error {
 	status: number;
 
@@ -122,48 +131,42 @@ function normalizeStoredJsonContent(
 	return normalized;
 }
 
-function assertMergeSafeEnvContent(
-	cacheKey: string,
-	decodedValue: string,
+function assertValidParsedEnvContent(
+	subjectLabel: string,
+	rawValue: string,
 	content: CacheContent,
-	sourceLabel: string
+	sourceLabel: string,
+	errorStatus: number
 ): void {
-	const lines = decodedValue.replace(/^\uFEFF/, '').split(/\r?\n/);
-
-	for (const line of lines) {
+	const normalizedValue = rawValue.replace(/^\uFEFF/, '');
+	const hasNonCommentContent = normalizedValue.split(/\r?\n/).some((line) => {
 		const trimmed = line.trim();
+		return Boolean(trimmed) && !trimmed.startsWith('#');
+	});
 
-		if (!trimmed || trimmed.startsWith('#')) {
-			continue;
-		}
-
-		const withoutExport = trimmed.startsWith('export ')
-			? trimmed.slice('export '.length).trimStart()
-			: trimmed;
-		const separatorIndex = withoutExport.indexOf('=');
-
-		if (separatorIndex <= 0) {
+	if (Object.keys(content).length === 0) {
+		if (hasNonCommentContent) {
 			throw new CacheRouteError(
-				`Cache entry "${cacheKey}" contains unsupported ${sourceLabel} content. Refusing to overwrite it.`,
-				409
+				`${subjectLabel} contains unsupported ${sourceLabel} content.`,
+				errorStatus
 			);
 		}
 
-		const envKey = withoutExport.slice(0, separatorIndex).trim();
-
-		if (!ENV_KEY_PATTERN.test(envKey)) {
-			throw new CacheRouteError(
-				`Cache entry "${cacheKey}" contains invalid variable name "${envKey}" in ${sourceLabel}. Refusing to overwrite it.`,
-				409
-			);
-		}
+		return;
 	}
 
 	for (const [envKey, envValue] of Object.entries(content)) {
 		if (!ENV_KEY_PATTERN.test(envKey) || typeof envValue !== 'string') {
 			throw new CacheRouteError(
-				`Cache entry "${cacheKey}" could not be safely parsed from ${sourceLabel}. Refusing to overwrite it.`,
-				409
+				`${subjectLabel} could not be safely parsed from ${sourceLabel}.`,
+				errorStatus
+			);
+		}
+
+		if (envValue.includes('\0')) {
+			throw new CacheRouteError(
+				`${subjectLabel} contains a null byte in "${envKey}".`,
+				errorStatus
 			);
 		}
 	}
@@ -193,7 +196,13 @@ function tryParseDotEnvContent(
 ): CacheContent | null {
 	try {
 		const parsedValue = parseDotEnv(value);
-		assertMergeSafeEnvContent(cacheKey, value, parsedValue, sourceLabel);
+		assertValidParsedEnvContent(
+			`Cache entry "${cacheKey}"`,
+			value,
+			parsedValue,
+			sourceLabel,
+			409
+		);
 		return parsedValue;
 	} catch (error) {
 		if (error instanceof CacheRouteError) {
@@ -282,6 +291,33 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+function getIncomingPayload(body: CacheUpdateBody): unknown {
+	const payloadEntries = [
+		['raw', body.raw],
+		['dotenv', body.dotenv],
+		['content', body.content],
+		['data', body.data],
+		['value', body.value]
+	].filter(([, value]) => value !== undefined);
+
+	if (payloadEntries.length === 0) {
+		throw new CacheRouteError(
+			'Missing update payload. Provide raw .env text or one object in raw, dotenv, content, data, or value.',
+			400
+		);
+	}
+
+	if (payloadEntries.length > 1) {
+		const names = payloadEntries.map(([name]) => name).join(', ');
+		throw new CacheRouteError(
+			`Provide only one update payload. Received: ${names}.`,
+			400
+		);
+	}
+
+	return payloadEntries[0][1];
+}
+
 function normalizeIncomingContent(content: Record<string, unknown>): CacheContent {
 	const normalized: CacheContent = {};
 
@@ -317,6 +353,26 @@ function normalizeIncomingContent(content: Record<string, unknown>): CacheConten
 	}
 
 	return normalized;
+}
+
+function normalizeIncomingRawContent(rawValue: string): CacheContent {
+	if (!rawValue.trim()) {
+		throw new CacheRouteError(
+			'Raw .env content must not be empty.',
+			400
+		);
+	}
+
+	const parsedValue = parseDotEnv(rawValue);
+	assertValidParsedEnvContent(
+		'Request body',
+		rawValue,
+		parsedValue,
+		'raw .env',
+		400
+	);
+
+	return normalizeIncomingContent(parsedValue);
 }
 
 function isSameCacheContent(
@@ -405,8 +461,9 @@ export async function GET(req: NextRequest) {
 
 /**
  * POST /apis/v2/cache?key=<key>
- * Merges incoming key-value pairs into the existing parsed cache content
- * and writes the merged result back using the existing row's storage format.
+ * Merges incoming raw .env text or key-value pairs into the existing parsed
+ * cache content and writes the merged result back using the existing row's
+ * storage format.
  * Requires a valid X-Api-Key header matching the ACCESS_TOKEN stored in the cache table.
  */
 export async function POST(req: NextRequest) {
@@ -416,47 +473,59 @@ export async function POST(req: NextRequest) {
 		return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 	}
 
-	let body: {
-		key?: string;
-		content?: unknown;
-		data?: unknown;
-		value?: unknown;
-	};
+	let body: CacheUpdateBody;
+	let rawRequestBody: string | null = null;
+	const contentType = req.headers.get('content-type')?.split(';')[0]?.trim().toLowerCase();
 
 	try {
-		const parsedBody = await req.json();
+		if (contentType === 'text/plain') {
+			rawRequestBody = await req.text();
+			body = {};
+		} else {
+			const parsedBody = await req.json();
 
-		if (!isPlainObject(parsedBody)) {
-			return NextResponse.json(
-				{ error: 'Invalid JSON body. Expected an object.' },
-				{ status: 400 }
-			);
+			if (typeof parsedBody === 'string') {
+				rawRequestBody = parsedBody;
+				body = {};
+			} else {
+				if (!isPlainObject(parsedBody)) {
+					return NextResponse.json(
+						{
+							error:
+								'Invalid JSON body. Expected an object or a raw .env string.'
+						},
+						{ status: 400 }
+					);
+				}
+
+				body = parsedBody;
+			}
 		}
-
-		body = parsedBody;
 	} catch {
 		return NextResponse.json(
-			{ error: 'Invalid JSON body' },
+			{ error: 'Invalid request body' },
 			{ status: 400 }
 		);
 	}
 
 	const { searchParams } = new URL(req.url);
-	const incomingContent = body.content ?? body.data ?? body.value;
-
-	if (!isPlainObject(incomingContent)) {
-		return NextResponse.json(
-			{
-				error:
-					'Invalid content format. Expected an object with string key-value pairs.'
-			},
-			{ status: 400 }
-		);
-	}
 
 	try {
-		const key = normalizeCacheKey(searchParams.get('key') ?? body.key);
-		const normalizedIncomingContent = normalizeIncomingContent(incomingContent);
+		const bodyKey = typeof body.key === 'string' ? body.key : undefined;
+		const key = normalizeCacheKey(searchParams.get('key') ?? bodyKey);
+		const incomingPayload =
+			rawRequestBody ?? getIncomingPayload(body);
+		const normalizedIncomingContent =
+			typeof incomingPayload === 'string'
+				? normalizeIncomingRawContent(incomingPayload)
+				: isPlainObject(incomingPayload)
+					? normalizeIncomingContent(incomingPayload)
+					: (() => {
+							throw new CacheRouteError(
+								'Invalid update payload. Expected raw .env text or an object with string key-value pairs.',
+								400
+							);
+						})();
 		const { data, error } = await admin
 			.from(CACHE_TABLE)
 			.select('value')
